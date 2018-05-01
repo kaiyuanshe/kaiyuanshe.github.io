@@ -1,0 +1,68 @@
+diff --git a/config.php b/config.php
+index 4ced501..16eb394 100644
+--- a/config.php
++++ b/config.php
+@@ -12,7 +12,7 @@ $config->member->form->person[] = 'site|input|';
+ $config->member->form->person[] = 'guarantee|input|placeholder="请填写开源社成员"';
+ $config->member->form->person[] = 'project|textarea|';
+ $config->member->form->person[] = 'understanding|textarea|';
+-$config->member->form->person[] = 'willing|textarea|';
++$config->member->form->person[] = 'willing|checkbox|';
+ $config->member->form->person[] = 'reason|textarea|';
+ 
+ $config->member->form->organization = array();
+diff --git a/lang/zh-cn.php b/lang/zh-cn.php
+index bc01f08..51898ee 100644
+--- a/lang/zh-cn.php
++++ b/lang/zh-cn.php
+@@ -16,7 +16,18 @@ $lang->member->blog          = '您的博客';
+ $lang->member->guarantee     = '担保人';
+ $lang->member->project       = '请描述您所从事的跟开源相关的项目和工作？（若项目有代码托管链接，请提供）';
+ $lang->member->understanding = '您对开源社的理解，您期望的开源联盟是什么样的？';
+-$lang->member->willing       = '你愿意为开源社作出哪些贡献？（例如，在目前的工作小组， 你希望加入哪一个工作组做贡献?)';
++$lang->member->willing       = '你愿意加入哪个开源社工作组？（例如，在目前的工作小组， 你希望加入哪一个工作组做贡献?)';
++$lang->member->willingList['法律事务工作组']   = '法律事务工作组';
++$lang->member->willingList['成员发展工作组']    = '成员发展工作组';
++$lang->member->willingList['财务工作组'] = '财务工作组';
++$lang->member->willingList['基础设施工作组']   = '基础设施工作组';
++$lang->member->willingList['媒体工作组']    = '媒体工作组';
++$lang->member->willingList['文案/翻译工作组'] = '文案/翻译工作组';
++$lang->member->willingList['线下活动工作组']   = '线下活动工作组';
++$lang->member->willingList['社区合作工作组']    = '社区合作工作组';
++$lang->member->willingList['高校合作工作组组'] = '高校合作工作组组';
++$lang->member->willingList['企业合作工作组'] = '企业合作工作组';
++$lang->member->willingList['其他'] = '其他';
+ $lang->member->reason        = '您为什么要加入开源社？';
+ $lang->member->joinDate      = '加入时间';
+ 
+diff --git a/model.php b/model.php
+index 02f6d22..a36876d 100644
+--- a/model.php
++++ b/model.php
+@@ -20,6 +20,8 @@ class memberModel extends model
+             ->add('account', $this->app->user->account)
+             ->get();
+ 
++	$member->willing = implode(',', $member->willing);
++
+         $member->type  = 'person';
+         if($member->type == 'organization')
+         {
+diff --git a/view/join.html.php b/view/join.html.php
+index a85971f..66c4452 100644
+--- a/view/join.html.php
++++ b/view/join.html.php
+@@ -17,6 +17,13 @@
+           <?php echo html::$input($item, '', "class='form-control' $extra");?>
+         </td>
+       </tr>
++      <?php elseif($input == 'checkbox'):?>
++      <tr class="form-items">
++        <td colspan='2' style="padding-left:40px">
++          <h4><?php echo $lang->member->{$alias};?></h4>
++            <?php echo html::checkbox('willing', $lang->member->willingList, $lang->member->willing);?>
++        </td>
++      </tr>
+       <?php else:?>
+       <tr class="form-items">
+         <th class="w-120px"><?php echo $lang->member->{$alias};?></th>
