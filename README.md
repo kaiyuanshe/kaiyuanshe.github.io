@@ -39,9 +39,11 @@ bundle exec jekyll build
 以下内容都在 src 目录下。
 
 - `_includes` 和 `_layouts` 负责提供布局，前者存放可复用的部分页面元素，后者存放有层次关系的网页结构。
-- `_drafts` `_posts` 这些对应于配置中 collections 节，如果需要更多分类，依样画葫芦即可。
+- `_drafts` `_posts` `_raw` 这些对应于配置中 collections 节，如果需要更多分类，依样画葫芦即可。
 - `_data` 里面的文件负责[提供数据](http://jekyllcn.com/docs/datafiles/)，Jekyll 读取 yaml json csv 格式的文件，将其保存在全局变量 `site.data.xxx` 内（xxx 是文件名）供各处使用。
 - `_plugins` 存放 rb 脚本，称为[插件](http://jekyllcn.com/docs/plugins/)。这些插件会在生成页面前被加载，可以提供变量、过滤器、模板标签，也可以生成页面，支持新的标记语言。
+
+额外地，`_posts` 受到更严格的限制，其内的文件名必须是 `年-月-日-标题.MARKUP` 的格式。
 
 ## 处理文件的依据
 
