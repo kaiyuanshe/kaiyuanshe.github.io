@@ -4,6 +4,12 @@
 
 ## 搭建本地环境
 
+npm install hexo-cli -g
+hexo init blog
+cd blog
+npm install
+hexo server
+
 ## 预览与构建
 
 ## 结构目录
