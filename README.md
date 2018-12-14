@@ -8,12 +8,12 @@ $ npm install -g cnpm --registry=https://registry.npm.taobao.org
 
 cnpm install hexo-cli -g
 
-hexo init home
+hexo init docs
 
 
 ## 预览与构建
 
-cd home
+cd docs
 
 cnpm install
 
