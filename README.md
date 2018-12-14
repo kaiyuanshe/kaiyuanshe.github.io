@@ -1,2 +1,11 @@
-# kaiyuanshe
-The main site for kaiyuanshe
+# 开源社官网
+
+这是一个基于Hexo构建的静态网站源码。
+
+## 搭建本地环境
+
+## 预览与构建
+
+## 结构目录
+
+## 参考手册
