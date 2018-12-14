@@ -4,14 +4,25 @@
 
 ## 搭建本地环境
 
-npm install hexo-cli -g
-hexo init blog
-cd blog
-npm install
-hexo server
+$ npm install -g cnpm --registry=https://registry.npm.taobao.org
+
+cnpm install hexo-cli -g
+
+hexo init home
+
 
 ## 预览与构建
 
+cd home
+
+cnpm install
+
+hexo server
+
 ## 结构目录
 
+home 目录下是 通过hexo初始化的一个项目目录
+
 ## 参考手册
+
+![Hexo官网地址](https://hexo.io)
