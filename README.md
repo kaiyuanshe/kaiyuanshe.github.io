@@ -10,6 +10,11 @@ cnpm install hexo-cli -g
 
 hexo init docs
 
+### 判断方式：
+
+    node -v
+    git version
+
 
 ## 预览与构建
 
@@ -25,4 +30,6 @@ home 目录下是 通过hexo初始化的一个项目目录
 
 ## 参考手册
 
-![Hexo官网地址](https://hexo.io)
+Hexo官网地址:<https://hexo.io>
+
+
