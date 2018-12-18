@@ -79,7 +79,7 @@ theme: landscape
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/robyle/kaiyuanshe/docs
+  repo: https://github.com/robyle/kaiyuanshe
   branch: master
   message: kaiyuanshe git message
 
