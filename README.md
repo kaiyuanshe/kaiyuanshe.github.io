@@ -4,8 +4,9 @@
 
 ## 搭建本地环境
 
-$ npm install -g cnpm --registry=https://registry.npm.taobao.org
-
+···
+$ npm install -g cnpm --registry=<https://registry.npm.taobao.org>
+···
 cnpm install hexo-cli -g
 
 hexo init docs
@@ -14,7 +15,6 @@ hexo init docs
 
     node -v
     git version
-
 
 ## 预览与构建
 
@@ -26,7 +26,6 @@ hexo server
 
 cnpm install hexo-deployer-git --save
 
-
 ## 结构目录
 
 home 目录下是 通过hexo初始化的一个项目目录
@@ -34,5 +33,3 @@ home 目录下是 通过hexo初始化的一个项目目录
 ## 参考手册
 
 Hexo官网地址:<https://hexo.io>
-
-
