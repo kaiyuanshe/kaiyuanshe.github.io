@@ -24,6 +24,9 @@ cnpm install
 
 hexo server
 
+cnpm install hexo-deployer-git --save
+
+
 ## 结构目录
 
 home 目录下是 通过hexo初始化的一个项目目录
