@@ -78,4 +78,7 @@ theme: landscape
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type:
+  type: git
+  repo: https://github.com/robyle/kaiyuanshe.git
+  branch: gh-pages
+  message: 开源社部署
