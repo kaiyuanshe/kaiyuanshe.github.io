@@ -18,7 +18,7 @@ hexo init src
 
 ## 预览与构建
 
-cd docs
+cd src
 
 cnpm install
 
@@ -28,7 +28,11 @@ cnpm install hexo-deployer-git --save
 
 ## 结构目录
 
-home 目录下是 通过hexo初始化的一个项目目录
+src 目录下是 通过hexo初始化的一个项目目录,改目录用于程序员进行更新代码，也是Hexo初始化的时候需要一个目录要求的必要选项。
+
+READEME.md 该文件是用于说明引导使用开发项目说明文档。
+
+SUMMARY.md 开源社网站开发及管理总结性说明。
 
 ## 参考手册
 
