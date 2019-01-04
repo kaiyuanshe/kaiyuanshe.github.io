@@ -81,4 +81,4 @@ deploy:
   type: git
   repo: https://github.com/robyle/kaiyuanshe.git
   branch: gh-pages
-  message: 开源社部署
+  message: 
