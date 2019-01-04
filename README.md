@@ -1,4 +1,4 @@
-# 开源社官网
+# 开源社官网 [](https://travis-ci.org/robyle/kaiyuanshe.svg?branch=master)
 
 这是一个基于Hexo构建的静态网站源码。
 
