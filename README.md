@@ -1,5 +1,5 @@
 # 开源社官网 
-[![Build Status](https://travis-ci.org/robyle/kaiyuanshe.svg?branch=master)](https://travis-ci.org/robyle/kaiyuanshe)
+[![Build Status](https://travis-ci.org/kaiyuanshe/kaiyuanshe.svg?branch=master)](https://travis-ci.org/kaiyuanshe/kaiyuanshe)
 
 这是一个基于Hexo构建的静态网站源码。
 
