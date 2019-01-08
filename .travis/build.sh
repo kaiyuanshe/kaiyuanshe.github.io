@@ -6,7 +6,7 @@ cd src
 hexo clean
 hexo generate
 
-if [[ $TRAVIS_BRANCH == 'master' ]]
+if [ '$TRAVIS_BRANCH' == 'master' ]; then
   # 替换同目录下的_config.yml文件中gh_token字符串为travis后台刚才配置的变量，注意此处sed命令用了双引号。单引号无效！
   sed -i "s/gh_token/${GH_TOKEN}/g" ./_config.yml
   hexo deploy
