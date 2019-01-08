@@ -14,7 +14,7 @@ cd ./src
 npm install -g hexo-cli
 npm install
 
-# gem for deploy if it's master branch
-if [ '$TRAVIS_BRANCH' == 'master' ]; then
+# gem for deploy if it's master branch and not PR
+if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   npm install hexo-deployer-git --save
 fi
