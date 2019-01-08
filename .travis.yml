@@ -16,6 +16,7 @@ branches:
     - master 
 
 before_install:
+  - cp CNAME ./src/source/
   - cd ./src
   - npm install -g hexo-cli
 

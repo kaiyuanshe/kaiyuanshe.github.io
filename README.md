@@ -21,7 +21,7 @@ hexo init src
 
 cd src
 
-cnpm install
+npm install
 
 hexo server
 
