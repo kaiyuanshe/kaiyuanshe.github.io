@@ -79,6 +79,6 @@ theme: landscape
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://gh_token@github.com/robyle/kaiyuanshe.git
+  repo: https://gh_token@github.com/kaiyuanshe/kaiyuanshe.git
   branch: gh-pages
   message: 
