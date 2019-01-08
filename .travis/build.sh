@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -ex
+
 cd src
 
 # 执行清缓存，生成网页操作
