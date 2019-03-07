@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="<%= config.language %>">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta content="#2f3241" name="theme-color">
+
+  <meta property="og:type" content="website">
+
+  <title><%= config.title %></title>
+  <meta property="og:title" content="<%= config.title %>">
+  <meta name="twitter:title" value="<%= config.title %>">
+
+  <meta property="og:description" content="<%= config.description %>">
+  <meta name="twitter:description" value="<%= config.description %>">
+
+  <meta name="keywords" content="<%= config.keywords %>">
+  <meta name="author" content="<%= config.author %>">
+  <meta name="generator" content="hexo">
+
+  <meta name="twitter:card" content="summary">
+
+  <!-- consumed by scripts/get-localized-strings -->
+  <meta name="localized.clipboard.copy" content="Copy">
+  <meta name="localized.clipboard.copy_to_clipboard" content="复制到剪贴板">
+  <meta name="localized.clipboard.copied" content="已复制">
+
+  <meta name="twitter:site" content="@ElectronJS">
+  <link rel="shortcut icon" href="image/favicon.ico">
+  <link rel="stylesheet" href="library/index.css">
+</head>
+
+<body>
+  <%- body %>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function (registrations) {
+        for (let registration of registrations) {
+          registration.unregister()
+        }
+      })
+    }
+  </script>
+  <script src="library/index.js"></script>
+</body>
+
+</html>

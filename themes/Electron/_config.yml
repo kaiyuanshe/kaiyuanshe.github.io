@@ -1,0 +1,181 @@
+headerNav:
+  捐赠者:
+    href: /donors
+  应用:
+    href: /apps
+  文档:
+    href: /docs
+  博客:
+    href: /blog
+  社区:
+    href: /community
+  版本发布:
+    href: /releases/stable
+    href_match: /releases
+
+footNav:
+  - title: Electron
+    href: https://electronjs.org/
+  - title: 文档
+    href: https://electronjs.org/docs
+  - title: 博客
+    href: https://electronjs.org/blog
+  - title: 社区
+    href: https://electronjs.org/community
+  - title: 应用
+    href: https://electronjs.org/apps
+  - title: 版本发布
+    href: https://electronjs.org/releases/stable
+  - title: 行为准则
+    href: https://github.com/electron/electron/tree/master/CODE_OF_CONDUCT.md
+  - title: 许可
+    href: https://github.com/electron/electron/tree/master/LICENSE
+  - title: 语言
+    href: https://electronjs.org/languages
+  - title: 联系我们
+    href: https://electronjs.org/contact
+
+social:
+  github:
+    href: https://github.com/electron
+    title: Github Organization
+  twitter:
+    href: https://twitter.com/electronjs
+    title: \@electronjs on Twitter
+
+language:
+  en-US:
+    local: English
+  ja-JP:
+    local: 日本語
+    english: Japanese
+  es-ES:
+    local: Español
+    english: Spanish
+  zh-CN:
+    local: 中文
+    english: Chinese Simplified
+    default: true
+  tr-TR:
+    local: Türkçe
+    english: Turkish
+  id-ID:
+    local: Indonesian
+  fil-PH:
+    local: Filipino
+  fr-FR:
+    local: Français
+    english: French
+  ru-RU:
+    local: Русский
+    english: Russian
+  ko-KR:
+    local: 한국어
+    english: Korean
+  it-IT:
+    local: Italiano
+    english: Italian
+  pt-BR:
+    local: Português
+    english: Portuguese
+  de-DE:
+    local: Deutsch
+    english: German
+  uk-UA:
+    local: Українська
+    english: Ukrainian
+  zh-TW:
+    local: 中文
+    english: Chinese Traditional
+  pl-PL:
+    local: język polski
+    english: Polish
+  bg-BG:
+    local: български език
+    english: Bulgarian
+  hi-IN:
+    local: हिन्दी
+    english: Hindi
+  nl-NL:
+    local: Nederlands
+    english: Dutch
+  vi-VN:
+    local: Tiếng Việt
+    english: Vietnamese
+  ar-SA:
+    local: اللغة العربية
+    english: Arabic
+  fa-IR:
+    local: فارسی
+    english: Persian
+  cs-CZ:
+    local: čeština
+    english: Czech
+  th-TH:
+    local: ไทย
+    english: Thai
+  he-IL:
+    local: עברית
+    english: Hebrew
+  ro-RO:
+    local: limba română
+    english: Romanian
+  tl-PH:
+    local: Wikang Tagalog
+    english: Tagalog
+
+feature:
+  web-tech:
+    title: Web 技术
+    detail: Electron 基于 Chromium 和 Node.js, 让你可以使用 HTML, CSS 和 JavaScript 构建应用。
+  open-source:
+    title: 开源
+    detail: Electron 是一个由 GitHub 及众多贡献者组成的活跃社区共同维护的开源项目。
+  cross-platform:
+    title: 跨平台
+    detail: Electron 兼容 Mac, Windows 和 Linux， 它构建的应用可在这三个操作系统上面运行。
+
+app:
+  skype:
+    title: Skype
+    description: Free IM & video calls
+    keywords:
+      - free calls
+      - free online calls
+      - video conferencing
+      - free calls on mobile
+      - messaging
+      - chat
+      - voip
+      - screen sharing
+  github-desktop:
+    title: GitHub Desktop
+    description: Simple collaboration from your desktop
+    keywords:
+      - git
+      - github
+      - collaboration
+      - editor
+      - code
+      - commits
+      - review
+      - developer
+      - tool
+      - productivity
+  figma:
+    title: Figma
+    description: The collaborative interface design tool.
+    keywords:
+      - graphics
+      - images
+      - editor
+      - svg
+      - sketch
+      - vector
+      - ui
+      - ux
+
+package:
+  babel-preset-env:
+    href: https://github.com/babel/babel-preset-env
+    description: A Babel preset for each environment.

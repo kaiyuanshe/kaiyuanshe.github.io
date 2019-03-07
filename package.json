@@ -1,9 +1,23 @@
 {
-  "name": "hexo-site",
-  "version": "0.0.0",
+  "name": "@kaiyuanshe/website",
+  "version": "1.0.0",
   "private": true,
+  "author": "shiy2008@gmail.com",
+  "directories": {
+    "doc": "source/_post/"
+  },
+  "scripts": {
+    "start": "hexo clean  &&  hexo server",
+    "deploy": "hexo clean  &&  hexo deploy",
+    "build": "hexo clean  &&  hexo generate"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run build  &&  git add ."
+    }
+  },
   "hexo": {
-    "version": ""
+    "version": "3.8.0"
   },
   "dependencies": {
     "hexo": "^3.8.0",
@@ -19,16 +33,7 @@
     "hexo-deployer-git": "^1.0.0",
     "hexo-reference": "^1.0.4"
   },
-  "keywords": [
-    "wiki"
-  ],
-  "directories": {
-    "doc": "source/_post/"
-  },
-  "scripts": {
-    "start": "hexo clean  &&  hexo server",
-    "deploy": "hexo clean  &&  hexo deploy",
-    "build": "hexo clean  &&  hexo generate"
-  },
-  "author": "shiy007@qq.com"
+  "devDependencies": {
+    "husky": "^1.3.1"
+  }
 }
