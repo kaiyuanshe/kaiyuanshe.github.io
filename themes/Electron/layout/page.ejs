@@ -1,0 +1,32 @@
+<div class="subtron">
+  <div class="container-narrow">
+    <h1><%= theme.name %> 博客</h1>
+    <p class="lead mb-3">
+      所有来自 <%= theme.name %> 团队和社区的最新消息
+    </p>
+  </div>
+</div>
+
+<section class="page-section">
+  <div class="container-narrow">
+    <ul class="posts-list blog-index">
+      <% site.posts.forEach(post => { %>
+        <li class="mb-3 mb-md-4 mb-lg-6">
+          <h2>
+            <a class="blog-index-link mr-2" href="<%= post.path %>">
+              <%= post.title %>
+            </a>
+            <%- include('./byline', { post }) %>
+          </h2>
+          <%= strip_html(post.content).slice(0, 300) %>
+          <p>
+            <a href="<%= post.path %>">
+              Read More&nbsp;
+              <span class="octicon octicon-arrow-small-right"></span>
+            </a>
+          </p>
+        </li>
+      <% }) %>
+    </ul>
+  </div>
+</section>
