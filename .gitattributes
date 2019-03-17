@@ -1,0 +1,2 @@
+source/image/ filter=lfs diff=lfs merge=lfs -text
+themes/Electron/source/image/ filter=lfs diff=lfs merge=lfs -text

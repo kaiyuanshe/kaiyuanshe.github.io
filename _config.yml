@@ -4,8 +4,8 @@
 
 # Site
 title: 开源社
-subtitle:
-description:
+subtitle: 共治、共识、贡献
+description: 开源社是由中国支持开源的企业，社区及个人所组织的一个开源联盟，旨在推广开源。
 keywords: 开源,社区
 author: shiy2008@gmail.com
 language: zh-CN
@@ -35,7 +35,7 @@ titlecase: false # Transform title into titlecase
 external_link: true # Open external links in new tab
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 relative_link: false
 future: true
 highlight:
@@ -79,5 +79,5 @@ theme: Electron
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: undefined
-  branch:
+  repo: https://github.com/kaiyuanshe/kaiyuanshe.git
+  branch: gh-pages

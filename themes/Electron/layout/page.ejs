@@ -1,8 +1,8 @@
 <div class="subtron">
   <div class="container-narrow">
-    <h1><%= theme.name %> 博客</h1>
+    <h1><%= config.title %> 博客</h1>
     <p class="lead mb-3">
-      所有来自 <%= theme.name %> 团队和社区的最新消息
+      所有来自 <%= config.title %> 团队和社区的最新消息
     </p>
   </div>
 </div>
@@ -18,7 +18,10 @@
             </a>
             <%- include('./byline', { post }) %>
           </h2>
-          <%= strip_html(post.content).slice(0, 300) %>
+          <% if (post.photos[0]) { %>
+            <img src="<%= (post.path + post.photos[0]) %>">
+          <% } %>
+          <%= (post.description || strip_html(post.content).slice(0, 300)) %>
           <p>
             <a href="<%= post.path %>">
               Read More&nbsp;

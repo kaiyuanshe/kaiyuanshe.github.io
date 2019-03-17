@@ -1,48 +1,16 @@
-<div class="jumbotron" style="padding:0px">
-  <img src="/static/image/coscon2018.jpeg">
-</div>
 <div class="jumbotron jumbotron-home text-center">
   <div class="container">
     <div class="hero">
+      <img src="<%= theme.banner %>">
     </div>
     <p class="jumbotron-lead">
-      使用 JavaScript, HTML 和 CSS 构建跨平台的桌面应用
+      <%= config.subtitle %>
     </p>
   </div>
 </div>
 
-<div class="container">
-  <h1 class="text-center"><a href="https://electronjs.org/releases/stable">版本发布</a></h1>
-  <div class="col-md-12 electron-version-container">
-    <div class="electron-version">
-      <figure id="electron-version-latest" class="highlight highlight-dark text-left my-3 px-2">
-        <pre class="overflow-hidden"><code><span class="no-select">$ </span>npm i -D electron@latest<span class="c1 no-select">
-# Electron   4.0.6
-# Node       10.11.0
-# Chromium   69.0.3497.106</span></code></pre>
-      </figure>
-    </div>
-    <div class="electron-version">
-      <figure id="electron-version-beta" class="highlight highlight-dark text-left my-3 px-3">
-        <pre class="overflow-hidden"><code><span class="no-select">$ </span>npm i -D electron@beta<span class="c1 no-select">
-# Electron   5.0.0-beta.4
-# Node       12.0.0
-# Chromium   73.0.3683.54</span></code></pre>
-      </figure>
-    </div>
-    <div class="electron-version">
-      <figure id="electron-version-nightly" class="highlight highlight-dark text-left my-3 px-3">
-        <pre class="overflow-hidden"><code><span class="no-select">$ </span>npm i -D electron-nightly<span class="c1 no-select">
-# Electron   6.0.0-nightly.20190213
-# Node       12.0.0
-# Chromium   72.0.3626.110</span></code></pre>
-      </figure>
-    </div>
-  </div>
-</div>
-
 <section class="page-section page-section-spacious" id="electron">
-  <div class="container-narrow">
+  <div class="container-narrow"><!--
     <h1 class="text-center-sm">比你想象的更简单</h1>
     <p class="lead text-center-sm">如果你可以建一个网站，你就可以建一个桌面应用程序。 Electron 是一个使用 JavaScript, HTML 和 CSS 等 Web
       技术创建原生程序的框架，它负责比较难搞的部分，你只需把精力放在你的应用的核心上即可。</p>
@@ -54,7 +22,7 @@
       </a>
     </p>
 
-    <hr>
+    <hr> -->
 
     <div class="row text-center text-small mt-6">
       <% for (let name in theme.feature) { %>
@@ -140,34 +108,6 @@
     </div>
 
     <hr>
-
-    <h3 class="mb-3">
-      <a href="https://github.com/electron/electron-quick-start" target="_blank"> 快速启动</a> 应用程序，看看 Electron 是如何运转的：
-    </h3>
-    <p>一个有帮助内容的 Electron 应用。</p>
-
-    <figure class="highlight highlight-dark text-left my-4">
-      <pre><code><span class="c1"># 克隆示例项目的仓库</span>
-$ git clone https://github.com/electron/electron-quick-start
-
-<span class="c1"># 进入这个仓库</span>
-$ cd electron-quick-start
-
-<span class="c1"># 安装依赖并运行</span>
-$ npm install &amp;&amp; npm start</code></pre>
-    </figure>
-
-    <h3>
-      或潜得更深，并阅读 <a href="https://electronjs.org/docs"> 文档</a>。
-    </h3>
-
-
-    <h3 class="pt-4">需要帮助？</h3>
-    <p>欢迎到 <a href="https://discuss.atom.io/c/electron">Discuss</a> 论坛或我们的 <a
-        href="http://atom-slack.herokuapp.com/">Slack</a>频道上提问。关注Twitter <a
-        href="https://twitter.com/electronjs">@electronjs</a> 以接收重要的公告。想要联系我们？可以发送电子邮件到 <a
-        href="mailto:info@electronjs.org">electron@github.com</a>。</p>
-
   </div>
 </section>
 
