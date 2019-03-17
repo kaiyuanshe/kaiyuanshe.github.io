@@ -8,7 +8,7 @@
 
 2.  为了让**博文网址**简洁明了，每篇博文的 `categories` 字段最好只填一个分类，且分类名为一个**首字母大写的英文单词**
 
-3.  更多规范请参考[范文][1]及其[素材目录](source/_posts/International/Codeheat-Open-source-competition/)
+3.  更多规范请参考[范文][1]及其[素材目录][2]
 
 ## 本地运行
 
@@ -27,4 +27,4 @@ npm start
 - 页面模板：https://electronjs.org/
 
  [1]: https://raw.githubusercontent.com/kaiyuanshe/kaiyuanshe/hexo/source/_posts/International/Codeheat-Open-source-competition.md
- 
+ [2]: https://github.com/kaiyuanshe/kaiyuanshe/tree/hexo/source/_posts/International/Codeheat-Open-source-competition/
