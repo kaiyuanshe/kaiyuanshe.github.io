@@ -1,0 +1,12 @@
+<%
+  const tag = path.split('/')[1];
+
+  const posts = site.posts.filter(post =>
+
+    post.tags.data.some(item  =>  item.name === tag)
+  );
+
+  const data = {...site, posts};
+%>
+
+<%- include('./page', {site: data}) %>

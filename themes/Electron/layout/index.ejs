@@ -89,7 +89,7 @@
     </p>
 
     <div class="row mt-8">
-      <% site.posts.filter(post => post.photos[0]).slice(0, 5).forEach(post => { %>
+      <% site.posts.reverse().filter(post => post.photos[0]).slice(0, 5).forEach(post => { %>
         <div class="col-xs-12 col-md-5">
           <a href="<%= post.path %>">
             <img src="<%= (post.path + post.photos[0]) %>">
