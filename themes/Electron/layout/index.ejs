@@ -1,3 +1,9 @@
+<style>
+  #Post .row > * {
+    margin-bottom: 1rem;
+  }
+</style>
+
 <div class="jumbotron jumbotron-home text-center">
   <div class="container">
     <div class="hero">
@@ -75,39 +81,45 @@
 </section>
 
 
-<section class="page-section page-section-spacious bg-shade" id="get-started">
+<section class="page-section page-section-spacious bg-shade" id="Post">
   <div class="container-narrow text-center">
-    <h1>入门</h1>
+    <h1>最新动态</h1>
     <p class="lead">
-      若要开始使用 Electron，请查阅下面的参考资料，了解如何使用 Electron 包装您的 web 应用程序，访问所有的 API，以及生成的安装程序。
+      身体力行地践行开源，咱们华人有力量！
     </p>
 
     <div class="row mt-8">
-      <div class="col-xs-12 col-md-5">
-        <a href="https://github.com/electron/electron-api-demos/releases">
-          <div class="app-frame py-4 px-6">
-            <img alt="Screenshot of Electron API Demos app" src="image/electron-api-demos.png">
-          </div>
-        </a>
-      </div>
-      <div class="col-xs-12 col-md-7 text-left">
-        <h3 class="mt-1 mb-3">探索 Electron 的 API</h3>
-        <p><a href="https://github.com/electron/electron-api-demos"> Electron API 演示应用程序 </a> 交互演示了 Electron API
-          的最重要特性。看看有什么可能与 Electron 与示例代码和有用的提示，为您的应用程序的建设。</p>
-        <p>
-          <a id="download-latest-release" class="btn btn-lg btn-outline-themed"
-            href="https://github.com/electron/electron-api-demos/releases">
-            <span class="octicon octicon-desktop-download mr-1"></span>
-            <span>从 GitHub 下载</span>
+      <% site.posts.filter(post => post.photos[0]).slice(0, 5).forEach(post => { %>
+        <div class="col-xs-12 col-md-5">
+          <a href="<%= post.path %>">
+            <img src="<%= (post.path + post.photos[0]) %>">
           </a>
-        </p>
-        <p id="download-alternatives" class="text-sm" style="display:none;">
-          在 GitHub 上 <a href="https://github.com/electron/electron-api-demos/releases"> 查看所有版本</a>
-        </p>
-      </div>
+        </div>
+        <div class="col-xs-12 col-md-7 text-left">
+          <h3 class="mt-1 mb-3"><%= post.title %></h3>
+          <p>
+            <%= (post.description || strip_html(post.content).slice(0, 300)) %>
+          </p>
+          <div class="d-flex justify-content-between">
+            <a class="btn btn-lg btn-outline-themed" href="<%= post.path %>">
+              <span>阅读详情</span>
+            </a>
+            <span>
+              <% post.categories.forEach(category => { %>
+                <a class="badge badge-primary" href="<%= category.path %>">
+                  <%= category.name %>
+                </a>
+              <% }) %>
+              <% post.tags.forEach(tag => { %>
+                <a class="badge badge-primary" href="<%= tag.path %>">
+                    <%= tag.name %>
+                </a>
+              <% }) %>
+            </span>
+          </div>
+        </div>
+      <% }) %>
     </div>
-
-    <hr>
   </div>
 </section>
 

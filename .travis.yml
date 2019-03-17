@@ -16,7 +16,7 @@ script:
   - cd ${FOLDER}
   - git init
   - git config user.name ${UID}
-  - git config user.email ${EMAIL}
+  - git config user.email $(cd .. && git log -1 --pretty=format:"%ae")
   - git add .
   - git commit -m "${MESSAGE}"
   - git push --force --quiet https://${TOKEN}@${GIT_URI}.git master:${BRANCH}

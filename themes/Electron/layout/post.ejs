@@ -1,3 +1,9 @@
+<style>
+  .blog-post hr:first-of-type {
+    display: block;
+  }
+</style>
+
 <section class="page-section blog-post">
   <div class="container-narrow">
     <h1><%= page.title %></h1>
@@ -13,3 +19,10 @@
     <%- page.content %>
   </div>
 </section>
+
+<script>
+  $('.blog-post table').addClass('table').each(function () {
+
+    if (! this.tHead.textContent.trim())  $(this.tHead).remove();
+  });
+</script>
