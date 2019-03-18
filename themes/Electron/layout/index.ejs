@@ -16,8 +16,11 @@
 </div>
 
 <section class="page-section page-section-spacious" id="electron">
-  <div class="container-narrow"><!--
-    <h1 class="text-center-sm">比你想象的更简单</h1>
+  <div class="container-narrow">
+    <h1 class="text-center-sm">活动日历</h1>
+
+    <%- include('./component/calendar', {category: 'Activity'}) %>
+  <!--
     <p class="lead text-center-sm">如果你可以建一个网站，你就可以建一个桌面应用程序。 Electron 是一个使用 JavaScript, HTML 和 CSS 等 Web
       技术创建原生程序的框架，它负责比较难搞的部分，你只需把精力放在你的应用的核心上即可。</p>
 
@@ -28,7 +31,7 @@
       </a>
     </p>
 
-    <hr> -->
+    <hr>
 
     <div class="row text-center text-small mt-6">
       <% for (let name in theme.feature) { %>
@@ -76,7 +79,7 @@
         </a>
       </div>
     </div>
-
+  -->
   </div>
 </section>
 

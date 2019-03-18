@@ -4,11 +4,13 @@ date: 2016-04-01 16:10:00
 description: Node.JS 北京站活动演讲者火热报名中……
 author: Emily Chen
 categories:
-  - International
+  - Activity
 tags:
   - lecture
   - Node.JS
   - BeiJing
+start: 2016-05-21
+end: 2016-05-22
 ---
 
 The Node.JS 基金会正在发起一系列全球性 2016 年 Node.JS 路演活动，将在全球的 9 个大城市举办活动，汇聚世界各地的本地 Node.JS 开发者。
