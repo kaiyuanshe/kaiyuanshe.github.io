@@ -21,6 +21,14 @@
 </section>
 
 <script>
+  $('.blog-post').find('h1, h2, h3, h4, h5, h6').append(function () {
+
+    if ( this.id.trim() )
+      return '<a class="header-link" title="Permalink" href="#' +
+        this.id +
+        '"><span class="octicon octicon-link"></span></a>';
+  });
+
   $('.blog-post table').addClass('table').each(function () {
 
     if (! this.tHead.textContent.trim())  $(this.tHead).remove();

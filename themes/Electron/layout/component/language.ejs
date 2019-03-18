@@ -1,0 +1,26 @@
+<div id="Language" class="container collapse">
+  <div class="m-4">
+    <div class="text-center-sm mb-4">
+      <strong>请选择语言</strong>
+    </div>
+    <div class="clearfix">
+      <% for (let code in theme.language) { %>
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/<%= code %>">
+          <%= theme.language[code].local %>
+          <% if ( theme.language[code].english ) { %>
+          <%= ('(' + theme.language[code].english + ')') %>
+          <% } %>
+        </a>
+        <% if ( theme.language[code].default ) { %>
+        <span class="faint"><span class="octicon octicon-check mr-1"></span></span>
+        <% } %>
+      </div>
+      <% } %>
+    </div>
+    <hr>
+    <div class="text-center-sm">
+      <a href="https://electronjs.org/languages">查看更多语言详情</a>
+    </div>
+  </div>
+</div>

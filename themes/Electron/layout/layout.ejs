@@ -30,7 +30,16 @@
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="library/index.css">
-
+  <style>
+    .btn.btn-primary {
+      background-color: #007bff;
+      background-image: none;
+      border-color: #007bff;
+    }
+    .btn.btn-primary a:link {
+      color: white;
+    }
+  </style>
   <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
@@ -57,103 +66,27 @@
           <%= name %>
         </a>
         <%  }  %>
-
-        <%- search_form({ class: 'ais-search-box', text: '搜索' }) %>
-
-        <!-- <img id="search-hint" alt="image of backslash shorcut" src="https://assets-cdn.github.com/images/search-shortcut-hint.svg" /> -->
-        <!-- <dialog id="search-hint-dialog" open>
-              <div class="dialog-text">Search for Electron APIs, tutorials, npm packages, and apps.</div>
-              <button class="dialog-button">OK</button>
-            </dialog> -->
+        <form action="search/" class="ais-search-box">
+          <input type="search" name="keyword" required placeholder="搜索"
+            id="search-input" class="nav-search ais-search-box--input"
+            aria-label="search-box" autocapitalize="off" autocorrect="off" role="textbox">
+        </form>
         <a class="site-header-nav-item octicon"
           href="https://github.com/<%= theme.social.github.name %>/"
           title="<%= theme.social.github.title %>">
           <span class="mega-octicon octicon-mark-github vertical-middle"></span>
         </a>
-        <a class="site-header-nav-item bordered lang-select-button" href="https://electronjs.org/languages">中文</a>
+        <a class="site-header-nav-item bordered lang-select-button" href="#Language" data-toggle="collapse">
+          中文
+        </a>
       </nav>
     </div>
   </header>
 
-  <div id="languages-header-menu" class="container collapsed">
-    <div class="m-4">
-      <div class="text-center-sm mb-4">
-        <strong>请选择语言</strong>
-      </div>
-      <div class="clearfix">
-        <% for (let code in theme.language) { %>
-        <div class="text-center-sm col-6 col-md-4 mb-2">
-          <a href="https://electronjs.org/languages/<%= code %>">
-            <%= theme.language[code].local %>
-            <% if ( theme.language[code].english ) { %>
-            <%= ('(' + theme.language[code].english + ')') %>
-            <% } %>
-          </a>
-          <% if ( theme.language[code].default ) { %>
-          <span class="faint"><span class="octicon octicon-check mr-1"></span></span>
-          <% } %>
-        </div>
-        <% } %>
-      </div>
-      <hr>
-      <div class="text-center-sm">
-        <a href="https://electronjs.org/languages">查看更多语言详情</a>
-      </div>
-    </div>
-  </div>
+  <%- include('./component/language') %>
 
   <%- body %>
 
-  <div id="hits" style="display: none;">
-    <div class="hits-container" id="api-hits" title="APIs" style="display: block;">
-      <div class="ais-hits">
-        <div class="ais-hits--item">
-          <div>
-            <a href="https://electronjs.org/docs/api/web-request#webrequestonsendheadersfilter-listener"
-              style="text-decoration: none">webRequest.onSendHeaders([filter, ]listener)</a>
-            <div class="search-small-text">The listener will be called with listener(details) just before a request is
-              going to be sent to the server, modifications of previous onBeforeSendHeaders response are visible by the
-              time this listener is fired.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="hits-container" id="tutorial-hits" title="Tutorials" style="display: block;">
-      <div class="ais-hits">
-        <div class="ais-hits--item">
-          <div>
-            <a href="https://electronjs.org/docs/tutorial/windows-taskbar">Windows Taskbar</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="hits-container" id="package-hits" title="Packages" style="display: block;">
-      <div class="ais-hits">
-        <%  for (let name in theme.package) { %>
-        <div class="ais-hits--item">
-          <div>
-            <a href="<%= theme.package[name].href %>"><%= name %></a>
-            <span><%= theme.package[name].description %></span>
-          </div>
-        </div>
-        <%  }  %>
-      </div>
-    </div>
-    <div class="hits-container" id="app-hits" title="Apps" style="display: block;">
-      <div class="ais-hits">
-        <div class="ais-hits--item">
-          <div class="app-result">
-            <a class="app-result-icon-link" href="https://electronjs.org/apps/zuzu">
-              <img class="app-result-icon" src="image/zuzu-icon-32.png" alt="zuzu icon">
-            </a>
-            <span class="search-small-text"><a href="https://electronjs.org/apps/zuzu">zuzu</a> - Zawgyi &lt;=&gt;
-              Unicode Converter that lives in your menu bar.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div id="refinement-list"></div>
   <footer class="footer">
     <div class="container">
       <nav class="footer-nav">
@@ -175,97 +108,6 @@
       </span>
     </div>
   </footer>
-
-  <script>
-    var anchorForId = function (id) {
-      var anchor = document.createElement("a");
-      anchor.className = "header-link";
-      anchor.href = "#" + id;
-      anchor.innerHTML = "<span class='octicon octicon-link'></span>";
-      anchor.title = "Permalink";
-      return anchor;
-    };
-
-    var linkifyAnchors = function (level, containingElement) {
-      var headers = containingElement.getElementsByTagName("h" + level);
-      for (var h = 0; h < headers.length; h++) {
-        var header = headers[h];
-
-        if (typeof header.id !== "undefined" && header.id !== "") {
-          header.appendChild(anchorForId(header.id));
-        }
-      }
-    };
-
-    document.onreadystatechange = function () {
-      if (this.readyState === "complete") {
-        var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("news")[0];
-        if (!contentBlock) {
-          return;
-        }
-        for (var level = 1; level <= 6; level++) {
-          linkifyAnchors(level, contentBlock);
-        }
-      }
-    };
-  </script>
-
-  <div id="kb-shortcut-dialog" class="kb-shortcut docs-container-lg">
-    <div class="kb-shortcut-content">
-      <div class="kb-shortcut-header">
-        <span class="octicon octicon-x close"></span>
-        <h2>Keyboard Shortcuts</h2>
-      </div>
-      <div class="kb-shortcut-body">
-        <table class="table-ruled">
-          <thead>
-            <tr>
-              <th>Key</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><kbd>/</kbd></td>
-              <td>Focus the search bar</td>
-            </tr>
-            <tr>
-              <td><kbd>Esc</kbd></td>
-              <td>Focus the search bar and cleans it</td>
-            </tr>
-            <tr>
-              <td><kbd>↓</kbd></td>
-              <td>Select the next search result</td>
-            </tr>
-            <tr>
-              <td><kbd>↑</kbd></td>
-              <td>Select the previous search result</td>
-            </tr>
-            <tr>
-              <td><kbd>Enter</kbd></td>
-              <td>Open the selected search result</td>
-            </tr>
-            <tr>
-              <td class="no-wrap darwin-only"><kbd>cmd</kbd><kbd>Enter</kbd></td>
-              <td class="no-wrap win32-only linux-only" style="display: block;"><kbd>Ctrl</kbd>+<kbd>Enter</kbd></td>
-              <td>Open the selected search result in a new tab</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.getRegistrations().then(function (registrations) {
-        for (let registration of registrations) {
-          registration.unregister()
-        }
-      })
-    }
-  </script>
-  <script src="library/index.js"></script>
 </body>
 
 </html>

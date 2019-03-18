@@ -1,0 +1,45 @@
+<style>
+  #Result .badge-light {
+    margin-left: 0.5rem;
+  }
+</style>
+
+<div class="subtron">
+  <div class="container-narrow">
+    <h1>Search</h1>
+  </div>
+</div>
+
+<main id="Result" hidden class="page-section">
+  <div class="container-narrow">
+    <h2>Blog</h2>
+    <%- list_posts({ amount: 0 }) %>
+
+    <h2>Category</h2>
+    <%- list_categories() %>
+
+    <h2>Tag</h2>
+    <%- list_tags() %>
+  </div>
+</main>
+
+<script crossorigin="anonymous" src="https://polyfill.io/v3/polyfill.min.js?features=URL-polyfill"></script>
+<script>
+  (function () {
+
+    var keyword = (new URLSearchParams(self.location.search)).get('keyword');
+
+    if (!keyword) return;
+
+    $('#Result .tag-list-item').addClass('btn btn-primary');
+
+    $('#Result .tag-list-count').addClass('badge badge-light');
+
+    $('#Result li').prop('hidden', function () {
+
+      return  !this.textContent.match(new RegExp(keyword, 'i'));
+    });
+
+    $('#Result')[0].hidden = false;
+  })();
+</script>

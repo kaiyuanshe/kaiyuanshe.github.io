@@ -1,5 +1,5 @@
 <div class="blog-byline mt-2 mb-4 d-flex justify-content-between">
-  <span class="blog-index-time" data-date="<%= post.date %>" data-format="%B %d, %Y"></span>
+  <span class="blog-index-time"><%= (new Date( post.date )).toLocaleString() %></span>
 
   <a class="author-link ml-3" href="https://github.com/<%= post.author %>">
     <img class="avatar mr-2" src="https://github.com/<%= post.author %>.png?size=36" alt="<%= post.author %>">

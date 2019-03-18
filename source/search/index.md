@@ -1,0 +1,4 @@
+---
+type: search
+layout: search
+---
