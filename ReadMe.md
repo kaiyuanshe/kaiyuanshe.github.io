@@ -33,4 +33,4 @@ npm start
 [1]: https://raw.githubusercontent.com/kaiyuanshe/kaiyuanshe/hexo/source/_posts/International/Codeheat-Open-source-competition.md
 [2]: https://github.com/kaiyuanshe/kaiyuanshe/tree/hexo/source/_posts/International/Codeheat-Open-source-competition/
 [3]: https://raw.githubusercontent.com/kaiyuanshe/kaiyuanshe/hexo/source/_posts/Document/OSI-2015.md
-[4]: https://raw.githubusercontent.com/kaiyuanshe/kaiyuanshe/hexo/source/_posts/Document/NodeJS-live-2016-BeiJing.md
+[4]: https://raw.githubusercontent.com/kaiyuanshe/kaiyuanshe/hexo/source/_posts/Activity/NodeJS-live-2016-BeiJing.md
