@@ -39,11 +39,13 @@ footNav:
 
 social:
   github:
-    href: https://github.com/electron
+    name: kaiyuanshe
+    domain: https://github.com
     title: Github Organization
   twitter:
-    href: https://twitter.com/electronjs
-    title: \@electronjs on Twitter
+    name: contactkaiyuan1
+    domain: https://twitter.com
+    title: \@contactkaiyuan1 on Twitter
 
 language:
   en-US:

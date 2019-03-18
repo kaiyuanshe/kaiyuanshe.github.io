@@ -70,14 +70,58 @@ time_format: HH:mm:ss
 per_page: 10
 pagination_dir: page
 
-# Extensions
-## Plugins: https://hexo.io/plugins/
-## Themes: https://hexo.io/themes/
-theme: Electron
-
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
   repo: https://github.com/kaiyuanshe/kaiyuanshe.git
   branch: gh-pages
+
+# Extensions
+## Plugins: https://hexo.io/plugins/
+## Themes: https://hexo.io/themes/
+theme: Electron
+
+### Electron theme fields
+logo: image/KaiYuanShe-logo.png
+
+# PWA plugin
+pwa:
+  manifest:
+    path: /manifest.json
+    body:
+      name: 开源社
+      short_name: 开源社
+      start_url: https://v2.kaiyuanshe.org/
+      description: Offical Web-site of KaiYuanShe
+      scope: /
+      display: standalone
+      orientation: any
+      lang: zh-CN
+      dir: ltr
+      theme_color: rgba(0,0,0,0.5)
+      background_color: transparent
+      icons:
+        - src: /image/KaiYuanShe-logo.png
+          type: image/png
+          sizes: 300x300
+  serviceWorker:
+    path: /sw.js
+    preload:
+      urls:
+        - /
+      posts: 5
+    opts:
+      networkTimeoutSeconds: 5
+    routes:
+      - pattern: !!js/regexp /\//
+        strategy: networkFirst
+      - pattern: !!js/regexp /.*\.(css|js|jpg|jpeg|png|gif|webp)$/
+        strategy: cacheFirst
+      - pattern: !!js/regexp /google.*\.com/
+        strategy: networkOnly
+      - pattern: !!js/regexp /disqus.*\.com/
+        strategy: networkOnly
+      - pattern: !!js/regexp /cnzz\.com/
+        strategy: networkOnly
+  priority: 5
