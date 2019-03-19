@@ -61,7 +61,14 @@
   <a class="site-header-nav-item" href="<%= theme.headerNav[name].href %>" data-href-match="<%= theme.headerNav[name].href_match %>"
     class="dropdown-toggle" data-toggle="dropdown">
     <%= name %>
-    
+    <!-- <% if (name==='资讯') { %>
+    <ul class="dropdown-menu" role="menu">
+      <li><a href="/blog/c12.html" target="_self">博客</a>
+      </li>
+      <li><a href="/activity.html" target="_self">活动</a>
+      </li>
+    </ul>
+    <% } %> -->
   </a>
   <%  }  %>
   <form action="search/" class="ais-search-box">
