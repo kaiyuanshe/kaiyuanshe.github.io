@@ -1,18 +1,18 @@
 banner: image/coscon2018.jpeg
 
 headerNav:
-  捐赠者:
-    href: /donors
-  应用:
-    href: /apps
-  文档:
-    href: /docs
-  博客:
-    href: /blog
-  社区:
-    href: /community
-  版本发布:
-    href: /releases/stable
+  资讯:
+    href: /#
+  下载中心:
+    href: /download
+  成员:
+    href: /member
+  赞助伙伴:
+    href: /surport_member
+  资源:
+    href: /source
+  关于:
+    href: /about
     href_match: /releases
 
 footNav:
