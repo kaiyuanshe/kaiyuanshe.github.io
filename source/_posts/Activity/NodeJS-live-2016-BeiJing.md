@@ -7,7 +7,7 @@ categories:
   - Activity
 tags:
   - lecture
-  - Node.JS
+  - NodeJS
   - BeiJing
 start: 2016-05-21
 end: 2016-05-22

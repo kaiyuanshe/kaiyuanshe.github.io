@@ -1,5 +1,4 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar/dist/fullcalendar.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.7.2/css/all.min.css">
 <style>
   .fc-bg, .fc-content-skeleton thead {
     color: transparent;
@@ -12,22 +11,23 @@
 
 <div id="Calendar"></div>
 
-<script type="application/json">
+<template>
 <%-
   JSON.stringify(
-    site.posts.map(post => {
-      if (post.categories.data.some(item => category.includes(item.name)))
+    posts.map(({ title, description, permalink, categories, start, end }) => {
+
+      if (categories.data.some(item => RegExp(item.name, 'i').test(type)))
         return {
-          title:  post.title,
-          detail: post.description,
-          url:    post.path,
-          start:  post.start,
-          end:    post.end
+          title,
+          detail: description,
+          url:    permalink,
+          start,
+          end
         };
     }).filter( Boolean )
   )
 %>
-</script>
+</template>
 
 <script>
   $('#Calendar').fullCalendar({
@@ -39,7 +39,7 @@
     },
     eventLimit: true,
     events: JSON.parse(
-      document.currentScript.previousElementSibling.text.trim()
+      document.currentScript.previousElementSibling.innerHTML.trim()
     ),
     eventRender: function(eventObj, $el) {
       $el.popover({
@@ -52,3 +52,5 @@
     }
   });
 </script>
+
+<%- page.content %>

@@ -1,4 +1,7 @@
 <style>
+  .flow-box > * {
+    margin: 0 2rem;
+  }
   #Post .row > * {
     margin-bottom: 1rem;
   }
@@ -17,69 +20,39 @@
 
 <section class="page-section page-section-spacious" id="Activity">
   <div class="container-narrow">
-    <h1 class="text-center-sm">活动日历</h1>
+    <div class="row text-center mt-6 mb-4">
+      <h2 style="margin: auto">我们的原则</h2>
+    </div>
 
-    <%- include('./component/calendar', {category: 'Activity'}) %>
-  <!--
-    <p class="lead text-center-sm">如果你可以建一个网站，你就可以建一个桌面应用程序。 Electron 是一个使用 JavaScript, HTML 和 CSS 等 Web
-      技术创建原生程序的框架，它负责比较难搞的部分，你只需把精力放在你的应用的核心上即可。</p>
-
-    <p class="text-center-sm mt-4">
-      <a class="btn btn-lg btn-outline-themed" href="https://youtu.be/8YP_nOCO-4Q">
-        <span class="octicon octicon-eye mr-1"></span>
-        <span>观看视频</span>
-      </a>
-    </p>
-
-    <hr>
-
-    <div class="row text-center text-small mt-6">
-      <% for (let name in theme.feature) { %>
-        <div class="col-xs-12 col-sm-4">
-          <img class="home-illu" role="presentation" src="image/<%= name %>.svg" aria-hidden="true">
-          <h3 class="mb-2 mt-0"><%= theme.feature[name].title %></h3>
-          <p><%= theme.feature[name].detail %></p>
-        </div>
-      <% } %>
+    <div class="flow-box text-center text-small mt-6">
+    <%-
+      include('./component/gallery', {
+        type:    'icon',
+        gallery: theme.principle,
+        size:    '10x'
+      })
+    %>
     </div>
 
     <div class="row text-center mt-6 mb-4">
-      <h2>困难的部分变得更便捷</h2>
+      <h2 style="margin: auto">我们的使命</h2>
     </div>
 
-    <div class="row text-center text-small mt-3">
-      <div class="col-xs-12 col-sm-4 col-md-2 offset-md-1 mb-xs-4 mb-md-0 hero-feature">
-        <a class="hero-link" href="https://electronjs.org/docs/api/auto-updater/">
-          <span class="octicon hero-octicon octicon-squirrel" aria-hidden="true"></span>
-          自动更新
-        </a>
-      </div>
-      <div class="col-xs-12 col-sm-4 col-md-2 mb-xs-4 mb-md-0 hero-feature">
-        <a class="hero-link" href="https://electronjs.org/docs/api/menu">
-          <span class="octicon hero-octicon octicon-device-desktop" aria-hidden="true"></span>
-          原生的菜单和通知
-        </a>
-      </div>
-      <div class="col-xs-12 col-sm-4 col-md-2 mb-xs-4 mb-md-0 hero-feature">
-        <a class="hero-link" href="https://electronjs.org/docs/api/crash-reporter">
-          <span class="octicon hero-octicon octicon-bug" style="padding-left:2px" aria-hidden="true"></span>
-          崩溃报告
-        </a>
-      </div>
-      <div class="col-xs-12 col-sm-4 offset-sm-2 col-md-2 offset-md-0 mb-xs-4 mb-md-0 hero-feature">
-        <a class="hero-link" href="https://electronjs.org/docs/api/content-tracing">
-          <span class="octicon hero-octicon octicon-tools" aria-hidden="true"></span>
-          调试和性能分析
-        </a>
-      </div>
-      <div class="col-xs-12 col-sm-4 col-md-2 mb-xs-4 mb-md-0 hero-feature">
-        <a class="hero-link" href="https://electronjs.org/docs/api/auto-updater/#windows">
-          <span class="octicon hero-octicon octicon-gift" style="padding-right:2px" aria-hidden="true"></span>
-          Windows 安装程序
-        </a>
-      </div>
+    <div class="flow-box text-center text-small mt-3">
+    <%-
+      include('./component/gallery', {
+        type:    'icon',
+        gallery: theme.mission,
+        size:    '5x'
+      })
+    %>
     </div>
-  -->
+
+    <hr>
+
+    <h2 class="text-center-sm">活动日历</h2>
+
+    <%- include('./component/calendar', {type: 'Activity', posts: site.posts}) %>
   </div>
 </section>
 
@@ -138,25 +111,23 @@
 
     <div>
       <div class="mb-4">
-        <%  for (let name in theme.app) { %>
-          <a href="https://electronjs.org/apps/<%= name %>" title="<%= theme.app[name].title %>" class="featured-app">
+        <% theme.project.forEach(({name, title, logo, description, keywords}) => { %>
+          <a href="https://github.com/kaiyuanshe/<%= name %>" title="<%= title %>" class="featured-app">
             <div class="featured-app-logo-wrapper">
-              <img class="featured-app-logo" alt="<%= theme.app[name].title %>" src="image/<%= name %>-icon.png">
+              <img class="featured-app-logo" alt="<%= title %>" src="<%= logo %>">
             </div>
-            <div class="featured-app-name"><%= theme.app[name].title %></div>
-            <div class="featured-app-description" style="display:none;">
-              <%= theme.app[name].description %>
+            <div class="featured-app-name"><%= title %></div>
+            <div class="featured-app-description" style="margin-top: 1rem">
+              <%= description %>
             </div>
             <div class="featured-app-keywords" style="display:none;">
-              <%= theme.app[name].keywords %>
+              <%= keywords %>
             </div>
           </a>
-        <%  }  %>
+        <% }) %>
       </div>
       <p class="mt-6">
-        <a href="https://electronjs.org/apps">查看更多应用</a>
-        or
-        <a href="https://github.com/electron/electron-apps/blob/master/contributing.md#adding-your-app">提交你的应用</a>.
+        <a href="https://github.com/kaiyuanshe">查看更多项目</a>
       </p>
     </div>
   </div>

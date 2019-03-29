@@ -1,0 +1,19 @@
+<%
+switch ( type ) {
+  case 'image':
+    gallery.forEach(({title, detail, image}) => { %>
+      <div class="col-xs-12 col-sm-4">
+        <img class="home-illu" role="presentation" src="<%= image %>" aria-hidden="true">
+        <h3 class="mb-2 mt-0"><%= title %></h3>
+        <p><%= detail %></p>
+      </div><%
+    });
+    break;
+  case 'icon':
+    gallery.forEach(({title, URL, icon}) => { %>
+      <a class="hero-link" href="<%= URL %>">
+        <i class="fas fa-<%= icon %> fa-<%= size %> d-block" aria-hidden="true"></i>
+        <h3><%= title %></h3>
+      </a><%
+    });
+} %>
