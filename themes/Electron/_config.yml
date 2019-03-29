@@ -1,4 +1,4 @@
-banner: image/coscon2018.jpeg
+banner: image/Heart_of_Community.jpg
 
 headerNav:
   - title: 资讯
@@ -10,19 +10,25 @@ headerNav:
   - title: 下载中心
     href: /download
   - title: 成员
-    href: /member
+    href: http://member.kaiyuanshe.cn/
   - title: 赞助伙伴
     href: /surport_member
   - title: 资源
-    href: /source
+    sub:
+      - title: 许可证选择器
+        href: http://www.kaiyuanshe.cn/license-tool.html
+      - title: 开源之星
+        href: http://ossstar.kaiyuanshe.cn/
+      - title: 开源文档
+        href: /categories/Document
   - title: 关于
     sub:
       - title: 介绍
-        href: /about
+        href: /profile/about
       - title: 工作组
-        href: /group
+        href: /governance
       - title: 章程
-        href: /charter
+        href: /profile/charter
       - title: 会议纪要
         href: /meeting
 
@@ -38,7 +44,7 @@ footNav:
   - title: 语言
     href: https://electronjs.org/languages
   - title: 联系我们
-    href: https://electronjs.org/contact
+    href: /profile/contact
 
 social:
   github:
@@ -48,7 +54,11 @@ social:
   twitter:
     name: contactkaiyuan1
     domain: https://twitter.com
-    title: \@contactkaiyuan1 on Twitter
+    title: "@contactkaiyuan1 on Twitter"
+  facebook:
+    name: kaiyuanshe.china
+    domain: https://www.facebook.com
+    title: Facebook account
 
 principle:
   - title: 贡献

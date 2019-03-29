@@ -21,7 +21,7 @@
           <% if (post.photos[0]) { %>
             <img src="<%= (post.path + post.photos[0]) %>">
           <% } %>
-          <%= (post.description || strip_html(post.content).slice(0, 300)) %>
+          <%- (post.excerpt || strip_html(post.content).slice(0, 300)) %>
           <p>
             <a href="<%= post.path %>">
               Read More&nbsp;

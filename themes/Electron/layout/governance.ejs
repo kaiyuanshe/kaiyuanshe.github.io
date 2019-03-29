@@ -1,0 +1,41 @@
+<style>
+  .force-150 {
+    overflow: auto;
+  }
+</style>
+
+<div class="governance">
+  <div class="jumbotron text-center">
+    <div class="n-container-lg p-responsive position-relative">
+      <h1 class="h00-mktg lh-condensed mb-3 text-white"><%= page.title %></h1>
+      <div class="mx-auto mb-5">
+        <p class="lead-mktg"><%= page.description %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="py-7 py-md-8 py-lg-9">
+    <div class="n-container-lg p-responsive">
+      <h2 class="h00-mktg my-2 lh-condensed text-center">
+        <p class="text-gray-dark">工作组</p>
+      </h2>
+
+      <div class="row">
+        <% site.data.group.forEach(({icon, title, description, links}) => { %>
+          <div class="col-xs-12 col-sm-6 col-md-4 px-3 center something-missing">
+            <span class="<%= icon %> fa-3x" aria-hidden="true"></span>
+            <h3 class="h3-mktg text-normal mb-1"><%= title %></h3>
+            <p class="mb-3 text-gray force-150">
+              <%= description %>
+            </p>
+            <ul style="text-align: left">
+              <% links.forEach(({title, URL}) => { %>
+                <li><a href="<%= URL %>"><%= title %></a></li>
+              <% }) %>
+            </ul>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+</div>

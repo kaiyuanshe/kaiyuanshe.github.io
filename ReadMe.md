@@ -2,38 +2,54 @@
 
 [![Build Status](https://travis-ci.org/kaiyuanshe/kaiyuanshe.svg?branch=hexo)](https://travis-ci.org/kaiyuanshe/kaiyuanshe)
 
-## 写作指南
+## 参与开发
 
-### 编者入门
+[改版需求表](https://shimo.im/sheets/NserO6Sk5p0GMxz5/MODOC)
 
-![编辑界面](source/image/Hexo-edit.png)
+### 安装
 
-1.  [注册](https://github.com/join/) 或 [登录](https://github.com/login/)
+```shell
+git clone --recurse-submodules \
+  https://github.com/kaiyuanshe/kaiyuanshe.git \
+  ~/Desktop/KaiYuanShe/OWS/
 
-2.  进入[博文目录](source/_posts/)
+cd ~/Desktop/KaiYuanShe/OWS/
 
-3.  [新建博文][1] 或 [上传图片][2]（此处为**公共图片目录**，博文图片详见下文）
+npm install  &&  npm start
+```
 
-### 博文规范
+### 写作
 
-1.  [博文目录](source/_post/)下的子目录与 **Category** 一一对应
+```shell
+cd ~/Desktop/KaiYuanShe/OWS/
 
-2.  为了让**博文网址**简洁明了，每篇博文的 `categories` 字段最好只填一个分类，且分类名为一个**首字母大写的英文单词**
+hexo new "My Post title"
 
-3.  **Tag** 只能有文字、不能有符号，否则无法**查询相同标签的文章**
+cd source/
 
-4.  **普通博文**请参考[范文一][3]及其[素材目录][4]
+git checkout master  # 确保子模块在 master 分支，否则提交推送后会丢失
 
-5.  PDF 等可在浏览器直接查看的文档，请参考[范文二][5]
+code _post/My-Post-title.md  # 用你喜欢的文本编辑器写作
 
-6.  **活动公告**请参考[范文三][6]
+git add _post/My-Post-title.md
 
-## 本地运行
+git commit -m "[ Add ]  A new Post"
 
-```Shell
-npm install
+git push
+```
 
-npm start
+### 开发
+
+```shell
+cd ~/Desktop/KaiYuanShe/OWS/
+
+git submodule update --remote  # 程序开发后要同步文章目录
+
+git add .
+
+git commit -m "[ Add ]  A new Feature"
+
+git push
 ```
 
 ## 鸣谢
@@ -44,9 +60,4 @@ npm start
 
 - 页面模板：https://electronjs.org/
 
-[1]: https://github.com/kaiyuanshe/kaiyuanshe/new/hexo/source/_posts/
-[2]: https://github.com/kaiyuanshe/kaiyuanshe/upload/hexo/source/image/
-[3]: https://raw.githubusercontent.com/kaiyuanshe/kaiyuanshe/hexo/source/_posts/International/Codeheat-Open-source-competition.md
-[4]: https://github.com/kaiyuanshe/kaiyuanshe/tree/hexo/source/_posts/International/Codeheat-Open-source-competition/
-[5]: https://raw.githubusercontent.com/kaiyuanshe/kaiyuanshe/hexo/source/_posts/Document/OSI-2015.md
-[6]: https://raw.githubusercontent.com/kaiyuanshe/kaiyuanshe/hexo/source/_posts/Activity/NodeJS-live-2016-BeiJing.md
+- 日历组件：https://fullcalendar.io/
