@@ -27,3 +27,7 @@ iframe, .embed-box {
 .btn.btn-primary a:visited{
   color: white;
 }
+
+.amap-container h4 {
+  margin: 0.25rem;
+}

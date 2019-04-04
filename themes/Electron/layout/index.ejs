@@ -1,9 +1,4 @@
 <style>
-  .jumbotron-home {
-    background-position: center;
-    background-size: cover;
-    min-height: 100vh;
-  }
   .flow-box > * {
     margin: 0 2rem;
   }
@@ -12,9 +7,10 @@
   }
 </style>
 
-<div class="jumbotron jumbotron-home" style="background-image: url(<%= theme.banner %>)">
+<div class="jumbotron jumbotron-home">
   <div class="container">
-    <div class="hero">
+    <div class="hero text-center">
+      <img src="<%= theme.banner %>">
     </div>
     <p class="jumbotron-lead">
       <%= config.subtitle %>
@@ -22,7 +18,7 @@
   </div>
 </div>
 
-<section class="page-section page-section-spacious" id="Activity">
+<section class="page-section page-section-spacious">
   <div class="container-narrow text-center">
     <div class="row text-center mt-6 mb-4">
       <h2 style="margin: auto">我们的原则</h2>
@@ -126,10 +122,24 @@
   </div>
 </section>
 
-<section class="page-section page-section-spacious" id="apps">
+<section class="page-section page-section-spacious" id="Activity">
   <div class="container-narrow">
     <h2 class="text-center-sm">活动日历</h2>
 
     <%- include('./component/calendar', {type: 'Activity', posts: site.posts}) %>
+  </div>
+
+  <hr>
+
+  <div class="container-narrow">
+    <h2 class="text-center-sm">活动地图</h2>
+
+    <%- include('./component/marker_map', {
+      markers: site.posts.map(({title, permalink, address}) => address && {
+        address,
+        title,
+        URL: permalink
+      }).filter( Boolean )
+    }) %>
   </div>
 </section>

@@ -1,4 +1,4 @@
-banner: image/Heart_of_Community.jpg
+banner: image/Heart_of_Community.png
 
 headerNav:
   - title: 资讯
@@ -89,7 +89,7 @@ project:
     description: 一个为举办或参与黑客松活动的一站式开源云平台
   - name: kcoin
     title: KCoin
-    logo: image/kcoin.jpg
+    logo: image/kcoin-0.png
     description: 基于区块链的开源贡献激励机制
 
 language:
