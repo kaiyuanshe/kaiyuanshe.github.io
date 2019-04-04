@@ -28,6 +28,10 @@ iframe, .embed-box {
   color: white;
 }
 
+.fas, .fab, .far {
+  vertical-align: middle;
+}
+
 .amap-container h4 {
   margin: 0.25rem;
 }

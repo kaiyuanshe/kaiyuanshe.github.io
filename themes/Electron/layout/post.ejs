@@ -18,19 +18,12 @@
 
     <%- page.content %>
 
-    <% if (has_category(page, 'Activity')) { %>
+    <% if (
+      (path.replace(/index\.html$/, '') === page.path)  &&
+      has_category(page, 'Activity')
+    ) { %>
       <hr>
-      <% if ( page.address ) { %>
-        <h2>活动地图</h2>
-
-        <%- include('./component/marker_map', {
-          markers: [{
-            address: page.address,
-            title:   page.title,
-            URL:     page.permalink
-          }]
-        }) %>
-      <% } %>
+      <%- include('./component/activity', {post: page}) %>
     <% } %>
   </div>
 </section>

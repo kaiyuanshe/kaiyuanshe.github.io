@@ -1,0 +1,38 @@
+<%
+const {
+  permalink, title, description, start, end, address, files, path
+} = post;
+
+const event = eventOf(title, description, start, end, address);
+%>
+<a class="btn btn-primary" download="<%= title %>.ics"
+  href="<%= toDataURI(event + '', 'text/calendar') %>">
+  添加日历
+</a>
+<%
+if ( address ) { %>
+  <h2>活动场地</h2>
+  <%-
+    include('./marker_map', {
+      markers: [{
+        title, URL: permalink, address
+      }]
+    })
+  %><%
+}
+
+if ( files ) { %>
+  <h2>资料下载</h2>
+  <ol>
+    <% files.forEach(file => { %>
+      <li>
+        <a target="_blank" href="<%= (path + encodeURI( file )) %>">
+
+          <i class="fas fa-2x fa-file-<%= file_type( file ) %>"></i>
+
+          <span><%= file.split('/').slice(-1)[0] %></span>
+        </a>
+      </li>
+    <% }) %>
+  </ol><%
+} %>
