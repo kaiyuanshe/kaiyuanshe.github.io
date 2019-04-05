@@ -30,17 +30,17 @@ headerNav:
       - title: 章程
         href: /profile/charter
       - title: 会议纪要
-        href: /meeting
+        href: /categories/Meeting
 
 footNav:
   - title: 活动
     href: /categories/Activity/
   - title: 博客
     href: /blog
-  - title: 行为准则
-    href: https://github.com/electron/electron/tree/master/CODE_OF_CONDUCT.md
+  - title: 章程
+    href: /profile/charter
   - title: 许可
-    href: https://github.com/electron/electron/tree/master/LICENSE
+    href: https://github.com/kaiyuanshe/kaiyuanshe/tree/hexo/License
   - title: 语言
     href: https://electronjs.org/languages
   - title: 联系我们

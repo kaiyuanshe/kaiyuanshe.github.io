@@ -4,27 +4,34 @@
   }
 </style>
 
+<% const { title, description, content, files } = page; %>
+
 <section class="page-section blog-post">
   <div class="container-narrow">
-    <h1><%= page.title %></h1>
+    <h1><%= title %></h1>
 
-    <% if (page.description) { %>
+    <% if ( description ) { %>
       <blockquote class="blockquote">
-          <p class="mb-0"><%= page.description %></p>
+          <p class="mb-0"><%= description %></p>
       </blockquote>
     <% } %>
 
     <%- include('./component/byline', { post: page }) %>
 
-    <%- page.content %>
+    <%- content %>
 
-    <% if (
-      (path.replace(/index\.html$/, '') === page.path)  &&
-      has_category(page, 'Activity')
-    ) { %>
+    <% if (is_post()  &&  has_category(page, 'Activity')) { %>
       <hr>
       <%- include('./component/activity', {post: page}) %>
-    <% } %>
+    <% }
+
+    if ( files ) { %>
+      <hr>
+      <h2>资料下载</h2>
+      <ol>
+        <%- include('./component/files', {path, files}) %>
+      </ol><%
+    } %>
   </div>
 </section>
 
@@ -39,11 +46,6 @@
       return '<a class="header-link" title="Permalink" href="' +
         path + '#' + this.id +
         '"><span class="octicon octicon-link"></span></a>';
-  });
-
-  $('.blog-post table').addClass('table').each(function () {
-
-    if (! this.tHead.textContent.trim())  $(this.tHead).remove();
   });
 })();
 </script>

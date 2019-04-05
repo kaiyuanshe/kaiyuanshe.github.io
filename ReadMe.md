@@ -6,9 +6,14 @@
 
 [改版需求表](https://shimo.im/sheets/NserO6Sk5p0GMxz5/MODOC)
 
+请务必先做好[数据子库的准备](https://github.com/kaiyuanshe/Wiki/#%E6%9C%AC%E6%9C%BA%E7%BC%96%E8%BE%91)！
+
 ### 安装
 
 ```shell
+# 若网速慢，可启用以下环境变量
+# GIT_LFS_SKIP_SMUDGE=1
+
 git clone --recurse-submodules \
   https://github.com/kaiyuanshe/kaiyuanshe.git \
   ~/Desktop/KaiYuanShe/OWS/

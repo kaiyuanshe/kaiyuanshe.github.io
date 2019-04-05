@@ -1,18 +1,20 @@
-<div class="blog-byline mt-2 mb-4 d-flex justify-content-between">
-  <span class="blog-index-time"><%= (new Date( post.date )).toLocaleString() %></span>
+<% const {date, author, categories, tags } = post; %>
 
-  <a class="author-link ml-3" href="https://github.com/<%= post.author %>">
-    <img class="avatar mr-2" src="https://github.com/<%= post.author %>.png?size=36" alt="<%= post.author %>">
-    <%= post.author %>
+<div class="blog-byline mt-2 mb-4 d-flex justify-content-between">
+  <span class="blog-index-time"><%= full_date( date ) %></span>
+
+  <a class="author-link ml-3" href="https://github.com/<%= author %>">
+    <img class="avatar mr-2" src="https://github.com/<%= author %>.png?size=36" alt="<%= author %>">
+    <%= author %>
   </a>
 
   <span>
-    <% post.categories.forEach(category => { %>
+    <% categories.forEach(category => { %>
       <a class="badge badge-primary" href="<%= category.path %>">
         <%= category.name %>
       </a>
     <% }) %>
-    <% post.tags.forEach(tag => { %>
+    <% tags.forEach(tag => { %>
       <a class="badge badge-primary" href="<%= tag.path %>">
           <%= tag.name %>
       </a>

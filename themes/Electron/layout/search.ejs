@@ -13,13 +13,23 @@
 <main id="Result" hidden class="page-section">
   <div class="container-narrow">
     <h2>Blog</h2>
-    <%- list_posts({ amount: 0 }) %>
+    <%- list_posts({ amount: site.posts.length }) %>
 
     <h2>Category</h2>
     <%- list_categories() %>
 
     <h2>Tag</h2>
-    <%- list_tags() %>
+    <%- list_tags({ amount: site.tags.length }) %>
+
+    <h2>File</h2>
+    <ul>
+      <% site.posts.forEach(({permalink, files}) => {
+
+        if (! files) return; %>
+
+        <%- include('./component/files', {path: permalink, files}) %>
+      <% }) %>
+    </ul>
   </div>
 </main>
 
