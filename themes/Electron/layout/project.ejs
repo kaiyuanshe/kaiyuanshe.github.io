@@ -1,0 +1,82 @@
+<main class="container PRIMER-REMOVE-ME">
+  <div class="py-6 py-md-7 py-lg-8">
+    <div class="container-xl media-fluid">
+      <div class="clearfix pt-md-6">
+        <div class="col-md-3 float-md-left pr-md-5 mb-3 mb-md-0">
+          <div class="CircleBadge CircleBadge--large mx-auto box-shadow-large mt-1" style="background-color: #ffffff;">
+            <img class="CircleBadge-icon" src="<%= page.logo %>" alt='<%= page.title %>'>
+          </div>
+        </div>
+        <div class="col-md-9 float-md-left pl-md-5 text-center text-md-left">
+          <h1 class="f00-light lh-condensed mb-3">
+            <%= page.title %>
+          </h1>
+          <h3 class="text-mono text-normal text-gray-light"><%= page.description %></h3>
+        </div>
+      </div>
+      <div class="app-container">
+        <main class="left-bar">
+          <div class="app-meta">
+
+            <% if ( page.website ) { %>
+            <div class="app-meta-entry">
+              <h5 class="mb-2 text-mono text-normal text-gray-light">官方网站</h5>
+              <a href="<%= page.website %>"><%= page.website %></a>
+            </div>
+            <% } %>
+
+            <% if ( page.repository ) { %>
+            <div class="app-meta-entry">
+              <h5 class="mb-2 text-mono text-normal text-gray-light">源码仓库</h5>
+              <a href="<%= page.repository %>"><%= page.repository %></a>
+            </div>
+            <% } %>
+
+            <% if ( page.tags.data[0] ) { %>
+            <div class="app-meta-entry">
+              <h5 class="mb-2 text-mono text-normal text-gray-light">关键词</h5>
+              <% page.tags.forEach(({name}) => { %>
+              <a class="app-keyword" href="/tags/<%= name %>"><%= name %></a>
+              <% }) %>
+            </div>
+            <% } %>
+
+            <% if ( page.license ) { %>
+            <div class="app-meta-entry">
+              <h5 class="mb-2 text-mono text-normal text-gray-light">许可协议</h5>
+              <span><%= page.license %></span>
+            </div>
+            <% } %>
+          </div>
+        </main>
+        <div class="app-boxes">
+          <% if ( page.raw.trim() ) { %>
+          <main id="readme" class="app-box app-readme markdown-body">
+            <%- page.content %>
+          </main>
+          <% } %>
+
+          <% if ( page.photos[0] ) { %>
+            <div class="app-box app-screenshots">
+              <div class="active-screenshot">
+                <img alt="not_used" />
+              </div>
+              <div class="all-screenshots">
+                <% page.photos.forEach(photo => {
+
+                    const title = photo.split('/').slice(-1)[0].split('.')[0]; %>
+
+                <div class="app-screenshot-thumb">
+                  <img alt="<%= title %>" src="<%= page.path + photo %>" class="caption">
+
+                  <span class="app-screenshot-caption"><%= title %></span>
+                </div>
+                <% }) %>
+              </div>
+            </div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

@@ -1,145 +1,22 @@
-<style>
-  .flow-box > * {
-    margin: 0 2rem;
-  }
-  #Post .row > * {
-    margin-bottom: 1rem;
-  }
-</style>
+<% if (is_current('/')) { %>
 
-<div class="jumbotron jumbotron-home">
-  <div class="container">
-    <div class="hero text-center">
-      <img src="<%= theme.banner %>">
-    </div>
-    <p class="jumbotron-lead">
-      <%= config.subtitle %>
-    </p>
-  </div>
-</div>
+  <%- partial('./main') %>
 
-<section class="page-section page-section-spacious">
-  <div class="container-narrow text-center">
-    <div class="row text-center mt-6 mb-4">
-      <h2 style="margin: auto">我们的原则</h2>
-    </div>
+<% } else {
 
-    <div class="flow-box text-center text-small mt-6">
-    <%-
-      include('./component/gallery', {
-        type:    'icon',
-        gallery: theme.principle,
-        size:    '10x'
-      })
-    %>
-    </div>
+  if (is_current('/blog')) { %>
 
-    <div class="row text-center mt-6 mb-4">
-      <h2 style="margin: auto">我们的使命</h2>
-    </div>
+    <%- partial('./page', {
+      page: {
+        posts: site.posts.sort(
+            (A, B) => (B.updated - A.updated) || (B.date - A.date)
+          ).slice(0, config.index_generator.per_page),
+        next_link: '/page/2'
+      }
+    }) %><%
+  } else {
+    if (page.current === 2) page.prev_link = '/blog'; %>
 
-    <div class="flow-box text-center text-small mt-3">
-    <%-
-      include('./component/gallery', {
-        type:    'icon',
-        gallery: theme.mission,
-        size:    '5x'
-      })
-    %>
-    </div>
-
-    <hr>
-
-    <h1>自研开源项目</h1>
-    <p class="lead">
-      期盼未来有更多更好的开源项目以及贡献者加入开源社！
-    </p>
-
-    <div style="margin-top: 3rem">
-      <div class="mb-4">
-        <% theme.project.forEach(({name, title, logo, description, keywords}) => { %>
-          <a href="https://github.com/kaiyuanshe/<%= name %>" title="<%= title %>" class="featured-app">
-            <div class="featured-app-logo-wrapper">
-              <img class="featured-app-logo" alt="<%= title %>" src="<%= logo %>">
-            </div>
-            <div class="featured-app-name"><%= title %></div>
-            <div class="featured-app-description" style="margin-top: 1rem">
-              <%= description %>
-            </div>
-            <div class="featured-app-keywords" style="display:none;">
-              <%= keywords %>
-            </div>
-          </a>
-        <% }) %>
-      </div>
-      <p class="mt-6">
-        <a href="https://github.com/kaiyuanshe">查看更多项目</a>
-      </p>
-    </div>
-  </div>
-</section>
-
-
-<section class="page-section page-section-spacious bg-shade" id="Post">
-  <div class="container-narrow text-center">
-    <h1>最新动态</h1>
-    <p class="lead">
-      身体力行地践行开源，咱们华人有力量！
-    </p>
-
-    <div class="row mt-8">
-      <% site.posts.filter(post => post.photos[0]).slice(0, 5).forEach(post => { %>
-        <div class="col-xs-12 col-md-5">
-          <a href="<%= post.path %>">
-            <img src="<%= (post.path + post.photos[0]) %>">
-          </a>
-        </div>
-        <div class="col-xs-12 col-md-7 text-left">
-          <h3 class="mt-1 mb-3"><%= post.title %></h3>
-          <p>
-            <%= (post.description || strip_html(post.content).slice(0, 300)) %>
-          </p>
-          <div class="d-flex justify-content-between">
-            <a class="btn btn-lg btn-outline-themed" href="<%= post.path %>">
-              <span>阅读详情</span>
-            </a>
-            <span>
-              <% post.categories.forEach(category => { %>
-                <a class="badge badge-primary" href="<%= category.path %>">
-                  <%= category.name %>
-                </a>
-              <% }) %>
-              <% post.tags.forEach(tag => { %>
-                <a class="badge badge-primary" href="<%= tag.path %>">
-                    <%= tag.name %>
-                </a>
-              <% }) %>
-            </span>
-          </div>
-        </div>
-      <% }) %>
-    </div>
-  </div>
-</section>
-
-<section class="page-section page-section-spacious" id="Activity">
-  <div class="container-narrow">
-    <h2 class="text-center-sm">活动日历</h2>
-
-    <%- include('./component/calendar', {type: 'Activity', posts: site.posts}) %>
-  </div>
-
-  <hr>
-
-  <div class="container-narrow">
-    <h2 class="text-center-sm">活动地图</h2>
-
-    <%- include('./component/marker_map', {
-      markers: site.posts.map(({title, permalink, address}) => address && {
-        address,
-        title,
-        URL: permalink
-      }).filter( Boolean )
-    }) %>
-  </div>
-</section>
+    <%- partial('./page', { page }) %><%
+  } %>
+<% } %>

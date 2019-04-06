@@ -66,3 +66,5 @@ git push
 - 页面模板：https://electronjs.org/
 
 - 日历组件：https://fullcalendar.io/
+
+- 地图组件：https://lbs.amap.com/api/javascript-api/summary

@@ -78,20 +78,6 @@ mission:
   - title: 开源项目
     icon: project-diagram
 
-project:
-  - name: 2018-China-Open-Source-Report
-    title: 2018 中国开源报告
-    logo: image/2018-China-Open-Source-Report.png
-    description: 中国开源的开发者调查、生态环境报告、深度专题分析
-  - name: open-hackathon
-    title: 开放黑客松
-    logo: image/open-hackathon.png
-    description: 一个为举办或参与黑客松活动的一站式开源云平台
-  - name: kcoin
-    title: KCoin
-    logo: image/kcoin-0.png
-    description: 基于区块链的开源贡献激励机制
-
 language:
   en-US:
     local: English

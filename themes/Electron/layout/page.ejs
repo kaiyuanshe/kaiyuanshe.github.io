@@ -10,7 +10,10 @@
 <section class="page-section">
   <div class="container-narrow">
     <ul class="posts-list blog-index">
-      <% site.posts.forEach(post => { %>
+      <% page.posts.forEach(post => {
+
+        if (post.layout !== 'post') return; %>
+
         <li class="mb-3 mb-md-4 mb-lg-6">
           <h2>
             <a class="blog-index-link mr-2" href="<%= post.path %>">
@@ -30,3 +33,18 @@
     </ul>
   </div>
 </section>
+
+<nav aria-label="Page navigation">
+  <ul class="pagination justify-content-center">
+    <% if (page.current > 1) { %>
+      <li class="page-item">
+        <a class="page-link" href="<%= page.prev_link %>">Previous</a>
+      </li>
+    <% } %>
+    <% if (page.next_link) { %>
+      <li class="page-item">
+        <a class="page-link" href="<%= page.next_link %>">Next</a>
+      </li>
+    <% } %>
+  </ul>
+</nav>
