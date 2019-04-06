@@ -1,22 +1,5 @@
 <% if (is_current('/')) { %>
-
   <%- partial('./main') %>
-
-<% } else {
-
-  if (is_current('/blog')) { %>
-
-    <%- partial('./page', {
-      page: {
-        posts: site.posts.sort(
-            (A, B) => (B.updated - A.updated) || (B.date - A.date)
-          ).slice(0, config.index_generator.per_page),
-        next_link: '/page/2'
-      }
-    }) %><%
-  } else {
-    if (page.current === 2) page.prev_link = '/blog'; %>
-
-    <%- partial('./page', { page }) %><%
-  } %>
+<% } else { %>
+  <%- partial('./page', { page }) %>
 <% } %>

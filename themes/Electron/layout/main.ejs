@@ -7,10 +7,12 @@
   }
 </style>
 
+<% const {banner, principle, mission} = site.data.index; %>
+
 <div class="jumbotron jumbotron-home">
   <div class="container">
     <div class="hero text-center">
-      <img src="<%= theme.banner %>">
+      <img src="<%= banner %>">
     </div>
     <p class="jumbotron-lead">
       <%= config.subtitle %>
@@ -28,7 +30,7 @@
     <%-
       include('./component/gallery', {
         type:    'icon',
-        gallery: theme.principle,
+        gallery: principle,
         size:    '10x'
       })
     %>
@@ -42,7 +44,7 @@
     <%-
       include('./component/gallery', {
         type:    'icon',
-        gallery: theme.mission,
+        gallery: mission,
         size:    '5x'
       })
     %>
@@ -88,30 +90,32 @@
     </p>
 
     <div class="row mt-8">
-      <% site.posts.filter(post => post.photos[0]).slice(0, 5).forEach(post => { %>
+      <% site.posts.filter(post => post.photos[0]).slice(0, 5).forEach(({
+        path, photos, title, description, content, categories, tags
+      }) => { %>
         <div class="col-xs-12 col-md-5">
-          <a href="<%= post.path %>">
-            <img src="<%= (post.path + post.photos[0]) %>">
+          <a href="<%= path %>">
+            <img src="<%= (path + photos[0]) %>">
           </a>
         </div>
         <div class="col-xs-12 col-md-7 text-left">
-          <h3 class="mt-1 mb-3"><%= post.title %></h3>
+          <h3 class="mt-1 mb-3"><%= title %></h3>
           <p>
-            <%= (post.description || strip_html(post.content).slice(0, 300)) %>
+            <%= (description || strip_html(content).slice(0, 300)) %>
           </p>
           <div class="d-flex justify-content-between">
-            <a class="btn btn-lg btn-outline-themed" href="<%= post.path %>">
+            <a class="btn btn-lg btn-outline-themed" href="<%= path %>">
               <span>阅读详情</span>
             </a>
             <span>
-              <% post.categories.forEach(category => { %>
-                <a class="badge badge-primary" href="<%= category.path %>">
-                  <%= category.name %>
+              <% categories.forEach(({path, name}) => { %>
+                <a class="badge badge-primary" href="<%= path %>">
+                  <%= name %>
                 </a>
               <% }) %>
-              <% post.tags.forEach(tag => { %>
-                <a class="badge badge-primary" href="<%= tag.path %>">
-                    <%= tag.name %>
+              <% tags.forEach(({path, name}) => { %>
+                <a class="badge badge-primary" href="<%= path %>">
+                    <%= name %>
                 </a>
               <% }) %>
             </span>

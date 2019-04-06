@@ -9,10 +9,12 @@
   <meta name="renderer" content="webkit">
 
   <title><%= config.title %></title>
+
+  <% const {social, headerNav, footNav} = site.data.index; %>
   <%-
     open_graph({
       type:         is_home() ? 'website' : 'blog',
-      twitter_site: theme.social.twitter.name
+      twitter_site: social.twitter.name
     })
   %>
   <meta name="author" content="<%= config.author %>">
@@ -52,7 +54,7 @@
       </a>
 
       <nav class="site-header-nav">
-        <% theme.headerNav.forEach(({title, href, href_match, sub}, index) => { %>
+        <% headerNav.forEach(({title, href, href_match, sub}, index) => { %>
           <div class="site-header-nav-item">
             <% if (! sub) { %>
               <a role="button" href="<%= href %>" data-href-match="<%= href_match %>">
@@ -77,8 +79,8 @@
             aria-label="search-box" autocapitalize="off" autocorrect="off" role="textbox">
         </form>
         <a class="site-header-nav-item octicon"
-          href="https://github.com/<%= theme.social.github.name %>/"
-          title="<%= theme.social.github.title %>">
+          href="https://github.com/<%= social.github.name %>/"
+          title="<%= social.github.title %>">
           <span class="mega-octicon octicon-mark-github vertical-middle"></span>
         </a>
         <a class="site-header-nav-item bordered lang-select-button" href="#Language" data-toggle="collapse">
@@ -95,18 +97,18 @@
   <footer class="footer">
     <div class="container">
       <nav class="footer-nav">
-        <% theme.footNav.forEach((item, index) => { %>
-        <a class="footer-nav-item <%= (index ? '' : 'active') %>" href="<%= item.href %>">
-          <%= item.title %>
-        </a>
+        <% footNav.forEach(({href, title}, index) => { %>
+          <a class="footer-nav-item <%= index ? '' : 'active' %>" href="<%= href %>">
+            <%= title %>
+          </a>
         <% }) %>
       </nav>
 
       <span class="footer-social">
-        <% for (let name in theme.social) { %>
+        <% for (let name in social) { %>
           <a class="footer-nav-item icon"
-            href="<%= (theme.social[name].domain + '/' + theme.social[name].name) %>"
-            title="<%= theme.social[name].title %>">
+            href="<%= (social[name].domain + '/' + social[name].name) %>"
+            title="<%= social[name].title %>">
             <i class="devicon-<%= name %>-plain vertical-middle"></i>
           </a>
         <% } %>
