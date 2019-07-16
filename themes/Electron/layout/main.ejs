@@ -7,7 +7,7 @@
   }
 </style>
 
-<% const {banner, principle, mission} = site.data.index; %>
+<% const {banner, principle, mission, partner} = site.data.index; %>
 
 <div class="jumbotron jumbotron-home">
   <div class="container">
@@ -56,7 +56,6 @@
     <p class="lead">
       期盼未来有更多更好的开源项目以及贡献者加入开源社！
     </p>
-
     <div style="margin-top: 3rem">
       <div class="mb-4">
         <% site.posts.forEach(({layout, path, title, logo, description}) => {
@@ -88,7 +87,6 @@
     <p class="lead">
       身体力行地践行开源，咱们华人有力量！
     </p>
-
     <div class="row mt-8">
       <% site.posts.filter(post => post.photos[0]).slice(0, 5).forEach(({
         path, photos, title, description, content, categories, tags
@@ -145,5 +143,30 @@
         URL: permalink
       }).filter( Boolean )
     }) %>
+  </div>
+</section>
+
+<section class="page-section page-section-spacious bg-shade" id="Partner">
+  <div class="container-narrow text-center">
+    <h1>合作伙伴</h1>
+    <p class="lead">
+      感谢业界同仁一如既往地支持！
+    </p>
+    <div style="margin-top: 3rem">
+      <div class="mb-4">
+        <% partner.forEach(({ title, logo, URL, description}) => { %>
+
+          <a href="<%= URL %>" title="<%= title %>" class="featured-app">
+            <div class="featured-app-logo-wrapper">
+              <img class="featured-app-logo" alt="<%= title %>" src="<%= logo %>">
+            </div>
+            <div class="featured-app-name"><%= title %></div>
+            <div class="featured-app-description" style="margin-top: 1rem">
+              <%= description %>
+            </div>
+          </a>
+        <% }) %>
+      </div>
+    </div>
   </div>
 </section>
