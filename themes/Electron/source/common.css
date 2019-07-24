@@ -4,12 +4,6 @@ iframe, .embed-box {
   height: 80vh;
 }
 
-.flex-box {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
 .flow-box {
   display: block;
 }

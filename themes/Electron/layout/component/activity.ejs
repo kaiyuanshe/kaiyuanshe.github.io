@@ -3,7 +3,7 @@ const { permalink, title, description, start, end, address } = post;
 
 const event = eventOf(title, description, start, end, address);
 %>
-<h2 class="flex-box" style="justify-content: space-between">
+<h2 class="d-flex justify-content-between">
   活动简讯
   <a class="btn btn-primary" download="<%= title %>.ics"
     href="<%= toDataURI(event + '', 'text/calendar') %>">
