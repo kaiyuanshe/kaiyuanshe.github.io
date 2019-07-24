@@ -1,4 +1,4 @@
-<% const {date, authors, categories, tags } = post; %>
+<% const {date, authors = [], categories, tags } = post; %>
 
 <div class="blog-byline mt-2 mb-4 d-flex justify-content-between">
   <span class="blog-index-time"><%= full_date( date ) %></span>

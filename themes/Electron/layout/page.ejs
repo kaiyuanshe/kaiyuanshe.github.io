@@ -1,8 +1,12 @@
+<%
+const { title } = config,
+  { posts = [], prev_link, next_link } = page;
+%>
 <div class="subtron">
   <div class="container-narrow">
-    <h1><%= config.title %> 博客</h1>
+    <h1><%= title %> 博客</h1>
     <p class="lead mb-3">
-      所有来自 <%= config.title %> 团队和社区的最新消息
+      所有来自 <%= title %> 团队和社区的最新消息
     </p>
   </div>
 </div>
@@ -10,7 +14,7 @@
 <section class="page-section">
   <div class="container-narrow">
     <ul class="posts-list blog-index">
-      <% page.posts.forEach(post => { %>
+      <% posts.forEach(post => { %>
         <li class="mb-3 mb-md-4 mb-lg-6">
           <h2>
             <a class="blog-index-link mr-2" href="<%= post.path %>">
@@ -33,14 +37,14 @@
 
 <nav aria-label="Page navigation">
   <ul class="pagination justify-content-center">
-    <% if (page.prev_link) { %>
+    <% if (prev_link) { %>
       <li class="page-item">
-        <a class="page-link" href="<%= page.prev_link %>">Previous</a>
+        <a class="page-link" href="<%= prev_link %>">Previous</a>
       </li>
     <% } %>
-    <% if (page.next_link) { %>
+    <% if (next_link) { %>
       <li class="page-item">
-        <a class="page-link" href="<%= page.next_link %>">Next</a>
+        <a class="page-link" href="<%= next_link %>">Next</a>
       </li>
     <% } %>
   </ul>
