@@ -1,3 +1,9 @@
+<style>
+  .posts-list > li > section img {
+    display: block;
+    margin: 1rem auto;
+  }
+</style>
 <%
 const { title } = config,
   { posts = [], prev_link, next_link } = page;
@@ -22,7 +28,9 @@ const { title } = config,
             </a>
             <%- include('./component/byline', { post }) %>
           </h2>
-          <%- (post.excerpt || strip_html(post.content).slice(0, 300)) %>
+          <section>
+            <%- (post.excerpt || strip_html(post.content).slice(0, 300)) %>
+          </section>
           <p>
             <a href="<%= post.path %>">
               Read More&nbsp;

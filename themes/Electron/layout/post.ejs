@@ -2,6 +2,10 @@
   .blog-post hr:first-of-type {
     display: block;
   }
+  .blog-post > .container > main img {
+    display: block;
+    margin: 1rem auto;
+  }
 </style>
 
 <% const { title, description, content, files } = page; %>
@@ -18,7 +22,7 @@
 
     <%- include('./component/byline', { post: page }) %>
 
-    <%- content %>
+    <main><%- content %></main>
 
     <% if (is_post()  &&  has_category(page, 'Activity')) { %>
       <hr>
