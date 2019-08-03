@@ -1,0 +1,32 @@
+<%
+const group = site.data.member.reduce(
+  (group, person) => {
+    const key = person.department || '未分组';
+
+    (group[key] = group[key] || []).push( person );
+
+    return group;
+  },
+  {}
+);
+%>
+<header class="subtron">
+  <div class="container">
+    <h1><%= page.title %></h1>
+    <p class="lead mb-3">
+      <%= page.description %>
+    </p>
+  </div>
+</header>
+
+<main class="page-section">
+  <div class="container">
+  <% for (let name in group) { %>
+    <h2>
+      <%= name %>
+      <span class="badge badge-light"><%= group[name].length %></span>
+    </h2>
+    <%- partial('component/members', { list: group[name] }) %>
+  <% } %>
+  </div>
+</main>

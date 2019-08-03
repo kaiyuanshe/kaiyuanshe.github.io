@@ -1,0 +1,74 @@
+<style>
+  ol.d-flex {
+    list-style: none;
+  }
+  ol.d-flex > li > a.count::before {
+    content: attr(data-count);
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    background: red;
+    color: white;
+    min-width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+  }
+  ol.d-flex > li > .card {
+    left: 0;
+    top: 100%;
+    z-index: 2;
+    max-width: inherit;
+    display: none;
+  }
+  ol.d-flex > li > a {
+    width: 6rem;
+  }
+  ol.d-flex > li .image {
+    height: 6rem;
+    background-position: center;
+    background-size: cover;
+  }
+</style>
+
+<ol class="d-flex flex-wrap ml-0">
+  <% list.forEach(({name, alias, title, URL, count, GitHub, posts}) => { %>
+    <li class="position-relative m-1">
+      <a
+        title="<%= alias %>"
+        href="<%= (URL || (GitHub && `https://github.com/${GitHub}`)) %>"
+        class="d-block position-relative text-center <%= count ? 'count' : '' %>"
+        data-count="<%= count %>"
+      >
+        <div
+          class="image w-100 rounded-circle mb-3"
+          style="background-image: url(https://github.com/<%= GitHub %>.png)"
+        ></div>
+        <div><%= name %></div>
+      </a>
+
+      <% if ( posts ) { %>
+        <div class="card position-absolute text-left text-nowrap">
+          <ol class="p-3">
+            <% posts.forEach(({ title, path }) => { %>
+              <li>
+                <a href="<%= url_for(path) %>"><%= title %></a>
+              </li>
+            <% }) %>
+          </ol>
+        </div>
+      <% } %>
+    </li>
+  <% }) %>
+</ol>
+
+<script>
+  $( document.currentScript ).prev().on('mouseenter',  'li',  function () {
+
+    $('.card', this).show('fast');
+
+  }).on('mouseleave',  'li',  function () {
+
+    $('.card', this).hide('fast');
+  });
+</script>

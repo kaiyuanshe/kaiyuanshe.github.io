@@ -1,0 +1,41 @@
+<%
+  function findMember(name) {
+
+    return  data.find(item => item.GitHub === name);
+  }
+
+  function countMember(posts, type) {
+
+    const data = { };
+
+    posts.forEach(post => {
+
+      for (let name  of  (post[type] || '')) {
+
+        const member = findMember( name );
+
+        if (! member)  continue;
+
+        data[name] = data[name] || Object.assign({ }, member);
+
+        data[name].count = data[name].count ? ++data[name].count : 1;
+
+        (data[name].posts = data[name].posts || [ ]).push( post );
+      }
+    });
+
+    return  Object.values( data ).sort((A, B)  =>  B.count - A.count);
+  }
+%>
+
+<% for (let type in keyMap) if (count || post[type]) { %>
+  <h3><%= keyMap[type] %></h3>
+  <%-
+    partial('./members', {
+      list:  count ?
+        countMember(posts, type) :
+        Array.from(new Set( post[type] ),  name => findMember(name))
+          .filter( Boolean )
+    })
+  %>
+<% } %>
