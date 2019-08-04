@@ -3,7 +3,10 @@ const group = site.data.member.reduce(
   (group, person) => {
     const key = person.department || '未分组';
 
-    (group[key] = group[key] || []).push( person );
+    (key instanceof Array ? key : [key]).forEach(name =>
+
+      (group[name] = group[name] || []).push( person )
+    );
 
     return group;
   },
