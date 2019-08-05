@@ -9,7 +9,7 @@
   }
 </style>
 
-<% const { title, description, content, files } = page; %>
+<% const { title, description, content, files, prev, next } = page; %>
 
 <section class="page-section blog-post">
   <div class="container">
@@ -25,7 +25,7 @@
 
     <main><%- content %></main>
 
-    <% if (is_post()  &&  has_category(page, 'Activity')) { %>
+    <% if (is_post()  &&  hasCategory(page, 'Activity')) { %>
       <hr>
       <%- include('./component/activity', {post: page}) %>
     <% }
@@ -39,6 +39,21 @@
     } %>
   </div>
 </section>
+
+<nav class="page-section text-center">
+  <div class="btn-group" role="group" aria-label="Post navigator">
+    <% if ( prev ) { %>
+    <a class="btn btn-secondary" role="button" href="<%= prev.path %>">
+      &lt; <%= prev.title %>
+    </a>
+    <% }
+       if ( next ) { %>
+    <a class="btn btn-secondary" role="button" href="<%= next.path %>">
+      <%= next.title %> &gt;
+    </a>
+    <% } %>
+  </div>
+</nav>
 
 <script>
 (function () {

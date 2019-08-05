@@ -3,8 +3,18 @@ const { VEvent } = require('icalendar');
 
 hexo.extend.helper.register('echo', console.log);
 
+hexo.extend.helper.register('getPosts', ({pagination, filter}) => {
 
-hexo.extend.helper.register('has_category',  (post, name) =>
+  const {order_by, per_page} = hexo.config.index_generator;
+
+  var { data } = hexo.locals.get('posts').sort(order_by);
+
+  if (filter instanceof Function) data = data.filter( filter );
+
+  return data.slice(0, pagination ? per_page : Infinity);
+});
+
+hexo.extend.helper.register('hasCategory',  (post, name) =>
 
   Array.from((post.categories || '').data,  ({ name }) => name).includes( name )
 );
@@ -19,7 +29,7 @@ const type_map = {
   pptx: 'powerpoint'
 };
 
-hexo.extend.helper.register('file_type',  path => {
+hexo.extend.helper.register('fileType',  path => {
 
   var type = path.split('.');
 

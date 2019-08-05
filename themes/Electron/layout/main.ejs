@@ -88,7 +88,7 @@
       身体力行地践行开源，咱们华人有力量！
     </p>
     <div class="row mt-8">
-      <% site.posts.filter(post => post.photos[0]).slice(0, 5).forEach(({
+      <% getPosts({ filter: post => post.photos[0] }).forEach(({
         path, photos, title, description, content, categories, tags
       }) => { %>
         <div class="col-xs-12 col-md-5">
