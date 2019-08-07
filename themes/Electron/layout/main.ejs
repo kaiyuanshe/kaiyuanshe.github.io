@@ -99,7 +99,7 @@
         <div class="col-xs-12 col-md-7 text-left">
           <h3 class="mt-1 mb-3"><%= title %></h3>
           <p>
-            <%= (description || strip_html(content).slice(0, 300)) %>
+            <%= (description || strip_html(content).slice(0, 150)) %>
           </p>
           <div class="d-flex justify-content-between">
             <a class="btn btn-lg btn-outline-themed" href="<%= path %>">
