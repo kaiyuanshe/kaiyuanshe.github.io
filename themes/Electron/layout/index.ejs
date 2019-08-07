@@ -1,5 +1,7 @@
 <% if (is_current('/')) { %>
   <%- partial('./main') %>
-<% } else { %>
+<% } else {
+  page.prev_link = '/blog/';
+%>
   <%- partial('./page', { page }) %>
 <% } %>

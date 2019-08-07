@@ -28,8 +28,8 @@
   }
 %>
 
-<% for (let type in keyMap) if (count || post[type]) { %>
-  <h3><%= keyMap[type] %></h3>
+<% for (let type in key_map) if (count || post[type]) { %>
+  <h3><%= key_map[type] %></h3>
   <%-
     partial('./members', {
       list:  count ?

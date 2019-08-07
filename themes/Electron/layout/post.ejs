@@ -9,34 +9,44 @@
   }
 </style>
 
-<% const { title, description, content, files, prev, next } = page; %>
+<% const { title, original, description, content, files, prev, next } = page; %>
 
 <section class="page-section blog-post">
   <div class="container">
     <h1><%= title %></h1>
 
     <% if ( description ) { %>
-      <blockquote class="blockquote">
-          <p class="mb-0"><%= description %></p>
-      </blockquote>
+    <blockquote class="blockquote">
+        <p class="mb-0"><%= description %></p>
+    </blockquote>
     <% } %>
 
     <%- include('./component/byline', { post: page }) %>
 
+    <% if ( original ) { %>
+    <blockquote>
+      <p>
+        原文链接：<a target="_blank" href="<%= original %>">
+          <%= original %>
+        </a>
+      </p>
+    </blockquote>
+    <% } %>
+    <hr>
     <main><%- content %></main>
 
     <% if (is_post()  &&  hasCategory(page, 'Activity')) { %>
-      <hr>
-      <%- include('./component/activity', {post: page}) %>
+    <hr>
+    <%- include('./component/activity', {post: page}) %>
     <% }
 
     if ( files ) { %>
-      <hr>
-      <h2>资料下载</h2>
-      <ol>
-        <%- include('./component/files', {path, files}) %>
-      </ol><%
-    } %>
+    <hr>
+    <h2>资料下载</h2>
+    <ol>
+      <%- include('./component/files', {path, files}) %>
+    </ol>
+    <% } %>
   </div>
 </section>
 
