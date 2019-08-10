@@ -12,7 +12,7 @@
 
     <% if ( description ) { %>
     <blockquote class="blockquote">
-        <p class="mb-0"><%= description %></p>
+      <p class="mb-0"><%= description %></p>
     </blockquote>
     <% } %>
 
@@ -27,7 +27,12 @@
       </p>
     </blockquote>
     <% } %>
-    <hr>
+
+    <details>
+      <summary>正文大纲</summary>
+      <%- toc(content, {list_number: false}) %>
+    </details>
+
     <main><%- content %></main>
 
     <% if (is_post()  &&  hasCategory(page, 'Activity')) { %>
@@ -64,6 +69,11 @@
 (function () {
 
   var path = self.location.href.split('#')[0];
+
+  $('details > .toc a[href]').attr('href', function (_, value) {
+
+    return path + value;
+  });
 
   $('.blog-post').find('h1, h2, h3, h4, h5, h6').append(function () {
 

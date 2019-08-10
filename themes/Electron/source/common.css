@@ -3,6 +3,9 @@ iframe, .embed-box {
   width: 100%;
   height: 80vh;
 }
+summary {
+  outline: none;
+}
 
 .flow-box {
   display: block;
