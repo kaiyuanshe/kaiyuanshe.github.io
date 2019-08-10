@@ -26,6 +26,14 @@ iframe, .embed-box {
   vertical-align: middle;
 }
 
+.posts-list > li > section img,
+.blog-post > .container > main img {
+  display: block;
+  margin: 1rem auto;
+  max-width: 100%;
+  max-height: 80vh;
+}
+
 .amap-container h4 {
   margin: 0.25rem;
 }

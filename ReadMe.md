@@ -15,7 +15,7 @@
 # GIT_LFS_SKIP_SMUDGE=1
 
 git clone --recurse-submodules \
-  https://github.com/kaiyuanshe/kaiyuanshe.git \
+  https://github.com/kaiyuanshe/kaiyuanshe.github.io.git \
   ~/Desktop/KaiYuanShe/OWS/
 
 cd ~/Desktop/KaiYuanShe/OWS/

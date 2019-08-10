@@ -13,7 +13,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://v2.kaiyuanshe.org/
+url: http://kaiyuanshe.cn/
 root: /
 permalink: :title/
 permalink_defaults:
@@ -80,7 +80,7 @@ auto_category:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/kaiyuanshe/kaiyuanshe.git
+  repo: https://github.com/kaiyuanshe/kaiyuanshe.github.io.git
   branch: gh-pages
 
 # Extensions
@@ -98,7 +98,7 @@ pwa:
     body:
       name: 开源社
       short_name: 开源社
-      start_url: https://v2.kaiyuanshe.org/
+      start_url: http://kaiyuanshe.cn/
       description: Offical Web-site of KaiYuanShe
       scope: /
       display: standalone
