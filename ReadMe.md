@@ -1,6 +1,6 @@
 # 开源社官网
 
-[![Build Status](https://travis-ci.org/kaiyuanshe/kaiyuanshe.svg?branch=hexo)](https://travis-ci.org/kaiyuanshe/kaiyuanshe)
+[![Build Status](https://travis-ci.org/kaiyuanshe/kaiyuanshe.github.io.svg?branch=hexo)](https://travis-ci.org/kaiyuanshe/kaiyuanshe.github.io)
 
 ## 参与开发
 

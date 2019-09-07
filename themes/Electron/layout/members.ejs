@@ -1,7 +1,7 @@
 <%
 const group = site.data.member.reduce(
   (group, person) => {
-    const key = person.department || '未分组';
+    const key = person.department || person.project || person.committee || '未分组';
 
     (key instanceof Array ? key : [key]).forEach(name =>
 
