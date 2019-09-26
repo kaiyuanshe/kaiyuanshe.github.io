@@ -1,7 +1,10 @@
-const { VEvent } = require('icalendar');
+const groupBy = require('lodash.groupby'),
+  { VEvent } = require('icalendar');
 
 
 hexo.extend.helper.register('echo', console.log);
+
+hexo.extend.helper.register('groupBy', groupBy);
 
 hexo.extend.helper.register('getPosts', ({pagination, filter}) => {
 
