@@ -1,14 +1,16 @@
 <%
-const { partner } = site.data, year_list = {};
+const { partner } = site.data;
 
-for (const item of partner)
-  for (const year of item.years)
-    (year_list[year] = year_list[year] || []).push(item);
+let year_list = groupBy(
+  partner, ({ records }) => records.map(({ year }) => year)
+);
 
 for (const year in year_list)
-  year_list[year] = groupBy(year_list[year], 'catalog');
+  year_list[year] = groupBy(
+    year_list[year], ({ records }) => records.map(({ type }) => type)
+  );
 
-const list = Object.entries(year_list).sort((A, B) => B[0] - A[0]);
+year_list = Object.entries(year_list).sort((A, B) => B[0] - A[0]);
 %>
 
 <style>
@@ -16,7 +18,8 @@ const list = Object.entries(year_list).sort((A, B) => B[0] - A[0]);
     list-style: none;
   }
   main > section > ul img {
-    width: 12rem;
+    max-width: 12rem;
+    max-height: 6rem;
   }
 </style>
 
@@ -24,16 +27,17 @@ const list = Object.entries(year_list).sort((A, B) => B[0] - A[0]);
   <h1 class="f0-light"><%= page.title %></h1>
   <p class="lead"><%= page.description %></p>
 
-<% for (const [year, data] of list) { %>
+<% for (const [year, data] of year_list) { %>
+  <hr />
   <section class="my-4">
     <h2><%= year %></h2>
-  <% for (const catalog in data) { %>
-    <h3><%= catalog %></h3>
+  <% for (const type in data) { %>
+    <h3><%= type %></h3>
     <ul class="d-flex align-items-center justify-content-center flex-wrap my-2 my-md-3">
-    <% for (const { site, title, logo } of data[catalog]) { %>
+    <% for (const { site, title, logo } of data[type]) { %>
       <li class="featured-company-list-item">
         <a href="<%= site %>" target="_blank" rel="noopener">
-          <img class="px-2" alt="<%= title %>" src="<%= logo %>">
+          <img class="px-2" alt="<%= title %>" title="<%= title %>" src="<%= logo %>">
         </a>
       </li>
     <% } %>

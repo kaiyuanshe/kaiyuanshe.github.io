@@ -1,10 +1,24 @@
-const groupBy = require('lodash.groupby'),
-  { VEvent } = require('icalendar');
+const { VEvent } = require('icalendar');
 
 
 hexo.extend.helper.register('echo', console.log);
 
-hexo.extend.helper.register('groupBy', groupBy);
+hexo.extend.helper.register('groupBy', (list, grouper) => {
+
+  const data = {};
+
+  for (const item of list) {
+
+    let keys = (grouper instanceof Function) ? grouper(item) : item[grouper];
+
+    if (!(keys instanceof Array)) keys = [keys];
+
+    for (const key of new Set(keys))
+      (data[key] = data[key] || []).push(item);
+  }
+
+  return data;
+});
 
 hexo.extend.helper.register('getPosts', ({pagination, filter}) => {
 

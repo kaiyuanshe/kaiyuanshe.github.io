@@ -36,8 +36,7 @@
     "hexo-renderer-marked": "^1.0.1",
     "hexo-renderer-stylus": "^0.3.3",
     "hexo-server": "^0.3.3",
-    "icalendar": "^0.7.1",
-    "lodash.groupby": "^4.6.0"
+    "icalendar": "^0.7.1"
   },
   "devDependencies": {
     "husky": "^3.0.5",
