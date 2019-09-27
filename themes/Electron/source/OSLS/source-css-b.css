@@ -1,5 +1,5 @@
 /* Css for module=license&method=tool&device=desktop&lang=zh-cn, Version=1565524537 */
- 
+
 /*.navbar-list {
 	float : right;
 }*/
@@ -29,7 +29,7 @@
 }
 
 /* column nav */
-.column-nav-container, 
+.column-nav-container,
 .assessment-progress-container {
 	margin        : 20px -15px 0;
 	padding       : 6px 0;
@@ -163,12 +163,12 @@ ul.assessment-progress-bar li {
 	color: #333333;
 	line-height: 118px;
     font-family:
-          Arial, 
-          STXihei, 
-          "华文细黑", 
-          "Microsoft YaHei", 
+          Arial,
+          STXihei,
+          "华文细黑",
+          "Microsoft YaHei",
           "微软雅黑",
-          Heiti, 
+          Heiti,
           "黑体",
           sans-serif;
 }
@@ -312,10 +312,6 @@ ul.assessment-progress-title li:first-child {
 
 .w814 {
     width: 814px;
-}
-
-.w1120 {
-    width: 1120px;
 }
 
 .sim-form .ui-customSelect {
@@ -491,7 +487,7 @@ input[type="checkbox"] {
 
 .screening-progress .type-2 {
 	margin: 14px 8px 0;
-	width: 142px;
+	width: 11%;
 	border-top: 2px solid #7499BF;
 }
 
@@ -646,8 +642,7 @@ right: 20px;
 }
 
 .resolver-handler {
-    margin-bottom: 40px;
-	width: 1120px;
+  margin-bottom: 40px;
 	text-align: right;
 }
 
@@ -679,10 +674,6 @@ right: 20px;
 
 
 @media (max-width: 960px) {
-    .w1120 {
-        width: 100%;
-    }
-
     .column-nav-container, .assessment-progress-container {
         margin: 20px 0 0;
         width: 100%;
@@ -735,7 +726,7 @@ right: 20px;
     .sim-form .form-terms {
         width: auto;
     }
-    
+
     .sim-form input[type="text"] {
         width: 100% !important;
     }
@@ -743,8 +734,8 @@ right: 20px;
     .sim-form input.w100 {
         width: 100px !important;
     }
-    
-    
+
+
     .members-logos ul li {
         width: 50%;
     }
