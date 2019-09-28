@@ -1,12 +1,12 @@
 /**
  * Copyright 2011-2013 University of Oxford
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -96,14 +96,36 @@ function displayLicences() {
     calculateScoresForLicence(loadedLicenceData[i]);
   }
   scores.sort(sortScores);
-  for(i=0;i<scores.length;i++) {
-      var
-          _license = getLicenceForTitle(scores[i].title);
-      licensesHtml += generateLicenceHtml(_license);
+
+  var score_list = {};
+
+  for (var i = 0; i < scores.length; i++) {
+      var _license = getLicenceForTitle(scores[i].title);
+
+      score_list[scores[i].title] = calculateScore(_license).text;
+
       licensesResultHtml += generateLicenceResultHtml(_license);
   }
   //document.getElementById("licences_section").innerHTML = licensesHtml;
-    document.getElementById('screening-results-inner').innerHTML = licensesHtml || '<p>* 请选择合适的选项以匹配许可证</p>';
+  var list_root = $('#screening-results-inner')[0];
+
+  var license_list = Array.from(list_root.children, function (element) {
+    var score = score_list[element.id];
+
+    if (score) {
+      $('.rating > strong', element).text(score);
+      $(element).show();
+    } else
+      $(element).hide();
+
+    return [score, element];
+  })
+    .filter(function (item) {  return item[0];  })
+    .sort(function (A, B) {  return B[0] - A[0];  })
+    .map(function (item) {  return item[1];  })
+
+  list_root.prepend.apply(list_root, license_list);
+
     document.getElementById('license-tool-result-inner').innerHTML = licensesResultHtml || '<p>* 请选择合适的选项以匹配许可证</p>';
 }
 
@@ -116,69 +138,6 @@ function getLicenceForTitle(licenceTitle){
        return loadedLicenceData[u];
     }
   }
-}
-
-/*
- * Generate a div for a license
- */
-function generateLicenceHtml(licence) {
-  html = "";
-  
-  //
-  // Caclulate the score for this license
-  //
-  var score = calculateScore(licence);
-
-    if(score.text === 0)
-        return '';
-    //
-  // Create a match level from 0 to 5, or "x" if no answers
-  // have been set
-  //
-  if (score.answers == 0 || !score.answers){
-    match = "x";
-  } else {
-      var match = Math.round((Number(score.matches)/Number(score.answers))*10);
-      if (match >= 10){
-        match = 5;
-      } else if (match >=7){
-        match = 4;
-      } else if (match >=5){
-        match = 3;
-      } else if (match >=2) {
-        match = 2;
-      } else if (match >0) {
-        match = 1;
-      } else {
-        match = 0;
-      }            
-  }
-
-
-  //
-  // Create header 
-  //
-  var $value = licence.title.$value;
-  //header += "<div style=\"width:20%;float:right;text-align:right\">" + score.text + "</div>";
-    //header = '<div class="result folding"><div class="title">' + licence.title.$value + ' <span class="rating">评分  ' + score.text + '</span></div></div>';
-  var header = '<div class="title" onclick="toggle(this)"><span class="licence-name">' + $value + '</span> <span class="rating">评分  ' + score.text + '</span></div>';
-  //
-  // Create license attributes
-  //
-  var attributes =  generateLicenceAttributes(licence.content.$value);
-
-  //
-  // Create div
-  //
-  /*html += "<div onclick=\"toggle(this)\" class=\"portlet score-"+match+" \" id=\"" + licence.title.$value + "\"><div class=\"portlet-header\">";
-  html += header + "</div><div class=\"portlet-content\">";
-  html += attributes + "</div></div>\n";*/
-
-    html += '<div class="result folding" id="' + $value + '"><div class="portlet-header">';
-    html += header + '</div><div class="portlet-content" style="display: none"><div class="content"><span class="licence-name-full"><b>Name: ' + $value + '</b></span><br>';
-    html += attributes + "</div></div></div>\n";
-
-  return html;
 }
 
 function generateLicenceResultHtml(licence) {
@@ -260,21 +219,21 @@ function toggle(object){
   //   0         1 / -      +1         +1
   // no choice   1 / -      []
 
-  // q2anocopyleft  Include licencing conditions?  
-  //  1          1 (perm.)  +1         0 
-  //  1          -          +1         maybe 
+  // q2anocopyleft  Include licencing conditions?
+  //  1          1 (perm.)  +1         0
+  //  1          -          +1         maybe
   //  0          1 (perm.)  +1         +1 (permissive)
   //  0          -          +1          0
   // careless    1 / -      +1         +1
-  // no choice   1  / -     -  
+  // no choice   1  / -     -
 
-  // q3juris  How would you like your licence to handle the issue of jurisdiction? 
-  //  1 (spec)   1          +1         +1 (dep. on q3specjuris) 
-  //  1          -          +1          0 
+  // q3juris  How would you like your licence to handle the issue of jurisdiction?
+  //  1 (spec)   1          +1         +1 (dep. on q3specjuris)
+  //  1          -          +1          0
   //  0 (silent) 1          +1          0
   //  0          -          +1         +1
   // careless    1 / -      +1         +1
-  // no choice   1  / -     -  
+  // no choice   1  / -     -
   // FIXME Don't calculate twice!
 function calculateScore(licenceData) {
 
@@ -284,7 +243,7 @@ function calculateScore(licenceData) {
   scoreText = 0;
   nrAnswers = 0;
   nrMatches = 0;
- 
+
   for (j=0; j< qs.length; j++) {
     fullChoice = choices[qs[j]];
     if (fullChoice != null) {
@@ -306,15 +265,15 @@ function calculateScore(licenceData) {
       //scoreText += "<span class= \"nummatches\">" + nrMatches + "</span> out of " + nrAnswers;
       scoreText += parseInt((nrMatches / nrAnswers) * 20) * 5;
   }
-  
+
   //scoreText += "]";
-  
+
   score.matches = nrMatches;
   score.answers = nrAnswers;
   score.text = scoreText;
-  
+
   return score;
-  
+
 }
 
 function calculateQuestion(fullChoice, licenceData, nrMatches) {
@@ -330,15 +289,15 @@ function calculateQuestion(fullChoice, licenceData, nrMatches) {
   }
   return nrMatches;
 }
-	
-  // q4apat What is your attitude to the issue of patent grants in relation to your desired licence? 
-  // q4bpatret What is your attitude to patent retaliation in your desired licence? 
-  // q5enhattr Do you want your licence to specify enhanced attribution? 
-  // q6noloophole Do you want your licence to address the 'privacy loophole'? 
-  // q7nopromo Do you want your licence to include such a 'no promotion' feature? 
+
+  // q4apat What is your attitude to the issue of patent grants in relation to your desired licence?
+  // q4bpatret What is your attitude to patent retaliation in your desired licence?
+  // q5enhattr Do you want your licence to specify enhanced attribution?
+  // q6noloophole Do you want your licence to address the 'privacy loophole'?
+  // q7nopromo Do you want your licence to include such a 'no promotion' feature?
   // choice licence_value  nrAnswers matches
-  //  1          1          +1         +1 
-  //  1          -          +1          0 
+  //  1          1          +1         +1
+  //  1          -          +1          0
   //  0          1          +1          0
   //  0          -          +1         +1
   // careless    1 / -      +1         +1
@@ -352,25 +311,25 @@ function processSimpleYesNo(simpleQid, choice, licenceData) {
 	} else if (choice == DONT_CARE) {
 	  newMatch++;
 	}
-  
+
   return newMatch;
 
-}	
+}
 
 function processConditionsOnReuseQuestion(simpleQid, choice, licenceData) {
   newMatch = 0;
   questionMatch = (licenceData.content.$value.indexOf(simpleQid) > -1);
 
-  if(choice == 1 && questionMatch) { 
+  if(choice == 1 && questionMatch) {
     newMatch++;
-  } 
+  }
 
   if(simpleQid == TWO_NO_COPYLEFT) {
     // set q2b and q2c to 'not applicable'
     if (choice == 0 && !questionMatch) {
       newMatch++;
     }
-  }	
+  }
   return newMatch;
 }
 
@@ -397,19 +356,19 @@ function processLimitingQuestion(fullChoice, licenceData) {
   delimiterIndex = fullChoice.indexOf('_');
   simpleQid = fullChoice.substring(0, delimiterIndex);
   choice = fullChoice.substring(delimiterIndex + 1);
-  
+
   limitOK = (licenceData.content.$value.indexOf(simpleQid) > -1);
   if (!(choice == 1 && !limitOK)) {
     newMatch++;
   }
   return newMatch;
-}	
+}
 
 function calculateScoresForLicence(licenceData) {
   nrAnswers = 0;
   nrMatches = 0;
   score = -1;
- 
+
   for (j=0; j< qs.length; j++) {
     fullChoice = choices[qs[j]];
     if (fullChoice != null) {
@@ -421,11 +380,11 @@ function calculateScoresForLicence(licenceData) {
 	  }
 	}
   }
-  
+
   if (nrAnswers > 0) {
 	score = (nrMatches / nrAnswers);
   }
-  
+
   // FIXME Must be easier way
   for (t=0; t<scores.length; t++) {
     if(scores[t].title == licenceData.title.$value) {
@@ -435,21 +394,21 @@ function calculateScoresForLicence(licenceData) {
 }
 
 
-function sortScores(a,b) { 
-  return ((a.score < b.score) ? 1 : ((a.score > b.score) ? -1 : 
+function sortScores(a,b) {
+  return ((a.score < b.score) ? 1 : ((a.score > b.score) ? -1 :
     ((a.title < b.title) ? -1 : ((a.title > b.title) ? 1 : 0))
   ));
 }
 
 function generateLicenceAttributes(licenceData) {
   return getLicAttrText(
-	genYesNo(licenceData, ONE_STRONG_LICENCES), 
+	genYesNo(licenceData, ONE_STRONG_LICENCES),
 	genLicenceType(licenceData),
-    genJurisdiction(licenceData), 
-	genYesNo(licenceData, FOUR_GRANT_PATENTS), 
+    genJurisdiction(licenceData),
+	genYesNo(licenceData, FOUR_GRANT_PATENTS),
 	genYesNo(licenceData, FOUR_PATENT_RET),
-	genYesNo(licenceData, FIVE_ENHANCED_ATTR), 
-	genYesNo(licenceData, SIX_NO_LOOPHOLE), 
+	genYesNo(licenceData, FIVE_ENHANCED_ATTR),
+	genYesNo(licenceData, SIX_NO_LOOPHOLE),
 	genYesNo(licenceData, SEVEN_NO_PROMO)
   );
 }
@@ -463,7 +422,7 @@ function getLicAttrText(aw1, aw2, aw3, aw4a, aw4b, aw5, aw6, aw7) {
     licenceAttributes += "5. 指定“增强型归属”: "  + aw5 + "<br />";
     licenceAttributes += "6. 解决“隐私漏洞”: "  + aw6 + "<br />";
     licenceAttributes += "7. 指定“不推广”功能: "  + aw7 + "<br />";
-  
+
   return licenceAttributes;
  }
 
@@ -489,13 +448,13 @@ function genLicenceType(licenceData) {
   }
   return licenceType;
 }
- 
+
 function genJurisdiction(licenceData) {
   jurisdiction = "";
-	
+
   if (licenceData == null) {
     jurisdiction = "-";
-  } else if (licenceData.indexOf(THREE_JURISDICTION) > -1) { 
+  } else if (licenceData.indexOf(THREE_JURISDICTION) > -1) {
     jurisdiction  = "Specified";
     q3specjuris = "q3specjuris";
     startJuris = licenceData.indexOf(q3specjuris);
@@ -506,14 +465,14 @@ function genJurisdiction(licenceData) {
   } else {
     jurisdiction = "Not specified";
   }
- 
+
   return jurisdiction;
 }
- 
+
 function genYesNo(yesNoOption, matchingText) {
   yesNo = "";
   if(yesNoOption.indexOf(matchingText) > -1 ) {
-    yesNo = "Yes";   
+    yesNo = "Yes";
   } else if (yesNoOption == DONT_CARE) {
     yesNo = "Don't care";
   } else if (yesNoOption == "-" || yesNoOption == "-1") {
@@ -533,7 +492,7 @@ function processChoice(formFieldId, fullChoice) {
   updateForm(fullChoice);
   displayLicences();
   //updateLicenceAnswersSummary();
-} 
+}
 
 function prepareLicencesList(fullChoice) {
   delimiterIndex = fullChoice.indexOf('_');
@@ -546,16 +505,16 @@ function prepareLicencesList(fullChoice) {
       for(i=0;i<loadedLicenceData.length;i++) {
 	    match = processLimitingQuestion(fullChoice, loadedLicenceData[i]);
         if(match == 1) {
-		  loadedLimitedLicenceData[loadedLimitedLicenceData.length] = 
+		  loadedLimitedLicenceData[loadedLimitedLicenceData.length] =
 		    loadedLicenceData[i];
 		}
-      }	
-    }	
+      }
+    }
     initScores(loadedLimitedLicenceData);
   } else {
     initScores(loadedLicenceData);
   }
-} 
+}
 
 function isSimpleYesNo(question) {
   yesNo = false;
@@ -574,12 +533,12 @@ function isSimpleYesNo(question) {
  */
 function isLimitingQuestion(question) {
   limiting = false;
-  
+
   if(question.indexOf('_') > -1) {
     delimiterIndex = question.indexOf('_');
     question = question.substring(0, delimiterIndex);
   }
-  
+
   for(k = 0; k < limitingQs.length; k++) {
     if(limitingQs[k] == question) {
 	  limiting = true;
@@ -604,7 +563,7 @@ function updateForm(fullChoice) {
   delimiterIndex = fullChoice.indexOf('_');
   choiceId = fullChoice.substring(0, delimiterIndex);
   choiceNr = fullChoice.substring(delimiterIndex + 1);
-  
+
   if(choiceId == TWO_NO_COPYLEFT) {
     if (choiceNr == 0) {
       openBox('q2b');
@@ -632,13 +591,13 @@ function updateForm(fullChoice) {
 // answers summary
 function generateLicenceAnswersSummary() {
   return getLicAttrText(
-	awYesNo(choices['q1'], ONE_STRONG_LICENCES), 
+	awYesNo(choices['q1'], ONE_STRONG_LICENCES),
 	genAwLicenceType(choices['q2a'], choices['q2b'], choices['q2c']),
-    awYesNo(choices['q3'], THREE_JURISDICTION), 
-	awYesNo(choices['q4a'], FOUR_GRANT_PATENTS), 
+    awYesNo(choices['q3'], THREE_JURISDICTION),
+	awYesNo(choices['q4a'], FOUR_GRANT_PATENTS),
 	awYesNo(choices['q4b'], FOUR_PATENT_RET),
-	awYesNo(choices['q5'], FIVE_ENHANCED_ATTR), 
-	awYesNo(choices['q6'], SIX_NO_LOOPHOLE), 
+	awYesNo(choices['q5'], FIVE_ENHANCED_ATTR),
+	awYesNo(choices['q6'], SIX_NO_LOOPHOLE),
 	awYesNo(choices['q7'], SEVEN_NO_PROMO));
 }
 
@@ -652,7 +611,7 @@ function awYesNo(yesNoOption, matchingText) {
      if (choice == DONT_CARE){
        yesNo = DONT_CARE;
      } else if(choice == 1) {
-       yesNo = simpleQid;   
+       yesNo = simpleQid;
      } else if(choice == -1) {
 	   yesNo = "-1";
 	 } else {
@@ -672,8 +631,8 @@ function genAwLicenceType(aw2a, aw2b, aw2c) {
   } else if(aw2a != null && aw2a.indexOf(TWO_NO_COPYLEFT) > -1) {
     licChoice = aw2a;
   }
-   
+
   return genLicenceType(licChoice);
 }
- 
+
 
