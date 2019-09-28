@@ -3,7 +3,6 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery-ui@1.12.1/ui/widget.min.js"></script>
 <script src="/OSLS/jquery.customSelect.min.js"></script>
 <script src="/OSLS/base.js"></script>
-<script src="/OSLS/licencedifferentiator.js"></script>
 <script src="/OSLS/MX_XML.js"></script>
 
 <main class="container">
@@ -283,7 +282,7 @@
                 <% for (const {name, type, ...meta} of site.data.license) { %>
                   <div class="result folding" id="<%= name %>">
                     <div class="portlet-header">
-                      <div class="title" onclick="toggle(this)">
+                      <div class="title">
                         <span class="licence-name"><%= name %></span>
                         <span class="rating">评分 <strong>100</strong></span>
                       </div>
@@ -293,17 +292,13 @@
                         <span class="licence-name-full"><b>Name: <%= name %></b></span>
                         <ul>
                           <li>许可协议类型: <%= type %></li>
-                          <li>流行并广泛使用: <%= meta.popular %></li>
+                          <li>流行并广泛使用: <%= meta.popular ? 'Yes' : 'No' %></li>
                           <li>司法管辖区: <%= meta.jurisdiction || 'Not specified' %></li>
-                          <li>
-                            <ul>
-                              <li>授予专利权: <%= meta.patentable %></li>
-                              <li>专利报复条款: <%= meta.patentRetaliationClause %></li>
-                            </ul>
-                          </li>
-                          <li>指定“增强型归属”: <%= meta.enhancedOwnership %></li>
-                          <li>解决“隐私漏洞”: <%= meta.privacyLoophole %></li>
-                          <li>指定“不推广”功能: <%= meta.noPromote %></li>
+                          <li>授予专利权: <%= meta.patentable ? 'Yes' : 'No' %></li>
+                          <li>专利报复条款: <%= meta.patentRetaliationClause ? 'Yes' : 'No' %></li>
+                          <li>指定“增强型归属”: <%= meta.enhancedOwnership ? 'Yes' : 'No' %></li>
+                          <li>解决“隐私漏洞”: <%= meta.privacyLoophole ? 'Yes' : 'No' %></li>
+                          <li>指定“不推广”功能: <%= meta.noPromote ? 'Yes' : 'No' %></li>
                       </div>
                     </div>
                   </div>
@@ -318,39 +313,6 @@
                     <input type="button" value="修改条件" class="resolver-restart">
                 </div>
                 <p>筛选结果</p>
-
-                <!--<div class="result">
-  <div class="title">Academic Free License 3.0 <span class="rating">评分 90</span></div>
-  <div class="content">
-      <p>Apache 许可协议被开放源代码促进会（OSI）认定为流行并广泛使用，同时带有强大社区支持的许可协议。Apache 软件基金会的所有项目，其中包括支配互联网一半以上 Web 服务器的 Apache HTTP 服务器项目，都使用该许可协议。因此，即使该许可协议在软件资源库 Sourceforge 中只应用于约 2% 的开源许可项目，它同样获得了广泛部署。鉴于其与 Berkeley 软件散布（BSD）许可协议非常相似，与之进行对比显得很有意义。本文旨在将 Apache 许可协议的主要功能汇编为一篇友好易懂的摘要，并讲述有关其发展史和应用的详情。请访问 http://www.opensource.org/licenses/apache2.0.php 查看该许可协议内容。</p>
-  </div>
-</div>
-
-<div class="result">
-  <div class="title">Academic Free License 5.0 <span class="rating">评分 80</span></div>
-  <div class="content">
-      <p>从 1995 年开始，Apache Group（后来被称为 Apache 软件基金会）发布了其著名 httpd 服务器的多个连续版本。他们的初始许可协议与老 BSD 许可协议基本相同，只是组织名称有所修改。当 Berkeley 接受了自由软件基金会的意见，将其广告条款从 BSD 许可协议撤出时，Apache 也进行了同样处理，并对 BSD 许可协议修改版轻微改动，创建了 Apache 许可协议 v1.1。2004 年，Apache 决定更加彻底地从 BSD 模型中分离出来，生成了 Apache 许可协议 v2。
-          <br>像所有许可协议一样，Apache 许可协议 v2 在一定的条件下授予一定的权利。简而言之，Apache 许可协议 v2 授权软件的被许可人可实现以下操作：
-      </p>
-
-      <ul class="requirement">
-          <li>以源代码和/或二进制形式，复制、修改并散布被授权的软件</li>
-          <li>在以下条件下，行使一般只授予许可人的专利权：</li>
-          <li>不论是已修改还是未修改的所有副本，都随附该许可协议的副本</li>
-          <li>所有修改都清晰标注为修改者的工作成果</li>
-          <li>有关版权、商标和专利权的所有声明，都在散布副本中精确复制</li>
-          <li>被许可人不使用属于许可人的任何商标</li>
-      </ul>
-  </div>
-</div>
-
-<div class="result">
-  <div class="title">Academic Free License 4.3 <span class="rating">评分 90</span></div>
-  <div class="content">
-      <p>Apache 许可协议被开放源代码促进会（OSI）认定为流行并广泛使用，同时带有强大社区支持的许可协议。Apache 软件基金会的所有项目，其中包括支配互联网一半以上 Web 服务器的 Apache HTTP 服务器项目，都使用该许可协议。因此，即使该许可协议在软件资源库 Sourceforge 中只应用于约 2% 的开源许可项目，它同样获得了广泛部署。鉴于其与 Berkeley 软件散布（BSD）许可协议非常相似，与之进行对比显得很有意义。本文旨在将 Apache 许可协议的主要功能汇编为一篇友好易懂的摘要，并讲述有关其发展史和应用的详情。请访问 http://www.opensource.org/licenses/apache2.0.php 查看该许可协议内容。</p>
-  </div>
-</div>-->
-
                 <div id="license-tool-result-inner"></div>
             </div>
         </div>
@@ -366,4 +328,5 @@
     </p>
 </main>
 
+<script src="/OSLS/licencedifferentiator.js"></script>
 <script src="/OSLS/license-tool.js"></script>

@@ -14,64 +14,53 @@
  * the License.
  */
 
-var ONE_STRONG_LICENCES = "q1strong";
-var TWO_NO_COPYLEFT = "q2anocopyleft";
-var TWO_STRONG_COPYLEFT = "q2bstrong";
-var TWO_WEAK_COPYLEFT = "q2bweak";
-var TWO_WEAK_MODULE = "q2cmod";
-var TWO_WEAK_FILE = "q2cfile";
-var TWO_WEAK_LIB = "q2clib";
-var THREE_JURISDICTION = "q3juris";
-var FOUR_GRANT_PATENTS = "q4apat";
-var FOUR_PATENT_RET = "q4bpatret";
-var FIVE_ENHANCED_ATTR = "q5enhattr";
-var SIX_NO_LOOPHOLE = "q6noloophole";
-var SEVEN_NO_PROMO = "q7nopromo";
+var ONE_STRONG_LICENCES = "q1strong",
+  TWO_NO_COPYLEFT = "q2anocopyleft",
+  TWO_STRONG_COPYLEFT = "q2bstrong",
+  TWO_WEAK_COPYLEFT = "q2bweak",
+  TWO_WEAK_MODULE = "q2cmod",
+  TWO_WEAK_FILE = "q2cfile",
+  TWO_WEAK_LIB = "q2clib",
+  THREE_JURISDICTION = "q3juris",
+  FOUR_GRANT_PATENTS = "q4apat",
+  FOUR_PATENT_RET = "q4bpatret",
+  FIVE_ENHANCED_ATTR = "q5enhattr",
+  SIX_NO_LOOPHOLE = "q6noloophole",
+  SEVEN_NO_PROMO = "q7nopromo";
 
-var DONT_CARE = "careless";
-var qs = ["q2a", "q2b", "q2c", "q3", "q4a", "q4b", "q5", "q6", "q7"];
-var queryQuestionIndex = function(val){
-    for(var i = 0; i < qs.length; i++){
-        if(qs[i] == val)
-            return i + 1;
-    }
-
-    return -1;
-};
+var DONT_CARE = "careless",
+  qs = ["q2a", "q2b", "q2c", "q3", "q4a", "q4b", "q5", "q6", "q7"];
 
 // Different types of questions with different processing consequences
-var limitingQs = [ ONE_STRONG_LICENCES ];
-var conditionsReuseQs = [TWO_NO_COPYLEFT, TWO_STRONG_COPYLEFT, TWO_WEAK_COPYLEFT, TWO_WEAK_MODULE, TWO_WEAK_FILE, TWO_WEAK_LIB];
-var simpleYesNoQs = [THREE_JURISDICTION, FOUR_GRANT_PATENTS, FOUR_PATENT_RET, FIVE_ENHANCED_ATTR, SIX_NO_LOOPHOLE, SEVEN_NO_PROMO];
+var limitingQs = [ONE_STRONG_LICENCES],
+  conditionsReuseQs = [TWO_NO_COPYLEFT, TWO_STRONG_COPYLEFT, TWO_WEAK_COPYLEFT, TWO_WEAK_MODULE, TWO_WEAK_FILE, TWO_WEAK_LIB],
+  simpleYesNoQs = [THREE_JURISDICTION, FOUR_GRANT_PATENTS, FOUR_PATENT_RET, FIVE_ENHANCED_ATTR, SIX_NO_LOOPHOLE, SEVEN_NO_PROMO];
 
-var choices =
-		{
-			"q1":null,
-			"q2a":null,
-			"q2b":null,
-			"q2c":null,
-			"q3":null,
-			"q4a":null,
-			"q4b":null,
-			"q5":null,
-			"q6":null,
-			"q7":null
-		};
-var loadedLicenceData;
-var loadedLimitedLicenceData = [];
-var scores = [];
-var isInitLicenses = (function(){
-    var
-        init = true;
+var choices = {
+    "q1": null,
+    "q2a": null,
+    "q2b": null,
+    "q2c": null,
+    "q3": null,
+    "q4a": null,
+    "q4b": null,
+    "q5": null,
+    "q6": null,
+    "q7": null
+  },
+  loadedLicenceData, loadedLimitedLicenceData = [], scores = [];
 
-    return {
-        get : function(){
-            return init;
-        },
-        done : function(){
-            init = false;
-        }
-    };
+var isInitLicenses = (function () {
+  var init = true;
+
+  return {
+    get: function () {
+      return init;
+    },
+    done: function () {
+      init = false;
+    }
+  };
 })();
 
 function initLicences(allLicences) {
@@ -81,32 +70,29 @@ function initLicences(allLicences) {
 }
 
 function initScores(allApplicableLicences) {
-  scores = [];
-  for(i=0;i<allApplicableLicences.length;i++) {
-    scores[scores.length] = { "title": allApplicableLicences[i].title.$value, "score" : -1 };
-  }
+  scores = allApplicableLicences.map(function (item) {
+    return {
+      title: item.title.$value,
+      score: -1
+    }
+  });
 }
 
 // FIXME get id from aka not the full licence title
 function displayLicences() {
-    licensesHtml = "";
-    licensesResultHtml = "";
+  loadedLicenceData.forEach(calculateScoresForLicence);
 
-  for(i=0;i<loadedLicenceData.length;i++) {
-    calculateScoresForLicence(loadedLicenceData[i]);
-  }
   scores.sort(sortScores);
 
   var score_list = {};
 
-  for (var i = 0; i < scores.length; i++) {
-      var _license = getLicenceForTitle(scores[i].title);
+  for (var i = 0; i < scores.length; i++)
+    score_list[scores[i].title] = calculateScore(
+      loadedLicenceData.find(function (item) {
+        return item.title.$value === scores[i].title;
+      })
+    ).text;
 
-      score_list[scores[i].title] = calculateScore(_license).text;
-
-      licensesResultHtml += generateLicenceResultHtml(_license);
-  }
-  //document.getElementById("licences_section").innerHTML = licensesHtml;
   var list_root = $('#screening-results-inner')[0];
 
   var license_list = Array.from(list_root.children, function (element) {
@@ -120,411 +106,270 @@ function displayLicences() {
 
     return [score, element];
   })
-    .filter(function (item) {  return item[0];  })
-    .sort(function (A, B) {  return B[0] - A[0];  })
-    .map(function (item) {  return item[1];  })
+    .filter(function (item) { return item[0]; })
+    .sort(function (A, B) { return B[0] - A[0]; })
+    .map(function (item) { return item[1]; })
 
   list_root.prepend.apply(list_root, license_list);
 
-    document.getElementById('license-tool-result-inner').innerHTML = licensesResultHtml || '<p>* 请选择合适的选项以匹配许可证</p>';
-}
-
-/*
- * Return a license object matching a given title
- */
-function getLicenceForTitle(licenceTitle){
-    for(var u = 0; u < loadedLicenceData.length; u++) {
-    if(loadedLicenceData[u].title.$value == licenceTitle) {
-       return loadedLicenceData[u];
-    }
-  }
-}
-
-function generateLicenceResultHtml(licence) {
-    var
-    html = "";
-
-    //
-    // Caclulate the score for this license
-    //
-    var score = calculateScore(licence);
-
-    if(score.text === 0)
-        return '';
-    //
-    // Create a match level from 0 to 5, or "x" if no answers
-    // have been set
-    //
-    if (score.answers == 0 || !score.answers){
-        match = "x";
-    } else {
-        var match = Math.round((Number(score.matches)/Number(score.answers))*10);
-        if (match >= 10){
-            match = 5;
-        } else if (match >=7){
-            match = 4;
-        } else if (match >=5){
-            match = 3;
-        } else if (match >=2) {
-            match = 2;
-        } else if (match >0) {
-            match = 1;
-        } else {
-            match = 0;
-        }
-    }
-
-    //
-    // Create header
-    //
-    var $value = licence.title.$value;
-    //header += "<div style=\"width:20%;float:right;text-align:right\">" + score.text + "</div>";
-    //header = '<div class="result folding"><div class="title">' + licence.title.$value + ' <span class="rating">评分  ' + score.text + '</span></div></div>';
-    var header = '<div class="title"><span class="licence-name">' + $value + '</span> <span class="rating">评分  ' + score.text + '</span></div>';
-    //
-    // Create license attributes
-    //
-    var attributes =  generateLicenceAttributes(licence.content.$value);
-
-    //
-    // Create div
-    //
-    /*html += "<div onclick=\"toggle(this)\" class=\"portlet score-"+match+" \" id=\"" + licence.title.$value + "\"><div class=\"portlet-header\">";
-     html += header + "</div><div class=\"portlet-content\">";
-     html += attributes + "</div></div>\n";*/
-
-    html += '<div class="result" id="' + $value + '">';
-    html += header + '<div class="content"><p><span class="licence-name-full"><b>Name: ' + $value + '</b></span><br>';
-    html += attributes + "</p></div></div>\n";
-
-    return html;
+  $('#license-tool-result-inner').empty().append(
+    $(license_list).clone(false, true).removeClass('folding')
+  ).find('.title, .content').unwrap();
 }
 
 /*
  * When user clicks a license, toggle it to be expanded or hidden
  */
-function toggle(object){
-    var content = object.parentNode.parentNode.getElementsByClassName("portlet-content")[0]
-    if (content.style.display == "block"){
-        content.style.display = "none";
-    } else {
-        content.style.display = "block";
-    }
-}
+$('#screening-results-inner').on('click', '.portlet-header', function () {
 
-  //  Limit to strong communities
-  // choice licence_value  nrAnswers matches
-  //   1         1          +1         +1
-  //   1         -          +1          0
-  //   0         1 / -      +1         +1
-  // no choice   1 / -      []
+  var body = this.nextElementSibling;
 
-  // q2anocopyleft  Include licencing conditions?
-  //  1          1 (perm.)  +1         0
-  //  1          -          +1         maybe
-  //  0          1 (perm.)  +1         +1 (permissive)
-  //  0          -          +1          0
-  // careless    1 / -      +1         +1
-  // no choice   1  / -     -
+  body.hidden = !body.hidden;
+});
 
-  // q3juris  How would you like your licence to handle the issue of jurisdiction?
-  //  1 (spec)   1          +1         +1 (dep. on q3specjuris)
-  //  1          -          +1          0
-  //  0 (silent) 1          +1          0
-  //  0          -          +1         +1
-  // careless    1 / -      +1         +1
-  // no choice   1  / -     -
-  // FIXME Don't calculate twice!
+//  Limit to strong communities
+// choice licence_value  nrAnswers matches
+//   1         1          +1         +1
+//   1         -          +1          0
+//   0         1 / -      +1         +1
+// no choice   1 / -      []
+
+// q2anocopyleft  Include licencing conditions?
+//  1          1 (perm.)  +1         0
+//  1          -          +1         maybe
+//  0          1 (perm.)  +1         +1 (permissive)
+//  0          -          +1          0
+// careless    1 / -      +1         +1
+// no choice   1  / -     -
+
+// q3juris  How would you like your licence to handle the issue of jurisdiction?
+//  1 (spec)   1          +1         +1 (dep. on q3specjuris)
+//  1          -          +1          0
+//  0 (silent) 1          +1          0
+//  0          -          +1         +1
+// careless    1 / -      +1         +1
+// no choice   1  / -     -
+// FIXME Don't calculate twice!
 function calculateScore(licenceData) {
 
-  var score = {};
+  var scoreText = 0, nrAnswers = 0, nrMatches = 0;
 
-  //scoreText = "[";
-  scoreText = 0;
-  nrAnswers = 0;
-  nrMatches = 0;
+  qs.forEach(function (item) {
+    var fullChoice = choices[item];
 
-  for (j=0; j< qs.length; j++) {
-    fullChoice = choices[qs[j]];
-    if (fullChoice != null) {
-	  myChoice = fullChoice.substring(fullChoice.indexOf('_')+1);
-	  if (myChoice != -1 && myChoice != "na") {
-	    // choice made
-		nrAnswers++;
-	    nrMatches = calculateQuestion(fullChoice, licenceData, nrMatches);
-	  }
-	}
-  }
+    if (!(fullChoice != null)) return;
 
-    if(isInitLicenses.get()){
-        scoreText = 100;
-    } else if (nrAnswers == 0) {
-      //scoreText += "No score";
-      scoreText += 0;
+    var myChoice = fullChoice.split('_')[0];
+
+    if (![-1, 'na'].includes(myChoice)) {
+      // choice made
+      nrAnswers++;
+      nrMatches = calculateQuestion(fullChoice, licenceData, nrMatches);
+    }
+  });
+
+  if (isInitLicenses.get())
+    scoreText = 100;
+  else if (nrAnswers == 0) {
+    //scoreText += "No score";
+    scoreText += 0;
   } else {
-      //scoreText += "<span class= \"nummatches\">" + nrMatches + "</span> out of " + nrAnswers;
-      scoreText += parseInt((nrMatches / nrAnswers) * 20) * 5;
+    //scoreText += "<span class= \"nummatches\">" + nrMatches + "</span> out of " + nrAnswers;
+    scoreText += parseInt((nrMatches / nrAnswers) * 20) * 5;
   }
 
-  //scoreText += "]";
-
-  score.matches = nrMatches;
-  score.answers = nrAnswers;
-  score.text = scoreText;
-
-  return score;
-
+  return {
+    matches: nrMatches,
+    answers: nrAnswers,
+    text: scoreText
+  };
 }
 
 function calculateQuestion(fullChoice, licenceData, nrMatches) {
-  delimiterIndex = fullChoice.indexOf('_');
-  simpleQid = fullChoice.substring(0, delimiterIndex);
-  choice = fullChoice.substring(delimiterIndex + 1);
-  if(isSimpleYesNo(simpleQid)) {
-	nrMatches = nrMatches + processSimpleYesNo(simpleQid, choice, licenceData);
-  } else if (isLimitingQuestion(fullChoice)) {
-	nrMatches = nrMatches + processLimitingQuestion(fullChoice, licenceData);
-  } else if (isConditionsOnReuseQuestion(simpleQid)) {
-    nrMatches = nrMatches + processConditionsOnReuseQuestion(simpleQid, choice, licenceData);
-  }
+  fullChoice = fullChoice.split('_');
+
+  if (simpleYesNoQs.includes(fullChoice[0]))
+    nrMatches += processSimpleYesNo(fullChoice[0], fullChoice[1], licenceData);
+  else if (isLimitingQuestion(fullChoice.join('_')))
+    nrMatches += processLimitingQuestion(fullChoice, licenceData);
+  else if (conditionsReuseQs.includes(fullChoice[0]))
+    nrMatches += processConditionsOnReuseQuestion(fullChoice[0], fullChoice[1], licenceData);
+
   return nrMatches;
 }
 
-  // q4apat What is your attitude to the issue of patent grants in relation to your desired licence?
-  // q4bpatret What is your attitude to patent retaliation in your desired licence?
-  // q5enhattr Do you want your licence to specify enhanced attribution?
-  // q6noloophole Do you want your licence to address the 'privacy loophole'?
-  // q7nopromo Do you want your licence to include such a 'no promotion' feature?
-  // choice licence_value  nrAnswers matches
-  //  1          1          +1         +1
-  //  1          -          +1          0
-  //  0          1          +1          0
-  //  0          -          +1         +1
-  // careless    1 / -      +1         +1
+// q4apat What is your attitude to the issue of patent grants in relation to your desired licence?
+// q4bpatret What is your attitude to patent retaliation in your desired licence?
+// q5enhattr Do you want your licence to specify enhanced attribution?
+// q6noloophole Do you want your licence to address the 'privacy loophole'?
+// q7nopromo Do you want your licence to include such a 'no promotion' feature?
+// choice licence_value  nrAnswers matches
+//  1          1          +1         +1
+//  1          -          +1          0
+//  0          1          +1          0
+//  0          -          +1         +1
+// careless    1 / -      +1         +1
 function processSimpleYesNo(simpleQid, choice, licenceData) {
-    newMatch = 0;
-	licenceYes = (licenceData.content.$value.indexOf(simpleQid) > -1);
-	if(choice == 1 && licenceYes) {
-	  newMatch++;
-	} else if (choice == 0 && !licenceYes) {
-	  newMatch++;
-	} else if (choice == DONT_CARE) {
-	  newMatch++;
-	}
+  var newMatch = 0,
+    licenceYes = licenceData.content.$value.includes(simpleQid);
+
+  if ((choice == 1 && licenceYes) || (choice == 0 && !licenceYes) || (choice == DONT_CARE))
+    newMatch++;
 
   return newMatch;
-
 }
 
 function processConditionsOnReuseQuestion(simpleQid, choice, licenceData) {
-  newMatch = 0;
-  questionMatch = (licenceData.content.$value.indexOf(simpleQid) > -1);
+  var newMatch = 0,
+    questionMatch = licenceData.content.$value.includes(simpleQid);
 
-  if(choice == 1 && questionMatch) {
+  if (choice == 1 && questionMatch) newMatch++;
+
+  // set q2b and q2c to 'not applicable'
+  if ((simpleQid == TWO_NO_COPYLEFT) && (choice == 0 && !questionMatch))
     newMatch++;
-  }
 
-  if(simpleQid == TWO_NO_COPYLEFT) {
-    // set q2b and q2c to 'not applicable'
-    if (choice == 0 && !questionMatch) {
-      newMatch++;
-    }
-  }
   return newMatch;
 }
 
 function openBox(boxId) {
   //document.getElementById(boxId + '-box').style.display = "block";
-    resolver.enabledSteps(queryQuestionIndex(boxId), true);
+  resolver.enabledSteps(qs.indexOf(boxId) + 1, true);
 }
 
 function closeBox(boxId) {
-    choices[boxId] = null;
+  choices[boxId] = null;
   //document.getElementById(boxId).selectedIndex = 0;
   //document.getElementById(boxId + '-box').style.display = "none";
-    resolver.enabledSteps(queryQuestionIndex(boxId), false);
+  resolver.enabledSteps(qs.indexOf(boxId) + 1, false);
 }
 
-  //  Limit to strong communities
-  // choice licence_value  nrAnswers matches
-  //   1         1          +1         +1
-  //   1         -          +1          0
-  //   0         1 / -      +1         +1
-  // no choice   1 / -      []
+//  Limit to strong communities
+// choice licence_value  nrAnswers matches
+//   1         1          +1         +1
+//   1         -          +1          0
+//   0         1 / -      +1         +1
+// no choice   1 / -      []
 function processLimitingQuestion(fullChoice, licenceData) {
-  var newMatch = 0;
-  delimiterIndex = fullChoice.indexOf('_');
-  simpleQid = fullChoice.substring(0, delimiterIndex);
-  choice = fullChoice.substring(delimiterIndex + 1);
+  fullChoice = fullChoice.split('_');
 
-  limitOK = (licenceData.content.$value.indexOf(simpleQid) > -1);
-  if (!(choice == 1 && !limitOK)) {
+  var newMatch = 0;
+
+  if (fullChoice[1] != 1 || licenceData.content.$value.includes(fullChoice[0]))
     newMatch++;
-  }
+
   return newMatch;
 }
 
 function calculateScoresForLicence(licenceData) {
-  nrAnswers = 0;
-  nrMatches = 0;
-  score = -1;
 
-  for (j=0; j< qs.length; j++) {
-    fullChoice = choices[qs[j]];
-    if (fullChoice != null) {
-	  myChoice = fullChoice.substring(fullChoice.indexOf('_')+1);
-	  if (myChoice != -1) {
-	    // choice made
-		nrAnswers++;
-	    nrMatches = calculateQuestion(fullChoice, licenceData, nrMatches);
-	  }
-	}
-  }
+  var nrAnswers = 0, nrMatches = 0, score = -1;
 
-  if (nrAnswers > 0) {
-	score = (nrMatches / nrAnswers);
-  }
+  qs.forEach(function (item) {
+    var fullChoice = choices[item];
 
-  // FIXME Must be easier way
-  for (t=0; t<scores.length; t++) {
-    if(scores[t].title == licenceData.title.$value) {
-      scores[t].score = score;
-	}
-  }
+    if (!(fullChoice != null)) return;
+
+    var myChoice = fullChoice.split('_')[0];
+
+    if (myChoice != -1) {
+      // choice made
+      nrAnswers++;
+      nrMatches = calculateQuestion(fullChoice, licenceData, nrMatches);
+    }
+  });
+
+  if (nrAnswers > 0) score = nrMatches / nrAnswers;
+
+  scores.forEach(function (item) {
+    if (item.title === licenceData.title.$value)
+      item.score = score;
+  });
 }
 
 
-function sortScores(a,b) {
+function sortScores(a, b) {
   return ((a.score < b.score) ? 1 : ((a.score > b.score) ? -1 :
     ((a.title < b.title) ? -1 : ((a.title > b.title) ? 1 : 0))
   ));
 }
 
-function generateLicenceAttributes(licenceData) {
-  return getLicAttrText(
-	genYesNo(licenceData, ONE_STRONG_LICENCES),
-	genLicenceType(licenceData),
-    genJurisdiction(licenceData),
-	genYesNo(licenceData, FOUR_GRANT_PATENTS),
-	genYesNo(licenceData, FOUR_PATENT_RET),
-	genYesNo(licenceData, FIVE_ENHANCED_ATTR),
-	genYesNo(licenceData, SIX_NO_LOOPHOLE),
-	genYesNo(licenceData, SEVEN_NO_PROMO)
-  );
-}
-
 function getLicAttrText(aw1, aw2, aw3, aw4a, aw4b, aw5, aw6, aw7) {
-    licenceAttributes = "1. 流行并广泛使用: " + aw1 + "<br />";
-    licenceAttributes += "2. 许可协议类型: "  + aw2 + "<br />";
-    licenceAttributes += "3. 司法管辖区: "  + aw3 + "<br />";
-    licenceAttributes += "4.a 授予专利权: "  + aw4a + "<br />";
-    licenceAttributes += "4.b 专利报复条款: "  + aw4b + "<br />";
-    licenceAttributes += "5. 指定“增强型归属”: "  + aw5 + "<br />";
-    licenceAttributes += "6. 解决“隐私漏洞”: "  + aw6 + "<br />";
-    licenceAttributes += "7. 指定“不推广”功能: "  + aw7 + "<br />";
+  licenceAttributes = "1. 流行并广泛使用: " + aw1 + "<br />";
+  licenceAttributes += "2. 许可协议类型: " + aw2 + "<br />";
+  licenceAttributes += "3. 司法管辖区: " + aw3 + "<br />";
+  licenceAttributes += "4.a 授予专利权: " + aw4a + "<br />";
+  licenceAttributes += "4.b 专利报复条款: " + aw4b + "<br />";
+  licenceAttributes += "5. 指定“增强型归属”: " + aw5 + "<br />";
+  licenceAttributes += "6. 解决“隐私漏洞”: " + aw6 + "<br />";
+  licenceAttributes += "7. 指定“不推广”功能: " + aw7 + "<br />";
 
   return licenceAttributes;
- }
+}
 
 function genLicenceType(licenceData) {
-    licenceType = "";
+  var licenceType = "";
 
-  if (licenceData == null) {
+  if (licenceData == null)
     licenceType = "-";
-  } else if (licenceData.indexOf("q2anocopyleft_0") > -1) {
+  else if (licenceData.includes("q2anocopyleft_0"))
     licenceType = "Copyleft";
-  } else if (licenceData.indexOf(TWO_NO_COPYLEFT) > -1) {
+  else if (licenceData.includes(TWO_NO_COPYLEFT))
     licenceType = "Permissive";
-  } else if (licenceData.indexOf(TWO_STRONG_COPYLEFT) > -1) {
+  else if (licenceData.includes(TWO_STRONG_COPYLEFT))
     licenceType = "Strong copyleft";
-  } else if (licenceData.indexOf(TWO_WEAK_COPYLEFT) > -1) {
+  else if (licenceData.includes(TWO_WEAK_COPYLEFT))
     licenceType = "Weak copyleft";
-  } else if (licenceData.indexOf(TWO_WEAK_MODULE) > -1) {
+  else if (licenceData.includes(TWO_WEAK_MODULE))
     licenceType = "Weak copyleft - Module level";
-  } else if (licenceData.indexOf(TWO_WEAK_FILE) > -1) {
+  else if (licenceData.includes(TWO_WEAK_FILE))
     licenceType = "Weak copyleft - File Level";
-  } else if (licenceData.indexOf(TWO_WEAK_LIB) > -1) {
+  else if (licenceData.includes(TWO_WEAK_LIB))
     licenceType = "Weak copyleft - Library Interface Level";
-  }
+
   return licenceType;
 }
 
-function genJurisdiction(licenceData) {
-  jurisdiction = "";
-
-  if (licenceData == null) {
-    jurisdiction = "-";
-  } else if (licenceData.indexOf(THREE_JURISDICTION) > -1) {
-    jurisdiction  = "Specified";
-    q3specjuris = "q3specjuris";
-    startJuris = licenceData.indexOf(q3specjuris);
-    if (startJuris > -1) {
-      jurisToEnd = licenceData.substring(startJuris + q3specjuris.length);
-      jurisdiction += jurisToEnd.substring(0,jurisToEnd.indexOf(", q")) ;
-    }
-  } else {
-    jurisdiction = "Not specified";
-  }
-
-  return jurisdiction;
-}
-
 function genYesNo(yesNoOption, matchingText) {
-  yesNo = "";
-  if(yesNoOption.indexOf(matchingText) > -1 ) {
+  var yesNo = "";
+
+  if (yesNoOption.includes(matchingText))
     yesNo = "Yes";
-  } else if (yesNoOption == DONT_CARE) {
+  else if (yesNoOption == DONT_CARE)
     yesNo = "Don't care";
-  } else if (yesNoOption == "-" || yesNoOption == "-1") {
+  else if (yesNoOption == "-" || yesNoOption == "-1")
     yesNo = "-";
-  } else {
+  else
     yesNo = "No";
-  }
+
   return yesNo;
 }
 
 // after onchange event
 function processChoice(formFieldId, fullChoice) {
   choices[formFieldId] = fullChoice;
-  if (isLimitingQuestion(fullChoice)) {
+
+  if (isLimitingQuestion(fullChoice))
     prepareLicencesList(fullChoice);
-  }
+
   updateForm(fullChoice);
   displayLicences();
   //updateLicenceAnswersSummary();
 }
 
 function prepareLicencesList(fullChoice) {
-  delimiterIndex = fullChoice.indexOf('_');
-  simpleQid = fullChoice.substring(0, delimiterIndex);
-  choice = fullChoice.substring(delimiterIndex + 1);
+  var choice = fullChoice.split('_')[1];
 
-  if (choice == 1) {
-    // limit list of licences to those matching the req.
-    if (loadedLimitedLicenceData.length == 0) {
-      for(i=0;i<loadedLicenceData.length;i++) {
-	    match = processLimitingQuestion(fullChoice, loadedLicenceData[i]);
-        if(match == 1) {
-		  loadedLimitedLicenceData[loadedLimitedLicenceData.length] =
-		    loadedLicenceData[i];
-		}
-      }
-    }
-    initScores(loadedLimitedLicenceData);
-  } else {
+  if (choice != 1)
     initScores(loadedLicenceData);
-  }
-}
-
-function isSimpleYesNo(question) {
-  yesNo = false;
-  for(k = 0; k < simpleYesNoQs.length; k++) {
-    if(simpleYesNoQs[k] == question) {
-	  yesNo = true;
-	  break;
-	}
-  }
-  return yesNo;
+  else  // limit list of licences to those matching the req.
+    initScores(
+      loadedLimitedLicenceData.length ?
+        loadedLimitedLicenceData :
+        loadedLicenceData.filter(function (item) {
+          return 1 == processLimitingQuestion(fullChoice, item)
+        })
+    );
 }
 
 /**
@@ -532,107 +377,76 @@ function isSimpleYesNo(question) {
  * leads to answering options being removed from the list
  */
 function isLimitingQuestion(question) {
-  limiting = false;
-
-  if(question.indexOf('_') > -1) {
-    delimiterIndex = question.indexOf('_');
-    question = question.substring(0, delimiterIndex);
-  }
-
-  for(k = 0; k < limitingQs.length; k++) {
-    if(limitingQs[k] == question) {
-	  limiting = true;
-	  break;
-	}
-  }
-  return limiting;
-}
-
-function isConditionsOnReuseQuestion(question) {
-  conditionsReuse = false;
-  for(k = 0; k < conditionsReuseQs.length; k++) {
-    if(conditionsReuseQs[k] == question) {
-	  conditionsReuse = true;
-	  break;
-	}
-  }
-  return conditionsReuse;
+  return limitingQs.includes(question.split('_')[0])
 }
 
 function updateForm(fullChoice) {
-  delimiterIndex = fullChoice.indexOf('_');
-  choiceId = fullChoice.substring(0, delimiterIndex);
-  choiceNr = fullChoice.substring(delimiterIndex + 1);
+  fullChoice = fullChoice.split('_');
 
-  if(choiceId == TWO_NO_COPYLEFT) {
-    if (choiceNr == 0) {
+  if (fullChoice[0] == TWO_NO_COPYLEFT) {
+    if (fullChoice[1] == 0) {
       openBox('q2b');
-	  closeBox('q2c');
+      closeBox('q2c');
     } else {
       closeBox('q2b');
-	  closeBox('q2c');
-	}
-  } else if (choiceId == TWO_STRONG_COPYLEFT) {
+      closeBox('q2c');
+    }
+  } else if (fullChoice[0] == TWO_STRONG_COPYLEFT)
     closeBox('q2c');
-  } else if (choiceId == TWO_WEAK_COPYLEFT) {
+  else if (fullChoice[0] == TWO_WEAK_COPYLEFT)
     openBox('q2c');
-  } else if (choiceId == FOUR_GRANT_PATENTS) {
-    if (choiceNr == DONT_CARE || choiceNr == 1) {
+  else if (fullChoice[0] == FOUR_GRANT_PATENTS)
+    if (fullChoice[1] == DONT_CARE || fullChoice[1] == 1)
       openBox('q4b');
-    } else {
+    else
       closeBox('q4b');
-	}
-  }
 }
 
-/*function updateLicenceAnswersSummary(){
-    //document.getElementById("summary").innerHTML = generateLicenceAnswersSummary();
-}*/
+function updateLicenceAnswersSummary() {
+  document.getElementById("summary").innerHTML = generateLicenceAnswersSummary();
+}
+
 // answers summary
 function generateLicenceAnswersSummary() {
   return getLicAttrText(
-	awYesNo(choices['q1'], ONE_STRONG_LICENCES),
-	genAwLicenceType(choices['q2a'], choices['q2b'], choices['q2c']),
+    awYesNo(choices['q1'], ONE_STRONG_LICENCES),
+    genAwLicenceType(choices['q2a'], choices['q2b'], choices['q2c']),
     awYesNo(choices['q3'], THREE_JURISDICTION),
-	awYesNo(choices['q4a'], FOUR_GRANT_PATENTS),
-	awYesNo(choices['q4b'], FOUR_PATENT_RET),
-	awYesNo(choices['q5'], FIVE_ENHANCED_ATTR),
-	awYesNo(choices['q6'], SIX_NO_LOOPHOLE),
-	awYesNo(choices['q7'], SEVEN_NO_PROMO));
+    awYesNo(choices['q4a'], FOUR_GRANT_PATENTS),
+    awYesNo(choices['q4b'], FOUR_PATENT_RET),
+    awYesNo(choices['q5'], FIVE_ENHANCED_ATTR),
+    awYesNo(choices['q6'], SIX_NO_LOOPHOLE),
+    awYesNo(choices['q7'], SEVEN_NO_PROMO));
 }
 
 function awYesNo(yesNoOption, matchingText) {
-   yesNo = "-";
+  var yesNo = "-";
 
-   if(yesNoOption != null && yesNoOption.indexOf(matchingText) > -1) {
-     delimiterIndex = yesNoOption.indexOf('_');
-     simpleQid = yesNoOption.substring(0, delimiterIndex);
-     choice = yesNoOption.substring(delimiterIndex + 1);
-     if (choice == DONT_CARE){
-       yesNo = DONT_CARE;
-     } else if(choice == 1) {
-       yesNo = simpleQid;
-     } else if(choice == -1) {
-	   yesNo = "-1";
-	 } else {
-	   yesNo = "";
-	 }
-   }
+  if (yesNoOption != null && yesNoOption.includes(matchingText)) {
+    yesNoOption = yesNoOption.split('_')
 
-   return genYesNo(yesNo, matchingText);
- }
+    if (yesNoOption[1] == DONT_CARE)
+      yesNo = DONT_CARE;
+    else if (yesNoOption[1] == 1)
+      yesNo = yesNoOption[0];
+    else if (yesNoOption[1] == -1)
+      yesNo = "-1";
+    else
+      yesNo = "";
+  }
+
+  return genYesNo(yesNo, matchingText);
+}
 
 function genAwLicenceType(aw2a, aw2b, aw2c) {
-  licChoice = null;
-  if(aw2c != null && aw2c.indexOf("q2c") > -1) {
+  var licChoice = null;
+
+  if (aw2c != null && aw2c.includes("q2c"))
     licChoice = aw2c;
-  } else if (aw2b != null && aw2b.indexOf("q2b") > -1) {
+  else if (aw2b != null && aw2b.includes("q2b"))
     licChoice = aw2b;
-  } else if(aw2a != null && aw2a.indexOf(TWO_NO_COPYLEFT) > -1) {
+  else if (aw2a != null && aw2a.includes(TWO_NO_COPYLEFT))
     licChoice = aw2a;
-  }
 
   return genLicenceType(licChoice);
 }
-
-

@@ -109,13 +109,6 @@
 	padding    : 0;
 }
 
-.article-block ul li {
-	list-style : none;
-	float      : left;
-	width      : 20%;
-	text-align : center;
-}
-
 .page-jump {
     float: left;
     clear: both;
