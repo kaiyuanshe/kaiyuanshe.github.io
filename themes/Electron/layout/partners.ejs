@@ -7,7 +7,10 @@ let year_list = groupBy(
 
 for (const year in year_list)
   year_list[year] = groupBy(
-    year_list[year], ({ records }) => records.map(({ type }) => type)
+    year_list[year],
+    ({ records }) => records
+      .filter(({ year: Y }) => Y === +year)
+      .map(({ type }) => type)
   );
 
 year_list = Object.entries(year_list).sort((A, B) => B[0] - A[0]);

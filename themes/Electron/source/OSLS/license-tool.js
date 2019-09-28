@@ -10,7 +10,7 @@ $(function () {
 
 //Loading License Data
 $.ajax({
-  url: '/template/hli/js/matrix.xml',
+  url: '/OSLS/matrix.xml',
   dataType: "xml",
   success: function (data) {
     initLicences(MX.XML.ToJSON(data.documentElement).entry);

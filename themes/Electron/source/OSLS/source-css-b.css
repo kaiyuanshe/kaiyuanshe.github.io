@@ -109,15 +109,6 @@
 	padding    : 0;
 }
 
-.page-jump {
-    float: left;
-    clear: both;
-    margin-top: 20px;
-    margin-bottom: 30px;
-    text-align: center;
-    width: 100%;
-}
-
 .warning {
     font-weight: bold;
 }
