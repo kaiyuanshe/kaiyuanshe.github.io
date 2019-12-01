@@ -1,6 +1,6 @@
 # 开源社官网
 
-[![Build Status](https://travis-ci.org/kaiyuanshe/kaiyuanshe.github.io.svg?branch=hexo)](https://travis-ci.org/kaiyuanshe/kaiyuanshe.github.io)
+[![Build Status](https://travis-ci.org/kaiyuanshe/kaiyuanshe.github.io.svg?branch=hexo)](https://travis-ci.org/kaiyuanshe/kaiyuanshe.github.io) [![Greenkeeper badge](https://badges.greenkeeper.io/kaiyuanshe/kaiyuanshe.github.io.svg)](https://greenkeeper.io/)
 
 ## 参与开发
 
