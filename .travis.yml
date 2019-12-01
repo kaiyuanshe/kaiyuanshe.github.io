@@ -1,6 +1,7 @@
 branches:
   only:
     - hexo
+    - /^greenkeeper/.*$/
 
 language: node_js
 node_js:
