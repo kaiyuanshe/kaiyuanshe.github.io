@@ -12,11 +12,13 @@ cache:
 install:
   - npm install
 script:
-  - npm run build
-  - cd ${FOLDER}
-  - git init
-  - git config user.name ${UID}
-  - git config user.email $(cd .. && git log -1 --pretty=format:"%ae")
-  - git add .
-  - git commit -m "${MESSAGE}"
-  - git push --force --quiet https://${TOKEN}@${GIT_URI}.git master:${BRANCH}
+  - npm run ${SCRIPT}
+deploy:
+  provider: pages
+  on:
+    branch: master
+  fqdn: ${DOMAIN}
+  skip_cleanup: true
+  local_dir: ${FOLDER}
+  token: ${TOKEN}
+  target_branch: ${BRANCH}
