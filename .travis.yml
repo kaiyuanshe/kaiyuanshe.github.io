@@ -16,7 +16,7 @@ script:
 deploy:
   provider: pages
   on:
-    branch: master
+    branch: hexo
   fqdn: ${DOMAIN}
   skip_cleanup: true
   local_dir: ${FOLDER}
