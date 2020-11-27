@@ -1,6 +1,6 @@
 # 开源社官网
 
-[![Build Status](https://travis-ci.org/kaiyuanshe/kaiyuanshe.github.io.svg?branch=hexo)](https://travis-ci.org/kaiyuanshe/kaiyuanshe.github.io)
+[![CI & CD](https://github.com/kaiyuanshe/kaiyuanshe.github.io/workflows/CI%20&%20CD/badge.svg)][1]
 
 ## 参与开发
 
@@ -72,3 +72,5 @@ git push
 - 博文迁移工具：https://github.com/TechQuery/hexo-migrator-web
 
 - 在线编辑器：https://github.com/kaiyuanshe/git-pager
+
+[1]: https://github.com/kaiyuanshe/kaiyuanshe.github.io/actions
