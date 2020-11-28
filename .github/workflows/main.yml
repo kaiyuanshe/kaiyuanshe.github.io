@@ -24,5 +24,6 @@ jobs:
               with:
                   publish_dir: ./public
                   cname: kaiyuanshe.cn
+                  publish_branch: master
                   personal_token: ${{ secrets.GITHUB_TOKEN }}
                   force_orphan: true
