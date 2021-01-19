@@ -1,6 +1,6 @@
 <% files.forEach(file => { %>
   <li>
-    <a target="_blank" href="<%= (path + encodeURI( file )) %>">
+    <a target="_blank" href="<%= joinPath(path, file) %>">
 
       <i class="fas fa-2x fa-file-<%= fileType( file ) || 'alt' %>"></i>
 

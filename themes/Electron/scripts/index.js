@@ -1,4 +1,5 @@
-const { VEvent } = require('icalendar');
+const { join } = require('path'),
+  { VEvent } = require('icalendar');
 
 hexo.extend.helper.register('echo', console.log);
 
@@ -48,6 +49,10 @@ hexo.extend.helper.register('fileType', (path) => {
 
   return type_map[type] || type;
 });
+
+hexo.extend.helper.register('joinPath', (base, path) =>
+  join(base.replace(/index\.html$/, ''), encodeURI(path))
+);
 
 hexo.extend.helper.register('urlFor', (path, base) =>
   /^(\w+:)?\/\//.test(path) ? path : base + path
