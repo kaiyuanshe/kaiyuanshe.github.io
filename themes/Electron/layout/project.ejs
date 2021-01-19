@@ -67,7 +67,7 @@
                     const title = photo.split('/').slice(-1)[0].split('.')[0]; %>
 
                 <div class="app-screenshot-thumb">
-                  <img alt="<%= title %>" src="<%= page.path + photo %>" class="caption">
+                  <img alt="<%= title %>" src="<%= urlFor(photo, page.path) %>" class="caption">
 
                   <span class="app-screenshot-caption"><%= title %></span>
                 </div>

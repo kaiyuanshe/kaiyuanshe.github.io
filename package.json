@@ -38,7 +38,7 @@
     "icalendar": "^0.7.1"
   },
   "devDependencies": {
-    "husky": "^4.3.6",
+    "husky": "^4.3.8",
     "prettier": "^2.2.1"
   },
   "prettier": {
