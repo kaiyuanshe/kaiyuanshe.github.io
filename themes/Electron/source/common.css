@@ -29,6 +29,12 @@ summary {
   vertical-align: middle;
 }
 
+.page-section .row img {
+  width: 100%;
+  max-height: 15rem;
+  object-fit: cover;
+  object-position: top;
+}
 .posts-list > li > section img,
 .blog-post > .container > main img {
   display: block;
