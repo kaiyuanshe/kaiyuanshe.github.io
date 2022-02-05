@@ -33,7 +33,7 @@
       <%- toc(content, {list_number: false}) %>
     </details>
 
-    <main><%- content %></main>
+    <main class="markdown-body"><%- content %></main>
 
     <% if (is_post()  &&  hasCategory(page, 'Activity')) { %>
     <hr>
