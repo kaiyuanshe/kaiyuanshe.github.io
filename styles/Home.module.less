@@ -1,0 +1,51 @@
+.main {
+  min-height: 100vh;
+  padding: 4rem 0;
+}
+
+.title {
+  line-height: 1.15;
+  font-size: 4rem;
+  a {
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: underline;
+    }
+  }
+}
+.description {
+  margin: 4rem 0;
+  line-height: 1.5;
+}
+
+.code {
+  padding: 0.75rem;
+  font-size: 1.1rem;
+  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+    Bitstream Vera Sans Mono, Courier New, monospace;
+}
+
+.grid {
+  max-width: 50rem;
+  @media (max-width: 575px) {
+    width: 100%;
+  }
+}
+.card {
+  color: inherit;
+  transition: color 0.15s ease, border-color 0.15s ease;
+  max-width: 300px;
+  &:hover,
+  &:focus,
+  &:active {
+    color: #0070f3;
+    border-color: #0070f3;
+  }
+  p {
+    line-height: 1.5;
+  }
+  img {
+    height: 18rem;
+  }
+}
