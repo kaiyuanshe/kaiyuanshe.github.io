@@ -1,5 +1,7 @@
 import { TimeDistanceProps } from 'idea-react';
 
+import { Link } from './MainNav';
+
 export const TimeOption: Pick<
   TimeDistanceProps,
   'unitWords' | 'beforeWord' | 'afterWord'
@@ -23,7 +25,7 @@ export enum SearchScope {
   Article,
 }
 
-export const MainRoute = {
+export const MainRoute: Record<SearchScope, Link> = {
   [SearchScope.User]: { title: '开源人', path: '/user' },
   [SearchScope.Article]: { title: '文　章', path: '/article' },
 };
