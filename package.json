@@ -23,16 +23,22 @@
     "@editorjs/quote": "^2.4.0",
     "editorjs-html": "^3.4.2",
     "idea-react": "^0.10.2",
+    "lodash": "^4.17.21",
     "next": "12.1.0",
+    "nookies": "^2.5.2",
+    "qs": "^6.10.3",
     "react": "17.0.2",
     "react-bootstrap": "^2.1.2",
     "react-dom": "17.0.2",
-    "react-editor-js": "^2.0.6"
+    "react-editor-js": "^2.0.6",
+    "web-utility": "^3.5.0"
   },
   "devDependencies": {
     "@jest/types": "^27.5.1",
     "@types/jest": "^27.4.1",
+    "@types/lodash": "^4.14.179",
     "@types/node": "^14.18.12",
+    "@types/qs": "^6.9.7",
     "@types/react": "^17.0.39",
     "eslint": "^8.10.0",
     "eslint-config-next": "^12.1.0",
