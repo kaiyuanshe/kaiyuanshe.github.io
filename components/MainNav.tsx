@@ -3,13 +3,18 @@ import { NextRouter, withRouter } from 'next/router';
 import { Container, Button, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { Nameplate } from 'idea-react';
 
-import { MainRoute } from './data';
 import { call } from '../pages/api/base';
 import { User } from '../pages/api/user';
 import { setSession, getSession } from '../pages/api/user/session';
 
+export interface Link {
+  path: string;
+  title: string;
+}
+
 export interface MainNavProps {
   title: string;
+  links: Link[];
   router: NextRouter;
 }
 
@@ -17,7 +22,7 @@ interface State {
   user: User;
 }
 
-const { NEXT_PUBLIC_API_HOST } = process.env;
+const Host = process.env.NEXT_PUBLIC_API_HOST;
 
 class MainNav extends PureComponent<MainNavProps, State> {
   state: Readonly<State> = {
@@ -52,9 +57,7 @@ class MainNav extends PureComponent<MainNavProps, State> {
           <span className="d-inline-block text-white">
             <Nameplate
               avatar={
-                avatar
-                  ? new URL(avatar.url, NEXT_PUBLIC_API_HOST) + ''
-                  : '/typescript.png'
+                avatar ? new URL(avatar.url, Host) + '' : '/typescript.png'
               }
               name={username}
             />
@@ -75,6 +78,7 @@ class MainNav extends PureComponent<MainNavProps, State> {
   render() {
     const {
       title,
+      links,
       router: { pathname },
     } = this.props;
 
@@ -85,7 +89,7 @@ class MainNav extends PureComponent<MainNavProps, State> {
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end text-white">
             <Nav className="align-items-center">
-              {Object.entries(MainRoute).map(([_, { path, title }]) => (
+              {links.map(({ path, title }) => (
                 <Nav.Link
                   key={path}
                   href={path}

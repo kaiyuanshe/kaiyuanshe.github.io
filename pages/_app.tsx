@@ -2,9 +2,11 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import Image from 'next/image';
 
+import { MainRoute } from '../components/data';
 import MainNav from '../components/MainNav';
-
 import '../styles/globals.less';
+
+const Name = process.env.NEXT_PUBLIC_SITE_NAME || '';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -15,7 +17,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <MainNav title="开源社" />
+      <MainNav title={Name} links={Object.values(MainRoute)} />
 
       <div className="mt-5 pt-2">
         <Component {...pageProps} />
