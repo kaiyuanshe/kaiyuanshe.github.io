@@ -788,7 +788,7 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@swc/helpers@^0.3.3":
+"@swc/helpers@^0.3.6":
   version "0.3.6"
   resolved "https://registry.yarnpkg.com/@swc/helpers/-/helpers-0.3.6.tgz#b41e77dbf14e9cb138988484563ad9680ae5dc3d"
   integrity sha512-xVl7Sddrl9/eMjEMqkH9lT8fLOGCuWHH9VmR2IBKQ8xTcjA6UQw4O3/4oS3xnyZHLtL9vC3P+C0kLneHpiqeEg==
@@ -1791,7 +1791,7 @@ electron-to-chromium@^1.4.71:
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.75.tgz#d1ad9bb46f2f1bf432118c2be21d27ffeae82fdd"
   integrity sha512-LxgUNeu3BVU7sXaKjUDD9xivocQLxFtq6wgERrutdY/yIOps3ODOZExK1jg8DTEg4U8TUCb5MLGeWFOYuxjF3Q==
 
-element-internals-polyfill@^1.0.0:
+element-internals-polyfill@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/element-internals-polyfill/-/element-internals-polyfill-1.0.3.tgz#ac0e9fcd40b8fb85aa31a53d5b01051321554724"
   integrity sha512-SIH0Dj6Ss4OlQF/5C6bHNDAeHkQbFbWYBvTKVpOXhnPTXgB9MPhzKtqFj6KghMGeFZ1YdOwAXtZMxIcBApbC7w==
@@ -2563,17 +2563,17 @@ iconv-lite@0.4.24, iconv-lite@^0.4.4:
   dependencies:
     safer-buffer ">= 2.1.2 < 3"
 
-idea-react@^0.10.2:
-  version "0.10.2"
-  resolved "https://registry.yarnpkg.com/idea-react/-/idea-react-0.10.2.tgz#1b0ec6b95c2389dd453e204c23be126db42f11d7"
-  integrity sha512-4JjC+R1rdMhwsZoy+TRGWiAopal4t/98Nd5BeAyTwSuHvgoe8/e7E2fwvGW0LaKcw8+shB3oYZUOXFd2qipr2Q==
+idea-react@^0.10.3:
+  version "0.10.3"
+  resolved "https://registry.yarnpkg.com/idea-react/-/idea-react-0.10.3.tgz#a96eacc255b51c3eb47cd4d24a7cfd9fd1c961bd"
+  integrity sha512-yuKmLHTEkMp9jNyuv2TSKHmFdbyPGTZsTFZN/G677ifrFe7/BHPamaE4j1X58Iq4G3L8d7jVTc2Begnj8dWvNQ==
   dependencies:
     classnames "^2.3.1"
     lodash "^4.17.21"
     react "17.0.2"
-    react-bootstrap "^2.1.2"
+    react-bootstrap "^2.2.0"
     react-dom "17.0.2"
-    web-utility "^3.5.0"
+    web-utility "^3.5.1"
 
 ignore@^4.0.6:
   version "4.0.6"
@@ -4244,7 +4244,7 @@ queue-microtask@^1.2.2:
   resolved "https://registry.yarnpkg.com/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
 
-react-bootstrap@^2.1.2:
+react-bootstrap@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/react-bootstrap/-/react-bootstrap-2.2.0.tgz#cb8557f19cd20b1b19b2c5e7d350b99104f91385"
   integrity sha512-5d3hziBjNOAKWpss2B8C2qtSXp/Z3PiyuRdFJelvJeTsGn8vbFYOoYjmf+0Agq+jh46TG+mtBvrCoa4nBk0bkg==
@@ -5095,13 +5095,13 @@ warning@^4.0.0, warning@^4.0.3:
   dependencies:
     loose-envify "^1.0.0"
 
-web-utility@^3.5.0:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/web-utility/-/web-utility-3.5.0.tgz#c1f165c8a9679af66dc61f0848d98c93bdbcc548"
-  integrity sha512-F/k/LtnLJboyuQciNFhbsiz6M0PFTjI3Q7lZ/Oaj49758iuR/WEiAnJDQ/uFdlOtVntIZL22WvSynljBXglc8A==
+web-utility@^3.5.1:
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/web-utility/-/web-utility-3.5.1.tgz#85bb8f4b5e31742b85becd6d38391213f173016f"
+  integrity sha512-GyjO5zUCOZME/9qNj0JxyTmeugpCUqk9KytZ1AewU0mFKtTlX4ZKdnMWnoPI8cWFKmdIremmgtQpdyn5u/GNmw==
   dependencies:
-    "@swc/helpers" "^0.3.3"
-    element-internals-polyfill "^1.0.0"
+    "@swc/helpers" "^0.3.6"
+    element-internals-polyfill "^1.0.3"
     regenerator-runtime "^0.13.9"
 
 webidl-conversions@^5.0.0:

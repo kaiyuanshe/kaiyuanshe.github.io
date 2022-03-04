@@ -22,16 +22,16 @@
     "@editorjs/paragraph": "^2.8.0",
     "@editorjs/quote": "^2.4.0",
     "editorjs-html": "^3.4.2",
-    "idea-react": "^0.10.2",
+    "idea-react": "^0.10.3",
     "lodash": "^4.17.21",
     "next": "12.1.0",
     "nookies": "^2.5.2",
     "qs": "^6.10.3",
     "react": "17.0.2",
-    "react-bootstrap": "^2.1.2",
+    "react-bootstrap": "^2.2.0",
     "react-dom": "17.0.2",
     "react-editor-js": "^2.0.6",
-    "web-utility": "^3.5.0"
+    "web-utility": "^3.5.1"
   },
   "devDependencies": {
     "@jest/types": "^27.5.1",
