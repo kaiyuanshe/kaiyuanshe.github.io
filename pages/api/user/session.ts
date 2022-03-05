@@ -1,4 +1,5 @@
 import { Day } from 'web-utility';
+import { ServerResponse } from 'http';
 import {
   GetServerSidePropsContext,
   NextApiRequest,
@@ -11,10 +12,16 @@ import { User } from './index';
 
 const { NODE_ENV } = process.env;
 
-export async function sessionOf(request: GetServerSidePropsContext['req']) {
-  const user = await call<User>('users/me', 'GET', null, request);
+export async function sessionOf(req: GetServerSidePropsContext['req']) {
+  const user = await call<User>('users/me', 'GET', null, { req });
 
-  return { ...user, token: request.cookies.token };
+  return { ...user, token: req.cookies.token };
+}
+
+export function signOut(response: ServerResponse) {
+  destroyCookie({ res: response }, 'token', { path: '/' });
+
+  response.writeHead(302, { Location: '/' }).end();
 }
 
 export default async (
@@ -33,29 +40,24 @@ export default async (
       });
       return response.writeHead(302, { Location: '/' }).end();
     }
-    case 'GET':
-      if ('delete' in request.query) {
-        destroyCookie({ res: response }, 'token', { path: '/' });
+    case 'GET': {
+      if ('delete' in request.query) return signOut(response);
 
-        return response.writeHead(302, { Location: '/' }).end();
-      } else
-        try {
-          const { id } = await sessionOf(request);
-          const user = await call(`users/${id}`, 'GET', null, request);
+      try {
+        const { id, token } = await sessionOf(request);
+        const user = await call(`users/${id}`, 'GET', null, { req: request });
 
-          return response.send(user);
-        } catch {
-          return response.status(401).end();
-        }
+        return response.send({ ...user, token });
+      } catch {
+        return response.status(401).end();
+      }
+    }
     case 'PATCH': {
       const { id } = await sessionOf(request);
 
-      const user = await call<User>(
-        `users/${id}`,
-        'PUT',
-        request.body,
-        request,
-      );
+      const user = await call<User>(`users/${id}`, 'PUT', request.body, {
+        req: request,
+      });
       response.send(user);
     }
   }

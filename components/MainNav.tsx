@@ -36,8 +36,16 @@ class MainNav extends PureComponent<MainNavProps, State> {
 
         setSession(user);
         this.setState({ user });
-      } catch {}
+      } catch {
+        this.signOut();
+      }
   }
+
+  signOut = () => {
+    localStorage.clear();
+
+    this.setState({ user: {} as User });
+  };
 
   renderSession() {
     const { username, avatar } = this.state.user;
@@ -67,7 +75,7 @@ class MainNav extends PureComponent<MainNavProps, State> {
         <NavDropdown.Item href="/user/me">个人资料</NavDropdown.Item>
         <NavDropdown.Item
           href="/api/user/session?delete=true"
-          onClick={() => localStorage.clear()}
+          onClick={this.signOut}
         >
           登出
         </NavDropdown.Item>
