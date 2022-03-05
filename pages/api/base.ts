@@ -3,12 +3,14 @@ import { merge } from 'lodash';
 import { parse, stringify } from 'qs';
 import type { GetServerSidePropsContext } from 'next';
 
+import { signOut } from './user/session';
+
 export type HTTPMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
 
 export interface Base {
   id: number;
-  created_at: string;
-  updated_at?: string;
+  createdAt: string;
+  updatedAt?: string;
   published_at?: string;
 }
 
@@ -53,53 +55,37 @@ export type NewForm<T extends Base> = Omit<
   [K in TypeKeys<Required<T>, Media[]>]: string[];
 };
 
-interface ErrorItem<T> {
-  messages: Record<keyof T, string>[];
+export interface Pagination {
+  page: number;
+  pageSize: number;
+  pageCount: number;
+  total: number;
 }
 
-interface ValidationError<T> {
-  errors: Record<keyof T, string[]>;
+export interface StrapiError {
+  status: number;
+  name: string;
+  message: string;
+  details: any;
 }
 
-interface UploadError {
-  errors: { id: string; message: string }[];
-}
-
-export interface ErrorData<T = any> {
-  statusCode: number;
-  error: string;
-  message: ErrorItem<T>[];
-  data?: ErrorItem<T>[] | ValidationError<T> | UploadError;
+export interface DataBox<T> {
+  data: T;
+  meta?: T extends any[] ? { pagination: Pagination } : {};
+  error?: StrapiError;
 }
 
 const { location } = globalThis,
   { NEXT_PUBLIC_API_HOST } = process.env;
 
-async function messageOf(response: Response) {
-  if (response.status !== 400) return response.statusText;
-
-  const { data } = (await response.json()) as ErrorData;
-
-  const message =
-    data instanceof Array
-      ? data.map(({ messages }) => messages.map(item => Object.values(item)))
-      : data?.errors instanceof Array
-      ? data.errors.map(({ message }) => message)
-      : data?.errors
-      ? Object.entries(data.errors).map(item => item[1])
-      : [];
-
-  return message.flat().join('\n') || response.statusText;
-}
-
 export async function call<T = any>(
   path: string,
   method: HTTPMethod = 'GET',
   body?: any,
-  request?: GetServerSidePropsContext['req'],
+  context?: Partial<GetServerSidePropsContext>,
   header?: Record<string, string>,
-) {
-  const { token = '' } = request?.cookies || {},
+): Promise<T> {
+  const { token = '' } = context?.req?.cookies || {},
     noStringify =
       !body ||
       typeof body !== 'object' ||
@@ -124,22 +110,35 @@ export async function call<T = any>(
     body: noStringify ? body : JSON.stringify(body),
   });
 
-  if (response.status < 300)
-    return response.status === 204
-      ? ({} as T)
-      : (response.json() as Promise<T>);
+  if (
+    response.headers
+      .get('Content-Type')
+      ?.match(/^(application\/json|text\/plain)/)
+  )
+    var data = await response.json();
+
+  if (response.status < 300) return data;
 
   console.error(path);
+  console.error(data);
   console.trace('HTTP API call');
 
-  throw new URIError(await messageOf(response));
+  const message =
+    typeof data?.error === 'object'
+      ? (data.error as StrapiError).message
+      : response.statusText;
+
+  if (!context?.res) throw new URIError(message);
+
+  signOut(context.res);
+  return data;
 }
 
 export function makePagination(index: number, size: number) {
-  return stringify({
-    _start: (index - 1) * size,
-    _limit: size,
-  });
+  return stringify(
+    { pagination: { page: index, pageSize: size } },
+    { encodeValuesOnly: true },
+  );
 }
 
 export function makeSearch<T extends Base>(
@@ -148,32 +147,58 @@ export function makeSearch<T extends Base>(
 ) {
   const words = keywords.split(/\s+/);
 
-  const _or = keys
-    .map(key => words.map(word => ({ [`${key}_contains`]: word })))
+  const $or = keys
+    .map(key => words.map(word => ({ [key]: { $contains: word } })))
     .flat();
 
-  return stringify({ _where: { _or } });
+  return stringify({ filters: { $or } }, { encodeValuesOnly: true });
 }
 
 export function mergeQuery(path: string, ...data: Record<string, any>[]) {
   const [route, query] = path.split('?');
 
-  return `${route}?${stringify(merge(parse(query), ...data))}`;
+  return `${route}?${stringify(merge(parse(query), ...data), {
+    encodeValuesOnly: true,
+  })}`;
 }
 
 export async function getPage<T>(
   path: string,
-  request: GetServerSidePropsContext['req'],
+  context: Partial<GetServerSidePropsContext>,
+  pageIndex = 1,
+  pageSize = 10,
+) {
+  const { meta, data } = await call<DataBox<T[]>>(
+    mergeQuery(path, parse(makePagination(pageIndex, pageSize))),
+    'GET',
+    null,
+    context,
+  );
+  const { page, total, ...pagination } = meta!.pagination;
+
+  return {
+    pageIndex: page,
+    ...pagination,
+    count: total,
+    list: data,
+  };
+}
+
+export async function getPageV3<T>(
+  path: string,
+  context: Partial<GetServerSidePropsContext>,
   pageIndex = 1,
   pageSize = 10,
 ) {
   const [route, query = ''] = path.split('?');
+  const { sort, ...filter } = parse(query);
+  const search = stringify(filter, { encodeValuesOnly: true });
 
   const count = await call<number>(
-    [`${route}/count`, query].join('?'),
+    [`${route}/count`, search].join('?'),
     'GET',
     null,
-    request,
+    context,
   );
   if (!count) return { pageIndex, pageSize, pageCount: 0, count, list: [] };
 
@@ -181,7 +206,7 @@ export async function getPage<T>(
     mergeQuery(path, parse(makePagination(pageIndex, pageSize))),
     'GET',
     null,
-    request,
+    context,
   );
   return {
     pageIndex,
