@@ -1,6 +1,6 @@
 {
   "name": "@idea2app/next-bootstrap-ts",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "React project scaffold based on TypeScript, Next.js & Bootstrap.",
   "private": true,
   "scripts": {
@@ -21,6 +21,9 @@
     "@editorjs/list": "^1.7.0",
     "@editorjs/paragraph": "^2.8.0",
     "@editorjs/quote": "^2.4.0",
+    "echarts": "^5.3.1",
+    "echarts-extension-amap": "^1.10.1",
+    "echarts-for-react": "^3.0.2",
     "editorjs-html": "^3.4.2",
     "idea-react": "^0.10.3",
     "lodash": "^4.17.21",
@@ -34,6 +37,7 @@
     "web-utility": "^3.5.1"
   },
   "devDependencies": {
+    "@amap/amap-jsapi-types": "^0.0.8",
     "@jest/types": "^27.5.1",
     "@types/jest": "^27.4.1",
     "@types/lodash": "^4.14.179",
@@ -49,6 +53,7 @@
     "less-loader": "^10.2.0",
     "lint-staged": "^12.3.5",
     "next-pwa": "^5.4.5",
+    "next-transpile-modules": "^9.0.0",
     "next-with-less": "^2.0.5",
     "playwright": "^1.19.2",
     "prettier": "^2.5.1",
