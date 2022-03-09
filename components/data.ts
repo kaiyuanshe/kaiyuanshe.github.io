@@ -23,9 +23,11 @@ export const TimeOption: Pick<
 export enum SearchScope {
   User,
   Article,
+  Organization,
 }
 
 export const MainRoute: Record<SearchScope, Link> = {
   [SearchScope.User]: { title: '开源人', path: '/user' },
   [SearchScope.Article]: { title: '文　章', path: '/article' },
+  [SearchScope.Organization]: { title: '社　区', path: '/organization' },
 };
