@@ -148,7 +148,7 @@ export function makeSearch<T extends Base>(
   const words = keywords.split(/\s+/);
 
   const $or = keys
-    .map(key => words.map(word => ({ [key]: { $contains: word } })))
+    .map(key => words.map(word => ({ [key]: { $containsi: word } })))
     .flat();
 
   return stringify({ filters: { $or } }, { encodeValuesOnly: true });

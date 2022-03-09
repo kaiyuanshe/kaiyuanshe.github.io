@@ -6,11 +6,12 @@ export type PageHeadProps = PropsWithChildren<{
   description?: string;
 }>;
 
-const Name = process.env.NEXT_PUBLIC_SITE_NAME;
+const Name = process.env.NEXT_PUBLIC_SITE_NAME,
+  Summary = process.env.NEXT_PUBLIC_SITE_SUMMARY;
 
 export default function PageHead({
   title,
-  description = 'React project scaffold based on TypeScript, Next.js & Bootstrap.',
+  description = Summary,
   children,
 }: PageHeadProps) {
   return (

@@ -68,7 +68,7 @@ export default class UserProfilePage extends PureComponent<
           'user',
           user.id,
           'avatar',
-          'users-permissions',
+          'plugin::users-permissions',
         ));
       setSession(savedAvatar ? { ...user, avatar: savedAvatar } : user);
 
