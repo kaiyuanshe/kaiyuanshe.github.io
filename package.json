@@ -13,6 +13,7 @@
     "e2e": "jest"
   },
   "dependencies": {
+    "@amap/amap-jsapi-loader": "^1.0.1",
     "@editorjs/code": "^2.7.0",
     "@editorjs/editorjs": "^2.23.2",
     "@editorjs/header": "^2.6.2",
