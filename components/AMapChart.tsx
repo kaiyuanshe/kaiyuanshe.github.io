@@ -28,8 +28,14 @@ echarts.use([
   EffectScatterChart,
 ]);
 
+export interface MapPoint {
+  name: string;
+  value: number[];
+}
+
 export interface AMapChartProps {
-  list: { name: string; value: number[] }[];
+  list: MapPoint[];
+  onSelect?: (point: MapPoint) => any;
 }
 
 interface State {
@@ -89,7 +95,7 @@ export default class AMapChart extends PureComponent<AMapChartProps, State> {
     ],
   };
 
-  init(ref: ReactEChartsCore | null) {
+  init = (ref: ReactEChartsCore | null) => {
     if (!ref) return;
 
     const amapComponent = ref
@@ -98,13 +104,33 @@ export default class AMapChart extends PureComponent<AMapChartProps, State> {
       .getModel()
       .getComponent('amap');
 
-    const amap = amapComponent.getAMap();
+    amapComponent.setEChartsLayerInteractive(false);
+
+    const amap = amapComponent.getAMap() as AMap.Map;
 
     // @ts-ignore
     amap.addControl(new AMap.Scale());
     // @ts-ignore
     amap.addControl(new AMap.ToolBar());
-  }
+
+    const { list, onSelect } = this.props;
+
+    if (!(onSelect instanceof Function)) return;
+
+    for (const point of list) {
+      const {
+        name,
+        value: [longitude, latitude],
+      } = point;
+
+      amap.add(
+        new AMap.Marker({
+          title: name,
+          position: [longitude, latitude],
+        }).on('click', () => onSelect(point)),
+      );
+    }
+  };
 
   render() {
     const { rendererLoaded } = this.state;
