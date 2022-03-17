@@ -1,54 +1,45 @@
 import { groupBy } from 'lodash';
 import { PureComponent } from 'react';
-import Script from 'next/script';
-import { Button, Container, Spinner } from 'react-bootstrap';
+import { Container, Row, Col, Button, Spinner, Card } from 'react-bootstrap';
 
 import AMapChart, { AMapChartProps } from '../../components/AMapChart';
+import { call } from '../api/base';
 import { city_coordinates } from '../api/city';
-
-interface Organization {
-  name: string;
-  location?: {
-    country: string;
-    province?: string;
-    city?: string;
-    district?: string;
-  };
-}
+import { Organization } from '../api/organization';
 
 interface State extends AMapChartProps {
   loading: boolean;
+  currentCity?: string;
+  orgs: Organization[];
 }
 
 export default class OpenSourceMap extends PureComponent<{}, State> {
   state: Readonly<State> = {
     loading: true,
     list: [],
+    orgs: [],
   };
 
   async componentDidMount() {
-    const response = await fetch('https://data.kaiyuanshe.cn/organizations');
-    const data = (await response.json()) as Organization[];
+    const orgs = await call<Organization[]>('organization');
 
-    const map = groupBy(
-      data.filter(({ location }) => location?.city),
-      ({ location }) => location!.city,
-    );
-    const list = Object.entries(map)
-      .map(
-        ([city, [{ name }]]) =>
-          city_coordinates[city] && {
-            name,
-            value: [...city_coordinates[city], 1],
-          },
-      )
-      .filter(Boolean);
+    const list = Object.entries(groupBy(orgs, 'city'))
+      .map(([city, list]) => {
+        const point = city_coordinates[city! as string];
 
-    this.setState({ loading: false, list });
+        if (point)
+          return {
+            name: city,
+            value: [...point, list.length],
+          };
+      })
+      .filter(Boolean) as AMapChartProps['list'];
+
+    this.setState({ loading: false, list, orgs });
   }
 
   render() {
-    const { loading, list } = this.state;
+    const { loading, currentCity, list, orgs } = this.state;
 
     return (
       <Container className="text-center">
@@ -75,8 +66,34 @@ export default class OpenSourceMap extends PureComponent<{}, State> {
             <span className="visually-hidden">Loading...</span>
           </Spinner>
         ) : (
-          <AMapChart list={list} />
+          <AMapChart
+            list={list}
+            onSelect={({ name }) => this.setState({ currentCity: name })}
+          />
         )}
+        <Row xs={1} sm={2} md={3} lg={4} className="g-4 my-4">
+          {orgs.map(
+            ({ name, logos, city, summary }) =>
+              (!currentCity || currentCity === city) && (
+                <Col key={name as string}>
+                  <Card className="text-start">
+                    <Card.Img
+                      variant="top"
+                      src={
+                        (logos instanceof Array
+                          ? logos[0]?.link
+                          : logos && logos.split(/\s+/)[0]) || ''
+                      }
+                    />
+                    <Card.Body>
+                      <Card.Title>{name}</Card.Title>
+                      <Card.Text>{summary?.slice(0, 100)}</Card.Text>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              ),
+          )}
+        </Row>
       </Container>
     );
   }
