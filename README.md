@@ -1,9 +1,14 @@
-# Next-Bootstrap.ts
+# 开源社官网
 
 [React][1] project scaffold based on [TypeScript][2], [Next.js][3] & [Bootstrap][4]. And this project bootstrapped with [`create-next-app`][5].
 
-[![NPM Dependency](https://david-dm.org/idea2app/next-bootstrap-ts.svg)][6]
-[![CI & CD](https://github.com/idea2app/next-bootstrap-ts/workflows/CI%20&%20CD/badge.svg)][7]
+[![NPM Dependency](https://david-dm.org/kaiyuanshe/kaiyuanshe.github.io.svg)][6]
+[![CI & CD](https://github.com/kaiyuanshe/kaiyuanshe.github.io/workflows/CI%20&%20CD/badge.svg)][7]
+
+## 概况
+
+- 测试入口：https://kaiyuanshe.vercel.app/
+- 后端服务：https://github.com/kaiyuanshe/service
 
 ## Technology stack
 
@@ -68,8 +73,8 @@ press <key>F5</key>
 [3]: https://nextjs.org/
 [4]: https://getbootstrap.com/
 [5]: https://github.com/vercel/next.js/tree/canary/packages/create-next-app
-[6]: https://david-dm.org/idea2app/next-bootstrap-ts
-[7]: https://github.com/idea2app/next-bootstrap-ts/actions
+[6]: https://david-dm.org/kaiyuanshe/kaiyuanshe.github.io
+[7]: https://github.com/kaiyuanshe/kaiyuanshe.github.io/actions
 [8]: https://jestjs.io/
 [9]: https://playwright.dev/
 [10]: https://github.com/features/actions

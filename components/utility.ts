@@ -1,3 +1,7 @@
+import { config } from '@amap/amap-react';
+
+config.key = process.env.NEXT_PUBLIC_AMAP_KEY!;
+
 export const VariantColors = [
   'primary',
   'secondary',

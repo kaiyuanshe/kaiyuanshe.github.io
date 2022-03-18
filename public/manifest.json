@@ -1,18 +1,18 @@
 {
-  "name": "Next-Bootstrap.ts scaffold",
-  "short_name": "Next.ts demo",
+  "name": "开源社官网",
+  "short_name": "开源社",
   "start_url": ".",
-  "description": "React project scaffold based on TypeScript, Next.js, Bootstrap & Workbox.",
+  "description": "中国开源年会主办方",
   "scope": "/",
   "display": "standalone",
   "orientation": "any",
-  "lang": "en-US",
+  "lang": "zh-CN",
   "dir": "ltr",
   "theme_color": "rgba(0,0,0,0.5)",
   "background_color": "transparent",
   "icons": [
     {
-      "src": "typescript.png",
+      "src": "https://github.com/kaiyuanshe.png",
       "type": "image/png",
       "sizes": "280x280"
     }

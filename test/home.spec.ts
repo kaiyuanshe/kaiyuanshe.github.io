@@ -2,7 +2,7 @@ describe('Home page', () => {
   beforeAll(() => page.goto('http://localhost:3000', { timeout: 60000 }));
 
   it('should render Page head & foot', async () => {
-    const title = 'Next-Bootstrap.ts';
+    const title = '开源社';
 
     expect(await page.title()).toBe(title);
 
