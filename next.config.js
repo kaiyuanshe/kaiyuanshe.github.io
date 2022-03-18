@@ -1,14 +1,11 @@
-const transpile = require('next-transpile-modules'),
-  withLess = require('next-with-less'),
+const withLess = require('next-with-less'),
   withPWA = require('next-pwa');
 
-const { NODE_ENV } = process.env,
-  withTM = transpile(['echarts', 'zrender']);
+const { NODE_ENV } = process.env;
 
 /** @type {import('next').NextConfig} */
 module.exports = withPWA({
   ...withLess({
-    ...withTM(),
     reactStrictMode: true,
   }),
   pwa: {
