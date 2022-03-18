@@ -9,7 +9,7 @@ const keys = [
   'verified',
   'name',
   'type',
-  'domains',
+  'tags',
   'startDate',
   'city',
   'email',

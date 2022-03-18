@@ -13,7 +13,7 @@
     "e2e": "jest"
   },
   "dependencies": {
-    "@amap/amap-jsapi-loader": "^1.0.1",
+    "@amap/amap-react": "^0.1.4",
     "@editorjs/code": "^2.7.0",
     "@editorjs/editorjs": "^2.23.2",
     "@editorjs/header": "^2.6.2",
@@ -22,9 +22,6 @@
     "@editorjs/list": "^1.7.0",
     "@editorjs/paragraph": "^2.8.0",
     "@editorjs/quote": "^2.4.0",
-    "echarts": "^5.3.1",
-    "echarts-extension-amap": "^1.10.1",
-    "echarts-for-react": "^3.0.2",
     "editorjs-html": "^3.4.2",
     "idea-react": "^0.10.3",
     "lark-ts-sdk": "^0.3.7",
@@ -39,7 +36,6 @@
     "web-utility": "^3.5.1"
   },
   "devDependencies": {
-    "@amap/amap-jsapi-types": "^0.0.8",
     "@jest/types": "^27.5.1",
     "@types/jest": "^27.4.1",
     "@types/lodash": "^4.14.179",
@@ -55,7 +51,6 @@
     "less-loader": "^10.2.0",
     "lint-staged": "^12.3.5",
     "next-pwa": "^5.4.5",
-    "next-transpile-modules": "^9.0.0",
     "next-with-less": "^2.0.5",
     "playwright": "^1.19.2",
     "prettier": "^2.5.1",
