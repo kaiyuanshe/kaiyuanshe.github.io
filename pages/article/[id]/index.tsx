@@ -1,7 +1,8 @@
 import { PureComponent } from 'react';
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
-import { Badge, Container, Row, Col, Button, Carousel } from 'react-bootstrap';
-import { TimeDistance, Icon, Nameplate, EditorHTML } from 'idea-react';
+import { Badge, Container, Row, Col, Button } from 'react-bootstrap';
+import { TimeDistance, Icon, Nameplate } from 'idea-react';
+import { Giscus } from '@giscus/react';
 
 import { TimeOption } from '../../../components/data';
 import PageHead from '../../../components/PageHead';
@@ -118,6 +119,19 @@ export default class ArticleDetailPage extends PureComponent<
             <ArticleRecommend articles={[id]} tags={tags.map(({ id }) => id)} />
           </Col>
         </Row>
+
+        <Giscus
+          repo="kaiyuanshe/kaiyuanshe.github.io"
+          repoId="MDEwOlJlcG9zaXRvcnkxMzEwMDg4MTI="
+          category="General"
+          categoryId="DIC_kwDOB88JLM4COLSV"
+          mapping="pathname"
+          reactionsEnabled="1"
+          emitMetadata="1"
+          inputPosition="bottom"
+          theme="light"
+          lang="zh-CN"
+        />
       </Container>
     );
   }

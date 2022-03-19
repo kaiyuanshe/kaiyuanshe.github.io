@@ -1,6 +1,6 @@
 {
   "name": "@kaiyuanshe/ows",
-  "version": "0.8.0",
+  "version": "2.0.0-alpha",
   "description": "React project scaffold based on TypeScript, Next.js & Bootstrap.",
   "private": true,
   "scripts": {
@@ -22,6 +22,7 @@
     "@editorjs/list": "^1.7.0",
     "@editorjs/paragraph": "^2.8.0",
     "@editorjs/quote": "^2.4.0",
+    "@giscus/react": "^1.1.2",
     "array-unique-proposal": "^0.3.4",
     "editorjs-html": "^3.4.2",
     "idea-react": "^0.10.3",
