@@ -1949,6 +1949,11 @@ array-uniq@^1.0.1:
   resolved "https://registry.yarnpkg.com/array-uniq/-/array-uniq-1.0.3.tgz#af6ac877a25cc7f74e058894753858dfdb24fdb6"
   integrity sha1-r2rId6Jcx/dOBYiUdThY39sk/bY=
 
+array-unique-proposal@^0.3.4:
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/array-unique-proposal/-/array-unique-proposal-0.3.4.tgz#c20d4d96b45288f3ef3a2974e126ac3ef98a7039"
+  integrity sha512-iZ/m06VeHJ0n3DDSA9LfTeGgnMYsM2Uey8VxYgF93J+E0EG50lzH4kWTq6DLtXBaPqI0/60AowwfmJ5Eno1t5Q==
+
 array.prototype.flat@^1.2.5:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/array.prototype.flat/-/array.prototype.flat-1.2.5.tgz#07e0975d84bbc7c48cd1879d609e682598d33e13"
@@ -4494,15 +4499,16 @@ language-tags@^1.0.5:
   dependencies:
     language-subtag-registry "~0.3.2"
 
-lark-ts-sdk@^0.3.7:
-  version "0.3.7"
-  resolved "https://registry.yarnpkg.com/lark-ts-sdk/-/lark-ts-sdk-0.3.7.tgz#aa5804f5d4e2a56de67db19d765e588bb1b62445"
-  integrity sha512-/zji07kmerZQ1G4NqUl2weuGAfTo0TL48g6mJkYWVAfBo3v13w60qKxkfqVPDY1N+ek0tvnnKJLnnyEqUypSFQ==
+lark-ts-sdk@^0.3.9:
+  version "0.3.9"
+  resolved "https://registry.yarnpkg.com/lark-ts-sdk/-/lark-ts-sdk-0.3.9.tgz#8d2309b8eab4a93d20034c29f1febf6fa84e1866"
+  integrity sha512-KHx3KJ9E3dRgfqN68N/5kEXlcSzKi7/sVVTQGAQg2DZwuptmI8qBwRAzd031V9QP8SqRS5dTAYjEo/oWyixzlQ==
   dependencies:
     "@swc/helpers" "^0.3.8"
     koajax "^0.8.0-rc.0"
     regenerator-runtime "^0.13.9"
     ts-toolbelt "^9.6.0"
+    web-utility "^3.6.0"
 
 less-loader@^10.2.0:
   version "10.2.0"

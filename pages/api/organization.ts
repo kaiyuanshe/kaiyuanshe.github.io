@@ -32,8 +32,6 @@ export default async (
         appId: Lark_APP_ID,
         appSecret: Lark_APP_SECRET,
       });
-      await lark.getAccessToken();
-
       const {
         sheets: [sheet],
       } = await lark.getSpreadSheet(Lark_SPREADSHEET_ID);
