@@ -280,10 +280,7 @@ export default class UserProfilePage extends PureComponent<
           <ListGroup className="col-2 py-4 text-center">
             <ListGroup.Item active>个人资料</ListGroup.Item>
             <ListGroup.Item as="a" href={`/article?author=${id}`}>
-              个人作品
-            </ListGroup.Item>
-            <ListGroup.Item as="a" href={`/article?like=${id}`}>
-              个人收藏
+              个人文章
             </ListGroup.Item>
           </ListGroup>
         </Row>

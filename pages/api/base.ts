@@ -11,7 +11,7 @@ export interface Base {
   id: number;
   createdAt: string;
   updatedAt?: string;
-  published_at?: string;
+  publishedAt?: string;
 }
 
 export interface Media extends Base {

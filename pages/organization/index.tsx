@@ -85,7 +85,7 @@ export default class OpenSourceMap extends PureComponent<{}, State> {
               src={
                 (logos instanceof Array
                   ? logos[0]?.link
-                  : logos && logos.split(/\s+/)[0]) || ''
+                  : logos && (logos as string).split(/\s+/)[0]) || ''
               }
             />
             <Card.Body>
@@ -99,7 +99,7 @@ export default class OpenSourceMap extends PureComponent<{}, State> {
                   </Badge>
                 ))}
               </Card.Text>
-              <Card.Text>{summary?.slice(0, 100)}</Card.Text>
+              <Card.Text>{(summary as string)?.slice(0, 100)}</Card.Text>
             </Card.Body>
             <Card.Footer className="d-flex justify-content-around">
               {email && (
