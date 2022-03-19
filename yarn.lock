@@ -1656,10 +1656,10 @@
     "@types/scheduler" "*"
     csstype "^3.0.2"
 
-"@types/react@^17.0.40":
-  version "17.0.40"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.40.tgz#dc010cee6254d5239a138083f3799a16638e6bad"
-  integrity sha512-UrXhD/JyLH+W70nNSufXqMZNuUD2cXHu6UjCllC6pmOQgBX4SGXOH8fjRka0O0Ee0HrFxapDD8Bwn81Kmiz6jQ==
+"@types/react@^17.0.41":
+  version "17.0.41"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.41.tgz#6e179590d276394de1e357b3f89d05d7d3da8b85"
+  integrity sha512-chYZ9ogWUodyC7VUTRBfblysKLjnohhFY9bGLwvnUFFy48+vB9DikmB3lW0qTFmBcKSzmdglcvkHK71IioOlDA==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -4504,10 +4504,10 @@ language-tags@^1.0.5:
   dependencies:
     language-subtag-registry "~0.3.2"
 
-lark-ts-sdk@^0.3.9:
-  version "0.3.9"
-  resolved "https://registry.yarnpkg.com/lark-ts-sdk/-/lark-ts-sdk-0.3.9.tgz#8d2309b8eab4a93d20034c29f1febf6fa84e1866"
-  integrity sha512-KHx3KJ9E3dRgfqN68N/5kEXlcSzKi7/sVVTQGAQg2DZwuptmI8qBwRAzd031V9QP8SqRS5dTAYjEo/oWyixzlQ==
+lark-ts-sdk@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/lark-ts-sdk/-/lark-ts-sdk-0.4.0.tgz#b195d40d0998afc5692517d89b9e893e5bf065fd"
+  integrity sha512-rKSIBwD0ywj/sOD+8I34F+l6PAWSHXIPrXaIjiwUUVvDg6/CzWWQqqIRA98EpOKlBUZ993CFoq4lNbzLoBAZWw==
   dependencies:
     "@swc/helpers" "^0.3.8"
     koajax "^0.8.0-rc.0"
