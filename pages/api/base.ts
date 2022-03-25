@@ -3,6 +3,7 @@ import { merge } from 'lodash';
 import { parse, stringify } from 'qs';
 import type { GetServerSidePropsContext } from 'next';
 
+import { Media } from './file';
 import { signOut } from './user/session';
 
 export type HTTPMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
@@ -12,26 +13,6 @@ export interface Base {
   createdAt: string;
   updatedAt?: string;
   publishedAt?: string;
-}
-
-export interface Media extends Base {
-  created_by?: string;
-  updated_by?: string;
-  name: string;
-  alternativeText?: string;
-  caption?: string;
-  width?: number;
-  height?: number;
-  formats?: any;
-  hash: string;
-  ext?: string;
-  mime: string;
-  size: number;
-  url: string;
-  previewUrl?: string;
-  provider: string;
-  provider_metadata?: any;
-  related?: string;
 }
 
 export type NewData<T extends Base> = {

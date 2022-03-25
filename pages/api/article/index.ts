@@ -1,4 +1,5 @@
-import { Base, Media } from '../base';
+import { Base } from '../base';
+import { Media } from '../file';
 import { User } from '../user';
 import { Tag } from '../tag';
 

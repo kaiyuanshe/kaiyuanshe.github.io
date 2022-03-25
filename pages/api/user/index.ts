@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
-import { Base, Media, call } from '../base';
+import { Base, call } from '../base';
+import { Media } from '../file';
 
 export enum Gender {
   Female = 'Female',

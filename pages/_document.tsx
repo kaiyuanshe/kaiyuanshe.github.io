@@ -7,7 +7,7 @@ export default function Document() {
         <link rel="icon" href="https://github.com/kaiyuanshe.png" />
 
         <link rel="manifest" href="/manifest.json" />
-        <script src="https://cdn.jsdelivr.net/npm/pwacompat@2.0.17/pwacompat.min.js"></script>
+        <script src="https://polyfill.kaiyuanshe.cn/feature/PWAManifest.js"></script>
 
         <link
           rel="stylesheet"

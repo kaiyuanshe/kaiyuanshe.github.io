@@ -1,26 +1,27 @@
-import { Lark, RowData } from 'lark-ts-sdk';
+import { TableCellValue } from 'lark-ts-sdk';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-const Lark_APP_ID = process.env.Lark_APP_ID!,
-  Lark_APP_SECRET = process.env.Lark_APP_SECRET!,
-  Lark_SPREADSHEET_ID = process.env.Lark_SPREADSHEET_ID!;
+import { lark } from './lark';
 
-const keys = [
-  'verified',
-  'name',
-  'type',
-  'tags',
-  'startDate',
-  'city',
-  'email',
-  'link',
-  'codeLink',
-  'wechatName',
-  'logos',
-  'summary',
-] as const;
+const LARK_BITABLE_ID = process.env.LARK_BITABLE_ID!,
+  LARK_BITABLE_TABLE_ID = process.env.LARK_BITABLE_TABLE_ID!;
 
-export type Organization = RowData<typeof keys>;
+export type Organization = Record<
+  | 'id'
+  | 'verified'
+  | 'name'
+  | 'type'
+  | 'tags'
+  | 'startDate'
+  | 'city'
+  | 'email'
+  | 'link'
+  | 'codeLink'
+  | 'wechatName'
+  | 'logos'
+  | 'summary',
+  TableCellValue
+>;
 
 export default async (
   request: NextApiRequest,
@@ -28,20 +29,13 @@ export default async (
 ) => {
   switch (request.method) {
     case 'GET': {
-      const lark = new Lark({
-        appId: Lark_APP_ID,
-        appSecret: Lark_APP_SECRET,
-      });
-      const {
-        sheets: [sheet],
-      } = await lark.getSpreadSheet(Lark_SPREADSHEET_ID);
+      const biTable = await lark.getBITable(LARK_BITABLE_ID);
 
-      const data = await sheet.getData({
-        columnRange: ['G', 'R'],
-        keys,
-        pageSize: sheet.meta.rowCount - 1,
-      });
-      const list = data.filter(({ verified }) => verified);
+      const table = await biTable.getTable<Organization>(LARK_BITABLE_TABLE_ID);
+
+      const data = await table?.getAllRecords();
+
+      const list = data?.filter(({ verified }) => verified) || [];
 
       response.json(list);
     }
