@@ -1,10 +1,12 @@
 import { Head, Html, Main, NextScript } from 'next/document';
 
+const Logo = process.env.NEXT_PUBLIC_SITE_LOGO;
+
 export default function Document() {
   return (
     <Html>
       <Head>
-        <link rel="icon" href="https://github.com/kaiyuanshe.png" />
+        <link rel="icon" href={Logo} />
 
         <link rel="manifest" href="/manifest.json" />
         <script src="https://polyfill.kaiyuanshe.cn/feature/PWAManifest.js"></script>

@@ -1,16 +1,27 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+:root {
+  --bs-primary-rgb: 47, 50, 65;
+  --bs-secondary-rgb: 9, 126, 149;
+  --bs-info-rgb: 116, 177, 190;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.text-secondary {
+  color: rgb(var(--bs-secondary-rgb));
+}
+.text-info {
+  color: rgb(var(--bs-info-rgb));
+}
+.border-info {
+  border-color: rgb(var(--bs-info-rgb));
 }
 
-* {
-  box-sizing: border-box;
+.btn-outline-info {
+  .text-info();
+  .border-info();
+}
+
+.navbar-dark {
+  .navbar-brand,
+  .navbar-nav .nav-link {
+    .text-info();
+  }
 }

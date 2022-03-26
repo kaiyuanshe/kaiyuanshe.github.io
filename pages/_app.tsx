@@ -1,12 +1,15 @@
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import Image from 'next/image';
+import { Col, Container, Row } from 'react-bootstrap';
+import { Icon } from 'idea-react';
 
 import { MainRoute } from '../components/data';
 import MainNav from '../components/MainNav';
 import '../styles/globals.less';
+import { social } from './api/home';
 
-const Name = process.env.NEXT_PUBLIC_SITE_NAME || '';
+const Name = process.env.NEXT_PUBLIC_SITE_NAME!,
+  Logo = process.env.NEXT_PUBLIC_SITE_LOGO!;
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -15,24 +18,35 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <MainNav title={Name} links={Object.values(MainRoute)} />
+      <MainNav title={Name} logo={Logo} links={Object.values(MainRoute)} />
 
       <div className="mt-5 pt-2">
         <Component {...pageProps} />
       </div>
 
-      <footer className="flex-fill d-flex justify-content-center align-items-center border-top py-4">
-        <a
-          className="flex-fill d-flex justify-content-center align-items-center"
-          href="https://vercel.com?utm_source=create-next-app&amp;utm_medium=default-template&amp;utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by
-          <span className="mx-2">
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
+      <footer className="border-top bg-light text-secondary py-5">
+        <Container>
+          <Row className="justify-content-between align-items-center small">
+            <Col></Col>
+            <Col className="text-nowrap">
+              <span>沪 ICP 备 19006015 号</span>
+              <span className="ms-3">公安备案 31011202006203 号</span>
+            </Col>
+            <Col xs="auto">
+              {Object.entries(social).map(([name, value]) => (
+                <a
+                  key={name}
+                  className="mx-3 text-secondary"
+                  target="_blank"
+                  rel="noreferrer"
+                  href={value}
+                >
+                  <Icon name={name} size={1.5} />
+                </a>
+              ))}
+            </Col>
+          </Row>
+        </Container>
       </footer>
     </>
   );

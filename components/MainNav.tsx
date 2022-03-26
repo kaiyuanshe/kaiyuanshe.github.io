@@ -1,6 +1,13 @@
 import { PureComponent } from 'react';
 import { NextRouter, withRouter } from 'next/router';
-import { Container, Button, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import {
+  Container,
+  Button,
+  Image,
+  Nav,
+  Navbar,
+  NavDropdown,
+} from 'react-bootstrap';
 import { Nameplate } from 'idea-react';
 
 import { call } from '../pages/api/base';
@@ -14,6 +21,7 @@ export interface Link {
 
 export interface MainNavProps {
   title: string;
+  logo: string;
   links: Link[];
   router: NextRouter;
 }
@@ -52,10 +60,10 @@ class MainNav extends PureComponent<MainNavProps, State> {
 
     return username === undefined ? (
       <>
-        <Button className="mx-3" variant="outline-light" href="/user/sign-up">
+        <Button className="mx-3" variant="outline-info" href="/user/sign-up">
           注册
         </Button>
-        <Button variant="outline-light" href="/user/sign-in">
+        <Button variant="outline-info" href="/user/sign-in">
           登录
         </Button>
       </>
@@ -86,16 +94,20 @@ class MainNav extends PureComponent<MainNavProps, State> {
   render() {
     const {
       title,
+      logo,
       links,
       router: { pathname },
     } = this.props;
 
     return (
-      <Navbar bg="primary" variant="dark" fixed="top">
+      <Navbar bg="primary" variant="dark" fixed="top" className="py-3">
         <Container>
-          <Navbar.Brand href="/">{title}</Navbar.Brand>
+          <Navbar.Brand href="/">
+            <Image className="me-3" width={40} src={logo} />
+            {title}
+          </Navbar.Brand>
           <Navbar.Toggle />
-          <Navbar.Collapse className="justify-content-end text-white">
+          <Navbar.Collapse className="justify-content-end">
             <Nav className="align-items-center">
               {links.map(({ path, title }) => (
                 <Nav.Link

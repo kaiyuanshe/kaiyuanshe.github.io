@@ -1,85 +1,78 @@
-import type { InferGetStaticPropsType } from 'next';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+import { stringify } from 'qs';
+import type {
+  GetServerSidePropsContext,
+  InferGetServerSidePropsType,
+} from 'next';
+import { Fragment } from 'react';
+import { Image, Container, Col, Row } from 'react-bootstrap';
+import { Icon } from 'idea-react';
 
 import PageHead from '../components/PageHead';
-import styles from '../styles/Home.module.less';
-import { mainNav, framework } from './api/home';
+import ArticleCard from '../components/ArticleCard';
+import { getPage } from './api/base';
+import { slogan } from './api/home';
+import { Article } from './api/article';
 
-export function getStaticProps() {
-  return { props: { mainNav, framework } };
+export async function getServerSideProps({
+  req,
+  res,
+}: GetServerSidePropsContext) {
+  const { list } = await getPage<Article>(
+    `articles?${stringify({
+      populate: '*',
+      sort: 'updatedAt:desc',
+    })}`,
+    { req, res },
+  );
+  return {
+    props: {
+      articles: list.filter(({ image }) => image),
+    },
+  };
 }
 
 const HomePage = ({
-  mainNav,
-  framework,
-}: InferGetStaticPropsType<typeof getStaticProps>) => (
+  articles,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => (
   <>
     <PageHead />
 
-    <main
-      className={`flex-fill d-flex flex-column justify-content-center align-items-center ${styles.main}`}
-    >
-      <h1 className={`m-0 text-center ${styles.title}`}>
-        Welcome to
-        <a className="text-primary mx-2" href="https://nextjs.org">
-          Next.js!
-        </a>
-      </h1>
+    <section className="py-5 text-center bg-primary">
+      <Image src="https://kaiyuanshe.cn/image/Heart_of_Community.png" />
+    </section>
 
-      <p className={`text-center fs-4 ${styles.description}`}>
-        Get started by editing
-        <code className={`mx-2 rounded-3 bg-light ${styles.code}`}>
-          pages/index.tsx
-        </code>
-      </p>
+    <Container>
+      <section className="py-5 text-center">
+        {slogan.map(({ title, items }) => (
+          <Fragment key={title}>
+            <h2 className="text-primary">{title}</h2>
 
-      <div
-        className={`d-flex flex-wrap flex-column flex-sm-row justify-content-center align-items-center ${styles.grid}`}
-      >
-        {mainNav.map(({ link, title, summary }) => (
-          <Card
-            key={link}
-            className={`m-3 p-4 rounded-3 border ${styles.card}`}
-            tabIndex={-1}
-          >
-            <Card.Body>
-              <Card.Title as="h2" className="fs-4 mb-3">
-                <a href={link} className="stretched-link">
-                  {title} &rarr;
-                </a>
-              </Card.Title>
-              <Card.Text className="fs-5">{summary}</Card.Text>
-            </Card.Body>
-          </Card>
+            <ul className="list-unstyled text-secondary d-flex justify-content-center">
+              {items.map(({ icon, text }) => (
+                <li key={text} className="m-5">
+                  <Icon name={icon} size={6} />
+                  <h3>{text}</h3>
+                </li>
+              ))}
+            </ul>
+          </Fragment>
         ))}
-      </div>
+      </section>
 
-      <h2 className="my-4 text-center">Upstream projects</h2>
-      <Row>
-        {framework.map(({ logo, title, summary, link, repository }) => (
-          <Col sm={4} key={title}>
-            <Card className={`h-100 ${styles.card}`}>
-              <Card.Img variant="top" src={logo} className={styles.cardImg} />
-              <Card.Body>
-                <Card.Title>{title}</Card.Title>
-                <Card.Text>{summary}</Card.Text>
-              </Card.Body>
-              <Card.Footer className="d-flex justify-content-around">
-                <Button variant="primary" href={link}>
-                  Home Page
-                </Button>
-                <Button variant="success" href={repository}>
-                  Source Code
-                </Button>
-              </Card.Footer>
-            </Card>
-          </Col>
-        ))}
-      </Row>
-    </main>
+      <section>
+        <h2 className="text-center text-primary">最新动态</h2>
+        <p className="text-center text-muted">
+          身体力行地践行开源，咱们华人有力量！
+        </p>
+        <Row as="section" xs={1} sm={2} xl={3} xxl={4} className="g-3 my-4">
+          {articles.map(item => (
+            <Col key={item.id}>
+              <ArticleCard className="h-100" {...item} />
+            </Col>
+          ))}
+        </Row>
+      </section>
+    </Container>
   </>
 );
 

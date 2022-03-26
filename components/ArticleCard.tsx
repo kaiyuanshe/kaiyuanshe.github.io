@@ -18,7 +18,7 @@ export default function ArticleCard({
   author,
   tags,
   image,
-  publishedAt,
+  updatedAt,
 }: ArticleCardProps) {
   return (
     <Card className={`shadow-sm ${className}`}>
@@ -29,7 +29,10 @@ export default function ArticleCard({
       />
       <Card.Body>
         <Card.Title as="h3" className="h4">
-          <a href={`/article/${id}`} className="stretched-link">
+          <a
+            className="text-decoration-none stretched-link text-secondary"
+            href={`/article/${id}`}
+          >
             {title}
           </a>
         </Card.Title>
@@ -55,11 +58,7 @@ export default function ArticleCard({
             ))}
           </Col>
           <Col className="text-end">
-            <TimeDistance
-              className="me-3"
-              {...TimeOption}
-              date={publishedAt!}
-            />
+            <TimeDistance className="me-3" {...TimeOption} date={updatedAt!} />
           </Col>
         </Row>
       </Card.Body>
