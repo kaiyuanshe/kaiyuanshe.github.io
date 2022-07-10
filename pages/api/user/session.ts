@@ -1,19 +1,15 @@
 import { Day } from 'web-utility';
 import { ServerResponse } from 'http';
-import {
-  GetServerSidePropsContext,
-  NextApiRequest,
-  NextApiResponse,
-} from 'next';
-import { setCookie, destroyCookie } from 'nookies';
+import { GetServerSidePropsContext, NextApiResponse } from 'next';
+import { destroyCookie } from 'nookies';
 
-import { call } from '../base';
+import { readCookie, request, safeAPI, writeCookie } from '../core';
 import { User } from './index';
 
-const { NODE_ENV } = process.env;
-
-export async function sessionOf(req: GetServerSidePropsContext['req']) {
-  const user = await call<User>('users/me', 'GET', null, { req });
+export async function sessionOf(
+  req: GetServerSidePropsContext['req'],
+): Promise<User> {
+  const user = await request<User>('users/me', 'GET', null, { req });
 
   return { ...user, token: req.cookies.token };
 }
@@ -24,44 +20,39 @@ export function signOut(response: ServerResponse) {
   response.writeHead(302, { Location: '/' }).end();
 }
 
-export default async (
-  request: NextApiRequest,
-  response: NextApiResponse<User>,
-) => {
-  switch (request.method) {
+export default safeAPI(async (req, res: NextApiResponse<User>) => {
+  switch (req.method) {
     case 'POST': {
-      const data = await call('auth/local', 'POST', request.body);
+      const data = await request<{ jwt: string }>(
+        'auth/local',
+        'POST',
+        req.body,
+      );
+      writeCookie(res, 'token', data.jwt, Date.now() + 30 * Day);
 
-      setCookie({ res: response }, 'token', data.jwt, {
-        httpOnly: true,
-        secure: NODE_ENV !== 'development',
-        maxAge: 30 * Day,
-        path: '/',
-      });
-      return response.writeHead(302, { Location: '/' }).end();
+      return res.writeHead(302, { Location: '/' }).end();
     }
     case 'GET': {
-      if ('delete' in request.query) return signOut(response);
+      if ('delete' in req.query) return signOut(res);
 
       try {
-        const { id, token } = await sessionOf(request);
-        const user = await call(`users/${id}`, 'GET', null, { req: request });
+        const { id, token } = await sessionOf(req);
+        const user = await request<User>(`users/${id}`, 'GET', null, { req });
 
-        return response.send({ ...user, token });
+        return res.send({ ...user, token });
       } catch {
-        return response.status(401).end();
+        return res.status(401).end();
       }
     }
     case 'PATCH': {
-      const { id } = await sessionOf(request);
+      const { id } = await sessionOf(req);
 
-      const user = await call<User>(`users/${id}`, 'PUT', request.body, {
-        req: request,
-      });
-      response.send(user);
+      const user = await request<User>(`users/${id}`, 'PUT', req.body, { req });
+
+      res.send(user);
     }
   }
-};
+});
 
 export function setSession(user: User) {
   if (globalThis.localStorage) localStorage.user = JSON.stringify(user);
@@ -70,3 +61,19 @@ export function setSession(user: User) {
 export function getSession(): User {
   return globalThis.localStorage?.user ? JSON.parse(localStorage.user) : {};
 }
+
+export function withSession<
+  T extends (context: GetServerSidePropsContext<any>) => Promise<any>,
+>(handler?: T) {
+  return (async context =>
+    readCookie(context.req, 'token')
+      ? handler?.(context) || { props: {} }
+      : {
+          redirect: {
+            destination: '/user/sign-in',
+            permanent: false,
+          },
+        }) as T;
+}
+
+export const getClientSession = () => request<User>('user/session');

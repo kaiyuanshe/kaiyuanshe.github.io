@@ -1,11 +1,12 @@
 import { groupBy } from 'lodash';
 import { PureComponent } from 'react';
-import { Container, Row, Col, Button, Spinner } from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Loading } from 'idea-react';
 import { Amap, Marker } from '@amap/amap-react';
 
 import PageHead from '../../components/PageHead';
 import { OrganizationCard } from '../../components/OrganizationCard';
-import { call } from '../api/base';
+import { request, requestClient } from '../api/core';
 import { Organization } from '../api/organization';
 
 interface MapPoint {
@@ -34,7 +35,7 @@ export class OpenSourceMap extends PureComponent<{}, State> {
           'https://ideapp.dev/public-meta-data/china-city-coordinate.json',
         )
       ).json() as Promise<Record<string, [number, number]>>,
-      call<Organization[]>('organization'),
+      request<Organization[]>('organization'),
     ]);
 
     const list = Object.entries(groupBy(orgs, 'city'))
@@ -58,14 +59,7 @@ export class OpenSourceMap extends PureComponent<{}, State> {
     return (
       <>
         {loading ? (
-          <Spinner
-            className="my-4"
-            animation="grow"
-            variant="primary"
-            role="status"
-          >
-            <span className="visually-hidden">Loading...</span>
-          </Spinner>
+          <Loading />
         ) : (
           <div style={{ height: '65vh' }}>
             <Amap zoom={4}>
@@ -87,10 +81,10 @@ export class OpenSourceMap extends PureComponent<{}, State> {
         )}
         <Row xs={1} sm={2} lg={3} xxl={4} className="g-4 my-2">
           {orgs.map(
-            org =>
+            ({ id, ...org }) =>
               (!currentCity || currentCity === org.city) && (
                 <Col key={org.name as string}>
-                  <OrganizationCard {...org} />
+                  <OrganizationCard className="h-100" {...org} />
                 </Col>
               ),
           )}
@@ -105,7 +99,7 @@ export default function OrganizationPage() {
     <>
       <PageHead title="开源地图" />
 
-      <Container className="text-center">
+      <Container>
         <header className="d-flex justify-content-between align-items-center">
           <h1 className="my-4">中国开源地图</h1>
           <div>

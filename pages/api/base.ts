@@ -68,9 +68,7 @@ export async function call<T = any>(
 ): Promise<T> {
   const { token = '' } = context?.req?.cookies || {},
     noStringify =
-      !body ||
-      typeof body !== 'object' ||
-      (body?.constructor && body.constructor !== Object);
+      !body || typeof body !== 'object' || body.constructor !== Object;
 
   var headers = token
     ? { Authorization: `Bearer ${token}`, ...header }

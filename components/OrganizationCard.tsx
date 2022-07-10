@@ -1,9 +1,11 @@
-import { Card, Badge, Button } from 'react-bootstrap';
+import { Card, CardProps, Badge, Button } from 'react-bootstrap';
 import { Icon } from 'idea-react';
 import type { TableCellMedia } from 'lark-ts-sdk';
 
 import { text2color } from './utility';
 import { Organization } from '../pages/api/organization';
+
+export type OrganizationCardProps = Omit<Organization, 'id'> & CardProps;
 
 export function OrganizationCard({
   name,
@@ -15,14 +17,15 @@ export function OrganizationCard({
   link,
   codeLink,
   wechatName,
-}: Organization) {
+  ...props
+}: OrganizationCardProps) {
   const logo =
     logos instanceof Array &&
     logos[0] &&
     `/api/lark/file/${(logos[0] as TableCellMedia).file_token}`;
 
   return (
-    <Card className="text-start">
+    <Card {...props}>
       <Card.Img
         variant="top"
         style={{ height: '30vh', objectFit: 'contain' }}

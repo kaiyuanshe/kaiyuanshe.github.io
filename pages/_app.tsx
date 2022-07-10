@@ -20,7 +20,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
       <MainNav title={Name} logo={Logo} links={Object.values(MainRoute)} />
 
-      <div className="mt-5 pt-2">
+      <div className="mt-5 pt-4">
         <Component {...pageProps} />
       </div>
 

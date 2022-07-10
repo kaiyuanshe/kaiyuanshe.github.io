@@ -52,14 +52,14 @@ export default function UserListPage({
       </Row>
 
       <PaginationBar
-        current={pageIndex}
-        total={pageCount}
-        pathResolver={pageIndex =>
-          `user?${stringify({
+        currentPage={pageIndex}
+        pageCount={pageCount}
+        onChange={pageIndex =>
+          (location.href = `user?${stringify({
             keywords: keywords || undefined,
             pageIndex,
             pageSize,
-          })}`
+          })}`)
         }
       />
     </Container>

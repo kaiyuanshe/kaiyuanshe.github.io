@@ -2,14 +2,15 @@ import { PureComponent } from 'react';
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 import { Badge, Container, Row, Col, Button } from 'react-bootstrap';
 import { TimeDistance, Icon, Nameplate } from 'idea-react';
-import { Giscus } from '@giscus/react';
+import Giscus from '@giscus/react';
 
 import { TimeOption } from '../../../components/data';
 import PageHead from '../../../components/PageHead';
 import SearchBar from '../../../components/SearchBar';
 import ArticleRecommend from '../../../components/ArticleRecommend';
 
-import { DataBox, call } from '../../api/base';
+import { DataBox } from '../../api/base';
+import { request } from '../../api/core';
 import { Article } from '../../api/article';
 
 export async function getServerSideProps({
@@ -17,9 +18,12 @@ export async function getServerSideProps({
   req,
 }: GetServerSidePropsContext<{ id: string }>) {
   const { data } = params!.id
-    ? await call<DataBox<Article>>(`articles/${params!.id}`, 'GET', null, {
-        req,
-      })
+    ? await request<DataBox<Article>>(
+        `articles/${params!.id}`,
+        'GET',
+        undefined,
+        { req },
+      )
     : ({} as DataBox<Article>);
 
   return { props: data };
