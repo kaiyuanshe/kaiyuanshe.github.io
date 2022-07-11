@@ -28,7 +28,7 @@
     "file-type": "^17.1.2",
     "idea-react": "^0.26.0",
     "koajax": "^0.8.0",
-    "lark-ts-sdk": "^0.7.8",
+    "lark-ts-sdk": "^0.7.9",
     "lodash": "^4.17.21",
     "next": "^12.2.2",
     "nookies": "^2.5.2",
@@ -37,7 +37,7 @@
     "react-bootstrap": "^2.4.0",
     "react-dom": "^17.0.2",
     "react-editor-js": "^2.1.0",
-    "web-utility": "^3.7.5"
+    "web-utility": "^3.7.6"
   },
   "devDependencies": {
     "@jest/types": "^28.1.1",

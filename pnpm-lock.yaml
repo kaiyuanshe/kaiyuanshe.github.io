@@ -27,7 +27,7 @@ specifiers:
   jest: ^28.1.2
   jest-playwright-preset: ^1.7.2
   koajax: ^0.8.0
-  lark-ts-sdk: ^0.7.8
+  lark-ts-sdk: ^0.7.9
   less: ^4.1.3
   less-loader: ^11.0.0
   lint-staged: ^13.0.3
@@ -46,7 +46,7 @@ specifiers:
   ts-jest: ^28.0.5
   ts-node: ^10.8.2
   typescript: ~4.7.4
-  web-utility: ^3.7.5
+  web-utility: ^3.7.6
 
 dependencies:
   '@amap/amap-react': 0.1.5_sfoxds7t5ydpegc3knd667wn6m
@@ -64,7 +64,7 @@ dependencies:
   file-type: 17.1.2
   idea-react: 0.26.0_wuamahyugw3iwjeakoycp2hssq
   koajax: 0.8.0_typescript@4.7.4
-  lark-ts-sdk: 0.7.8_typescript@4.7.4
+  lark-ts-sdk: 0.7.9_typescript@4.7.4
   lodash: 4.17.21
   next: 12.2.2_sfoxds7t5ydpegc3knd667wn6m
   nookies: 2.5.2
@@ -73,7 +73,7 @@ dependencies:
   react-bootstrap: 2.4.0_nn45z5sr7igu7sfun6tiae5hx4
   react-dom: 17.0.2_react@17.0.2
   react-editor-js: 2.1.0_5nqabvyy7cdfyepattmhvo7ray
-  web-utility: 3.7.5_typescript@4.7.4
+  web-utility: 3.7.6_typescript@4.7.4
 
 devDependencies:
   '@jest/types': 28.1.1
@@ -1999,12 +1999,6 @@ packages:
       magic-string: 0.25.9
       string.prototype.matchall: 4.0.7
     dev: true
-
-  /@swc/helpers/0.3.17:
-    resolution: {integrity: sha512-tb7Iu+oZ+zWJZ3HJqwx8oNwSDIU440hmVMDPhpACWQWnrZHK99Bxs70gT1L2dnr5Hg50ZRWEFkQCAnOVVV0z1Q==}
-    dependencies:
-      tslib: 2.4.0
-    dev: false
 
   /@swc/helpers/0.4.2:
     resolution: {integrity: sha512-556Az0VX7WR6UdoTn4htt/l3zPQ7bsQWK+HqdG4swV7beUCxo/BqmvbOpUkTIm/9ih86LIf1qsUnywNL3obGHw==}
@@ -3944,7 +3938,7 @@ packages:
       react-dom: 17.0.2_react@17.0.2
       react-editor-js: 2.1.0_5nqabvyy7cdfyepattmhvo7ray
       react-element-to-jsx-string: 15.0.0_sfoxds7t5ydpegc3knd667wn6m
-      web-utility: 3.7.5_typescript@4.7.4
+      web-utility: 3.7.6_typescript@4.7.4
     transitivePeerDependencies:
       - '@types/react'
       - typescript
@@ -4888,7 +4882,7 @@ packages:
       jsdom: ^19.0.0
     dependencies:
       iterable-observer: 1.0.0-rc.0
-      web-utility: 3.7.5_typescript@4.7.4
+      web-utility: 3.7.6_typescript@4.7.4
     transitivePeerDependencies:
       - typescript
     dev: false
@@ -4903,15 +4897,15 @@ packages:
       language-subtag-registry: 0.3.22
     dev: true
 
-  /lark-ts-sdk/0.7.8_typescript@4.7.4:
-    resolution: {integrity: sha512-bluh8i2F6UEJrbuWvip5lrFLNfPisofrxR0QX1jk02iAL3qLRlmqKe5jALiMXdCC3N/eINcxcfpltHuBXrGj0g==}
+  /lark-ts-sdk/0.7.9_typescript@4.7.4:
+    resolution: {integrity: sha512-so0q0GHODCrZ98wRjD0u73OiEcV6BH5mZTYHYlWamHPtxoDTvP4eqePXRtHciudW/XsrTkgTLJGh/67ncecMVA==}
     dependencies:
-      '@swc/helpers': 0.3.17
+      '@swc/helpers': 0.4.3
       koajax: 0.8.0_typescript@4.7.4
       node-fetch: 2.6.7
       regenerator-runtime: 0.13.9
       tslib: 2.4.0
-      web-utility: 3.7.5_typescript@4.7.4
+      web-utility: 3.7.6_typescript@4.7.4
     transitivePeerDependencies:
       - encoding
       - jsdom
@@ -6887,8 +6881,8 @@ packages:
       loose-envify: 1.4.0
     dev: false
 
-  /web-utility/3.7.5_typescript@4.7.4:
-    resolution: {integrity: sha512-1Kny7VsQvz/dyEtFoMB3pkg05Y9fu4uyLzbv3gREbtQe1I1q83fIQpTBCI/FcR30oo0qurXSDGbqOzaOXhk6EA==}
+  /web-utility/3.7.6_typescript@4.7.4:
+    resolution: {integrity: sha512-XRWwjasY+4XpSssiO766wwE0c7t0bQZwMgIGUoG+6T53g2/bphxxDbnuOGPnGUlJ0rjXKepbv9rCZ9I5QwHjXg==}
     peerDependencies:
       typescript: ^4.1.0
     dependencies:
