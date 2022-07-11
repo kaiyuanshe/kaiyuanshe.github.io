@@ -5,10 +5,22 @@
 [![NPM Dependency](https://david-dm.org/kaiyuanshe/kaiyuanshe.github.io.svg)][6]
 [![CI & CD](https://github.com/kaiyuanshe/kaiyuanshe.github.io/workflows/CI%20&%20CD/badge.svg)][7]
 
-## 概况
+## 主要功能
+
+### 开源社博客
 
 - 测试入口：https://kaiyuanshe.vercel.app/
 - 后端服务：https://github.com/kaiyuanshe/service
+
+### 中国开源地图
+
+- 访问入口：https://kaiyuanshe.vercel.app/organization
+- 数据录入：https://kaiyuanshe.feishu.cn/share/base/shrcnPgQoUZzkpWB2W4dp2QQvbd
+- 数据存储：https://kaiyuanshe.feishu.cn/base/bascnUAyhKLADcw3HyNW5OefrMd?table=tblXlmfjCsoq0sHf&view=vewdl3c59K
+
+#### 开源协作
+
+申请加入**开源社志愿者**，填表后组长会联系你加入飞书组织：https://kaiyuanshe.feishu.cn/share/base/shrcnfO89tYlYIjZpS5PXJBaK2f
 
 ## Technology stack
 

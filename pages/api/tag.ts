@@ -1,17 +1,15 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-
-import { Base, DataBox, call } from './base';
+import { Base, DataBox, request, safeAPI } from './base';
 
 export interface Tag extends Base {
   name: string;
 }
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+export default safeAPI(async (req, res) => {
   switch (req.method) {
     case 'GET': {
       const { keyword } = req.query;
 
-      const { data } = await call<DataBox<Tag[]>>(
+      const { data } = await request<DataBox<Tag[]>>(
         `tags?name_contains=${keyword}`,
         'GET',
         null,
@@ -20,4 +18,4 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       return res.send(data);
     }
   }
-};
+});

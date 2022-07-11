@@ -1,26 +1,23 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import type { NextApiResponse } from 'next';
 import { stringify } from 'qs';
 
-import { DataBox, call } from '../base';
+import { DataBox, request, safeAPI } from '../base';
 import { Article } from './index';
 
-export default async (
-  request: NextApiRequest,
-  response: NextApiResponse<Article[]>,
-) => {
-  switch (request.method) {
+export default safeAPI(async (req, res: NextApiResponse<Article[]>) => {
+  switch (req.method) {
     case 'GET': {
-      const { articles, tags } = request.query;
+      const { articles, tags } = req.query;
 
-      const { data } = await call<DataBox<Article[]>>(
+      const { data } = await request<DataBox<Article[]>>(
         `articles?${stringify({
           'tags.id': tags,
           sort: 'updatedAt:desc',
         })}`,
       );
-      response.send(
-        data.filter(({ id }) => ![articles].flat().find(ID => id === +ID)),
+      res.send(
+        data.filter(({ id }) => ![articles!].flat().find(ID => id === +ID)),
       );
     }
   }
-};
+});

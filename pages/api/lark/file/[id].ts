@@ -1,9 +1,9 @@
-import { NextApiRequest, NextApiResponse } from 'next';
 import { fileTypeFromBuffer } from 'file-type';
 
+import { safeAPI } from '../../base';
 import { lark } from '../index';
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+export default safeAPI(async (req, res) => {
   switch (req.method) {
     case 'GET': {
       const { id } = req.query;
@@ -23,4 +23,4 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       res.send(buffer);
     }
   }
-};
+});

@@ -75,15 +75,15 @@ export default function ArticleListPage({
           </Row>
 
           <PaginationBar
-            current={pageIndex}
-            total={pageCount}
-            pathResolver={pageIndex =>
-              `article?${stringify({
+            currentPage={pageIndex}
+            pageCount={pageCount}
+            onChange={pageIndex =>
+              (location.href = `/article?${stringify({
                 tag: tag || undefined,
                 keywords: keywords || undefined,
                 pageIndex,
                 pageSize,
-              })}`
+              })}`)
             }
           />
         </Col>

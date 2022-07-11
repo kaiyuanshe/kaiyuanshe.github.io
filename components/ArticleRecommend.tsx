@@ -3,7 +3,7 @@ import { PropsWithoutRef, PureComponent } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 
 import ArticleCard from './ArticleCard';
-import { call } from '../pages/api/base';
+import { request } from '../pages/api/base';
 import { Article } from '../pages/api/article';
 
 export type ArticleRecommendProps = PropsWithoutRef<{
@@ -25,7 +25,7 @@ export default class ArticleRecommend extends PureComponent<
 
     if (!tags[0]) return;
 
-    const list = await call<Article[]>(
+    const list = await request<Article[]>(
       `article/recommend?${stringify(
         { articles, tags },
         { arrayFormat: 'repeat' },

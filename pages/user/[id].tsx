@@ -15,7 +15,7 @@ import { TimeDistance, Avatar, FilePicker } from 'idea-react';
 import { TimeOption } from '../../components/data';
 import PageHead from '../../components/PageHead';
 
-import { NewForm, call } from '../api/base';
+import { NewForm, request } from '../api/base';
 import { Gender, GenderName, User } from '../api/user';
 import { getSession, setSession } from '../api/user/session';
 import { uploadFile } from '../api/file';
@@ -27,13 +27,13 @@ export async function getServerSideProps({
   res,
   params,
 }: GetServerSidePropsContext<{ id: string }>) {
-  const props = await call<User>(`users/${params?.id}`, 'GET', null, {
+  const props = await request<User>(`users/${params?.id}`, 'GET', undefined, {
     req,
     res,
   });
   const full =
     params?.id === 'me' &&
-    (await call<User>(`users/${props.id}`, 'GET', null, { req, res }));
+    (await request<User>(`users/${props.id}`, 'GET', undefined, { req, res }));
 
   return { props: full || props };
 }
@@ -57,7 +57,7 @@ export default class UserProfilePage extends PureComponent<
       const { avatar, ...data } = formToJSON<NewForm<User>>(
         event.currentTarget,
       );
-      const user = await call<User>('user/session', 'PATCH', {
+      const user = await request<User>('user/session', 'PATCH', {
         ...data,
         avatar: avatar && this.props.avatar?.id,
       });

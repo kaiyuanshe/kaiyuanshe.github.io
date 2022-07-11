@@ -1,6 +1,4 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-
-import { Base, call } from '../base';
+import { Base, request, safeAPI } from '../base';
 import { Media } from '../file';
 
 export enum Gender {
@@ -47,14 +45,14 @@ export interface User extends Base {
   summary?: string;
 }
 
-export default async (request: NextApiRequest, response: NextApiResponse) => {
-  if (request.method === 'POST')
+export default safeAPI(async ({ method, body }, res) => {
+  if (method === 'POST')
     try {
-      await call('auth/local/register', 'POST', request.body);
+      await request('auth/local/register', 'POST', body);
 
-      response.writeHead(302, { Location: '/user/sign-in' }).end();
+      res.writeHead(302, { Location: '/user/sign-in' }).end();
     } catch (error: any) {
       console.error(error);
-      response.status(400).send(error.message);
+      res.status(400).send(error.message);
     }
-};
+});

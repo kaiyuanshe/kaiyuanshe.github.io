@@ -1,8 +1,8 @@
-import { Base, call } from './base';
-import { User } from './user';
+import { blobOf } from 'web-utility';
+
+import { Base, requestClient } from './base';
 
 const Host = process.env.NEXT_PUBLIC_API_HOST;
-var token = '';
 
 export interface Media extends Base {
   created_by?: string;
@@ -31,7 +31,7 @@ export async function uploadFile(
   field?: string,
   source?: string,
 ) {
-  if (typeof files === 'string') files = await (await fetch(files)).blob();
+  if (typeof files === 'string') files = await blobOf(files);
 
   const form = new FormData();
 
@@ -44,18 +44,7 @@ export async function uploadFile(
   }))
     if (value) form.append(key, typeof value === 'number' ? value + '' : value);
 
-  if (!token) {
-    const user = await call<User>('user/session');
+  const [saved] = await requestClient<Media[]>(`${Host}upload`, 'POST', form);
 
-    token = user.token!;
-  }
-
-  const [saved] = await call<Media[]>(
-    `${Host}upload`,
-    'POST',
-    form,
-    undefined,
-    { Authorization: `Bearer ${token}` },
-  );
   return saved;
 }

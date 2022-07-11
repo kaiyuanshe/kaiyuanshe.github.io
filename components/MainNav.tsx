@@ -10,9 +10,12 @@ import {
 } from 'react-bootstrap';
 import { Nameplate } from 'idea-react';
 
-import { call } from '../pages/api/base';
 import { User } from '../pages/api/user';
-import { setSession, getSession } from '../pages/api/user/session';
+import {
+  setSession,
+  getSession,
+  getClientSession,
+} from '../pages/api/user/session';
 
 export interface Link {
   path: string;
@@ -40,7 +43,7 @@ class MainNav extends PureComponent<MainNavProps, State> {
   async componentDidMount() {
     if (!this.state.user.username)
       try {
-        const user = await call<User>('user/session');
+        const user = await getClientSession();
 
         setSession(user);
         this.setState({ user });
