@@ -3,7 +3,7 @@ import { ServerResponse } from 'http';
 import { GetServerSidePropsContext, NextApiResponse } from 'next';
 import { destroyCookie } from 'nookies';
 
-import { readCookie, request, safeAPI, writeCookie } from '../core';
+import { readCookie, request, safeAPI, writeCookie } from '../base';
 import { User } from './index';
 
 export async function sessionOf(

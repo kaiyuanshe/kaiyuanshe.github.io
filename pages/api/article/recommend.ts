@@ -1,8 +1,7 @@
 import type { NextApiResponse } from 'next';
 import { stringify } from 'qs';
 
-import { DataBox } from '../base';
-import { request, safeAPI } from '../core';
+import { DataBox, request, safeAPI } from '../base';
 import { Article } from './index';
 
 export default safeAPI(async (req, res: NextApiResponse<Article[]>) => {

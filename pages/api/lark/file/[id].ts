@@ -1,6 +1,6 @@
 import { fileTypeFromBuffer } from 'file-type';
 
-import { safeAPI } from '../../core';
+import { safeAPI } from '../../base';
 import { lark } from '../index';
 
 export default safeAPI(async (req, res) => {

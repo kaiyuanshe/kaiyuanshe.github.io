@@ -9,8 +9,7 @@ import PageHead from '../../../components/PageHead';
 import SearchBar from '../../../components/SearchBar';
 import ArticleRecommend from '../../../components/ArticleRecommend';
 
-import { DataBox } from '../../api/base';
-import { request } from '../../api/core';
+import { DataBox, request } from '../../api/base';
 import { Article } from '../../api/article';
 
 export async function getServerSideProps({

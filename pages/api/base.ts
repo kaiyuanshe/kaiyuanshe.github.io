@@ -1,12 +1,17 @@
-import type { TypeKeys } from 'web-utility';
+import type { TypeKeys, TimeData } from 'web-utility';
 import { merge } from 'lodash';
 import { parse, stringify } from 'qs';
-import type { GetServerSidePropsContext } from 'next';
+import { ServerResponse } from 'http';
+import { setCookie } from 'nookies';
+import { HTTPError, Request, request as call } from 'koajax';
+import {
+  GetServerSidePropsContext,
+  NextApiRequest,
+  NextApiResponse,
+} from 'next';
 
 import { Media } from './file';
-import { signOut } from './user/session';
-
-export type HTTPMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
+import { getClientSession } from './user/session';
 
 export interface Base {
   id: number;
@@ -56,61 +61,112 @@ export interface DataBox<T> {
   error?: StrapiError;
 }
 
-const { location } = globalThis,
-  { NEXT_PUBLIC_API_HOST } = process.env;
+const BackHost = process.env.NEXT_PUBLIC_API_HOST;
+const Host =
+  typeof window !== 'undefined'
+    ? new URL('/api/', location.origin) + ''
+    : BackHost;
 
-export async function call<T = any>(
+export async function request<T = void>(
   path: string,
-  method: HTTPMethod = 'GET',
+  method: Request['method'] = 'GET',
   body?: any,
   context?: Partial<GetServerSidePropsContext>,
-  header?: Record<string, string>,
-): Promise<T> {
-  const { token = '' } = context?.req?.cookies || {},
-    noStringify =
-      !body || typeof body !== 'object' || body.constructor !== Object;
+  headers: Record<string, any> = {},
+) {
+  const token = context?.req && readCookie(context.req, 'token');
 
-  var headers = token
-    ? { Authorization: `Bearer ${token}`, ...header }
-    : header;
-  headers = noStringify
-    ? headers
-    : { 'Content-Type': 'application/json', ...headers };
+  if (token) headers.Authorization = `Bearer ${token}`;
 
-  path =
-    new URL(
-      path,
-      location?.origin ? `${location.origin}/api/` : NEXT_PUBLIC_API_HOST,
-    ) + '';
+  try {
+    body = JSON.stringify(body);
+    headers['Content-Type'] = 'application/json';
+  } catch {}
 
-  const response = await fetch(path, {
+  const { response } = call<T>({
+    path: new URL(path, Host) + '',
     method,
+    body,
     headers,
-    body: noStringify ? body : JSON.stringify(body),
+    responseType: 'json',
   });
+  const { status, statusText, body: data } = await response;
 
-  if (
-    response.headers
-      .get('Content-Type')
-      ?.match(/^(application\/json|text\/plain)/)
-  )
-    var data = await response.json();
-
-  if (response.status < 300) return data;
+  if (status < 300) return data!;
 
   console.error(path);
   console.error(data);
   console.trace('HTTP API call');
 
-  const message =
-    typeof data?.error === 'object'
-      ? (data.error as StrapiError).message
-      : response.statusText;
+  const { error } = (data || {}) as { error?: StrapiError };
 
-  if (!context?.res) throw new URIError(message);
+  const message = typeof error === 'object' ? error.message : statusText;
 
-  signOut(context.res);
-  return data;
+  throw new HTTPError(message, await response);
+}
+
+/**
+ * 客户端直接请求后端
+ */
+export async function requestClient<T = void>(
+  path: string,
+  method: Request['method'] = 'GET',
+  body?: any,
+  headers: Record<string, any> = {},
+) {
+  try {
+    const { token } = await getClientSession();
+
+    headers = { Authorization: `token ${token}`, ...headers };
+  } catch {}
+
+  try {
+    return request<T>(new URL(path, BackHost) + '', method, body, {}, headers);
+  } catch (error) {
+    if (error instanceof HTTPError)
+      location.href =
+        error.status === 401 ? '/user/sign-in' : `/${error.status}`;
+
+    throw error;
+  }
+}
+
+export type NextAPI = (
+  req: NextApiRequest,
+  res: NextApiResponse,
+) => Promise<any>;
+
+export function safeAPI(handler: NextAPI): NextAPI {
+  return async (req, res) => {
+    try {
+      return await handler(req, res);
+    } catch (error) {
+      if (error instanceof HTTPError) {
+        res.status(error.status);
+        res.statusMessage = error.message;
+        res.send(error.body);
+      }
+    }
+  };
+}
+const Env = process.env.NODE_ENV;
+
+export function writeCookie(
+  res: ServerResponse,
+  key: string,
+  value: string,
+  expiredAt: TimeData,
+) {
+  setCookie({ res }, key, value, {
+    httpOnly: true,
+    secure: Env !== 'development',
+    maxAge: +new Date(expiredAt) - Date.now(),
+    path: '/',
+  });
+}
+
+export function readCookie(req: GetServerSidePropsContext['req'], key: string) {
+  return req.cookies[key];
 }
 
 export function makePagination(index: number, size: number) {
@@ -147,10 +203,10 @@ export async function getPage<T>(
   pageIndex = 1,
   pageSize = 10,
 ) {
-  const { meta, data } = await call<DataBox<T[]>>(
+  const { meta, data } = await request<DataBox<T[]>>(
     mergeQuery(path, parse(makePagination(pageIndex, pageSize))),
     'GET',
-    null,
+    undefined,
     context,
   );
   const { page, total, ...pagination } = meta!.pagination;
@@ -173,18 +229,18 @@ export async function getPageV3<T>(
   const { sort, ...filter } = parse(query);
   const search = stringify(filter, { encodeValuesOnly: true });
 
-  const count = await call<number>(
+  const count = await request<number>(
     [`${route}/count`, search].join('?'),
     'GET',
-    null,
+    undefined,
     context,
   );
   if (!count) return { pageIndex, pageSize, pageCount: 0, count, list: [] };
 
-  const list = await call<T[]>(
+  const list = await request<T[]>(
     mergeQuery(path, parse(makePagination(pageIndex, pageSize))),
     'GET',
-    null,
+    undefined,
     context,
   );
   return {

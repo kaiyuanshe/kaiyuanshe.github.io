@@ -1,7 +1,6 @@
 import { blobOf } from 'web-utility';
 
-import { Base } from './base';
-import { requestClient } from './core';
+import { Base, requestClient } from './base';
 
 const Host = process.env.NEXT_PUBLIC_API_HOST;
 

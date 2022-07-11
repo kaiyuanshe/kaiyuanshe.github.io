@@ -6,7 +6,7 @@ import { Amap, Marker } from '@amap/amap-react';
 
 import PageHead from '../../components/PageHead';
 import { OrganizationCard } from '../../components/OrganizationCard';
-import { request, requestClient } from '../api/core';
+import { request } from '../api/base';
 import { Organization } from '../api/organization';
 
 interface MapPoint {
@@ -106,7 +106,7 @@ export default function OrganizationPage() {
             <Button
               size="sm"
               target="_blank"
-              href="https://wenjuan.feishu.cn/m/cfm?t=svSC7zcg2AAi-yjdo"
+              href="https://kaiyuanshe.feishu.cn/share/base/shrcnPgQoUZzkpWB2W4dp2QQvbd"
             >
               + 加入开源地图
             </Button>

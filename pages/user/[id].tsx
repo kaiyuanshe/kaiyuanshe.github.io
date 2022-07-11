@@ -15,8 +15,7 @@ import { TimeDistance, Avatar, FilePicker } from 'idea-react';
 import { TimeOption } from '../../components/data';
 import PageHead from '../../components/PageHead';
 
-import { NewForm } from '../api/base';
-import { request } from '../api/core';
+import { NewForm, request } from '../api/base';
 import { Gender, GenderName, User } from '../api/user';
 import { getSession, setSession } from '../api/user/session';
 import { uploadFile } from '../api/file';

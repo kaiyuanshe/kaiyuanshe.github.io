@@ -3,7 +3,7 @@ import { PropsWithoutRef, PureComponent } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 
 import ArticleCard from './ArticleCard';
-import { request } from '../pages/api/core';
+import { request } from '../pages/api/base';
 import { Article } from '../pages/api/article';
 
 export type ArticleRecommendProps = PropsWithoutRef<{

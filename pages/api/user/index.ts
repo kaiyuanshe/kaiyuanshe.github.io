@@ -1,5 +1,4 @@
-import { Base } from '../base';
-import { request, safeAPI } from '../core';
+import { Base, request, safeAPI } from '../base';
 import { Media } from '../file';
 
 export enum Gender {

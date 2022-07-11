@@ -1,7 +1,7 @@
 import { TableCellValue } from 'lark-ts-sdk';
 import { NextApiResponse } from 'next';
 
-import { safeAPI } from './core';
+import { safeAPI } from './base';
 import { lark } from './lark';
 
 const LARK_BITABLE_ID = process.env.LARK_BITABLE_ID!,

@@ -1,5 +1,4 @@
-import { Base, DataBox } from './base';
-import { request, safeAPI } from './core';
+import { Base, DataBox, request, safeAPI } from './base';
 
 export interface Tag extends Base {
   name: string;
