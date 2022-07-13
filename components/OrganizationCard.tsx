@@ -29,6 +29,7 @@ export function OrganizationCard({
       <Card.Img
         variant="top"
         style={{ height: '30vh', objectFit: 'contain' }}
+        loading="lazy"
         src={logo || ''}
       />
       <Card.Body>
