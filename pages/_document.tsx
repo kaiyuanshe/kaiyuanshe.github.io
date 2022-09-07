@@ -1,4 +1,8 @@
+import { useStaticRendering } from 'mobx-react';
 import { Head, Html, Main, NextScript } from 'next/document';
+
+// eslint-disable-next-line react-hooks/rules-of-hooks
+useStaticRendering(typeof window === 'undefined');
 
 const Logo = process.env.NEXT_PUBLIC_SITE_LOGO;
 

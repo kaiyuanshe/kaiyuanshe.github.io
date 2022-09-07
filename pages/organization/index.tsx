@@ -1,4 +1,5 @@
 import { groupBy } from 'lodash';
+import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { Loading } from 'idea-react';
@@ -6,8 +7,7 @@ import { Amap, Marker } from '@amap/amap-react';
 
 import PageHead from '../../components/PageHead';
 import { OrganizationCard } from '../../components/OrganizationCard';
-import { request } from '../api/base';
-import { Organization } from '../api/organization';
+import organizationStore, { Organization } from '../../models/Organization';
 
 interface MapPoint {
   name: string;
@@ -21,6 +21,7 @@ interface State {
   orgs: Organization[];
 }
 
+@observer
 export class OpenSourceMap extends PureComponent<{}, State> {
   state: Readonly<State> = {
     loading: true,
@@ -35,7 +36,7 @@ export class OpenSourceMap extends PureComponent<{}, State> {
           'https://ideapp.dev/public-meta-data/china-city-coordinate.json',
         )
       ).json() as Promise<Record<string, [number, number]>>,
-      request<Organization[]>('organization'),
+      organizationStore.getList(),
     ]);
 
     const list = Object.entries(groupBy(orgs, 'city'))
@@ -54,7 +55,8 @@ export class OpenSourceMap extends PureComponent<{}, State> {
   }
 
   render() {
-    const { loading, currentCity, list, orgs } = this.state;
+    const { loading, currentCity, list } = this.state;
+    const { currentPage } = organizationStore;
 
     return (
       <>
@@ -62,7 +64,7 @@ export class OpenSourceMap extends PureComponent<{}, State> {
           <Loading />
         ) : (
           <div style={{ height: '65vh' }}>
-            <Amap zoom={4}>
+            {/* <Amap zoom={4}>
               {list.map(({ name, value }) => (
                 <Marker
                   key={value + ''}
@@ -76,11 +78,11 @@ export class OpenSourceMap extends PureComponent<{}, State> {
                   }
                 />
               ))}
-            </Amap>
+            </Amap> */}
           </div>
         )}
         <Row xs={1} sm={2} lg={3} xxl={4} className="g-4 my-2">
-          {orgs.map(
+          {currentPage.map(
             ({ id, ...org }) =>
               (!currentCity || currentCity === org.city) && (
                 <Col key={org.name as string}>

@@ -1,9 +1,8 @@
 import { Card, CardProps, Badge, Button } from 'react-bootstrap';
-import { Icon } from 'idea-react';
+import { text2color, Icon } from 'idea-react';
 import type { TableCellMedia } from 'lark-ts-sdk';
 
-import { text2color } from './utility';
-import { Organization } from '../pages/api/organization';
+import { Organization } from '../models/Organization';
 
 export type OrganizationCardProps = Omit<Organization, 'id'> & CardProps;
 
@@ -30,15 +29,19 @@ export function OrganizationCard({
         variant="top"
         style={{ height: '30vh', objectFit: 'contain' }}
         loading="lazy"
-        src={logo || ''}
+        src={`https://communitymap01.blob.core.chinacloudapi.cn/$web/${(
+          name + ''
+        ).replace(/\s+/g, '-')}.png`}
+        onError={({ currentTarget: image }) => (image.src = logo || '')}
       />
       <Card.Body>
         <Card.Title>
-          {name} <Badge bg={text2color(type as string)}>{type}</Badge>
+          {name}{' '}
+          <Badge bg={text2color(type as string, ['light'])}>{type}</Badge>
         </Card.Title>
         <Card.Text className="text-end">
           {(tags as string[])?.map(tag => (
-            <Badge key={tag} bg={text2color(tag)} className="me-2">
+            <Badge key={tag} bg={text2color(tag, ['light'])} className="me-2">
               {tag}
             </Badge>
           ))}
@@ -78,7 +81,7 @@ export function OrganizationCard({
             size="sm"
             variant="success"
             target="_blank"
-            href={`https://weixin.sogou.com/weixin?type=1&query=${wechatName}`}
+            href={`https://open.weixin.qq.com/qr/code?username=${wechatName}`}
           >
             <Icon name="chat-fill" />
           </Button>
