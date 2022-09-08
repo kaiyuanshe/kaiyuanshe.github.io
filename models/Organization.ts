@@ -39,9 +39,7 @@ export class OrganizationModel extends Stream<Organization>(ListModel) {
     )) {
       this.totalCount = total;
 
-      yield* items
-        .map(this.normalize)
-        .filter(({ verified }) => verified === '是');
+      yield* items.map(this.normalize);
     }
   }
 }

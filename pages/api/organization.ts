@@ -1,3 +1,4 @@
+import { buildURLData, parseURLData } from 'web-utility';
 import { TableRecordList } from 'lark-ts-sdk';
 import { NextApiResponse } from 'next';
 
@@ -21,7 +22,10 @@ export default safeAPI(
           LARK_BITABLE_TABLE_ID,
         );
         const { body } = await lark.client.get<TableRecordList<Organization>>(
-          `${table!.baseURI}/records?${request.url!.split('?')[1]}`,
+          `${table!.baseURI}/records?${buildURLData({
+            ...parseURLData(request.url!),
+            filter: `CurrentValue.[verified]="是"`,
+          })}`,
         );
         response.json(body!.data);
       }
