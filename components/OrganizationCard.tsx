@@ -4,7 +4,11 @@ import type { TableCellMedia } from 'lark-ts-sdk';
 
 import { Organization } from '../models/Organization';
 
-export type OrganizationCardProps = Omit<Organization, 'id'> & CardProps;
+export interface OrganizationCardProps
+  extends Omit<Organization, 'id'>,
+    CardProps {
+  onSwitch?: (filter: Partial<Record<'type' | 'tag', string>>) => any;
+}
 
 export function OrganizationCard({
   name,
@@ -16,6 +20,7 @@ export function OrganizationCard({
   link,
   codeLink,
   wechatName,
+  onSwitch,
   ...props
 }: OrganizationCardProps) {
   const logo =
@@ -37,11 +42,29 @@ export function OrganizationCard({
       <Card.Body>
         <Card.Title>
           {name}{' '}
-          <Badge bg={text2color(type as string, ['light'])}>{type}</Badge>
+          <Badge
+            bg={text2color(type as string, ['light'])}
+            style={{ cursor: 'pointer' }}
+            onClick={() =>
+              confirm(`确定筛选「${type}」类型的开源组织？`) &&
+              onSwitch?.({ type: type as string })
+            }
+          >
+            {type}
+          </Badge>
         </Card.Title>
         <Card.Text className="text-end">
           {(tags as string[])?.map(tag => (
-            <Badge key={tag} bg={text2color(tag, ['light'])} className="me-2">
+            <Badge
+              key={tag}
+              bg={text2color(tag, ['light'])}
+              className="me-2"
+              style={{ cursor: 'pointer' }}
+              onClick={() =>
+                confirm(`确定筛选「${tag}」领域的开源组织？`) &&
+                onSwitch?.({ tag })
+              }
+            >
               {tag}
             </Badge>
           ))}

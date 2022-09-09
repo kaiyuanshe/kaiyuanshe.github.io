@@ -1,12 +1,16 @@
+import { isEmpty } from 'web-utility';
 import { groupBy, debounce } from 'lodash';
 import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
-import { Container, Row, Col, Button } from 'react-bootstrap';
-import { ScrollBoundary, TouchHandler, Loading } from 'idea-react';
+import { Container, Row, Col, Badge, Button } from 'react-bootstrap';
+import { text2color, ScrollBoundary, TouchHandler, Loading } from 'idea-react';
 import { Amap, Marker } from '@amap/amap-react';
 
 import PageHead from '../../components/PageHead';
-import { OrganizationCard } from '../../components/OrganizationCard';
+import {
+  OrganizationCardProps,
+  OrganizationCard,
+} from '../../components/OrganizationCard';
 import { client } from '../../models/Base';
 import organizationStore, { Organization } from '../../models/Organization';
 
@@ -64,6 +68,50 @@ export class OpenSourceMap extends PureComponent<{}, State> {
       organizationStore.getList();
   });
 
+  switchFilter: OrganizationCardProps['onSwitch'] = ({ type, tag }) => {
+    const { filter } = organizationStore;
+
+    organizationStore.clear();
+
+    organizationStore.getList(
+      type ? { ...filter, type } : tag ? { ...filter, tags: tag && [tag] } : {},
+    );
+  };
+
+  renderFilter() {
+    const { filter, totalCount } = organizationStore;
+
+    return (
+      !isEmpty(filter) && (
+        <header
+          className="d-flex justify-content-between align-items-center sticky-top bg-white py-3"
+          style={{ top: '5rem' }}
+        >
+          <div>
+            筛选
+            {Object.entries(filter).map(([key, value]) => (
+              <Badge
+                key={key}
+                className="mx-2"
+                bg={text2color(value + '', ['light'])}
+              >
+                {value}
+              </Badge>
+            ))}
+          </div>
+          共 {totalCount} 家
+          <Button
+            variant="warning"
+            size="sm"
+            onClick={() => this.switchFilter!({})}
+          >
+            重置
+          </Button>
+        </header>
+      )
+    );
+  }
+
   render() {
     const { currentCity, list } = this.state;
     const { downloading, allItems } = organizationStore;
@@ -92,12 +140,18 @@ export class OpenSourceMap extends PureComponent<{}, State> {
           </div>
         )}
         <ScrollBoundary onTouch={this.loadMore}>
+          {this.renderFilter()}
+
           <Row xs={1} sm={2} lg={3} xxl={4} className="g-4 my-2">
             {allItems.map(
               ({ id, ...org }) =>
                 (!currentCity || currentCity === org.city) && (
                   <Col key={org.name as string}>
-                    <OrganizationCard className="h-100" {...org} />
+                    <OrganizationCard
+                      className="h-100"
+                      {...org}
+                      onSwitch={this.switchFilter}
+                    />
                   </Col>
                 ),
             )}

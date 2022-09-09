@@ -103,7 +103,13 @@ class MainNav extends PureComponent<MainNavProps, State> {
     } = this.props;
 
     return (
-      <Navbar bg="primary" variant="dark" fixed="top" className="py-3">
+      <Navbar
+        bg="primary"
+        variant="dark"
+        fixed="top"
+        expand="lg"
+        className="py-3"
+      >
         <Container>
           <Navbar.Brand href="/">
             <Image className="me-3" width={40} src={logo} />

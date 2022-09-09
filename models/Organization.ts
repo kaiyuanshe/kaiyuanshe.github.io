@@ -1,4 +1,4 @@
-import { ListModel, Stream } from 'mobx-restful';
+import { NewData, ListModel, Stream } from 'mobx-restful';
 import { TableCellValue, TableRecordList } from 'lark-ts-sdk';
 
 import { client } from './Base';
@@ -32,14 +32,15 @@ export class OrganizationModel extends Stream<Organization>(ListModel) {
     return { ...fields, id: id! };
   }
 
-  async *openStream() {
+  async *openStream(filter: NewData<Organization>) {
     for await (const { total, items } of createListStream<Organization>(
       this.client,
       this.baseURI,
+      filter,
     )) {
       this.totalCount = total;
 
-      yield* items.map(this.normalize);
+      yield* items?.map(this.normalize) || [];
     }
   }
 }

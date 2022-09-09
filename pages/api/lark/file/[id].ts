@@ -1,7 +1,7 @@
 import { fileTypeFromBuffer } from 'file-type';
 
+import { lark } from '../../../../models/Lark';
 import { safeAPI } from '../../base';
-import { lark } from '../index';
 
 export default safeAPI(async (req, res) => {
   switch (req.method) {
