@@ -17,15 +17,19 @@ export default function Document() {
 
         <link
           rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          href="https://unpkg.com/bootstrap@5.2.1/dist/css/bootstrap.min.css"
         />
         <link
           rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/idea-react@0.10.3/dist/index.css"
+          href="https://unpkg.com/idea-react@0.27.3/dist/index.css"
         />
         <link
           rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"
+          href="https://unpkg.com/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
+        />
+        <link
+          rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
         />
       </Head>
 
