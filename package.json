@@ -13,7 +13,6 @@
     "e2e": "jest"
   },
   "dependencies": {
-    "@amap/amap-react": "^0.1.5",
     "@editorjs/code": "^2.7.0",
     "@editorjs/editorjs": "^2.25.0",
     "@editorjs/header": "^2.6.2",
@@ -26,7 +25,7 @@
     "array-unique-proposal": "^0.3.4",
     "editorjs-html": "^3.4.2",
     "file-type": "^18.0.0",
-    "idea-react": "^0.26.10",
+    "idea-react": "^0.27.3",
     "koajax": "^0.8.3",
     "lark-ts-sdk": "^0.7.9",
     "lodash": "^4.17.21",

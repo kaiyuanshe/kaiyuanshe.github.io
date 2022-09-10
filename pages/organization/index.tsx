@@ -1,10 +1,16 @@
 import { isEmpty } from 'web-utility';
 import { groupBy, debounce } from 'lodash';
+import dynamic from 'next/dynamic';
 import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
 import { Container, Row, Col, Badge, Button } from 'react-bootstrap';
-import { text2color, ScrollBoundary, TouchHandler, Loading } from 'idea-react';
-import { Amap, Marker } from '@amap/amap-react';
+import {
+  text2color,
+  ScrollBoundary,
+  TouchHandler,
+  Loading,
+  OpenMapProps,
+} from 'idea-react';
 
 import PageHead from '../../components/PageHead';
 import {
@@ -14,9 +20,13 @@ import {
 import { client } from '../../models/Base';
 import organizationStore, { Organization } from '../../models/Organization';
 
+const ChinaMap = dynamic(() => import('../../components/ChinaMap'), {
+  ssr: false,
+});
+
 interface MapPoint {
   name: string;
-  value: number[];
+  value: [number, number];
 }
 
 interface State {
@@ -49,7 +59,7 @@ export class OpenSourceMap extends PureComponent<{}, State> {
         if (point)
           return {
             name: `${city} ${list.length}`,
-            value: [...point, list.length],
+            value: [point[1], point[0]],
           };
       })
       .filter(Boolean) as State['list'];
@@ -76,6 +86,18 @@ export class OpenSourceMap extends PureComponent<{}, State> {
     organizationStore.getList(
       type ? { ...filter, type } : tag ? { ...filter, tags: tag && [tag] } : {},
     );
+  };
+
+  switchCity: OpenMapProps['onMarkerClick'] = ({ latlng: { lat, lng } }) => {
+    const { list } = this.state;
+    const { name } =
+      list.find(
+        ({ value: [latitude, longitude] }) =>
+          lat === latitude && lng === longitude,
+      ) || {};
+    const [city] = name?.split(/\s+/) || [];
+
+    console.log(city);
   };
 
   renderFilter() {
@@ -121,22 +143,14 @@ export class OpenSourceMap extends PureComponent<{}, State> {
         {downloading ? (
           <Loading />
         ) : (
-          <div style={{ height: '65vh' }}>
-            <Amap zoom={4}>
-              {list.map(({ name, value }) => (
-                <Marker
-                  key={value + ''}
-                  position={value}
-                  label={{
-                    content: name,
-                    direction: 'top',
-                  }}
-                  onClick={() =>
-                    this.setState({ currentCity: name.split(/\s+/)[0] })
-                  }
-                />
-              ))}
-            </Amap>
+          <div style={{ height: '70vh' }}>
+            <ChinaMap
+              markers={list.map(({ name, value }) => ({
+                position: value,
+                tooltip: name,
+              }))}
+              onMarkerClick={this.switchCity}
+            />
           </div>
         )}
         <ScrollBoundary onTouch={this.loadMore}>
