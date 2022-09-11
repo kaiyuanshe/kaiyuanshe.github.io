@@ -34,7 +34,6 @@
     "mobx-restful": "^0.6.0-rc.8",
     "next": "^12.3.0",
     "nookies": "^2.5.2",
-    "qrcode.react": "^3.1.0",
     "qs": "^6.11.0",
     "react": "^17.0.2",
     "react-bootstrap": "^2.5.0",

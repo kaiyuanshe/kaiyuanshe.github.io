@@ -1,9 +1,8 @@
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
-import { Card, CardProps, Badge, Button } from 'react-bootstrap';
+import { Card, CardProps, Badge, Button, Image } from 'react-bootstrap';
 import { text2color, Icon } from 'idea-react';
-import { QRCodeSVG } from 'qrcode.react';
 import type { TableCellMedia } from 'lark-ts-sdk';
 
 import { Organization } from '../models/Organization';
@@ -11,21 +10,15 @@ import { Organization } from '../models/Organization';
 export interface OrganizationCardProps
   extends Omit<Organization, 'id'>,
     CardProps {
-  onSwitch?: (filter: Partial<Record<'type' | 'tag', string>>) => any;
+  onSwitch?: (
+    filter: Partial<Pick<Organization, 'type' | 'tags' | 'city'>>,
+  ) => any;
 }
 
 @observer
 export class OrganizationCard extends PureComponent<OrganizationCardProps> {
   @observable
-  QRC_URI = '';
-
-  renderQRC() {
-    const { QRC_URI } = this;
-
-    return (
-      QRC_URI && <QRCodeSVG className="d-block mx-auto my-2" value={QRC_URI} />
-    );
-  }
+  showQRC = false;
 
   renderIcon() {
     const { email, link, codeLink, wechatName } = this.props;
@@ -63,11 +56,7 @@ export class OrganizationCard extends PureComponent<OrganizationCardProps> {
             title="WeChat"
             size="sm"
             variant="success"
-            onClick={() =>
-              (this.QRC_URI = this.QRC_URI
-                ? ''
-                : `https://open.weixin.qq.com/qr/code?username=${wechatName}`)
-            }
+            onClick={() => (this.showQRC = !this.showQRC)}
           >
             <Icon name="chat-fill" />
           </Button>
@@ -77,7 +66,8 @@ export class OrganizationCard extends PureComponent<OrganizationCardProps> {
   }
 
   render() {
-    const { name, logos, type, tags, summary, onSwitch, ...props } = this.props;
+    const { name, logos, type, tags, summary, wechatName, onSwitch, ...props } =
+      this.props;
 
     const logo =
       logos instanceof Array &&
@@ -118,20 +108,30 @@ export class OrganizationCard extends PureComponent<OrganizationCardProps> {
                 style={{ cursor: 'pointer' }}
                 onClick={() =>
                   confirm(`确定筛选「${tag}」领域的开源组织？`) &&
-                  onSwitch?.({ tag })
+                  onSwitch?.({ tags: [tag] })
                 }
               >
                 {tag}
               </Badge>
             ))}
           </Card.Text>
-          <Card.Text className="overflow-auto" style={{ maxHeight: '10rem' }}>
+          <Card.Text
+            className="d-none d-sm-block overflow-auto"
+            style={{ maxHeight: '10rem' }}
+          >
             {summary}
           </Card.Text>
         </Card.Body>
         <Card.Footer>
           {this.renderIcon()}
-          {this.renderQRC()}
+
+          {this.showQRC && (
+            <Image
+              fluid
+              className="mt-2"
+              src={`https://open.weixin.qq.com/qr/code?username=${wechatName}`}
+            />
+          )}
         </Card.Footer>
       </Card>
     );
