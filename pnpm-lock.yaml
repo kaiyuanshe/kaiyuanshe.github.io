@@ -40,7 +40,6 @@ specifiers:
   nookies: ^2.5.2
   playwright: ^1.25.2
   prettier: ^2.7.1
-  qrcode.react: ^3.1.0
   qs: ^6.11.0
   react: ^17.0.2
   react-bootstrap: ^2.5.0
@@ -73,7 +72,6 @@ dependencies:
   mobx-restful: 0.6.0-rc.8_wg7sgs74b6jrotl3tuf2oe5bdi
   next: 12.3.0_sfoxds7t5ydpegc3knd667wn6m
   nookies: 2.5.2
-  qrcode.react: 3.1.0_react@17.0.2
   qs: 6.11.0
   react: 17.0.2
   react-bootstrap: 2.5.0_j6sw2p2tdbh6crpcmkxtmmhma4
@@ -6000,14 +5998,6 @@ packages:
     resolution: {integrity: sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==}
     engines: {node: '>=6'}
     dev: true
-
-  /qrcode.react/3.1.0_react@17.0.2:
-    resolution: {integrity: sha512-oyF+Urr3oAMUG/OiOuONL3HXM+53wvuH3mtIWQrYmsXoAq0DkvZp2RYUWFSMFtbdOpuS++9v+WAkzNVkMlNW6Q==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    dependencies:
-      react: 17.0.2
-    dev: false
 
   /qs/6.11.0:
     resolution: {integrity: sha512-MvjoMCJwEarSbUYk5O+nmoSzSutSsTwF85zcHPQ9OrlFoZOYIjaqBAJIqIXjptyD5vThxGq52Xu/MaJzRkIk4Q==}

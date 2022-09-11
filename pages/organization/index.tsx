@@ -1,6 +1,7 @@
 import { isEmpty } from 'web-utility';
-import { groupBy, debounce } from 'lodash';
+import { debounce } from 'lodash';
 import dynamic from 'next/dynamic';
+import { computed } from 'mobx';
 import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
 import { Container, Row, Col, Badge, Button } from 'react-bootstrap';
@@ -10,6 +11,7 @@ import {
   TouchHandler,
   Loading,
   OpenMapProps,
+  MarkerMeta,
 } from 'idea-react';
 
 import PageHead from '../../components/PageHead';
@@ -17,54 +19,37 @@ import {
   OrganizationCardProps,
   OrganizationCard,
 } from '../../components/OrganizationCard';
-import { client } from '../../models/Base';
-import organizationStore, { Organization } from '../../models/Organization';
+import organizationStore from '../../models/Organization';
+import metaStore from '../../models/Meta';
 
 const ChinaMap = dynamic(() => import('../../components/ChinaMap'), {
   ssr: false,
 });
 
-interface MapPoint {
-  name: string;
-  value: [number, number];
-}
-
-interface State {
-  loading: boolean;
-  currentCity?: string;
-  list: MapPoint[];
-  orgs: Organization[];
-}
-
 @observer
-export class OpenSourceMap extends PureComponent<{}, State> {
-  state: Readonly<State> = {
-    loading: true,
-    list: [],
-    orgs: [],
-  };
+export class OpenSourceMap extends PureComponent {
+  @computed
+  get markers() {
+    const { cityCoordinate } = metaStore,
+      { city = {} } = organizationStore.statistic;
 
-  async componentDidMount() {
-    const [{ body: city_coordinates }, orgs] = await Promise.all([
-      client.get<Record<string, [number, number]>>(
-        'https://ideapp.dev/public-meta-data/china-city-coordinate.json',
-      ),
-      organizationStore.getList(),
-    ]);
-
-    const list = Object.entries(groupBy(orgs, 'city'))
-      .map(([city, list]) => {
-        const point = city_coordinates![city! as string];
+    return Object.entries(city)
+      .map(([city, count]) => {
+        const point = cityCoordinate[city];
 
         if (point)
           return {
-            name: `${city} ${list.length}`,
-            value: [point[1], point[0]],
+            tooltip: `${city} ${count}`,
+            position: [point[1], point[0]],
           };
       })
-      .filter(Boolean) as State['list'];
+      .filter(Boolean) as MarkerMeta[];
+  }
 
-    this.setState({ loading: false, list, orgs });
+  componentDidMount() {
+    metaStore.getCityCoordinate();
+    organizationStore.getStatistic();
+    organizationStore.getList();
   }
 
   componentWillUnmount() {
@@ -78,26 +63,35 @@ export class OpenSourceMap extends PureComponent<{}, State> {
       organizationStore.getList();
   });
 
-  switchFilter: OrganizationCardProps['onSwitch'] = ({ type, tag }) => {
+  switchFilter: Required<OrganizationCardProps>['onSwitch'] = ({
+    type,
+    tags,
+    city,
+  }) => {
     const { filter } = organizationStore;
 
     organizationStore.clear();
 
-    organizationStore.getList(
-      type ? { ...filter, type } : tag ? { ...filter, tags: tag && [tag] } : {},
+    return organizationStore.getList(
+      type
+        ? { ...filter, type }
+        : tags
+        ? { ...filter, tags }
+        : city
+        ? { city }
+        : {},
     );
   };
 
   switchCity: OpenMapProps['onMarkerClick'] = ({ latlng: { lat, lng } }) => {
-    const { list } = this.state;
-    const { name } =
-      list.find(
-        ({ value: [latitude, longitude] }) =>
-          lat === latitude && lng === longitude,
+    const { markers } = this;
+    const { tooltip } =
+      markers.find(
+        ({ position: p }) => p instanceof Array && lat === p[0] && lng === p[1],
       ) || {};
-    const [city] = name?.split(/\s+/) || [];
+    const [city] = tooltip?.split(/\s+/) || [];
 
-    console.log(city);
+    return this.switchFilter({ city });
   };
 
   renderFilter() {
@@ -125,7 +119,7 @@ export class OpenSourceMap extends PureComponent<{}, State> {
           <Button
             variant="warning"
             size="sm"
-            onClick={() => this.switchFilter!({})}
+            onClick={() => this.switchFilter({})}
           >
             重置
           </Button>
@@ -135,7 +129,7 @@ export class OpenSourceMap extends PureComponent<{}, State> {
   }
 
   render() {
-    const { currentCity, list } = this.state;
+    const { markers } = this;
     const { downloading, allItems } = organizationStore;
 
     return (
@@ -144,31 +138,22 @@ export class OpenSourceMap extends PureComponent<{}, State> {
           <Loading />
         ) : (
           <div style={{ height: '70vh' }}>
-            <ChinaMap
-              markers={list.map(({ name, value }) => ({
-                position: value,
-                tooltip: name,
-              }))}
-              onMarkerClick={this.switchCity}
-            />
+            <ChinaMap markers={markers} onMarkerClick={this.switchCity} />
           </div>
         )}
         <ScrollBoundary onTouch={this.loadMore}>
           {this.renderFilter()}
 
           <Row xs={1} sm={2} lg={3} xxl={4} className="g-4 my-2">
-            {allItems.map(
-              ({ id, ...org }) =>
-                (!currentCity || currentCity === org.city) && (
-                  <Col key={org.name as string}>
-                    <OrganizationCard
-                      className="h-100"
-                      {...org}
-                      onSwitch={this.switchFilter}
-                    />
-                  </Col>
-                ),
-            )}
+            {allItems.map(({ id, ...org }) => (
+              <Col key={org.name as string}>
+                <OrganizationCard
+                  className="h-100"
+                  {...org}
+                  onSwitch={this.switchFilter}
+                />
+              </Col>
+            ))}
           </Row>
         </ScrollBoundary>
       </>

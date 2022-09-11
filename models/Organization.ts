@@ -1,8 +1,10 @@
-import { NewData, ListModel, Stream } from 'mobx-restful';
+import { observable } from 'mobx';
+import { NewData, ListModel, Stream, toggle } from 'mobx-restful';
 import { TableCellValue, TableRecordList } from 'lark-ts-sdk';
 
 import { client } from './Base';
 import { createListStream } from './Lark';
+import { OrganizationStatistic } from '../pages/api/organization/statistic';
 
 export type Organization = Record<
   | 'id'
@@ -25,6 +27,9 @@ export class OrganizationModel extends Stream<Organization>(ListModel) {
   client = client;
   baseURI = 'api/organization';
 
+  @observable
+  statistic: OrganizationStatistic = {} as OrganizationStatistic;
+
   normalize({
     id,
     fields,
@@ -42,6 +47,14 @@ export class OrganizationModel extends Stream<Organization>(ListModel) {
 
       yield* items?.map(this.normalize) || [];
     }
+  }
+
+  @toggle('downloading')
+  async getStatistic() {
+    const { body } = await this.client.get<OrganizationStatistic>(
+      `${this.baseURI}/statistic`,
+    );
+    return (this.statistic = body!);
   }
 }
 

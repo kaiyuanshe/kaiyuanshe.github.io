@@ -1,6 +1,6 @@
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import { Icon } from 'idea-react';
 
 import { MainRoute } from '../components/data';
@@ -26,13 +26,15 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
       <footer className="border-top bg-light text-secondary py-5">
         <Container>
-          <Row className="justify-content-between align-items-center small">
+          <Row xs={1} md={3} className="align-items-center small text-center">
             <Col></Col>
-            <Col className="text-nowrap">
-              <span>沪 ICP 备 19006015 号</span>
-              <span className="ms-3">公安备案 31011202006203 号</span>
+            <Col>
+              <Row xs={1} md={2} className="align-items-center">
+                <Col>沪 ICP 备 19006015 号</Col>
+                <Col>公安备案 31011202006203 号</Col>
+              </Row>
             </Col>
-            <Col xs="auto">
+            <Col>
               {Object.entries(social).map(([name, value]) => (
                 <a
                   key={name}

@@ -3,19 +3,19 @@ import { DataObject } from 'mobx-restful';
 import { TableRecordList } from 'lark-ts-sdk';
 import { NextApiResponse } from 'next';
 
-import { safeAPI } from './base';
-import { lark, makeFilter } from '../../models/Lark';
-import { Organization } from '../../models/Organization';
+import { safeAPI } from '../base';
+import { lark, makeFilter } from '../../../models/Lark';
+import { Organization } from '../../../models/Organization';
 
 const LARK_BITABLE_ID = process.env.LARK_BITABLE_ID!,
   LARK_BITABLE_TABLE_ID = process.env.LARK_BITABLE_TABLE_ID!;
 
 export default safeAPI(
   async (
-    request,
+    { method, url },
     response: NextApiResponse<TableRecordList<Organization>['data']>,
   ) => {
-    switch (request.method) {
+    switch (method) {
       case 'GET': {
         const biTable = await lark.getBITable(LARK_BITABLE_ID);
 
@@ -23,7 +23,7 @@ export default safeAPI(
             LARK_BITABLE_TABLE_ID,
           ),
           { page_size, page_token, ...filter } = parseURLData(
-            request.url!,
+            url!,
           ) as DataObject;
 
         const { body } = await lark.client.get<TableRecordList<Organization>>(
