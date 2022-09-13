@@ -1,8 +1,10 @@
 import { useStaticRendering } from 'mobx-react';
 import { Head, Html, Main, NextScript } from 'next/document';
 
+import { isServer } from '../models/Base';
+
 // eslint-disable-next-line react-hooks/rules-of-hooks
-useStaticRendering(typeof window === 'undefined');
+useStaticRendering(isServer());
 
 const Logo = process.env.NEXT_PUBLIC_SITE_LOGO;
 
@@ -21,7 +23,7 @@ export default function Document() {
         />
         <link
           rel="stylesheet"
-          href="https://unpkg.com/idea-react@0.27.3/dist/index.css"
+          href="https://unpkg.com/idea-react@0.27.7/dist/index.css"
         />
         <link
           rel="stylesheet"

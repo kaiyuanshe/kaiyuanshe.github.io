@@ -10,8 +10,9 @@ import {
   ScrollBoundary,
   TouchHandler,
   Loading,
-  OpenMapProps,
   MarkerMeta,
+  OpenMapProps,
+  OpenMap,
 } from 'idea-react';
 
 import PageHead from '../../components/PageHead';
@@ -19,12 +20,10 @@ import {
   OrganizationCardProps,
   OrganizationCard,
 } from '../../components/OrganizationCard';
-import organizationStore from '../../models/Organization';
-import metaStore from '../../models/Meta';
 
-const ChinaMap = dynamic(() => import('../../components/ChinaMap'), {
-  ssr: false,
-});
+import { isServer } from '../../models/Base';
+import metaStore from '../../models/Meta';
+import organizationStore from '../../models/Organization';
 
 @observer
 export class OpenSourceMap extends PureComponent {
@@ -138,7 +137,14 @@ export class OpenSourceMap extends PureComponent {
           <Loading />
         ) : (
           <div style={{ height: '70vh' }}>
-            <ChinaMap markers={markers} onMarkerClick={this.switchCity} />
+            {!isServer() && (
+              <OpenMap
+                center={[34.32, 108.55]}
+                zoom={4}
+                markers={markers}
+                onMarkerClick={this.switchCity}
+              />
+            )}
           </div>
         )}
         <ScrollBoundary onTouch={this.loadMore}>
