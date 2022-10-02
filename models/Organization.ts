@@ -23,6 +23,11 @@ export type Organization = Record<
   TableCellValue
 >;
 
+export type Cooperation = Record<
+  'organization' | 'year' | 'level',
+  TableCellValue
+>;
+
 export class OrganizationModel extends Stream<Organization>(ListModel) {
   client = client;
   baseURI = 'api/organization';
@@ -30,12 +35,22 @@ export class OrganizationModel extends Stream<Organization>(ListModel) {
   @observable
   statistic: OrganizationStatistic = {} as OrganizationStatistic;
 
-  normalize({
-    id,
-    fields,
-  }: TableRecordList<Organization>['data']['items'][number]): Organization {
-    return { ...fields, id: id! };
+  normalizeLink(value: TableCellValue) {
+    return value && typeof value === 'object' && 'link' in value
+      ? value.text
+      : value;
   }
+
+  normalize = ({
+    id,
+    fields: { link, codeLink, email, ...fields },
+  }: TableRecordList<Organization>['data']['items'][number]): Organization => ({
+    ...fields,
+    id: id!,
+    link: this.normalizeLink(link),
+    codeLink: this.normalizeLink(codeLink),
+    email: this.normalizeLink(email),
+  });
 
   async *openStream(filter: NewData<Organization>) {
     for await (const { total, items } of createListStream<Organization>(
@@ -58,4 +73,4 @@ export class OrganizationModel extends Stream<Organization>(ListModel) {
   }
 }
 
-export default new OrganizationModel();
+export const organizationStore = new OrganizationModel();

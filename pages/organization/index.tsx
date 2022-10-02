@@ -23,7 +23,7 @@ import {
 
 import { isServer } from '../../models/Base';
 import metaStore from '../../models/Meta';
-import organizationStore from '../../models/Organization';
+import { organizationStore } from '../../models/Organization';
 
 @observer
 export class OpenSourceMap extends PureComponent {
