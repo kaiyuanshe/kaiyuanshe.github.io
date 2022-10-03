@@ -1,6 +1,5 @@
 import { isEmpty } from 'web-utility';
 import { debounce } from 'lodash';
-import dynamic from 'next/dynamic';
 import { computed } from 'mobx';
 import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
@@ -23,7 +22,7 @@ import {
 
 import { isServer } from '../../models/Base';
 import metaStore from '../../models/Meta';
-import { organizationStore } from '../../models/Organization';
+import organizationStore from '../../models/Organization';
 
 @observer
 export class OpenSourceMap extends PureComponent {

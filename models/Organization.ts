@@ -1,10 +1,16 @@
 import { observable } from 'mobx';
 import { NewData, ListModel, Stream, toggle } from 'mobx-restful';
-import { TableCellValue, TableRecordList } from 'lark-ts-sdk';
+import {
+  TableCellLink,
+  TableCellRelation,
+  TableCellValue,
+  TableRecordList,
+} from 'lark-ts-sdk';
 
 import { client } from './Base';
 import { createListStream } from './Lark';
 import { OrganizationStatistic } from '../pages/api/organization/statistic';
+import { CooperationData } from '../pages/api/organization/cooperation';
 
 export type Organization = Record<
   | 'id'
@@ -24,7 +30,7 @@ export type Organization = Record<
 >;
 
 export type Cooperation = Record<
-  'organization' | 'year' | 'level',
+  'organization' | 'year' | 'level' | 'link',
   TableCellValue
 >;
 
@@ -35,11 +41,8 @@ export class OrganizationModel extends Stream<Organization>(ListModel) {
   @observable
   statistic: OrganizationStatistic = {} as OrganizationStatistic;
 
-  normalizeLink(value: TableCellValue) {
-    return value && typeof value === 'object' && 'link' in value
-      ? value.text
-      : value;
-  }
+  normalizeText = (value: TableCellLink | TableCellRelation) =>
+    value && typeof value === 'object' && 'text' in value ? value.text : value;
 
   normalize = ({
     id,
@@ -47,9 +50,9 @@ export class OrganizationModel extends Stream<Organization>(ListModel) {
   }: TableRecordList<Organization>['data']['items'][number]): Organization => ({
     ...fields,
     id: id!,
-    link: this.normalizeLink(link),
-    codeLink: this.normalizeLink(codeLink),
-    email: this.normalizeLink(email),
+    link: this.normalizeText(link as TableCellLink),
+    codeLink: this.normalizeText(codeLink as TableCellLink),
+    email: this.normalizeText(email as TableCellLink),
   });
 
   async *openStream(filter: NewData<Organization>) {
@@ -71,6 +74,24 @@ export class OrganizationModel extends Stream<Organization>(ListModel) {
     );
     return (this.statistic = body!);
   }
+
+  async getCooperation() {
+    const { body } = await this.client.get<CooperationData>(
+      `${this.baseURI}/cooperation`,
+    );
+    return Object.fromEntries(
+      Object.entries(body!).map(([year, list]) => [
+        year,
+        list.map(({ organization, link, ...item }) => ({
+          ...item,
+          organization: (organization as TableCellRelation[]).map(
+            this.normalizeText,
+          ),
+          link: (link as TableCellLink[]).map(this.normalizeText),
+        })),
+      ]),
+    );
+  }
 }
 
-export const organizationStore = new OrganizationModel();
+export default new OrganizationModel();

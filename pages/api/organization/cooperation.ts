@@ -1,33 +1,27 @@
+import { groupBy } from 'web-utility';
 import { NextApiResponse } from 'next';
-import { parseURLData, buildURLData } from 'web-utility';
-import { DataObject } from 'mobx-restful';
-import { TableRecordList } from 'lark-ts-sdk';
 
 import { safeAPI } from '../base';
 import { lark } from '../../../models/Lark';
 import { Cooperation } from '../../../models/Organization';
 
-const LARK_BITABLE_ID = process.env.LARK_BITABLE_ID!;
+const LARK_BITABLE_ID = process.env.LARK_BITABLE_ID!,
+  LARK_BITABLE_COOPERATION_ID = process.env.LARK_BITABLE_COOPERATION_ID!;
+
+export type CooperationData = Record<number, Cooperation[]>;
 
 export default safeAPI(
-  async (
-    { method, url },
-    response: NextApiResponse<TableRecordList<Cooperation>['data']>,
-  ) => {
+  async ({ method }, response: NextApiResponse<CooperationData>) => {
     switch (method) {
       case 'GET': {
         const biTable = await lark.getBITable(LARK_BITABLE_ID);
 
-        const table = await biTable.getTable<{}>('tbldaVidMHzV9Vo2'),
-          { page_size, page_token } = parseURLData(url!) as DataObject;
-
-        const { body } = await lark.client.get<TableRecordList<Cooperation>>(
-          `${table!.baseURI}/records?${buildURLData({
-            page_size,
-            page_token,
-          })}`,
+        const table = await biTable.getTable<Cooperation>(
+          LARK_BITABLE_COOPERATION_ID,
         );
-        response.json(body!.data);
+        const list = await table!.getAllRecords();
+
+        response.json(groupBy(list, 'year'));
       }
     }
   },

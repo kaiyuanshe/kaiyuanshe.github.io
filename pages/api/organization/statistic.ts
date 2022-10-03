@@ -6,12 +6,14 @@ import { lark } from '../../../models/Lark';
 import { Organization } from '../../../models/Organization';
 
 const LARK_BITABLE_ID = process.env.LARK_BITABLE_ID!,
-  LARK_BITABLE_TABLE_ID = process.env.LARK_BITABLE_TABLE_ID!;
+  LARK_BITABLE_ORGANIZATION_ID = process.env.LARK_BITABLE_ORGANIZATION_ID!;
 
 const statistic = cache(async clean => {
   const biTable = await lark.getBITable(LARK_BITABLE_ID);
 
-  const table = await biTable.getTable<Organization>(LARK_BITABLE_TABLE_ID);
+  const table = await biTable.getTable<Organization>(
+    LARK_BITABLE_ORGANIZATION_ID,
+  );
 
   const list = ((await table?.getAllRecords()) || []).filter(
     ({ verified }) => verified === '是',
