@@ -36,7 +36,7 @@ export type Cooperation = Record<
 
 export class OrganizationModel extends Stream<Organization>(ListModel) {
   client = client;
-  baseURI = 'api/organization';
+  baseURI = 'organization';
 
   @observable
   statistic: OrganizationStatistic = {} as OrganizationStatistic;
