@@ -1,6 +1,5 @@
 import { isEmpty } from 'web-utility';
 import { debounce } from 'lodash';
-import dynamic from 'next/dynamic';
 import { computed } from 'mobx';
 import { observer } from 'mobx-react';
 import { PureComponent } from 'react';

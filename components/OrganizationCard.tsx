@@ -5,6 +5,7 @@ import { Card, CardProps, Badge, Button, Image } from 'react-bootstrap';
 import { text2color, Icon } from 'idea-react';
 import type { TableCellMedia } from 'lark-ts-sdk';
 
+import { StaticRoot } from '../models/Base';
 import { Organization } from '../models/Organization';
 
 export interface OrganizationCardProps
@@ -80,9 +81,7 @@ export class OrganizationCard extends PureComponent<OrganizationCardProps> {
           variant="top"
           style={{ height: '30vh', objectFit: 'contain' }}
           loading="lazy"
-          src={`https://communitymap01.blob.core.chinacloudapi.cn/$web/${(
-            name + ''
-          ).replace(/\s+/g, '-')}.png`}
+          src={`${StaticRoot}/${(name + '').replace(/\s+/g, '-')}.png`}
           onError={({ currentTarget: image }) => (image.src = logo || '')}
         />
         <Card.Body>
