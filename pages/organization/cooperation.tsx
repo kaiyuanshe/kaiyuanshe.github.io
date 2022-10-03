@@ -1,10 +1,12 @@
 import { groupBy } from 'web-utility';
-import { InferGetServerSidePropsType } from 'next';
+import { computed } from 'mobx';
+import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
 import { Container, ListGroup, Image } from 'react-bootstrap';
+import { Loading } from 'idea-react';
 
 import PageHead from '../../components/PageHead';
-import { StaticRoot } from '../../models/Base';
+import { isServer, StaticRoot } from '../../models/Base';
 import organizationStore, { Cooperation } from '../../models/Organization';
 
 const Levels = [
@@ -24,22 +26,24 @@ const Levels = [
   '媒体伙伴',
 ];
 
-export async function getServerSideProps() {
-  const cooperation = await organizationStore.getCooperation();
+@observer
+export default class CooperationPage extends PureComponent {
+  @computed
+  get yearGroup() {
+    const { cooperation } = organizationStore;
 
-  const yearGroup = Object.entries(cooperation)
-    .sort(([x], [y]) => +y - +x)
-    .map(([year, list]) => [+year, groupBy(list, 'level')]) as [
-    number,
-    Record<string, Cooperation[]>,
-  ][];
+    return Object.entries(cooperation)
+      .sort(([x], [y]) => +y - +x)
+      .map(([year, list]) => [+year, groupBy(list, 'level')]) as [
+      number,
+      Record<string, Cooperation[]>,
+    ][];
+  }
 
-  return { props: { yearGroup } };
-}
+  componentDidMount() {
+    if (!isServer()) organizationStore.getCooperation();
+  }
 
-export default class CooperationPage extends PureComponent<
-  InferGetServerSidePropsType<typeof getServerSideProps>
-> {
   renderGroup(level: string, list: Cooperation[], size = 1) {
     return (
       <section key={level}>
@@ -63,10 +67,13 @@ export default class CooperationPage extends PureComponent<
   }
 
   render() {
-    const { yearGroup } = this.props;
+    const { yearGroup } = this,
+      { downloading } = organizationStore;
 
     return (
       <Container className="d-flex flex-wrap my-4 text-center">
+        {downloading > 0 && <Loading />}
+
         <PageHead title="合作伙伴" />
 
         <h1 className="w-100 my-4">合作伙伴</h1>

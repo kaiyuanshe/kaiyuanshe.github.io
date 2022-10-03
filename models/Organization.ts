@@ -41,6 +41,9 @@ export class OrganizationModel extends Stream<Organization>(ListModel) {
   @observable
   statistic: OrganizationStatistic = {} as OrganizationStatistic;
 
+  @observable
+  cooperation: CooperationData = {} as CooperationData;
+
   normalizeText = (value: TableCellLink | TableCellRelation) =>
     value && typeof value === 'object' && 'text' in value ? value.text : value;
 
@@ -75,11 +78,12 @@ export class OrganizationModel extends Stream<Organization>(ListModel) {
     return (this.statistic = body!);
   }
 
+  @toggle('downloading')
   async getCooperation() {
     const { body } = await this.client.get<CooperationData>(
       `${this.baseURI}/cooperation`,
     );
-    return Object.fromEntries(
+    const group = Object.fromEntries(
       Object.entries(body!).map(([year, list]) => [
         year,
         list.map(({ organization, link, ...item }) => ({
@@ -91,6 +95,7 @@ export class OrganizationModel extends Stream<Organization>(ListModel) {
         })),
       ]),
     );
+    return (this.cooperation = group);
   }
 }
 
