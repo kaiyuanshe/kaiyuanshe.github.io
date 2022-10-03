@@ -6,6 +6,6 @@ export const StaticRoot =
   'https://communitymap01.blob.core.chinacloudapi.cn/$web';
 
 export const client = new HTTPClient({
-  baseURI: 'http://localhost:3000',
+  baseURI: isServer() ? 'http://localhost:3000' : undefined,
   responseType: 'json',
 });
