@@ -1,9 +1,10 @@
 import { isEmpty } from 'web-utility';
 import { debounce } from 'lodash';
-import { computed } from 'mobx';
+import dynamic from 'next/dynamic';
+import { observable, computed } from 'mobx';
 import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
-import { Container, Row, Col, Badge, Button } from 'react-bootstrap';
+import { Container, Row, Col, Badge, Button, Nav } from 'react-bootstrap';
 import {
   text2color,
   ScrollBoundary,
@@ -24,8 +25,16 @@ import { isServer } from '../../models/Base';
 import metaStore from '../../models/Meta';
 import organizationStore from '../../models/Organization';
 
+const OrganizationCharts = dynamic(
+  () => import('../../components/OrganizationCharts'),
+  { ssr: false },
+);
+
 @observer
 export class OpenSourceMap extends PureComponent {
+  @observable
+  tabKey: 'map' | 'chart' = 'map';
+
   @computed
   get markers() {
     const { cityCoordinate } = metaStore,
@@ -126,26 +135,53 @@ export class OpenSourceMap extends PureComponent {
     );
   }
 
-  render() {
-    const { markers } = this;
-    const { downloading, allItems } = organizationStore;
+  renderTab() {
+    const { tabKey, markers } = this,
+      { statistic } = organizationStore;
 
     return (
       <>
-        {downloading ? (
-          <Loading />
+        <Nav
+          variant="pills"
+          className="justify-content-center mb-3"
+          activeKey={tabKey}
+          onSelect={key =>
+            key && (this.tabKey = key as OpenSourceMap['tabKey'])
+          }
+        >
+          <Nav.Item>
+            <Nav.Link eventKey="map">地图</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link eventKey="chart">图表</Nav.Link>
+          </Nav.Item>
+        </Nav>
+
+        {tabKey !== 'map' ? (
+          <OrganizationCharts {...statistic} />
         ) : (
-          <div style={{ height: '70vh' }}>
-            {!isServer() && (
+          !isServer() && (
+            <div style={{ height: '70vh' }}>
               <OpenMap
                 center={[34.32, 108.55]}
                 zoom={4}
                 markers={markers}
                 onMarkerClick={this.switchCity}
               />
-            )}
-          </div>
+            </div>
+          )
         )}
+      </>
+    );
+  }
+
+  render() {
+    const { downloading, allItems } = organizationStore;
+
+    return (
+      <>
+        {downloading > 0 ? <Loading /> : this.renderTab()}
+
         <ScrollBoundary onTouch={this.loadMore}>
           {this.renderFilter()}
 
