@@ -1,4 +1,4 @@
-import { Hour, IndexKey, Iteratee, groupBy, cache } from 'web-utility';
+import { Hour, statisticBy, cache } from 'web-utility';
 import { NextApiResponse } from 'next';
 
 import { safeAPI } from '../base';
@@ -7,18 +7,6 @@ import { Organization } from '../../../models/Organization';
 
 const LARK_BITABLE_ID = process.env.LARK_BITABLE_ID!,
   LARK_BITABLE_ORGANIZATION_ID = process.env.LARK_BITABLE_ORGANIZATION_ID!;
-
-function statisticBy<T extends Record<IndexKey, any>>(
-  list: T[],
-  iteratee: Iteratee<T>,
-) {
-  const group = groupBy(list, iteratee);
-
-  const sortedList = Object.entries(group).map(
-    ([key, { length }]) => [key, length] as const,
-  );
-  return Object.fromEntries(sortedList);
-}
 
 export const sortStatistic = (data: Record<string, number>, sortValue = true) =>
   Object.entries(data)

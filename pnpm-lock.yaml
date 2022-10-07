@@ -17,7 +17,7 @@ specifiers:
   '@types/qs': ^6.9.7
   '@types/react': ^17.0.50
   array-unique-proposal: ^0.3.4
-  echarts-jsx: ^0.3.1
+  echarts-jsx: ^0.4.0
   editorjs-html: ^3.4.2
   eslint: ^8.24.0
   eslint-config-next: ^12.3.1
@@ -29,7 +29,7 @@ specifiers:
   koajax: ^0.8.3
   lark-ts-sdk: ^0.7.9
   less: ^4.1.3
-  less-loader: ^11.0.0
+  less-loader: ^11.1.0
   lint-staged: ^13.0.3
   lodash: ^4.17.21
   mobx: ^5.15.7
@@ -49,7 +49,7 @@ specifiers:
   ts-jest: ^29.0.3
   ts-node: ^10.9.1
   typescript: ~4.8.4
-  web-utility: ^3.9.4
+  web-utility: ^3.9.5
 
 dependencies:
   '@editorjs/code': 2.7.0
@@ -62,7 +62,7 @@ dependencies:
   '@editorjs/quote': 2.4.0
   '@giscus/react': 2.2.0_sfoxds7t5ydpegc3knd667wn6m
   array-unique-proposal: 0.3.4
-  echarts-jsx: 0.3.1_react@17.0.2
+  echarts-jsx: 0.4.0_fojqzymmhghtp7ea2s2myrhtcu
   editorjs-html: 3.4.2
   file-type: 18.0.0
   idea-react: 0.27.7_x3ywzdgmzjnrxacliaduzgstyu
@@ -79,7 +79,7 @@ dependencies:
   react-bootstrap: 2.5.0_hiunvzosbwliizyirxfy6hjyim
   react-dom: 17.0.2_react@17.0.2
   react-editor-js: 2.1.0_5nqabvyy7cdfyepattmhvo7ray
-  web-utility: 3.9.4_typescript@4.8.4
+  web-utility: 3.9.5_typescript@4.8.4
 
 devDependencies:
   '@jest/types': 29.1.2
@@ -94,10 +94,10 @@ devDependencies:
   jest: 29.1.2_yu2f43ltp6fau7k5sa35k5xfri
   jest-playwright-preset: 2.0.0_jest@29.1.2
   less: 4.1.3
-  less-loader: 11.0.0_less@4.1.3
+  less-loader: 11.1.0_less@4.1.3
   lint-staged: 13.0.3
   next-pwa: 5.6.0_next@12.3.1
-  next-with-less: 2.0.5_66emysn5urh7yz3xknvg4p6q6y
+  next-with-less: 2.0.5_bhmov3cur4gcctpw4k2zrhdwma
   playwright: 1.26.1
   prettier: 2.7.1
   ts-jest: 29.0.3_tgejc6cnv2pbkgcnmxq3dkgmme
@@ -3106,13 +3106,16 @@ packages:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
     dev: true
 
-  /echarts-jsx/0.3.1_react@17.0.2:
-    resolution: {integrity: sha512-dqgnF1o/4OM5zBddoB0+AP4OyCjee34xEMFwqXZsyvr+KvGHO+bX3ALXo7QN1SAutCKWBwDggASyczczK+p0ZA==}
+  /echarts-jsx/0.4.0_fojqzymmhghtp7ea2s2myrhtcu:
+    resolution: {integrity: sha512-U8EITsjKjr4wb3nUlfG7Po3eYlakUyma+E0aB6EiOY6qA1/GmRXn9SvgHWe0+fMq7Bt1/WUVrki8JBXuoOd0HA==}
     peerDependencies:
       react: '>=16.0.0'
     dependencies:
       echarts: 5.4.0
       react: 17.0.2
+      web-utility: 3.9.5_typescript@4.8.4
+    transitivePeerDependencies:
+      - typescript
     dev: false
 
   /echarts/5.4.0:
@@ -3138,8 +3141,8 @@ packages:
     resolution: {integrity: sha512-9kV/isoOGpKkBt04yYNaSWIBn3187Q5VZRtoReq8oz5NY/A4XmU6cAoqgQlDp7kKJCZMRjWZ8nsQyxfpFHvfyw==}
     dev: true
 
-  /element-internals-polyfill/1.1.12:
-    resolution: {integrity: sha512-JdV8myuOP+dVnpTOfyAhTFOnbPBZ+t7NIMquCWPCkT3EymrAf8RE3vx+F54NNWF8tBh9rnkXlofMp2jPNWggKw==}
+  /element-internals-polyfill/1.1.14:
+    resolution: {integrity: sha512-G4q3K8M80U5MPIaD+FX2gdAJNQLWGwJ00449p3bGPpkmNESMvemRu+hM69jt2ikwnRBsi51ys5CVNiT6ukT40w==}
     dev: false
 
   /emittery/0.10.2:
@@ -4030,7 +4033,7 @@ packages:
       react-editor-js: 2.1.0_5nqabvyy7cdfyepattmhvo7ray
       react-element-to-jsx-string: 15.0.0_sfoxds7t5ydpegc3knd667wn6m
       react-leaflet: 3.2.5_6k6ga34dyylvilikktgvdmyx6a
-      web-utility: 3.9.4_typescript@4.8.4
+      web-utility: 3.9.5_typescript@4.8.4
     transitivePeerDependencies:
       - '@types/react'
       - jsdom
@@ -4997,7 +5000,7 @@ packages:
       '@swc/helpers': 0.4.11
       iterable-observer: 1.0.0-rc.1
       regenerator-runtime: 0.13.9
-      web-utility: 3.9.4_typescript@4.8.4
+      web-utility: 3.9.5_typescript@4.8.4
     transitivePeerDependencies:
       - typescript
     dev: false
@@ -5020,7 +5023,7 @@ packages:
       node-fetch: 2.6.7
       regenerator-runtime: 0.13.9
       tslib: 2.4.0
-      web-utility: 3.9.4_typescript@4.8.4
+      web-utility: 3.9.5_typescript@4.8.4
     transitivePeerDependencies:
       - encoding
       - jsdom
@@ -5031,8 +5034,8 @@ packages:
     resolution: {integrity: sha512-gwhMjFCQiYs3x/Sf+d49f10ERXaEFCPr+nVTryhAW8DWbMGqJqt9G4XuIaHmFW08zYvhgdzqXGr8AlW8v8dQkA==}
     dev: false
 
-  /less-loader/11.0.0_less@4.1.3:
-    resolution: {integrity: sha512-9+LOWWjuoectIEx3zrfN83NAGxSUB5pWEabbbidVQVgZhN+wN68pOvuyirVlH1IK4VT1f3TmlyvAnCXh8O5KEw==}
+  /less-loader/11.1.0_less@4.1.3:
+    resolution: {integrity: sha512-C+uDBV7kS7W5fJlUjq5mPBeBVhYpTIm5gB09APT9o3n/ILeaXVsiSFTbZpTJCJwQ/Crczfn3DmfQFwxYusWFug==}
     engines: {node: '>= 14.15.0'}
     peerDependencies:
       less: ^3.5.0 || ^4.0.0
@@ -5356,7 +5359,7 @@ packages:
       mobx: 5.15.7
       reflect-metadata: 0.1.13
       regenerator-runtime: 0.13.9
-      web-utility: 3.9.4_typescript@4.8.4
+      web-utility: 3.9.5_typescript@4.8.4
     transitivePeerDependencies:
       - jsdom
       - typescript
@@ -5423,7 +5426,7 @@ packages:
       - webpack
     dev: true
 
-  /next-with-less/2.0.5_66emysn5urh7yz3xknvg4p6q6y:
+  /next-with-less/2.0.5_bhmov3cur4gcctpw4k2zrhdwma:
     resolution: {integrity: sha512-1MJDcgFOPucFPCMXV7rTqcWiLI2nLSBi8bA6msvkiNLhYyZMXaFl4MkyYf7eOEUUEtA/c5eD0grPhbcDkrKqPQ==}
     peerDependencies:
       less: '*'
@@ -5432,7 +5435,7 @@ packages:
     dependencies:
       clone-deep: 4.0.1
       less: 4.1.3
-      less-loader: 11.0.0_less@4.1.3
+      less-loader: 11.1.0_less@4.1.3
       next: 12.3.1_sfoxds7t5ydpegc3knd667wn6m
     dev: true
 
@@ -7105,13 +7108,13 @@ packages:
       loose-envify: 1.4.0
     dev: false
 
-  /web-utility/3.9.4_typescript@4.8.4:
-    resolution: {integrity: sha512-SlmE79FbdpRgwXJ0JVBJscqNZvL4Do/Sjp3MHvG8p+MZdmWnbQab4zorSa1l8SkDURruNLmFbx9p/rZQlT8V3w==}
+  /web-utility/3.9.5_typescript@4.8.4:
+    resolution: {integrity: sha512-nYCJfCplPtVtZhQNdTW1oyDKyhy14BgtS+gT9opqL9014sz6GOVlo5I/J4XA6Xv9ObMXsCTndwOzPUJDlIyiqg==}
     peerDependencies:
       typescript: ^4.1.0
     dependencies:
       '@swc/helpers': 0.4.11
-      element-internals-polyfill: 1.1.12
+      element-internals-polyfill: 1.1.14
       regenerator-runtime: 0.13.9
       typescript: 4.8.4
     dev: false
