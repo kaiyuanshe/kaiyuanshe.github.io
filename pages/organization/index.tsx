@@ -1,28 +1,20 @@
 import { isEmpty } from 'web-utility';
 import { debounce } from 'lodash';
 import dynamic from 'next/dynamic';
-import { observable, computed } from 'mobx';
+import { observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
 import { Container, Row, Col, Badge, Button, Nav } from 'react-bootstrap';
-import {
-  text2color,
-  ScrollBoundary,
-  TouchHandler,
-  Loading,
-  MarkerMeta,
-  OpenMapProps,
-  OpenMap,
-} from 'idea-react';
+import { text2color, ScrollBoundary, TouchHandler, Loading } from 'idea-react';
 
 import PageHead from '../../components/PageHead';
 import {
   OrganizationCardProps,
   OrganizationCard,
 } from '../../components/OrganizationCard';
+import { CityStatisticMap } from '../../components/CityStatisticMap';
 
 import { isServer } from '../../models/Base';
-import metaStore from '../../models/Meta';
 import organizationStore from '../../models/Organization';
 
 const OrganizationCharts = dynamic(
@@ -35,26 +27,7 @@ export class OpenSourceMap extends PureComponent {
   @observable
   tabKey: 'map' | 'chart' = 'map';
 
-  @computed
-  get markers() {
-    const { cityCoordinate } = metaStore,
-      { city = {} } = organizationStore.statistic;
-
-    return Object.entries(city)
-      .map(([city, count]) => {
-        const point = cityCoordinate[city];
-
-        if (point)
-          return {
-            tooltip: `${city} ${count}`,
-            position: [point[1], point[0]],
-          };
-      })
-      .filter(Boolean) as MarkerMeta[];
-  }
-
   componentDidMount() {
-    metaStore.getCityCoordinate();
     organizationStore.getStatistic();
     organizationStore.getList();
   }
@@ -88,17 +61,6 @@ export class OpenSourceMap extends PureComponent {
         ? { city }
         : {},
     );
-  };
-
-  switchCity: OpenMapProps['onMarkerClick'] = ({ latlng: { lat, lng } }) => {
-    const { markers } = this;
-    const { tooltip } =
-      markers.find(
-        ({ position: p }) => p instanceof Array && lat === p[0] && lng === p[1],
-      ) || {};
-    const [city] = tooltip?.split(/\s+/) || [];
-
-    return this.switchFilter({ city });
   };
 
   renderFilter() {
@@ -136,7 +98,7 @@ export class OpenSourceMap extends PureComponent {
   }
 
   renderTab() {
-    const { tabKey, markers } = this,
+    const { tabKey } = this,
       { statistic } = organizationStore;
 
     return (
@@ -161,14 +123,10 @@ export class OpenSourceMap extends PureComponent {
           <OrganizationCharts {...statistic} />
         ) : (
           !isServer() && (
-            <div style={{ height: '70vh' }}>
-              <OpenMap
-                center={[34.32, 108.55]}
-                zoom={4}
-                markers={markers}
-                onMarkerClick={this.switchCity}
-              />
-            </div>
+            <CityStatisticMap
+              store={organizationStore}
+              onChange={city => this.switchFilter({ city })}
+            />
           )
         )}
       </>
