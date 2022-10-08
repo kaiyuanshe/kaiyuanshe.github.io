@@ -1,4 +1,4 @@
-import { Hour, statisticBy, cache } from 'web-utility';
+import { Hour, countBy, cache } from 'web-utility';
 import { NextApiResponse } from 'next';
 
 import { safeAPI } from '../base';
@@ -22,12 +22,12 @@ const statistic = cache(async clean => {
   const list = ((await table?.getAllRecords()) || []).filter(
     ({ verified }) => verified === '是',
   );
-  const type = statisticBy(list, 'type'),
-    tag = statisticBy(list, 'tags'),
-    year = statisticBy(list, ({ startDate }) =>
+  const type = countBy(list, 'type'),
+    tag = countBy(list, 'tags'),
+    year = countBy(list, ({ startDate }) =>
       new Date(startDate as number).getFullYear(),
     ),
-    city = statisticBy(list, ({ city }) => (city + '').trim().split(/\s+/));
+    city = countBy(list, ({ city }) => (city + '').trim().split(/\s+/));
 
   setTimeout(clean, Hour / 2);
 

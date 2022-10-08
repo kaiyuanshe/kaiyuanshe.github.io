@@ -49,7 +49,7 @@ specifiers:
   ts-jest: ^29.0.3
   ts-node: ^10.9.1
   typescript: ~4.8.4
-  web-utility: ^3.9.5
+  web-utility: ^3.9.6
 
 dependencies:
   '@editorjs/code': 2.7.0
@@ -79,7 +79,7 @@ dependencies:
   react-bootstrap: 2.5.0_hiunvzosbwliizyirxfy6hjyim
   react-dom: 17.0.2_react@17.0.2
   react-editor-js: 2.1.0_5nqabvyy7cdfyepattmhvo7ray
-  web-utility: 3.9.5_typescript@4.8.4
+  web-utility: 3.9.6_typescript@4.8.4
 
 devDependencies:
   '@jest/types': 29.1.2
@@ -3113,7 +3113,7 @@ packages:
     dependencies:
       echarts: 5.4.0
       react: 17.0.2
-      web-utility: 3.9.5_typescript@4.8.4
+      web-utility: 3.9.6_typescript@4.8.4
     transitivePeerDependencies:
       - typescript
     dev: false
@@ -4033,7 +4033,7 @@ packages:
       react-editor-js: 2.1.0_5nqabvyy7cdfyepattmhvo7ray
       react-element-to-jsx-string: 15.0.0_sfoxds7t5ydpegc3knd667wn6m
       react-leaflet: 3.2.5_6k6ga34dyylvilikktgvdmyx6a
-      web-utility: 3.9.5_typescript@4.8.4
+      web-utility: 3.9.6_typescript@4.8.4
     transitivePeerDependencies:
       - '@types/react'
       - jsdom
@@ -5000,7 +5000,7 @@ packages:
       '@swc/helpers': 0.4.11
       iterable-observer: 1.0.0-rc.1
       regenerator-runtime: 0.13.9
-      web-utility: 3.9.5_typescript@4.8.4
+      web-utility: 3.9.6_typescript@4.8.4
     transitivePeerDependencies:
       - typescript
     dev: false
@@ -5023,7 +5023,7 @@ packages:
       node-fetch: 2.6.7
       regenerator-runtime: 0.13.9
       tslib: 2.4.0
-      web-utility: 3.9.5_typescript@4.8.4
+      web-utility: 3.9.6_typescript@4.8.4
     transitivePeerDependencies:
       - encoding
       - jsdom
@@ -5359,7 +5359,7 @@ packages:
       mobx: 5.15.7
       reflect-metadata: 0.1.13
       regenerator-runtime: 0.13.9
-      web-utility: 3.9.5_typescript@4.8.4
+      web-utility: 3.9.6_typescript@4.8.4
     transitivePeerDependencies:
       - jsdom
       - typescript
@@ -7108,8 +7108,8 @@ packages:
       loose-envify: 1.4.0
     dev: false
 
-  /web-utility/3.9.5_typescript@4.8.4:
-    resolution: {integrity: sha512-nYCJfCplPtVtZhQNdTW1oyDKyhy14BgtS+gT9opqL9014sz6GOVlo5I/J4XA6Xv9ObMXsCTndwOzPUJDlIyiqg==}
+  /web-utility/3.9.6_typescript@4.8.4:
+    resolution: {integrity: sha512-8ChJqdpfA2s8fR+MTCMjcbqwOxD7irmXGOxYsar+He8o6S5WXZRVCghbs9MlF7c9/UkWiqmK2iG9/JzbhNVFbg==}
     peerDependencies:
       typescript: ^4.1.0
     dependencies:
