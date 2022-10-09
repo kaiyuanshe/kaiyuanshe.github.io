@@ -21,7 +21,7 @@ export default class HomePage extends PureComponent {
 
   renderProject = ({ id, name, logo = DefaultImage, link }: Group) => (
     <Col as="li" key={id + ''} className="position-relative">
-      <Image style={{ height: '8rem' }} src={fileURLOf(logo)} />
+      <Image style={{ height: '8rem' }} loading="lazy" src={fileURLOf(logo)} />
       <a
         className="d-block text-decoration-none text-dark h5 stretched-link mt-3"
         target="_blank"

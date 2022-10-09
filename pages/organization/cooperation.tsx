@@ -56,6 +56,7 @@ export default class CooperationPage extends PureComponent {
                 <Image
                   style={{ maxWidth: size * 10 + 'rem' }}
                   alt={organization + ''}
+                  loading="lazy"
                   src={`${StaticRoot}/${organization}.png`}
                 />
               </a>
