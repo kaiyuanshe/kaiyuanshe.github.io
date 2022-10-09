@@ -1,8 +1,7 @@
-import { InferGetServerSidePropsType } from 'next';
 import { observer } from 'mobx-react';
 import { Fragment, PureComponent } from 'react';
 import { Container, Row, Col, Image } from 'react-bootstrap';
-import { Icon } from 'idea-react';
+import { Icon, Loading } from 'idea-react';
 
 import PageHead from '../components/PageHead';
 import ArticleCard from '../components/ArticleCard';
@@ -14,20 +13,12 @@ import activityStore from '../models/Activity';
 import { slogan } from './api/home';
 import { DefaultImage, fileURLOf } from './api/lark/file/[id]';
 
-export async function getServerSideProps() {
-  const projects = await groupStore.getAll({ type: '项目' });
-
-  return {
-    props: {
-      projects: projects.map(item => JSON.parse(JSON.stringify(item)) as Group),
-    },
-  };
-}
-
 @observer
-export default class HomePage extends PureComponent<
-  InferGetServerSidePropsType<typeof getServerSideProps>
-> {
+export default class HomePage extends PureComponent {
+  componentDidMount() {
+    groupStore.getAll({ type: '项目' });
+  }
+
   renderProject = ({ id, name, logo = DefaultImage, link }: Group) => (
     <Col as="li" key={id + ''} className="position-relative">
       <Image style={{ height: '8rem' }} src={fileURLOf(logo)} />
@@ -43,11 +34,13 @@ export default class HomePage extends PureComponent<
   );
 
   render() {
-    const { projects } = this.props;
+    const { downloading, allItems } = groupStore;
 
     return (
       <>
         <PageHead />
+
+        {downloading > 0 && <Loading />}
 
         <section className="py-5 text-center bg-primary">
           <Image
@@ -90,7 +83,7 @@ export default class HomePage extends PureComponent<
               sm={2}
               md={4}
             >
-              {projects.map(this.renderProject)}
+              {allItems.map(this.renderProject)}
             </Row>
           </section>
 
