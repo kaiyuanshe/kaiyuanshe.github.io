@@ -3,10 +3,10 @@ import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
 import { Card, CardProps, Badge, Button, Image } from 'react-bootstrap';
 import { text2color, Icon } from 'idea-react';
-import type { TableCellMedia } from 'lark-ts-sdk';
 
 import { StaticRoot } from '../models/Base';
 import { Organization } from '../models/Organization';
+import { fileURLOf } from '../pages/api/lark/file/[id]';
 
 export interface OrganizationCardProps
   extends Omit<Organization, 'id'>,
@@ -70,10 +70,7 @@ export class OrganizationCard extends PureComponent<OrganizationCardProps> {
     const { name, logos, type, tags, summary, wechatName, onSwitch, ...props } =
       this.props;
 
-    const logo =
-      logos instanceof Array &&
-      logos[0] &&
-      `/api/lark/file/${(logos[0] as TableCellMedia).file_token}`;
+    const logo = fileURLOf(logos);
 
     return (
       <Card {...props}>
@@ -82,7 +79,9 @@ export class OrganizationCard extends PureComponent<OrganizationCardProps> {
           style={{ height: '30vh', objectFit: 'contain' }}
           loading="lazy"
           src={`${StaticRoot}/${(name + '').replace(/\s+/g, '-')}.png`}
-          onError={({ currentTarget: image }) => (image.src = logo || '')}
+          onError={({ currentTarget: image }) =>
+            logo && !image.src.endsWith(logo) && (image.src = logo || '')
+          }
         />
         <Card.Body>
           <Card.Title>
