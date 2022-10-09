@@ -8,7 +8,7 @@ import {
 } from 'lark-ts-sdk';
 
 import { client } from './Base';
-import { createListStream } from './Lark';
+import { normalizeText, createListStream } from './Lark';
 import { OrganizationStatistic } from '../pages/api/organization/statistic';
 import { CooperationData } from '../pages/api/organization/cooperation';
 
@@ -44,18 +44,15 @@ export class OrganizationModel extends Stream<Organization>(ListModel) {
   @observable
   cooperation: CooperationData = {} as CooperationData;
 
-  normalizeText = (value: TableCellLink | TableCellRelation) =>
-    value && typeof value === 'object' && 'text' in value ? value.text : value;
-
   normalize = ({
     id,
     fields: { link, codeLink, email, ...fields },
   }: TableRecordList<Organization>['data']['items'][number]): Organization => ({
     ...fields,
     id: id!,
-    link: this.normalizeText(link as TableCellLink),
-    codeLink: this.normalizeText(codeLink as TableCellLink),
-    email: this.normalizeText(email as TableCellLink),
+    link: normalizeText(link as TableCellLink),
+    codeLink: normalizeText(codeLink as TableCellLink),
+    email: normalizeText(email as TableCellLink),
   });
 
   async *openStream(filter: NewData<Organization>) {
@@ -89,9 +86,9 @@ export class OrganizationModel extends Stream<Organization>(ListModel) {
         list.map(({ organization, link, ...item }) => ({
           ...item,
           organization: (organization as TableCellRelation[]).map(
-            this.normalizeText,
+            normalizeText,
           ),
-          link: (link as TableCellLink[]).map(this.normalizeText),
+          link: (link as TableCellLink[]).map(normalizeText),
         })),
       ]),
     );

@@ -28,7 +28,6 @@ export class OpenSourceMap extends PureComponent {
   tabKey: 'map' | 'chart' = 'map';
 
   componentDidMount() {
-    organizationStore.getStatistic();
     organizationStore.getList();
   }
 
@@ -102,7 +101,7 @@ export class OpenSourceMap extends PureComponent {
       { statistic } = organizationStore;
 
     return (
-      <>
+      <div>
         <Nav
           variant="pills"
           className="justify-content-center mb-3"
@@ -129,7 +128,7 @@ export class OpenSourceMap extends PureComponent {
             />
           )
         )}
-      </>
+      </div>
     );
   }
 
@@ -138,7 +137,9 @@ export class OpenSourceMap extends PureComponent {
 
     return (
       <>
-        {downloading > 0 ? <Loading /> : this.renderTab()}
+        {downloading > 0 && <Loading />}
+
+        {this.renderTab()}
 
         <ScrollBoundary onTouch={this.loadMore}>
           {this.renderFilter()}

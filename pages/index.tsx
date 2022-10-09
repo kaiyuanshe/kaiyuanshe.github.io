@@ -1,3 +1,4 @@
+import { InferGetServerSidePropsType } from 'next';
 import { observer } from 'mobx-react';
 import { Fragment, PureComponent } from 'react';
 import { Container, Row, Col, Image } from 'react-bootstrap';
@@ -7,37 +8,90 @@ import PageHead from '../components/PageHead';
 import ArticleCard from '../components/ArticleCard';
 import { CityStatisticMap } from '../components/CityStatisticMap';
 
-import { slogan } from './api/home';
 import { isServer } from '../models/Base';
+import groupStore, { Group } from '../models/Group';
 import activityStore from '../models/Activity';
+import { slogan } from './api/home';
+import { DefaultImage, fileURLOf } from './api/lark/file/[id]';
+
+export async function getServerSideProps() {
+  const projects = await groupStore.getAll({ type: '项目' });
+
+  return {
+    props: {
+      projects: projects.map(item => JSON.parse(JSON.stringify(item)) as Group),
+    },
+  };
+}
 
 @observer
-export default class HomePage extends PureComponent {
+export default class HomePage extends PureComponent<
+  InferGetServerSidePropsType<typeof getServerSideProps>
+> {
+  renderProject = ({ id, name, logo = DefaultImage, link }: Group) => (
+    <Col as="li" key={id + ''} className="position-relative">
+      <Image style={{ height: '8rem' }} src={fileURLOf(logo)} />
+      <a
+        className="d-block text-decoration-none text-dark h5 stretched-link mt-3"
+        target="_blank"
+        href={link + ''}
+        rel="noreferrer"
+      >
+        {name}
+      </a>
+    </Col>
+  );
+
   render() {
+    const { projects } = this.props;
+
     return (
       <>
         <PageHead />
 
         <section className="py-5 text-center bg-primary">
-          <Image src="https://kaiyuanshe.cn/image/Heart_of_Community.png" />
+          <Image
+            fluid
+            src="https://kaiyuanshe.cn/image/Heart_of_Community.png"
+          />
         </section>
 
         <Container>
-          <section className="py-5 text-center">
+          <section className="text-center">
             {slogan.map(({ title, items }) => (
               <Fragment key={title}>
-                <h2 className="text-primary">{title}</h2>
+                <h2 className="my-5 text-primary">{title}</h2>
 
-                <ul className="list-unstyled text-secondary d-flex justify-content-center">
+                <Row
+                  as="ul"
+                  className="list-unstyled mx-0 g-5 justify-content-center text-secondary"
+                  xs={2}
+                  sm={2}
+                  md={4}
+                >
                   {items.map(({ icon, text }) => (
-                    <li key={text} className="m-5">
+                    <Col as="li" key={text}>
                       <Icon name={icon} size={6} />
-                      <h3>{text}</h3>
-                    </li>
+                      <div className="h3">{text}</div>
+                    </Col>
                   ))}
-                </ul>
+                </Row>
               </Fragment>
             ))}
+          </section>
+
+          <section className="text-center">
+            <h2 className="my-5 text-primary">自研开源项目</h2>
+
+            <Row
+              as="ul"
+              className="list-unstyled mx-0 g-5 justify-content-center"
+              xs={2}
+              sm={2}
+              md={4}
+            >
+              {projects.map(this.renderProject)}
+            </Row>
           </section>
 
           {/* <section>
@@ -55,7 +109,7 @@ export default class HomePage extends PureComponent {
           </section> */}
 
           <section>
-            <h2 className="mb-4 text-center text-primary">活动地图</h2>
+            <h2 className="my-5 text-center text-primary">活动地图</h2>
 
             {!isServer() && <CityStatisticMap store={activityStore} />}
           </section>

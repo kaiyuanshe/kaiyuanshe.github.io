@@ -1,7 +1,17 @@
 import { fileTypeFromBuffer } from 'file-type';
+import { TableCellMedia, TableCellValue } from 'lark-ts-sdk';
 
 import { lark } from '../../../../models/Lark';
 import { safeAPI } from '../../base';
+
+export const DefaultImage = 'https://github.com/kaiyuanshe.png';
+
+export const fileURLOf = (field: TableCellValue) =>
+  field instanceof Array
+    ? field[0]
+      ? `/api/lark/file/${(field[0] as TableCellMedia).file_token}`
+      : field + ''
+    : field + '';
 
 export default safeAPI(async (req, res) => {
   switch (req.method) {
