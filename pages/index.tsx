@@ -1,7 +1,7 @@
-import { observer } from 'mobx-react';
+import { InferGetStaticPropsType } from 'next';
 import { Fragment, PureComponent } from 'react';
 import { Container, Row, Col, Image } from 'react-bootstrap';
-import { Icon, Loading } from 'idea-react';
+import { Icon } from 'idea-react';
 
 import PageHead from '../components/PageHead';
 import ArticleCard from '../components/ArticleCard';
@@ -13,12 +13,15 @@ import activityStore from '../models/Activity';
 import { slogan } from './api/home';
 import { DefaultImage, fileURLOf } from './api/lark/file/[id]';
 
-@observer
-export default class HomePage extends PureComponent {
-  componentDidMount() {
-    groupStore.getAll({ type: '项目' });
-  }
+export async function getStaticProps() {
+  const projects = await groupStore.getAll({ type: '项目' });
 
+  return { props: { projects: JSON.parse(JSON.stringify(projects)) } };
+}
+
+export default class HomePage extends PureComponent<
+  InferGetStaticPropsType<typeof getStaticProps>
+> {
   renderProject = ({ id, name, logo = DefaultImage, link }: Group) => (
     <Col as="li" key={id + ''} className="position-relative">
       <Image style={{ height: '8rem' }} loading="lazy" src={fileURLOf(logo)} />
@@ -34,13 +37,11 @@ export default class HomePage extends PureComponent {
   );
 
   render() {
-    const { downloading, allItems } = groupStore;
+    const { projects } = this.props;
 
     return (
       <>
         <PageHead />
-
-        {downloading > 0 && <Loading />}
 
         <section className="py-5 text-center bg-primary">
           <Image
@@ -83,7 +84,7 @@ export default class HomePage extends PureComponent {
               sm={2}
               md={4}
             >
-              {allItems.map(this.renderProject)}
+              {projects.map(this.renderProject)}
             </Row>
           </section>
 
