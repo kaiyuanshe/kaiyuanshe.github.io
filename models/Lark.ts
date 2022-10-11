@@ -2,6 +2,7 @@ import { buildURLData } from 'web-utility';
 import { DataObject, NewData, RESTClient } from 'mobx-restful';
 import {
   Lark,
+  TableCellText,
   TableCellLink,
   TableCellRelation,
   TableCellValue,
@@ -26,7 +27,9 @@ export const makeFilter = (data: DataObject) =>
     .map(([key, value]) => `CurrentValue.[${key}].contains("${value}")`)
     .join('&&');
 
-export const normalizeText = (value: TableCellLink | TableCellRelation) =>
+export const normalizeText = (
+  value: TableCellText | TableCellLink | TableCellRelation,
+) =>
   value && typeof value === 'object' && 'text' in value ? value.text : value;
 
 export interface LarkFilter extends DataObject {

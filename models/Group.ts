@@ -1,5 +1,10 @@
 import { NewData, ListModel, Stream } from 'mobx-restful';
-import { TableCellLink, TableCellValue, TableRecordList } from 'lark-ts-sdk';
+import {
+  TableCellText,
+  TableCellLink,
+  TableCellValue,
+  TableRecordList,
+} from 'lark-ts-sdk';
 
 import { client } from './Base';
 import { normalizeText, createListStream } from './Lark';
@@ -28,10 +33,11 @@ export class GroupModel extends Stream<Group>(ListModel) {
 
   normalize = ({
     id,
-    fields: { link, codeLink, email, ...fields },
+    fields: { fullName, link, codeLink, email, ...fields },
   }: TableRecordList<Group>['data']['items'][number]): Group => ({
     ...fields,
     id: id!,
+    fullName: normalizeText((fullName as TableCellText[])[0]),
     link: normalizeText(link as TableCellLink),
     codeLink: normalizeText(codeLink as TableCellLink),
     email: normalizeText(email as TableCellLink),

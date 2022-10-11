@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Icon } from 'idea-react';
 
-import { MainRoute } from '../components/data';
+import { MainRoutes } from '../components/data';
 import MainNav from '../components/MainNav';
 import '../styles/globals.less';
 import { social } from './api/home';
@@ -18,7 +18,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <MainNav title={Name} logo={Logo} links={Object.values(MainRoute)} />
+      <MainNav title={Name} logo={Logo} links={MainRoutes} />
 
       <div className="mt-5 pt-4">
         <Component {...pageProps} />
