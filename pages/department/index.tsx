@@ -3,7 +3,7 @@ import { groupBy } from 'web-utility';
 import { computed } from 'mobx';
 import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
-import { Container } from 'react-bootstrap';
+import { Container, Button } from 'react-bootstrap';
 import { TreeSeriesProps } from 'echarts-jsx';
 
 import PageHead from '../../components/PageHead';
@@ -48,6 +48,7 @@ export default class DepartmentPage extends PureComponent {
             ],
           },
           { name: '顾问委员会' },
+          { name: '法律咨询委员会' },
         ],
       },
     ];
@@ -55,10 +56,20 @@ export default class DepartmentPage extends PureComponent {
 
   render() {
     return (
-      <Container>
+      <Container className="py-5 text-center">
         <PageHead title="组织机构" />
 
+        <h1>开源社组织机构</h1>
+
         <TreeChart data={this.treeData} />
+
+        <Button
+          size="lg"
+          target="_blank"
+          href="https://kaiyuanshe.feishu.cn/share/base/shrcnfO89tYlYIjZpS5PXJBaK2f"
+        >
+          成为志愿者
+        </Button>
       </Container>
     );
   }
