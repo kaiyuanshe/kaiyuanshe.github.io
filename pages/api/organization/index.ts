@@ -1,14 +1,12 @@
-import { buildURLData, parseURLData } from 'web-utility';
-import { DataObject } from 'mobx-restful';
+import { parseURLData } from 'web-utility';
 import { TableRecordList } from 'lark-ts-sdk';
 import { NextApiResponse } from 'next';
 
 import { safeAPI } from '../base';
-import { lark, makeFilter } from '../../../models/Lark';
+import { getBITableList } from '../../../models/Lark';
 import { Organization } from '../../../models/Organization';
 
-const LARK_BITABLE_ID = process.env.LARK_BITABLE_ID!,
-  LARK_BITABLE_ORGANIZATION_ID = process.env.LARK_BITABLE_ORGANIZATION_ID!;
+const LARK_BITABLE_ORGANIZATION_ID = process.env.LARK_BITABLE_ORGANIZATION_ID!;
 
 export default safeAPI(
   async (
@@ -17,23 +15,11 @@ export default safeAPI(
   ) => {
     switch (method) {
       case 'GET': {
-        const biTable = await lark.getBITable(LARK_BITABLE_ID);
-
-        const table = await biTable.getTable<Organization>(
-            LARK_BITABLE_ORGANIZATION_ID,
-          ),
-          { page_size, page_token, ...filter } = parseURLData(
-            url!,
-          ) as DataObject;
-
-        const { body } = await lark.client.get<TableRecordList<Organization>>(
-          `${table!.baseURI}/records?${buildURLData({
-            page_size,
-            page_token,
-            filter: makeFilter({ ...filter, verified: '是' }),
-          })}`,
-        );
-        response.json(body!.data);
+        const pageData = await getBITableList<Organization>({
+          table: LARK_BITABLE_ORGANIZATION_ID,
+          filter: { ...parseURLData(url!), verified: '是' },
+        });
+        response.json(pageData);
       }
     }
   },
