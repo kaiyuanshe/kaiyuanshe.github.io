@@ -11,14 +11,14 @@ import PageHead from '../../components/PageHead';
 import {
   OrganizationCardProps,
   OrganizationCard,
-} from '../../components/OrganizationCard';
+} from '../../components/Organization/Card';
 import { CityStatisticMap } from '../../components/CityStatisticMap';
 
 import { isServer } from '../../models/Base';
 import organizationStore from '../../models/Organization';
 
 const OrganizationCharts = dynamic(
-  () => import('../../components/OrganizationCharts'),
+  () => import('../../components/Organization/Charts'),
   { ssr: false },
 );
 
@@ -170,7 +170,11 @@ export default function OrganizationPage() {
         <header className="d-flex justify-content-between align-items-center">
           <h1 className="my-4">中国开源地图</h1>
           <div>
+            <Button className="me-2" size="sm" href="/organization/landscape">
+              全景图
+            </Button>
             <Button
+              variant="success"
               size="sm"
               target="_blank"
               href="https://kaiyuanshe.feishu.cn/share/base/shrcnPgQoUZzkpWB2W4dp2QQvbd"

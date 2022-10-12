@@ -1,3 +1,4 @@
+import { groupBy } from 'web-utility';
 import { observable } from 'mobx';
 import { NewData, ListModel, Stream, toggle } from 'mobx-restful';
 import {
@@ -42,6 +43,9 @@ export class OrganizationModel extends Stream<Organization>(ListModel) {
   statistic: OrganizationStatistic = {} as OrganizationStatistic;
 
   @observable
+  tagMap: Record<string, Organization[]> = {};
+
+  @observable
   cooperation: CooperationData = {} as CooperationData;
 
   normalize = ({
@@ -73,6 +77,15 @@ export class OrganizationModel extends Stream<Organization>(ListModel) {
       `${this.baseURI}/statistic`,
     );
     return (this.statistic = body!);
+  }
+
+  async groupAllByTags() {
+    await this.getAll();
+
+    return (this.tagMap = groupBy(
+      this.allItems,
+      ({ tags }) => tags as string[],
+    ));
   }
 
   @toggle('downloading')
