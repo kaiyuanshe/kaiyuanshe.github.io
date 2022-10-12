@@ -12,7 +12,7 @@ import {
 import {
   OrganizationStatistic,
   sortStatistic,
-} from '../pages/api/organization/statistic';
+} from '../../pages/api/organization/statistic';
 
 export default function OrganizationCharts({
   type,

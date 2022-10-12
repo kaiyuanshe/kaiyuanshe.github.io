@@ -49,6 +49,7 @@
     "@types/node": "^16.11.65",
     "@types/qs": "^6.9.7",
     "@types/react": "^17.0.50",
+    "@types/react-dom": "17.0.17",
     "eslint": "^8.25.0",
     "eslint-config-next": "^12.3.1",
     "husky": "^8.0.1",

@@ -4,9 +4,9 @@ import { PureComponent } from 'react';
 import { Card, CardProps, Badge, Button, Image } from 'react-bootstrap';
 import { text2color, Icon } from 'idea-react';
 
-import { StaticRoot } from '../models/Base';
-import { Organization } from '../models/Organization';
-import { fileURLOf } from '../pages/api/lark/file/[id]';
+import { staticImageURLOf } from '../../models/Base';
+import { Organization } from '../../models/Organization';
+import { fileURLOf } from '../../pages/api/lark/file/[id]';
 
 export interface OrganizationCardProps
   extends Omit<Organization, 'id'>,
@@ -78,7 +78,7 @@ export class OrganizationCard extends PureComponent<OrganizationCardProps> {
           variant="top"
           style={{ height: '30vh', objectFit: 'contain' }}
           loading="lazy"
-          src={`${StaticRoot}/${(name + '').replace(/\s+/g, '-')}.png`}
+          src={staticImageURLOf(name + '')}
           onError={({ currentTarget: image }) =>
             logo && !image.src.endsWith(logo) && (image.src = logo || '')
           }
