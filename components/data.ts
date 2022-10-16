@@ -39,6 +39,6 @@ export const MainRoute: Record<SearchScope, Link> = {
 
 export const MainRoutes = [
   { title: '组织机构', path: '/department' },
-  { title: '社　区', path: '/organization' },
+  { title: '开源地图', path: '/organization' },
   { title: '合作伙伴', path: '/organization/cooperation' },
 ];

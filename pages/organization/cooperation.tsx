@@ -2,7 +2,7 @@ import { groupBy } from 'web-utility';
 import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
 import { Container, ListGroup, Image } from 'react-bootstrap';
-import { InferGetServerSidePropsType } from 'next';
+import { InferGetStaticPropsType } from 'next';
 
 import PageHead from '../../components/PageHead';
 import { StaticRoot } from '../../models/Base';
@@ -25,7 +25,7 @@ const Levels = [
   '媒体伙伴',
 ];
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const cooperation = await organizationStore.getCooperation();
 
   const yearGroup = Object.entries(cooperation)
@@ -40,7 +40,7 @@ export async function getServerSideProps() {
 
 @observer
 export default class CooperationPage extends PureComponent<
-  InferGetServerSidePropsType<typeof getServerSideProps>
+  InferGetStaticPropsType<typeof getStaticProps>
 > {
   renderGroup(level: string, list: Cooperation[], size = 1) {
     return (

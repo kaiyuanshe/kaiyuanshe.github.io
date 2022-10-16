@@ -4,6 +4,7 @@ import { computed } from 'mobx';
 import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
 import { Container, Button } from 'react-bootstrap';
+import { Loading } from 'idea-react';
 import { TreeSeriesProps } from 'echarts-jsx';
 
 import PageHead from '../../components/PageHead';
@@ -55,11 +56,15 @@ export default class DepartmentPage extends PureComponent {
   }
 
   render() {
+    const { downloading } = groupStore;
+
     return (
       <Container className="py-5 text-center">
         <PageHead title="组织机构" />
 
         <h1>开源社组织机构</h1>
+
+        {downloading > 0 && <Loading />}
 
         <TreeChart data={this.treeData} />
 
