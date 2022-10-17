@@ -41,7 +41,7 @@ specifiers:
   ts-jest: ^29.0.3
   ts-node: ^10.9.1
   typescript: ~4.8.4
-  web-utility: ^3.9.6
+  web-utility: ^3.9.8
   webpack: ^5.74.0
 
 dependencies:
@@ -63,7 +63,7 @@ dependencies:
   react-bootstrap: 2.5.0_hiunvzosbwliizyirxfy6hjyim
   react-dom: 17.0.2_react@17.0.2
   react-editor-js: 2.1.0_react@17.0.2
-  web-utility: 3.9.6_typescript@4.8.4
+  web-utility: 3.9.8_typescript@4.8.4
 
 devDependencies:
   '@jest/types': 29.2.0
@@ -1252,7 +1252,7 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       core-js-pure: 3.25.5
-      regenerator-runtime: 0.13.9
+      regenerator-runtime: 0.13.10
     dev: true
 
   /@babel/runtime/7.19.4:
@@ -3258,7 +3258,7 @@ packages:
     dependencies:
       echarts: 5.4.0
       react: 17.0.2
-      web-utility: 3.9.6_typescript@4.8.4
+      web-utility: 3.9.8_typescript@4.8.4
     transitivePeerDependencies:
       - typescript
     dev: false
@@ -4219,7 +4219,7 @@ packages:
       react-editor-js: 2.1.0_5nqabvyy7cdfyepattmhvo7ray
       react-element-to-jsx-string: 15.0.0_sfoxds7t5ydpegc3knd667wn6m
       react-leaflet: 3.2.5_myoalt2qegmhvac3qx3wpc3ki4
-      web-utility: 3.9.6_typescript@4.8.4
+      web-utility: 3.9.8_typescript@4.8.4
     transitivePeerDependencies:
       - '@types/react'
       - jsdom
@@ -5226,7 +5226,7 @@ packages:
       '@swc/helpers': 0.4.12
       iterable-observer: 1.0.0-rc.1
       regenerator-runtime: 0.13.9
-      web-utility: 3.9.6_typescript@4.8.4
+      web-utility: 3.9.8_typescript@4.8.4
     transitivePeerDependencies:
       - typescript
     dev: false
@@ -5249,7 +5249,7 @@ packages:
       node-fetch: 2.6.7
       regenerator-runtime: 0.13.9
       tslib: 2.4.0
-      web-utility: 3.9.6_typescript@4.8.4
+      web-utility: 3.9.8_typescript@4.8.4
     transitivePeerDependencies:
       - encoding
       - jsdom
@@ -5595,7 +5595,7 @@ packages:
       mobx: 5.15.7
       reflect-metadata: 0.1.13
       regenerator-runtime: 0.13.9
-      web-utility: 3.9.6_typescript@4.8.4
+      web-utility: 3.9.8_typescript@4.8.4
     transitivePeerDependencies:
       - jsdom
       - typescript
@@ -6354,6 +6354,9 @@ packages:
   /regenerate/1.4.2:
     resolution: {integrity: sha512-zrceR/XhGYU/d/opr2EKO7aRHUeiBI8qjtfHqADTwZd6Szfy16la6kqD0MIUs5z5hx6AaKa+PixpPrR289+I0A==}
     dev: true
+
+  /regenerator-runtime/0.13.10:
+    resolution: {integrity: sha512-KepLsg4dU12hryUO7bp/axHAKvwGOCV0sGloQtpagJ12ai+ojVDqkeGSiRX1zlq+kjIMZ1t7gpze+26QqtdGqw==}
 
   /regenerator-runtime/0.13.9:
     resolution: {integrity: sha512-p3VT+cOEgxFsRRA9X4lkI1E+k2/CtnKtU4gcxyaCUreilL/vqI6CdZ3wxVUx3UOUg+gnUOQQcRI7BmSI656MYA==}
@@ -7336,14 +7339,14 @@ packages:
       graceful-fs: 4.2.10
     dev: true
 
-  /web-utility/3.9.6_typescript@4.8.4:
-    resolution: {integrity: sha512-8ChJqdpfA2s8fR+MTCMjcbqwOxD7irmXGOxYsar+He8o6S5WXZRVCghbs9MlF7c9/UkWiqmK2iG9/JzbhNVFbg==}
+  /web-utility/3.9.8_typescript@4.8.4:
+    resolution: {integrity: sha512-JnOCwEzd7wtiJJwPNWNPnX1587h20K7CpBUng/1hNmaigHIthnFFiCGMJhKIIYv6h3u/ShlfYuVKWD84nK1VIw==}
     peerDependencies:
       typescript: ^4.1.0
     dependencies:
       '@swc/helpers': 0.4.12
       element-internals-polyfill: 1.1.14
-      regenerator-runtime: 0.13.9
+      regenerator-runtime: 0.13.10
       typescript: 4.8.4
     dev: false
 
