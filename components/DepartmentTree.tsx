@@ -3,7 +3,8 @@ import { computed } from 'mobx';
 import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { Loading } from 'idea-react';
+import { Badge } from 'react-bootstrap';
+import { Loading, text2color } from 'idea-react';
 import { SVGCharts, Tooltip, TreeSeriesProps, TreeSeries } from 'echarts-jsx';
 
 import { fileURLOf } from '../pages/api/lark/file/[id]';
@@ -51,7 +52,7 @@ export default class DepartmentTree extends PureComponent {
   }
 
   renderGroup(name: string) {
-    const { logo, summary } =
+    const { logo, tags, summary } =
       groupStore.allItems.find(
         ({ name: n, fullName }) => n === name || fullName === name,
       ) || {};
@@ -68,7 +69,19 @@ export default class DepartmentTree extends PureComponent {
             src={fileURLOf(logo)}
           />
         )}
-        <p className="m-0 text-wrap" style={{ maxWidth: '50vw' }}>
+        <ul className="list-unstyled">
+          {(tags as string[])?.map(tag => (
+            <Badge
+              as="li"
+              key={tag}
+              className="mx-1"
+              bg={text2color(tag, ['light'])}
+            >
+              {tag}
+            </Badge>
+          ))}
+        </ul>
+        <p className="m-0 text-wrap text-start" style={{ maxWidth: '50vw' }}>
           {summary}
         </p>
       </div>
