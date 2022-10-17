@@ -33,11 +33,10 @@ export class GroupModel extends Stream<Group>(ListModel) {
 
   normalize = ({
     id,
-    fields: { fullName, link, codeLink, email, ...fields },
+    fields: { link, codeLink, email, ...fields },
   }: TableRecordList<Group>['data']['items'][number]): Group => ({
     ...fields,
     id: id!,
-    fullName: normalizeText((fullName as TableCellText[])[0]),
     link: normalizeText(link as TableCellLink),
     codeLink: normalizeText(codeLink as TableCellLink),
     email: normalizeText(email as TableCellLink),
