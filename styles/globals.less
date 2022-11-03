@@ -25,3 +25,60 @@
     .text-info();
   }
 }
+
+// Full screen optimization
+.mainContent {
+  min-height: calc(100vh - 14rem);
+}
+
+@media only screen and (min-width: 768px) {
+  .mainContent {
+    min-height: calc(100vh - 11.4rem);
+  }
+}
+
+// Logo Title beautification
+svg.logoTitle {
+  width: 6rem;
+  height: 2rem;
+  margin: auto;
+}
+svg.logoTitle text {
+  text-transform: uppercase;
+  animation: stroke 5s infinite alternate;
+  animation-iteration-count: 1;
+  letter-spacing: 0.1rem;
+  font-size: var(--bs-navbar-brand-font-size);
+  fill: rgba(var(--bs-info-rgb), 1);
+  stroke: rgba(54, 95, 160, 0);
+  stroke-dashoffset: -25%;
+  stroke-dasharray: 50% 0;
+  stroke-width: 0;
+}
+@keyframes stroke {
+  0% {
+    fill: rgba(72, 138, 20, 0);
+    stroke: rgba(var(--bs-info-rgb), 1);
+    stroke-dashoffset: 25%;
+    stroke-dasharray: 0 50%;
+    stroke-width: 0.8;
+  }
+  50% {
+    fill: rgba(72, 138, 20, 0);
+    stroke: rgba(var(--bs-info-rgb), 1);
+    stroke-width: 1.1;
+  }
+  70% {
+    fill: rgba(72, 138, 20, 0);
+    stroke: rgba(var(--bs-info-rgb), 1);
+    stroke-width: 1.2;
+  }
+  90%,
+  100% {
+    fill: rgba(var(--bs-info-rgb), 1);
+    stroke: rgba(54, 95, 160, 0);
+    stroke-dashoffset: -25%;
+    stroke-dasharray: 50% 0;
+    stroke-width: 0;
+  }
+}

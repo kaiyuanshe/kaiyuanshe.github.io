@@ -25,6 +25,7 @@ export enum SearchScope {
   Article,
   Organization,
   Cooperation,
+  Members,
 }
 
 export const MainRoute: Record<SearchScope, Link> = {
@@ -35,9 +36,14 @@ export const MainRoute: Record<SearchScope, Link> = {
     title: '合作伙伴',
     path: '/organization/cooperation',
   },
+  [SearchScope.Members]: {
+    title: '成员',
+    path: '/members',
+  },
 };
 
 export const MainRoutes = [
+  { title: '成员', path: '/members' },
   { title: '组织机构', path: '/department' },
   { title: '开源地图', path: '/organization' },
   { title: '合作伙伴', path: '/organization/cooperation' },

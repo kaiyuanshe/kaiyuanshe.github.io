@@ -20,21 +20,21 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
       <MainNav title={Name} logo={Logo} links={MainRoutes} />
 
-      <div className="mt-5 pt-4">
+      <div className="mt-5 pt-4 mainContent">
         <Component {...pageProps} />
       </div>
 
       <footer className="border-top bg-light text-secondary py-5">
         <Container>
-          <Row xs={1} md={3} className="align-items-center small text-center">
-            <Col></Col>
-            <Col>
+          <Row className="align-items-center small text-center g-0">
+            <Col xs={0} md={0} lg={2}></Col>
+            <Col xs={12} md={8} lg={6}>
               <Row xs={1} md={2} className="align-items-center">
                 <Col>沪 ICP 备 19006015 号</Col>
                 <Col>公安备案 31011202006203 号</Col>
               </Row>
             </Col>
-            <Col>
+            <Col xs={12} md={3} lg={3}>
               {Object.entries(social).map(([name, value]) => (
                 <a
                   key={name}
