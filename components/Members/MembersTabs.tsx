@@ -1,42 +1,48 @@
-import { PropsWithoutRef, SetStateAction, useState } from 'react';
+import { FC, SetStateAction, useState } from 'react';
 import { Tabs, Tab } from 'react-bootstrap';
 
 import { Member } from '../../models/Members';
-import MembersList from './MembersList';
+import { MembersList } from './MembersList';
 
-type TabProps = PropsWithoutRef<{
-  list: Member[];
-}>;
-type TabsProps = PropsWithoutRef<{
-  [proppName: string]: TabProps;
-}>;
-export type MembersTabsProps = PropsWithoutRef<{
-  tabs?: TabsProps;
+type TabData = Record<
+  string,
+  {
+    list: Member[];
+  }
+>;
+type TabsData = Record<
+  string,
+  {
+    [tabName: string]: TabData;
+  }
+>;
+export interface MembersTabsProps {
+  tabs?: TabsData;
   list?: Member[];
-}>;
+}
 
-export default function MembersTabs({ tabs, list }: MembersTabsProps) {
-  const [key, setKey] = useState('all');
+export const MembersTabs: FC<MembersTabsProps> = ({ tabs, list }) => {
+  const [activeKey, setActiveKey] = useState('all');
   return (
     <Tabs
-      activeKey={key}
-      onSelect={k => setKey(k as SetStateAction<string>)}
+      activeKey={activeKey}
+      onSelect={k => setActiveKey(k as SetStateAction<string>)}
       className="mb-3"
     >
       <Tab eventKey="all" title="全部成员">
         <MembersList list={list} />
       </Tab>
       {tabs &&
-        Object.keys(tabs).map(tabKey => (
+        Object.entries(tabs).map(([key, { list }]) => (
           <Tab
-            key={tabKey}
-            eventKey={tabKey}
+            key={key}
+            eventKey={key}
             tabClassName="p-2"
-            title={tabKey + '(' + tabs[tabKey]?.list?.length + ')'}
+            title={`${key}(${list.length})`}
           >
-            <MembersList list={tabs[tabKey]?.list} />
+            <MembersList list={list as unknown as Member[]} />
           </Tab>
         ))}
     </Tabs>
   );
-}
+};

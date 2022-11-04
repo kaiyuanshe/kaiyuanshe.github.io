@@ -1,29 +1,49 @@
 import { observer } from 'mobx-react';
-import { PropsWithoutRef, PureComponent } from 'react';
+import { PureComponent } from 'react';
 import { Container } from 'react-bootstrap';
 import { Loading } from 'idea-react';
+import { observable } from 'mobx';
+import { isFunction } from 'lodash';
 
 import PageHead from '../../components/PageHead';
 import membersStore, { Member } from '../../models/Members';
 import { LazyLoad } from '../../utils/layzload';
-import MembersTitle from '../../components/Members/MembersTitle';
-import MembersList from '../../components/Members/MembersList';
-import MembersTabs, {
+import { MembersTitle } from '../../components/Members/MembersTitle';
+import { MembersList } from '../../components/Members/MembersList';
+import {
+  MembersTabs,
   MembersTabsProps,
 } from '../../components/Members/MembersTabs';
 
-type MembersGroup = PropsWithoutRef<{
-  [proppName: string]: MembersTabsProps;
-}>;
+type MembersGroup = Record<
+  string,
+  {
+    [groupName: string]: MembersTabsProps;
+  }
+>;
+
+const groupMemberFn = (
+  groupMap: MembersGroup,
+  groupKeys: string[],
+  groupItem: Member,
+  insertFn?: Function,
+) => {
+  if (!groupKeys?.length) return;
+  isFunction(insertFn) && insertFn();
+  groupKeys.forEach((key: string) =>
+    ((groupMap[key] = groupMap[key] || { list: [] }).list as Member[]).push(
+      groupItem,
+    ),
+  );
+};
 
 @observer
 export default class MembersPage extends PureComponent {
-  state: Readonly<{ membersGroup: MembersGroup; otherMembersList: Member[] }> =
-    {
-      membersGroup: {},
-      otherMembersList: [],
-    };
+  @observable
+  membersGroup = {} as MembersGroup;
 
+  @observable
+  otherMembersList: Member[] = [];
   async componentDidMount() {
     const list = await membersStore.getList({}, 1, 300);
     const otherMembersList: Member[] = [];
@@ -37,51 +57,41 @@ export default class MembersPage extends PureComponent {
     };
 
     list.forEach((member: Member) => {
-      //Classify the organization of kaiyuanshe 👇
-      member.organization &&
-        (member.organization as Array<string>).forEach((org: string) => {
-          membersGroup[org]
-            ? membersGroup[org].list.push(member)
-            : (membersGroup[org] = { list: [member] });
-        });
+      //Classify the organization of kaiyuanshe | 一级部门分组 👇
+      groupMemberFn(membersGroup, member.organization as string[], member);
 
-      //Classify the department of kaiyuanshe 👇
-      member.department &&
-        (member.department as Array<string>).forEach((dep: string) => {
-          membersGroup[dep]
-            ? membersGroup[dep].list.push(member)
-            : (membersGroup[dep] = { list: [member] });
-        });
+      //Classify the department of kaiyuanshe | 工作组分组 👇
+      groupMemberFn(membersGroup, member.department as string[], member);
 
-      //Classify the projectKey of kaiyuanshe 👇
-      member.project &&
-        (member.project as Array<string>).forEach((pro: string) => {
-          membersGroup[projectKey]?.tabs[pro]
-            ? membersGroup[projectKey].tabs[pro].list.push(member)
-            : (membersGroup[projectKey].tabs[pro] = { list: [member] });
-          //Update membersGroup[projectKey] list
-          !membersGroup[projectKey].list.includes(member) &&
-            membersGroup[projectKey].list.push(member);
-        });
+      //Classify the projectKey of kaiyuanshe | 项目分组(特殊处理追加到项目委员会)👇
+      groupMemberFn(
+        membersGroup[projectKey].tabs,
+        member.project as string[],
+        member,
+        () => {
+          membersGroup[projectKey].list.push(member);
+        },
+      );
 
-      //Classify the OtherMember of kaiyuanshe 👇
+      //Classify the OtherMember of kaiyuanshe | 其他未分组用户 👇
       !member.organization &&
         !member.department &&
         !member.project &&
         otherMembersList.push(member);
     });
+    //Duplicate removal of projectKey | 项目委员会去重👇
+    membersGroup[projectKey].list = [...new Set(membersGroup[projectKey].list)];
 
-    this.setState({
-      membersGroup,
-      otherMembersList,
-    });
+    // Updata
+    this.membersGroup = membersGroup;
+    this.otherMembersList = otherMembersList;
 
-    //Image lazy loading 👇
+    //Image lazy loading | 懒加载函数👇
     LazyLoad();
   }
   render() {
     const { downloading } = membersStore;
-    const { membersGroup, otherMembersList } = this.state;
+    const { membersGroup, otherMembersList } = this;
 
     return (
       <Container className="my-4">
@@ -94,12 +104,14 @@ export default class MembersPage extends PureComponent {
             <div key={groupName}>
               <MembersTitle
                 title={groupName}
-                count={membersGroup[groupName]?.list?.length}
+                count={(membersGroup[groupName].list as Member[])?.length}
               />
               {membersGroup[groupName].tabs ? (
                 <MembersTabs {...membersGroup[groupName]}></MembersTabs>
               ) : (
-                <MembersList list={membersGroup[groupName]?.list}></MembersList>
+                <MembersList
+                  list={membersGroup[groupName]?.list as Member[]}
+                ></MembersList>
               )}
             </div>
           ))}

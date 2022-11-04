@@ -1,20 +1,21 @@
-import { PropsWithoutRef, useState } from 'react';
+import { FC } from 'react';
 import { Row, Col, Image } from 'react-bootstrap';
 
 import { Member } from '../../models/Members';
 import styles from '../../styles/Members.module.less';
 
-export type MembersListProps = PropsWithoutRef<{
+export interface MembersListProps {
   list?: Member[];
-}>;
+}
 
-export default function MembersList({ list = [] }: MembersListProps) {
+export const MembersList: FC<MembersListProps> = ({ list = [] }) => {
   //Judgment exceeds 3 lines
   const isMore = list?.length > 3 * Math.floor(window.innerWidth / 120);
   return (
     <Row
-      className={`d-flex g-auto text-center mb-4 overflow-auto ${styles.memberRow}`}
-      data-is-more={isMore}
+      className={`d-flex g-auto text-center mb-2 pt-2 overflow-auto ${
+        isMore ? styles.isMore : ''
+      } ${styles.memberRow}`}
     >
       {list.map(({ GitHubID, name, nickname }, idx) => (
         <Col
@@ -31,10 +32,9 @@ export default function MembersList({ list = [] }: MembersListProps) {
                 : '/kaiyuanshe.png'
             }
             alt={'' + GitHubID}
-            onError={(e: any) => {
-              e.target.src = '/kaiyuanshe.png';
-              e.target.setAttribute('imgErr', true);
-            }}
+            onError={({ currentTarget }) =>
+              (currentTarget.src = '/kaiyuanshe.png')
+            }
           />
           <h3 className="h4 my-3">
             <a
@@ -43,15 +43,15 @@ export default function MembersList({ list = [] }: MembersListProps) {
                 ? {
                     rel: 'noreferrer',
                     target: '_blank',
-                    href: '' + new URL('' + GitHubID, 'https://github.com'),
+                    href: `https://github.com/${GitHubID}`,
                   }
                 : {})}
             >
               <span
-                className={`d-block position-relative  text-truncate ${styles.btn_ta}`}
+                className={`d-inline-block position-relative text-truncate ${styles.btn_tamaya}`}
                 data-text={nickname || name || '成员X'}
               >
-                <i className="d-block fst-normal overflow-hidden">
+                <i className="d-inline-block fst-normal overflow-hidden">
                   {name || nickname || '未公开'}
                 </i>
               </span>
@@ -61,4 +61,4 @@ export default function MembersList({ list = [] }: MembersListProps) {
       ))}
     </Row>
   );
-}
+};
