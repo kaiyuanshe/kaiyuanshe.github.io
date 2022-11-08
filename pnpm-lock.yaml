@@ -10,6 +10,7 @@ specifiers:
   '@types/react': ^17.0.50
   '@types/react-dom': 17.0.17
   array-unique-proposal: ^0.3.4
+  classnames: ^2.3.2
   echarts-jsx: ^0.4.0
   eslint: ^8.25.0
   eslint-config-next: ^12.3.1
@@ -47,6 +48,7 @@ specifiers:
 dependencies:
   '@giscus/react': 2.2.0_react-dom@17.0.2+react@17.0.2
   array-unique-proposal: 0.3.4
+  classnames: 2.3.2
   echarts-jsx: 0.4.0_react@17.0.2+typescript@4.8.4
   file-type: 18.0.0
   idea-react: 0.27.7_bef16c8cccca5b1b804b40074c9a53c5

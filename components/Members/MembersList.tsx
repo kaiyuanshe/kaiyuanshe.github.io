@@ -1,7 +1,9 @@
 import { FC } from 'react';
 import { Row, Col, Image } from 'react-bootstrap';
+import classNames from 'classnames';
 
 import { Member } from '../../models/Members';
+import { LazyImage } from '../LazyImage';
 import styles from '../../styles/Members.module.less';
 
 export interface MembersListProps {
@@ -13,9 +15,11 @@ export const MembersList: FC<MembersListProps> = ({ list = [] }) => {
   const isMore = list?.length > 3 * Math.floor(window.innerWidth / 120);
   return (
     <Row
-      className={`d-flex g-auto text-center mb-2 pt-2 overflow-auto ${
-        isMore ? styles.isMore : ''
-      } ${styles.memberRow}`}
+      className={classNames(
+        'd-flex g-auto text-center mb-2 pt-2 overflow-auto',
+        isMore && styles.isMore,
+        styles.memberRow,
+      )}
     >
       {list.map(({ GitHubID, name, nickname }, idx) => (
         <Col
@@ -23,18 +27,10 @@ export const MembersList: FC<MembersListProps> = ({ list = [] }) => {
           className={`d-inline-block position-relative w-auto ${styles.member}`}
           title={'' + (nickname || name || GitHubID || '成员X')}
         >
-          <Image
+          <LazyImage
             className={`d-inlink-block overflow-hidden rounded-circle position-relative ${styles.avatar}`}
-            src="/kaiyuanshe.png"
-            data-src={
-              GitHubID
-                ? new URL('' + GitHubID, 'https://github.com') + '.png'
-                : '/kaiyuanshe.png'
-            }
+            src={`https://github.com/${GitHubID}.png`}
             alt={'' + GitHubID}
-            onError={({ currentTarget }) =>
-              (currentTarget.src = '/kaiyuanshe.png')
-            }
           />
           <h3 className="h4 my-3">
             <a

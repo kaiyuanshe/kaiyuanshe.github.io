@@ -4,18 +4,10 @@ import { Tabs, Tab } from 'react-bootstrap';
 import { Member } from '../../models/Members';
 import { MembersList } from './MembersList';
 
-type TabData = Record<
-  string,
-  {
-    list: Member[];
-  }
->;
-type TabsData = Record<
-  string,
-  {
-    [tabName: string]: TabData;
-  }
->;
+type TabData = Record<string, { list: Member[] }>;
+
+type TabsData = Record<string, Record<string, TabData>>;
+
 export interface MembersTabsProps {
   tabs?: TabsData;
   list?: Member[];
@@ -29,7 +21,7 @@ export const MembersTabs: FC<MembersTabsProps> = ({ tabs, list }) => {
       onSelect={k => setActiveKey(k as SetStateAction<string>)}
       className="mb-3"
     >
-      <Tab eventKey="all" title="全部成员">
+      <Tab eventKey="all" title={`委员会(${list?.length})`}>
         <MembersList list={list} />
       </Tab>
       {tabs &&
