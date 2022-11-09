@@ -25,3 +25,11 @@
     .text-info();
   }
 }
+
+// Full screen optimization
+.mainContent {
+  min-height: calc(100vh - 14rem);
+  @media only screen and (min-width: 768px) {
+    min-height: calc(100vh - 11.4rem);
+  }
+}

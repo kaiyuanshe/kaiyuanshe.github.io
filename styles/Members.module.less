@@ -1,0 +1,74 @@
+.memberRow.isMore {
+  max-height: 24rem;
+  background: linear-gradient(#fff, transparent 100%),
+    linear-gradient(rgba(124, 120, 120, 0.1), transparent 100%);
+  background-size: 100% 10rem, 100% 0.5rem;
+  background-repeat: no-repeat;
+  background-attachment: local, scroll;
+  mask-image: linear-gradient(0deg, transparent, #000 5rem);
+  mask-position: left;
+  mask-repeat: no-repeat;
+  padding-bottom: 3rem;
+  margin-bottom: 0 !important;
+  cursor: s-resize;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+.member {
+  flex: none;
+  .avatar {
+    width: 6rem;
+    min-height: 6rem;
+    transition: all 0.3s;
+  }
+  .btn_tamaya {
+    width: 6rem;
+    line-height: 1rem;
+    height: 1rem;
+    &::before,
+    &::after {
+      content: attr(data-text);
+      position: absolute;
+      width: 6rem;
+      height: 0.5rem;
+      left: 0;
+      color: #333;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      transition: transform 0.5s;
+      transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+    }
+    &::before {
+      top: 0;
+    }
+    &::after {
+      bottom: 0;
+      line-height: 0;
+    }
+    & > i {
+      transform: scale3d(0.2, 0.2, 1);
+      opacity: 0;
+      transition: transform 0.5s, opacity 0.5s;
+      transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+    }
+  }
+  &:hover {
+    .avatar {
+      transform: scale(1.05) translate3d(-1px, -5px, -4px);
+    }
+    .btn_tamaya {
+      &::before {
+        transform: translate3d(0, -120%, 0);
+      }
+      &::after {
+        transform: translate3d(0, 120%, 0);
+      }
+      & > i {
+        opacity: 1;
+        transform: scale3d(1, 1, 1);
+      }
+    }
+  }
+}
