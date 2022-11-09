@@ -11,6 +11,7 @@ import { MembersList } from '../../components/Members/MembersList';
 import {
   MembersTabs,
   MembersTabsProps,
+  TabsData,
 } from '../../components/Members/MembersTabs';
 
 type MembersGroup = Record<string, Record<string, MembersTabsProps>>;
@@ -87,19 +88,16 @@ export default class MembersPage extends PureComponent {
 
         <h1 className="w-100 my-5 text-center">组织成员</h1>
         {membersGroup &&
-          Object.keys(membersGroup).map((groupName: string) => (
-            <div key={groupName}>
+          Object.entries(membersGroup).map(([key, { list, tabs, count }]) => (
+            <div key={key}>
               <MembersTitle
-                title={groupName}
-                count={
-                  (membersGroup[groupName]?.count as number) ||
-                  (membersGroup[groupName].list as Member[])?.length
-                }
+                title={key}
+                count={(count as number) || (list as Member[])?.length}
               />
-              {membersGroup[groupName].tabs ? (
-                <MembersTabs {...membersGroup[groupName]} />
+              {tabs ? (
+                <MembersTabs tabs={tabs as TabsData} list={list as Member[]} />
               ) : (
-                <MembersList list={membersGroup[groupName]?.list as Member[]} />
+                <MembersList list={list as Member[]} />
               )}
             </div>
           ))}

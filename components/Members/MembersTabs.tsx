@@ -6,7 +6,7 @@ import { MembersList } from './MembersList';
 
 type TabData = Record<string, { list: Member[] }>;
 
-type TabsData = Record<string, Record<string, TabData>>;
+export type TabsData = Record<string, Record<string, TabData>>;
 
 export interface MembersTabsProps {
   tabs?: TabsData;
