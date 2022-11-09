@@ -65,12 +65,10 @@ export default class MembersPage extends PureComponent {
         member.project as string[],
         member,
       );
-      member.project && membersGroup[projectKey].count++;
+      if (member.project) membersGroup[projectKey].count++;
 
       //Classify the OtherMember of kaiyuanshe | 其他未分组用户 👇
-      !member.organization &&
-        !member.department &&
-        !member.project &&
+      if (!member.organization && !member.department && !member.project)
         otherMembersList.push(member);
     }
 

@@ -7,16 +7,14 @@ export interface LazyImageProps extends ImageProps {
 }
 
 export class LazyImage extends PureComponent<LazyImageProps> {
-  LazyImageRef: HTMLImageElement | undefined;
-
-  componentDidMount() {
-    const lazyImage = this.LazyImageRef as Element;
-    const observer = new IntersectionObserver((entries: any) => {
-      entries[0].isIntersecting &&
-        (lazyImage.setAttribute('src', '' + this.props.src),
-        observer.unobserve(lazyImage));
+  watch(image: HTMLImageElement | null) {
+    if (!image) return;
+    const observer = new IntersectionObserver(([{ isIntersecting }]) => {
+      if (!isIntersecting) return;
+      image.src = this.props.src as string;
+      observer.unobserve(image);
     });
-    observer.observe(lazyImage);
+    observer.observe(image);
   }
 
   render() {
@@ -27,7 +25,7 @@ export class LazyImage extends PureComponent<LazyImageProps> {
     } = this.props;
     return (
       <Image
-        ref={(element: HTMLImageElement) => (this.LazyImageRef = element)}
+        ref={this.watch.bind(this)}
         {...this.props}
         src={preLazySrc}
         alt={alt}
