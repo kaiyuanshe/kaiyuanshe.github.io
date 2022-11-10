@@ -1,12 +1,15 @@
 import { parseURLData } from 'web-utility';
+import { DataObject } from 'mobx-restful';
 import { TableRecordList } from 'lark-ts-sdk';
 import { NextApiResponse } from 'next';
 
 import { safeAPI } from '../base';
-import { getBITableList } from '../../../models/Lark';
+import {
+  LARK_BITABLE_GROUP_ID,
+  makeFilter,
+  getBITableList,
+} from '../../../models/Lark';
 import { Group } from '../../../models/Group';
-
-const LARK_BITABLE_GROUP_ID = process.env.LARK_BITABLE_GROUP_ID!;
 
 export default safeAPI(
   async (
@@ -15,9 +18,13 @@ export default safeAPI(
   ) => {
     switch (method) {
       case 'GET': {
+        const { page_size, page_token, ...filter } = parseURLData(
+          url!,
+        ) as DataObject;
+
         const pageData = await getBITableList<Group>({
           table: LARK_BITABLE_GROUP_ID,
-          filter: parseURLData(url!),
+          filter: makeFilter(filter),
         });
         response.json(pageData);
       }

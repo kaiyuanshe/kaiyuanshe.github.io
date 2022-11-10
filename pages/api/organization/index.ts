@@ -1,12 +1,15 @@
 import { parseURLData } from 'web-utility';
+import { DataObject } from 'mobx-restful';
 import { TableRecordList } from 'lark-ts-sdk';
 import { NextApiResponse } from 'next';
 
 import { safeAPI } from '../base';
-import { getBITableList } from '../../../models/Lark';
+import {
+  LARK_BITABLE_ORGANIZATION_ID,
+  makeFilter,
+  getBITableList,
+} from '../../../models/Lark';
 import { Organization } from '../../../models/Organization';
-
-const LARK_BITABLE_ORGANIZATION_ID = process.env.LARK_BITABLE_ORGANIZATION_ID!;
 
 export default safeAPI(
   async (
@@ -15,9 +18,15 @@ export default safeAPI(
   ) => {
     switch (method) {
       case 'GET': {
+        const { page_size, page_token, ...filter } = parseURLData(
+          url!,
+        ) as DataObject;
+
         const pageData = await getBITableList<Organization>({
           table: LARK_BITABLE_ORGANIZATION_ID,
-          filter: { ...parseURLData(url!), verified: '是' },
+          page_size,
+          page_token,
+          filter: makeFilter({ ...filter, verified: '是' }),
         });
         response.json(pageData);
       }

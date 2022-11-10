@@ -15,7 +15,7 @@ export type Member = Record<
   TableCellValue
 >;
 
-export class MembersModel extends Stream<Member>(ListModel) {
+export class MemberModel extends Stream<Member>(ListModel) {
   client = client;
   baseURI = 'members';
 
@@ -35,9 +35,10 @@ export class MembersModel extends Stream<Member>(ListModel) {
       filter,
     )) {
       this.totalCount = total;
+
       yield* items?.map(this.normalize) || [];
     }
   }
 }
 
-export default new MembersModel();
+export default new MemberModel();

@@ -1,18 +1,19 @@
 import { FC } from 'react';
-import { Row, Col, Image } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import classNames from 'classnames';
 
-import { Member } from '../../models/Members';
+import { Member } from '../../models/Member';
 import { LazyImage } from '../LazyImage';
 import styles from '../../styles/Members.module.less';
 
-export interface MembersListProps {
+export interface MemberListProps {
   list?: Member[];
 }
 
-export const MembersList: FC<MembersListProps> = ({ list = [] }) => {
+export const MemberList: FC<MemberListProps> = ({ list = [] }) => {
   //Judgment exceeds 3 lines
   const isMore = list?.length > 3 * Math.floor(window.innerWidth / 120);
+
   return (
     <Row
       className={classNames(

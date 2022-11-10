@@ -1,10 +1,5 @@
 import { NewData, ListModel, Stream } from 'mobx-restful';
-import {
-  TableCellText,
-  TableCellLink,
-  TableCellValue,
-  TableRecordList,
-} from 'lark-ts-sdk';
+import { TableCellLink, TableCellValue, TableRecordList } from 'lark-ts-sdk';
 
 import { client } from './Base';
 import { normalizeText, createListStream } from './Lark';
