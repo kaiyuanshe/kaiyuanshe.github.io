@@ -2,11 +2,12 @@ import { Hour, countBy, cache } from 'web-utility';
 import { NextApiResponse } from 'next';
 
 import { safeAPI } from '../base';
-import { lark } from '../../../models/Lark';
+import {
+  lark,
+  LARK_BITABLE_ID,
+  LARK_BITABLE_ORGANIZATION_ID,
+} from '../../../models/Lark';
 import { Organization } from '../../../models/Organization';
-
-const LARK_BITABLE_ID = process.env.LARK_BITABLE_ID!,
-  LARK_BITABLE_ORGANIZATION_ID = process.env.LARK_BITABLE_ORGANIZATION_ID!;
 
 export const sortStatistic = (data: Record<string, number>, sortValue = true) =>
   Object.entries(data)

@@ -14,3 +14,8 @@ export const client = new HTTPClient({
   }/api/`,
   responseType: 'json',
 });
+
+export const blobClient = new HTTPClient({
+  baseURI: 'https://ows.blob.core.chinacloudapi.cn/$web/',
+  responseType: 'arraybuffer',
+});

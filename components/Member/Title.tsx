@@ -1,12 +1,12 @@
 import { FC } from 'react';
 import { Badge } from 'react-bootstrap';
 
-export interface MembersTitleProps {
+export interface MemberTitleProps {
   title?: string;
   count?: number;
 }
 
-export const MembersTitle: FC<MembersTitleProps> = ({
+export const MemberTitle: FC<MemberTitleProps> = ({
   title = '未分组',
   count = 0,
 }) => (

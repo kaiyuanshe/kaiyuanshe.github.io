@@ -11,42 +11,55 @@ import {
 
 import { isServer } from './Base';
 
-const LARK_APP_ID = process.env.LARK_APP_ID!,
+export const LARK_APP_ID = process.env.LARK_APP_ID!,
   LARK_APP_SECRET = process.env.LARK_APP_SECRET!,
   LARK_BITABLE_ID = process.env.LARK_BITABLE_ID!,
   LARK_BITABLE_GROUP_ID = process.env.LARK_BITABLE_GROUP_ID!,
-  LARK_BITABLE_ORGANIZATION_ID = process.env.LARK_BITABLE_ORGANIZATION_ID!;
+  LARK_BITABLE_ORGANIZATION_ID = process.env.LARK_BITABLE_ORGANIZATION_ID!,
+  ARTICLE_LARK_BASE_ID = process.env.ARTICLE_LARK_BASE_ID!,
+  ARTICLE_LARK_TABLE_ID = process.env.ARTICLE_LARK_TABLE_ID!;
 
 export const lark = new Lark({
   appId: LARK_APP_ID,
   appSecret: LARK_APP_SECRET,
 });
 
-export const makeFilter = (data: DataObject) =>
-  Object.entries(data)
-    .map(([key, value]) => `CurrentValue.[${key}].contains("${value}")`)
-    .join('&&');
+/**
+ * @see https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/bitable-v1/filter
+ */
+export function makeFilter(data: DataObject, relation: 'AND' | 'OR' = 'AND') {
+  const list = Object.entries(data)
+    .map(([key, value]) => {
+      value = value instanceof Array ? value : [value];
+
+      return value.map(
+        (item: string) => `CurrentValue.[${key}].contains("${item}")`,
+      );
+    })
+    .flat();
+
+  return list[1] ? `${relation}(${list})` : list[0];
+}
 
 export const normalizeText = (
   value: TableCellText | TableCellLink | TableCellRelation,
 ) =>
   value && typeof value === 'object' && 'text' in value ? value.text : value;
 
-export interface LarkFilter extends DataObject {
-  page_size?: number;
-  page_token?: string;
-}
-
 export interface LarkBITableQuery {
   database?: string;
   table: string;
-  filter?: LarkFilter;
+  page_size?: number;
+  page_token?: string;
+  filter?: string;
 }
 
 export async function getBITableList<T extends Record<string, TableCellValue>>({
   database = LARK_BITABLE_ID,
   table: TID,
-  filter: { page_size, page_token, ...filter } = {},
+  page_size,
+  page_token,
+  filter,
 }: LarkBITableQuery) {
   const biTable = await lark.getBITable(database);
 
@@ -56,15 +69,16 @@ export async function getBITableList<T extends Record<string, TableCellValue>>({
     `${table!.baseURI}/records?${buildURLData({
       page_size,
       page_token,
-      filter: makeFilter(filter),
+      filter,
     })}`,
   );
   return body!.data;
 }
 
-const RouteTableMap = {
-  group: LARK_BITABLE_GROUP_ID,
-  organization: LARK_BITABLE_ORGANIZATION_ID,
+const RouteTableMap: Record<string, LarkBITableQuery> = {
+  article: { database: ARTICLE_LARK_BASE_ID, table: ARTICLE_LARK_TABLE_ID },
+  group: { table: LARK_BITABLE_GROUP_ID },
+  organization: { table: LARK_BITABLE_ORGANIZATION_ID },
 };
 
 export async function* createListStream<T extends DataObject>(
@@ -72,15 +86,19 @@ export async function* createListStream<T extends DataObject>(
   path: string,
   filter?: NewData<T>,
 ) {
-  var table = RouteTableMap[path as keyof typeof RouteTableMap],
+  var baseTable = RouteTableMap[path as keyof typeof RouteTableMap],
     lastPage = '';
 
   do {
-    const query = { ...filter, page_size: 100, page_token: lastPage };
+    const query = {
+      filter: filter && makeFilter(filter),
+      page_size: 100,
+      page_token: lastPage,
+    };
 
     var { items, total, has_more, page_token } =
-      isServer() && table
-        ? await getBITableList<T>({ table, filter: query })
+      isServer() && baseTable
+        ? await getBITableList<T>({ ...baseTable, ...query })
         : (
             await client.get<TableRecordList<T>['data']>(
               `${path}?${buildURLData(query)}`,

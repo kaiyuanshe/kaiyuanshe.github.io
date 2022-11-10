@@ -4,19 +4,26 @@ import { Container, Row, Col, Image } from 'react-bootstrap';
 import { Icon } from 'idea-react';
 
 import PageHead from '../components/PageHead';
-import ArticleCard from '../components/ArticleCard';
+import { ArticleCard } from '../components/ArticleCard';
 import { CityStatisticMap } from '../components/CityStatisticMap';
 
 import { isServer } from '../models/Base';
+import articleStore, { Article } from '../models/Article';
 import groupStore, { Group } from '../models/Group';
 import activityStore from '../models/Activity';
 import { slogan } from './api/home';
 import { DefaultImage, fileURLOf } from './api/lark/file/[id]';
 
 export async function getStaticProps() {
-  const projects = await groupStore.getAll({ type: '项目' });
+  const articles = await articleStore.getList({}, 1, 3),
+    projects = await groupStore.getAll({ type: '项目' });
 
-  return { props: { projects: JSON.parse(JSON.stringify(projects)) } };
+  return {
+    props: {
+      articles: JSON.parse(JSON.stringify(articles)) as Article[],
+      projects: JSON.parse(JSON.stringify(projects)) as Group[],
+    },
+  };
 }
 
 export default class HomePage extends PureComponent<
@@ -42,7 +49,7 @@ export default class HomePage extends PureComponent<
   );
 
   render() {
-    const { projects } = this.props;
+    const { articles, projects } = this.props;
 
     return (
       <>
@@ -93,19 +100,19 @@ export default class HomePage extends PureComponent<
             </Row>
           </section>
 
-          {/* <section>
+          <section>
             <h2 className="text-center text-primary">最新动态</h2>
             <p className="text-center text-muted">
               身体力行地践行开源，咱们华人有力量！
             </p>
             <Row as="section" xs={1} sm={2} xl={3} xxl={4} className="g-3 my-4">
               {articles.map(item => (
-                <Col key={item.id}>
+                <Col key={item.id + ''}>
                   <ArticleCard className="h-100" {...item} />
                 </Col>
               ))}
             </Row>
-          </section> */}
+          </section>
 
           <section>
             <h2 className="my-5 text-center text-primary">活动地图</h2>

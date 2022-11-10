@@ -38,7 +38,8 @@ export const MainRoute: Record<SearchScope, Link> = {
 };
 
 export const MainRoutes = [
-  { title: '成员', path: '/members' },
+  { title: '开源文库', path: '/article' },
+  { title: '正式成员', path: '/members' },
   { title: '组织机构', path: '/department' },
   { title: '开源地图', path: '/organization' },
   { title: '合作伙伴', path: '/organization/cooperation' },

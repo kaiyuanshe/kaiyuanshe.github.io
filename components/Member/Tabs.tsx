@@ -1,20 +1,21 @@
 import { FC, SetStateAction, useState } from 'react';
 import { Tabs, Tab } from 'react-bootstrap';
 
-import { Member } from '../../models/Members';
-import { MembersList } from './MembersList';
+import { Member } from '../../models/Member';
+import { MemberList } from './List';
 
 type TabData = Record<string, { list: Member[] }>;
 
 export type TabsData = Record<string, Record<string, TabData>>;
 
-export interface MembersTabsProps {
+export interface MemberTabsProps {
   tabs?: TabsData;
   list?: Member[];
 }
 
-export const MembersTabs: FC<MembersTabsProps> = ({ tabs, list }) => {
+export const MemberTabs: FC<MemberTabsProps> = ({ tabs, list }) => {
   const [activeKey, setActiveKey] = useState('all');
+
   return (
     <Tabs
       activeKey={activeKey}
@@ -22,7 +23,7 @@ export const MembersTabs: FC<MembersTabsProps> = ({ tabs, list }) => {
       className="mb-3"
     >
       <Tab eventKey="all" title={`委员会(${list?.length})`}>
-        <MembersList list={list} />
+        <MemberList list={list} />
       </Tab>
       {tabs &&
         Object.entries(tabs).map(([key, { list }]) => (
@@ -32,7 +33,7 @@ export const MembersTabs: FC<MembersTabsProps> = ({ tabs, list }) => {
             tabClassName="p-2"
             title={`${key}(${list.length})`}
           >
-            <MembersList list={list as unknown as Member[]} />
+            <MemberList list={list as unknown as Member[]} />
           </Tab>
         ))}
     </Tabs>

@@ -1,58 +1,43 @@
-import { stringify } from 'qs';
-import { PropsWithoutRef, PureComponent } from 'react';
-import Spinner from 'react-bootstrap/Spinner';
+import { observer } from 'mobx-react';
+import { PureComponent } from 'react';
+import { Spinner } from 'react-bootstrap';
 
-import ArticleCard from './ArticleCard';
-import { request } from '../pages/api/base';
-import { Article } from '../pages/api/article';
+import { ArticleCard } from './ArticleCard';
+import { BaseArticle } from '../pages/api/article';
+import articleStore, { Article } from '../models/Article';
 
-export type ArticleRecommendProps = PropsWithoutRef<{
+export interface ArticleRecommendProps extends Pick<Article, 'alias'> {
   className?: string;
-  articles: number[];
-  tags: number[];
-}>;
+}
 
+@observer
 export default class ArticleRecommend extends PureComponent<
   ArticleRecommendProps,
-  { list: Article[] }
+  { list: BaseArticle[] }
 > {
-  state: Readonly<{ list: Article[] }> = {
-    list: [],
-  };
-
-  async componentDidMount() {
-    const { articles, tags } = this.props;
-
-    if (!tags[0]) return;
-
-    const list = await request<Article[]>(
-      `article/recommend?${stringify(
-        { articles, tags },
-        { arrayFormat: 'repeat' },
-      )}`,
-    );
-    this.setState({ list });
+  componentDidMount() {
+    articleStore.getRecommendList(this.props.alias + '');
   }
 
   render() {
-    const { className, tags } = this.props,
-      { list } = this.state;
+    const { className } = this.props,
+      { downloading, currentRecommend } = articleStore;
 
     return (
       <aside className={className}>
         <h2 className="mt-4">相关文章</h2>
 
-        {!list[0] ? (
+        {!currentRecommend[0] ? (
           <div className="text-center p-4">
-            {tags[0] ? (
+            {downloading > 0 ? (
               <Spinner animation="grow" variant="primary" />
             ) : (
               '暂无数据'
             )}
           </div>
         ) : (
-          list.map(item => (
-            <ArticleCard key={item.id} className="mt-3" {...item} />
+          currentRecommend.map(item => (
+            <ArticleCard key={item.id + ''} className="mt-3" {...item} />
           ))
         )}
       </aside>

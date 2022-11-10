@@ -5,16 +5,16 @@ import { Loading } from 'idea-react';
 import { observable } from 'mobx';
 
 import PageHead from '../../components/PageHead';
-import membersStore, { Member } from '../../models/Members';
-import { MembersTitle } from '../../components/Members/MembersTitle';
-import { MembersList } from '../../components/Members/MembersList';
+import membersStore, { Member } from '../../models/Member';
+import { MemberTitle } from '../../components/Member/Title';
+import { MemberList } from '../../components/Member/List';
 import {
-  MembersTabs,
-  MembersTabsProps,
+  MemberTabs,
+  MemberTabsProps,
   TabsData,
-} from '../../components/Members/MembersTabs';
+} from '../../components/Member/Tabs';
 
-type MembersGroup = Record<string, Record<string, MembersTabsProps>>;
+type MembersGroup = Record<string, Record<string, MemberTabsProps>>;
 
 const groupMemberFn = (
   groupMap: MembersGroup,
@@ -90,21 +90,21 @@ export default class MembersPage extends PureComponent {
         {membersGroup &&
           Object.entries(membersGroup).map(([key, { list, tabs, count }]) => (
             <div key={key}>
-              <MembersTitle
+              <MemberTitle
                 title={key}
                 count={(count as number) || (list as Member[])?.length}
               />
               {tabs ? (
-                <MembersTabs tabs={tabs as TabsData} list={list as Member[]} />
+                <MemberTabs tabs={tabs as TabsData} list={list as Member[]} />
               ) : (
-                <MembersList list={list as Member[]} />
+                <MemberList list={list as Member[]} />
               )}
             </div>
           ))}
         {otherMembersList.length > 0 && (
           <>
-            <MembersTitle count={otherMembersList?.length} />
-            <MembersList list={otherMembersList} />
+            <MemberTitle count={otherMembersList?.length} />
+            <MemberList list={otherMembersList} />
           </>
         )}
       </Container>
