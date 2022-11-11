@@ -1,0 +1,25 @@
+version: 3
+
+networks:
+  kaiyuanshe:
+
+services:
+  kys-ows:
+    image: kaiyuanshe/kys-ows
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    ports:
+      - 3000:3000
+    networks:
+      - kaiyuanshe
+  caddy:
+    depends_on:
+      - kys-service
+    image: caddy
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      - kaiyuanshe
+    command: caddy reverse-proxy --from test.kaiyuanshe.cn --to kys-ows:3000
