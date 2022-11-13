@@ -50,15 +50,15 @@ jobs:
           remote: /tmp
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
-          privateKey: ${{ secrets.SSH_KEY }}
+          password: ${{ secrets.SSH_KEY }}
 
       - name: Run Image
         uses: garygrossgarten/github-action-ssh@release
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
-          privateKey: ${{ secrets.SSH_KEY }}
+          password: ${{ secrets.SSH_KEY }}
           command: |
             mv /tmp/docker-compose.yml /tmp/start.sh ~/
             chmod +x ~/start.sh
-            sudo ~/start.sh ${{ env.ARTIFACT_PATH }}
+            echo '${{ secrets.SSH_KEY }}' | sudo -S ~/start.sh ${{ env.ARTIFACT_PATH }}
