@@ -39,12 +39,14 @@ jobs:
           outputs: type=docker,dest=${{ env.ARTIFACT_PATH }}
 
       - name: Pick Docker Compose
-        run: mv ./docker-compose.yml ./start.sh /tmp
+        run: |
+          mkdir ./build
+          mv ${{ env.ARTIFACT_PATH }} ./docker-compose.yml ./start.sh ./build
 
       - name: Transport Image
         uses: garygrossgarten/github-action-scp@release
         with:
-          local: /tmp
+          local: ./build
           remote: /tmp
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
