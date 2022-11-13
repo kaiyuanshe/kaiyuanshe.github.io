@@ -9,7 +9,7 @@ import articleStore from '../../models/Article';
 import PageHead from '../../components/PageHead';
 
 export async function getServerSideProps() {
-  const list = await articleStore.getList();
+  const list = await articleStore.getList({}, 1);
 
   return { props: { list } };
 }

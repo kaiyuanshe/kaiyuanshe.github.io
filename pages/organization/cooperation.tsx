@@ -6,7 +6,7 @@ import { Container, ListGroup, Image } from 'react-bootstrap';
 import { Loading } from 'idea-react';
 
 import PageHead from '../../components/PageHead';
-import { isServer, StaticRoot } from '../../models/Base';
+import { isServer, fileBaseURI } from '../../models/Base';
 import organizationStore, { Cooperation } from '../../models/Organization';
 
 const Levels = [
@@ -58,7 +58,7 @@ export default class CooperationPage extends PureComponent {
                   title={organization + ''}
                   alt={organization + ''}
                   loading="lazy"
-                  src={`${StaticRoot}/${organization}.png`}
+                  src={`${fileBaseURI}/${organization}.png`}
                 />
               </a>
             </li>

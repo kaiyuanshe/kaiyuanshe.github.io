@@ -1,12 +1,7 @@
 import { HTTPClient } from 'koajax';
+import { TableCellValue } from 'lark-ts-sdk';
 
 export const isServer = () => typeof window === 'undefined';
-
-export const StaticRoot =
-  'https://communitymap01.blob.core.chinacloudapi.cn/$web';
-
-export const staticImageURLOf = (name: string) =>
-  `${StaticRoot}/${(name + '').replace(/\s+/g, '-')}.png`;
 
 export const client = new HTTPClient({
   baseURI: `${
@@ -19,3 +14,12 @@ export const blobClient = new HTTPClient({
   baseURI: 'https://ows.blob.core.chinacloudapi.cn/$web/',
   responseType: 'arraybuffer',
 });
+
+export const fileBaseURI = blobClient.baseURI + 'file';
+
+export const blobURLOf = (value: TableCellValue) =>
+  value instanceof Array
+    ? typeof value[0] === 'object' && 'file_token' in value[0]
+      ? `${fileBaseURI}/${value[0].name}`
+      : ''
+    : '';

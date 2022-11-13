@@ -4,7 +4,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { Loading } from 'idea-react';
 import { SVGCharts, Tooltip, TreeMapSeries } from 'echarts-jsx';
 
-import { staticImageURLOf } from '../../models/Base';
+import { fileBaseURI } from '../../models/Base';
 import organizationStore from '../../models/Organization';
 
 @observer
@@ -36,7 +36,7 @@ export default class OrganizationLandscape extends PureComponent {
                     <h3 className="h5 mb-3">{name}</h3>
                     <img
                       style={{ maxWidth: '10rem' }}
-                      src={staticImageURLOf(name)}
+                      src={`${fileBaseURI}/${name}.png`}
                     />
                   </div>,
                 ),
