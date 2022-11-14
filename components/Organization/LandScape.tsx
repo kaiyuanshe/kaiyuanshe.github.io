@@ -4,13 +4,24 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { Loading } from 'idea-react';
 import { SVGCharts, Tooltip, TreeMapSeries } from 'echarts-jsx';
 
-import { fileBaseURI } from '../../models/Base';
+import { OrganizationCard } from './Card';
 import organizationStore from '../../models/Organization';
 
 @observer
 export default class OrganizationLandscape extends PureComponent {
   componentDidMount() {
     organizationStore.groupAllByTags();
+  }
+
+  renderCard(name: string) {
+    const organization = organizationStore.allItems.find(
+      ({ name: n }) => n === name,
+    );
+    if (!organization) return <></>;
+
+    const { id, ...data } = organization;
+
+    return <OrganizationCard style={{ maxWidth: '25rem' }} {...data} />;
   }
 
   render() {
@@ -21,7 +32,7 @@ export default class OrganizationLandscape extends PureComponent {
         {downloading > 0 && <Loading />}
 
         <SVGCharts style={{ height: '80vh' }}>
-          <Tooltip />
+          <Tooltip triggerOn="click" />
 
           <TreeMapSeries
             levels={[{}, { upperLabel: { show: true } }]}
@@ -31,15 +42,7 @@ export default class OrganizationLandscape extends PureComponent {
             }))}
             tooltip={{
               formatter: ({ name }) =>
-                renderToStaticMarkup(
-                  <div className="text-center">
-                    <h3 className="h5 mb-3">{name}</h3>
-                    <img
-                      style={{ maxWidth: '10rem' }}
-                      src={`${fileBaseURI}/${name}.png`}
-                    />
-                  </div>,
-                ),
+                renderToStaticMarkup(this.renderCard(name)),
             }}
           />
         </SVGCharts>

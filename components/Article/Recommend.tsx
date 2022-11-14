@@ -2,9 +2,9 @@ import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
 import { Spinner } from 'react-bootstrap';
 
-import { ArticleCard } from './ArticleCard';
-import { BaseArticle } from '../pages/api/article';
-import articleStore, { Article } from '../models/Article';
+import { ArticleCard } from './Card';
+import { BaseArticle } from '../../pages/api/article';
+import articleStore, { Article } from '../../models/Article';
 
 export interface ArticleRecommendProps extends Pick<Article, 'alias'> {
   className?: string;

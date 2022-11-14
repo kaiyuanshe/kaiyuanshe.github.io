@@ -1,8 +1,6 @@
 README.md
 node_modules/
 .eslintrc.json
-jest*
-test/
 .next/
 .vercel/
 start.sh
