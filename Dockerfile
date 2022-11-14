@@ -1,4 +1,4 @@
-FROM node:16
+FROM node:16-alpine
 
 USER root
 
@@ -13,7 +13,8 @@ RUN pnpm i --frozen-lockfile
 COPY . /home/node/app
 RUN pnpm build
 
-RUN pnpm prune --prod || true
+RUN pnpm prune --prod || true \
+    pnpm store prune
 
 EXPOSE 3000
 CMD ["npm", "start"]

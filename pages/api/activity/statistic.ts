@@ -1,4 +1,4 @@
-import { countBy, cache } from 'web-utility';
+import { Hour, countBy, cache } from 'web-utility';
 import { NextApiResponse } from 'next';
 
 import { safeAPI } from '../base';
@@ -8,12 +8,14 @@ import { Activity } from '../../../models/Activity';
 const LARK_BITABLE_ID = process.env.LARK_BITABLE_ID!,
   LARK_BITABLE_ACTIVITY_ID = process.env.LARK_BITABLE_ACTIVITY_ID!;
 
-const statistic = cache(async () => {
+const statistic = cache(async clean => {
   const biTable = await lark.getBITable(LARK_BITABLE_ID);
 
   const table = await biTable.getTable<Activity>(LARK_BITABLE_ACTIVITY_ID);
 
   const list = await table!.getAllRecords();
+
+  setTimeout(clean, Hour / 2);
 
   return { city: countBy(list, 'city') };
 }, 'Activity Statistic');

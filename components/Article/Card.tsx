@@ -2,9 +2,9 @@ import type { FC } from 'react';
 import { Row, Col, Card, Badge } from 'react-bootstrap';
 import { TimeDistance, text2color } from 'idea-react';
 
-import { TimeOption } from './data';
-import { fileURLOf } from '../pages/api/lark/file/[id]';
-import type { BaseArticle } from '../pages/api/article';
+import { TimeOption } from '../data';
+import { fileURLOf } from '../../pages/api/lark/file/[id]';
+import type { BaseArticle } from '../../pages/api/article';
 
 export interface ArticleCardProps extends BaseArticle {
   className?: string;
