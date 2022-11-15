@@ -6,7 +6,15 @@ import { client } from './Base';
 import { ActivityStatistic } from '../pages/api/activity/statistic';
 
 export type Activity = Record<
-  'id' | 'name' | 'startTime' | 'endTime' | 'city' | 'location' | 'organizers' | 'link',
+  | 'id'
+  | 'name'
+  | 'startTime'
+  | 'endTime'
+  | 'city'
+  | 'location'
+  | 'organizers'
+  | 'link'
+  | 'image',
   TableCellValue
 >;
 
