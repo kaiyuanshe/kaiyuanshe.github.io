@@ -2,6 +2,7 @@ import { PureComponent } from 'react';
 import { NextRouter, withRouter } from 'next/router';
 import { Container, Image, Nav, Navbar } from 'react-bootstrap';
 
+import { SearchBar } from './SearchBar';
 import styles from '../styles/MainNav.module.less';
 
 export interface Link {
@@ -42,9 +43,12 @@ class MainNav extends PureComponent<MainNavProps> {
               </text>
             </svg>
           </Navbar.Brand>
+
           <Navbar.Toggle />
+
           <Navbar.Collapse className="justify-content-end">
-            <Nav className="align-items-center">
+            <SearchBar />
+            <Nav className="ms-3 align-items-center">
               {links.map(({ path, title }) => (
                 <Nav.Link
                   key={path}

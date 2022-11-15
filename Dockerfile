@@ -1,7 +1,8 @@
-FROM node:16-alpine
+FROM node:16-slim
 
 USER root
 
+RUN npm rm yarn -g
 RUN npm i pnpm -g
 
 RUN mkdir /home/node/app

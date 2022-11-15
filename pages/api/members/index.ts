@@ -4,10 +4,12 @@ import { TableRecordList } from 'lark-ts-sdk';
 import { NextApiResponse } from 'next';
 
 import { safeAPI } from '../base';
-import { makeFilter, getBITableList } from '../../../models/Lark';
+import {
+  makeFilter,
+  getBITableList,
+  LARK_BITABLE_MEMBERS_ID,
+} from '../../../models/Lark';
 import { Member } from '../../../models/Member';
-
-const LARK_BITABLE_MEMBERS_ID = process.env.LARK_BITABLE_MEMBERS_ID!;
 
 export default safeAPI(
   async (
