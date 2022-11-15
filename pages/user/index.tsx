@@ -5,8 +5,6 @@ import { PaginationBar } from 'idea-react';
 
 import PageHead from '../../components/PageHead';
 import UserCard from '../../components/UserCard';
-import SearchBar from '../../components/SearchBar';
-import { SearchScope } from '../../components/data';
 
 import { makeSearch, mergeQuery, getPageV3 } from '../api/base';
 import type { User } from '../api/user';
@@ -38,8 +36,6 @@ export default function UserListPage({
   return (
     <Container>
       <PageHead title={title} />
-
-      <SearchBar scope={SearchScope.User} />
 
       <h1 className="mt-4">{title}</h1>
 

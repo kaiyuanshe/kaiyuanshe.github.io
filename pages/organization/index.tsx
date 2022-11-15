@@ -1,17 +1,14 @@
 import { isEmpty } from 'web-utility';
-import { debounce } from 'lodash';
 import dynamic from 'next/dynamic';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
-import { Container, Row, Col, Badge, Button, Nav } from 'react-bootstrap';
-import { text2color, ScrollBoundary, TouchHandler, Loading } from 'idea-react';
+import { Container, Badge, Button, Nav } from 'react-bootstrap';
+import { text2color } from 'idea-react';
 
 import PageHead from '../../components/PageHead';
-import {
-  OrganizationCardProps,
-  OrganizationCard,
-} from '../../components/Organization/Card';
+import { OrganizationCardProps } from '../../components/Organization/Card';
+import { OrganizationList } from '../../components/Organization/List';
 import { CityStatisticMap } from '../../components/CityStatisticMap';
 
 import { isServer } from '../../models/Base';
@@ -26,21 +23,6 @@ const OrganizationCharts = dynamic(
 export class OpenSourceMap extends PureComponent {
   @observable
   tabKey: 'map' | 'chart' = 'map';
-
-  componentDidMount() {
-    organizationStore.getList();
-  }
-
-  componentWillUnmount() {
-    organizationStore.clear();
-  }
-
-  loadMore: TouchHandler = debounce(edge => {
-    const { downloading, noMore } = organizationStore;
-
-    if (edge === 'bottom' && !downloading && !noMore)
-      organizationStore.getList();
-  });
 
   switchFilter: Required<OrganizationCardProps>['onSwitch'] = ({
     type,
@@ -133,29 +115,16 @@ export class OpenSourceMap extends PureComponent {
   }
 
   render() {
-    const { downloading, allItems } = organizationStore;
-
     return (
       <>
-        {downloading > 0 && <Loading />}
-
         {this.renderTab()}
 
-        <ScrollBoundary onTouch={this.loadMore}>
-          {this.renderFilter()}
+        {this.renderFilter()}
 
-          <Row xs={1} sm={2} lg={3} xxl={4} className="g-4 my-2">
-            {allItems.map(({ id, ...org }) => (
-              <Col key={org.name as string}>
-                <OrganizationCard
-                  className="h-100"
-                  {...org}
-                  onSwitch={this.switchFilter}
-                />
-              </Col>
-            ))}
-          </Row>
-        </ScrollBoundary>
+        <OrganizationList
+          store={organizationStore}
+          onSwitch={this.switchFilter}
+        />
       </>
     );
   }

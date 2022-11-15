@@ -28,7 +28,7 @@ export const ArticleCard: FC<ArticleCardProps> = ({
     <Card.Body>
       <Card.Title as="h3" className="h4">
         <a
-          className="text-decoration-none stretched-link text-secondary"
+          className="text-decoration-none text-secondary"
           href={`/article/${alias}`}
         >
           {title}
@@ -36,12 +36,24 @@ export const ArticleCard: FC<ArticleCardProps> = ({
       </Card.Title>
 
       <Row className="mt-3">
-        <Col className="text-end">{author}</Col>
+        <Col
+          as="a"
+          className="text-decoration-none text-end"
+          href={`/search?keywords=${author}`}
+        >
+          {author}
+        </Col>
       </Row>
       <Row as="footer" className="small mt-3">
         <Col>
           {(tags + '').split(/\s+/).map(name => (
-            <Badge key={name} className="me-2" bg={text2color(name, ['light'])}>
+            <Badge
+              as="a"
+              key={name}
+              className="text-decoration-none me-2"
+              bg={text2color(name, ['light'])}
+              href={`/search?tag=${name}`}
+            >
               {name}
             </Badge>
           ))}

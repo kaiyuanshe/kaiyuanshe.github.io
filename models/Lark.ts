@@ -1,4 +1,4 @@
-import { buildURLData } from 'web-utility';
+import { isEmpty, buildURLData } from 'web-utility';
 import { DataObject, NewData, RESTClient } from 'mobx-restful';
 import {
   Lark,
@@ -14,6 +14,7 @@ import { isServer } from './Base';
 export const LARK_APP_ID = process.env.LARK_APP_ID!,
   LARK_APP_SECRET = process.env.LARK_APP_SECRET!,
   LARK_BITABLE_ID = process.env.LARK_BITABLE_ID!,
+  LARK_BITABLE_MEMBERS_ID = process.env.LARK_BITABLE_MEMBERS_ID!,
   LARK_BITABLE_GROUP_ID = process.env.LARK_BITABLE_GROUP_ID!,
   LARK_BITABLE_ORGANIZATION_ID = process.env.LARK_BITABLE_ORGANIZATION_ID!,
   ARTICLE_LARK_BASE_ID = process.env.ARTICLE_LARK_BASE_ID!,
@@ -30,12 +31,15 @@ export const lark = new Lark({
 export function makeFilter(data: DataObject, relation: 'AND' | 'OR' = 'AND') {
   const list = Object.entries(data)
     .map(([key, value]) => {
+      if (isEmpty(value)) return;
+
       value = value instanceof Array ? value : [value];
 
       return value.map(
         (item: string) => `CurrentValue.[${key}].contains("${item}")`,
       );
     })
+    .filter(Boolean)
     .flat();
 
   return list[1] ? `${relation}(${list})` : list[0];
@@ -77,6 +81,7 @@ export async function getBITableList<T extends Record<string, TableCellValue>>({
 
 const RouteTableMap: Record<string, LarkBITableQuery> = {
   article: { database: ARTICLE_LARK_BASE_ID, table: ARTICLE_LARK_TABLE_ID },
+  members: { table: LARK_BITABLE_MEMBERS_ID },
   group: { table: LARK_BITABLE_GROUP_ID },
   organization: { table: LARK_BITABLE_ORGANIZATION_ID },
 };
@@ -91,17 +96,20 @@ export async function* createListStream<T extends DataObject>(
 
   do {
     const query = {
-      filter: filter && makeFilter(filter),
       page_size: 100,
       page_token: lastPage,
     };
 
     var { items, total, has_more, page_token } =
       isServer() && baseTable
-        ? await getBITableList<T>({ ...baseTable, ...query })
+        ? await getBITableList<T>({
+            ...baseTable,
+            ...query,
+            filter: filter && makeFilter(filter),
+          })
         : (
             await client.get<TableRecordList<T>['data']>(
-              `${path}?${buildURLData(query)}`,
+              `${path}?${buildURLData({ ...query, ...filter })}`,
             )
           ).body!;
 

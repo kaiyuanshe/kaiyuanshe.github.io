@@ -12,7 +12,7 @@ export interface MemberListProps {
 
 export const MemberList: FC<MemberListProps> = ({ list = [] }) => {
   //Judgment exceeds 3 lines
-  const isMore = list?.length > 3 * Math.floor(window.innerWidth / 120);
+  const isMore = list?.length > 3 * Math.floor(globalThis.innerWidth / 120);
 
   return (
     <Row

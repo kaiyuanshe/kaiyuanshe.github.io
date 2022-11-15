@@ -9,7 +9,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "npm run lint  &&  lint-staged"
+    "test": "npm run lint  &&  lint-staged",
+    "pack-image": "docker build -t kys-ows:latest .",
+    "container": "docker rm -f kys-ows  &&  docker run --name kys-ows -p 3000:3000 -d kys-ows:latest"
   },
   "dependencies": {
     "@giscus/react": "2.2.2",
@@ -17,7 +19,7 @@
     "classnames": "^2.3.2",
     "echarts-jsx": "^0.4.0",
     "file-type": "^18.0.0",
-    "idea-react": "^0.27.7",
+    "idea-react": "^0.27.10",
     "koajax": "^0.8.3",
     "lark-ts-sdk": "^0.7.9",
     "lodash": "^4.17.21",
@@ -37,7 +39,7 @@
     "webpack": "^5.75.0"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.188",
+    "@types/lodash": "^4.14.189",
     "@types/node": "^16.18.3",
     "@types/qs": "^6.9.7",
     "@types/react": "^17.0.52",
@@ -50,7 +52,7 @@
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "ts-node": "^10.9.1",
-    "typescript": "~4.8.4"
+    "typescript": "~4.9.3"
   },
   "prettier": {
     "singleQuote": true,

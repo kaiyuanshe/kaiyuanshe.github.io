@@ -3,12 +3,11 @@ import { computed } from 'mobx';
 import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { Badge } from 'react-bootstrap';
-import { Loading, text2color } from 'idea-react';
+import { Loading } from 'idea-react';
 import { SVGCharts, Tooltip, TreeSeriesProps, TreeSeries } from 'echarts-jsx';
 
-import { fileURLOf } from '../pages/api/lark/file/[id]';
-import groupStore from '../models/Group';
+import { GroupCard } from './Card';
+import groupStore from '../../models/Group';
 
 @observer
 export default class DepartmentTree extends PureComponent {
@@ -52,39 +51,11 @@ export default class DepartmentTree extends PureComponent {
   }
 
   renderGroup(name: string) {
-    const { logo, tags, summary } =
-      groupStore.allItems.find(
-        ({ name: n, fullName }) => n === name || fullName === name,
-      ) || {};
-
-    return !summary ? (
-      <></>
-    ) : (
-      <div className="text-center">
-        <h3 className="h5 mb-3">{name}</h3>
-        {logo && (
-          <img
-            className="mb-3"
-            style={{ maxWidth: '10rem' }}
-            src={fileURLOf(logo)}
-          />
-        )}
-        <ul className="list-unstyled">
-          {(tags as string[])?.map(tag => (
-            <Badge
-              as="li"
-              key={tag}
-              className="mx-1"
-              bg={text2color(tag, ['light'])}
-            >
-              {tag}
-            </Badge>
-          ))}
-        </ul>
-        <p className="m-0 text-wrap text-start" style={{ maxWidth: '50vw' }}>
-          {summary}
-        </p>
-      </div>
+    const group = groupStore.allItems.find(
+      ({ name: n, fullName }) => n === name || fullName === name,
+    );
+    return renderToStaticMarkup(
+      group?.summary ? <GroupCard {...group} /> : <></>,
     );
   }
 
@@ -105,8 +76,7 @@ export default class DepartmentTree extends PureComponent {
               fontSize: 16,
             }}
             tooltip={{
-              formatter: ({ name }) =>
-                renderToStaticMarkup(this.renderGroup(name)),
+              formatter: ({ name }) => this.renderGroup(name),
             }}
             data={this.treeData}
           />
