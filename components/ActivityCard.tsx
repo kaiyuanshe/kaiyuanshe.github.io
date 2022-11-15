@@ -38,7 +38,7 @@ export const ActivityCard: FC<ActivityCardProps> = ({
       <Card.Title as="h3" className="h4">
         <a
           className="text-decoration-none stretched-link text-secondary"
-          href={link}
+          href={link as string}
         >
           {name}
         </a>
@@ -50,7 +50,7 @@ export const ActivityCard: FC<ActivityCardProps> = ({
       </Row>
       <Row as="footer" className="small mt-3">
         <Col>
-          {organizers?.map((item: Organizer) => (
+          {(organizers as Organizer[])?.map((item: Organizer) => (
             <Badge
               key={item.text}
               className="me-2"
