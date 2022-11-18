@@ -18,6 +18,7 @@ export const MemberTabs: FC<MemberTabsProps> = ({ tabs, list }) => {
 
   return (
     <Tabs
+      id="MemberTabs"
       activeKey={activeKey}
       onSelect={k => setActiveKey(k as SetStateAction<string>)}
       className="mb-3"

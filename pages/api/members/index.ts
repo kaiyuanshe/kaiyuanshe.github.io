@@ -1,32 +1,32 @@
-import { parseURLData } from 'web-utility';
+import { cache, Hour, parseURLData } from 'web-utility';
 import { DataObject } from 'mobx-restful';
 import { TableRecordList } from 'lark-ts-sdk';
 import { NextApiResponse } from 'next';
 
 import { safeAPI } from '../base';
-import {
-  makeFilter,
-  getBITableList,
-  LARK_BITABLE_MEMBERS_ID,
-} from '../../../models/Lark';
+import { makeFilter, getBITableList } from '../../../models/Lark';
 import { Member } from '../../../models/Member';
 
+const LARK_BITABLE_MEMBERS_ID = process.env.LARK_BITABLE_MEMBERS_ID!;
+
+const statistic = cache(async (clean, url: string) => {
+  const { page_size, page_token, ...filter } = parseURLData(url) as DataObject;
+
+  const pageData = await getBITableList<Member>({
+    table: LARK_BITABLE_MEMBERS_ID,
+    filter: makeFilter(filter),
+  });
+  setTimeout(clean, Hour / 2);
+  return pageData;
+}, 'members');
+
+export type MembersStatic = TableRecordList<Member>['data'];
+
 export default safeAPI(
-  async (
-    { method, url },
-    response: NextApiResponse<TableRecordList<Member>['data']>,
-  ) => {
+  async ({ method, url }, response: NextApiResponse<MembersStatic>) => {
     switch (method) {
       case 'GET': {
-        const { page_size, page_token, ...filter } = parseURLData(
-          url!,
-        ) as DataObject;
-
-        const pageData = await getBITableList<Member>({
-          table: LARK_BITABLE_MEMBERS_ID,
-          filter: makeFilter(filter),
-        });
-        response.json(pageData);
+        response.send(await statistic('' + url));
       }
     }
   },
