@@ -1,4 +1,5 @@
-import { InferGetStaticPropsType } from 'next';
+import { InferGetServerSidePropsType } from 'next';
+import { observer } from 'mobx-react';
 import { Fragment, PureComponent } from 'react';
 import { Container, Row, Col, Image } from 'react-bootstrap';
 import { Icon } from 'idea-react';
@@ -8,13 +9,17 @@ import { ArticleListLayout } from '../components/Article/List';
 import { CityStatisticMap } from '../components/CityStatisticMap';
 
 import { isServer } from '../models/Base';
+import { i18n } from '../models/Translation';
 import articleStore, { Article } from '../models/Article';
 import groupStore, { Group } from '../models/Group';
 import activityStore from '../models/Activity';
+
+import { withTranslation } from './api/base';
 import { slogan } from './api/home';
 import { DefaultImage, fileURLOf } from './api/lark/file/[id]';
+import { textJoin } from 'mobx-i18n';
 
-export async function getStaticProps() {
+export const getServerSideProps = withTranslation(async () => {
   const articles = await articleStore.getList({}, 1, 3),
     projects = await groupStore.getAll({ type: '项目' });
 
@@ -24,10 +29,11 @@ export async function getStaticProps() {
       projects: JSON.parse(JSON.stringify(projects)) as Group[],
     },
   };
-}
+});
 
+@observer
 export default class HomePage extends PureComponent<
-  InferGetStaticPropsType<typeof getStaticProps>
+  InferGetServerSidePropsType<typeof getServerSideProps>
 > {
   renderProject = ({ id, name, logo = DefaultImage, link }: Group) => (
     <Col as="li" key={id + ''} className="position-relative">
@@ -49,7 +55,8 @@ export default class HomePage extends PureComponent<
   );
 
   render() {
-    const { articles, projects } = this.props;
+    const { articles, projects } = this.props,
+      { t } = i18n;
 
     return (
       <>
@@ -87,7 +94,9 @@ export default class HomePage extends PureComponent<
           </section>
 
           <section className="text-center">
-            <h2 className="my-5 text-primary">自研开源项目</h2>
+            <h2 className="my-5 text-primary">
+              自研{textJoin(t('open_source'), t('project'))}
+            </h2>
 
             <Row
               as="ul"

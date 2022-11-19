@@ -1,9 +1,12 @@
+import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
 import { NextRouter, withRouter } from 'next/router';
 import { Container, Image, Nav, Navbar } from 'react-bootstrap';
+import { Option, Select } from 'idea-react';
 
 import { SearchBar } from './SearchBar';
 import styles from '../styles/MainNav.module.less';
+import { i18n, LanguageName } from '../models/Translation';
 
 export interface Link {
   path: string;
@@ -17,14 +20,16 @@ export interface MainNavProps {
   router: NextRouter;
 }
 
+@observer
 class MainNav extends PureComponent<MainNavProps> {
   render() {
-    const {
-      title,
-      logo,
-      links,
-      router: { pathname },
-    } = this.props;
+    const { currentLanguage } = i18n,
+      {
+        title,
+        logo,
+        links,
+        router: { pathname },
+      } = this.props;
 
     return (
       <Navbar
@@ -47,7 +52,6 @@ class MainNav extends PureComponent<MainNavProps> {
           <Navbar.Toggle />
 
           <Navbar.Collapse className="justify-content-end">
-            <SearchBar />
             <Nav className="ms-3 align-items-center">
               {links.map(({ path, title }) => (
                 <Nav.Link
@@ -59,6 +63,21 @@ class MainNav extends PureComponent<MainNavProps> {
                 </Nav.Link>
               ))}
             </Nav>
+
+            <SearchBar className="mx-3" />
+
+            <Select
+              value={currentLanguage}
+              onChange={code =>
+                i18n.changeLanguage(code as typeof currentLanguage)
+              }
+            >
+              {Object.entries(LanguageName).map(([code, name]) => (
+                <Option key={code} value={code}>
+                  {name}
+                </Option>
+              ))}
+            </Select>
           </Navbar.Collapse>
         </Container>
       </Navbar>

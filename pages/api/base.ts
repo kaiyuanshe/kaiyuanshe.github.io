@@ -13,7 +13,9 @@ import {
   NextApiRequest,
   NextApiResponse,
 } from 'next';
+import { parseLanguageHeader } from 'mobx-i18n';
 
+import { i18n } from '../../models/Translation';
 import { Media } from './file';
 import { getClientSession } from './user/session';
 
@@ -196,6 +198,28 @@ export function withRoute<
         ),
       },
     } as GetServerSidePropsResult<
+      RouteProps<R> & InferGetServerSidePropsType<O>
+    >;
+  };
+}
+
+export function withTranslation<
+  R extends Record<string, any>,
+  P extends Record<string, any> = {},
+  O extends GetServerSideProps<P, R> = GetServerSideProps<P, R>,
+>(
+  origin?: O,
+): GetServerSideProps<RouteProps<R> & InferGetServerSidePropsType<O>, R> {
+  return async context => {
+    const options =
+      (await origin?.(context)) || ({} as GetServerSidePropsResult<{}>);
+
+    const languages = parseLanguageHeader(
+      context.req.headers['accept-language'] || '',
+    );
+    await i18n.loadLanguages(languages);
+
+    return options as GetServerSidePropsResult<
       RouteProps<R> & InferGetServerSidePropsType<O>
     >;
   };
