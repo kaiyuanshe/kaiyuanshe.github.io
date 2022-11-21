@@ -27,7 +27,7 @@ type GroupAllMap<T> = Record<
   { count: number; groupMap: GroupMap<T> }
 >;
 
-const groupFn = function <T>(
+function groupFn<T>(
   groupMap: GroupMap<T>,
   groupKeys: string[],
   groupItem: T,
@@ -38,7 +38,7 @@ const groupFn = function <T>(
     );
 };
 
-const groupBys = function <T extends Record<IndexKey, any>>(
+function groupBys<T extends Record<IndexKey, any>>(
   items: T[],
   byKeys: string[],
 ): {
@@ -47,17 +47,19 @@ const groupBys = function <T extends Record<IndexKey, any>>(
 } {
   const groupAllMap: GroupAllMap<T> = {};
   const otherGroup: T[] = [];
-  let hasGroup: boolean;
+
   for (const item of items) {
-    hasGroup = false;
+    let hasGroup: boolean = false;
     for (const byKey of byKeys) {
       groupFn<T>(
-        (groupAllMap[byKey] = groupAllMap[byKey] || { count: 0, groupMap: {} })
-          .groupMap,
+        (groupAllMap[byKey] ||= { count: 0, groupMap: {} }).groupMap,
         item[byKey],
         item,
       );
-      if (item[byKey]) groupAllMap[byKey].count++, (hasGroup = true);
+      if (item[byKey]) {
+        groupAllMap[byKey].count++;
+        (hasGroup = true)
+      }
     }
     if (!hasGroup) otherGroup.push(item);
   }
@@ -67,25 +69,6 @@ const groupBys = function <T extends Record<IndexKey, any>>(
 export class MemberModel extends Stream<Member>(ListModel) {
   client = client;
   baseURI = 'members';
-
-  //Enable the configuration group of Tabs | 开启 Tabs 的配置组👇
-  groupConfig = {
-    groupMap: {
-      理事会: { list: [] },
-      顾问委员会: { list: [] },
-      法律咨询委员会: { list: [] },
-      执行委员会: { list: [] },
-      项目委员会: { list: [] },
-    },
-    groupByKey: 'organization',
-    tabsGroupList: [
-      {
-        group: '项目委员会',
-        groupKey: 'project',
-      },
-      { group: '执行委员会', groupKey: 'department' },
-    ],
-  };
 
   normalize = ({
     id,
@@ -115,7 +98,7 @@ export class MemberModel extends Stream<Member>(ListModel) {
       'department',
       'project',
     ]);
-    const groupMap: any = Object.assign(
+    const groupMap: GroupMap<Member> = Object.assign(
       {
         理事会: {},
         顾问委员会: {},
@@ -130,11 +113,10 @@ export class MemberModel extends Stream<Member>(ListModel) {
     groupMap['项目委员会'].count = groupData.grouped['project'].count;
     groupMap['执行委员会'].tabs = groupData.grouped['department'].groupMap;
     groupMap['执行委员会'].count = groupData.grouped['department'].count;
-    const otherGroupList = groupData.unGrouped;
 
     return {
       groupMap,
-      otherGroupList,
+      otherGroupList: groupData.unGrouped,
     };
   }
 }
