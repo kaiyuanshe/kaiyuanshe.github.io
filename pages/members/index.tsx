@@ -15,8 +15,8 @@ export async function getServerSideProps() {
 export default function MembersPage({
   membersStaticData,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-
   const { groupMap, otherGroupList } = membersStaticData;
+
   return (
     <Container className="my-4">
       <PageHead title="正式成员" />
