@@ -33,7 +33,7 @@ function groupFn<T>(
   groupItem: T,
 ) {
   for (const key of groupKeys || [])
-    ((groupMap[key] = groupMap[key] || { list: [] }).list as T[]).push(
+    ((groupMap[key] ||= { list: [] }).list as T[]).push(
       groupItem,
     );
 };
