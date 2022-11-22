@@ -3,7 +3,7 @@ import { NextApiResponse } from 'next';
 
 import { safeAPI } from '../base';
 import { lark } from '../../../models/Lark';
-import { Activity } from '../../../models/Activity';
+import type { Activity } from '../../../pages/api/activity';
 
 const LARK_BITABLE_ID = process.env.LARK_BITABLE_ID!,
   LARK_BITABLE_ACTIVITY_ID = process.env.LARK_BITABLE_ACTIVITY_ID!;

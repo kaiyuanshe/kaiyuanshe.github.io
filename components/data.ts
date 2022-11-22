@@ -23,6 +23,7 @@ export const TimeOption: Pick<
 export const MainRoutes: Link[] = [
   { title: '开源文库', path: '/article' },
   { title: '正式成员', path: '/members' },
+  { title: '精彩活动', path: '/activity' },
   { title: '组织机构', path: '/department' },
   { title: '开源地图', path: '/organization' },
   { title: '合作伙伴', path: '/organization/cooperation' },
