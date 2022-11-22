@@ -8,7 +8,7 @@ import activityStore from '../../models/Activity';
 export async function getServerSideProps() {
   const list = await activityStore.getList({}, 1);
 
-  return { props: { list } };
+  return { props: { list: JSON.parse(JSON.stringify(list)) } };
 }
 
 export default function ActivityListPage({

@@ -27,7 +27,7 @@
 - Language: [TypeScript v4][2]
 - Component engine: [Nextjs v12][3]
 - Component suite: [Bootstrap v5][4]
-- Test framework: [Jest][8] + [Playwright][9]
+- State management: [MobX][8]
 - CI / CD: GitHub [Actions][10] + [Vercel][11]
 
 ## Getting Started
@@ -73,23 +73,6 @@ pnpm pack-image
 pnpm container
 ```
 
-## End-to-End testing
-
-### NPM script
-
-```shell
-pnpm e2e
-```
-
-### VS Code
-
-press <key>F5</key>
-
-### Learn more
-
-1. Runner & Assert framework: [Jest][8]
-2. Browser Operation library: [Playwright][9] & [its community][17]
-
 [1]: https://reactjs.org/
 [2]: https://www.typescriptlang.org/
 [3]: https://nextjs.org/
@@ -97,8 +80,7 @@ press <key>F5</key>
 [5]: https://github.com/vercel/next.js/tree/canary/packages/create-next-app
 [6]: https://david-dm.org/kaiyuanshe/kaiyuanshe.github.io
 [7]: https://github.com/kaiyuanshe/kaiyuanshe.github.io/actions
-[8]: https://jestjs.io/
-[9]: https://playwright.dev/
+[8]: https://github.com/mobxjs/mobx/tree/mobx4and5/docs
 [10]: https://github.com/features/actions
 [11]: https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme
 [12]: https://nextjs.org/docs/api-routes/introduction
@@ -106,4 +88,3 @@ press <key>F5</key>
 [14]: https://nextjs.org/learn
 [15]: https://github.com/vercel/next.js/
 [16]: https://nextjs.org/docs/deployment
-[17]: https://playwright.tech/

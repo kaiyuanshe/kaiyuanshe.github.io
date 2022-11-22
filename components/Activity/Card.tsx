@@ -6,13 +6,6 @@ import { TimeOption } from '../data';
 import { fileURLOf } from '../../pages/api/lark/file/[id]';
 import type { Activity } from '../../pages/api/activity';
 
-export interface Organizer {
-  text: string;
-  table_id: string;
-  type: string;
-  record_ids: string[];
-}
-
 export interface ActivityCardProps extends Activity {
   className?: string;
 }
@@ -22,7 +15,6 @@ export const ActivityCard: FC<ActivityCardProps> = ({
   organizers,
   name,
   startTime,
-  endTime,
   link,
   city,
   location,
@@ -34,10 +26,10 @@ export const ActivityCard: FC<ActivityCardProps> = ({
       style={{ height: '30vh', objectFit: 'cover' }}
       src={fileURLOf(image)}
     />
-    <Card.Body>
-      <Card.Title as="h3" className="h4">
+    <Card.Body className="d-flex flex-column">
+      <Card.Title as="h3" className="h4 flex-fill">
         <a
-          className="text-decoration-none stretched-link text-secondary"
+          className="text-decoration-none text-secondary"
           href={link as string}
         >
           {name}
@@ -46,21 +38,23 @@ export const ActivityCard: FC<ActivityCardProps> = ({
 
       <Row className="mt-24">
         <Col className="text-start">
-          <Card.Text className="mt-4">
+          <Card.Text className="mt-4 text-truncate" title={location + ''}>
             <span className="me-3">{city}</span>
             {location}
-        </Card.Text>
+          </Card.Text>
         </Col>
       </Row>
       <Row as="footer" className="small mt-3">
         <Col>
-          {(organizers as Organizer[])?.map((item: Organizer) => (
+          {(organizers as string[])?.map(organizer => (
             <Badge
-              key={item.text}
-              className="me-2"
-              bg={text2color(item.text, ['light'])}
+              key={organizer}
+              className="me-2 text-decoration-none"
+              bg={text2color(organizer, ['light'])}
+              as="a"
+              href={`/search?keywords=${organizer}`}
             >
-              {item.text}
+              {organizer}
             </Badge>
           ))}
         </Col>

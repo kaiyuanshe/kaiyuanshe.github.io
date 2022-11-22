@@ -24,6 +24,8 @@ export default safeAPI(
 
         const pageData = await getBITableList<Group>({
           table: LARK_BITABLE_GROUP_ID,
+          page_size,
+          page_token,
           filter: makeFilter(filter),
         });
         response.json(pageData);

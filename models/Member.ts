@@ -27,16 +27,10 @@ type GroupAllMap<T> = Record<
   { count: number; groupMap: GroupMap<T> }
 >;
 
-function groupFn<T>(
-  groupMap: GroupMap<T>,
-  groupKeys: string[],
-  groupItem: T,
-) {
+function groupFn<T>(groupMap: GroupMap<T>, groupKeys: string[], groupItem: T) {
   for (const key of groupKeys || [])
-    ((groupMap[key] ||= { list: [] }).list as T[]).push(
-      groupItem,
-    );
-};
+    ((groupMap[key] ||= { list: [] }).list as T[]).push(groupItem);
+}
 
 function groupBys<T extends Record<IndexKey, any>>(
   items: T[],
@@ -58,13 +52,13 @@ function groupBys<T extends Record<IndexKey, any>>(
       );
       if (item[byKey]) {
         groupAllMap[byKey].count++;
-        (hasGroup = true)
+        hasGroup = true;
       }
     }
     if (!hasGroup) otherGroup.push(item);
   }
   return { grouped: groupAllMap, unGrouped: otherGroup };
-};
+}
 
 export class MemberModel extends Stream<Member>(ListModel) {
   client = client;
@@ -76,7 +70,7 @@ export class MemberModel extends Stream<Member>(ListModel) {
   }: TableRecordList<Member>['data']['items'][number]): Member => ({
     ...fields,
     id: id!,
-    GitHubID: normalizeText(GitHubID as TableCellLink) as string,
+    GitHubID: normalizeText(GitHubID as TableCellLink),
   });
 
   async *openStream(filter: NewData<Member>) {

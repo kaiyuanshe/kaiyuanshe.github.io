@@ -1,8 +1,9 @@
 import { observable } from 'mobx';
 import { NewData, ListModel, Stream, toggle } from 'mobx-restful';
-import { TableCellLink, TableRecordList } from 'lark-ts-sdk';
-import { createListStream, normalizeText } from './Lark';
+import { TableCellLink, TableCellRelation, TableRecordList } from 'lark-ts-sdk';
+
 import { client } from './Base';
+import { createListStream, normalizeText } from './Lark';
 import { Activity } from '../pages/api/activity';
 import { ActivityStatistic } from '../pages/api/activity/statistic';
 
@@ -13,14 +14,15 @@ export class ActivityModel extends Stream<Activity>(ListModel) {
   @observable
   statistic: ActivityStatistic = {} as ActivityStatistic;
 
-  normalize = ({ 
-    id, 
-    fields: { link, ...fields }, 
-  }: TableRecordList<Activity>['data']['items'][number]): Activity => ({ 
-    ...fields, 
-    id: id!, 
-    link: normalizeText(link as TableCellLink) || null, 
-  }); 
+  normalize = ({
+    id,
+    fields: { organizers, link, ...fields },
+  }: TableRecordList<Activity>['data']['items'][number]): Activity => ({
+    ...fields,
+    id: id!,
+    organizers: (organizers as TableCellRelation[])?.map(normalizeText),
+    link: normalizeText(link as TableCellLink),
+  });
 
   async *openStream(filter: NewData<Activity>) {
     for await (const { total, items } of createListStream<Activity>(

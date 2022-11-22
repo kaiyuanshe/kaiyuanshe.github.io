@@ -2,8 +2,8 @@ import { InferGetServerSidePropsType } from 'next';
 import { Container } from 'react-bootstrap';
 
 import PageHead from '../../components/PageHead';
-import membersStore from '../../models/Member';
 import { MemberStatic } from '../../components/Member/Static';
+import membersStore from '../../models/Member';
 
 export async function getServerSideProps() {
   const data = await membersStore.getStatic();
@@ -12,6 +12,7 @@ export async function getServerSideProps() {
     props: { membersStaticData: JSON.parse(JSON.stringify(data)) }, // will be passed to the page component as props
   };
 }
+
 export default function MembersPage({
   membersStaticData,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
@@ -22,6 +23,7 @@ export default function MembersPage({
       <PageHead title="正式成员" />
 
       <h1 className="w-100 my-5 text-center">正式成员</h1>
+
       <MemberStatic membersGroup={groupMap} otherMembersList={otherGroupList} />
     </Container>
   );

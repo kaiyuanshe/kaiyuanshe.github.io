@@ -21,7 +21,6 @@ export const LARK_APP_ID = process.env.LARK_APP_ID!,
   ARTICLE_LARK_TABLE_ID = process.env.ARTICLE_LARK_TABLE_ID!,
   LARK_BITABLE_ACTIVITY_ID = process.env.LARK_BITABLE_ACTIVITY_ID!;
 
-
 export const lark = new Lark({
   appId: LARK_APP_ID,
   appSecret: LARK_APP_SECRET,
@@ -52,12 +51,15 @@ export const normalizeText = (
 ) =>
   value && typeof value === 'object' && 'text' in value ? value.text : value;
 
-export interface LarkBITableQuery {
+export interface LarkBITableQuery<
+  T extends Record<string, TableCellValue> = any,
+> {
   database?: string;
   table: string;
   page_size?: number;
   page_token?: string;
   filter?: string;
+  sort?: Partial<Record<keyof T, 'ASC' | 'DESC'>>;
 }
 
 export async function getBITableList<T extends Record<string, TableCellValue>>({
@@ -66,7 +68,8 @@ export async function getBITableList<T extends Record<string, TableCellValue>>({
   page_size,
   page_token,
   filter,
-}: LarkBITableQuery) {
+  sort,
+}: LarkBITableQuery<T>) {
   const biTable = await lark.getBITable(database);
 
   const table = await biTable.getTable<T>(TID);
@@ -76,12 +79,18 @@ export async function getBITableList<T extends Record<string, TableCellValue>>({
       page_size,
       page_token,
       filter,
+      sort:
+        sort &&
+        JSON.stringify(Object.entries(sort).map(item => item.join(' '))),
     })}`,
   );
   return body!.data;
 }
 
-const RouteTableMap: Record<string, LarkBITableQuery> = {
+const RouteTableMap: Record<
+  string,
+  Pick<LarkBITableQuery, 'database' | 'table'>
+> = {
   article: { database: ARTICLE_LARK_BASE_ID, table: ARTICLE_LARK_TABLE_ID },
   members: { table: LARK_BITABLE_MEMBERS_ID },
   group: { table: LARK_BITABLE_GROUP_ID },

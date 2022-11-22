@@ -5,7 +5,6 @@ import { NextApiResponse } from 'next';
 
 import { safeAPI } from '../base';
 import {
-  LARK_BITABLE_ID,
   LARK_BITABLE_ACTIVITY_ID,
   makeFilter,
   getBITableList,
@@ -36,11 +35,11 @@ export default safeAPI(
         ) as DataObject;
 
         const pageData = await getBITableList<Activity>({
-          database: LARK_BITABLE_ID,
           table: LARK_BITABLE_ACTIVITY_ID,
           page_size,
           page_token,
           filter: makeFilter(filter),
+          sort: { startTime: 'DESC' },
         });
         response.json(pageData);
       }
