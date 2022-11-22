@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import classNames from 'classnames';
 
@@ -12,7 +12,11 @@ export interface MemberListProps {
 
 export const MemberList: FC<MemberListProps> = ({ list = [] }) => {
   //Judgment exceeds 3 lines
-  const isMore = list?.length > 3 * Math.floor(window.innerWidth / 120);
+  const [isMore, setIsMore] = useState(false);
+  useEffect(() => {
+    if (list?.length > 3 * Math.floor(globalThis.innerWidth / 120))
+      setIsMore(true);
+  }, [list?.length, setIsMore]);
 
   return (
     <Row

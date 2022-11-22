@@ -69,9 +69,8 @@ Check out our [Next.js deployment documentation][16] for more details.
 ### Docker
 
 ```shell
-docker build -t kys-ows:latest .
-docker rm -f kys-ows
-docker run --name kys-ows -p 3000:3000 -d kys-ows:latest
+pnpm pack-image
+pnpm container
 ```
 
 ## End-to-End testing

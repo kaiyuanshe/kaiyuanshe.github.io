@@ -20,24 +20,7 @@ export const TimeOption: Pick<
   afterWord: '后',
 };
 
-export enum SearchScope {
-  User,
-  Article,
-  Organization,
-  Cooperation,
-}
-
-export const MainRoute: Record<SearchScope, Link> = {
-  [SearchScope.User]: { title: '开源人', path: '/user' },
-  [SearchScope.Article]: { title: '文　章', path: '/article' },
-  [SearchScope.Organization]: { title: '社　区', path: '/organization' },
-  [SearchScope.Cooperation]: {
-    title: '合作伙伴',
-    path: '/organization/cooperation',
-  },
-};
-
-export const MainRoutes = [
+export const MainRoutes: Link[] = [
   { title: '开源文库', path: '/article' },
   { title: '正式成员', path: '/members' },
   { title: '精彩活动', path: '/activity' },

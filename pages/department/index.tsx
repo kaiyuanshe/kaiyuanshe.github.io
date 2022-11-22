@@ -3,10 +3,9 @@ import { Container, Button } from 'react-bootstrap';
 
 import PageHead from '../../components/PageHead';
 
-const DepartmentTree = dynamic(
-  () => import('../../components/DepartmentTree'),
-  { ssr: false },
-);
+const DepartmentTree = dynamic(() => import('../../components/Group/Tree'), {
+  ssr: false,
+});
 
 export default function DepartmentPage() {
   return (

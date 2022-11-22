@@ -1,4 +1,4 @@
-import { InferGetStaticPropsType } from 'next';
+import { InferGetServerSidePropsType } from 'next';
 import { Fragment, PureComponent } from 'react';
 import { Container, Row, Col, Image } from 'react-bootstrap';
 import { Icon } from 'idea-react';
@@ -14,7 +14,7 @@ import activityStore from '../models/Activity';
 import { slogan } from './api/home';
 import { DefaultImage, fileURLOf } from './api/lark/file/[id]';
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const articles = await articleStore.getList({}, 1, 3),
     projects = await groupStore.getAll({ type: '项目' });
 
@@ -27,7 +27,7 @@ export async function getStaticProps() {
 }
 
 export default class HomePage extends PureComponent<
-  InferGetStaticPropsType<typeof getStaticProps>
+InferGetServerSidePropsType<typeof getServerSideProps>
 > {
   renderProject = ({ id, name, logo = DefaultImage, link }: Group) => (
     <Col as="li" key={id + ''} className="position-relative">
