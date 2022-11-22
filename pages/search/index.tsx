@@ -3,6 +3,7 @@ import { InferGetServerSidePropsType } from 'next';
 import { Container, Row, Col } from 'react-bootstrap';
 
 import { ArticleListLayout } from '../../components/Article/List';
+import { ActivityListLayout } from '../../components/Activity/List';
 import { MemberList } from '../../components/Member/List';
 import { GroupCard } from '../../components/Group/Card';
 import { OrganizationListLayout } from '../../components/Organization/List';
@@ -21,6 +22,7 @@ export const getServerSideProps = withRoute<{}, SearchResult>(
 );
 
 export default function SearchPage({
+  activities,
   articles,
   members,
   groups,
@@ -33,6 +35,10 @@ export default function SearchPage({
       <h2>文章</h2>
 
       <ArticleListLayout data={articles} />
+
+      <h2>活动</h2>
+
+      <ActivityListLayout data={activities} />
 
       <h2>成员</h2>
 
