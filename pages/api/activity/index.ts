@@ -2,7 +2,6 @@ import { parseURLData } from 'web-utility';
 import { DataObject } from 'mobx-restful';
 import { TableCellValue, TableRecordList } from 'lark-ts-sdk';
 import { NextApiResponse } from 'next';
-import { Activity } from '../../../models/Activity';
 
 import { safeAPI } from '../base';
 import {
@@ -11,6 +10,19 @@ import {
   makeFilter,
   getBITableList,
 } from '../../../models/Lark';
+
+export type Activity = Record<
+  | 'id'
+  | 'name'
+  | 'startTime'
+  | 'endTime'
+  | 'city'
+  | 'location'
+  | 'organizers'
+  | 'link'
+  | 'image',
+  TableCellValue
+>;
 
 export default safeAPI(
   async (

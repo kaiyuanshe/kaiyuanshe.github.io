@@ -4,7 +4,7 @@ import { Container, Row, Col, Image } from 'react-bootstrap';
 import { Icon } from 'idea-react';
 
 import PageHead from '../components/PageHead';
-import { ArticleCard } from '../components/ArticleCard';
+import { ArticleListLayout } from '../components/Article/List';
 import { CityStatisticMap } from '../components/CityStatisticMap';
 
 import { isServer } from '../models/Base';
@@ -105,13 +105,7 @@ export default class HomePage extends PureComponent<
             <p className="text-center text-muted">
               身体力行地践行开源，咱们华人有力量！
             </p>
-            <Row as="section" xs={1} sm={2} xl={3} xxl={4} className="g-3 my-4">
-              {articles.map(item => (
-                <Col key={item.id + ''}>
-                  <ArticleCard className="h-100" {...item} />
-                </Col>
-              ))}
-            </Row>
+            <ArticleListLayout data={articles} />
           </section>
 
           <section>

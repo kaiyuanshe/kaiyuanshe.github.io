@@ -4,8 +4,8 @@ import { Container, Row, Col } from 'react-bootstrap';
 import Giscus from '@giscus/react';
 
 import PageHead from '../../../components/PageHead';
+import ArticleRecommend from '../../../components/Article/Recommend';
 import articleStore from '../../../models/Article';
-import ArticleRecommend from '../../../components/ArticleRecommend';
 
 export async function getServerSideProps({
   params,

@@ -1,6 +1,7 @@
+import classNames from 'classnames';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
-import { PureComponent } from 'react';
+import { HTMLAttributes, PureComponent } from 'react';
 import { Card, CardProps, Badge, Button, Image } from 'react-bootstrap';
 import { text2color, Icon } from 'idea-react';
 
@@ -9,7 +10,8 @@ import { Organization } from '../../models/Organization';
 import { fileURLOf } from '../../pages/api/lark/file/[id]';
 
 export interface OrganizationCardProps
-  extends Omit<Organization, 'id'>,
+  extends Pick<HTMLAttributes<HTMLDivElement>, 'className' | 'style'>,
+    Omit<Organization, 'id'>,
     CardProps {
   onSwitch?: (
     filter: Partial<Pick<Organization, 'type' | 'tags' | 'city'>>,
@@ -22,10 +24,13 @@ export class OrganizationCard extends PureComponent<OrganizationCardProps> {
   showQRC = false;
 
   renderIcon() {
-    const { email, link, codeLink, wechatName } = this.props;
+    const { className, style, email, link, codeLink, wechatName } = this.props;
 
     return (
-      <div className="d-flex justify-content-around">
+      <div
+        className={classNames('d-flex justify-content-around', className)}
+        style={style}
+      >
         {email && (
           <Button
             title="E-mail"
@@ -85,18 +90,22 @@ export class OrganizationCard extends PureComponent<OrganizationCardProps> {
         />
         <Card.Body>
           <Card.Title>
-            {name}{' '}
+            {name}
             <Badge
+              className="ms-2"
               bg={text2color(type as string, ['light'])}
               style={{ cursor: 'pointer' }}
-              onClick={() =>
-                confirm(`确定筛选「${type}」类型的开源组织？`) &&
-                onSwitch?.({ type: type as string })
+              onClick={
+                onSwitch &&
+                (() =>
+                  confirm(`确定筛选「${type}」类型的开源组织？`) &&
+                  onSwitch({ type: type as string }))
               }
             >
               {type}
             </Badge>
           </Card.Title>
+
           <Card.Text className="text-end">
             {(tags as string[])?.map(tag => (
               <Badge
@@ -104,22 +113,26 @@ export class OrganizationCard extends PureComponent<OrganizationCardProps> {
                 bg={text2color(tag, ['light'])}
                 className="me-2"
                 style={{ cursor: 'pointer' }}
-                onClick={() =>
-                  confirm(`确定筛选「${tag}」领域的开源组织？`) &&
-                  onSwitch?.({ tags: [tag] })
+                onClick={
+                  onSwitch &&
+                  (() =>
+                    confirm(`确定筛选「${tag}」领域的开源组织？`) &&
+                    onSwitch({ tags: [tag] }))
                 }
               >
                 {tag}
               </Badge>
             ))}
           </Card.Text>
+
           <Card.Text
-            className="d-none d-sm-block overflow-auto"
-            style={{ maxHeight: '10rem' }}
+            className="d-none d-sm-block text-wrap overflow-auto"
+            style={{ minHeight: '5rem', maxHeight: '10rem' }}
           >
             {summary}
           </Card.Text>
         </Card.Body>
+
         <Card.Footer>
           {this.renderIcon()}
 
