@@ -1,9 +1,12 @@
+import dynamic from 'next/dynamic';
 import { computed } from 'mobx';
 import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
-import { MarkerMeta, OpenMapProps, OpenMap } from 'idea-react';
+import { MarkerMeta, OpenMapProps } from 'idea-react';
 
 import metaStore from '../models/Meta';
+
+const ChinaMap = dynamic(() => import('./ChinaMap'), { ssr: false });
 
 type CityStatistic = Record<'city', Record<'string', number>>;
 
@@ -56,7 +59,7 @@ export class CityStatisticMap extends PureComponent<CityStatisticMapProps> {
 
     return (
       <div style={{ height: '70vh' }}>
-        <OpenMap
+        <ChinaMap
           center={[34.32, 108.55]}
           zoom={4}
           markers={markers}

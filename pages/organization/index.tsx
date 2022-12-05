@@ -11,7 +11,6 @@ import { OrganizationCardProps } from '../../components/Organization/Card';
 import { OrganizationList } from '../../components/Organization/List';
 import { CityStatisticMap } from '../../components/CityStatisticMap';
 
-import { isServer } from '../../models/Base';
 import organizationStore from '../../models/Organization';
 
 const OrganizationCharts = dynamic(
@@ -103,12 +102,10 @@ export class OpenSourceMap extends PureComponent {
         {tabKey !== 'map' ? (
           <OrganizationCharts {...statistic} />
         ) : (
-          !isServer() && (
-            <CityStatisticMap
-              store={organizationStore}
-              onChange={city => this.switchFilter({ city })}
-            />
-          )
+          <CityStatisticMap
+            store={organizationStore}
+            onChange={city => this.switchFilter({ city })}
+          />
         )}
       </div>
     );

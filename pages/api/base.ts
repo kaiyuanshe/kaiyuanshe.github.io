@@ -244,85 +244,10 @@ export function readCookie(req: GetServerSidePropsContext['req'], key: string) {
   return req.cookies[key];
 }
 
-export function makePagination(index: number, size: number) {
-  return stringify(
-    { pagination: { page: index, pageSize: size } },
-    { encodeValuesOnly: true },
-  );
-}
-
-export function makeSearch<T extends Base>(
-  keys: Exclude<TypeKeys<T, string>, 'id'>[],
-  keywords: string,
-) {
-  const words = keywords.split(/\s+/);
-
-  const $or = keys
-    .map(key => words.map(word => ({ [key]: { $containsi: word } })))
-    .flat();
-
-  return stringify({ filters: { $or } }, { encodeValuesOnly: true });
-}
-
 export function mergeQuery(path: string, ...data: Record<string, any>[]) {
   const [route, query] = path.split('?');
 
   return `${route}?${stringify(merge(parse(query), ...data), {
     encodeValuesOnly: true,
   })}`;
-}
-
-export async function getPage<T>(
-  path: string,
-  context: Partial<GetServerSidePropsContext>,
-  pageIndex = 1,
-  pageSize = 10,
-) {
-  const { meta, data } = await request<DataBox<T[]>>(
-    mergeQuery(path, parse(makePagination(pageIndex, pageSize))),
-    'GET',
-    undefined,
-    context,
-  );
-  const { page, total, ...pagination } = meta!.pagination;
-
-  return {
-    pageIndex: page,
-    ...pagination,
-    count: total,
-    list: data,
-  };
-}
-
-export async function getPageV3<T>(
-  path: string,
-  context: Partial<GetServerSidePropsContext>,
-  pageIndex = 1,
-  pageSize = 10,
-) {
-  const [route, query = ''] = path.split('?');
-  const { sort, ...filter } = parse(query);
-  const search = stringify(filter, { encodeValuesOnly: true });
-
-  const count = await request<number>(
-    [`${route}/count`, search].join('?'),
-    'GET',
-    undefined,
-    context,
-  );
-  if (!count) return { pageIndex, pageSize, pageCount: 0, count, list: [] };
-
-  const list = await request<T[]>(
-    mergeQuery(path, parse(makePagination(pageIndex, pageSize))),
-    'GET',
-    undefined,
-    context,
-  );
-  return {
-    pageIndex,
-    pageSize,
-    pageCount: Math.ceil(count / pageSize),
-    count,
-    list,
-  };
 }
