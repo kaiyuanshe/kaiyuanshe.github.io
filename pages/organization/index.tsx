@@ -13,6 +13,7 @@ import { CityStatisticMap } from '../../components/CityStatisticMap';
 
 import { isServer } from '../../models/Base';
 import organizationStore from '../../models/Organization';
+import { i18n } from '../../models/Translation';
 
 const OrganizationCharts = dynamic(
   () => import('../../components/Organization/Charts'),
@@ -54,7 +55,7 @@ export class OpenSourceMap extends PureComponent {
           style={{ top: '5rem' }}
         >
           <div>
-            筛选
+            {i18n.t('filter')}
             {Object.entries(filter).map(([key, value]) => (
               <Badge
                 key={key}
@@ -65,13 +66,13 @@ export class OpenSourceMap extends PureComponent {
               </Badge>
             ))}
           </div>
-          共 {totalCount} 家
+          {i18n.t('altogether')} {totalCount} {i18n.t('companies')}
           <Button
             variant="warning"
             size="sm"
             onClick={() => this.switchFilter({})}
           >
-            重置
+            {i18n.t('reset')}
           </Button>
         </header>
       )
@@ -93,10 +94,10 @@ export class OpenSourceMap extends PureComponent {
           }
         >
           <Nav.Item>
-            <Nav.Link eventKey="map">地图</Nav.Link>
+            <Nav.Link eventKey="map">{i18n.t('map')}</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey="chart">图表</Nav.Link>
+            <Nav.Link eventKey="chart">{i18n.t('chart')}</Nav.Link>
           </Nav.Item>
         </Nav>
 
@@ -133,14 +134,14 @@ export class OpenSourceMap extends PureComponent {
 export default function OrganizationPage() {
   return (
     <>
-      <PageHead title="开源地图" />
+      <PageHead title={i18n.t('open_source_map')} />
 
       <Container>
         <header className="d-flex justify-content-between align-items-center">
-          <h1 className="my-4">中国开源地图</h1>
+          <h1 className="my-4">{i18n.t('china_open_source_map')}</h1>
           <div>
             <Button className="me-2" size="sm" href="/organization/landscape">
-              全景图
+              {i18n.t('panorama')}
             </Button>
             <Button
               variant="success"
@@ -148,7 +149,7 @@ export default function OrganizationPage() {
               target="_blank"
               href="https://kaiyuanshe.feishu.cn/share/base/shrcnPgQoUZzkpWB2W4dp2QQvbd"
             >
-              + 加入开源地图
+              {i18n.t('join_the_open_source_map')}
             </Button>
           </div>
         </header>

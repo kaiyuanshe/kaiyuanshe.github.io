@@ -3,6 +3,7 @@ import { observable } from 'mobx';
 import { DataObject, NewData, ListModel, Stream } from 'mobx-restful';
 import { Component, ReactNode } from 'react';
 import { EdgePosition, Loading, ScrollBoundary } from 'idea-react';
+import { i18n } from '../models/Translation';
 
 export interface ScrollListProps<T extends DataObject = DataObject> {
   value?: T[];
@@ -62,7 +63,9 @@ export abstract class ScrollList<
           {this.renderList()}
 
           <footer className="mt-4 text-center text-muted small">
-            {noMore || !allItems.length ? '没有更多' : '加载更多……'}
+            {noMore || !allItems.length
+              ? i18n.t('no_more')
+              : i18n.t('load_more')}
           </footer>
         </div>
       </ScrollBoundary>

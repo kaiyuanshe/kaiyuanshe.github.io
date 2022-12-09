@@ -2,23 +2,27 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Icon } from 'idea-react';
+import { observer } from 'mobx-react';
 
 import { MainRoutes } from '../components/data';
 import MainNav from '../components/MainNav';
 import '../styles/globals.less';
 import { social } from './api/home';
+import { i18n } from '../models/Translation';
 
 const Name = process.env.NEXT_PUBLIC_SITE_NAME!,
   Logo = process.env.NEXT_PUBLIC_SITE_LOGO!;
 
-export default function MyApp({ Component, pageProps }: AppProps) {
+const AppShell = observer(({ Component, pageProps }: AppProps) => {
+  const { currentLanguage, t } = i18n;
+
   return (
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <MainNav title={Name} logo={Logo} links={MainRoutes} />
+      <MainNav title={Name} logo={Logo} links={MainRoutes()} />
 
       <div className="mt-5 pt-4 mainContent">
         <Component {...pageProps} />
@@ -35,7 +39,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
               </Row>
             </Col>
             <Col xs={12} md={3} lg={3}>
-              {Object.entries(social).map(([name, value]) => (
+              {Object.entries(social()).map(([name, value]) => (
                 <a
                   key={name}
                   className="mx-3 text-secondary"
@@ -52,4 +56,5 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       </footer>
     </>
   );
-}
+});
+export default AppShell;

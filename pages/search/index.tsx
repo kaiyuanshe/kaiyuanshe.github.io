@@ -8,6 +8,7 @@ import { GroupCard } from '../../components/Group/Card';
 import { OrganizationListLayout } from '../../components/Organization/List';
 
 import { client } from '../../models/Base';
+import { i18n } from '../../models/Translation';
 import { withRoute } from '../api/base';
 import { SearchResult } from '../api/search';
 
@@ -28,17 +29,17 @@ export default function SearchPage({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <Container className="my-5">
-      <h1 className="text-center">搜索结果</h1>
+      <h1 className="text-center">{i18n.t('search_results')}</h1>
 
-      <h2>文章</h2>
+      <h2>{i18n.t('article')}</h2>
 
       <ArticleListLayout data={articles} />
 
-      <h2>成员</h2>
+      <h2>{i18n.t('member')}</h2>
 
       <MemberList list={members} />
 
-      <h2>部门</h2>
+      <h2>{i18n.t('department')}</h2>
 
       <Row className="my-0 g-4" xs={1} sm={2} md={4}>
         {groups.map(group => (
@@ -48,7 +49,7 @@ export default function SearchPage({
         ))}
       </Row>
 
-      <h2>组织</h2>
+      <h2>{i18n.t('organization_short')}</h2>
 
       <OrganizationListLayout data={organizations} />
     </Container>

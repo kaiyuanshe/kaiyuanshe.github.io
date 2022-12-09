@@ -1,25 +1,32 @@
-export const slogan = [
-  {
-    title: '我们的原则',
-    items: [
-      { text: '贡献', icon: 'vector-pen' },
-      { text: '共识', icon: 'person-hearts' },
-      { text: '共治', icon: 'diagram-3' },
-    ],
-  },
-  {
-    title: '我们的使命',
-    items: [
-      { text: '开源治理', icon: 'diagram-3' },
-      { text: '国际桥梁', icon: 'globe2' },
-      { text: '社区发展', icon: 'people' },
-      { text: '开源项目', icon: 'git' },
-    ],
-  },
-];
+import { i18n } from '../../models/Translation';
+const { t } = i18n;
 
-export const social = {
-  github: 'https://github.com/kaiyuanshe',
-  twitter: 'https://twitter.com/contactkaiyuan1',
-  facebook: 'https://www.facebook.com/kaiyuanshe.china',
-};
+export function slogan() {
+  return [
+    {
+      title: t('our_principles'),
+      items: [
+        { text: t('contribution'), icon: 'vector-pen' },
+        { text: t('consensus'), icon: 'person-hearts' },
+        { text: t('co_governance'), icon: 'diagram-3' },
+      ],
+    },
+    {
+      title: t('our_mission'),
+      items: [
+        { text: t('open_source_governance'), icon: 'diagram-3' },
+        { text: t('international_bridge'), icon: 'globe2' },
+        { text: t('community_development'), icon: 'people' },
+        { text: t('open_source_project'), icon: 'git' },
+      ],
+    },
+  ];
+}
+
+export function social() {
+  return {
+    github: 'https://github.com/kaiyuanshe',
+    twitter: 'https://twitter.com/contactkaiyuan1',
+    facebook: 'https://www.facebook.com/kaiyuanshe.china',
+  };
+}

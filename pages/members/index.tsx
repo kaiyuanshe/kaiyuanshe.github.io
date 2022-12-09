@@ -4,8 +4,10 @@ import { Container } from 'react-bootstrap';
 import { Loading } from 'idea-react';
 import { observable } from 'mobx';
 
-import PageHead from '../../components/PageHead';
 import membersStore, { Member } from '../../models/Member';
+import { i18n } from '../../models/Translation';
+
+import PageHead from '../../components/PageHead';
 import { MemberTitle } from '../../components/Member/Title';
 import { MemberList } from '../../components/Member/List';
 import {
@@ -84,9 +86,11 @@ export default class MembersPage extends PureComponent {
     return (
       <Container className="my-4">
         {downloading > 0 && <Loading />}
-        <PageHead title="组织成员" />
+        <PageHead title={i18n.t('organization_member')} />
 
-        <h1 className="w-100 my-5 text-center">组织成员</h1>
+        <h1 className="w-100 my-5 text-center">
+          {i18n.t('organization_member')}
+        </h1>
         {membersGroup &&
           Object.entries(membersGroup).map(([key, { list, tabs, count }]) => (
             <div key={key}>

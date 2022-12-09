@@ -71,7 +71,7 @@ export default class HomePage extends PureComponent<
 
         <Container>
           <section className="text-center">
-            {slogan.map(({ title, items }) => (
+            {slogan().flatMap(({ title, items }) => (
               <Fragment key={title}>
                 <h2 className="my-5 text-primary">{title}</h2>
 
@@ -95,7 +95,7 @@ export default class HomePage extends PureComponent<
 
           <section className="text-center">
             <h2 className="my-5 text-primary">
-              自研{textJoin(t('open_source'), t('project'))}
+              {textJoin(t('self_developed'), t('open_source'), t('project'))}
             </h2>
 
             <Row
@@ -110,15 +110,15 @@ export default class HomePage extends PureComponent<
           </section>
 
           <section>
-            <h2 className="text-center text-primary">最新动态</h2>
-            <p className="text-center text-muted">
-              身体力行地践行开源，咱们华人有力量！
-            </p>
+            <h2 className="text-center text-primary">{t('latest_news')}</h2>
+            <p className="text-center text-muted">{t('slogan')}</p>
             <ArticleListLayout data={articles} />
           </section>
 
           <section>
-            <h2 className="my-5 text-center text-primary">活动地图</h2>
+            <h2 className="my-5 text-center text-primary">
+              {t('activity_map')}
+            </h2>
 
             {!isServer() && <CityStatisticMap store={activityStore} />}
           </section>

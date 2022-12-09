@@ -8,6 +8,7 @@ import { Loading } from 'idea-react';
 import PageHead from '../../components/PageHead';
 import { isServer, fileBaseURI } from '../../models/Base';
 import organizationStore, { Cooperation } from '../../models/Organization';
+import { i18n } from '../../models/Translation';
 
 const Levels = [
   '战略赞助',
@@ -76,9 +77,9 @@ export default class CooperationPage extends PureComponent {
       <Container className="d-flex flex-wrap my-4 text-center">
         {downloading > 0 && <Loading />}
 
-        <PageHead title="合作伙伴" />
+        <PageHead title={i18n.t('partner')} />
 
-        <h1 className="w-100 my-5">合作伙伴</h1>
+        <h1 className="w-100 my-5">{i18n.t('partner')}</h1>
 
         <article className="flex-fill">
           {yearGroup.map(([year, group]) => (

@@ -1,4 +1,5 @@
 import { TimeDistanceProps } from 'idea-react';
+import { i18n } from '../models/Translation';
 
 import { Link } from './MainNav';
 
@@ -20,10 +21,10 @@ export const TimeOption: Pick<
   afterWord: '后',
 };
 
-export const MainRoutes: Link[] = [
-  { title: '开源文库', path: '/article' },
-  { title: '正式成员', path: '/members' },
-  { title: '组织机构', path: '/department' },
-  { title: '开源地图', path: '/organization' },
-  { title: '合作伙伴', path: '/organization/cooperation' },
+export const MainRoutes = (): Link[] => [
+  { title: i18n.t('open_source_library'), path: '/article' },
+  { title: i18n.t('full_member'), path: '/members' },
+  { title: i18n.t('organization'), path: '/department' },
+  { title: i18n.t('open_source_map'), path: '/organization' },
+  { title: i18n.t('partner'), path: '/organization/cooperation' },
 ];

@@ -13,6 +13,7 @@ import {
   OrganizationStatistic,
   sortStatistic,
 } from '../../pages/api/organization/statistic';
+import { i18n } from '../../models/Translation';
 
 export default function OrganizationCharts({
   type,
@@ -28,7 +29,7 @@ export default function OrganizationCharts({
   return (
     <div style={{ minHeight: '70vh' }}>
       <SVGCharts>
-        <Title>社区城市排行</Title>
+        <Title>{i18n.t('community_city_ranking')}</Title>
         <XAxis type="category" data={cityList.map(([key]) => key)} />
         <YAxis type="value" />
         <BarSeries data={cityList.map(([{}, value]) => value)} />
@@ -36,7 +37,7 @@ export default function OrganizationCharts({
       </SVGCharts>
 
       <SVGCharts>
-        <Title>社区领域排行</Title>
+        <Title>{i18n.t('community_field_ranking')}</Title>
         <XAxis type="category" data={tagList.map(([key]) => key)} />
         <YAxis type="value" />
         <BarSeries data={tagList.map(([{}, value]) => value)} />
@@ -45,14 +46,14 @@ export default function OrganizationCharts({
 
       <Row xs={1} sm={1} md={2}>
         <SVGCharts className="col-auto">
-          <Title>社区创始年表</Title>
+          <Title>{i18n.t('community_founding_chronology')}</Title>
           <XAxis type="category" data={yearList.map(([key]) => key)} />
           <YAxis type="value" />
           <BarSeries data={yearList.map(([{}, value]) => value)} />
           <Tooltip />
         </SVGCharts>
         <SVGCharts className="col-auto">
-          <Title>社区类型分布</Title>
+          <Title>{i18n.t('community_type_distribution')}</Title>
           <PieSeries
             data={typeList.map(([name, value]) => ({ name, value }))}
           />

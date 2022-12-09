@@ -3,6 +3,7 @@ import { Row, Col } from 'react-bootstrap';
 import classNames from 'classnames';
 
 import { Member } from '../../models/Member';
+import { i18n } from '../../models/Translation';
 import { LazyImage } from '../LazyImage';
 import styles from '../../styles/Members.module.less';
 
@@ -49,7 +50,7 @@ export const MemberList: FC<MemberListProps> = ({ list = [] }) => {
                 data-text={nickname || name || '成员X'}
               >
                 <i className="d-inline-block fst-normal overflow-hidden">
-                  {name || nickname || '未公开'}
+                  {name || nickname || i18n.t('unpublished')}
                 </i>
               </span>
             </a>
