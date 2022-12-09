@@ -24,13 +24,10 @@ export class OrganizationCard extends PureComponent<OrganizationCardProps> {
   showQRC = false;
 
   renderIcon() {
-    const { className, style, email, link, codeLink, wechatName } = this.props;
+    const { email, link, codeLink, wechatName } = this.props;
 
     return (
-      <div
-        className={classNames('d-flex justify-content-around', className)}
-        style={style}
-      >
+      <div className="d-flex justify-content-around">
         {email && (
           <Button
             title="E-mail"
