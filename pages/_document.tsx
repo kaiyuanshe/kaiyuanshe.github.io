@@ -33,6 +33,7 @@ export default function Document() {
           rel="stylesheet"
           href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
         />
+        <script src="https://unpkg.com/cookie-store@3.0.0/index.js"></script>
       </Head>
 
       <body>

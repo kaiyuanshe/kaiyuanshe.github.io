@@ -16,10 +16,9 @@
     "leaflet.chinatmsproviders": "^3.0.6",
     "lodash": "^4.17.21",
     "mobx": "^5.15.7",
-    "mobx-i18n": "^0.3.7",
+    "mobx-i18n": "^0.3.10",
     "mobx-react": "^6.3.1",
     "mobx-restful": "^0.6.0-rc.21",
-
     "next": "^12.3.4",
     "next-pwa": "^5.6.0",
     "next-with-less": "^2.0.5",
@@ -36,7 +35,7 @@
   "devDependencies": {
     "@types/leaflet": "^1.9.0",
     "@types/lodash": "^4.14.191",
-    "@types/node": "^16.18.7",
+    "@types/node": "^16.18.8",
     "@types/qs": "^6.9.7",
     "@types/react": "^17.0.52",
     "@types/react-dom": "^17.0.18",

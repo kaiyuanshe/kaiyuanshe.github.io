@@ -4,7 +4,7 @@ import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
 import { MarkerMeta, OpenMapProps } from 'idea-react';
 
-import metaStore from '../models/Meta';
+import metaStore from '../models/System';
 
 const ChinaMap = dynamic(() => import('./ChinaMap'), { ssr: false });
 

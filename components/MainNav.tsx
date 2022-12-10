@@ -22,21 +22,49 @@ export interface MainNavProps {
 
 @observer
 class MainNav extends PureComponent<MainNavProps> {
-  render() {
+  renderRight() {
     const { currentLanguage } = i18n,
-      {
-        title,
-        logo,
-        links,
-        router: { pathname },
-      } = this.props;
+      { links } = this.props,
+      { pathname } = this.props.router;
+
+    return (
+      <div className="d-flex flex-column flex-sm-row justify-content-between gap-3 ms-auto">
+        <Nav className="flex-fill ms-3 align-items-center">
+          {links.map(({ path, title }) => (
+            <Nav.Link key={path} href={path} active={pathname.startsWith(path)}>
+              {title}
+            </Nav.Link>
+          ))}
+        </Nav>
+        <div className="flex-fill d-flex flex-column flex-xxl-row justify-content-around gap-3">
+          <SearchBar />
+
+          <Select
+            value={currentLanguage}
+            onChange={code =>
+              i18n.changeLanguage(code as typeof currentLanguage)
+            }
+          >
+            {Object.entries(LanguageName).map(([code, name]) => (
+              <Option key={code} value={code}>
+                {name}
+              </Option>
+            ))}
+          </Select>
+        </div>
+      </div>
+    );
+  }
+
+  render() {
+    const { title, logo } = this.props;
 
     return (
       <Navbar
         bg="primary"
         variant="dark"
         fixed="top"
-        expand="lg"
+        expand="xxl"
         className="py-3"
       >
         <Container>
@@ -51,34 +79,7 @@ class MainNav extends PureComponent<MainNavProps> {
 
           <Navbar.Toggle />
 
-          <Navbar.Collapse className="justify-content-end">
-            <Nav className="ms-3 align-items-center">
-              {links.map(({ path, title }) => (
-                <Nav.Link
-                  key={path}
-                  href={path}
-                  active={pathname.startsWith(path)}
-                >
-                  {title}
-                </Nav.Link>
-              ))}
-            </Nav>
-
-            <SearchBar className="mx-3" />
-
-            <Select
-              value={currentLanguage}
-              onChange={code =>
-                i18n.changeLanguage(code as typeof currentLanguage)
-              }
-            >
-              {Object.entries(LanguageName).map(([code, name]) => (
-                <Option key={code} value={code}>
-                  {name}
-                </Option>
-              ))}
-            </Select>
-          </Navbar.Collapse>
+          <Navbar.Collapse>{this.renderRight()}</Navbar.Collapse>
         </Container>
       </Navbar>
     );

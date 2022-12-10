@@ -7,12 +7,13 @@ import PageHead from '../../components/PageHead';
 import { ActivityList } from '../../components/Activity/List';
 import activityStore from '../../models/Activity';
 import { i18n } from '../../models/Translation';
+import { withTranslation } from '../api/base';
 
-export async function getServerSideProps() {
+export const getServerSideProps = withTranslation(async () => {
   const list = await activityStore.getList({}, 1);
 
   return { props: { list: JSON.parse(JSON.stringify(list)) } };
-}
+});
 
 const ActivityListPage: FC<
   InferGetServerSidePropsType<typeof getServerSideProps>

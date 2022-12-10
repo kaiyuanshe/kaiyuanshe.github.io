@@ -7,12 +7,13 @@ import PageHead from '../../components/PageHead';
 import { ArticleList } from '../../components/Article/List';
 import articleStore from '../../models/Article';
 import { i18n } from '../../models/Translation';
+import { withTranslation } from '../api/base';
 
-export async function getServerSideProps() {
+export const getServerSideProps = withTranslation(async () => {
   const list = await articleStore.getList({}, 1);
 
   return { props: { list } };
-}
+});
 
 const ArticleListPage: FC<
   InferGetServerSidePropsType<typeof getServerSideProps>
