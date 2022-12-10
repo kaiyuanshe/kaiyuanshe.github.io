@@ -1,5 +1,6 @@
 import { buildURLData } from 'web-utility';
 import { InferGetServerSidePropsType } from 'next';
+import { FC } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 
 import { ArticleListLayout } from '../../components/Article/List';
@@ -7,8 +8,8 @@ import { MemberList } from '../../components/Member/List';
 import { GroupCard } from '../../components/Group/Card';
 import { OrganizationListLayout } from '../../components/Organization/List';
 
-import { client } from '../../models/Base';
 import { i18n } from '../../models/Translation';
+import { client } from '../../models/Base';
 import { withRoute } from '../api/base';
 import { SearchResult } from '../api/search';
 
@@ -21,25 +22,24 @@ export const getServerSideProps = withRoute<{}, SearchResult>(
   },
 );
 
-export default function SearchPage({
-  articles,
-  members,
-  groups,
-  organizations,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+const SearchPage: FC<
+  InferGetServerSidePropsType<typeof getServerSideProps>
+> = ({ articles, members, groups, organizations }) => {
+  const { t } = i18n;
+
   return (
     <Container className="my-5">
-      <h1 className="text-center">{i18n.t('search_results')}</h1>
+      <h1 className="text-center">{t('search_results')}</h1>
 
-      <h2>{i18n.t('article')}</h2>
+      <h2>{t('article')}</h2>
 
       <ArticleListLayout data={articles} />
 
-      <h2>{i18n.t('member')}</h2>
+      <h2>{t('member')}</h2>
 
       <MemberList list={members} />
 
-      <h2>{i18n.t('department')}</h2>
+      <h2>{t('department')}</h2>
 
       <Row className="my-0 g-4" xs={1} sm={2} md={4}>
         {groups.map(group => (
@@ -49,9 +49,11 @@ export default function SearchPage({
         ))}
       </Row>
 
-      <h2>{i18n.t('organization_short')}</h2>
+      <h2>{t('organization_short')}</h2>
 
       <OrganizationListLayout data={organizations} />
     </Container>
   );
-}
+};
+
+export default SearchPage;

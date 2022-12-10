@@ -118,7 +118,6 @@ export default class HomePage extends PureComponent<
             <h2 className="my-5 text-center text-primary">
               {t('activity_map')}
             </h2>
-
             <CityStatisticMap store={activityStore} />
           </section>
         </Container>

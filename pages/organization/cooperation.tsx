@@ -6,9 +6,9 @@ import { Container, ListGroup, Image } from 'react-bootstrap';
 import { Loading } from 'idea-react';
 
 import PageHead from '../../components/PageHead';
+import { i18n } from '../../models/Translation';
 import { isServer, fileBaseURI } from '../../models/Base';
 import organizationStore, { Cooperation } from '../../models/Organization';
-import { i18n } from '../../models/Translation';
 
 const Levels = [
   '战略赞助',
@@ -71,15 +71,16 @@ export default class CooperationPage extends PureComponent {
 
   render() {
     const { yearGroup } = this,
+      { t } = i18n,
       { downloading } = organizationStore;
 
     return (
       <Container className="d-flex flex-wrap my-4 text-center">
         {downloading > 0 && <Loading />}
 
-        <PageHead title={i18n.t('partner')} />
+        <PageHead title={t('partner')} />
 
-        <h1 className="w-100 my-5">{i18n.t('partner')}</h1>
+        <h1 className="w-100 my-5">{t('partner')}</h1>
 
         <article className="flex-fill">
           {yearGroup.map(([year, group]) => (

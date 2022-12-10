@@ -1,4 +1,6 @@
 import dynamic from 'next/dynamic';
+import { observer } from 'mobx-react';
+import { FC } from 'react';
 import { Container, Button } from 'react-bootstrap';
 
 import PageHead from '../../components/PageHead';
@@ -8,12 +10,14 @@ const DepartmentTree = dynamic(() => import('../../components/Group/Tree'), {
   ssr: false,
 });
 
-export default function DepartmentPage() {
+const DepartmentPage: FC = observer(() => {
+  const { t } = i18n;
+
   return (
     <Container className="py-5 text-center">
-      <PageHead title={i18n.t('organization')} />
+      <PageHead title={t('organization')} />
 
-      <h1>{i18n.t('organization_of_open_source_society')}</h1>
+      <h1>{t('organization_of_open_source_society')}</h1>
 
       <DepartmentTree />
 
@@ -22,8 +26,10 @@ export default function DepartmentPage() {
         target="_blank"
         href="https://kaiyuanshe.feishu.cn/share/base/shrcnfO89tYlYIjZpS5PXJBaK2f"
       >
-        {i18n.t('become_volunteer')}
+        {t('become_volunteer')}
       </Button>
     </Container>
   );
-}
+});
+
+export default DepartmentPage;

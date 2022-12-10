@@ -80,17 +80,17 @@ export default class MembersPage extends PureComponent {
     this.otherMembersList = otherMembersList;
   }
   render() {
-    const { downloading } = membersStore;
-    const { membersGroup, otherMembersList } = this;
+    const { t } = i18n,
+      { downloading } = membersStore,
+      { membersGroup, otherMembersList } = this;
 
     return (
       <Container className="my-4">
         {downloading > 0 && <Loading />}
-        <PageHead title={i18n.t('organization_member')} />
 
-        <h1 className="w-100 my-5 text-center">
-          {i18n.t('organization_member')}
-        </h1>
+        <PageHead title={t('organization_member')} />
+
+        <h1 className="w-100 my-5 text-center">{t('organization_member')}</h1>
         {membersGroup &&
           Object.entries(membersGroup).map(([key, { list, tabs, count }]) => (
             <div key={key}>

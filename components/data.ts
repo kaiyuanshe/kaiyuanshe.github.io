@@ -1,6 +1,6 @@
 import { TimeDistanceProps } from 'idea-react';
-import { i18n } from '../models/Translation';
 
+import { i18n } from '../models/Translation';
 import { Link } from './MainNav';
 
 export const TimeOption: Pick<

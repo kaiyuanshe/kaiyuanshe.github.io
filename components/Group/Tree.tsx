@@ -18,25 +18,26 @@ export default class DepartmentTree extends PureComponent {
 
   @computed
   get treeData(): TreeSeriesProps['data'] {
-    const { 职能: departments, 项目: projects } = groupBy(
-      groupStore.allItems,
-      'type',
-    );
+    const { t } = i18n,
+      { 职能: departments, 项目: projects } = groupBy(
+        groupStore.allItems,
+        'type',
+      );
 
     return [
       {
-        name: i18n.t('open_source_community'),
+        name: t('open_source_community'),
         children: [
           {
-            name: i18n.t('council'),
+            name: t('council'),
             children: [
               {
-                name: i18n.t('executive_committee'),
+                name: t('executive_committee'),
                 collapsed: false,
                 children: departments?.map(({ name }) => ({ name: name + '' })),
               },
               {
-                name: i18n.t('project_committee'),
+                name: t('project_committee'),
                 collapsed: false,
                 children: projects?.map(({ fullName }) => ({
                   name: fullName + '',
@@ -44,8 +45,8 @@ export default class DepartmentTree extends PureComponent {
               },
             ],
           },
-          { name: i18n.t('consultant_committee') },
-          { name: i18n.t('legal_advisory_committee') },
+          { name: t('consultant_committee') },
+          { name: t('legal_advisory_committee') },
         ],
       },
     ];

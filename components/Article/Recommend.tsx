@@ -22,18 +22,19 @@ export default class ArticleRecommend extends PureComponent<
 
   render() {
     const { className } = this.props,
-      { downloading, currentRecommend } = articleStore;
+      { downloading, currentRecommend } = articleStore,
+      { t } = i18n;
 
     return (
       <aside className={className}>
-        <h2 className="mt-4">{i18n.t('related_articles')}</h2>
+        <h2 className="mt-4">{t('related_articles')}</h2>
 
         {!currentRecommend[0] ? (
           <div className="text-center p-4">
             {downloading > 0 ? (
               <Spinner animation="grow" variant="primary" />
             ) : (
-              i18n.t('no_data')
+              t('no_data')
             )}
           </div>
         ) : (

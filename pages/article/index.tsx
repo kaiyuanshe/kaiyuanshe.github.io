@@ -1,4 +1,6 @@
 import { InferGetServerSidePropsType } from 'next';
+import { observer } from 'mobx-react';
+import { FC } from 'react';
 import { Container } from 'react-bootstrap';
 
 import PageHead from '../../components/PageHead';
@@ -12,16 +14,20 @@ export async function getServerSideProps() {
   return { props: { list } };
 }
 
-export default function ArticleListPage({
-  list,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+const ArticleListPage: FC<
+  InferGetServerSidePropsType<typeof getServerSideProps>
+> = observer(({ list }) => {
+  const { t } = i18n;
+
   return (
     <Container className="py-5">
-      <PageHead title={i18n.t('open_source_library')} />
+      <PageHead title={t('open_source_library')} />
 
-      <h1 className="mb-5 text-center">{i18n.t('open_source_library')}</h1>
+      <h1 className="mb-5 text-center">{t('open_source_library')}</h1>
 
       <ArticleList value={list} />
     </Container>
   );
-}
+});
+
+export default ArticleListPage;

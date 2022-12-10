@@ -1,4 +1,6 @@
 import dynamic from 'next/dynamic';
+import { observer } from 'mobx-react';
+import { FC } from 'react';
 import { Container } from 'react-bootstrap';
 
 import PageHead from '../../components/PageHead';
@@ -9,16 +11,19 @@ const OrganizationLandscape = dynamic(
   { ssr: false },
 );
 
-export default function LandscapePage() {
+const LandscapePage: FC = observer(() => {
+  const { t } = i18n;
+
   return (
     <Container className="mb-5">
-      <PageHead title={i18n.t('panorama_of_china_open_source_community')} />
+      <PageHead title={t('panorama_of_china_open_source_community')} />
 
       <h2 className="mt-5 text-center">
-        {i18n.t('panorama_of_china_open_source_community')}
+        {t('panorama_of_china_open_source_community')}
       </h2>
-
       <OrganizationLandscape />
     </Container>
   );
-}
+});
+
+export default LandscapePage;

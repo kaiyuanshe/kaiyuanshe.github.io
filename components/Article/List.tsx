@@ -23,6 +23,12 @@ export const ArticleListLayout: FC<{ data: BaseArticle[] }> = ({ data }) => (
 export class ArticleList extends ScrollList<ArticleListProps> {
   store = articleStore;
 
+  constructor(props: ArticleListProps) {
+    super(props);
+
+    this.boot();
+  }
+
   renderList() {
     return <ArticleListLayout data={this.store.allItems} />;
   }
