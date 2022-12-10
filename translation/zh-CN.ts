@@ -54,4 +54,5 @@ export default {
   altogether: '共',
   companies: '家',
   filter: '筛选',
+  wonderful_activity: '精彩活动',
 } as const;

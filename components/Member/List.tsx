@@ -1,4 +1,3 @@
-
 import { observer } from 'mobx-react';
 import { FC, useEffect, useState } from 'react';
 
@@ -17,6 +16,7 @@ export interface MemberListProps {
 export const MemberList: FC<MemberListProps> = observer(({ list = [] }) => {
   //Judgment exceeds 3 lines
 
+  const { t } = i18n;
   const [isMore, setIsMore] = useState(false);
   useEffect(() => {
     if (list?.length > 3 * Math.floor(globalThis.innerWidth / 120))

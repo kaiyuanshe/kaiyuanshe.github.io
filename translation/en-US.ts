@@ -55,4 +55,5 @@ export default {
   altogether: 'altogether',
   companies: 'companies',
   filter: 'filter',
+  wonderful_activity: 'Wonderful activity',
 } as const;

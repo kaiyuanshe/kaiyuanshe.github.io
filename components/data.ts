@@ -24,8 +24,8 @@ export const TimeOption: Pick<
 export const MainRoutes = (): Link[] => [
   { title: i18n.t('open_source_library'), path: '/article' },
   { title: i18n.t('full_member'), path: '/members' },
-   { title: '精彩活动', path: '/activity' },
+  { title: i18n.t('wonderful_activity'), path: '/activity' },
   { title: i18n.t('organization'), path: '/department' },
   { title: i18n.t('open_source_map'), path: '/organization' },
-  { title: i18n.t('partner'), path: '/organization/cooperation' }
+  { title: i18n.t('partner'), path: '/organization/cooperation' },
 ];
