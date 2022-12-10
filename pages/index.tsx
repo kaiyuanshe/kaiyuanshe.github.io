@@ -18,6 +18,7 @@ import { withTranslation } from './api/base';
 import { slogan } from './api/home';
 import { DefaultImage, fileURLOf } from './api/lark/file/[id]';
 
+
 export const getServerSideProps = withTranslation(async () => {
   const articles = await articleStore.getList({}, 1, 3),
     projects = await groupStore.getAll({ type: '项目' });

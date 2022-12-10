@@ -9,16 +9,20 @@ import {
   LARK_BITABLE_GROUP_ID,
   LARK_BITABLE_MEMBERS_ID,
   LARK_BITABLE_ORGANIZATION_ID,
+  LARK_BITABLE_ACTIVITY_ID,
+  LARK_BITABLE_ID,
   makeFilter,
 } from '../../models/Lark';
 import { BaseArticle } from './article';
 import { Member } from '../../models/Member';
 import { Group } from '../../models/Group';
 import { Organization } from '../../models/Organization';
+import type { Activity } from '../../pages/api/activity';
 
 export type SearchQuery = Partial<Record<'keywords' | 'tag', string>>;
 
 export interface SearchResult {
+  activities: Activity[],
   articles: BaseArticle[];
   members: Member[];
   groups: Group[];
@@ -35,6 +39,7 @@ export default safeAPI(
         if (keywordList || tag)
           var [
             { items: articles },
+            { items: activities },
             { items: groups },
             { items: organizations },
           ] = await Promise.all([
@@ -48,6 +53,19 @@ export default safeAPI(
                   tags: tag,
                   summary: keywordList,
                   alias: keywordList,
+                },
+                'OR',
+              ),
+            }),
+            getBITableList<Activity>({
+              database: LARK_BITABLE_ID,
+              table: LARK_BITABLE_ACTIVITY_ID,
+              filter: makeFilter(
+                {
+                  name: keywordList,
+                  city: keywordList,
+                  location: keywordList,
+                  organizers: tag,
                 },
                 'OR',
               ),
@@ -97,6 +115,9 @@ export default safeAPI(
           articles:
             // @ts-ignore
             articles?.map(({ id, fields }) => ({ ...fields, id: id! })) || [],
+          activities:
+            // @ts-ignore
+            activities?.map(({ id, fields }) => ({...fields, id: id! })) || [],
           members:
             // @ts-ignore
             members?.map(({ id, fields }) => ({ ...fields, id: id! })) || [],

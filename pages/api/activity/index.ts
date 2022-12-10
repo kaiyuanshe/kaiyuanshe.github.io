@@ -1,20 +1,32 @@
 import { parseURLData } from 'web-utility';
 import { DataObject } from 'mobx-restful';
-import { TableRecordList } from 'lark-ts-sdk';
+import { TableCellValue, TableRecordList } from 'lark-ts-sdk';
 import { NextApiResponse } from 'next';
 
 import { safeAPI } from '../base';
 import {
-  LARK_BITABLE_GROUP_ID,
+  LARK_BITABLE_ACTIVITY_ID,
   makeFilter,
   getBITableList,
 } from '../../../models/Lark';
-import { Group } from '../../../models/Group';
+
+export type Activity = Record<
+  | 'id'
+  | 'name'
+  | 'startTime'
+  | 'endTime'
+  | 'city'
+  | 'location'
+  | 'organizers'
+  | 'link'
+  | 'image',
+  TableCellValue
+>;
 
 export default safeAPI(
   async (
     { method, url },
-    response: NextApiResponse<TableRecordList<Group>['data']>,
+    response: NextApiResponse<TableRecordList<Activity>['data']>,
   ) => {
     switch (method) {
       case 'GET': {
@@ -22,11 +34,12 @@ export default safeAPI(
           url!,
         ) as DataObject;
 
-        const pageData = await getBITableList<Group>({
-          table: LARK_BITABLE_GROUP_ID,
+        const pageData = await getBITableList<Activity>({
+          table: LARK_BITABLE_ACTIVITY_ID,
           page_size,
           page_token,
           filter: makeFilter(filter),
+          sort: { startTime: 'DESC' },
         });
         response.json(pageData);
       }
