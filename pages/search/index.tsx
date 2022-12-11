@@ -6,7 +6,6 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { ArticleListLayout } from '../../components/Article/List';
 import { ActivityListLayout } from '../../components/Activity/List';
 import { MemberList } from '../../components/Member/List';
-import { ActivityList } from '../../components/Activity/List';
 import { GroupCard } from '../../components/Group/Card';
 import { OrganizationListLayout } from '../../components/Organization/List';
 
