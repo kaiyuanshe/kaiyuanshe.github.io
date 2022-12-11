@@ -10,21 +10,21 @@ import { i18n } from '../../models/Translation';
 import { isServer, fileBaseURI } from '../../models/Base';
 import organizationStore, { Cooperation } from '../../models/Organization';
 
-const Levels = [
-  '战略赞助',
-  '白金赞助',
-  '金牌赞助',
-  '银牌赞助',
-  '铜牌赞助',
-  '亮点赞助',
-  '成员赞助',
-  '国际讲师差旅赞助',
-  '报名平台伙伴',
-  '视频直播伙伴',
-  '指导单位',
-  '大会合作单位',
-  '社区伙伴',
-  '媒体伙伴',
+const Levels = (): string[] => [
+  i18n.t('strategic_sponsorship'),
+  i18n.t('platinum_sponsorship'),
+  i18n.t('gold_sponsorship'),
+  i18n.t('silver_sponsorship'),
+  i18n.t('bronze_sponsorship'),
+  i18n.t('highlight_sponsorship'),
+  i18n.t('member_sponsorship'),
+  i18n.t('international_lecturer_travel_sponsorship'),
+  i18n.t('register_platform_partner'),
+  i18n.t('live_video_partner'),
+  i18n.t('directed_by'),
+  i18n.t('conference_cooperation_sponsorship'),
+  i18n.t('community_partner'),
+  i18n.t('media_partner'),
 ];
 
 @observer
@@ -89,7 +89,7 @@ export default class CooperationPage extends PureComponent {
                 {year}
               </h2>
 
-              {Levels.map(
+              {Levels().map(
                 (level, index) =>
                   group[level] &&
                   this.renderGroup(level, group[level], index < 5 ? 1.5 : 1),

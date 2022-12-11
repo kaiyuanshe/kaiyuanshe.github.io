@@ -5,6 +5,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 import { ArticleListLayout } from '../../components/Article/List';
 import { MemberList } from '../../components/Member/List';
+import { ActivityList } from '../../components/Activity/List';
 import { GroupCard } from '../../components/Group/Card';
 import { OrganizationListLayout } from '../../components/Organization/List';
 
@@ -24,7 +25,7 @@ export const getServerSideProps = withRoute<{}, SearchResult>(
 
 const SearchPage: FC<
   InferGetServerSidePropsType<typeof getServerSideProps>
-> = ({ articles, members, groups, organizations }) => {
+> = ({ articles, activities, members, groups, organizations }) => {
   const { t } = i18n;
 
   return (
@@ -34,6 +35,10 @@ const SearchPage: FC<
       <h2>{t('article')}</h2>
 
       <ArticleListLayout data={articles} />
+
+      <h2>{t('activity')}</h2>
+
+      <ActivityList data={activities} />
 
       <h2>{t('member')}</h2>
 

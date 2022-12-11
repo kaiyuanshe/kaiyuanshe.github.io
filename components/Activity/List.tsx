@@ -7,7 +7,9 @@ import { ActivityCard } from './Card';
 import activityStore from '../../models/Activity';
 import type { Activity } from '../../pages/api/activity';
 
-export type ActivityListProps = ScrollListProps<Activity>;
+export interface ActivityListProps extends ScrollListProps<Activity> {
+  data?: Activity[];
+}
 
 export const ActivityListLayout: FC<{ data: Activity[] }> = ({ data }) => (
   <Row as="section" xs={1} sm={2} xl={3} xxl={4} className="g-3 my-4">
@@ -22,6 +24,12 @@ export const ActivityListLayout: FC<{ data: Activity[] }> = ({ data }) => (
 @observer
 export class ActivityList extends ScrollList<ActivityListProps> {
   store = activityStore;
+
+  constructor(props: ActivityListProps) {
+    super(props);
+
+    this.boot();
+  }
 
   renderList() {
     return <ActivityListLayout data={this.store.allItems} />;

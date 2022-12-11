@@ -35,7 +35,7 @@ export const MemberList: FC<MemberListProps> = observer(({ list = [] }) => {
         <Col
           key={idx}
           className={`d-inline-block position-relative w-auto ${styles.member}`}
-          title={'' + (nickname || name || GitHubID || '成员X')}
+          title={'' + (nickname || name || GitHubID || t('member_x'))}
         >
           <LazyImage
             className={`d-inlink-block overflow-hidden rounded-circle position-relative ${styles.avatar}`}
@@ -55,7 +55,7 @@ export const MemberList: FC<MemberListProps> = observer(({ list = [] }) => {
             >
               <span
                 className={`d-inline-block position-relative text-truncate ${styles.btn_tamaya}`}
-                data-text={nickname || name || '成员X'}
+                data-text={nickname || name || t('member_x')}
               >
                 <i className="d-inline-block fst-normal overflow-hidden">
                   {name || nickname || t('unpublished')}
