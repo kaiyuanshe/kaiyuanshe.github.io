@@ -3,7 +3,7 @@ import { ServerResponse } from 'http';
 import { GetServerSidePropsContext, NextApiResponse } from 'next';
 import { destroyCookie } from 'nookies';
 
-import { readCookie, request, safeAPI, writeCookie } from '../base';
+import { request, safeAPI, writeCookie } from '../base';
 import { User } from './index';
 
 export async function sessionOf(
@@ -60,20 +60,6 @@ export function setSession(user: User) {
 
 export function getSession(): User {
   return globalThis.localStorage?.user ? JSON.parse(localStorage.user) : {};
-}
-
-export function withSession<
-  T extends (context: GetServerSidePropsContext<any>) => Promise<any>,
->(handler?: T) {
-  return (async context =>
-    readCookie(context.req, 'token')
-      ? handler?.(context) || { props: {} }
-      : {
-          redirect: {
-            destination: '/user/sign-in',
-            permanent: false,
-          },
-        }) as T;
 }
 
 export const getClientSession = () => request<User>('user/session');

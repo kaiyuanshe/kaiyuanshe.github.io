@@ -1,13 +1,15 @@
 import { FC } from 'react';
 import { Badge } from 'react-bootstrap';
 
+import { i18n } from '../../models/Translation';
+
 export interface MemberTitleProps {
   title?: string;
   count?: number;
 }
 
 export const MemberTitle: FC<MemberTitleProps> = ({
-  title = '未分组',
+  title = i18n.t('unclassified'),
   count = 0,
 }) => (
   <h2 className="position-relative border-bottom border-2 border-info lh-lg mb-4">

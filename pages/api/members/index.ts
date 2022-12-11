@@ -1,4 +1,4 @@
-import { cache, Hour, parseURLData } from 'web-utility';
+import { Hour, cache, parseURLData } from 'web-utility';
 import { DataObject } from 'mobx-restful';
 import { TableRecordList } from 'lark-ts-sdk';
 import { NextApiResponse } from 'next';
@@ -17,6 +17,7 @@ const statistic = cache(async (clean, url: string) => {
     filter: makeFilter(filter),
   });
   setTimeout(clean, Hour / 2);
+
   return pageData;
 }, 'members');
 

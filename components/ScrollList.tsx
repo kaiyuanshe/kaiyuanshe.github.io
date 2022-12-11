@@ -4,6 +4,8 @@ import { DataObject, NewData, ListModel, Stream } from 'mobx-restful';
 import { Component, ReactNode } from 'react';
 import { EdgePosition, Loading, ScrollBoundary } from 'idea-react';
 
+import { i18n } from '../models/Translation';
+
 export interface ScrollListProps<T extends DataObject = DataObject> {
   value?: T[];
   selectedIds?: string[];
@@ -22,7 +24,7 @@ export abstract class ScrollList<
   @observable
   selectedIds: string[] = [];
 
-  async componentDidMount() {
+  async boot() {
     const BaseStream = Stream<DataObject>;
 
     const store = this.store as unknown as InstanceType<
@@ -52,7 +54,8 @@ export abstract class ScrollList<
   abstract renderList(): ReactNode;
 
   render() {
-    const { downloading, uploading, noMore, allItems } = this.store;
+    const { t } = i18n,
+      { downloading, uploading, noMore, allItems } = this.store;
 
     return (
       <ScrollBoundary onTouch={this.loadMore}>
@@ -62,7 +65,7 @@ export abstract class ScrollList<
           {this.renderList()}
 
           <footer className="mt-4 text-center text-muted small">
-            {noMore || !allItems.length ? '没有更多' : '加载更多……'}
+            {noMore || !allItems.length ? t('no_more') : t('load_more')}
           </footer>
         </div>
       </ScrollBoundary>

@@ -1,5 +1,6 @@
-import { buildURLData } from 'web-utility';
 import { InferGetServerSidePropsType } from 'next';
+import { observer } from 'mobx-react';
+import { FC } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 
 import { ArticleListLayout } from '../../components/Article/List';
@@ -8,55 +9,56 @@ import { MemberList } from '../../components/Member/List';
 import { GroupCard } from '../../components/Group/Card';
 import { OrganizationListLayout } from '../../components/Organization/List';
 
-import { client } from '../../models/Base';
-import { withRoute } from '../api/base';
+import systemStore from '../../models/System';
+import { i18n } from '../../models/Translation';
+import { withRoute, withTranslation } from '../api/base';
 import { SearchResult } from '../api/search';
 
-export const getServerSideProps = withRoute<{}, SearchResult>(
-  async ({ query }) => {
-    const { body } = await client.get<SearchResult>(
-      `search?${buildURLData(query)}`,
-    );
-    return { props: body! };
-  },
+export const getServerSideProps = withTranslation(
+  withRoute<{}, SearchResult>(async ({ query }) => {
+    const props = await systemStore.search(query);
+
+    return {
+      props: JSON.parse(JSON.stringify(props)),
+    };
+  }),
 );
 
-export default function SearchPage({
-  activities,
-  articles,
-  members,
-  groups,
-  organizations,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  return (
-    <Container className="my-5">
-      <h1 className="text-center">搜索结果</h1>
+const SearchPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
+  observer(({ articles, activities, members, groups, organizations }) => {
+    const { t } = i18n;
 
-      <h2>文章</h2>
+    return (
+      <Container className="my-5">
+        <h1 className="text-center">{t('search_results')}</h1>
 
-      <ArticleListLayout data={articles} />
+        <h2>{t('article')}</h2>
 
-      <h2>活动</h2>
+        <ArticleListLayout data={articles} />
 
-      <ActivityListLayout data={activities} />
+        <h2>{t('activity')}</h2>
 
-      <h2>成员</h2>
+        <ActivityListLayout data={activities} />
 
-      <MemberList list={members} />
+        <h2>{t('member')}</h2>
 
-      <h2>部门</h2>
+        <MemberList list={members} />
 
-      <Row className="my-0 g-4" xs={1} sm={2} md={4}>
-        {groups.map(group => (
-          <Col key={group.id + ''}>
-            <GroupCard className="h-100 border rounded-3 p-3" {...group} />
-          </Col>
-        ))}
-      </Row>
+        <h2>{t('department')}</h2>
 
-      <h2>组织</h2>
+        <Row className="my-0 g-4" xs={1} sm={2} md={4}>
+          {groups.map(group => (
+            <Col key={group.id + ''}>
+              <GroupCard className="h-100 border rounded-3 p-3" {...group} />
+            </Col>
+          ))}
+        </Row>
 
-      <OrganizationListLayout data={organizations} />
-    </Container>
-  );
-}
+        <h2>{t('organization_short')}</h2>
+
+        <OrganizationListLayout data={organizations} />
+      </Container>
+    );
+  });
+
+export default SearchPage;

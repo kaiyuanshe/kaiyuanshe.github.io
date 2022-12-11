@@ -23,6 +23,12 @@ export const ActivityListLayout: FC<{ data: Activity[] }> = ({ data }) => (
 export class ActivityList extends ScrollList<ActivityListProps> {
   store = activityStore;
 
+  constructor(props: ActivityListProps) {
+    super(props);
+
+    this.boot();
+  }
+
   renderList() {
     return <ActivityListLayout data={this.store.allItems} />;
   }

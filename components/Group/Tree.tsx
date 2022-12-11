@@ -8,6 +8,7 @@ import { SVGCharts, Tooltip, TreeSeriesProps, TreeSeries } from 'echarts-jsx';
 
 import { GroupCard } from './Card';
 import groupStore from '../../models/Group';
+import { i18n } from '../../models/Translation';
 
 @observer
 export default class DepartmentTree extends PureComponent {
@@ -17,25 +18,26 @@ export default class DepartmentTree extends PureComponent {
 
   @computed
   get treeData(): TreeSeriesProps['data'] {
-    const { 职能: departments, 项目: projects } = groupBy(
-      groupStore.allItems,
-      'type',
-    );
+    const { t } = i18n,
+      { 职能: departments, 项目: projects } = groupBy(
+        groupStore.allItems,
+        'type',
+      );
 
     return [
       {
-        name: '开源社',
+        name: t('open_source_community'),
         children: [
           {
-            name: '理事会',
+            name: t('council'),
             children: [
               {
-                name: '执行委员会',
+                name: t('executive_committee'),
                 collapsed: false,
                 children: departments?.map(({ name }) => ({ name: name + '' })),
               },
               {
-                name: '项目委员会',
+                name: t('project_committee'),
                 collapsed: false,
                 children: projects?.map(({ fullName }) => ({
                   name: fullName + '',
@@ -43,8 +45,8 @@ export default class DepartmentTree extends PureComponent {
               },
             ],
           },
-          { name: '顾问委员会' },
-          { name: '法律咨询委员会' },
+          { name: t('consultant_committee') },
+          { name: t('legal_advisory_committee') },
         ],
       },
     ];

@@ -5,6 +5,7 @@ import { Spinner } from 'react-bootstrap';
 import { ArticleCard } from './Card';
 import { BaseArticle } from '../../pages/api/article';
 import articleStore, { Article } from '../../models/Article';
+import { i18n } from '../../models/Translation';
 
 export interface ArticleRecommendProps extends Pick<Article, 'alias'> {
   className?: string;
@@ -21,18 +22,19 @@ export default class ArticleRecommend extends PureComponent<
 
   render() {
     const { className } = this.props,
-      { downloading, currentRecommend } = articleStore;
+      { downloading, currentRecommend } = articleStore,
+      { t } = i18n;
 
     return (
       <aside className={className}>
-        <h2 className="mt-4">相关文章</h2>
+        <h2 className="mt-4">{t('related_articles')}</h2>
 
         {!currentRecommend[0] ? (
           <div className="text-center p-4">
             {downloading > 0 ? (
               <Spinner animation="grow" variant="primary" />
             ) : (
-              '暂无数据'
+              t('no_data')
             )}
           </div>
         ) : (

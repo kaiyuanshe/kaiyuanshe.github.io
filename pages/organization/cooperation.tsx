@@ -6,6 +6,8 @@ import { Container, ListGroup, Image } from 'react-bootstrap';
 import { Loading } from 'idea-react';
 
 import PageHead from '../../components/PageHead';
+import { withTranslation } from '../api/base';
+import { i18n } from '../../models/Translation';
 import { isServer, fileBaseURI } from '../../models/Base';
 import organizationStore, { Cooperation } from '../../models/Organization';
 
@@ -25,6 +27,8 @@ const Levels = [
   '社区伙伴',
   '媒体伙伴',
 ];
+
+export const getServerSideProps = withTranslation();
 
 @observer
 export default class CooperationPage extends PureComponent {
@@ -70,15 +74,16 @@ export default class CooperationPage extends PureComponent {
 
   render() {
     const { yearGroup } = this,
+      { t } = i18n,
       { downloading } = organizationStore;
 
     return (
       <Container className="d-flex flex-wrap my-4 text-center">
         {downloading > 0 && <Loading />}
 
-        <PageHead title="合作伙伴" />
+        <PageHead title={t('partner')} />
 
-        <h1 className="w-100 my-5">合作伙伴</h1>
+        <h1 className="w-100 my-5">{t('partner')}</h1>
 
         <article className="flex-fill">
           {yearGroup.map(([year, group]) => (

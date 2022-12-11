@@ -1,4 +1,6 @@
 import { InferGetServerSidePropsType } from 'next';
+import { textJoin } from 'mobx-i18n';
+import { observer } from 'mobx-react';
 import { Fragment, PureComponent } from 'react';
 import { Container, Row, Col, Image } from 'react-bootstrap';
 import { Icon } from 'idea-react';
@@ -7,14 +9,17 @@ import PageHead from '../components/PageHead';
 import { ArticleListLayout } from '../components/Article/List';
 import { CityStatisticMap } from '../components/CityStatisticMap';
 
-import { isServer } from '../models/Base';
+import { i18n } from '../models/Translation';
 import articleStore, { Article } from '../models/Article';
 import groupStore, { Group } from '../models/Group';
 import activityStore from '../models/Activity';
+
+import { withTranslation } from './api/base';
 import { slogan } from './api/home';
 import { DefaultImage, fileURLOf } from './api/lark/file/[id]';
 
-export async function getServerSideProps() {
+
+export const getServerSideProps = withTranslation(async () => {
   const articles = await articleStore.getList({}, 1, 3),
     projects = await groupStore.getAll({ type: '项目' });
 
@@ -24,10 +29,11 @@ export async function getServerSideProps() {
       projects: JSON.parse(JSON.stringify(projects)) as Group[],
     },
   };
-}
+});
 
+@observer
 export default class HomePage extends PureComponent<
-InferGetServerSidePropsType<typeof getServerSideProps>
+  InferGetServerSidePropsType<typeof getServerSideProps>
 > {
   renderProject = ({ id, name, logo = DefaultImage, link }: Group) => (
     <Col as="li" key={id + ''} className="position-relative">
@@ -49,7 +55,8 @@ InferGetServerSidePropsType<typeof getServerSideProps>
   );
 
   render() {
-    const { articles, projects } = this.props;
+    const { articles, projects } = this.props,
+      { t } = i18n;
 
     return (
       <>
@@ -64,7 +71,7 @@ InferGetServerSidePropsType<typeof getServerSideProps>
 
         <Container>
           <section className="text-center">
-            {slogan.map(({ title, items }) => (
+            {slogan().flatMap(({ title, items }) => (
               <Fragment key={title}>
                 <h2 className="my-5 text-primary">{title}</h2>
 
@@ -87,7 +94,9 @@ InferGetServerSidePropsType<typeof getServerSideProps>
           </section>
 
           <section className="text-center">
-            <h2 className="my-5 text-primary">自研开源项目</h2>
+            <h2 className="my-5 text-primary">
+              {textJoin(t('self_developed'), t('open_source'), t('project'))}
+            </h2>
 
             <Row
               as="ul"
@@ -101,17 +110,16 @@ InferGetServerSidePropsType<typeof getServerSideProps>
           </section>
 
           <section>
-            <h2 className="text-center text-primary">最新动态</h2>
-            <p className="text-center text-muted">
-              身体力行地践行开源，咱们华人有力量！
-            </p>
+            <h2 className="text-center text-primary">{t('latest_news')}</h2>
+            <p className="text-center text-muted">{t('slogan')}</p>
             <ArticleListLayout data={articles} />
           </section>
 
           <section>
-            <h2 className="my-5 text-center text-primary">活动地图</h2>
-
-            {!isServer() && <CityStatisticMap store={activityStore} />}
+            <h2 className="my-5 text-center text-primary">
+              {t('activity_map')}
+            </h2>
+            <CityStatisticMap store={activityStore} />
           </section>
         </Container>
       </>

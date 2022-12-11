@@ -34,6 +34,12 @@ export interface OrganizationListProps
 export class OrganizationList extends ScrollList<OrganizationListProps> {
   store = this.props.store;
 
+  constructor(props: OrganizationListProps) {
+    super(props);
+
+    this.boot();
+  }
+
   renderList() {
     return (
       <OrganizationListLayout
