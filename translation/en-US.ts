@@ -13,7 +13,7 @@ export default {
   our_mission: 'Our mission',
   latest_news: 'Latest News',
   slogan: 'Practicing open source personally, we Chinese have power!',
-  activity_map: 'activity map',
+  activity_map: 'Activity Map',
   open_source_library: 'Open source library',
   full_member: 'Full member',
   organization: 'Organization',

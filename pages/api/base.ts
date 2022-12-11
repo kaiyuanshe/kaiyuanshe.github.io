@@ -212,12 +212,14 @@ export function withTranslation<
 ): GetServerSideProps<RouteProps<R> & InferGetServerSidePropsType<O>, R> {
   return async context => {
     const options =
-      (await origin?.(context)) || ({} as GetServerSidePropsResult<{}>);
+      (await origin?.(context)) ||
+      ({ props: {} } as GetServerSidePropsResult<{}>);
 
-    const languages = parseLanguageHeader(
-      context.req.headers['accept-language'] || '',
-    );
-    await i18n.loadLanguages(languages);
+    const { language = '' } = context.req.cookies,
+      languages = parseLanguageHeader(
+        context.req.headers['accept-language'] || '',
+      );
+    await i18n.loadLanguages([language, ...languages].filter(Boolean));
 
     return options as GetServerSidePropsResult<
       RouteProps<R> & InferGetServerSidePropsType<O>

@@ -5,16 +5,17 @@ import { Container } from 'react-bootstrap';
 
 import PageHead from '../../components/PageHead';
 import { MemberStatic } from '../../components/Member/Static';
-import membersStore from '../../models/Member';
+import { withTranslation } from '../api/base';
 import { i18n } from '../../models/Translation';
+import membersStore from '../../models/Member';
 
-export async function getServerSideProps() {
+export const getServerSideProps = withTranslation(async () => {
   const data = await membersStore.getStatic();
 
   return {
     props: { membersStaticData: JSON.parse(JSON.stringify(data)) }, // will be passed to the page component as props
   };
-}
+});
 
 const MembersPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
   observer(({ membersStaticData }) => {
