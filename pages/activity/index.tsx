@@ -26,7 +26,7 @@ const ActivityListPage: FC<
 
       <h1 className="mb-5 text-center">{t('wonderful_activity')}</h1>
 
-      <ActivityList value={list} />
+      <ActivityList defaultData={list} />
     </Container>
   );
 });

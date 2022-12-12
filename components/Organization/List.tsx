@@ -1,8 +1,9 @@
 import { observer } from 'mobx-react';
 import { FC } from 'react';
 import { Row, Col } from 'react-bootstrap';
+import { ScrollListProps } from 'mobx-restful-table';
 
-import { ScrollList, ScrollListProps } from '../ScrollList';
+import { XScrollList } from '../ScrollList';
 import { OrganizationCard, OrganizationCardProps } from './Card';
 import { Organization, OrganizationModel } from '../../models/Organization';
 
@@ -31,7 +32,7 @@ export interface OrganizationListProps
 }
 
 @observer
-export class OrganizationList extends ScrollList<OrganizationListProps> {
+export class OrganizationList extends XScrollList<OrganizationListProps> {
   store = this.props.store;
 
   constructor(props: OrganizationListProps) {
