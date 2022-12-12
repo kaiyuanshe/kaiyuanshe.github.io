@@ -26,7 +26,7 @@ const ArticleListPage: FC<
 
       <h1 className="mb-5 text-center">{t('open_source_library')}</h1>
 
-      <ArticleList value={list} />
+      <ArticleList defaultData={list} />
     </Container>
   );
 });

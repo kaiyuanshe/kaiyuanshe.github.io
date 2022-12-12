@@ -8,7 +8,6 @@ specifiers:
   '@types/qs': ^6.9.7
   '@types/react': ^17.0.52
   '@types/react-dom': ^17.0.18
-  array-unique-proposal: ^0.3.4
   classnames: ^2.3.2
   echarts-jsx: ^0.5.0
   eslint: ^8.29.0
@@ -25,13 +24,13 @@ specifiers:
   lint-staged: ^13.1.0
   lodash: ^4.17.21
   mobx: ^5.15.7
-  mobx-i18n: ^0.3.10
+  mobx-i18n: ^0.3.11
   mobx-react: ^6.3.1
   mobx-restful: ^0.6.0-rc.21
+  mobx-restful-table: ^0.5.0
   next: ^12.3.4
   next-pwa: ^5.6.0
   next-with-less: ^2.0.5
-  nookies: ^2.5.2
   prettier: ^2.8.1
   qs: ^6.11.0
   react: ^17.0.2
@@ -46,7 +45,6 @@ specifiers:
 
 dependencies:
   '@giscus/react': 2.2.4_sfoxds7t5ydpegc3knd667wn6m
-  array-unique-proposal: 0.3.4
   classnames: 2.3.2
   echarts-jsx: 0.5.0_j5wiu4n3r332he5vjh7engy24e
   file-type: 18.0.0
@@ -57,13 +55,13 @@ dependencies:
   leaflet.chinatmsproviders: 3.0.6
   lodash: 4.17.21
   mobx: 5.15.7
-  mobx-i18n: 0.3.10_mobx@5.15.7
+  mobx-i18n: 0.3.11_mobx@5.15.7
   mobx-react: 6.3.1_hhkghttxnhy2fe22wf4styxgna
   mobx-restful: 0.6.0-rc.21_ko5aw6egmzhmuoydeephv2wbae
+  mobx-restful-table: 0.5.0_xi7pryn2632t4p3fx5qukzupfm
   next: 12.3.4_sfoxds7t5ydpegc3knd667wn6m
   next-pwa: 5.6.0_next@12.3.4+webpack@5.75.0
   next-with-less: 2.0.5_7qch47vmkxdytnoviaew2l266y
-  nookies: 2.5.2
   qs: 6.11.0
   react: 17.0.2
   react-bootstrap: 2.7.0_gzv7pa6nrbev3fs6gyzn7sadkq
@@ -2148,10 +2146,6 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: false
 
-  /array-unique-proposal/0.3.4:
-    resolution: {integrity: sha512-iZ/m06VeHJ0n3DDSA9LfTeGgnMYsM2Uey8VxYgF93J+E0EG50lzH4kWTq6DLtXBaPqI0/60AowwfmJ5Eno1t5Q==}
-    dev: false
-
   /array.prototype.flat/1.3.1:
     resolution: {integrity: sha512-roTU0KWIOmJ4DRLmwKd19Otg0/mT3qPNt0Qb3GWW8iObuZXxrjB/pzn0R3hqpRSWg4HCwqx+0vwOnWnvlOyeIA==}
     engines: {node: '>= 0.4'}
@@ -2438,11 +2432,6 @@ packages:
 
   /convert-source-map/1.9.0:
     resolution: {integrity: sha512-ASFBup0Mz1uyiIjANan1jzLQami9z1PoYSZCiiYW2FczPbenXc45FZdBZLzOT+r6+iciuEModtmCti+hjaAk0A==}
-    dev: false
-
-  /cookie/0.4.2:
-    resolution: {integrity: sha512-aSWTXFzaKWkvHO1Ny/s+ePFpvKsPnjc551iI41v3ny/ow6tBG5Vd+FuqGNhh1LxOmVzOlGUriIlOaokOvhaStA==}
-    engines: {node: '>= 0.6'}
     dev: false
 
   /copy-anything/2.0.6:
@@ -3994,8 +3983,8 @@ packages:
     resolution: {integrity: sha512-bzfL1YUZsP41gmu/qjrEk0Q6i2ix/cVeAhbCbqH9u3zYutS1cLg00qhrD0M2MVdCcx4Sc0UpP2eBWo9rotpq6g==}
     dev: true
 
-  /mobx-i18n/0.3.10_mobx@5.15.7:
-    resolution: {integrity: sha512-Tsv7zhdpu7W8A6H+2SbfZk0qvYXyRZcv9/NSM8XDSssCAcr2rt/hGRk8Ue1YtEU8WWrp3ZW2O2O6nLZdYymmOg==}
+  /mobx-i18n/0.3.11_mobx@5.15.7:
+    resolution: {integrity: sha512-TMh5db8P5bP3i3atqGeF3HQD2L/AEd6YcNsgJlEhDjFyMmmq9knlFWuIJ2CDo3CDh4MMbHXP+jNVZBBJfonGoA==}
     peerDependencies:
       mobx: '>=4 <6'
     dependencies:
@@ -4034,6 +4023,31 @@ packages:
     transitivePeerDependencies:
       - react-dom
       - react-native
+    dev: false
+
+  /mobx-restful-table/0.5.0_xi7pryn2632t4p3fx5qukzupfm:
+    resolution: {integrity: sha512-eHi8pVYege6YXkhxtweM5iDYHL/j9V5sQIlUsOWXXSw4/mKGQh9uChe+2pxreHxjPvjGlj0RHss1L8SurwpKAg==}
+    peerDependencies:
+      mobx: '>=4 <6'
+      react: '>=16 <18'
+    dependencies:
+      '@swc/helpers': 0.4.14
+      classnames: 2.3.2
+      lodash: 4.17.21
+      mobx: 5.15.7
+      mobx-i18n: 0.3.11_mobx@5.15.7
+      mobx-react: 6.3.1_hhkghttxnhy2fe22wf4styxgna
+      mobx-restful: 0.6.0-rc.21_ko5aw6egmzhmuoydeephv2wbae
+      react: 17.0.2
+      react-bootstrap: 2.7.0_gzv7pa6nrbev3fs6gyzn7sadkq
+      regenerator-runtime: 0.13.11
+      web-utility: 3.9.9_typescript@4.9.4
+    transitivePeerDependencies:
+      - '@types/react'
+      - jsdom
+      - react-dom
+      - react-native
+      - typescript
     dev: false
 
   /mobx-restful/0.6.0-rc.21_ko5aw6egmzhmuoydeephv2wbae:
@@ -4187,13 +4201,6 @@ packages:
 
   /node-releases/2.0.6:
     resolution: {integrity: sha512-PiVXnNuFm5+iYkLBNeq5211hvO38y63T0i2KKh2KnUs3RpzJ+JtODFjkD8yjLwnDkTYF1eKXheUwdssR+NRZdg==}
-
-  /nookies/2.5.2:
-    resolution: {integrity: sha512-x0TRSaosAEonNKyCrShoUaJ5rrT5KHRNZ5DwPCuizjgrnkpE5DRf3VL7AyyQin4htict92X1EQ7ejDbaHDVdYA==}
-    dependencies:
-      cookie: 0.4.2
-      set-cookie-parser: 2.5.1
-    dev: false
 
   /normalize-path/3.0.0:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
@@ -4851,10 +4858,6 @@ packages:
     resolution: {integrity: sha512-Qr3TosvguFt8ePWqsvRfrKyQXIiW+nGbYpy8XK24NQHE83caxWt+mIymTT19DGFbNWNLfEwsrkSmN64lVWB9ag==}
     dependencies:
       randombytes: 2.1.0
-
-  /set-cookie-parser/2.5.1:
-    resolution: {integrity: sha512-1jeBGaKNGdEq4FgIrORu/N570dwoPYio8lSoYLWmX7sQ//0JY08Xh9o5pBcgmHQ/MbsYp/aZnOe1s1lIsbLprQ==}
-    dev: false
 
   /shallow-clone/3.0.1:
     resolution: {integrity: sha512-/6KqX+GVUdqPuPPd2LxDDxzX6CAbjJehAAOKlNpqqUpAqPM6HeL8f+o3a+JsyGjn2lv0WY8UsTgUJjU9Ok55NA==}

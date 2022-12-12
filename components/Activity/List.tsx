@@ -1,8 +1,9 @@
 import { observer } from 'mobx-react';
 import { FC } from 'react';
 import { Row, Col } from 'react-bootstrap';
+import { ScrollListProps } from 'mobx-restful-table';
 
-import { ScrollList, ScrollListProps } from '../ScrollList';
+import { XScrollList } from '../ScrollList';
 import { ActivityCard } from './Card';
 import activityStore from '../../models/Activity';
 import type { Activity } from '../../pages/api/activity';
@@ -20,7 +21,7 @@ export const ActivityListLayout: FC<{ data: Activity[] }> = ({ data }) => (
 );
 
 @observer
-export class ActivityList extends ScrollList<ActivityListProps> {
+export class ActivityList extends XScrollList<ActivityListProps> {
   store = activityStore;
 
   constructor(props: ActivityListProps) {
