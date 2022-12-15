@@ -14,7 +14,7 @@ const OrganizationPage: FC = observer(() => {
 
   return (
     <>
-      <PageHead title={t('open_source_map')} />
+      <PageHead title={t('china_open_source_landscape')} />
 
       <Container>
         <header className="d-flex justify-content-between align-items-center">

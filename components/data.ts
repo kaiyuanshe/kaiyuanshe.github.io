@@ -22,10 +22,10 @@ export const TimeOption: Pick<
 };
 
 export const MainRoutes = (): Link[] => [
-  { title: i18n.t('open_source_library'), path: '/article' },
-  { title: i18n.t('full_member'), path: '/members' },
+  { title: i18n.t('our_blogs'), path: '/article' },
+  { title: i18n.t('our_members'), path: '/members' },
   { title: i18n.t('wonderful_activity'), path: '/activity' },
-  { title: i18n.t('organization'), path: '/department' },
-  { title: i18n.t('open_source_map'), path: '/organization' },
-  { title: i18n.t('partner'), path: '/organization/cooperation' },
+  { title: i18n.t('our_community_structure'), path: '/department' },
+  { title: i18n.t('china_open_source_landscape'), path: '/organization' },
+  { title: i18n.t('our_partners'), path: '/organization/cooperation' },
 ];

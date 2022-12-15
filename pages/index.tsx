@@ -1,5 +1,4 @@
 import { InferGetServerSidePropsType } from 'next';
-import { textJoin } from 'mobx-i18n';
 import { observer } from 'mobx-react';
 import { Fragment, PureComponent } from 'react';
 import { Container, Row, Col, Image } from 'react-bootstrap';
@@ -17,7 +16,6 @@ import activityStore from '../models/Activity';
 import { withTranslation } from './api/base';
 import { slogan } from './api/home';
 import { DefaultImage, fileURLOf } from './api/lark/file/[id]';
-
 
 export const getServerSideProps = withTranslation(async () => {
   const articles = await articleStore.getList({}, 1, 3),
@@ -94,9 +92,7 @@ export default class HomePage extends PureComponent<
           </section>
 
           <section className="text-center">
-            <h2 className="my-5 text-primary">
-              {textJoin(t('self_developed'), t('open_source'), t('project'))}
-            </h2>
+            <h2 className="my-5 text-primary">{t('our_projects')}</h2>
 
             <Row
               as="ul"

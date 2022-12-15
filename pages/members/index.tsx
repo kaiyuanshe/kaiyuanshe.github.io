@@ -24,9 +24,9 @@ const MembersPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
 
     return (
       <Container className="my-4">
-        <PageHead title={t('full_member')} />
+        <PageHead title={t('our_members')} />
 
-        <h1 className="w-100 my-5 text-center">{t('full_member')}</h1>
+        <h1 className="w-100 my-5 text-center">{t('our_members')}</h1>
 
         <MemberStatic
           membersGroup={groupMap}

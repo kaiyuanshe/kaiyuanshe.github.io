@@ -6,7 +6,7 @@ import styles from '../styles/SearchBar.module.less';
 
 export const SearchBar: FC<FormProps> = props => (
   <Form action="/search" {...props}>
-    <InputGroup>
+    <InputGroup style={{ flexWrap: 'nowrap' }}>
       <InputGroup.Text>
         <Icon name="search" />
       </InputGroup.Text>
