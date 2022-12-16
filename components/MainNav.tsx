@@ -34,7 +34,7 @@ class MainNav extends PureComponent<MainNavProps> {
             <Nav.Link
               key={path}
               href={path}
-              style={{ whiteSpace: 'nowrap' }}
+              className="text-nowrap"
               active={pathname.startsWith(path)}
             >
               {title}
