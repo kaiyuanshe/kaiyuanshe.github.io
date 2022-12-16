@@ -22,9 +22,9 @@ const ArticleListPage: FC<
 
   return (
     <Container className="py-5">
-      <PageHead title={t('open_source_library')} />
+      <PageHead title={t('our_blogs')} />
 
-      <h1 className="mb-5 text-center">{t('open_source_library')}</h1>
+      <h1 className="mb-5 text-center">{t('our_blogs')}</h1>
 
       <ArticleList defaultData={list} />
     </Container>

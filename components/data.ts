@@ -3,6 +3,8 @@ import { TimeDistanceProps } from 'idea-react';
 import { i18n } from '../models/Translation';
 import { Link } from './MainNav';
 
+const { t } = i18n;
+
 export const TimeOption: Pick<
   TimeDistanceProps,
   'unitWords' | 'beforeWord' | 'afterWord'
@@ -22,10 +24,10 @@ export const TimeOption: Pick<
 };
 
 export const MainRoutes = (): Link[] => [
-  { title: i18n.t('open_source_library'), path: '/article' },
-  { title: i18n.t('full_member'), path: '/members' },
-  { title: i18n.t('wonderful_activity'), path: '/activity' },
-  { title: i18n.t('organization'), path: '/department' },
-  { title: i18n.t('open_source_map'), path: '/organization' },
-  { title: i18n.t('partner'), path: '/organization/cooperation' },
+  { title: t('our_blogs'), path: '/article' },
+  { title: t('our_members'), path: '/members' },
+  { title: t('wonderful_activity'), path: '/activity' },
+  { title: t('our_community_structure'), path: '/department' },
+  { title: t('china_open_source_landscape'), path: '/organization' },
+  { title: t('our_partners'), path: '/organization/cooperation' },
 ];

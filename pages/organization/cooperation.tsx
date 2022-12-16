@@ -48,10 +48,12 @@ export default class CooperationPage extends PureComponent {
     if (!isServer()) organizationStore.getCooperation();
   }
 
-  renderGroup(level: string, list: Cooperation[], size = 1) {
+  renderGroup(level: any, list: Cooperation[], size = 1) {
+    const { t } = i18n;
+
     return (
       <section key={level}>
-        <h3 className="my-5">{level}</h3>
+        <h3 className="my-5">{t(level)}</h3>
 
         <ul className="list-inline">
           {list.map(({ organization, link }) => (
@@ -81,9 +83,9 @@ export default class CooperationPage extends PureComponent {
       <Container className="d-flex flex-wrap my-4 text-center">
         {downloading > 0 && <Loading />}
 
-        <PageHead title={t('partner')} />
+        <PageHead title={t('our_partners')} />
 
-        <h1 className="w-100 my-5">{t('partner')}</h1>
+        <h1 className="w-100 my-5">{t('our_partners')}</h1>
 
         <article className="flex-fill">
           {yearGroup.map(([year, group]) => (

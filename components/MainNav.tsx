@@ -31,7 +31,12 @@ class MainNav extends PureComponent<MainNavProps> {
       <div className="d-flex flex-column flex-sm-row justify-content-between gap-3 ms-auto">
         <Nav className="flex-fill ms-3 align-items-center">
           {links.map(({ path, title }) => (
-            <Nav.Link key={path} href={path} active={pathname.startsWith(path)}>
+            <Nav.Link
+              key={path}
+              href={path}
+              className="text-nowrap"
+              active={pathname.startsWith(path)}
+            >
               {title}
             </Nav.Link>
           ))}
