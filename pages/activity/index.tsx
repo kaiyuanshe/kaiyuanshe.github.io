@@ -10,6 +10,8 @@ import { i18n } from '../../models/Translation';
 import { withTranslation } from '../api/base';
 
 export const getServerSideProps = withTranslation(async () => {
+  activityStore.clear();
+
   const list = await activityStore.getList({}, 1);
 
   return { props: { list: JSON.parse(JSON.stringify(list)) } };

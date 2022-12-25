@@ -10,6 +10,8 @@ import { i18n } from '../../models/Translation';
 import { withTranslation } from '../api/base';
 
 export const getServerSideProps = withTranslation(async () => {
+  articleStore.clear();
+
   const list = await articleStore.getList({}, 1);
 
   return { props: { list } };

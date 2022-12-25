@@ -86,7 +86,10 @@ export class MemberModel extends Stream<Member>(ListModel) {
   }
 
   async getStatic() {
+    this.clear();
+
     const list = await this.getList({}, 1, 300);
+
     const groupData = groupBys<Member>(list, [
       'organization',
       'department',
@@ -102,7 +105,6 @@ export class MemberModel extends Stream<Member>(ListModel) {
       },
       groupData.grouped['organization'].groupMap,
     );
-
     groupMap['项目委员会'].tabs = groupData.grouped['project'].groupMap;
     groupMap['项目委员会'].count = groupData.grouped['project'].count;
     groupMap['执行委员会'].tabs = groupData.grouped['department'].groupMap;

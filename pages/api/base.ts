@@ -88,17 +88,15 @@ export function withTranslation<
   origin?: O,
 ): GetServerSideProps<RouteProps<R> & InferGetServerSidePropsType<O>, R> {
   return async context => {
-    const options =
-      (await origin?.(context)) ||
-      ({ props: {} } as GetServerSidePropsResult<{}>);
-
     const { language = '' } = context.req.cookies,
       languages = parseLanguageHeader(
         context.req.headers['accept-language'] || '',
       );
     await i18n.loadLanguages([language, ...languages].filter(Boolean));
 
-    return options as GetServerSidePropsResult<
+    return ((await origin?.(context)) || {
+      props: {},
+    }) as GetServerSidePropsResult<
       RouteProps<R> & InferGetServerSidePropsType<O>
     >;
   };
