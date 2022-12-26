@@ -3,7 +3,7 @@ import { Row, Col, Card, Badge } from 'react-bootstrap';
 import { TimeDistance, text2color } from 'idea-react';
 
 import { TimeOption } from '../data';
-import { fileURLOf } from '../../pages/api/lark/file/[id]';
+import { blobURLOf } from '../../models/Base';
 import type { BaseArticle } from '../../pages/api/article';
 
 export interface ArticleCardProps extends BaseArticle {
@@ -23,7 +23,7 @@ export const ArticleCard: FC<ArticleCardProps> = ({
     <Card.Img
       variant="top"
       style={{ height: '30vh', objectFit: 'cover' }}
-      src={fileURLOf(image)}
+      src={blobURLOf(image)}
     />
     <Card.Body>
       <Card.Title as="h3" className="h4">

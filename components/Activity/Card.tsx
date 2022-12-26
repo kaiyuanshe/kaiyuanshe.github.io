@@ -3,7 +3,7 @@ import { Row, Col, Card, Badge } from 'react-bootstrap';
 import { TimeDistance, text2color } from 'idea-react';
 
 import { TimeOption } from '../data';
-import { fileURLOf } from '../../pages/api/lark/file/[id]';
+import { blobURLOf } from '../../models/Base';
 import type { Activity } from '../../pages/api/activity';
 
 export interface ActivityCardProps extends Activity {
@@ -24,7 +24,7 @@ export const ActivityCard: FC<ActivityCardProps> = ({
     <Card.Img
       variant="top"
       style={{ height: '30vh', objectFit: 'cover' }}
-      src={fileURLOf(image)}
+      src={blobURLOf(image)}
     />
     <Card.Body className="d-flex flex-column">
       <Card.Title as="h3" className="h4 flex-fill">
