@@ -3,10 +3,16 @@ import { TableCellValue } from 'lark-ts-sdk';
 
 export const isServer = () => typeof window === 'undefined';
 
+const VercelHost = process.env.VERCEL_URL;
+
+const API_Host = isServer()
+  ? VercelHost
+    ? `https://${VercelHost}`
+    : 'http://localhost:3000'
+  : globalThis.location.origin;
+
 export const client = new HTTPClient({
-  baseURI: `${
-    isServer() ? process.env.NEXT_PUBLIC_API_HOST! : globalThis.location?.origin
-  }/api/`,
+  baseURI: `${API_Host}/api/`,
   responseType: 'json',
 });
 

@@ -1,19 +1,20 @@
 import { PureComponent } from 'react';
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
+import { InferGetServerSidePropsType } from 'next';
 import { Container, Row, Col } from 'react-bootstrap';
 import Giscus from '@giscus/react';
 
 import PageHead from '../../../components/PageHead';
 import ArticleRecommend from '../../../components/Article/Recommend';
-import articleStore from '../../../models/Article';
+import articleStore, { Article } from '../../../models/Article';
+import { withErrorLog } from '../../api/base';
 
-export async function getServerSideProps({
-  params,
-}: GetServerSidePropsContext<{ id: string }>) {
-  const props = await articleStore.getOne(params!.id);
+export const getServerSideProps = withErrorLog<{ id: string }, Article>(
+  async ({ params }) => {
+    const props = await articleStore.getOne(params!.id);
 
-  return { props };
-}
+    return { props };
+  },
+);
 
 export default class ArticleDetailPage extends PureComponent<
   InferGetServerSidePropsType<typeof getServerSideProps>

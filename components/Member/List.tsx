@@ -5,11 +5,8 @@ import classNames from 'classnames';
 
 import { LazyImage } from '../LazyImage';
 import styles from '../../styles/Members.module.less';
-import { withTranslation } from '../../pages/api/base';
 import { i18n } from '../../models/Translation';
 import { Member } from '../../models/Member';
-
-export const getServerSideProps = withTranslation();
 
 export interface MemberListProps {
   list?: Member[];

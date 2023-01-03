@@ -31,17 +31,15 @@ export const lark = new Lark({
  */
 export function makeFilter(data: DataObject, relation: 'AND' | 'OR' = 'AND') {
   const list = Object.entries(data)
-    .map(([key, value]) => {
-      if (isEmpty(value)) return;
-
-      value = value instanceof Array ? value : [value];
-
-      return value.map(
-        (item: string) => `CurrentValue.[${key}].contains("${item}")`,
-      );
-    })
+    .map(
+      ([key, value]) =>
+        !isEmpty(value) &&
+        (value instanceof Array ? value : [value]).map(
+          (item: string) => `CurrentValue.[${key}].contains("${item}")`,
+        ),
+    )
     .filter(Boolean)
-    .flat();
+    .flat() as string[];
 
   return list[1] ? `${relation}(${list})` : list[0];
 }

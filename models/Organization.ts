@@ -101,7 +101,7 @@ export class OrganizationModel extends Stream<Organization>(ListModel) {
           organization: (organization as TableCellRelation[]).map(
             normalizeText,
           ),
-          link: (link as TableCellLink[]).map(normalizeText),
+          link: (link as TableCellLink[])?.map(normalizeText),
         })),
       ]),
     );

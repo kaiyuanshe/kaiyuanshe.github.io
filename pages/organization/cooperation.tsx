@@ -58,7 +58,7 @@ export default class CooperationPage extends PureComponent {
         <ul className="list-inline">
           {list.map(({ organization, link }) => (
             <li className="list-inline-item" key={organization + ''}>
-              <a target="_blank" href={link + ''} rel="noreferrer">
+              <a target="_blank" href={link ? link + '' : ''} rel="noreferrer">
                 <Image
                   style={{ maxWidth: size * 10 + 'rem' }}
                   title={organization + ''}
