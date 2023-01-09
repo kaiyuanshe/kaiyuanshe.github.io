@@ -9,8 +9,8 @@ import { ArticleListLayout } from '../components/Article/List';
 import { CityStatisticMap } from '../components/CityStatisticMap';
 
 import { i18n } from '../models/Translation';
-import articleStore, { Article } from '../models/Article';
-import groupStore, { Group } from '../models/Group';
+import { Article, ArticleModel } from '../models/Article';
+import { Group, GroupModel } from '../models/Group';
 import activityStore from '../models/Activity';
 
 import { withTranslation } from './api/base';
@@ -18,8 +18,10 @@ import { slogan } from './api/home';
 import { DefaultImage, fileURLOf } from './api/lark/file/[id]';
 
 export const getServerSideProps = withTranslation(async () => {
-  const articles = await articleStore.getList({}, 1, 3),
-    projects = await groupStore.getAll({ type: '项目' });
+  const [articles, projects] = await Promise.all([
+    new ArticleModel().getList({}, 1, 3),
+    new GroupModel().getAll({ type: '项目' }),
+  ]);
 
   return {
     props: {

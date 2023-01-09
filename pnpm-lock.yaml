@@ -13,7 +13,7 @@ specifiers:
   eslint: ^8.31.0
   eslint-config-next: ^12.3.4
   file-type: ^18.0.0
-  husky: ^8.0.2
+  husky: ^8.0.3
   idea-react: ^0.27.11
   koajax: ^0.8.3
   lark-ts-sdk: ^0.7.9
@@ -31,7 +31,7 @@ specifiers:
   next: ^12.3.4
   next-pwa: ^5.6.0
   next-with-less: ^2.0.5
-  prettier: ^2.8.1
+  prettier: ^2.8.2
   qs: ^6.11.0
   react: ^17.0.2
   react-bootstrap: ^2.7.0
@@ -80,11 +80,11 @@ devDependencies:
   '@types/react-dom': 17.0.18
   eslint: 8.31.0
   eslint-config-next: 12.3.4_iukboom6ndih5an6iafl45j2fe
-  husky: 8.0.2
+  husky: 8.0.3
   less: 4.1.3
   less-loader: 11.1.0_less@4.1.3+webpack@5.75.0
   lint-staged: 13.1.0
-  prettier: 2.8.1
+  prettier: 2.8.2
   ts-node: 10.9.1_qacynw5b4krdzzrloasmebsynu
   typescript: 4.9.4
 
@@ -3295,8 +3295,8 @@ packages:
     engines: {node: '>=12.20.0'}
     dev: true
 
-  /husky/8.0.2:
-    resolution: {integrity: sha512-Tkv80jtvbnkK3mYWxPZePGFpQ/tT3HNSs/sasF9P2YfkMezDl3ON37YN6jUUI4eTg5LcyVynlb6r4eyvOmspvg==}
+  /husky/8.0.3:
+    resolution: {integrity: sha512-+dQSyqPh4x1hlO1swXBiNb2HzTDN1I2IGLQx1GrBuiqFJfoMrnZWwVmatvSiO+Iz8fBUnf+lekwNo4c2LlXItg==}
     engines: {node: '>=14'}
     hasBin: true
     dev: true
@@ -4448,8 +4448,8 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier/2.8.1:
-    resolution: {integrity: sha512-lqGoSJBQNJidqCHE80vqZJHWHRFoNYsSpP9AjFhlhi9ODCJA541svILes/+/1GM3VaL/abZi7cpFzOpdR9UPKg==}
+  /prettier/2.8.2:
+    resolution: {integrity: sha512-BtRV9BcncDyI2tsuS19zzhzoxD8Dh8LiCx7j7tHzrkz8GFXAexeWFdi22mjE1d16dftH2qNaytVxqiRTGlMfpw==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true

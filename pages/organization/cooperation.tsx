@@ -7,11 +7,13 @@ import { Loading } from 'idea-react';
 
 import PageHead from '../../components/PageHead';
 import { withTranslation } from '../api/base';
+import { fileURLOf } from '../api/lark/file/[id]';
 import { i18n } from '../../models/Translation';
-import { isServer, fileBaseURI } from '../../models/Base';
+import { isServer, blobURLOf } from '../../models/Base';
 import organizationStore, { Cooperation } from '../../models/Organization';
 
 const Levels = [
+  '主办单位',
   '战略赞助',
   '白金赞助',
   '金牌赞助',
@@ -56,7 +58,7 @@ export default class CooperationPage extends PureComponent {
         <h3 className="my-5">{t(level)}</h3>
 
         <ul className="list-inline">
-          {list.map(({ organization, link }) => (
+          {list.map(({ organization, link, logos }) => (
             <li className="list-inline-item" key={organization + ''}>
               <a target="_blank" href={link ? link + '' : ''} rel="noreferrer">
                 <Image
@@ -64,7 +66,12 @@ export default class CooperationPage extends PureComponent {
                   title={organization + ''}
                   alt={organization + ''}
                   loading="lazy"
-                  src={`${fileBaseURI}/${organization}.png`}
+                  src={blobURLOf(logos)}
+                  onError={({ currentTarget: image }) => {
+                    const logo = fileURLOf(logos);
+
+                    if (logo && !image.src.endsWith(logo)) image.src = logo;
+                  }}
                 />
               </a>
             </li>
@@ -80,14 +87,27 @@ export default class CooperationPage extends PureComponent {
       { downloading } = organizationStore;
 
     return (
-      <Container className="d-flex flex-wrap my-4 text-center">
+      <Container className="my-4 text-center">
         {downloading > 0 && <Loading />}
 
         <PageHead title={t('our_partners')} />
 
-        <h1 className="w-100 my-5">{t('our_partners')}</h1>
+        <h1 className="my-5">{t('our_partners')}</h1>
 
-        <article className="flex-fill">
+        <ListGroup
+          as="nav"
+          horizontal
+          className="sticky-top justify-content-center overflow-auto"
+          style={{ top: '5rem' }}
+        >
+          {yearGroup.map(([year]) => (
+            <ListGroup.Item as="a" key={year} href={'#' + year}>
+              {year}
+            </ListGroup.Item>
+          ))}
+        </ListGroup>
+
+        <article>
           {yearGroup.map(([year, group]) => (
             <section key={year}>
               <h2 className="my-4" id={year + ''}>
@@ -102,14 +122,6 @@ export default class CooperationPage extends PureComponent {
             </section>
           ))}
         </article>
-
-        <ListGroup as="nav">
-          {yearGroup.map(([year]) => (
-            <ListGroup.Item as="a" key={year} href={'#' + year}>
-              {year}
-            </ListGroup.Item>
-          ))}
-        </ListGroup>
       </Container>
     );
   }

@@ -9,14 +9,14 @@ import { MemberList } from '../../components/Member/List';
 import { GroupCard } from '../../components/Group/Card';
 import { OrganizationListLayout } from '../../components/Organization/List';
 
-import systemStore from '../../models/System';
+import { SystemModel } from '../../models/System';
 import { i18n } from '../../models/Translation';
 import { withRoute, withTranslation } from '../api/base';
 import { SearchResult } from '../api/search';
 
 export const getServerSideProps = withTranslation(
   withRoute<{}, SearchResult>(async ({ query }) => {
-    const props = await systemStore.search(query);
+    const props = await new SystemModel().search(query);
 
     return {
       props: JSON.parse(JSON.stringify(props)),

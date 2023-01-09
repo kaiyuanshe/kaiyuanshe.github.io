@@ -5,14 +5,12 @@ import { Container } from 'react-bootstrap';
 
 import PageHead from '../../components/PageHead';
 import { ArticleList } from '../../components/Article/List';
-import articleStore from '../../models/Article';
+import { ArticleModel } from '../../models/Article';
 import { i18n } from '../../models/Translation';
 import { withTranslation } from '../api/base';
 
 export const getServerSideProps = withTranslation(async () => {
-  articleStore.clear();
-
-  const list = await articleStore.getList({}, 1);
+  const list = await new ArticleModel().getList({}, 1);
 
   return { props: { list } };
 });

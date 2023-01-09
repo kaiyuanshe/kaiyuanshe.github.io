@@ -7,10 +7,10 @@ import PageHead from '../../components/PageHead';
 import { MemberStatic } from '../../components/Member/Static';
 import { withTranslation } from '../api/base';
 import { i18n } from '../../models/Translation';
-import membersStore from '../../models/Member';
+import { MemberModel } from '../../models/Member';
 
 export const getServerSideProps = withTranslation(async () => {
-  const data = await membersStore.getStatic();
+  const data = await new MemberModel().getStatic();
 
   return {
     props: { membersStaticData: JSON.parse(JSON.stringify(data)) }, // will be passed to the page component as props

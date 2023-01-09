@@ -11,7 +11,7 @@ import type { Activity } from '../../pages/api/activity';
 export type ActivityListProps = ScrollListProps<Activity>;
 
 export const ActivityListLayout: FC<{ data: Activity[] }> = ({ data }) => (
-  <Row as="section" xs={1} sm={2} xl={3} xxl={4} className="g-3 my-4">
+  <Row as="section" xs={1} sm={2} xl={3} className="g-3 my-4">
     {data.map(item => (
       <Col key={item.id + ''}>
         <ActivityCard className="h-100" {...item} />
