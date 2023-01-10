@@ -19,7 +19,8 @@ export type Activity = Record<
   | 'location'
   | 'organizers'
   | 'link'
-  | 'image',
+  | 'image'
+  | 'database',
   TableCellValue
 >;
 
