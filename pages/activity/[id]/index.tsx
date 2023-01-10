@@ -1,4 +1,3 @@
-import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
 import { FC } from 'react';
 import { Card, Col, Container, Row } from 'react-bootstrap';
@@ -8,9 +7,9 @@ import { ActivityModel } from '../../../models/Activity';
 import { Agenda } from '../../../models/Agenda';
 import { blobURLOf } from '../../../models/Base';
 import { Activity } from '../../api/activity';
-import { withTranslation } from '../../api/base';
+import { withErrorLog } from '../../api/base';
 
-export const getServerSideProps = withTranslation<
+export const getServerSideProps = withErrorLog<
   { id: string },
   { activity: Activity; agendas: Agenda[] }
 >(async ({ params }) => {
@@ -25,7 +24,7 @@ export const getServerSideProps = withTranslation<
 
 const ActivityDetailPage: FC<
   InferGetServerSidePropsType<typeof getServerSideProps>
-> = observer(({ activity, agendas }) => (
+> = ({ activity, agendas }) => (
   <>
     <PageHead title={activity.name + ''} />
 
@@ -62,6 +61,6 @@ const ActivityDetailPage: FC<
       </Row>
     </Container>
   </>
-));
+);
 
 export default ActivityDetailPage;
