@@ -5,7 +5,6 @@ import { TimeDistance, text2color } from 'idea-react';
 import { TimeOption } from '../data';
 import { blobURLOf } from '../../models/Base';
 import type { Activity } from '../../pages/api/activity';
-import styles from '../../styles/CoverImg.module.less';
 
 export interface ActivityCardProps extends Activity {
   className?: string;
@@ -22,9 +21,13 @@ export const ActivityCard: FC<ActivityCardProps> = ({
   image,
 }: ActivityCardProps) => (
   <Card className={`shadow-sm ${className}`}>
-    <div className={styles.coverImgContainer}>
-      <div className={styles.coverImgWrapper}>
-        <Card.Img className={styles.coverImg} src={blobURLOf(image)} />
+    <div className="position-relative w-100" style={{ paddingBottom: '56%' }}>
+      <div className="position-absolute top-0 left-0 w-100 h-100">
+        <Card.Img
+          className="h-100"
+          style={{ objectPosition: 'top left', objectFit: 'cover' }}
+          src={blobURLOf(image)}
+        />
       </div>
     </div>
     <Card.Body className="d-flex flex-column">
