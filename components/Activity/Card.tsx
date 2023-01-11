@@ -21,31 +21,35 @@ export const ActivityCard: FC<ActivityCardProps> = ({
   image,
 }: ActivityCardProps) => (
   <Card className={`shadow-sm ${className}`}>
-    <Card.Img
-      variant="top"
-      style={{ height: '30vh', objectFit: 'cover' }}
-      src={blobURLOf(image)}
-    />
+    <div className="position-relative w-100" style={{ paddingBottom: '56%' }}>
+      <div className="position-absolute top-0 left-0 w-100 h-100">
+        <Card.Img
+          className="h-100 object-fit-cover"
+          style={{ objectPosition: 'top left' }}
+          src={blobURLOf(image)}
+        />
+      </div>
+    </div>
     <Card.Body className="d-flex flex-column">
-      <Card.Title as="h3" className="h4 flex-fill">
+      <Card.Title as="h3" className="h5 flex-fill">
         <a
-          className="text-decoration-none text-secondary"
+          className="text-decoration-none text-secondary text-truncation-lines"
           href={link as string}
         >
           {name}
         </a>
       </Card.Title>
 
-      <Row className="mt-24">
+      <Row className="mt-2 flex-fill">
         <Col className="text-start">
-          <Card.Text className="mt-4 text-truncate" title={location + ''}>
-            <span className="me-3">{city}</span>
+          <Card.Text className="mt-1 text-truncate" title={location + ''}>
+            <span className="me-1">{city}</span>
             {location}
           </Card.Text>
         </Col>
       </Row>
-      <Row as="footer" className="small mt-3">
-        <Col>
+      <Row as="footer" className="flex-fill small mt-1">
+        <Col xs={8}>
           {(organizers as string[])?.map(organizer => (
             <Badge
               key={organizer}
@@ -58,12 +62,8 @@ export const ActivityCard: FC<ActivityCardProps> = ({
             </Badge>
           ))}
         </Col>
-        <Col className="text-end">
-          <TimeDistance
-            className="me-3"
-            {...TimeOption}
-            date={startTime as number}
-          />
+        <Col className="text-end" xs={4}>
+          <TimeDistance {...TimeOption} date={startTime as number} />
         </Col>
       </Row>
     </Card.Body>

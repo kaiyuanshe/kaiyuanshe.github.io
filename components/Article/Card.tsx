@@ -20,32 +20,36 @@ export const ArticleCard: FC<ArticleCardProps> = ({
   publishedAt,
 }: ArticleCardProps) => (
   <Card className={`shadow-sm ${className}`}>
-    <Card.Img
-      variant="top"
-      style={{ height: '30vh', objectFit: 'cover' }}
-      src={blobURLOf(image)}
-    />
-    <Card.Body>
-      <Card.Title as="h3" className="h4">
+    <div className="position-relative w-100" style={{ paddingBottom: '56%' }}>
+      <div className="position-absolute top-0 left-0 w-100 h-100">
+        <Card.Img
+          className="h-100 object-fit-cover"
+          style={{ objectPosition: 'top left' }}
+          src={blobURLOf(image)}
+        />
+      </div>
+    </div>
+    <Card.Body className="d-flex flex-column">
+      <Card.Title as="h3" className="h5 flex-fill">
         <a
-          className="text-decoration-none text-secondary"
+          className="text-decoration-none text-secondary text-truncation-lines"
           href={`/article/${alias}`}
         >
           {title}
         </a>
       </Card.Title>
 
-      <Row className="mt-3">
+      <Row className="mt-2 flex-fill">
         <Col
           as="a"
-          className="text-decoration-none text-end"
+          className="text-decoration-none text-end text-truncate align-self-end"
           href={`/search?keywords=${author}`}
         >
           {author}
         </Col>
       </Row>
-      <Row as="footer" className="small mt-3">
-        <Col>
+      <Row as="footer" className="flex-fill small mt-1">
+        <Col xs={8}>
           {(tags + '').split(/\s+/).map(name => (
             <Badge
               as="a"
@@ -58,12 +62,8 @@ export const ArticleCard: FC<ArticleCardProps> = ({
             </Badge>
           ))}
         </Col>
-        <Col className="text-end">
-          <TimeDistance
-            className="me-3"
-            {...TimeOption}
-            date={publishedAt as number}
-          />
+        <Col className="text-end" xs={4}>
+          <TimeDistance {...TimeOption} date={publishedAt as number} />
         </Col>
       </Row>
     </Card.Body>
