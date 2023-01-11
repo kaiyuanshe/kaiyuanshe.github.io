@@ -23,14 +23,14 @@ export const ActivityCard: FC<ActivityCardProps> = ({
 }: ActivityCardProps) => (
   <Card className={`shadow-sm ${className}`}>
     <div className={styles.coverImgContainer}>
-      <div className="cover-img-wrapper">
-        <Card.Img className="cover-img" src={blobURLOf(image)} />
+      <div className={styles.coverImgWrapper}>
+        <Card.Img className={styles.coverImg} src={blobURLOf(image)} />
       </div>
     </div>
     <Card.Body className="d-flex flex-column">
-      <Card.Title as="h5" className="h5 flex-fill">
+      <Card.Title as="h3" className="h5 flex-fill">
         <a
-          className="text-decoration-none text-secondary overTwoLineText"
+          className="text-decoration-none text-secondary text-truncation-lines"
           href={link as string}
         >
           {name}
@@ -39,14 +39,14 @@ export const ActivityCard: FC<ActivityCardProps> = ({
 
       <Row className="mt-2 flex-fill">
         <Col className="text-start">
-          <Card.Text className="mt-1 text-truncate " title={location + ''}>
+          <Card.Text className="mt-1 text-truncate" title={location + ''}>
             <span className="me-1">{city}</span>
             {location}
           </Card.Text>
         </Col>
       </Row>
       <Row as="footer" className="flex-fill small mt-1">
-        <Col xs={7} sm={7} xl={7}>
+        <Col xs={8}>
           {(organizers as string[])?.map(organizer => (
             <Badge
               key={organizer}
@@ -59,7 +59,7 @@ export const ActivityCard: FC<ActivityCardProps> = ({
             </Badge>
           ))}
         </Col>
-        <Col className="text-end" xs={5} sm={5} xl={5}>
+        <Col className="text-end" xs={4}>
           <TimeDistance {...TimeOption} date={startTime as number} />
         </Col>
       </Row>

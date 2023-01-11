@@ -22,14 +22,14 @@ export const ArticleCard: FC<ArticleCardProps> = ({
 }: ArticleCardProps) => (
   <Card className={`shadow-sm ${className}`}>
     <div className={styles.coverImgContainer}>
-      <div className="cover-img-wrapper">
-        <Card.Img className="cover-img" src={blobURLOf(image)} />
+      <div className={styles.coverImgWrapper}>
+        <Card.Img className={styles.coverImg} src={blobURLOf(image)} />
       </div>
     </div>
     <Card.Body className="d-flex flex-column">
-      <Card.Title as="h5" className="h5 flex-fill">
+      <Card.Title as="h3" className="h5 flex-fill">
         <a
-          className="text-decoration-none text-secondary overTwoLineText"
+          className="text-decoration-none text-secondary text-truncation-lines"
           href={`/article/${alias}`}
         >
           {title}
@@ -46,7 +46,7 @@ export const ArticleCard: FC<ArticleCardProps> = ({
         </Col>
       </Row>
       <Row as="footer" className="flex-fill small mt-1">
-        <Col xs={8} sm={8} xl={8}>
+        <Col xs={8}>
           {(tags + '').split(/\s+/).map(name => (
             <Badge
               as="a"
@@ -59,7 +59,7 @@ export const ArticleCard: FC<ArticleCardProps> = ({
             </Badge>
           ))}
         </Col>
-        <Col className="text-end" xs={4} sm={4} xl={4}>
+        <Col className="text-end" xs={4}>
           <TimeDistance {...TimeOption} date={publishedAt as number} />
         </Col>
       </Row>
