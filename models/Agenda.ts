@@ -3,20 +3,31 @@ import {
   TableCellValue,
   TableRecordList,
 } from 'lark-ts-sdk';
+import { observable } from 'mobx';
 import { ListModel, NewData, Stream } from 'mobx-restful';
-import { buildURLData, isEmpty } from 'web-utility';
+import { buildURLData, groupBy, isEmpty } from 'web-utility';
 
 import { client } from './Base';
 import { makeFilter, normalizeText } from './Lark';
 
 export type Agenda = Record<
-  'id' | 'title' | 'forum' | 'mentors' | 'startTime' | 'endTime' | 'files',
+  | 'id'
+  | 'title'
+  | 'forum'
+  | 'mentors'
+  | 'mentorAvatars'
+  | 'startTime'
+  | 'endTime'
+  | 'files',
   TableCellValue
 >;
 
 export class AgendaModel extends Stream<Agenda>(ListModel) {
   client = client;
   baseURI = '';
+
+  @observable
+  group: Record<string, Agenda[]> = {};
 
   constructor(appId: string, tableId: string) {
     super();
@@ -25,11 +36,12 @@ export class AgendaModel extends Stream<Agenda>(ListModel) {
 
   normalize({
     id,
-    fields: { mentors, ...data },
+    fields: { forum, mentors, ...data },
   }: TableRecordList<Agenda>['data']['items'][number]) {
     return {
       ...data,
       id: id!,
+      forum: (forum as TableCellRelation[])?.map(normalizeText),
       mentors: (mentors as TableCellRelation[])?.map(normalizeText),
     };
   }
@@ -53,5 +65,12 @@ export class AgendaModel extends Stream<Agenda>(ListModel) {
 
       yield* items.map(item => this.normalize(item));
     } while (has_more);
+  }
+
+  async getGroup() {
+    return (this.group = groupBy(
+      await this.getAll(),
+      ({ forum }) => forum + '',
+    ));
   }
 }

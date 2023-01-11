@@ -3,6 +3,12 @@ import { LarkData, LarkPageData, TableCellValue } from 'lark-ts-sdk';
 import { lark } from '../../../models/Lark';
 import { safeAPI } from '../base';
 
+export type TableCellAttachment = Record<
+  'id' | 'attachmentToken' | 'mimeType' | 'name',
+  string
+> &
+  Record<'height' | 'size' | 'timeStamp' | 'width', number>;
+
 export type TableData = LarkPageData<{
   table_id: string;
   revision: number;
