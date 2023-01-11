@@ -43,6 +43,7 @@ export default safeAPI(
           page_size,
           page_token,
           filter: makeFilter(filter),
+          sort: { publishedAt: 'DESC' },
         });
         response.json(pageData);
       }

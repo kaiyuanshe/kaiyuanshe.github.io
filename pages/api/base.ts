@@ -58,6 +58,11 @@ export function withErrorLog<
       return await origin(context);
     } catch (error) {
       console.error(error);
+
+      const { status } = error as HTTPError;
+
+      if (status === 404) return { notFound: true, props: {} };
+
       throw error;
     }
   }) as F;

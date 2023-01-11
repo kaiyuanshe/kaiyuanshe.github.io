@@ -5,14 +5,12 @@ import { Container } from 'react-bootstrap';
 
 import PageHead from '../../components/PageHead';
 import { ActivityList } from '../../components/Activity/List';
-import activityStore from '../../models/Activity';
+import { ActivityModel } from '../../models/Activity';
 import { i18n } from '../../models/Translation';
 import { withTranslation } from '../api/base';
 
 export const getServerSideProps = withTranslation(async () => {
-  activityStore.clear();
-
-  const list = await activityStore.getList({}, 1);
+  const list = await new ActivityModel().getList({}, 1);
 
   return { props: { list: JSON.parse(JSON.stringify(list)) } };
 });

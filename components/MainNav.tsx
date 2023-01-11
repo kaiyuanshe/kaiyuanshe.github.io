@@ -66,11 +66,12 @@ class MainNav extends PureComponent<MainNavProps> {
 
     return (
       <Navbar
+        className="py-3"
         bg="primary"
         variant="dark"
         fixed="top"
         expand="xxl"
-        className="py-3"
+        collapseOnSelect
       >
         <Container>
           <Navbar.Brand href="/">

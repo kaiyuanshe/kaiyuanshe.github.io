@@ -31,7 +31,7 @@ export type Organization = Record<
 >;
 
 export type Cooperation = Record<
-  'organization' | 'year' | 'level' | 'link',
+  'organization' | 'year' | 'level' | 'link' | 'logos',
   TableCellValue
 >;
 
@@ -96,12 +96,16 @@ export class OrganizationModel extends Stream<Organization>(ListModel) {
     const group = Object.fromEntries(
       Object.entries(body!).map(([year, list]) => [
         year,
-        list.map(({ organization, link, ...item }) => ({
+        list.map(({ organization, link, logos, ...item }) => ({
           ...item,
           organization: (organization as TableCellRelation[]).map(
             normalizeText,
           ),
           link: (link as TableCellLink[])?.map(normalizeText),
+          logos: (logos as any[])?.map(({ attachmentToken, ...logo }) => ({
+            ...logo,
+            file_token: attachmentToken,
+          })),
         })),
       ]),
     );

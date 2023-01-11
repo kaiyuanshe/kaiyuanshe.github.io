@@ -12,9 +12,11 @@ export interface ActivityCardProps extends Activity {
 
 export const ActivityCard: FC<ActivityCardProps> = ({
   className = '',
+  id,
   organizers,
   name,
   startTime,
+  database,
   link,
   city,
   location,
@@ -34,7 +36,7 @@ export const ActivityCard: FC<ActivityCardProps> = ({
       <Card.Title as="h3" className="h5 flex-fill">
         <a
           className="text-decoration-none text-secondary text-truncation-lines"
-          href={link as string}
+          href={database ? `/activity/${id}` : link + ''}
         >
           {name}
         </a>

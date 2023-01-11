@@ -5,12 +5,12 @@ import Giscus from '@giscus/react';
 
 import PageHead from '../../../components/PageHead';
 import ArticleRecommend from '../../../components/Article/Recommend';
-import articleStore, { Article } from '../../../models/Article';
+import { Article, ArticleModel } from '../../../models/Article';
 import { withErrorLog } from '../../api/base';
 
 export const getServerSideProps = withErrorLog<{ id: string }, Article>(
   async ({ params }) => {
-    const props = await articleStore.getOne(params!.id);
+    const props = await new ArticleModel().getOne(params!.id);
 
     return { props };
   },
