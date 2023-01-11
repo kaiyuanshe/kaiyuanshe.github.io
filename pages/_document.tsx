@@ -19,7 +19,7 @@ export default function Document() {
 
         <link
           rel="stylesheet"
-          href="https://unpkg.com/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+          href="https://unpkg.com/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
         />
         <link
           rel="stylesheet"

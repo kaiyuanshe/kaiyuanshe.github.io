@@ -24,8 +24,8 @@ export const ActivityCard: FC<ActivityCardProps> = ({
     <div className="position-relative w-100" style={{ paddingBottom: '56%' }}>
       <div className="position-absolute top-0 left-0 w-100 h-100">
         <Card.Img
-          className="h-100"
-          style={{ objectPosition: 'top left', objectFit: 'cover' }}
+          className="h-100 object-fit-cover"
+          style={{ objectPosition: 'top left' }}
           src={blobURLOf(image)}
         />
       </div>
