@@ -2,9 +2,9 @@ import { Icon } from 'idea-react';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
-import { PureComponent } from 'react';
+import { MouseEvent, PureComponent } from 'react';
 import { Button, Col, Container, Nav, Offcanvas, Row } from 'react-bootstrap';
-import { sleep } from 'web-utility';
+import { scrollTo, sleep } from 'web-utility';
 
 import { AgendaCard } from '../../../components/Activity/Agenda/Card';
 import PageHead from '../../../components/PageHead';
@@ -13,6 +13,7 @@ import { AgendaModel } from '../../../models/Agenda';
 import { blobURLOf } from '../../../models/Base';
 import { Activity } from '../../api/activity';
 import { withErrorLog } from '../../api/base';
+import styles from './index.module.less';
 
 export const getServerSideProps = withErrorLog<
   { id: string },
@@ -50,6 +51,14 @@ export default class ActivityDetailPage extends PureComponent<
     } while (true);
   };
 
+  scrollTo = (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+
+    scrollTo(event.currentTarget.getAttribute('href')!);
+
+    this.closeDrawer();
+  };
+
   renderDrawer() {
     const { showDrawer } = this,
       { agendaGroup } = this.props;
@@ -62,7 +71,11 @@ export default class ActivityDetailPage extends PureComponent<
           </Button>
         </div>
 
-        <Offcanvas show={showDrawer} onHide={this.closeDrawer}>
+        <Offcanvas
+          style={{ width: 'max-content' }}
+          show={showDrawer}
+          onHide={this.closeDrawer}
+        >
           <Offcanvas.Body>
             <Nav className="flex-column">
               {Object.keys(agendaGroup)
@@ -73,7 +86,7 @@ export default class ActivityDetailPage extends PureComponent<
                   <Nav.Link
                     key={forum}
                     href={`#${forum}`}
-                    onClick={this.closeDrawer}
+                    onClick={this.scrollTo}
                   >
                     {forum}
                   </Nav.Link>
@@ -93,10 +106,8 @@ export default class ActivityDetailPage extends PureComponent<
         <PageHead title={activity.name + ''} />
 
         <header
-          className="d-flex flex-column align-items-center justify-content-around"
+          className={`d-flex flex-column align-items-center justify-content-around ${styles.header}`}
           style={{
-            height: 'calc(100vh - 5rem)',
-            backgroundSize: 'cover',
             backgroundImage: `url(${blobURLOf(activity.image)})`,
           }}
         >

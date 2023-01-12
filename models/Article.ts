@@ -1,10 +1,10 @@
+import { observable } from 'mobx';
 import { NewData, ListModel, Stream, toggle } from 'mobx-restful';
 import { TableCellValue } from 'lark-ts-sdk';
 
 import { client } from './Base';
 import { createListStream } from './Lark';
 import { BaseArticle } from '../pages/api/article';
-import { observable } from 'mobx';
 
 export interface Article extends BaseArticle {
   content: string;
