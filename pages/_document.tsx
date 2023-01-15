@@ -2,17 +2,16 @@ import { useStaticRendering } from 'mobx-react';
 import { Head, Html, Main, NextScript } from 'next/document';
 
 import { isServer } from '../models/Base';
+import { DefaultImage } from './api/lark/file/[id]';
 
 // eslint-disable-next-line react-hooks/rules-of-hooks
 useStaticRendering(isServer());
-
-const Logo = process.env.NEXT_PUBLIC_SITE_LOGO;
 
 export default function Document() {
   return (
     <Html>
       <Head>
-        <link rel="icon" href={Logo} />
+        <link rel="icon" href={DefaultImage} />
 
         <link rel="manifest" href="/manifest.json" />
         <script src="https://polyfill.kaiyuanshe.cn/feature/PWAManifest.js"></script>

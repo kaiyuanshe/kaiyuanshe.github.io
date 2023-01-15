@@ -1,6 +1,8 @@
 import { PureComponent } from 'react';
 import { Image, ImageProps } from 'react-bootstrap';
 
+import { DefaultImage } from '../pages/api/lark/file/[id]';
+
 export interface LazyImageProps extends ImageProps {
   preLazySrc?: string; //👈 懒加载前的占位图src
   errorSrc?: string; //👈 懒加载图片加载失败替换图src
@@ -19,10 +21,11 @@ export class LazyImage extends PureComponent<LazyImageProps> {
 
   render() {
     const {
-      preLazySrc = '/kaiyuanshe.png',
-      errorSrc = '/kaiyuanshe.png',
+      preLazySrc = DefaultImage,
+      errorSrc = DefaultImage,
       alt,
     } = this.props;
+
     return (
       <Image
         ref={this.watch}

@@ -9,9 +9,9 @@ import { MainRoutes } from '../components/data';
 import MainNav from '../components/MainNav';
 import '../styles/globals.less';
 import { social } from './api/home';
+import { DefaultImage } from './api/lark/file/[id]';
 
-const Name = process.env.NEXT_PUBLIC_SITE_NAME!,
-  Logo = process.env.NEXT_PUBLIC_SITE_LOGO!;
+const Name = process.env.NEXT_PUBLIC_SITE_NAME!;
 
 const AppShell: FC<AppProps> = observer(({ Component, pageProps }) => (
   <>
@@ -19,7 +19,7 @@ const AppShell: FC<AppProps> = observer(({ Component, pageProps }) => (
       <meta name="viewport" content="width=device-width, initial-scale=1" />
     </Head>
 
-    <MainNav title={Name} logo={Logo} links={MainRoutes()} />
+    <MainNav title={Name} logo={DefaultImage} links={MainRoutes()} />
 
     <div className="mt-5 pt-4 mainContent">
       <Component {...pageProps} />

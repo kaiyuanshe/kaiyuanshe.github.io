@@ -12,9 +12,9 @@
   "background_color": "transparent",
   "icons": [
     {
-      "src": "https://github.com/kaiyuanshe.png",
+      "src": "/image/KaiYuanShe.png",
       "type": "image/png",
-      "sizes": "280x280"
+      "sizes": "337x337"
     }
   ]
 }
