@@ -1,5 +1,5 @@
 import { groupBy } from 'web-utility';
-import { observable } from 'mobx';
+import { computed, observable } from 'mobx';
 import { NewData, ListModel, Stream, toggle } from 'mobx-restful';
 import {
   TableCellLink,
@@ -47,6 +47,18 @@ export class OrganizationModel extends Stream<Organization>(ListModel) {
 
   @observable
   cooperation: CooperationData = {} as CooperationData;
+
+  @computed
+  get cooperationYearGroup() {
+    const { cooperation } = this;
+
+    return Object.entries(cooperation)
+      .sort(([x], [y]) => +y - +x)
+      .map(([year, list]) => [+year, groupBy(list, 'level')]) as [
+      number,
+      Record<string, Cooperation[]>,
+    ][];
+  }
 
   normalize = ({
     id,

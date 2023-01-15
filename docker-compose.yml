@@ -22,4 +22,4 @@ services:
       - 443:443
     networks:
       - kaiyuanshe
-    command: caddy reverse-proxy --from test.kaiyuanshe.cn --to kys-ows:3000
+    command: caddy reverse-proxy --from kaiyuanshe.cn --to kys-ows:3000

@@ -26,7 +26,7 @@ export default class DepartmentTree extends PureComponent {
 
     return [
       {
-        name: t('open_source_community'),
+        name: t('KaiYuanShe'),
         children: [
           {
             name: t('council'),
