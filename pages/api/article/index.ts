@@ -4,12 +4,11 @@ import { TableCellValue, TableRecordList } from 'lark-ts-sdk';
 import { NextApiResponse } from 'next';
 
 import { safeAPI } from '../base';
+import { makeFilter, getBITableList } from '../../../models/Lark';
 import {
   ARTICLE_LARK_BASE_ID,
   ARTICLE_LARK_TABLE_ID,
-  makeFilter,
-  getBITableList,
-} from '../../../models/Lark';
+} from '../../../models/Article';
 
 export type BaseArticle = Record<
   | 'id'
