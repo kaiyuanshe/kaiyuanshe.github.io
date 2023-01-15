@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
 import { NextRouter, withRouter } from 'next/router';
-import { Container, Image, Nav, Navbar } from 'react-bootstrap';
+import { Container, Image, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { Option, Select } from 'idea-react';
 
 import { SearchBar } from './SearchBar';
@@ -9,8 +9,9 @@ import styles from '../styles/MainNav.module.less';
 import { i18n, LanguageName } from '../models/Translation';
 
 export interface Link {
-  path: string;
   title: string;
+  path?: string;
+  subs?: Link[];
 }
 
 export interface MainNavProps {
@@ -30,16 +31,26 @@ class MainNav extends PureComponent<MainNavProps> {
     return (
       <div className="d-flex flex-column flex-sm-row justify-content-between gap-3 ms-auto">
         <Nav className="flex-fill ms-3 align-items-center">
-          {links.map(({ path, title }) => (
-            <Nav.Link
-              key={path}
-              href={path}
-              className="text-nowrap"
-              active={pathname.startsWith(path)}
-            >
-              {title}
-            </Nav.Link>
-          ))}
+          {links.map(({ title, path, subs }) =>
+            path ? (
+              <Nav.Link
+                key={title}
+                className="text-nowrap"
+                href={path}
+                active={pathname.startsWith(path)}
+              >
+                {title}
+              </Nav.Link>
+            ) : (
+              <NavDropdown key={title} title={title}>
+                {subs?.map(({ title, path }) => (
+                  <NavDropdown.Item key={title} href={path}>
+                    {title}
+                  </NavDropdown.Item>
+                ))}
+              </NavDropdown>
+            ),
+          )}
         </Nav>
         <div className="flex-fill d-flex flex-column flex-xxl-row justify-content-around gap-3">
           <SearchBar />
