@@ -2,9 +2,8 @@ import { parseURLData } from 'web-utility';
 import { NextApiResponse } from 'next';
 
 import { safeAPI } from './base';
+import { BaseArticle } from './article';
 import {
-  ARTICLE_LARK_BASE_ID,
-  ARTICLE_LARK_TABLE_ID,
   getBITableList,
   LARK_BITABLE_GROUP_ID,
   LARK_BITABLE_MEMBERS_ID,
@@ -13,7 +12,10 @@ import {
   LARK_BITABLE_ID,
   makeFilter,
 } from '../../models/Lark';
-import { BaseArticle } from './article';
+import {
+  ARTICLE_LARK_BASE_ID,
+  ARTICLE_LARK_TABLE_ID,
+} from '../../models/Article';
 import { Member } from '../../models/Member';
 import { Group } from '../../models/Group';
 import { Organization } from '../../models/Organization';
@@ -22,7 +24,7 @@ import type { Activity } from '../../pages/api/activity';
 export type SearchQuery = Partial<Record<'keywords' | 'tag', string>>;
 
 export interface SearchResult {
-  activities: Activity[],
+  activities: Activity[];
   articles: BaseArticle[];
   members: Member[];
   groups: Group[];
@@ -117,7 +119,7 @@ export default safeAPI(
             articles?.map(({ id, fields }) => ({ ...fields, id: id! })) || [],
           activities:
             // @ts-ignore
-            activities?.map(({ id, fields }) => ({...fields, id: id! })) || [],
+            activities?.map(({ id, fields }) => ({ ...fields, id: id! })) || [],
           members:
             // @ts-ignore
             members?.map(({ id, fields }) => ({ ...fields, id: id! })) || [],

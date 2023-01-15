@@ -1,6 +1,7 @@
+import { NewData } from 'mobx-restful';
 import { observer } from 'mobx-react';
 import { FC } from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, RowProps } from 'react-bootstrap';
 import { ScrollListProps } from 'mobx-restful-table';
 
 import { XScrollList } from '../ScrollList';
@@ -8,10 +9,18 @@ import { ArticleCard } from './Card';
 import { BaseArticle } from '../../pages/api/article';
 import { Article, ArticleModel } from '../../models/Article';
 
-export type ArticleListProps = ScrollListProps<Article>;
+export interface ArticleListLayoutProps {
+  className?: string;
+  rowCols?: Pick<RowProps, 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl'>;
+  data: BaseArticle[];
+}
 
-export const ArticleListLayout: FC<{ data: BaseArticle[] }> = ({ data }) => (
-  <Row as="section" xs={1} sm={2} xl={3} className="g-3 my-4">
+export const ArticleListLayout: FC<ArticleListLayoutProps> = ({
+  className = 'g-3 my-4',
+  rowCols = { xs: 1, sm: 2, xl: 3 },
+  data,
+}) => (
+  <Row as="section" {...rowCols} className={className}>
     {data.map(item => (
       <Col key={item.id + ''}>
         <ArticleCard className="h-100" {...item} />
@@ -20,9 +29,17 @@ export const ArticleListLayout: FC<{ data: BaseArticle[] }> = ({ data }) => (
   </Row>
 );
 
+export interface ArticleListProps
+  extends Omit<ArticleListLayoutProps, 'data'>,
+    ScrollListProps<Article> {
+  store: ArticleModel;
+  filter?: NewData<Article>;
+}
+
 @observer
 export class ArticleList extends XScrollList<ArticleListProps> {
-  store = new ArticleModel();
+  store = this.props.store;
+  filter = this.props.filter || {};
 
   constructor(props: ArticleListProps) {
     super(props);
@@ -31,6 +48,11 @@ export class ArticleList extends XScrollList<ArticleListProps> {
   }
 
   renderList() {
-    return <ArticleListLayout data={this.store.allItems} />;
+    return (
+      <ArticleListLayout
+        rowCols={this.props.rowCols}
+        data={this.store.allItems}
+      />
+    );
   }
 }

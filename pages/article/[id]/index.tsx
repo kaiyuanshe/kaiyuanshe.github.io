@@ -4,23 +4,31 @@ import { Container, Row, Col } from 'react-bootstrap';
 import Giscus from '@giscus/react';
 
 import PageHead from '../../../components/PageHead';
-import ArticleRecommend from '../../../components/Article/Recommend';
-import { Article, ArticleModel } from '../../../models/Article';
+import { ArticleList } from '../../../components/Article/List';
+import articleStore, { Article, ArticleModel } from '../../../models/Article';
 import { withErrorLog } from '../../api/base';
 
-export const getServerSideProps = withErrorLog<{ id: string }, Article>(
-  async ({ params }) => {
-    const props = await new ArticleModel().getOne(params!.id);
+export const getServerSideProps = withErrorLog<
+  { id: string },
+  { article: Article; recommends: Article[] }
+>(async ({ params }) => {
+  const articleStore = new ArticleModel();
 
-    return { props };
-  },
-);
+  const article = await articleStore.getOne(params!.id);
+
+  return {
+    props: {
+      article,
+      recommends: articleStore.currentRecommend!.currentPage,
+    },
+  };
+});
 
 export default class ArticleDetailPage extends PureComponent<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > {
   renderAuthorization() {
-    const { license = 'CC-4.0' } = this.props;
+    const { license = 'CC-4.0' } = this.props.article;
 
     return (
       <>
@@ -30,7 +38,8 @@ export default class ArticleDetailPage extends PureComponent<
   }
 
   render() {
-    const { alias, title, content } = this.props;
+    const { title, content, tags } = this.props.article,
+      { recommends } = this.props;
 
     return (
       <Container className="py-5">
@@ -41,12 +50,17 @@ export default class ArticleDetailPage extends PureComponent<
             as="article"
             xs={12}
             sm={9}
-            dangerouslySetInnerHTML={{ __html: content }}
+            dangerouslySetInnerHTML={{ __html: content! }}
           />
           <Col xs={12} sm={3}>
             {this.renderAuthorization()}
 
-            <ArticleRecommend alias={alias} />
+            <ArticleList
+              store={articleStore}
+              filter={{ tags }}
+              rowCols={{ xs: 1 }}
+              defaultData={recommends}
+            />
           </Col>
         </Row>
 
