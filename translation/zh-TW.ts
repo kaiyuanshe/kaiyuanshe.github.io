@@ -11,7 +11,7 @@ export default {
   our_mission: '我們的使命',
   latest_news: '最新動態',
   slogan: '開源社-開源人的家',
-  our_projects: '自研開源專案',
+  our_projects: '我們的專案',
   activity_map: '活動地圖',
 
   // Main Navigator

@@ -8,14 +8,15 @@ import PageHead from '../components/PageHead';
 import { ArticleListLayout } from '../components/Article/List';
 import { CityStatisticMap } from '../components/CityStatisticMap';
 
+import { blobURLOf } from '../models/Base';
 import { i18n } from '../models/Translation';
 import { Article, ArticleModel } from '../models/Article';
 import { Group, GroupModel } from '../models/Group';
 import activityStore from '../models/Activity';
 
 import { withTranslation } from './api/base';
+import { DefaultImage } from './api/lark/file/[id]';
 import { slogan } from './api/home';
-import { DefaultImage, fileURLOf } from './api/lark/file/[id]';
 
 export const getServerSideProps = withTranslation(async () => {
   const [articles, projects] = await Promise.all([
@@ -41,7 +42,7 @@ export default class HomePage extends PureComponent<
         style={{ height: '8rem' }}
         loading="lazy"
         alt="logo"
-        src={fileURLOf(logo)}
+        src={blobURLOf(logo)}
       />
       <a
         className="d-block text-decoration-none text-dark h5 stretched-link mt-3"
