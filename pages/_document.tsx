@@ -14,7 +14,7 @@ export default function Document() {
         <link rel="icon" href={DefaultImage} />
 
         <link rel="manifest" href="/manifest.json" />
-        <script src="https://polyfill.kaiyuanshe.cn/feature/PWAManifest.js"></script>
+        <script src="https://polyfill.kaiyuanshe.cn/feature/PWAManifest.js" />
 
         <link
           rel="stylesheet"
@@ -32,7 +32,24 @@ export default function Document() {
           rel="stylesheet"
           href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
         />
-        <script src="https://unpkg.com/cookie-store@3.0.0/index.js"></script>
+        <script src="https://unpkg.com/cookie-store@3.0.0/index.js" />
+
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-MS73CZKMM3"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+window.dataLayer = window.dataLayer || [];
+
+dataLayer.push(
+  ['js', new Date()],
+  ['config', 'G-MS73CZKMM3']
+);
+`,
+          }}
+        />
       </Head>
 
       <body>
