@@ -39,7 +39,7 @@
     "@types/lodash": "^4.14.191",
     "@types/node": "^16.18.11",
     "@types/qs": "^6.9.7",
-    "@types/react": "^17.0.52",
+    "@types/react": "^17.0.53",
     "@types/react-dom": "^17.0.18",
     "eslint": "^8.32.0",
     "eslint-config-next": "^12.3.4",

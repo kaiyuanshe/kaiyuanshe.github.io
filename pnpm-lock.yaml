@@ -6,7 +6,7 @@ specifiers:
   '@types/lodash': ^4.14.191
   '@types/node': ^16.18.11
   '@types/qs': ^6.9.7
-  '@types/react': ^17.0.52
+  '@types/react': ^17.0.53
   '@types/react-dom': ^17.0.18
   classnames: ^2.3.2
   echarts-jsx: ^0.5.0
@@ -48,7 +48,7 @@ dependencies:
   classnames: 2.3.2
   echarts-jsx: 0.5.0_j5wiu4n3r332he5vjh7engy24e
   file-type: 18.2.0
-  idea-react: 0.27.11_wuwhjehtb3nhae7urou2zggzfe
+  idea-react: 0.27.11_rjwi4njs5ochqicyzd6yyrg72a
   koajax: 0.8.3_typescript@4.9.4
   lark-ts-sdk: 0.7.9_typescript@4.9.4
   leaflet: 1.9.3
@@ -58,13 +58,13 @@ dependencies:
   mobx-i18n: 0.3.14_mobx@5.15.7
   mobx-react: 6.3.1_hhkghttxnhy2fe22wf4styxgna
   mobx-restful: 0.6.0_ko5aw6egmzhmuoydeephv2wbae
-  mobx-restful-table: 0.6.0_xi7pryn2632t4p3fx5qukzupfm
+  mobx-restful-table: 0.6.0_4sqo5hykx6ccfikqx23tpzfeda
   next: 12.3.4_sfoxds7t5ydpegc3knd667wn6m
   next-pwa: 5.6.0_next@12.3.4+webpack@5.75.0
   next-with-less: 2.0.5_7qch47vmkxdytnoviaew2l266y
   qs: 6.11.0
   react: 17.0.2
-  react-bootstrap: 2.7.0_gzv7pa6nrbev3fs6gyzn7sadkq
+  react-bootstrap: 2.7.0_zsjcj4gvi24ks76nprapl4hsmq
   react-dom: 17.0.2_react@17.0.2
   react-editor-js: 2.1.0_react@17.0.2
   react-leaflet: 3.2.5_edkpibxfdppewbyunodyehmvmq
@@ -76,7 +76,7 @@ devDependencies:
   '@types/lodash': 4.14.191
   '@types/node': 16.18.11
   '@types/qs': 6.9.7
-  '@types/react': 17.0.52
+  '@types/react': 17.0.53
   '@types/react-dom': 17.0.18
   eslint: 8.32.0
   eslint-config-next: 12.3.4_7uibuqfxkfaozanbtbziikiqje
@@ -1815,17 +1815,17 @@ packages:
   /@types/react-dom/17.0.18:
     resolution: {integrity: sha512-rLVtIfbwyur2iFKykP2w0pl/1unw26b5td16d5xMgp7/yjTHomkyxPYChFoCr/FtEX1lN9wY6lFj1qvKdS5kDw==}
     dependencies:
-      '@types/react': 17.0.52
+      '@types/react': 17.0.53
     dev: true
 
   /@types/react-transition-group/4.4.5:
     resolution: {integrity: sha512-juKD/eiSM3/xZYzjuzH6ZwpP+/lejltmiS3QEzV/vmb/Q8+HfDmxu+Baga8UEMGBqV88Nbg4l2hY/K2DkyaLLA==}
     dependencies:
-      '@types/react': 17.0.52
+      '@types/react': 17.0.53
     dev: false
 
-  /@types/react/17.0.52:
-    resolution: {integrity: sha512-vwk8QqVODi0VaZZpDXQCmEmiOuyjEFPY7Ttaw5vjM112LOq37yz1CDJGrRJwA1fYEq4Iitd5rnjd1yWAc/bT+A==}
+  /@types/react/17.0.53:
+    resolution: {integrity: sha512-1yIpQR2zdYu1Z/dc1OxC+MA6GR240u3gcnP4l6mvj/PJiVaqHsQPmWttsvHsfnhfPbU2FuGmo0wSITPygjBmsw==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
@@ -3312,7 +3312,7 @@ packages:
     resolution: {integrity: sha512-gchesWBzyvGHRO9W8tzUWFDycow5gwjvFKfyV9FF32Y7F50yZMp7mP+T2mJIWFx49zicqyC4uefHM17o6xKIVQ==}
     dev: false
 
-  /idea-react/0.27.11_wuwhjehtb3nhae7urou2zggzfe:
+  /idea-react/0.27.11_rjwi4njs5ochqicyzd6yyrg72a:
     resolution: {integrity: sha512-DeLYAYwRO0I4oiQMOQDU6C0E/bBVMKufODp/7na6fDblfjPAKIoo52sEXee0U0FBM6UjbHxF4levLfdcBjZffw==}
     dependencies:
       '@editorjs/editorjs': 2.26.1
@@ -3328,7 +3328,7 @@ packages:
       mobx-react: 6.3.1_hhkghttxnhy2fe22wf4styxgna
       prismjs: 1.29.0
       react: 17.0.2
-      react-bootstrap: 2.7.0_gzv7pa6nrbev3fs6gyzn7sadkq
+      react-bootstrap: 2.7.0_zsjcj4gvi24ks76nprapl4hsmq
       react-dom: 17.0.2_react@17.0.2
       react-editor-js: 2.1.0_m3uwqvdudzgj4vpxlzjbh6nf2y
       react-element-to-jsx-string: 15.0.0_sfoxds7t5ydpegc3knd667wn6m
@@ -4029,7 +4029,7 @@ packages:
       - react-native
     dev: false
 
-  /mobx-restful-table/0.6.0_xi7pryn2632t4p3fx5qukzupfm:
+  /mobx-restful-table/0.6.0_4sqo5hykx6ccfikqx23tpzfeda:
     resolution: {integrity: sha512-Gq2MUdeJR8l2QD6iaQTQXaW0y4d7cKKPWTpu8xv81Cspy1GqUObAFIHQI7sPwA8W1HflcLeGzIoO09g1Mi1GSQ==}
     peerDependencies:
       mobx: '>=4 <6'
@@ -4043,7 +4043,7 @@ packages:
       mobx-react: 6.3.1_hhkghttxnhy2fe22wf4styxgna
       mobx-restful: 0.6.0_ko5aw6egmzhmuoydeephv2wbae
       react: 17.0.2
-      react-bootstrap: 2.7.0_gzv7pa6nrbev3fs6gyzn7sadkq
+      react-bootstrap: 2.7.0_zsjcj4gvi24ks76nprapl4hsmq
       regenerator-runtime: 0.13.11
       web-utility: 3.9.9_typescript@4.9.4
     transitivePeerDependencies:
@@ -4504,7 +4504,7 @@ packages:
     dependencies:
       safe-buffer: 5.2.1
 
-  /react-bootstrap/2.7.0_gzv7pa6nrbev3fs6gyzn7sadkq:
+  /react-bootstrap/2.7.0_zsjcj4gvi24ks76nprapl4hsmq:
     resolution: {integrity: sha512-Jcrn6aUuRVBeSB6dzKODKZU1TONOdhAxu0IDm4Sv74SJUm98dMdhSotF2SNvFEADANoR+stV+7TK6SNX1wWu5w==}
     peerDependencies:
       '@types/react': '>=16.14.8'
@@ -4517,7 +4517,7 @@ packages:
       '@babel/runtime': 7.20.1
       '@restart/hooks': 0.4.7_react@17.0.2
       '@restart/ui': 1.4.1_sfoxds7t5ydpegc3knd667wn6m
-      '@types/react': 17.0.52
+      '@types/react': 17.0.53
       '@types/react-transition-group': 4.4.5
       classnames: 2.3.2
       dom-helpers: 5.2.1
@@ -5289,7 +5289,7 @@ packages:
       react: '>=15.0.0'
     dependencies:
       '@babel/runtime': 7.20.1
-      '@types/react': 17.0.52
+      '@types/react': 17.0.53
       invariant: 2.2.4
       react: 17.0.2
       react-lifecycles-compat: 3.0.4
