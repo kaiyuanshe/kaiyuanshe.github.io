@@ -90,4 +90,14 @@ export default {
   战略合作媒体: '戰略合作媒體',
   媒体伙伴: '媒體夥伴',
   社区伙伴: '社區夥伴',
+
+  // Election
+  election: '選舉',
+  candidate: '候選人',
+  理事: '理事',
+  正式成员: '正式成員',
+  last_level: '上屆職級',
+  last_committee: '上屆任職委員會',
+  last_work_group: '上屆任職工作組',
+  last_project_group: '上屆任職專案組',
 } as const;
