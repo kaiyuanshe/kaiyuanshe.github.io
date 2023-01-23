@@ -106,7 +106,9 @@ export default class HomePage extends PureComponent<
           </section>
 
           <section>
-            <h2 className="text-center text-primary">{t('latest_news')}</h2>
+            <h2 className="my-5 text-center text-primary">
+              {t('latest_news')}
+            </h2>
             <p className="text-center text-muted">{t('slogan')}</p>
             <ArticleListLayout data={articles} />
           </section>
