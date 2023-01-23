@@ -10,10 +10,8 @@ export interface Article extends BaseArticle {
   content?: string;
 }
 
-export const ARTICLE_LARK_BASE_ID =
-  process.env.NEXT_PUBLIC_ARTICLE_LARK_BASE_ID!;
-export const ARTICLE_LARK_TABLE_ID =
-  process.env.NEXT_PUBLIC_ARTICLE_LARK_TABLE_ID!;
+export const ARTICLE_LARK_BASE_ID = process.env.NEXT_PUBLIC_ARTICLE_BASE_ID!;
+export const ARTICLE_LARK_TABLE_ID = process.env.NEXT_PUBLIC_ARTICLE_TABLE_ID!;
 
 export class ArticleModel extends Stream<Article>(ListModel) {
   client = client;

@@ -1,5 +1,11 @@
 import { isEmpty, buildURLData } from 'web-utility';
-import { DataObject, NewData, RESTClient } from 'mobx-restful';
+import {
+  DataObject,
+  ListModel,
+  NewData,
+  RESTClient,
+  Stream,
+} from 'mobx-restful';
 import {
   Lark,
   TableCellText,
@@ -9,7 +15,7 @@ import {
   TableRecordList,
 } from 'lark-ts-sdk';
 
-import { isServer } from './Base';
+import { client, isServer } from './Base';
 
 export const LARK_APP_ID = process.env.LARK_APP_ID!,
   LARK_APP_SECRET = process.env.LARK_APP_SECRET!,
@@ -123,4 +129,51 @@ export async function* createListStream<T extends DataObject>(
 
     yield { items, total };
   } while (has_more);
+}
+
+export function BiTable<T extends DataObject>(Base = ListModel) {
+  abstract class BiTableListModel extends Stream<T>(Base) {
+    client = client;
+
+    sort: Partial<Record<keyof T, 'ASC' | 'DESC'>> = {};
+
+    constructor(appId: string, tableId: string) {
+      super();
+      this.baseURI = `lark/bitable/v1/apps/${appId}/tables/${tableId}/records`;
+    }
+
+    normalize({ id, fields }: TableRecordList<T>['data']['items'][number]) {
+      return { ...fields, id: id! };
+    }
+
+    makeFilter(filter: NewData<T>) {
+      return isEmpty(filter) ? undefined : makeFilter(filter);
+    }
+
+    async *openStream(filter: NewData<T>) {
+      var lastPage = '';
+
+      do {
+        const { body } = await this.client.get<TableRecordList<T>>(
+          `${this.baseURI}?${buildURLData({
+            page_size: 100,
+            page_token: lastPage,
+            filter: this.makeFilter(filter),
+            sort: JSON.stringify(
+              Object.entries(this.sort).map(
+                ([key, order]) => `${key} ${order}`,
+              ),
+            ),
+          })}`,
+        );
+        var { items, total, has_more, page_token } = body!.data;
+
+        lastPage = page_token;
+        this.totalCount = total;
+
+        yield* items.map(item => this.normalize(item));
+      } while (has_more);
+    }
+  }
+  return BiTableListModel;
 }

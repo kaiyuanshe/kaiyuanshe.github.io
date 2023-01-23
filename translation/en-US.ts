@@ -91,4 +91,14 @@ export default {
   战略合作媒体: 'Strategic partner media',
   媒体伙伴: 'Media partner',
   社区伙伴: 'Community partner',
+
+  // Election
+  election: 'Election',
+  candidate: 'candidate',
+  理事: 'Council Member',
+  正式成员: 'Regular Member',
+  last_level: 'Last Level',
+  last_committee: 'Last Committee',
+  last_work_group: 'Last Work Group',
+  last_project_group: 'Last Project Group',
 } as const;
