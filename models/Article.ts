@@ -1,10 +1,10 @@
-import { isEmpty, buildURLData } from 'web-utility';
-import { NewData, ListModel, Stream, toggle } from 'mobx-restful';
 import { TableCellLink, TableRecordList } from 'lark-ts-sdk';
+import { ListModel, NewData, toggle } from 'mobx-restful';
+import { buildURLData, isEmpty } from 'web-utility';
 
-import { blobClient, client } from './Base';
-import { makeFilter, normalizeText } from './Lark';
 import { BaseArticle } from '../pages/api/article';
+import { blobClient } from './Base';
+import { BiTable, makeFilter, normalizeText } from './Lark';
 
 export interface Article extends BaseArticle {
   content?: string;
@@ -13,18 +13,14 @@ export interface Article extends BaseArticle {
 export const ARTICLE_LARK_BASE_ID = process.env.NEXT_PUBLIC_ARTICLE_BASE_ID!;
 export const ARTICLE_LARK_TABLE_ID = process.env.NEXT_PUBLIC_ARTICLE_TABLE_ID!;
 
-export class ArticleModel extends Stream<Article>(ListModel) {
-  client = client;
-  baseURI = `lark/bitable/v1/apps/${ARTICLE_LARK_BASE_ID}/tables/${ARTICLE_LARK_TABLE_ID}/records`;
+export class ArticleModel extends BiTable<Article>(ListModel) {
+  constructor(appId = ARTICLE_LARK_BASE_ID, tableId = ARTICLE_LARK_TABLE_ID) {
+    super(appId, tableId);
+  }
+
+  sort = { publishedAt: 'DESC' } as const;
 
   currentRecommend?: ArticleModel;
-
-  normalize({
-    id,
-    fields,
-  }: TableRecordList<BaseArticle>['data']['items'][number]) {
-    return { ...fields, id: id! };
-  }
 
   @toggle('downloading')
   async getOne(alias: string) {
@@ -50,29 +46,12 @@ export class ArticleModel extends Stream<Article>(ListModel) {
     return (this.currentOne = { ...item, content });
   }
 
-  async *openStream(filter: NewData<BaseArticle>) {
-    var lastPage = '';
-
-    do {
-      const { body } = await this.client.get<TableRecordList<BaseArticle>>(
-        `${this.baseURI}?${buildURLData({
-          page_size: 100,
-          page_token: lastPage,
-          filter: isEmpty(filter)
-            ? undefined
-            : filter.tags
-            ? makeFilter({ tags: (filter.tags + '').split(/\s+/) }, 'OR')
-            : makeFilter(filter),
-          sort: JSON.stringify(['publishedAt DESC']),
-        })}`,
-      );
-      var { items, total, has_more, page_token } = body!.data;
-
-      lastPage = page_token;
-      this.totalCount = total;
-
-      yield* items.map(item => this.normalize(item));
-    } while (has_more);
+  makeFilter(filter: NewData<Article>) {
+    return isEmpty(filter)
+      ? undefined
+      : filter.tags
+      ? makeFilter({ tags: (filter.tags + '').split(/\s+/) }, 'OR')
+      : makeFilter(filter);
   }
 }
 

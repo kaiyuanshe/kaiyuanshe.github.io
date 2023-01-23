@@ -4,11 +4,10 @@ import {
   TableRecordList,
 } from 'lark-ts-sdk';
 import { observable } from 'mobx';
-import { ListModel, NewData, Stream } from 'mobx-restful';
-import { buildURLData, groupBy, isEmpty } from 'web-utility';
+import { ListModel } from 'mobx-restful';
+import { groupBy } from 'web-utility';
 
-import { client } from './Base';
-import { makeFilter, normalizeText } from './Lark';
+import { BiTable, normalizeText } from './Lark';
 
 export type Agenda = Record<
   | 'id'
@@ -22,17 +21,11 @@ export type Agenda = Record<
   TableCellValue
 >;
 
-export class AgendaModel extends Stream<Agenda>(ListModel) {
-  client = client;
-  baseURI = '';
+export class AgendaModel extends BiTable<Agenda>(ListModel) {
+  sort = { startTime: 'ASC' } as const;
 
   @observable
   group: Record<string, Agenda[]> = {};
-
-  constructor(appId: string, tableId: string) {
-    super();
-    this.baseURI = `lark/bitable/v1/apps/${appId}/tables/${tableId}/records`;
-  }
 
   normalize({
     id,
@@ -44,27 +37,6 @@ export class AgendaModel extends Stream<Agenda>(ListModel) {
       forum: (forum as TableCellRelation[])?.map(normalizeText),
       mentors: (mentors as TableCellRelation[])?.map(normalizeText),
     };
-  }
-
-  async *openStream(filter: NewData<Agenda>) {
-    var lastPage = '';
-
-    do {
-      const { body } = await this.client.get<TableRecordList<Agenda>>(
-        `${this.baseURI}?${buildURLData({
-          page_size: 100,
-          page_token: lastPage,
-          filter: isEmpty(filter) ? undefined : makeFilter(filter),
-          sort: JSON.stringify(['startTime ASC']),
-        })}`,
-      );
-      var { items, total, has_more, page_token } = body!.data;
-
-      lastPage = page_token;
-      this.totalCount = total;
-
-      yield* items.map(item => this.normalize(item));
-    } while (has_more);
   }
 
   async getGroup() {
