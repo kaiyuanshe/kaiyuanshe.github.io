@@ -8,7 +8,7 @@ import metaStore from '../models/System';
 
 const ChinaMap = dynamic(() => import('./ChinaMap'), { ssr: false });
 
-type CityStatistic = Record<'city', Record<'string', number>>;
+type CityStatistic = Record<'city', Record<string, number>>;
 
 export interface CityStatisticMapProps {
   store: {

@@ -6,8 +6,7 @@ import { ScrollListProps } from 'mobx-restful-table';
 
 import { XScrollList } from '../ScrollList';
 import { ArticleCard } from './Card';
-import { BaseArticle } from '../../pages/api/article';
-import { Article, ArticleModel } from '../../models/Article';
+import { BaseArticle, Article, ArticleModel } from '../../models/Article';
 
 export interface ArticleListLayoutProps {
   className?: string;

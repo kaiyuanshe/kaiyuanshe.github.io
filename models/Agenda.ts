@@ -4,7 +4,6 @@ import {
   TableRecordList,
 } from 'lark-ts-sdk';
 import { observable } from 'mobx';
-import { ListModel } from 'mobx-restful';
 import { groupBy } from 'web-utility';
 
 import { BiTable, normalizeText } from './Lark';
@@ -21,7 +20,7 @@ export type Agenda = Record<
   TableCellValue
 >;
 
-export class AgendaModel extends BiTable<Agenda>(ListModel) {
+export class AgendaModel extends BiTable<Agenda>() {
   sort = { startTime: 'ASC' } as const;
 
   @observable

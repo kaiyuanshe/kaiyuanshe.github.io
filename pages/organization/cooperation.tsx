@@ -9,7 +9,7 @@ import { withTranslation } from '../api/base';
 import { fileURLOf } from '../api/lark/file/[id]';
 import { i18n } from '../../models/Translation';
 import { blobURLOf } from '../../models/Base';
-import { Cooperation, OrganizationModel } from '../../models/Organization';
+import { Cooperation, CooperationModel } from '../../models/Organization';
 
 const Levels = [
   '主办单位',
@@ -38,15 +38,14 @@ const Levels = [
 
 export const getServerSideProps = withTranslation<
   {},
-  { yearGroup: OrganizationModel['cooperationYearGroup'] }
+  { yearGroup: CooperationModel['yearGroup'] }
 >(async () => {
-  const organizationStore = new OrganizationModel();
+  const cooperationStore = new CooperationModel();
 
-  await organizationStore.getCooperation();
+  await cooperationStore.getGroup();
 
-  const yearGroup = JSON.parse(
-    JSON.stringify(organizationStore.cooperationYearGroup),
-  );
+  const yearGroup = JSON.parse(JSON.stringify(cooperationStore.yearGroup));
+
   return { props: { yearGroup } };
 });
 

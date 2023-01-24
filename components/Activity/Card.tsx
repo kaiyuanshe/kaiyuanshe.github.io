@@ -4,7 +4,7 @@ import { TimeDistance, text2color } from 'idea-react';
 
 import { TimeOption } from '../data';
 import { blobURLOf } from '../../models/Base';
-import type { Activity } from '../../pages/api/activity';
+import type { Activity } from '../../models/Activity';
 
 export interface ActivityCardProps extends Activity {
   className?: string;

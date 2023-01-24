@@ -4,7 +4,7 @@ import {
   TableRecordList,
 } from 'lark-ts-sdk';
 import { observable } from 'mobx';
-import { ListModel, NewData } from 'mobx-restful';
+import { NewData } from 'mobx-restful';
 import { groupBy } from 'web-utility';
 
 import { BiTable, normalizeText } from './Lark';
@@ -38,7 +38,7 @@ export type Elector = Record<
   TableCellValue
 >;
 
-export class ElectorModel extends BiTable<Elector>(ListModel) {
+export class ElectorModel extends BiTable<Elector>() {
   @observable
   group: Record<string, Elector[]> = {};
 

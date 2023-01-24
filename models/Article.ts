@@ -1,20 +1,34 @@
-import { TableCellLink, TableRecordList } from 'lark-ts-sdk';
-import { ListModel, NewData, toggle } from 'mobx-restful';
+import { TableCellLink, TableCellValue, TableRecordList } from 'lark-ts-sdk';
+import { NewData, toggle } from 'mobx-restful';
 import { buildURLData, isEmpty } from 'web-utility';
 
-import { BaseArticle } from '../pages/api/article';
 import { blobClient } from './Base';
 import { BiTable, makeFilter, normalizeText } from './Lark';
+
+export type BaseArticle = Record<
+  | 'id'
+  | 'title'
+  | 'author'
+  | 'license'
+  | 'type'
+  | 'tags'
+  | 'summary'
+  | 'image'
+  | 'publishedAt'
+  | 'link'
+  | 'alias',
+  TableCellValue
+>;
 
 export interface Article extends BaseArticle {
   content?: string;
 }
 
-export const ARTICLE_LARK_BASE_ID = process.env.NEXT_PUBLIC_ARTICLE_BASE_ID!;
-export const ARTICLE_LARK_TABLE_ID = process.env.NEXT_PUBLIC_ARTICLE_TABLE_ID!;
+export const ARTICLE_BASE_ID = process.env.NEXT_PUBLIC_ARTICLE_BASE_ID!;
+export const ARTICLE_TABLE_ID = process.env.NEXT_PUBLIC_ARTICLE_TABLE_ID!;
 
-export class ArticleModel extends BiTable<Article>(ListModel) {
-  constructor(appId = ARTICLE_LARK_BASE_ID, tableId = ARTICLE_LARK_TABLE_ID) {
+export class ArticleModel extends BiTable<Article>() {
+  constructor(appId = ARTICLE_BASE_ID, tableId = ARTICLE_TABLE_ID) {
     super(appId, tableId);
   }
 

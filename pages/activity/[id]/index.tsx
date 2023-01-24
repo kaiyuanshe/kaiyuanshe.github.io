@@ -11,7 +11,7 @@ import PageHead from '../../../components/PageHead';
 import { ActivityModel } from '../../../models/Activity';
 import { AgendaModel } from '../../../models/Agenda';
 import { blobURLOf } from '../../../models/Base';
-import { Activity } from '../../api/activity';
+import { Activity } from '../../../models/Activity';
 import { withErrorLog } from '../../api/base';
 import styles from './index.module.less';
 

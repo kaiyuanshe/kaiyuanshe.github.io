@@ -15,7 +15,7 @@ import { i18n } from '../../models/Translation';
 import {
   OrganizationStatistic,
   sortStatistic,
-} from '../../pages/api/organization/statistic';
+} from '../../models/Organization';
 
 const OrganizationCharts: FC<OrganizationStatistic> = observer(
   ({ type, tag, year, city }) => {

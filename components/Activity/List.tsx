@@ -5,8 +5,7 @@ import { ScrollListProps } from 'mobx-restful-table';
 
 import { XScrollList } from '../ScrollList';
 import { ActivityCard } from './Card';
-import activityStore from '../../models/Activity';
-import type { Activity } from '../../pages/api/activity';
+import activityStore, { Activity } from '../../models/Activity';
 
 export type ActivityListProps = ScrollListProps<Activity>;
 

@@ -2,24 +2,16 @@ import { parseURLData } from 'web-utility';
 import { NextApiResponse } from 'next';
 
 import { safeAPI } from './base';
-import { BaseArticle } from './article';
+import { getBITableList, MAIN_BASE_ID, makeFilter } from '../../models/Lark';
 import {
-  getBITableList,
-  LARK_BITABLE_GROUP_ID,
-  LARK_BITABLE_MEMBERS_ID,
-  LARK_BITABLE_ORGANIZATION_ID,
-  LARK_BITABLE_ACTIVITY_ID,
-  LARK_BITABLE_ID,
-  makeFilter,
-} from '../../models/Lark';
-import {
-  ARTICLE_LARK_BASE_ID,
-  ARTICLE_LARK_TABLE_ID,
+  BaseArticle,
+  ARTICLE_BASE_ID,
+  ARTICLE_TABLE_ID,
 } from '../../models/Article';
-import { Member } from '../../models/Member';
-import { Group } from '../../models/Group';
-import { Organization } from '../../models/Organization';
-import type { Activity } from '../../pages/api/activity';
+import { Member, MEMBER_TABLE_ID } from '../../models/Member';
+import { Group, GROUP_TABLE_ID } from '../../models/Group';
+import { Organization, ORGANIZATION_TABLE_ID } from '../../models/Organization';
+import { Activity, ACTIVITY_TABLE_ID } from '../../models/Activity';
 
 export type SearchQuery = Partial<Record<'keywords' | 'tag', string>>;
 
@@ -46,8 +38,8 @@ export default safeAPI(
             { items: organizations },
           ] = await Promise.all([
             getBITableList<BaseArticle>({
-              database: ARTICLE_LARK_BASE_ID,
-              table: ARTICLE_LARK_TABLE_ID,
+              database: ARTICLE_BASE_ID,
+              table: ARTICLE_TABLE_ID,
               filter: makeFilter(
                 {
                   title: keywordList,
@@ -60,8 +52,8 @@ export default safeAPI(
               ),
             }),
             getBITableList<Activity>({
-              database: LARK_BITABLE_ID,
-              table: LARK_BITABLE_ACTIVITY_ID,
+              database: MAIN_BASE_ID,
+              table: ACTIVITY_TABLE_ID,
               filter: makeFilter(
                 {
                   name: keywordList,
@@ -73,7 +65,7 @@ export default safeAPI(
               ),
             }),
             getBITableList<Group>({
-              table: LARK_BITABLE_GROUP_ID,
+              table: GROUP_TABLE_ID,
               filter: makeFilter(
                 {
                   fullName: keywordList,
@@ -88,7 +80,7 @@ export default safeAPI(
               ),
             }),
             getBITableList<Organization>({
-              table: LARK_BITABLE_ORGANIZATION_ID,
+              table: ORGANIZATION_TABLE_ID,
               filter: makeFilter(
                 {
                   name: keywordList,
@@ -106,7 +98,7 @@ export default safeAPI(
 
         if (keywordList)
           var { items: members } = await getBITableList<Member>({
-            table: LARK_BITABLE_MEMBERS_ID,
+            table: MEMBER_TABLE_ID,
             filter: makeFilter(
               { name: keywordList, nickname: keywordList },
               'OR',

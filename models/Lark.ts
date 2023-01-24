@@ -1,31 +1,20 @@
-import { isEmpty, buildURLData } from 'web-utility';
-import {
-  DataObject,
-  ListModel,
-  NewData,
-  RESTClient,
-  Stream,
-  toggle,
-} from 'mobx-restful';
 import {
   Lark,
-  TableCellText,
   TableCellLink,
   TableCellRelation,
+  TableCellText,
   TableCellValue,
   TableRecordList,
 } from 'lark-ts-sdk';
+import { DataObject, ListModel, NewData, Stream, toggle } from 'mobx-restful';
+import { buildURLData, isEmpty } from 'web-utility';
 
 import { TableRecordData } from '../pages/api/lark/core';
-import { client, isServer } from './Base';
+import { client } from './Base';
 
 export const LARK_APP_ID = process.env.LARK_APP_ID!,
   LARK_APP_SECRET = process.env.LARK_APP_SECRET!,
-  LARK_BITABLE_ID = process.env.LARK_BITABLE_ID!,
-  LARK_BITABLE_MEMBERS_ID = process.env.LARK_BITABLE_MEMBERS_ID!,
-  LARK_BITABLE_GROUP_ID = process.env.LARK_BITABLE_GROUP_ID!,
-  LARK_BITABLE_ORGANIZATION_ID = process.env.LARK_BITABLE_ORGANIZATION_ID!,
-  LARK_BITABLE_ACTIVITY_ID = process.env.LARK_BITABLE_ACTIVITY_ID!;
+  MAIN_BASE_ID = process.env.NEXT_PUBLIC_MAIN_BASE_ID!;
 
 export const lark = new Lark({
   appId: LARK_APP_ID,
@@ -67,7 +56,7 @@ export interface LarkBITableQuery<
 }
 
 export async function getBITableList<T extends Record<string, TableCellValue>>({
-  database = LARK_BITABLE_ID,
+  database = MAIN_BASE_ID,
   table: TID,
   page_size,
   page_token,
@@ -91,48 +80,6 @@ export async function getBITableList<T extends Record<string, TableCellValue>>({
   return body!.data;
 }
 
-const RouteTableMap: Record<
-  string,
-  Pick<LarkBITableQuery, 'database' | 'table'>
-> = {
-  members: { table: LARK_BITABLE_MEMBERS_ID },
-  group: { table: LARK_BITABLE_GROUP_ID },
-  organization: { table: LARK_BITABLE_ORGANIZATION_ID },
-};
-
-export async function* createListStream<T extends DataObject>(
-  client: RESTClient,
-  path: string,
-  filter?: NewData<T>,
-) {
-  var baseTable = RouteTableMap[path as keyof typeof RouteTableMap],
-    lastPage = '';
-
-  do {
-    const query = {
-      page_size: 100,
-      page_token: lastPage,
-    };
-
-    var { items, total, has_more, page_token } =
-      isServer() && baseTable
-        ? await getBITableList<T>({
-            ...baseTable,
-            ...query,
-            filter: filter && makeFilter(filter),
-          })
-        : (
-            await client.get<TableRecordList<T>['data']>(
-              `${path}?${buildURLData({ ...query, ...filter })}`,
-            )
-          ).body!;
-
-    lastPage = page_token;
-
-    yield { items, total };
-  } while (has_more);
-}
-
 export function BiTable<T extends DataObject>(Base = ListModel) {
   abstract class BiTableListModel extends Stream<T>(Base) {
     client = client;
@@ -144,7 +91,7 @@ export function BiTable<T extends DataObject>(Base = ListModel) {
       this.baseURI = `lark/bitable/v1/apps/${appId}/tables/${tableId}/records`;
     }
 
-    normalize({ id, fields }: TableRecordList<T>['data']['items'][number]) {
+    normalize({ id, fields }: TableRecordList<T>['data']['items'][number]): T {
       return { ...fields, id: id! };
     }
 
@@ -153,7 +100,7 @@ export function BiTable<T extends DataObject>(Base = ListModel) {
       const { body } = await this.client.get<TableRecordData<T>>(
         `${this.baseURI}/${id}`,
       );
-      return this.normalize(body!.data.record);
+      return (this.currentOne = this.normalize(body!.data.record));
     }
 
     makeFilter(filter: NewData<T>) {

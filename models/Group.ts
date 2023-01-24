@@ -1,8 +1,8 @@
-import { NewData, ListModel, Stream } from 'mobx-restful';
 import { TableCellLink, TableCellValue, TableRecordList } from 'lark-ts-sdk';
 
-import { client } from './Base';
-import { normalizeText, createListStream } from './Lark';
+import { BiTable, MAIN_BASE_ID, normalizeText } from './Lark';
+
+export const GROUP_TABLE_ID = process.env.NEXT_PUBLIC_GROUP_TABLE_ID!;
 
 export type Group = Record<
   | 'id'
@@ -22,31 +22,22 @@ export type Group = Record<
   TableCellValue
 >;
 
-export class GroupModel extends Stream<Group>(ListModel) {
-  client = client;
-  baseURI = 'group';
+export class GroupModel extends BiTable<Group>() {
+  constructor(appId = MAIN_BASE_ID, tableId = GROUP_TABLE_ID) {
+    super(appId, tableId);
+  }
 
-  normalize = ({
+  normalize({
     id,
     fields: { link, codeLink, email, ...fields },
-  }: TableRecordList<Group>['data']['items'][number]): Group => ({
-    ...fields,
-    id: id!,
-    link: normalizeText(link as TableCellLink),
-    codeLink: normalizeText(codeLink as TableCellLink),
-    email: normalizeText(email as TableCellLink),
-  });
-
-  async *openStream(filter: NewData<Group>) {
-    for await (const { total, items } of createListStream<Group>(
-      this.client,
-      this.baseURI,
-      filter,
-    )) {
-      this.totalCount = total;
-
-      yield* items?.map(this.normalize) || [];
-    }
+  }: TableRecordList<Group>['data']['items'][number]) {
+    return {
+      ...fields,
+      id: id!,
+      link: normalizeText(link as TableCellLink),
+      codeLink: normalizeText(codeLink as TableCellLink),
+      email: normalizeText(email as TableCellLink),
+    };
   }
 }
 

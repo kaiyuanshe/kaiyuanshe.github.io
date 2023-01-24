@@ -1,9 +1,9 @@
-import { NewData, ListModel, Stream } from 'mobx-restful';
 import { TableCellLink, TableCellValue, TableRecordList } from 'lark-ts-sdk';
 
-import { client } from './Base';
-import { normalizeText, createListStream } from './Lark';
 import { MemberTabsProps } from '../components/Member/Tabs';
+import { BiTable, MAIN_BASE_ID, normalizeText } from './Lark';
+
+export const MEMBER_TABLE_ID = process.env.NEXT_PUBLIC_MEMBER_TABLE_ID!;
 
 export type Member = Record<
   | 'id'
@@ -60,35 +60,26 @@ function groupBys<T extends Record<IndexKey, any>>(
   return { grouped: groupAllMap, unGrouped: otherGroup };
 }
 
-export class MemberModel extends Stream<Member>(ListModel) {
-  client = client;
-  baseURI = 'members';
+export class MemberModel extends BiTable<Member>() {
+  constructor(appId = MAIN_BASE_ID, tableId = MEMBER_TABLE_ID) {
+    super(appId, tableId);
+  }
 
-  normalize = ({
+  normalize({
     id,
     fields: { GitHubID, ...fields },
-  }: TableRecordList<Member>['data']['items'][number]): Member => ({
-    ...fields,
-    id: id!,
-    GitHubID: normalizeText(GitHubID as TableCellLink),
-  });
-
-  async *openStream(filter: NewData<Member>) {
-    for await (const { total, items } of createListStream<Member>(
-      this.client,
-      this.baseURI,
-      filter,
-    )) {
-      this.totalCount = total;
-
-      yield* items?.map(this.normalize) || [];
-    }
+  }: TableRecordList<Member>['data']['items'][number]) {
+    return {
+      ...fields,
+      id: id!,
+      GitHubID: normalizeText(GitHubID as TableCellLink),
+    };
   }
 
   async getStatic() {
     this.clear();
 
-    const list = await this.getList({}, 1, 300);
+    const list = await this.getAll();
 
     const groupData = groupBys<Member>(list, [
       'organization',
