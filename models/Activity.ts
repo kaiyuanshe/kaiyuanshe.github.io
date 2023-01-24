@@ -1,45 +1,63 @@
-import { observable } from 'mobx';
-import { NewData, ListModel, Stream, toggle } from 'mobx-restful';
-import { TableCellLink, TableCellRelation, TableRecordList } from 'lark-ts-sdk';
-
-import { client } from './Base';
 import {
-  createListStream,
-  normalizeText,
-  LARK_BITABLE_ID,
-  LARK_BITABLE_ACTIVITY_ID,
-} from './Lark';
-import { AgendaModel } from './Agenda';
-import { TableData, TableRecordData } from '../pages/api/lark/core';
-import { Activity } from '../pages/api/activity';
-import { ActivityStatistic } from '../pages/api/activity/statistic';
+  TableCellLink,
+  TableCellRelation,
+  TableCellValue,
+  TableRecordList,
+} from 'lark-ts-sdk';
+import { observable } from 'mobx';
+import { toggle } from 'mobx-restful';
+import { cache, countBy, Hour } from 'web-utility';
 
-export class ActivityModel extends Stream<Activity>(ListModel) {
-  client = client;
-  baseURI = 'activity';
+import { TableData } from '../pages/api/lark/core';
+import { AgendaModel } from './Agenda';
+import { BiTable, MAIN_BASE_ID, normalizeText } from './Lark';
+
+export const ACTIVITY_TABLE_ID = process.env.NEXT_PUBLIC_ACTIVITY_TABLE_ID!;
+
+export type Activity = Record<
+  | 'id'
+  | 'name'
+  | 'startTime'
+  | 'endTime'
+  | 'city'
+  | 'location'
+  | 'organizers'
+  | 'link'
+  | 'image'
+  | 'database',
+  TableCellValue
+>;
+
+export type ActivityStatistic = Record<'city', Record<string, number>>;
+
+export class ActivityModel extends BiTable<Activity>() {
+  constructor(appId = MAIN_BASE_ID, tableId = ACTIVITY_TABLE_ID) {
+    super(appId, tableId);
+  }
+
+  sort = { startTime: 'DESC' } as const;
 
   currentAgenda?: AgendaModel;
 
   @observable
   statistic: ActivityStatistic = {} as ActivityStatistic;
 
-  normalize = ({
+  normalize({
     id,
     fields: { organizers, link, database, ...fields },
-  }: TableRecordList<Activity>['data']['items'][number]): Activity => ({
-    ...fields,
-    id: id!,
-    organizers: (organizers as TableCellRelation[])?.map(normalizeText),
-    link: normalizeText(link as TableCellLink),
-    database: (database as TableCellLink)?.link,
-  });
+  }: TableRecordList<Activity>['data']['items'][number]) {
+    return {
+      ...fields,
+      id: id!,
+      organizers: (organizers as TableCellRelation[])?.map(normalizeText),
+      link: normalizeText(link as TableCellLink),
+      database: (database as TableCellLink)?.link,
+    };
+  }
 
   @toggle('downloading')
   async getOne(id: string) {
-    const { body } = await this.client.get<TableRecordData<Activity>>(
-      `lark/bitable/v1/apps/${LARK_BITABLE_ID}/tables/${LARK_BITABLE_ACTIVITY_ID}/records/${id}`,
-    );
-    const { database } = (this.currentOne = this.normalize(body!.data.record));
+    const { database } = await super.getOne(id);
 
     if (database) {
       const appId = (database + '').split('/').at(-1)!;
@@ -57,25 +75,13 @@ export class ActivityModel extends Stream<Activity>(ListModel) {
     return this.currentOne;
   }
 
-  async *openStream(filter: NewData<Activity>) {
-    for await (const { total, items } of createListStream<Activity>(
-      this.client,
-      this.baseURI,
-      filter,
-    )) {
-      this.totalCount = total;
+  getStatistic = cache(async clean => {
+    const list = await this.getAll();
 
-      yield* items?.map(this.normalize) || [];
-    }
-  }
+    setTimeout(clean, Hour / 2);
 
-  @toggle('downloading')
-  async getStatistic() {
-    const { body } = await this.client.get<ActivityStatistic>(
-      `${this.baseURI}/statistic`,
-    );
-    return (this.statistic = body!);
-  }
+    return (this.statistic = { city: countBy(list, 'city') });
+  }, 'Activity Statistic');
 }
 
 export default new ActivityModel();

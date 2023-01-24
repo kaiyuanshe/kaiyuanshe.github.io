@@ -18,9 +18,9 @@ export const CommentBox: FC<Partial<GiscusProps>> = observer(props => {
       inputPosition="bottom"
       theme="light"
       lang={
-        currentLanguage.startsWith('zh-')
+        currentLanguage?.startsWith('zh-')
           ? currentLanguage
-          : currentLanguage.split('-')[0]
+          : currentLanguage?.split('-')[0]
       }
     />
   );

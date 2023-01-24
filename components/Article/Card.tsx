@@ -4,7 +4,7 @@ import { TimeDistance, text2color } from 'idea-react';
 
 import { TimeOption } from '../data';
 import { blobURLOf } from '../../models/Base';
-import type { BaseArticle } from '../../pages/api/article';
+import type { BaseArticle } from '../../models/Article';
 
 export interface ArticleCardProps extends BaseArticle {
   className?: string;
