@@ -4,22 +4,21 @@ import { InferGetServerSidePropsType } from 'next';
 import { FC } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 
-import { ElectorCard } from '../../components/Election/ElectorCard';
-import PageHead from '../../components/PageHead';
+import { ElectorCard } from '../../../components/Election/ElectorCard';
+import PageHead from '../../../components/PageHead';
 import {
+  ElectionTarget,
   ELECTION_BASE_ID,
   ELECTION_TABLE_ID,
   Elector,
   ElectorModel,
-} from '../../models/Elector';
-import { i18n } from '../../models/Translation';
-import { withRoute, withTranslation } from '../api/base';
-
-type TargetName = '理事' | '正式成员';
+} from '../../../models/Elector';
+import { i18n } from '../../../models/Translation';
+import { withRoute, withTranslation } from '../../api/base';
 
 export const getServerSideProps = withRoute<
   { year: string },
-  { electorGroup: Record<TargetName, Elector[]> }
+  { electorGroup: Record<ElectionTarget, Elector[]> }
 >(
   withTranslation(async ({ params }) => {
     const electorStore = new ElectorModel(ELECTION_BASE_ID, ELECTION_TABLE_ID);
@@ -34,7 +33,8 @@ const { t } = i18n;
 
 const ElectionPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
   observer(({ route, electorGroup }) => {
-    const title = `${route.params!.year} ${t('election')}`;
+    const { year } = route.params!;
+    const title = `${year} ${t('election')}`;
 
     return (
       <Container>
@@ -45,15 +45,26 @@ const ElectionPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
         {Object.entries(electorGroup).map(([target, list]) => (
           <section key={target}>
             <h2 className="my-5 text-center">
-              {textJoin(t(target as TargetName), t('candidate'))}
+              {textJoin(t(target as ElectionTarget), t('candidate'))}
             </h2>
 
             <Row as="ul" className="list-unstyled g-4" xs={1} sm={2} lg={3}>
-              {list.map(item => (
-                <Col as="li" key={item.id + ''}>
-                  <ElectorCard className="h-100" {...item} />
-                </Col>
-              ))}
+              {list
+                .sort(
+                  (
+                    { councilVoteCount: a1, regularVoteCount: a2 },
+                    { councilVoteCount: b1, regularVoteCount: b2 },
+                  ) => +b1! - +a1! || +b2! - +a2!,
+                )
+                .map(item => (
+                  <Col as="li" key={item.id + ''}>
+                    <ElectorCard
+                      className="h-100"
+                      href={`/election/${year}/elector/${item.id}`}
+                      {...item}
+                    />
+                  </Col>
+                ))}
             </Row>
           </section>
         ))}

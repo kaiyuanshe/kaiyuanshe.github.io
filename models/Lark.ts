@@ -5,6 +5,7 @@ import {
   NewData,
   RESTClient,
   Stream,
+  toggle,
 } from 'mobx-restful';
 import {
   Lark,
@@ -15,6 +16,7 @@ import {
   TableRecordList,
 } from 'lark-ts-sdk';
 
+import { TableRecordData } from '../pages/api/lark/core';
 import { client, isServer } from './Base';
 
 export const LARK_APP_ID = process.env.LARK_APP_ID!,
@@ -144,6 +146,14 @@ export function BiTable<T extends DataObject>(Base = ListModel) {
 
     normalize({ id, fields }: TableRecordList<T>['data']['items'][number]) {
       return { ...fields, id: id! };
+    }
+
+    @toggle('downloading')
+    async getOne(id: string) {
+      const { body } = await this.client.get<TableRecordData<T>>(
+        `${this.baseURI}/${id}`,
+      );
+      return this.normalize(body!.data.record);
     }
 
     makeFilter(filter: NewData<T>) {

@@ -100,4 +100,5 @@ export default {
   last_committee: '上届任职委员会',
   last_work_group: '上届任职工作组',
   last_project_group: '上届任职项目组',
+  next_term_plan: '下届规划',
 } as const;
