@@ -12,6 +12,8 @@ import { BiTable, normalizeText } from './Lark';
 export const ELECTION_BASE_ID = process.env.NEXT_PUBLIC_ELECTION_BASE_ID!,
   ELECTION_TABLE_ID = process.env.NEXT_PUBLIC_ELECTION_TABLE_ID!;
 
+export type ElectionTarget = '理事' | '正式成员';
+
 export type Elector = Record<
   | 'id'
   | 'createdAt'
@@ -22,8 +24,17 @@ export type Elector = Record<
   | 'lastCommittee'
   | 'lastCommitteeSummary'
   | 'lastWorkGroup'
+  | 'lastWorkGroupSummary'
   | 'lastProjectGroup'
-  | 'electionTarget',
+  | 'lastProjectGroupSummary'
+  | 'electionTarget'
+  | 'nextTermPlan'
+  | 'councilPositiveVoteCount'
+  | 'councilNegativeVoteCount'
+  | 'regularPositiveVoteCount'
+  | 'regularNegativeVoteCount'
+  | 'councilVoteCount'
+  | 'regularVoteCount',
   TableCellValue
 >;
 

@@ -1,9 +1,9 @@
 import { PureComponent } from 'react';
 import { InferGetServerSidePropsType } from 'next';
 import { Container, Row, Col } from 'react-bootstrap';
-import Giscus from '@giscus/react';
 
 import PageHead from '../../../components/PageHead';
+import { CommentBox } from '../../../components/CommentBox';
 import { ArticleList } from '../../../components/Article/List';
 import articleStore, { Article, ArticleModel } from '../../../models/Article';
 import { withErrorLog } from '../../api/base';
@@ -64,18 +64,7 @@ export default class ArticleDetailPage extends PureComponent<
           </Col>
         </Row>
 
-        <Giscus
-          repo="kaiyuanshe/kaiyuanshe.github.io"
-          repoId="MDEwOlJlcG9zaXRvcnkxMzEwMDg4MTI="
-          category="General"
-          categoryId="DIC_kwDOB88JLM4COLSV"
-          mapping="pathname"
-          reactionsEnabled="1"
-          emitMetadata="1"
-          inputPosition="bottom"
-          theme="light"
-          lang="zh-CN"
-        />
+        <CommentBox category="General" categoryId="DIC_kwDOB88JLM4COLSV" />
       </Container>
     );
   }

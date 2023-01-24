@@ -1,6 +1,6 @@
 {
   "name": "@kaiyuanshe/ows",
-  "version": "2.0.0",
+  "version": "2.1.0-beta",
   "description": "React project scaffold based on TypeScript, Next.js & Bootstrap.",
   "private": true,
   "engines": {
@@ -17,6 +17,7 @@
     "leaflet": "^1.9.3",
     "leaflet.chinatmsproviders": "^3.0.6",
     "lodash": "^4.17.21",
+    "marked": "^4.2.12",
     "mobx": "^5.15.7",
     "mobx-i18n": "^0.3.14",
     "mobx-react": "^6.3.1",
@@ -37,6 +38,7 @@
   "devDependencies": {
     "@types/leaflet": "^1.9.0",
     "@types/lodash": "^4.14.191",
+    "@types/marked": "^4.0.8",
     "@types/node": "^16.18.11",
     "@types/qs": "^6.9.7",
     "@types/react": "^17.0.53",
