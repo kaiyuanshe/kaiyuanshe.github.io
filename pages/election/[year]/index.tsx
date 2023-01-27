@@ -2,7 +2,7 @@ import { textJoin } from 'mobx-i18n';
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
 import { FC } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Button, Col, Container, Row } from 'react-bootstrap';
 
 import { ElectorCard } from '../../../components/Election/ElectorCard';
 import PageHead from '../../../components/PageHead';
@@ -34,13 +34,50 @@ const { t } = i18n;
 const ElectionPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
   observer(({ route, electorGroup }) => {
     const { year } = route.params!;
+
     const title = `${year} ${t('election')}`;
+
+    const passed = +new Date(`${year}-03-01`) <= Date.now();
 
     return (
       <Container>
         <PageHead title={title} />
 
         <h1 className="my-5 text-center">{title}</h1>
+
+        <div className="d-flex justify-content-center gap-3 my-3">
+          <Button
+            variant="success"
+            target="_blank"
+            href="https://kaiyuanshe.feishu.cn/share/base/form/shrcnbqCtt9p9QkYFO1YAUGnMJh"
+            disabled={passed}
+          >
+            选民登记
+          </Button>
+          <Button
+            variant="warning"
+            target="_blank"
+            href="https://kaiyuanshe.feishu.cn/share/base/form/shrcnbqCtt9p9QkYFO1YAUGnMJh"
+            disabled={passed}
+          >
+            理事竞选
+          </Button>
+          <Button
+            target="_blank"
+            href="https://kaiyuanshe.feishu.cn/share/base/form/shrcnbqCtt9p9QkYFO1YAUGnMJh"
+            disabled={passed}
+          >
+            正式成员申请
+          </Button>
+          <Button
+            variant="danger"
+            target="_blank"
+            href="https://kaiyuanshe.feishu.cn/share/base/form/shrcnehPTKXtDsoKVfv0mKGZwge"
+            disabled={passed}
+          >
+            选举投票
+          </Button>
+        </div>
 
         {Object.entries(electorGroup).map(([target, list]) => (
           <section key={target}>

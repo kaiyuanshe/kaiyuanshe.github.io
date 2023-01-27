@@ -8,16 +8,19 @@ import { scrollTo, sleep } from 'web-utility';
 
 import { AgendaCard } from '../../../components/Activity/Agenda/Card';
 import PageHead from '../../../components/PageHead';
-import { ActivityModel } from '../../../models/Activity';
+import { Activity, ActivityModel } from '../../../models/Activity';
 import { AgendaModel } from '../../../models/Agenda';
 import { blobURLOf } from '../../../models/Base';
-import { Activity } from '../../../models/Activity';
 import { withErrorLog } from '../../api/base';
 import styles from './index.module.less';
 
 export const getServerSideProps = withErrorLog<
   { id: string },
-  { activity: Activity; agendaGroup: AgendaModel['group'] }
+  {
+    activity: Activity;
+    currentMeta: ActivityModel['currentMeta'];
+    agendaGroup: AgendaModel['group'];
+  }
 >(async ({ params }) => {
   const activityStore = new ActivityModel();
 
@@ -25,7 +28,11 @@ export const getServerSideProps = withErrorLog<
 
   const agendaGroup = await activityStore.currentAgenda!.getGroup();
 
-  return { props: { activity, agendaGroup } };
+  const { currentMeta } = activityStore;
+
+  return {
+    props: JSON.parse(JSON.stringify({ activity, currentMeta, agendaGroup })),
+  };
 });
 
 const MainForumName = '主论坛';
@@ -58,6 +65,39 @@ export default class ActivityDetailPage extends PureComponent<
 
     this.closeDrawer();
   };
+
+  renderButtonBar() {
+    const { currentMeta } = this.props;
+    const passed = +new Date(+currentMeta.endTime!) > Date.now();
+
+    return (
+      <div className="d-flex justify-content-center gap-3 my-3">
+        <Button
+          variant="success"
+          target="_blank"
+          href="https://kaiyuanshe.feishu.cn/share/base/form/shrcnPNRxbyAxzbXX0JI6fN8pfW"
+          disabled={passed}
+        >
+          志愿者报名
+        </Button>
+        <Button
+          target="_blank"
+          href="https://kaiyuanshe.feishu.cn/share/base/form/shrcnerBXR9QS9f7FzSOWjb5M1b"
+          disabled={passed}
+        >
+          议题征集
+        </Button>
+        <Button
+          variant="warning"
+          target="_blank"
+          href="https://kaiyuanshe.feishu.cn/share/base/form/shrcnDiXEqJIm09pXWjfGBy22hb"
+          disabled={passed}
+        >
+          议题课件提交
+        </Button>
+      </div>
+    );
+  }
 
   renderDrawer() {
     const { showDrawer } = this,
@@ -114,6 +154,7 @@ export default class ActivityDetailPage extends PureComponent<
           <h1 className="visually-hidden">{activity.name}</h1>
         </header>
 
+        {this.renderButtonBar()}
         {this.renderDrawer()}
 
         <Container>

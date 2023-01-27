@@ -41,7 +41,10 @@ export const GroupCard: FC<GroupCardProps> = ({
         </Badge>
       ))}
     </nav>
-    <p className="m-0 text-wrap" style={{ maxWidth: '50vw' }}>
+    <p
+      className="mt-3 mb-0 text-wrap overflow-auto"
+      style={{ maxWidth: '50vw', maxHeight: '10rem' }}
+    >
       {summary}
     </p>
   </div>

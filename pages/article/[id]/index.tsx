@@ -5,7 +5,11 @@ import { Container, Row, Col } from 'react-bootstrap';
 import PageHead from '../../../components/PageHead';
 import { CommentBox } from '../../../components/CommentBox';
 import { ArticleList } from '../../../components/Article/List';
-import articleStore, { Article, ArticleModel } from '../../../models/Article';
+import {
+  Article,
+  ArticleModel,
+  SearchArticleModel,
+} from '../../../models/Article';
 import { withErrorLog } from '../../api/base';
 
 export const getServerSideProps = withErrorLog<
@@ -56,8 +60,8 @@ export default class ArticleDetailPage extends PureComponent<
             {this.renderAuthorization()}
 
             <ArticleList
-              store={articleStore}
-              filter={{ tags }}
+              store={new SearchArticleModel()}
+              filter={{ tags: (tags + '').split(/\s+/) }}
               rowCols={{ xs: 1 }}
               defaultData={recommends}
             />

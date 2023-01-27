@@ -1,12 +1,13 @@
+import { observable } from 'mobx';
 import {
+  BiDataTable,
+  normalizeText,
   TableCellRelation,
   TableCellValue,
   TableRecordList,
-} from 'lark-ts-sdk';
-import { observable } from 'mobx';
+} from 'mobx-lark';
 import { groupBy } from 'web-utility';
-
-import { BiTable, normalizeText } from './Lark';
+import { larkClient } from './Base';
 
 export type Agenda = Record<
   | 'id'
@@ -20,7 +21,9 @@ export type Agenda = Record<
   TableCellValue
 >;
 
-export class AgendaModel extends BiTable<Agenda>() {
+export class AgendaModel extends BiDataTable<Agenda>() {
+  client = larkClient;
+
   sort = { startTime: 'ASC' } as const;
 
   @observable

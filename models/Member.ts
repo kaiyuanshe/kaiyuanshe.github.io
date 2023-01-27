@@ -1,7 +1,17 @@
-import { TableCellLink, TableCellValue, TableRecordList } from 'lark-ts-sdk';
+import { isEmpty } from 'lodash';
+import {
+  BiDataTable,
+  makeSimpleFilter,
+  normalizeText,
+  TableCellLink,
+  TableCellValue,
+  TableRecordList,
+} from 'mobx-lark';
+import { NewData } from 'mobx-restful';
 
 import { MemberTabsProps } from '../components/Member/Tabs';
-import { BiTable, MAIN_BASE_ID, normalizeText } from './Lark';
+import { MAIN_BASE_ID } from '../pages/api/lark/core';
+import { larkClient } from './Base';
 
 export const MEMBER_TABLE_ID = process.env.NEXT_PUBLIC_MEMBER_TABLE_ID!;
 
@@ -60,7 +70,9 @@ function groupBys<T extends Record<IndexKey, any>>(
   return { grouped: groupAllMap, unGrouped: otherGroup };
 }
 
-export class MemberModel extends BiTable<Member>() {
+export class MemberModel extends BiDataTable<Member>() {
+  client = larkClient;
+
   constructor(appId = MAIN_BASE_ID, tableId = MEMBER_TABLE_ID) {
     super(appId, tableId);
   }
@@ -108,4 +120,10 @@ export class MemberModel extends BiTable<Member>() {
   }
 }
 
-export default new MemberModel();
+export class SearchMemberModel extends MemberModel {
+  makeFilter(filter: NewData<Member>) {
+    return isEmpty(filter)
+      ? undefined
+      : makeSimpleFilter(filter, 'contains', 'OR');
+  }
+}

@@ -1,6 +1,5 @@
-import { LarkData, LarkPageData, TableCellValue } from 'lark-ts-sdk';
+import { LarkApp, LarkData } from 'mobx-lark';
 
-import { lark } from '../../../models/Lark';
 import { safeAPI } from '../base';
 
 export type TableCellAttachment = Record<
@@ -9,16 +8,14 @@ export type TableCellAttachment = Record<
 > &
   Record<'height' | 'size' | 'timeStamp' | 'width', number>;
 
-export type TableData = LarkPageData<{
-  table_id: string;
-  revision: number;
-  name: string;
-}>;
+export const LARK_APP_ID = process.env.LARK_APP_ID!,
+  LARK_APP_SECRET = process.env.LARK_APP_SECRET!,
+  MAIN_BASE_ID = process.env.NEXT_PUBLIC_MAIN_BASE_ID!;
 
-export type TableRecordData<T extends Record<string, TableCellValue>> =
-  LarkData<{
-    record: { id: string; record_id: string; fields: T };
-  }>;
+export const lark = new LarkApp({
+  id: LARK_APP_ID,
+  secret: LARK_APP_SECRET,
+});
 
 export const proxyLark = <T extends LarkData>(
   dataFilter?: (path: string, data: T) => T,

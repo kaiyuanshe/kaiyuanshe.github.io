@@ -1,6 +1,16 @@
-import { TableCellLink, TableCellValue, TableRecordList } from 'lark-ts-sdk';
+import { isEmpty } from 'lodash';
+import {
+  BiDataTable,
+  makeSimpleFilter,
+  normalizeText,
+  TableCellLink,
+  TableCellValue,
+  TableRecordList,
+} from 'mobx-lark';
+import { NewData } from 'mobx-restful';
 
-import { BiTable, MAIN_BASE_ID, normalizeText } from './Lark';
+import { MAIN_BASE_ID } from '../pages/api/lark/core';
+import { larkClient } from './Base';
 
 export const GROUP_TABLE_ID = process.env.NEXT_PUBLIC_GROUP_TABLE_ID!;
 
@@ -22,7 +32,9 @@ export type Group = Record<
   TableCellValue
 >;
 
-export class GroupModel extends BiTable<Group>() {
+export class GroupModel extends BiDataTable<Group>() {
+  client = larkClient;
+
   constructor(appId = MAIN_BASE_ID, tableId = GROUP_TABLE_ID) {
     super(appId, tableId);
   }
@@ -38,6 +50,14 @@ export class GroupModel extends BiTable<Group>() {
       codeLink: normalizeText(codeLink as TableCellLink),
       email: normalizeText(email as TableCellLink),
     };
+  }
+}
+
+export class SearchGroupModel extends GroupModel {
+  makeFilter(filter: NewData<Group>) {
+    return isEmpty(filter)
+      ? undefined
+      : makeSimpleFilter(filter, 'contains', 'OR');
   }
 }
 

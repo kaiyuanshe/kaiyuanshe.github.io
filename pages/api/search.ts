@@ -1,17 +1,15 @@
-import { parseURLData } from 'web-utility';
 import { NextApiResponse } from 'next';
+import { parseURLData } from 'web-utility';
 
-import { safeAPI } from './base';
-import { getBITableList, MAIN_BASE_ID, makeFilter } from '../../models/Lark';
+import { Activity, SearchActivityModel } from '../../models/Activity';
+import { BaseArticle, SearchArticleModel } from '../../models/Article';
+import { Group, SearchGroupModel } from '../../models/Group';
+import { Member, SearchMemberModel } from '../../models/Member';
 import {
-  BaseArticle,
-  ARTICLE_BASE_ID,
-  ARTICLE_TABLE_ID,
-} from '../../models/Article';
-import { Member, MEMBER_TABLE_ID } from '../../models/Member';
-import { Group, GROUP_TABLE_ID } from '../../models/Group';
-import { Organization, ORGANIZATION_TABLE_ID } from '../../models/Organization';
-import { Activity, ACTIVITY_TABLE_ID } from '../../models/Activity';
+  Organization,
+  SearchOrganizationModel,
+} from '../../models/Organization';
+import { safeAPI } from './base';
 
 export type SearchQuery = Partial<Record<'keywords' | 'tag', string>>;
 
@@ -31,99 +29,48 @@ export default safeAPI(
         const keywordList = keywords?.split(/\s+/);
 
         if (keywordList || tag)
-          var [
-            { items: articles },
-            { items: activities },
-            { items: groups },
-            { items: organizations },
-          ] = await Promise.all([
-            getBITableList<BaseArticle>({
-              database: ARTICLE_BASE_ID,
-              table: ARTICLE_TABLE_ID,
-              filter: makeFilter(
-                {
-                  title: keywordList,
-                  author: keywordList,
-                  tags: tag,
-                  summary: keywordList,
-                  alias: keywordList,
-                },
-                'OR',
-              ),
-            }),
-            getBITableList<Activity>({
-              database: MAIN_BASE_ID,
-              table: ACTIVITY_TABLE_ID,
-              filter: makeFilter(
-                {
-                  name: keywordList,
-                  city: keywordList,
-                  location: keywordList,
-                  organizers: tag,
-                },
-                'OR',
-              ),
-            }),
-            getBITableList<Group>({
-              table: GROUP_TABLE_ID,
-              filter: makeFilter(
-                {
-                  fullName: keywordList,
-                  leader: keywordList,
-                  members: keywordList,
-                  tags: tag,
-                  summary: keywordList,
-                  link: keywordList,
-                  codeLink: keywordList,
-                },
-                'OR',
-              ),
-            }),
-            getBITableList<Organization>({
-              table: ORGANIZATION_TABLE_ID,
-              filter: makeFilter(
-                {
-                  name: keywordList,
-                  tags: tag,
-                  summary: keywordList,
-                  city: keywordList,
-                  link: keywordList,
-                  codeLink: keywordList,
-                  wechatName: keywordList,
-                },
-                'OR',
-              ),
-            }),
-          ]);
-
+          var [articles, activities, groups, organizations] = await Promise.all(
+            [
+              new SearchArticleModel().getList({
+                title: keywordList,
+                author: keywordList,
+                tags: tag,
+                summary: keywordList,
+                alias: keywordList,
+              }),
+              new SearchActivityModel().getList({
+                name: keywordList,
+                city: keywordList,
+                location: keywordList,
+                organizers: tag,
+              }),
+              new SearchGroupModel().getList({
+                fullName: keywordList,
+                leader: keywordList,
+                members: keywordList,
+                tags: tag,
+                summary: keywordList,
+                link: keywordList,
+                codeLink: keywordList,
+              }),
+              new SearchOrganizationModel().getList({
+                name: keywordList,
+                tags: tag,
+                summary: keywordList,
+                city: keywordList,
+                link: keywordList,
+                codeLink: keywordList,
+                wechatName: keywordList,
+              }),
+            ],
+          );
         if (keywordList)
-          var { items: members } = await getBITableList<Member>({
-            table: MEMBER_TABLE_ID,
-            filter: makeFilter(
-              { name: keywordList, nickname: keywordList },
-              'OR',
-            ),
+          var members = await new SearchMemberModel().getList({
+            name: keywordList,
+            nickname: keywordList,
           });
-
-        response.json({
-          articles:
-            // @ts-ignore
-            articles?.map(({ id, fields }) => ({ ...fields, id: id! })) || [],
-          activities:
-            // @ts-ignore
-            activities?.map(({ id, fields }) => ({ ...fields, id: id! })) || [],
-          members:
-            // @ts-ignore
-            members?.map(({ id, fields }) => ({ ...fields, id: id! })) || [],
-          groups:
-            // @ts-ignore
-            groups?.map(({ id, fields }) => ({ ...fields, id: id! })) || [],
-          organizations:
-            // @ts-ignore
-            organizations
-              ?.filter(({ fields: { verified } }) => verified === '是')
-              .map(({ id, fields }) => ({ ...fields, id: id! })) || [],
-        });
+        // @ts-ignore
+        response.json({ articles, activities, members, groups, organizations });
       }
     }
   },

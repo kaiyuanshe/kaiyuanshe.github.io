@@ -1,9 +1,15 @@
-import { TableCellLink, TableCellValue, TableRecordList } from 'lark-ts-sdk';
+import {
+  BiDataTable,
+  makeSimpleFilter,
+  normalizeText,
+  TableCellLink,
+  TableCellValue,
+  TableRecordList,
+} from 'mobx-lark';
 import { NewData, toggle } from 'mobx-restful';
 import { buildURLData, isEmpty } from 'web-utility';
 
-import { blobClient } from './Base';
-import { BiTable, makeFilter, normalizeText } from './Lark';
+import { blobClient, larkClient } from './Base';
 
 export type BaseArticle = Record<
   | 'id'
@@ -27,7 +33,9 @@ export interface Article extends BaseArticle {
 export const ARTICLE_BASE_ID = process.env.NEXT_PUBLIC_ARTICLE_BASE_ID!;
 export const ARTICLE_TABLE_ID = process.env.NEXT_PUBLIC_ARTICLE_TABLE_ID!;
 
-export class ArticleModel extends BiTable<Article>() {
+export class ArticleModel extends BiDataTable<Article>() {
+  client = larkClient;
+
   constructor(appId = ARTICLE_BASE_ID, tableId = ARTICLE_TABLE_ID) {
     super(appId, tableId);
   }
@@ -39,7 +47,9 @@ export class ArticleModel extends BiTable<Article>() {
   @toggle('downloading')
   async getOne(alias: string) {
     const { body } = await this.client.get<TableRecordList<BaseArticle>>(
-      `${this.baseURI}?${buildURLData({ filter: makeFilter({ alias }) })}`,
+      `${this.baseURI}?${buildURLData({
+        filter: makeSimpleFilter({ alias }),
+      })}`,
     );
     const item = this.normalize(body!.data.items[0]);
 
@@ -59,13 +69,13 @@ export class ArticleModel extends BiTable<Article>() {
 
     return (this.currentOne = { ...item, content });
   }
+}
 
+export class SearchArticleModel extends ArticleModel {
   makeFilter(filter: NewData<Article>) {
     return isEmpty(filter)
       ? undefined
-      : filter.tags
-      ? makeFilter({ tags: (filter.tags + '').split(/\s+/) }, 'OR')
-      : makeFilter(filter);
+      : makeSimpleFilter(filter, 'contains', 'OR');
   }
 }
 

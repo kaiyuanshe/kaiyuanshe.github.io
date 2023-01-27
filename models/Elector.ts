@@ -1,13 +1,14 @@
+import { observable } from 'mobx';
 import {
+  BiDataTable,
+  normalizeText,
   TableCellRelation,
   TableCellValue,
   TableRecordList,
-} from 'lark-ts-sdk';
-import { observable } from 'mobx';
+} from 'mobx-lark';
 import { NewData } from 'mobx-restful';
 import { groupBy } from 'web-utility';
-
-import { BiTable, normalizeText } from './Lark';
+import { larkClient } from './Base';
 
 export const ELECTION_BASE_ID = process.env.NEXT_PUBLIC_ELECTION_BASE_ID!,
   ELECTION_TABLE_ID = process.env.NEXT_PUBLIC_ELECTION_TABLE_ID!;
@@ -38,7 +39,13 @@ export type Elector = Record<
   TableCellValue
 >;
 
-export class ElectorModel extends BiTable<Elector>() {
+export class ElectorModel extends BiDataTable<Elector>() {
+  client = larkClient;
+
+  constructor(appId = ELECTION_BASE_ID, tableId = ELECTION_TABLE_ID) {
+    super(appId, tableId);
+  }
+
   @observable
   group: Record<string, Elector[]> = {};
 
@@ -76,7 +83,7 @@ export class ElectorModel extends BiTable<Elector>() {
     const { currentYear } = this;
 
     return [
-      'NOT(CurrentValue.[lastSummary]="")',
+      'CurrentValue.[lastSummary]!=""',
       `CurrentValue.[createdAt]>=TODATE("${currentYear}-01-01")`,
       `CurrentValue.[createdAt]<TODATE("${currentYear + 1}-01-01")`,
     ].join('&&');
@@ -91,5 +98,3 @@ export class ElectorModel extends BiTable<Elector>() {
     ));
   }
 }
-
-export default new ElectorModel(ELECTION_BASE_ID, ELECTION_TABLE_ID);

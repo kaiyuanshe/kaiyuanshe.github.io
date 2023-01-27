@@ -9,7 +9,7 @@ import { withTranslation } from '../api/base';
 import { fileURLOf } from '../api/lark/file/[id]';
 import { i18n } from '../../models/Translation';
 import { blobURLOf } from '../../models/Base';
-import { Cooperation, CooperationModel } from '../../models/Organization';
+import { Cooperation, CooperationModel } from '../../models/Cooperation';
 
 const Levels = [
   '主办单位',
