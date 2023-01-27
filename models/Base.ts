@@ -1,5 +1,5 @@
 import { HTTPClient } from 'koajax';
-import { TableCellValue } from 'lark-ts-sdk';
+import { TableCellValue } from 'mobx-lark';
 
 export const isServer = () => typeof window === 'undefined';
 
@@ -13,6 +13,11 @@ const API_Host = isServer()
 
 export const client = new HTTPClient({
   baseURI: `${API_Host}/api/`,
+  responseType: 'json',
+});
+
+export const larkClient = new HTTPClient({
+  baseURI: `${API_Host}/api/lark/`,
   responseType: 'json',
 });
 

@@ -1,16 +1,20 @@
+import { computed, observable } from 'mobx';
 import {
+  BiDataTable,
+  BITableList,
+  makeSimpleFilter,
+  normalizeText,
   TableCellLink,
   TableCellRelation,
   TableCellValue,
   TableRecordList,
-} from 'lark-ts-sdk';
-import { observable } from 'mobx';
-import { toggle } from 'mobx-restful';
-import { cache, countBy, Hour } from 'web-utility';
+} from 'mobx-lark';
+import { NewData, toggle } from 'mobx-restful';
+import { cache, countBy, Hour, isEmpty } from 'web-utility';
 
-import { TableData } from '../pages/api/lark/core';
+import { MAIN_BASE_ID } from '../pages/api/lark/core';
 import { AgendaModel } from './Agenda';
-import { BiTable, MAIN_BASE_ID, normalizeText } from './Lark';
+import { larkClient } from './Base';
 
 export const ACTIVITY_TABLE_ID = process.env.NEXT_PUBLIC_ACTIVITY_TABLE_ID!;
 
@@ -30,7 +34,9 @@ export type Activity = Record<
 
 export type ActivityStatistic = Record<'city', Record<string, number>>;
 
-export class ActivityModel extends BiTable<Activity>() {
+export class ActivityModel extends BiDataTable<Activity>() {
+  client = larkClient;
+
   constructor(appId = MAIN_BASE_ID, tableId = ACTIVITY_TABLE_ID) {
     super(appId, tableId);
   }
@@ -41,6 +47,18 @@ export class ActivityModel extends BiTable<Activity>() {
 
   @observable
   statistic: ActivityStatistic = {} as ActivityStatistic;
+
+  @computed
+  get currentMeta() {
+    const list =
+      this.currentAgenda?.allItems.filter(
+        ({ startTime, endTime }) => startTime && endTime,
+      ) || [];
+    const { startTime } = list[0] || {},
+      { endTime } = list.slice(-1)[0] || {};
+
+    return { startTime, endTime };
+  }
 
   normalize({
     id,
@@ -62,8 +80,8 @@ export class ActivityModel extends BiTable<Activity>() {
     if (database) {
       const appId = (database + '').split('/').at(-1)!;
 
-      const { body: tableData } = await this.client.get<TableData>(
-        `lark/bitable/v1/apps/${appId}/tables?page_size=100`,
+      const { body: tableData } = await this.client.get<BITableList>(
+        `bitable/v1/apps/${appId}/tables?page_size=100`,
       );
       const { table_id } =
         tableData!.data.items.find(({ name }) => name === 'Agenda') || {};
@@ -82,6 +100,14 @@ export class ActivityModel extends BiTable<Activity>() {
 
     return (this.statistic = { city: countBy(list, 'city') });
   }, 'Activity Statistic');
+}
+
+export class SearchActivityModel extends ActivityModel {
+  makeFilter(filter: NewData<Activity>) {
+    return isEmpty(filter)
+      ? undefined
+      : makeSimpleFilter(filter, 'contains', 'OR');
+  }
 }
 
 export default new ActivityModel();

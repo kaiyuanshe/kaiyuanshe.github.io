@@ -1,6 +1,6 @@
 {
   "name": "@kaiyuanshe/ows",
-  "version": "2.1.0-beta",
+  "version": "2.2.0-beta",
   "description": "React project scaffold based on TypeScript, Next.js & Bootstrap.",
   "private": true,
   "engines": {
@@ -13,13 +13,13 @@
     "file-type": "^18.2.0",
     "idea-react": "^0.27.11",
     "koajax": "^0.8.3",
-    "lark-ts-sdk": "^0.7.9",
     "leaflet": "^1.9.3",
     "leaflet.chinatmsproviders": "^3.0.6",
     "lodash": "^4.17.21",
     "marked": "^4.2.12",
     "mobx": "^5.15.7",
     "mobx-i18n": "^0.3.14",
+    "mobx-lark": "1.0.0-alpha.2",
     "mobx-react": "^6.3.1",
     "mobx-restful": "^0.6.0",
     "mobx-restful-table": "^0.6.0",

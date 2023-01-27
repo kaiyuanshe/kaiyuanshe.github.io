@@ -1,8 +1,8 @@
 import { fileTypeFromBuffer } from 'file-type';
-import { TableCellMedia, TableCellValue } from 'lark-ts-sdk';
+import { TableCellMedia, TableCellValue } from 'mobx-lark';
 
-import { lark } from '../../../../models/Lark';
 import { safeAPI } from '../../base';
+import { lark } from '../core';
 
 export const DefaultImage = '/image/KaiYuanShe.png';
 
@@ -17,8 +17,6 @@ export default safeAPI(async (req, res) => {
   switch (req.method) {
     case 'GET': {
       const { id } = req.query;
-
-      await lark.getAccessToken();
 
       const file = await lark.downloadFile(id as string);
 

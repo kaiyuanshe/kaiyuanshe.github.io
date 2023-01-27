@@ -1,14 +1,17 @@
+import { observable } from 'mobx';
 import {
+  BiDataTable,
+  makeSimpleFilter,
+  normalizeText,
   TableCellLink,
-  TableCellRelation,
   TableCellValue,
   TableRecordList,
-} from 'lark-ts-sdk';
-import { computed, observable } from 'mobx';
+} from 'mobx-lark';
 import { NewData } from 'mobx-restful';
-import { cache, countBy, groupBy, Hour } from 'web-utility';
+import { cache, countBy, groupBy, Hour, isEmpty } from 'web-utility';
 
-import { BiTable, MAIN_BASE_ID, makeFilter, normalizeText } from './Lark';
+import { MAIN_BASE_ID } from '../pages/api/lark/core';
+import { larkClient } from './Base';
 
 export type Organization = Record<
   | 'id'
@@ -32,11 +35,6 @@ export type OrganizationStatistic = Record<
   Record<string, number>
 >;
 
-export type Cooperation = Record<
-  'organization' | 'year' | 'level' | 'link' | 'logos',
-  TableCellValue
->;
-
 export const ORGANIZATION_TABLE_ID =
   process.env.NEXT_PUBLIC_ORGANIZATION_TABLE_ID!;
 
@@ -45,7 +43,9 @@ export const sortStatistic = (data: Record<string, number>, sortValue = true) =>
     .map(([key, count]) => [key, count] as const)
     .sort(([kX, vX], [kY, vY]) => (sortValue ? vY - vX : kY.localeCompare(kX)));
 
-export class OrganizationModel extends BiTable<Organization>() {
+export class OrganizationModel extends BiDataTable<Organization>() {
+  client = larkClient;
+
   constructor(appId = MAIN_BASE_ID, tableId = ORGANIZATION_TABLE_ID) {
     super(appId, tableId);
   }
@@ -70,7 +70,7 @@ export class OrganizationModel extends BiTable<Organization>() {
   }
 
   makeFilter(filter: NewData<Organization>) {
-    return makeFilter({ ...filter, verified: '是' });
+    return makeSimpleFilter({ ...filter, verified: '是' });
   }
 
   getStatistic = cache(async clean => {
@@ -98,49 +98,14 @@ export class OrganizationModel extends BiTable<Organization>() {
   }
 }
 
-export const COOPERATION_TABLE_ID =
-  process.env.NEXT_PUBLIC_COOPERATION_TABLE_ID!;
-
-export class CooperationModel extends BiTable<Cooperation>() {
-  constructor(appId = MAIN_BASE_ID, tableId = COOPERATION_TABLE_ID) {
-    super(appId, tableId);
-  }
-
-  @observable
-  group: Record<string, Cooperation[]> = {};
-
-  @computed
-  get yearGroup() {
-    const { group } = this;
-
-    return Object.entries(group)
-      .sort(([x], [y]) => +y - +x)
-      .map(([year, list]) => [+year, groupBy(list, 'level')]) as [
-      number,
-      Record<string, Cooperation[]>,
-    ][];
-  }
-
-  async getGroup() {
-    var group = groupBy(await this.getAll(), ({ year }) => year + '');
-
-    group = Object.fromEntries(
-      Object.entries(group).map(([year, list]) => [
-        year,
-        list.map(({ organization, link, logos, ...item }) => ({
-          ...item,
-          organization: (organization as TableCellRelation[]).map(
-            normalizeText,
-          ),
-          link: (link as TableCellLink[])?.map(normalizeText),
-          logos: (logos as any[])?.map(({ attachmentToken, ...logo }) => ({
-            ...logo,
-            file_token: attachmentToken,
-          })),
-        })),
-      ]),
-    );
-    return (this.group = group);
+export class SearchOrganizationModel extends OrganizationModel {
+  makeFilter(filter: NewData<Organization>) {
+    return [
+      'CurrentValue.[verified]="是"',
+      isEmpty(filter) ? undefined : makeSimpleFilter(filter, 'contains', 'OR'),
+    ]
+      .filter(Boolean)
+      .join('&&');
   }
 }
 

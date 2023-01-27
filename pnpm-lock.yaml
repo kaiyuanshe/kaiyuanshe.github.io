@@ -17,7 +17,6 @@ specifiers:
   husky: ^8.0.3
   idea-react: ^0.27.11
   koajax: ^0.8.3
-  lark-ts-sdk: ^0.7.9
   leaflet: ^1.9.3
   leaflet.chinatmsproviders: ^3.0.6
   less: ^4.1.3
@@ -27,6 +26,7 @@ specifiers:
   marked: ^4.2.12
   mobx: ^5.15.7
   mobx-i18n: ^0.3.14
+  mobx-lark: 1.0.0-alpha.2
   mobx-react: ^6.3.1
   mobx-restful: ^0.6.0
   mobx-restful-table: ^0.6.0
@@ -52,13 +52,13 @@ dependencies:
   file-type: 18.2.0
   idea-react: 0.27.11_rjwi4njs5ochqicyzd6yyrg72a
   koajax: 0.8.3_typescript@4.9.4
-  lark-ts-sdk: 0.7.9_typescript@4.9.4
   leaflet: 1.9.3
   leaflet.chinatmsproviders: 3.0.6
   lodash: 4.17.21
   marked: 4.2.12
   mobx: 5.15.7
   mobx-i18n: 0.3.14_mobx@5.15.7
+  mobx-lark: 1.0.0-alpha.2_ko5aw6egmzhmuoydeephv2wbae
   mobx-react: 6.3.1_hhkghttxnhy2fe22wf4styxgna
   mobx-restful: 0.6.0_ko5aw6egmzhmuoydeephv2wbae
   mobx-restful-table: 0.6.0_4sqo5hykx6ccfikqx23tpzfeda
@@ -3708,21 +3708,6 @@ packages:
       language-subtag-registry: 0.3.22
     dev: true
 
-  /lark-ts-sdk/0.7.9_typescript@4.9.4:
-    resolution: {integrity: sha512-so0q0GHODCrZ98wRjD0u73OiEcV6BH5mZTYHYlWamHPtxoDTvP4eqePXRtHciudW/XsrTkgTLJGh/67ncecMVA==}
-    dependencies:
-      '@swc/helpers': 0.4.12
-      koajax: 0.8.3_typescript@4.9.4
-      node-fetch: 2.6.7
-      regenerator-runtime: 0.13.10
-      tslib: 2.4.1
-      web-utility: 3.9.9_typescript@4.9.4
-    transitivePeerDependencies:
-      - encoding
-      - jsdom
-      - typescript
-    dev: false
-
   /leaflet.chinatmsproviders/3.0.6:
     resolution: {integrity: sha512-B4UPSn2MT//RkFoyrVjwqQyfKuf4tSmMjJDKQ6nqwCCGgirYKRWHafSH9JmA88WoG5pkuMXBcKQhY32FobxU/g==}
     dev: false
@@ -4011,6 +3996,25 @@ packages:
       regenerator-runtime: 0.13.11
     dev: false
 
+  /mobx-lark/1.0.0-alpha.2_ko5aw6egmzhmuoydeephv2wbae:
+    resolution: {integrity: sha512-Z/CFnZIOMRQCtJsYYdyCmtAUNeQbmGAyBdmOr/gDGkk8aBt+wvYtunS1151j8lVPVCx0ZSXQuZUc5QjFvlmGbg==}
+    peerDependencies:
+      mobx: '>=4 <6'
+    dependencies:
+      '@swc/helpers': 0.4.14
+      koajax: 0.8.3_typescript@4.9.4
+      mobx: 5.15.7
+      mobx-restful: 0.6.0_ko5aw6egmzhmuoydeephv2wbae
+      node-fetch: 2.6.8
+      regenerator-runtime: 0.13.11
+      tslib: 2.4.1
+      web-utility: 4.0.0_typescript@4.9.4
+    transitivePeerDependencies:
+      - encoding
+      - jsdom
+      - typescript
+    dev: false
+
   /mobx-react-lite/2.2.2_hhkghttxnhy2fe22wf4styxgna:
     resolution: {integrity: sha512-2SlXALHIkyUPDsV4VTKVR9DW7K3Ksh1aaIv3NrNJygTbhXe2A9GrcKHZ2ovIiOp/BXilOcTYemfHHZubP431dg==}
     peerDependencies:
@@ -4205,8 +4209,8 @@ packages:
       - babel-plugin-macros
     dev: false
 
-  /node-fetch/2.6.7:
-    resolution: {integrity: sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==}
+  /node-fetch/2.6.8:
+    resolution: {integrity: sha512-RZ6dBYuj8dRSfxpUSu+NsdF1dpPpluJxwOp+6IoDp/sH2QNDSvurYsAa+F1WxY2RjA1iP93xhcsUoYbF2XBqVg==}
     engines: {node: 4.x || >=6.0.0}
     peerDependencies:
       encoding: ^0.1.0
