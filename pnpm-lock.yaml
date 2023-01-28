@@ -26,7 +26,7 @@ specifiers:
   marked: ^4.2.12
   mobx: ^5.15.7
   mobx-i18n: ^0.3.14
-  mobx-lark: 1.0.0-alpha.2
+  mobx-lark: 1.0.0-alpha.3
   mobx-react: ^6.3.1
   mobx-restful: ^0.6.0
   mobx-restful-table: ^0.6.0
@@ -58,7 +58,7 @@ dependencies:
   marked: 4.2.12
   mobx: 5.15.7
   mobx-i18n: 0.3.14_mobx@5.15.7
-  mobx-lark: 1.0.0-alpha.2_ko5aw6egmzhmuoydeephv2wbae
+  mobx-lark: 1.0.0-alpha.3_ko5aw6egmzhmuoydeephv2wbae
   mobx-react: 6.3.1_hhkghttxnhy2fe22wf4styxgna
   mobx-restful: 0.6.0_ko5aw6egmzhmuoydeephv2wbae
   mobx-restful-table: 0.6.0_4sqo5hykx6ccfikqx23tpzfeda
@@ -3996,8 +3996,8 @@ packages:
       regenerator-runtime: 0.13.11
     dev: false
 
-  /mobx-lark/1.0.0-alpha.2_ko5aw6egmzhmuoydeephv2wbae:
-    resolution: {integrity: sha512-Z/CFnZIOMRQCtJsYYdyCmtAUNeQbmGAyBdmOr/gDGkk8aBt+wvYtunS1151j8lVPVCx0ZSXQuZUc5QjFvlmGbg==}
+  /mobx-lark/1.0.0-alpha.3_ko5aw6egmzhmuoydeephv2wbae:
+    resolution: {integrity: sha512-y5uv0lJ1LICu6xOAMyRK3a9zsnrE+NyegBBc2K4qrwYR9N+JtIThQ9oQuAdb+bClmGKQED2ts5KqNES5M1ninw==}
     peerDependencies:
       mobx: '>=4 <6'
     dependencies:

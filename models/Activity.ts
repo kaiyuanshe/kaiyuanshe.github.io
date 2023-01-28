@@ -1,7 +1,7 @@
 import { computed, observable } from 'mobx';
 import {
   BiDataTable,
-  BITableList,
+  BiTable,
   makeSimpleFilter,
   normalizeText,
   TableCellLink,
@@ -13,7 +13,7 @@ import { NewData, toggle } from 'mobx-restful';
 import { cache, countBy, Hour, isEmpty } from 'web-utility';
 
 import { MAIN_BASE_ID } from '../pages/api/lark/core';
-import { AgendaModel } from './Agenda';
+import { Agenda, AgendaModel } from './Agenda';
 import { larkClient } from './Base';
 
 export const ACTIVITY_TABLE_ID = process.env.NEXT_PUBLIC_ACTIVITY_TABLE_ID!;
@@ -33,6 +33,10 @@ export type Activity = Record<
 >;
 
 export type ActivityStatistic = Record<'city', Record<string, number>>;
+
+export class ActivityTableModel extends BiTable<Agenda>() {
+  client = larkClient;
+}
 
 export class ActivityModel extends BiDataTable<Activity>() {
   client = larkClient;
@@ -78,17 +82,11 @@ export class ActivityModel extends BiDataTable<Activity>() {
     const { database } = await super.getOne(id);
 
     if (database) {
-      const appId = (database + '').split('/').at(-1)!;
+      const table = new ActivityTableModel((database + '').split('/').at(-1)!);
 
-      const { body: tableData } = await this.client.get<BITableList>(
-        `bitable/v1/apps/${appId}/tables?page_size=100`,
-      );
-      const { table_id } =
-        tableData!.data.items.find(({ name }) => name === 'Agenda') || {};
+      await table.getOne('Agenda', AgendaModel);
 
-      if (!table_id) throw new ReferenceError('"Agenda" table is missing');
-
-      this.currentAgenda = new AgendaModel(appId, table_id);
+      this.currentAgenda = table.currentDataTable as AgendaModel;
     }
     return this.currentOne;
   }
