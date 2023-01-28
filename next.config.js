@@ -23,5 +23,13 @@ module.exports = withPWA(
       return config;
     },
     reactStrictMode: true,
+    rewrites: async () => ({
+      fallback: [
+        {
+          source: '/:path*',
+          destination: `https://kaiyuanshe.github.io/:path*`,
+        },
+      ],
+    }),
   }),
 );
