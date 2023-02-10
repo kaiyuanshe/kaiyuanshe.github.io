@@ -60,19 +60,19 @@ export class ElectorModel extends BiDataTable<Elector>() {
       id: id!,
       lastCommittee:
         (lastCommittee &&
-          normalizeText((lastCommittee as TableCellRelation[])[0])?.split(
+          normalizeText((lastCommittee as TableCellRelation[])[0])?.split?.(
             ',',
           )) ||
         null,
       lastWorkGroup:
         (lastWorkGroup &&
-          normalizeText((lastWorkGroup as TableCellRelation[])[0])?.split(
+          normalizeText((lastWorkGroup as TableCellRelation[])[0])?.split?.(
             ',',
           )) ||
         null,
       lastProjectGroup:
         (lastProjectGroup &&
-          normalizeText((lastProjectGroup as TableCellRelation[])[0])?.split(
+          normalizeText((lastProjectGroup as TableCellRelation[])[0])?.split?.(
             ',',
           )) ||
         null,
