@@ -24,7 +24,20 @@ export const TimeOption: Pick<
 };
 
 export const MainRoutes = (): Link[] => [
-  { title: t('our_members'), path: '/members' },
+  {
+    title: t('our_members'),
+    subs: [
+      { title: t('our_members'), path: '/members' },
+      {
+        title: t('consultant_committee'),
+        path: '/members/consultantCommittee',
+      },
+      {
+        title: t('legal_advisory_committee'),
+        path: '/members/legalAdvisoryCommittee',
+      }
+    ]
+  },
   { title: t('our_community_structure'), path: '/department' },
   { title: t('our_blogs'), path: '/article' },
   { title: t('wonderful_activity'), path: '/activity' },

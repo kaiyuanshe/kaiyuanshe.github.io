@@ -1,4 +1,4 @@
-import { isEmpty } from 'lodash';
+import { groupBy as groupByKey ,isEmpty } from 'web-utility';
 import {
   BiDataTable,
   makeSimpleFilter,
@@ -22,7 +22,8 @@ export type Member = Record<
   | 'organization'
   | 'department'
   | 'project'
-  | 'GitHubID',
+  | 'GitHubID'
+  | 'post',
   TableCellValue
 >;
 
@@ -30,7 +31,7 @@ export type MembersGroup = Record<string, Record<string, MemberTabsProps>>;
 
 export type IndexKey = number | string | symbol;
 
-type GroupMap<T> = Record<IndexKey, Record<IndexKey, T[] | {}>>;
+export type GroupMap<T> = Record<IndexKey, Record<IndexKey, T[] | {}>>;
 
 type GroupAllMap<T> = Record<
   IndexKey,
@@ -79,19 +80,25 @@ export class MemberModel extends BiDataTable<Member>() {
 
   normalize({
     id,
-    fields: { GitHubID, ...fields },
+    fields: { GitHubID,post, ...fields },
   }: TableRecordList<Member>['data']['items'][number]) {
     return {
       ...fields,
       id: id!,
+      post: normalizeText(post as TableCellLink),
       GitHubID: normalizeText(GitHubID as TableCellLink),
     };
   }
 
-  async getStatic() {
-    this.clear();
-
+  async getStatic(type:string="") {
     const list = await this.getAll();
+    this.clear();
+    switch(type){
+      case "consultantCommittee":
+        return { groupMap: { "顾问委员会": { list: list.filter((item:Member)=>item.organization&&(item.organization as string[]).includes("顾问委员会"))}}}
+      case "legalAdvisoryCommittee":
+          return { groupMap: { "法律咨询委员会": { list: list.filter((item:Member)=>item.organization&&(item.organization as string[]).includes("法律咨询委员会"))}}}
+    }
 
     const groupData = groupBys<Member>(list, [
       'organization',
@@ -112,7 +119,8 @@ export class MemberModel extends BiDataTable<Member>() {
     groupMap['项目委员会'].count = groupData.grouped['project'].count;
     groupMap['执行委员会'].tabs = groupData.grouped['department'].groupMap;
     groupMap['执行委员会'].count = groupData.grouped['department'].count;
-
+    delete  groupMap["顾问委员会"];
+    delete  groupMap["法律咨询委员会"];
     return {
       groupMap,
       otherGroupList: groupData.unGrouped,

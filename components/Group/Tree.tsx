@@ -4,11 +4,13 @@ import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { Loading } from 'idea-react';
+import Router from 'next/router';
 import { SVGCharts, Tooltip, TreeSeriesProps, TreeSeries } from 'echarts-jsx';
 
 import { GroupCard } from './Card';
 import groupStore from '../../models/Group';
 import { i18n } from '../../models/Translation';
+import { EventHandler } from 'echarts-jsx/dist/utility';
 
 @observer
 export default class DepartmentTree extends PureComponent {
@@ -33,20 +35,23 @@ export default class DepartmentTree extends PureComponent {
             children: [
               {
                 name: t('executive_committee'),
+               
                 collapsed: false,
-                children: departments?.map(({ name }) => ({ name: name + '' })),
+                children: departments?.map(({ name }) => ({ name: name + '', anchor: "执行委员会"  })),
               },
               {
                 name: t('project_committee'),
+              
                 collapsed: false,
                 children: projects?.map(({ fullName }) => ({
                   name: fullName + '',
+                  anchor: "项目委员会" 
                 })),
               },
             ],
           },
-          { name: t('consultant_committee') },
-          { name: t('legal_advisory_committee') },
+          { name: t('consultant_committee') , target:"consultantCommittee"},
+          { name: t('legal_advisory_committee'), target:"legalAdvisoryCommittee"},
         ],
       },
     ];
@@ -59,6 +64,25 @@ export default class DepartmentTree extends PureComponent {
     return renderToStaticMarkup(
       group?.summary ? <GroupCard {...group} /> : <></>,
     );
+  }
+
+  jumpLink(e:any){
+     if(e.data.target){
+      window.open("/members/"+e.data.target)
+     }else if(e.data.anchor){
+      sessionStorage.setItem('members_projectname',e.data.name)
+      Router.push("/members#"+e.data.anchor, undefined, {scroll: false})
+      .then(() => {
+        const el:HTMLElement = document.getElementById(e.data.anchor) as HTMLElement;
+        if ( typeof el !== "undefined" ) {
+          const scrollTopY = el!.offsetTop - 100;
+          window.scrollTo({
+            top: scrollTopY,
+            behavior: 'smooth'
+          });
+         }
+        })
+     }
   }
 
   render() {
@@ -77,6 +101,7 @@ export default class DepartmentTree extends PureComponent {
               verticalAlign: 'middle',
               fontSize: 16,
             }}
+            onClick={this.jumpLink}
             tooltip={{
               formatter: ({ name }) => this.renderGroup(name),
             }}

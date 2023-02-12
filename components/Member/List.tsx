@@ -10,12 +10,13 @@ import { Member } from '../../models/Member';
 
 export interface MemberListProps {
   list?: Member[];
+  showMore?: Boolean;
 }
 
-export const MemberList: FC<MemberListProps> = observer(({ list = [] }) => {
+export const MemberList: FC<MemberListProps> = observer(({ list = [] ,showMore}) => {
   const { t } = i18n;
   const [isMore, setIsMore] = useState(false);
-
+ 
   useEffect(() => {
     //Judgment exceeds 3 lines
     if (list?.length > 3 * Math.floor(globalThis.innerWidth / 120))
@@ -26,7 +27,7 @@ export const MemberList: FC<MemberListProps> = observer(({ list = [] }) => {
     <Row
       className={classNames(
         'd-flex g-auto text-center mb-2 pt-2 overflow-auto',
-        isMore && styles.isMore,
+        showMore && isMore && styles.isMore,
         styles.memberRow,
       )}
     >

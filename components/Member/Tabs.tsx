@@ -1,5 +1,6 @@
 import { FC, SetStateAction, useState } from 'react';
 import { Tabs, Tab } from 'react-bootstrap';
+import { isServer } from '../../models/Base';
 
 import { Member } from '../../models/Member';
 import { MemberList } from './List';
@@ -11,11 +12,17 @@ export type TabsData = Record<string, Record<string, TabData>>;
 export interface MemberTabsProps {
   tabs?: TabsData;
   list?: Member[];
+  showMore?: Boolean;
 }
 
-export const MemberTabs: FC<MemberTabsProps> = ({ tabs, list }) => {
-  const [activeKey, setActiveKey] = useState('all');
-
+export const MemberTabs: FC<MemberTabsProps> = ({ tabs, list , showMore}) => {
+  let activeTabName:string = "" 
+  if(!isServer()){
+    activeTabName = sessionStorage&&sessionStorage.getItem('members_projectname') as string
+  }
+  
+  const [activeKey, setActiveKey] = useState((tabs as unknown as Record<string,string>)[activeTabName] ? activeTabName :'all');
+  
   return (
     <Tabs
       id="MemberTabs"
@@ -24,7 +31,7 @@ export const MemberTabs: FC<MemberTabsProps> = ({ tabs, list }) => {
       className="mb-3"
     >
       <Tab eventKey="all" title={`委员会(${list?.length})`}>
-        <MemberList list={list} />
+        <MemberList list={list} showMore={showMore}/>
       </Tab>
       {tabs &&
         Object.entries(tabs).map(([key, { list }]) => (
@@ -34,7 +41,7 @@ export const MemberTabs: FC<MemberTabsProps> = ({ tabs, list }) => {
             tabClassName="p-2"
             title={`${key}(${list.length})`}
           >
-            <MemberList list={list as unknown as Member[]} />
+            <MemberList list={list as unknown as Member[]} showMore={showMore}/>
           </Tab>
         ))}
     </Tabs>
