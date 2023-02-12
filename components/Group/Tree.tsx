@@ -35,13 +35,11 @@ export default class DepartmentTree extends PureComponent {
             children: [
               {
                 name: t('executive_committee'),
-               
                 collapsed: false,
                 children: departments?.map(({ name }) => ({ name: name + '', anchor: "执行委员会"  })),
               },
               {
                 name: t('project_committee'),
-              
                 collapsed: false,
                 children: projects?.map(({ fullName }) => ({
                   name: fullName + '',
