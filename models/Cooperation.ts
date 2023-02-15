@@ -12,7 +12,7 @@ import { MAIN_BASE_ID } from '../pages/api/lark/core';
 import { larkClient } from './Base';
 
 export type Cooperation = Record<
-  'organization' | 'year' | 'level' | 'link' | 'logos',
+  'id' | 'organization' | 'year' | 'level' | 'link' | 'logos',
   TableCellValue
 >;
 
@@ -25,6 +25,8 @@ export class CooperationModel extends BiDataTable<Cooperation>() {
   constructor(appId = MAIN_BASE_ID, tableId = COOPERATION_TABLE_ID) {
     super(appId, tableId);
   }
+
+  requiredKeys = ['organization', 'year', 'level', 'logos'] as const;
 
   @observable
   group: Record<string, Cooperation[]> = {};

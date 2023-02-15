@@ -8,6 +8,7 @@ export default {
   global_bridging: '国际桥梁',
   community_development: '社区发展',
   open_source_project: '开源项目',
+  project_incubation: '项目孵化',
   our_mission: '我们的使命',
   latest_news: '最新动态',
   slogan: '开源社-开源人的家',

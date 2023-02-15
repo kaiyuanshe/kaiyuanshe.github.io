@@ -50,6 +50,8 @@ export class OrganizationModel extends BiDataTable<Organization>() {
     super(appId, tableId);
   }
 
+  requiredKeys = ['name', 'type', 'tags', 'city', 'logos', 'summary'] as const;
+
   @observable
   statistic: OrganizationStatistic = {} as OrganizationStatistic;
 
@@ -102,7 +104,7 @@ export class SearchOrganizationModel extends OrganizationModel {
   makeFilter(filter: NewData<Organization>) {
     return [
       'CurrentValue.[verified]="是"',
-      isEmpty(filter) ? undefined : makeSimpleFilter(filter, 'contains', 'OR'),
+      !isEmpty(filter) && makeSimpleFilter(filter, 'contains', 'OR'),
     ]
       .filter(Boolean)
       .join('&&');

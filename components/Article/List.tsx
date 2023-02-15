@@ -1,4 +1,4 @@
-import { NewData } from 'mobx-restful';
+import { Filter } from 'mobx-restful';
 import { observer } from 'mobx-react';
 import { FC } from 'react';
 import { Row, Col, RowProps } from 'react-bootstrap';
@@ -32,7 +32,7 @@ export interface ArticleListProps
   extends Omit<ArticleListLayoutProps, 'data'>,
     ScrollListProps<Article> {
   store: ArticleModel;
-  filter?: NewData<Article>;
+  filter?: Filter<Article>;
 }
 
 @observer

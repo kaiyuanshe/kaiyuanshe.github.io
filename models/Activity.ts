@@ -45,6 +45,8 @@ export class ActivityModel extends BiDataTable<Activity>() {
     super(appId, tableId);
   }
 
+  requiredKeys = ['name', 'startTime', 'image'] as const;
+
   sort = { startTime: 'DESC' } as const;
 
   currentAgenda?: AgendaModel;
@@ -102,9 +104,7 @@ export class ActivityModel extends BiDataTable<Activity>() {
 
 export class SearchActivityModel extends ActivityModel {
   makeFilter(filter: NewData<Activity>) {
-    return isEmpty(filter)
-      ? undefined
-      : makeSimpleFilter(filter, 'contains', 'OR');
+    return isEmpty(filter) ? '' : makeSimpleFilter(filter, 'contains', 'OR');
   }
 }
 

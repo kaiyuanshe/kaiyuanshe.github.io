@@ -40,6 +40,8 @@ export class ArticleModel extends BiDataTable<Article>() {
     super(appId, tableId);
   }
 
+  requiredKeys = ['title', 'image', 'publishedAt'] as const;
+
   sort = { publishedAt: 'DESC' } as const;
 
   currentRecommend?: ArticleModel;
@@ -73,9 +75,7 @@ export class ArticleModel extends BiDataTable<Article>() {
 
 export class SearchArticleModel extends ArticleModel {
   makeFilter(filter: NewData<Article>) {
-    return isEmpty(filter)
-      ? undefined
-      : makeSimpleFilter(filter, 'contains', 'OR');
+    return isEmpty(filter) ? '' : makeSimpleFilter(filter, 'contains', 'OR');
   }
 }
 
