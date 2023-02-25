@@ -102,4 +102,5 @@ export default {
   last_work_group: 'Last Work Group',
   last_project_group: 'Last Project Group',
   next_term_plan: 'Next Term Plan',
+  expert_committee: 'expert committee',
 } as const;

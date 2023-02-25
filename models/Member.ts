@@ -1,4 +1,4 @@
-import { groupBy as groupByKey ,isEmpty } from 'web-utility';
+import { isEmpty } from 'web-utility';
 import {
   BiDataTable,
   makeSimpleFilter,
@@ -43,7 +43,7 @@ function groupFn<T>(groupMap: GroupMap<T>, groupKeys: string[], groupItem: T) {
     ((groupMap[key] ||= { list: [] }).list as T[]).push(groupItem);
 }
 
-function groupBys<T extends Record<IndexKey, any>>(
+export function groupBys<T extends Record<IndexKey, any>>(
   items: T[],
   byKeys: string[],
 ): {
@@ -90,16 +90,9 @@ export class MemberModel extends BiDataTable<Member>() {
     };
   }
 
-  async getStatic(type:string="") {
+  async getStatic() {
     const list = await this.getAll();
     this.clear();
-    switch(type){
-      case "consultantCommittee":
-        return { groupMap: { "顾问委员会": { list: list.filter((item:Member)=>item.organization&&(item.organization as string[]).includes("顾问委员会"))}}}
-      case "legalAdvisoryCommittee":
-          return { groupMap: { "法律咨询委员会": { list: list.filter((item:Member)=>item.organization&&(item.organization as string[]).includes("法律咨询委员会"))}}}
-    }
-
     const groupData = groupBys<Member>(list, [
       'organization',
       'department',
@@ -119,8 +112,12 @@ export class MemberModel extends BiDataTable<Member>() {
     groupMap['项目委员会'].count = groupData.grouped['project'].count;
     groupMap['执行委员会'].tabs = groupData.grouped['department'].groupMap;
     groupMap['执行委员会'].count = groupData.grouped['department'].count;
-    delete  groupMap["顾问委员会"];
-    delete  groupMap["法律咨询委员会"];
+
+    try {
+      delete  groupMap["顾问委员会"];
+      delete  groupMap["法律咨询委员会"];
+    } catch (_) {}
+
     return {
       groupMap,
       otherGroupList: groupData.unGrouped,

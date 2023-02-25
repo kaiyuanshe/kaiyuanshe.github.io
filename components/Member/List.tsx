@@ -10,10 +10,9 @@ import { Member } from '../../models/Member';
 
 export interface MemberListProps {
   list?: Member[];
-  showMore?: Boolean;
 }
 
-export const MemberList: FC<MemberListProps> = observer(({ list = [] ,showMore}) => {
+export const MemberList: FC<MemberListProps> = observer(({ list = [] }) => {
   const { t } = i18n;
   const [isMore, setIsMore] = useState(false);
  
@@ -27,7 +26,7 @@ export const MemberList: FC<MemberListProps> = observer(({ list = [] ,showMore})
     <Row
       className={classNames(
         'd-flex g-auto text-center mb-2 pt-2 overflow-auto',
-        showMore && isMore && styles.isMore,
+        isMore && styles.isMore,
         styles.memberRow,
       )}
     >

@@ -10,7 +10,6 @@ import { SVGCharts, Tooltip, TreeSeriesProps, TreeSeries } from 'echarts-jsx';
 import { GroupCard } from './Card';
 import groupStore from '../../models/Group';
 import { i18n } from '../../models/Translation';
-import { EventHandler } from 'echarts-jsx/dist/utility';
 
 @observer
 export default class DepartmentTree extends PureComponent {
@@ -35,23 +34,30 @@ export default class DepartmentTree extends PureComponent {
             children: [
               {
                 name: t('executive_committee'),
-               
                 collapsed: false,
-                children: departments?.map(({ name }) => ({ name: name + '', anchor: "执行委员会"  })),
+                children: departments?.map(({ name }) => ({
+                  name: name + '',
+                  target: '#执行委员会',
+                })),
               },
               {
                 name: t('project_committee'),
-              
                 collapsed: false,
                 children: projects?.map(({ fullName }) => ({
                   name: fullName + '',
-                  anchor: "项目委员会" 
+                  target: '#项目委员会',
                 })),
               },
             ],
           },
-          { name: t('consultant_committee') , target:"consultantCommittee"},
-          { name: t('legal_advisory_committee'), target:"legalAdvisoryCommittee"},
+          {
+            name: t('consultant_committee'),
+            target: '/expertcommittee#顾问委员会',
+          },
+          {
+            name: t('legal_advisory_committee'),
+            target: '/expertcommittee#法律咨询委员会',
+          },
         ],
       },
     ];
@@ -66,23 +72,25 @@ export default class DepartmentTree extends PureComponent {
     );
   }
 
-  jumpLink(e:any){
-     if(e.data.target){
-      window.open("/members/"+e.data.target)
-     }else if(e.data.anchor){
-      sessionStorage.setItem('members_projectname',e.data.name)
-      Router.push("/members#"+e.data.anchor, undefined, {scroll: false})
-      .then(() => {
-        const el:HTMLElement = document.getElementById(e.data.anchor) as HTMLElement;
-        if ( typeof el !== "undefined" ) {
-          const scrollTopY = el!.offsetTop - 100;
-          window.scrollTo({
-            top: scrollTopY,
-            behavior: 'smooth'
-          });
-         }
-        })
-     }
+  jumpLink(data: Record<string, string>) {
+    if (data.target) {
+      data.name ? sessionStorage.setItem('members_projectname', data.name) : '';
+
+      Router.push(`/members${data.target}`, undefined, { scroll: false }).then(
+        () => {
+          const el: HTMLElement = document.getElementById(
+            data.target.replace(/[^#]*#([\S\s]+)/,'$1'),
+          ) as HTMLElement;
+          if (typeof el !== 'undefined') {
+            const scrollTopY = el!.offsetTop - 100;
+            window.scrollTo({
+              top: scrollTopY,
+              behavior: 'smooth',
+            });
+          }
+        },
+      );
+    }
   }
 
   render() {
@@ -101,11 +109,13 @@ export default class DepartmentTree extends PureComponent {
               verticalAlign: 'middle',
               fontSize: 16,
             }}
-            onClick={this.jumpLink}
             tooltip={{
               formatter: ({ name }) => this.renderGroup(name),
             }}
             data={this.treeData}
+            onClick={({ data }) =>
+              this.jumpLink(data as Record<string, string>)
+            }
           />
         </SVGCharts>
       </>

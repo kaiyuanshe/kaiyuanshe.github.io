@@ -29,12 +29,8 @@ export const MainRoutes = (): Link[] => [
     subs: [
       { title: t('our_members'), path: '/members' },
       {
-        title: t('consultant_committee'),
-        path: '/members/consultantCommittee',
-      },
-      {
-        title: t('legal_advisory_committee'),
-        path: '/members/legalAdvisoryCommittee',
+        title: t('expert_committee'),
+        path: '/members/expertcommittee',
       }
     ]
   },

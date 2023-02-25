@@ -1,7 +1,7 @@
 import { FC, SetStateAction, useState } from 'react';
 import { Tabs, Tab } from 'react-bootstrap';
-import { isServer } from '../../models/Base';
 
+import { isServer } from '../../models/Base';
 import { Member } from '../../models/Member';
 import { MemberList } from './List';
 
@@ -15,7 +15,7 @@ export interface MemberTabsProps {
   showMore?: Boolean;
 }
 
-export const MemberTabs: FC<MemberTabsProps> = ({ tabs, list , showMore}) => {
+export const MemberTabs: FC<MemberTabsProps> = ({ tabs, list }) => {
   let activeTabName:string = "" 
   if(!isServer()){
     activeTabName = sessionStorage&&sessionStorage.getItem('members_projectname') as string
@@ -31,7 +31,7 @@ export const MemberTabs: FC<MemberTabsProps> = ({ tabs, list , showMore}) => {
       className="mb-3"
     >
       <Tab eventKey="all" title={`委员会(${list?.length})`}>
-        <MemberList list={list} showMore={showMore}/>
+        <MemberList list={list}/>
       </Tab>
       {tabs &&
         Object.entries(tabs).map(([key, { list }]) => (
@@ -41,7 +41,7 @@ export const MemberTabs: FC<MemberTabsProps> = ({ tabs, list , showMore}) => {
             tabClassName="p-2"
             title={`${key}(${list.length})`}
           >
-            <MemberList list={list as unknown as Member[]} showMore={showMore}/>
+            <MemberList list={list as unknown as Member[]}/>
           </Tab>
         ))}
     </Tabs>
