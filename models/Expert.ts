@@ -1,4 +1,4 @@
-import { isEmpty, parseJSON } from 'web-utility';
+import { isEmpty} from 'web-utility';
 import {
   BiDataTable,
   makeSimpleFilter,
@@ -13,8 +13,6 @@ import { larkClient } from './Base';
 import { groupBys, GroupMap, Member } from './Member';
 
 export const EXPERT_TABLE_ID = process.env.NEXT_PUBLIC_EXPERT_TABLE_ID!;
-
-const EXPERT_LIST = process.env.NEXT_PUBLIC_EXPERT_LIST! || `["顾问委员会","法律咨询委员会"]`;
 
 export class ExpertModel extends BiDataTable<Member>() {
   client = larkClient;
@@ -41,9 +39,8 @@ export class ExpertModel extends BiDataTable<Member>() {
     const groupData = groupBys<Member>(list, [
       'organization',
     ]);
-    const groupMap: GroupMap<Member> = {};
-    for(let key of parseJSON(EXPERT_LIST)) groupMap[key] = groupData.grouped['organization'].groupMap[key];
-   
+    const groupMap: GroupMap<Member> = groupData.grouped['organization'].groupMap;
+
     return {
       groupMap,
       otherGroupList: groupData.unGrouped,

@@ -21,7 +21,7 @@ export const MemberTabs: FC<MemberTabsProps> = ({ tabs, list }) => {
     activeTabName = sessionStorage&&sessionStorage.getItem('members_projectname') as string
   }
   
-  const [activeKey, setActiveKey] = useState((tabs as unknown as Record<string,string>)[activeTabName] ? activeTabName :'all');
+  const [activeKey, setActiveKey] = useState((tabs as unknown as Record<string,string>)[activeTabName]? activeTabName :'all');
   
   return (
     <Tabs

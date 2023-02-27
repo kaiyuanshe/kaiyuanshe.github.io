@@ -52,11 +52,11 @@ export default class DepartmentTree extends PureComponent {
           },
           {
             name: t('consultant_committee'),
-            target: '/expertcommittee#顾问委员会',
+            target: '/expert#顾问委员会',
           },
           {
             name: t('legal_advisory_committee'),
-            target: '/expertcommittee#法律咨询委员会',
+            target: '/expert#法律咨询委员会',
           },
         ],
       },
@@ -74,7 +74,7 @@ export default class DepartmentTree extends PureComponent {
 
   jumpLink(data: Record<string, string>) {
     if (data.target) {
-      data.name ? sessionStorage.setItem('members_projectname', data.name) : '';
+      data.name ? sessionStorage.setItem('members_projectname', data.name.replace(/项目组$/,"")) : '';
 
       Router.push(`/members${data.target}`, undefined, { scroll: false }).then(
         () => {

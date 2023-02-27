@@ -30,7 +30,7 @@ export const MainRoutes = (): Link[] => [
       { title: t('our_members'), path: '/members' },
       {
         title: t('expert_committee'),
-        path: '/members/expertcommittee',
+        path: '/members/expert',
       }
     ]
   },

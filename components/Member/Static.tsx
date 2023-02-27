@@ -12,7 +12,7 @@ export interface MemberStaticProps {
 
 export const MemberStatic: FC<MemberStaticProps> = ({
   membersGroup,
-  otherMembersList = []
+  otherMembersList = [],
 }) => (
   <>
     {membersGroup &&
@@ -31,7 +31,7 @@ export const MemberStatic: FC<MemberStaticProps> = ({
       ))}
     {otherMembersList?.length > 0 && (
       <>
-        <MemberTitle count={otherMembersList?.length} />
+        <MemberTitle count={otherMembersList?.length}/>
         <MemberList list={otherMembersList}/>
       </>
     )}

@@ -101,8 +101,6 @@ export class MemberModel extends BiDataTable<Member>() {
     const groupMap: GroupMap<Member> = Object.assign(
       {
         理事会: {},
-        顾问委员会: {},
-        法律咨询委员会: {},
         执行委员会: {},
         项目委员会: {},
       },
@@ -112,11 +110,6 @@ export class MemberModel extends BiDataTable<Member>() {
     groupMap['项目委员会'].count = groupData.grouped['project'].count;
     groupMap['执行委员会'].tabs = groupData.grouped['department'].groupMap;
     groupMap['执行委员会'].count = groupData.grouped['department'].count;
-
-    try {
-      delete  groupMap["顾问委员会"];
-      delete  groupMap["法律咨询委员会"];
-    } catch (_) {}
 
     return {
       groupMap,
