@@ -1,5 +1,6 @@
 import { TimeDistanceProps } from 'idea-react';
 
+import { isServer } from '../models/Base';
 import { i18n } from '../models/Translation';
 import { Link } from './MainNav';
 
@@ -23,6 +24,19 @@ export const TimeOption: Pick<
   afterWord: '后',
 };
 
+export const AnchorJump = (id: string) => {
+  if (!isServer()) {
+    const el: HTMLElement = document.getElementById(id) as HTMLElement;
+    if (typeof el !== 'undefined') {
+      const scrollTopY = el!.offsetTop - 100;
+      window.scrollTo({
+        top: scrollTopY,
+        behavior: 'smooth',
+      });
+    }
+  }
+};
+
 export const MainRoutes = (): Link[] => [
   {
     title: t('our_members'),
@@ -31,8 +45,8 @@ export const MainRoutes = (): Link[] => [
       {
         title: t('expert_committee'),
         path: '/members/expert',
-      }
-    ]
+      },
+    ],
   },
   { title: t('our_community_structure'), path: '/department' },
   { title: t('our_blogs'), path: '/article' },

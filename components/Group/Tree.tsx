@@ -37,7 +37,7 @@ export default class DepartmentTree extends PureComponent {
                 collapsed: false,
                 children: departments?.map(({ name }) => ({
                   name: name + '',
-                  target: '#执行委员会',
+                  target: '?anchor=执行委员会',
                 })),
               },
               {
@@ -45,18 +45,18 @@ export default class DepartmentTree extends PureComponent {
                 collapsed: false,
                 children: projects?.map(({ fullName }) => ({
                   name: fullName + '',
-                  target: '#项目委员会',
+                  target: '?anchor=项目委员会',
                 })),
               },
             ],
           },
           {
             name: t('consultant_committee'),
-            target: '/expert#顾问委员会',
+            target: '/expert?anchor=顾问委员会',
           },
           {
             name: t('legal_advisory_committee'),
-            target: '/expert#法律咨询委员会',
+            target: '/expert?anchor=法律咨询委员会',
           },
         ],
       },
@@ -74,22 +74,9 @@ export default class DepartmentTree extends PureComponent {
 
   jumpLink(data: Record<string, string>) {
     if (data.target) {
-      data.name ? sessionStorage.setItem('members_projectname', data.name.replace(/项目组$/,"")) : '';
-
-      Router.push(`/members${data.target}`, undefined, { scroll: false }).then(
-        () => {
-          const el: HTMLElement = document.getElementById(
-            data.target.replace(/[^#]*#([\S\s]+)/,'$1'),
-          ) as HTMLElement;
-          if (typeof el !== 'undefined') {
-            const scrollTopY = el!.offsetTop - 100;
-            window.scrollTo({
-              top: scrollTopY,
-              behavior: 'smooth',
-            });
-          }
-        },
-      );
+      window.location.href = `/members${data.target}${
+        data.name ? '&name=' + data.name.replace(/项目组$/, '') : ''
+      }`;
     }
   }
 

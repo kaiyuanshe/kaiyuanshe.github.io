@@ -2,18 +2,20 @@ import { FC } from 'react';
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
 import { Container } from 'react-bootstrap';
+import { useRouter } from 'next/router';
 
 import PageHead from '../../components/PageHead';
 import { MemberStatic } from '../../components/Member/Static';
 import { withTranslation } from '../api/base';
 import { i18n } from '../../models/Translation';
-import { ExpertModel} from '../../models/Expert';
+import { ExpertModel } from '../../models/Expert';
+import { AnchorJump } from '../../components/data';
 
-export const getServerSideProps =withTranslation(async () => {
+export const getServerSideProps = withTranslation(async () => {
   const data = await new ExpertModel().getStatic();
 
   return {
-    props: { membersStaticData: JSON.parse(JSON.stringify(data))}, // will be passed to the page component as props
+    props: { membersStaticData: JSON.parse(JSON.stringify(data)) }, // will be passed to the page component as props
   };
 });
 
@@ -21,6 +23,8 @@ const MembersPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
   observer(({ membersStaticData }) => {
     const { groupMap, otherGroupList } = membersStaticData;
     const { t } = i18n;
+    const { query } = useRouter();
+    AnchorJump(query.anchor as string);
 
     return (
       <Container className="my-4">
