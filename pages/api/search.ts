@@ -77,15 +77,12 @@ export default safeAPI(
               nickname: keywordList,
             }),
           ]);
-        // @ts-ignore
-        response.json({
-          articles,
-          activities,
-          members,
-          expert,
-          groups,
-          organizations,
-        });
+        //@ts-ignore
+        const membersData = { members, expert };
+        //@ts-ignore
+        const articlesData = { articles, activities, groups, organizations };
+        //@ts-ignore
+        response.json({ ...articlesData, ...membersData });
       }
     }
   },
