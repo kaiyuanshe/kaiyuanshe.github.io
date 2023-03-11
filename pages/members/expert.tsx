@@ -1,15 +1,15 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
 import { Container } from 'react-bootstrap';
 import { useRouter } from 'next/router';
+import { scrollTo } from 'web-utility';
 
 import PageHead from '../../components/PageHead';
 import { MemberStatic } from '../../components/Member/Static';
 import { withTranslation } from '../api/base';
 import { i18n } from '../../models/Translation';
 import { ExpertModel } from '../../models/Expert';
-import { AnchorJump } from '../../components/data';
 
 export const getServerSideProps = withTranslation(async () => {
   const data = await new ExpertModel().getStatic();
@@ -24,7 +24,9 @@ const MembersPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
     const { groupMap, otherGroupList } = membersStaticData;
     const { t } = i18n;
     const { query } = useRouter();
-    AnchorJump(query.anchor as string);
+    useEffect(() => {
+      scrollTo('#' + query!.anchor);
+    });
 
     return (
       <Container className="my-4">
@@ -35,6 +37,7 @@ const MembersPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
         <MemberStatic
           membersGroup={groupMap}
           otherMembersList={otherGroupList}
+          query={query}
         />
       </Container>
     );

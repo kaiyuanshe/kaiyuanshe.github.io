@@ -1,15 +1,15 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
 import { Container } from 'react-bootstrap';
 import { useRouter } from 'next/router';
+import { scrollTo } from 'web-utility';
 
 import PageHead from '../../components/PageHead';
 import { MemberStatic } from '../../components/Member/Static';
 import { withTranslation } from '../api/base';
 import { i18n } from '../../models/Translation';
 import { MemberModel } from '../../models/Member';
-import { AnchorJump } from '../../components/data';
 
 export const getServerSideProps = withTranslation(async () => {
   const data = await new MemberModel().getStatic();
@@ -19,12 +19,35 @@ export const getServerSideProps = withTranslation(async () => {
   };
 });
 
+// export function scrollTo(
+//   selector: string,
+//   offset?: number|string,
+//   align?: ScrollLogicalPosition,
+//   justify?: ScrollLogicalPosition,
+//   root?: Element
+// ) {
+//   const [_, ID] = /^#(.+)/.exec(selector) || [];
+
+//   if (ID === 'top') window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+//   else
+//       (root || document)
+//           .querySelector(ID ? `[id="${ID}"]` : selector)
+//           ?.scrollIntoView({
+//               behavior: 'smooth',
+//               block: align,
+//               inline: justify
+//           });
+//             //window.scrollBy(0,-offset)
+
+// }
 const MembersPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
   observer(({ membersStaticData }) => {
     const { groupMap, otherGroupList } = membersStaticData;
     const { t } = i18n;
     const { query } = useRouter();
-    AnchorJump(query.anchor as string);
+    useEffect(() => {
+      scrollTo('#' + query!.anchor);
+    });
 
     return (
       <Container className="my-4">
@@ -35,6 +58,7 @@ const MembersPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
         <MemberStatic
           membersGroup={groupMap}
           otherMembersList={otherGroupList}
+          query={query}
         />
       </Container>
     );

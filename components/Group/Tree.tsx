@@ -1,10 +1,9 @@
-import { groupBy } from 'web-utility';
+import { buildURLData, groupBy, parseURLData } from 'web-utility';
 import { computed } from 'mobx';
 import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { Loading } from 'idea-react';
-import Router from 'next/router';
 import { SVGCharts, Tooltip, TreeSeriesProps, TreeSeries } from 'echarts-jsx';
 
 import { GroupCard } from './Card';
@@ -72,12 +71,13 @@ export default class DepartmentTree extends PureComponent {
     );
   }
 
-  jumpLink(data: Record<string, string>) {
-    if (data.target) {
-      window.location.href = `/members${data.target}${
-        data.name ? '&name=' + data.name.replace(/项目组$/, '') : ''
-      }`;
-    }
+  jumpLink({ target, name }: Record<string, string>) {
+    if (!target) return;
+    const [path, data] = target.split('?');
+    window.location.href = `/members/${path}?${buildURLData({
+      ...parseURLData(data),
+      name: name?.replace(/项目组$/, ''),
+    })}`;
   }
 
   render() {

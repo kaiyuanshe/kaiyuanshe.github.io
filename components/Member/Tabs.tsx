@@ -1,8 +1,6 @@
 import { FC, SetStateAction, useState } from 'react';
 import { Tabs, Tab } from 'react-bootstrap';
-import { useRouter } from 'next/router';
 
-import { isServer } from '../../models/Base';
 import { Member } from '../../models/Member';
 import { MemberList } from './List';
 
@@ -13,16 +11,16 @@ export type TabsData = Record<string, Record<string, TabData>>;
 export interface MemberTabsProps {
   tabs?: TabsData;
   list?: Member[];
-  showMore?: Boolean;
+  active?: string;
 }
 
-export const MemberTabs: FC<MemberTabsProps> = ({ tabs, list }) => {
-  const { query } = useRouter();
-  let activeTabName = query.name as string;
+export const MemberTabs: FC<MemberTabsProps> = ({
+  tabs,
+  list,
+  active = 'all',
+}) => {
   const [activeKey, setActiveKey] = useState(
-    (tabs as unknown as Record<string, string>)[activeTabName]
-      ? activeTabName
-      : 'all',
+    (tabs as unknown as Record<string, string>)[active] ? active : 'all',
   );
 
   return (

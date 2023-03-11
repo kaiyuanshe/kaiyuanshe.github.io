@@ -24,19 +24,6 @@ export const TimeOption: Pick<
   afterWord: '后',
 };
 
-export const AnchorJump = (id: string) => {
-  if (!isServer()) {
-    const el: HTMLElement = document.getElementById(id) as HTMLElement;
-    if (typeof el !== 'undefined') {
-      const scrollTopY = el!.offsetTop - 100;
-      window.scrollTo({
-        top: scrollTopY,
-        behavior: 'smooth',
-      });
-    }
-  }
-};
-
 export const MainRoutes = (): Link[] => [
   {
     title: t('our_members'),
