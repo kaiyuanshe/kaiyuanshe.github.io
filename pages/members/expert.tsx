@@ -25,7 +25,9 @@ const MembersPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
     const { t } = i18n;
     const { query } = useRouter();
     useEffect(() => {
-      scrollTo('#' + query!.anchor);
+      setTimeout(()=>{
+        scrollTo('#' + query!.anchor);
+      },10)
     });
 
     return (
