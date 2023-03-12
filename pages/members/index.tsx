@@ -19,27 +19,6 @@ export const getServerSideProps = withTranslation(async () => {
   };
 });
 
-// export function scrollTo(
-//   selector: string,
-//   offset?: number|string,
-//   align?: ScrollLogicalPosition,
-//   justify?: ScrollLogicalPosition,
-//   root?: Element
-// ) {
-//   const [_, ID] = /^#(.+)/.exec(selector) || [];
-
-//   if (ID === 'top') window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-//   else
-//       (root || document)
-//           .querySelector(ID ? `[id="${ID}"]` : selector)
-//           ?.scrollIntoView({
-//               behavior: 'smooth',
-//               block: align,
-//               inline: justify
-//           });
-//             //window.scrollBy(0,-offset)
-
-// }
 const MembersPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
   observer(({ membersStaticData }) => {
     const { groupMap, otherGroupList } = membersStaticData;
