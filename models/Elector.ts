@@ -46,6 +46,15 @@ export class ElectorModel extends BiDataTable<Elector>() {
     super(appId, tableId);
   }
 
+  requiredKeys = [
+    'name',
+    'gender',
+    'photo',
+    'lastLevel',
+    'electionTarget',
+    'nextTermPlan',
+  ] as const;
+
   @observable
   group: Record<string, Elector[]> = {};
 

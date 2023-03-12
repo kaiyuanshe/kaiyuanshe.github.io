@@ -39,6 +39,8 @@ export class GroupModel extends BiDataTable<Group>() {
     super(appId, tableId);
   }
 
+  requiredKeys = ['name', 'type', 'tags', 'leader'] as const;
+
   normalize({
     id,
     fields: { link, codeLink, email, ...fields },
@@ -55,9 +57,7 @@ export class GroupModel extends BiDataTable<Group>() {
 
 export class SearchGroupModel extends GroupModel {
   makeFilter(filter: NewData<Group>) {
-    return isEmpty(filter)
-      ? undefined
-      : makeSimpleFilter(filter, 'contains', 'OR');
+    return isEmpty(filter) ? '' : makeSimpleFilter(filter, 'contains', 'OR');
   }
 }
 

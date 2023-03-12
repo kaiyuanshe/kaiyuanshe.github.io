@@ -24,6 +24,8 @@ export type Agenda = Record<
 export class AgendaModel extends BiDataTable<Agenda>() {
   client = larkClient;
 
+  requiredKeys = ['title', 'mentors', 'startTime', 'endTime'] as const;
+
   sort = { startTime: 'ASC' } as const;
 
   @observable

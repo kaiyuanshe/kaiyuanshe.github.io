@@ -78,6 +78,8 @@ export class MemberModel extends BiDataTable<Member>() {
     super(appId, tableId);
   }
 
+  requiredKeys = ['name'] as const;
+
   normalize({
     id,
     fields: { GitHubID,post, ...fields },
@@ -120,8 +122,6 @@ export class MemberModel extends BiDataTable<Member>() {
 
 export class SearchMemberModel extends MemberModel {
   makeFilter(filter: NewData<Member>) {
-    return isEmpty(filter)
-      ? undefined
-      : makeSimpleFilter(filter, 'contains', 'OR');
+    return isEmpty(filter) ? '' : makeSimpleFilter(filter, 'contains', 'OR');
   }
 }

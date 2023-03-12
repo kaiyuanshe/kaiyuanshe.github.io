@@ -103,12 +103,11 @@ export class OrganizationCard extends PureComponent<OrganizationCardProps> {
             </Badge>
           </Card.Title>
 
-          <Card.Text className="text-end">
+          <Card.Text className="d-flex flex-wrap justify-content-end gap-2">
             {(tags as string[])?.map(tag => (
               <Badge
                 key={tag}
                 bg={text2color(tag, ['light'])}
-                className="me-2"
                 style={{ cursor: 'pointer' }}
                 onClick={
                   onSwitch &&

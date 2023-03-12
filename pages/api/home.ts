@@ -17,7 +17,7 @@ export const slogan = () => [
       { text: t('open_source_governance'), icon: 'diagram-3' },
       { text: t('global_bridging'), icon: 'globe2' },
       { text: t('community_development'), icon: 'people' },
-      { text: t('open_source_project'), icon: 'git' },
+      { text: t('project_incubation'), icon: 'git' },
     ],
   },
 ];

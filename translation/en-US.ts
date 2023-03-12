@@ -8,6 +8,7 @@ export default {
   global_bridging: 'Global bridging',
   community_development: 'Community development',
   open_source_project: 'Open source project',
+  project_incubation: 'Project incubation',
   our_mission: 'Our mission',
   latest_news: 'Latest News',
   slogan: 'kaiyuanshe - the home of open-source believer',
