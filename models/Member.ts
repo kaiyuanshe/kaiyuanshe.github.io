@@ -1,4 +1,4 @@
-import { isEmpty } from 'lodash';
+import { isEmpty } from 'web-utility';
 import {
   BiDataTable,
   makeSimpleFilter,
@@ -22,7 +22,8 @@ export type Member = Record<
   | 'organization'
   | 'department'
   | 'project'
-  | 'GitHubID',
+  | 'GitHubID'
+  | 'post',
   TableCellValue
 >;
 
@@ -30,7 +31,7 @@ export type MembersGroup = Record<string, Record<string, MemberTabsProps>>;
 
 export type IndexKey = number | string | symbol;
 
-type GroupMap<T> = Record<IndexKey, Record<IndexKey, T[] | {}>>;
+export type GroupMap<T> = Record<IndexKey, Record<IndexKey, T[] | {}>>;
 
 type GroupAllMap<T> = Record<
   IndexKey,
@@ -42,7 +43,7 @@ function groupFn<T>(groupMap: GroupMap<T>, groupKeys: string[], groupItem: T) {
     ((groupMap[key] ||= { list: [] }).list as T[]).push(groupItem);
 }
 
-function groupBys<T extends Record<IndexKey, any>>(
+export function groupBys<T extends Record<IndexKey, any>>(
   items: T[],
   byKeys: string[],
 ): {
@@ -81,20 +82,19 @@ export class MemberModel extends BiDataTable<Member>() {
 
   normalize({
     id,
-    fields: { GitHubID, ...fields },
+    fields: { GitHubID,post, ...fields },
   }: TableRecordList<Member>['data']['items'][number]) {
     return {
       ...fields,
       id: id!,
+      post: normalizeText(post as TableCellLink),
       GitHubID: normalizeText(GitHubID as TableCellLink),
     };
   }
 
   async getStatic() {
-    this.clear();
-
     const list = await this.getAll();
-
+    this.clear();
     const groupData = groupBys<Member>(list, [
       'organization',
       'department',
@@ -103,8 +103,6 @@ export class MemberModel extends BiDataTable<Member>() {
     const groupMap: GroupMap<Member> = Object.assign(
       {
         理事会: {},
-        顾问委员会: {},
-        法律咨询委员会: {},
         执行委员会: {},
         项目委员会: {},
       },

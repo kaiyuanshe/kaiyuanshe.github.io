@@ -15,7 +15,7 @@ export interface MemberListProps {
 export const MemberList: FC<MemberListProps> = observer(({ list = [] }) => {
   const { t } = i18n;
   const [isMore, setIsMore] = useState(false);
-
+ 
   useEffect(() => {
     //Judgment exceeds 3 lines
     if (list?.length > 3 * Math.floor(globalThis.innerWidth / 120))

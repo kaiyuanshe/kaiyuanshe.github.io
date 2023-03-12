@@ -1,5 +1,6 @@
 import { TimeDistanceProps } from 'idea-react';
 
+import { isServer } from '../models/Base';
 import { i18n } from '../models/Translation';
 import { Link } from './MainNav';
 
@@ -24,7 +25,16 @@ export const TimeOption: Pick<
 };
 
 export const MainRoutes = (): Link[] => [
-  { title: t('our_members'), path: '/members' },
+  {
+    title: t('our_members'),
+    subs: [
+      { title: t('our_members'), path: '/members' },
+      {
+        title: t('expert_committee'),
+        path: '/members/expert',
+      },
+    ],
+  },
   { title: t('our_community_structure'), path: '/department' },
   { title: t('our_blogs'), path: '/article' },
   { title: t('wonderful_activity'), path: '/activity' },

@@ -11,10 +11,17 @@ export type TabsData = Record<string, Record<string, TabData>>;
 export interface MemberTabsProps {
   tabs?: TabsData;
   list?: Member[];
+  active?: string;
 }
 
-export const MemberTabs: FC<MemberTabsProps> = ({ tabs, list }) => {
-  const [activeKey, setActiveKey] = useState('all');
+export const MemberTabs: FC<MemberTabsProps> = ({
+  tabs,
+  list,
+  active = 'all',
+}) => {
+  const [activeKey, setActiveKey] = useState(
+    (tabs as unknown as Record<string, string>)[active] ? active : 'all',
+  );
 
   return (
     <Tabs

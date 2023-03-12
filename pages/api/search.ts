@@ -5,6 +5,7 @@ import { Activity, SearchActivityModel } from '../../models/Activity';
 import { BaseArticle, SearchArticleModel } from '../../models/Article';
 import { Group, SearchGroupModel } from '../../models/Group';
 import { Member, SearchMemberModel } from '../../models/Member';
+import { SearchExpertModel } from '../../models/Expert';
 import {
   Organization,
   SearchOrganizationModel,
@@ -17,6 +18,7 @@ export interface SearchResult {
   activities: Activity[];
   articles: BaseArticle[];
   members: Member[];
+  expert: Member[];
   groups: Group[];
   organizations: Organization[];
 }
@@ -65,12 +67,22 @@ export default safeAPI(
             ],
           );
         if (keywordList)
-          var members = await new SearchMemberModel().getList({
-            name: keywordList,
-            nickname: keywordList,
-          });
-        // @ts-ignore
-        response.json({ articles, activities, members, groups, organizations });
+          var [members, expert] = await Promise.all([
+            new SearchMemberModel().getList({
+              name: keywordList,
+              nickname: keywordList,
+            }),
+            new SearchExpertModel().getList({
+              name: keywordList,
+              nickname: keywordList,
+            }),
+          ]);
+        //@ts-ignore
+        const membersData = { members, expert };
+        //@ts-ignore
+        const articlesData = { articles, activities, groups, organizations };
+        //@ts-ignore
+        response.json({ ...articlesData, ...membersData });
       }
     }
   },

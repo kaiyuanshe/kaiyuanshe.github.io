@@ -24,6 +24,6 @@ export const slogan = () => [
 
 export const social = {
   github: 'https://github.com/kaiyuanshe',
-  twitter: 'https://twitter.com/contactkaiyuan1',
+  twitter: 'https://twitter.com/kaiyuanshe',
   facebook: 'https://www.facebook.com/kaiyuanshe.china',
 };

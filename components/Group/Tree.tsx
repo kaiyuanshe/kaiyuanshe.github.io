@@ -1,4 +1,4 @@
-import { groupBy } from 'web-utility';
+import { buildURLData, groupBy, parseURLData } from 'web-utility';
 import { computed } from 'mobx';
 import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
@@ -34,19 +34,29 @@ export default class DepartmentTree extends PureComponent {
               {
                 name: t('executive_committee'),
                 collapsed: false,
-                children: departments?.map(({ name }) => ({ name: name + '' })),
+                children: departments?.map(({ name }) => ({
+                  name: name + '',
+                  target: '?anchor=执行委员会',
+                })),
               },
               {
                 name: t('project_committee'),
                 collapsed: false,
                 children: projects?.map(({ fullName }) => ({
                   name: fullName + '',
+                  target: '?anchor=项目委员会',
                 })),
               },
             ],
           },
-          { name: t('consultant_committee') },
-          { name: t('legal_advisory_committee') },
+          {
+            name: t('consultant_committee'),
+            target: '/expert?anchor=顾问委员会',
+          },
+          {
+            name: t('legal_advisory_committee'),
+            target: '/expert?anchor=法律咨询委员会',
+          },
         ],
       },
     ];
@@ -59,6 +69,15 @@ export default class DepartmentTree extends PureComponent {
     return renderToStaticMarkup(
       group?.summary ? <GroupCard {...group} /> : <></>,
     );
+  }
+
+  jumpLink({ target, name }: Record<string, string>) {
+    if (!target) return;
+    const [path, data] = target.split('?');
+    window.location.href = `/members/${path}?${buildURLData({
+      ...parseURLData(data),
+      name: name?.replace(/项目组$/, ''),
+    })}`;
   }
 
   render() {
@@ -81,6 +100,9 @@ export default class DepartmentTree extends PureComponent {
               formatter: ({ name }) => this.renderGroup(name),
             }}
             data={this.treeData}
+            onClick={({ data }) =>
+              this.jumpLink(data as Record<string, string>)
+            }
           />
         </SVGCharts>
       </>

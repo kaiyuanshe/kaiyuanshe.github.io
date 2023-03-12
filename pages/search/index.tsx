@@ -27,7 +27,15 @@ export const getServerSideProps = withTranslation(
 
 const SearchPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
   observer(
-    ({ route, articles, activities, members, groups, organizations }) => {
+    ({
+      route,
+      articles,
+      activities,
+      members,
+      expert,
+      groups,
+      organizations,
+    }) => {
       const { t } = i18n,
         { tag, keywords } = route.query as SearchQuery;
       const title = `${tag ? t('tag') : t('keyword')} ${tag || keywords} ${t(
@@ -51,6 +59,10 @@ const SearchPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
           <h2>{t('member')}</h2>
 
           <MemberList list={members} />
+
+          <h2>{t('expert_committee')}</h2>
+
+          <MemberList list={expert} />
 
           <h2>{t('department')}</h2>
 
