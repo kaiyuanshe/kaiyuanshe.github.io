@@ -1,4 +1,4 @@
-import { isEmpty} from 'web-utility';
+import { isEmpty } from 'web-utility';
 import {
   BiDataTable,
   makeSimpleFilter,
@@ -23,7 +23,7 @@ export class ExpertModel extends BiDataTable<Member>() {
 
   normalize({
     id,
-    fields: { GitHubID,post, ...fields },
+    fields: { GitHubID, post, ...fields },
   }: TableRecordList<Member>['data']['items'][number]) {
     return {
       ...fields,
@@ -36,10 +36,9 @@ export class ExpertModel extends BiDataTable<Member>() {
   async getStatic() {
     const list = await this.getAll();
     this.clear();
-    const groupData = groupBys<Member>(list, [
-      'organization',
-    ]);
-    const groupMap: GroupMap<Member> = groupData.grouped['organization'].groupMap;
+    const groupData = groupBys<Member>(list, ['organization']);
+    const groupMap: GroupMap<Member> =
+      groupData.grouped['organization'].groupMap;
 
     return {
       groupMap,
@@ -50,8 +49,6 @@ export class ExpertModel extends BiDataTable<Member>() {
 
 export class SearchExpertModel extends ExpertModel {
   makeFilter(filter: NewData<Member>) {
-    return isEmpty(filter)
-      ? undefined
-      : makeSimpleFilter(filter, 'contains', 'OR');
+    return isEmpty(filter) ? '' : makeSimpleFilter(filter, 'contains', 'OR');
   }
 }

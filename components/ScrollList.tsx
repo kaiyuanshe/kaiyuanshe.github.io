@@ -6,7 +6,7 @@ import { i18n } from '../models/Translation';
 export abstract class XScrollList<
   P extends ScrollListProps,
 > extends ScrollList<P> {
-  translater = i18n;
+  translator = i18n;
 
   render() {
     const { downloading, uploading } = this.store;

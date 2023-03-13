@@ -15,7 +15,7 @@ export const MemberTitle: FC<MemberTitleProps> = ({
 }) => (
   <h2
     id={title}
-    className=`position-relative border-bottom border-2 border-info lh-lg mb-4 ${styles.memberTitle}`}
+    className={`position-relative border-bottom border-2 border-info lh-lg mb-4 ${styles.memberTitle}`}
   >
     {title}
     <Badge
