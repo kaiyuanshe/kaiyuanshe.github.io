@@ -50,7 +50,7 @@ export class ArticleModel extends BiDataTable<Article>() {
   async getOne(alias: string) {
     const { body } = await this.client.get<TableRecordList<BaseArticle>>(
       `${this.baseURI}?${buildURLData({
-        filter: makeSimpleFilter({ alias }),
+        filter: makeSimpleFilter({ alias }, '='),
       })}`,
     );
     const item = this.normalize(body!.data.items[0]);

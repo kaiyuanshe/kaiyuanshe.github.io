@@ -1,7 +1,5 @@
 import { DataObject } from 'mobx-restful';
-import { merge } from 'lodash';
 import { ParsedUrlQuery } from 'querystring';
-import { parse, stringify } from 'qs';
 import { HTTPError } from 'koajax';
 import {
   GetServerSideProps,
@@ -123,12 +121,4 @@ export function withTranslation<
       RouteProps<I> & InferGetServerSidePropsType<F>
     >;
   };
-}
-
-export function mergeQuery(path: string, ...data: Record<string, any>[]) {
-  const [route, query] = path.split('?');
-
-  return `${route}?${stringify(merge(parse(query), ...data), {
-    encodeValuesOnly: true,
-  })}`;
 }

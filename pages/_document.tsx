@@ -35,21 +35,16 @@ gtag('config', 'G-MS73CZKMM3');
 
         <link
           rel="stylesheet"
-          href="https://unpkg.com/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+          href="https://unpkg.com/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
         />
         <link
           rel="stylesheet"
-          href="https://unpkg.com/idea-react@1.0.0-alpha.0/dist/index.css"
-        />
-        <link
-          rel="stylesheet"
-          href="https://unpkg.com/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
+          href="https://unpkg.com/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
         />
         <link
           rel="stylesheet"
           href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
         />
-        <script src="https://unpkg.com/cookie-store@3.0.0/index.js" />
       </Head>
 
       <body>

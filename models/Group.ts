@@ -1,4 +1,3 @@
-import { isEmpty } from 'lodash';
 import {
   BiDataTable,
   makeSimpleFilter,
@@ -8,6 +7,7 @@ import {
   TableRecordList,
 } from 'mobx-lark';
 import { NewData } from 'mobx-restful';
+import { isEmpty } from 'web-utility';
 
 import { MAIN_BASE_ID } from '../pages/api/lark/core';
 import { larkClient } from './Base';
