@@ -30,7 +30,8 @@ export const fileBaseURI = blobClient.baseURI + 'file';
 
 export const blobURLOf = (value: TableCellValue) =>
   value instanceof Array
-    ? typeof value[0] === 'object' && 'file_token' in value[0]
+    ? typeof value[0] === 'object' &&
+      ('file_token' in value[0] || 'attachmentToken' in value[0])
       ? `${fileBaseURI}/${value[0].name}`
       : ''
     : '';

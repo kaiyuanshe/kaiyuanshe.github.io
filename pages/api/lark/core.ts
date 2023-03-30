@@ -2,12 +2,6 @@ import { LarkApp, LarkData } from 'mobx-lark';
 
 import { safeAPI } from '../base';
 
-export type TableCellAttachment = Record<
-  'id' | 'attachmentToken' | 'mimeType' | 'name',
-  string
-> &
-  Record<'height' | 'size' | 'timeStamp' | 'width', number>;
-
 export const LARK_APP_ID = process.env.LARK_APP_ID!,
   LARK_APP_SECRET = process.env.LARK_APP_SECRET!,
   MAIN_BASE_ID = process.env.NEXT_PUBLIC_MAIN_BASE_ID!;

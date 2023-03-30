@@ -33,16 +33,16 @@
     "react-editor-js": "^2.1.0",
     "react-leaflet": "^3.2.5",
     "web-utility": "^4.0.0",
-    "webpack": "^5.76.3"
+    "webpack": "^5.77.0"
   },
   "devDependencies": {
     "@types/leaflet": "^1.9.3",
     "@types/marked": "^4.0.8",
-    "@types/node": "^16.18.21",
+    "@types/node": "^16.18.23",
     "@types/qs": "^6.9.7",
-    "@types/react": "^17.0.53",
+    "@types/react": "^17.0.55",
     "@types/react-dom": "^17.0.19",
-    "eslint": "^8.36.0",
+    "eslint": "^8.37.0",
     "eslint-config-next": "^12.3.4",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.0",
