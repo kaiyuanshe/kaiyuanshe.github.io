@@ -17,8 +17,8 @@ export const AgendaCard: FC<Agenda> = ({
       {(mentorAvatars as unknown as TableCellAttachment[])?.map(file => (
         <Card.Img
           key={file.attachmentToken}
-          style={{height:'400px'}}
-          className='object-fit-cover'
+          style={{ height: '25rem' }}
+          className="object-fit-cover"
           loading="lazy"
           src={blobURLOf([file])}
         />
