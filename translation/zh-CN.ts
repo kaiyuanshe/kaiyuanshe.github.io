@@ -16,6 +16,7 @@ export default {
   activity_map: '活动地图',
 
   // Main Navigator
+  about_us: '关于我们',
   our_blogs: '开源文库',
   our_members: '正式成员',
   our_community_structure: '组织机构',

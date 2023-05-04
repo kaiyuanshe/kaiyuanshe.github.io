@@ -16,6 +16,7 @@ export default {
   activity_map: '活動地圖',
 
   // Main Navigator
+  about_us: '關於我們',
   our_blogs: '開源文庫',
   our_members: '正式成員',
   our_community_structure: '組織機構',

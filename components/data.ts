@@ -26,6 +26,10 @@ export const TimeOption: Pick<
 
 export const MainRoutes = (): Link[] => [
   {
+    title: t('about_us'),
+    path: 'https://kaiyuanshe.feishu.cn/wiki/wikcn749HAOCD2dwaNq4dOC67db',
+  },
+  {
     title: t('our_members'),
     subs: [
       { title: t('our_members'), path: '/members' },

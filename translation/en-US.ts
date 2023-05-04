@@ -16,6 +16,7 @@ export default {
   activity_map: 'Activity Map',
 
   // Main Navigator
+  about_us: 'About Us',
   our_blogs: 'Our blogs',
   our_members: 'Our members',
   our_community_structure: 'Our community structure',
@@ -26,7 +27,7 @@ export default {
   open_source_mirror: 'Open-source mirror',
 
   no_more: 'no more',
-  load_more: 'load more……',
+  load_more: 'load more...',
   organization_member: 'Organization member',
   council: 'Council',
   organization_of_open_source_society: 'Organization of Open Source Society',

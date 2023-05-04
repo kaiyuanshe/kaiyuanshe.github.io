@@ -1,17 +1,18 @@
+import { Icon } from 'idea-react';
+import { observer } from 'mobx-react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import { observer } from 'mobx-react';
 import { FC } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
-import { Icon } from 'idea-react';
+import { Col, Container, Row } from 'react-bootstrap';
 
 import { MainRoutes } from '../components/data';
 import MainNav from '../components/MainNav';
+import { i18n } from '../models/Translation';
 import '../styles/globals.less';
 import { social } from './api/home';
 import { DefaultImage } from './api/lark/file/[id]';
 
-const Name = process.env.NEXT_PUBLIC_SITE_NAME!;
+const { t } = i18n;
 
 const AppShell: FC<AppProps> = observer(({ Component, pageProps }) => (
   <>
@@ -19,7 +20,7 @@ const AppShell: FC<AppProps> = observer(({ Component, pageProps }) => (
       <meta name="viewport" content="width=device-width, initial-scale=1" />
     </Head>
 
-    <MainNav title={Name} logo={DefaultImage} links={MainRoutes()} />
+    <MainNav title={t('KaiYuanShe')} logo={DefaultImage} links={MainRoutes()} />
 
     <div className="mt-5 pt-4 mainContent">
       <Component {...pageProps} />
