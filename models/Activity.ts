@@ -1,7 +1,9 @@
-import { computed, observable } from 'mobx';
+import { action, computed, observable } from 'mobx';
 import {
   BiDataTable,
   BiTable,
+  BiTableItem,
+  BiTableView,
   makeSimpleFilter,
   normalizeText,
   TableCellLink,
@@ -9,10 +11,14 @@ import {
   TableCellValue,
   TableRecordList,
 } from 'mobx-lark';
-import { NewData, toggle } from 'mobx-restful';
+import { Filter, NewData, toggle } from 'mobx-restful';
 import { cache, countBy, Hour, isEmpty } from 'web-utility';
 
-import { MAIN_BASE_ID } from '../pages/api/lark/core';
+import {
+  LarkFormData,
+  MAIN_BASE_ID,
+  TableFormViewItem,
+} from '../pages/api/lark/core';
 import { Agenda, AgendaModel } from './Agenda';
 import { larkClient } from './Base';
 
@@ -34,8 +40,47 @@ export type Activity = Record<
 
 export type ActivityStatistic = Record<'city', Record<string, number>>;
 
+export class ActivityViewModel extends BiTableView() {
+  client = larkClient;
+}
+
 export class ActivityTableModel extends BiTable<Agenda>() {
   client = larkClient;
+
+  @observable
+  formMap = {} as Record<string, TableFormViewItem[]>;
+
+  async *loadFormStream() {
+    for (const { table_id, name } of this.allItems) {
+      const views = await new ActivityViewModel(this.id, table_id).getAll(),
+        forms: TableFormViewItem[] = [];
+
+      for (const { view_type, view_id } of views)
+        if (view_type === 'form') {
+          const { body } = await this.client.get<LarkFormData>(
+            `${this.baseURI}/${table_id}/forms/${view_id}`,
+          );
+          forms.push(body!.data.form);
+        }
+      yield [name, forms] as const;
+    }
+  }
+
+  @action
+  @toggle('downloading')
+  // @ts-ignore
+  async getAll(filter?: Filter<BiTableItem>, pageSize?: number) {
+    // @ts-ignore
+    const tables = await super.getAll(filter, pageSize);
+
+    const formList: (readonly [string, TableFormViewItem[]])[] = [];
+
+    for await (const item of this.loadFormStream()) formList.push(item);
+
+    this.formMap = Object.fromEntries(formList);
+
+    return tables;
+  }
 }
 
 export class ActivityModel extends BiDataTable<Activity>() {
@@ -48,6 +93,9 @@ export class ActivityModel extends BiDataTable<Activity>() {
   requiredKeys = ['name', 'startTime', 'image'] as const;
 
   sort = { startTime: 'DESC' } as const;
+
+  @observable
+  formMap = {} as ActivityTableModel['formMap'];
 
   currentAgenda?: AgendaModel;
 
@@ -62,8 +110,15 @@ export class ActivityModel extends BiDataTable<Activity>() {
       ) || [];
     const { startTime } = list[0] || {},
       { endTime } = list.slice(-1)[0] || {};
+    const { Person, Agenda, File } = this.formMap;
 
-    return { startTime, endTime };
+    return {
+      startTime,
+      endTime,
+      personForm: Person[0]?.shared_url,
+      agendaForm: Agenda[0]?.shared_url,
+      fileForm: File[0]?.shared_url,
+    };
   }
 
   normalize({
@@ -88,6 +143,7 @@ export class ActivityModel extends BiDataTable<Activity>() {
 
       await table.getOne('Agenda', AgendaModel);
 
+      this.formMap = table.formMap;
       this.currentAgenda = table.currentDataTable as AgendaModel;
     }
     return this.currentOne;

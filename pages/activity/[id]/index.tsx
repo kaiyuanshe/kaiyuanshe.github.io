@@ -11,6 +11,7 @@ import PageHead from '../../../components/PageHead';
 import { Activity, ActivityModel } from '../../../models/Activity';
 import { AgendaModel } from '../../../models/Agenda';
 import { blobURLOf } from '../../../models/Base';
+import { i18n } from '../../../models/Translation';
 import { withErrorLog } from '../../api/base';
 import styles from './index.module.less';
 
@@ -34,6 +35,8 @@ export const getServerSideProps = withErrorLog<
     props: JSON.parse(JSON.stringify({ activity, currentMeta, agendaGroup })),
   };
 });
+
+const { t } = i18n;
 
 const MainForumName = '主论坛';
 
@@ -67,33 +70,30 @@ export default class ActivityDetailPage extends PureComponent<
   };
 
   renderButtonBar() {
-    const { currentMeta } = this.props;
-    const passed = +new Date(+currentMeta.endTime!) > Date.now();
+    const { startTime, personForm, agendaForm, fileForm } =
+      this.props.currentMeta;
+    const passed = +new Date(+startTime!) <= Date.now();
 
     return (
       <div className="d-flex justify-content-center gap-3 my-3">
         <Button
           variant="success"
           target="_blank"
-          href="https://kaiyuanshe.feishu.cn/share/base/form/shrcnPNRxbyAxzbXX0JI6fN8pfW"
+          href={personForm}
           disabled={passed}
         >
-          志愿者报名
+          {t('register_volunteer')}
         </Button>
-        <Button
-          target="_blank"
-          href="https://kaiyuanshe.feishu.cn/share/base/form/shrcnerBXR9QS9f7FzSOWjb5M1b"
-          disabled={passed}
-        >
-          议题征集
+        <Button target="_blank" href={agendaForm} disabled={passed}>
+          {t('submit_agenda')}
         </Button>
         <Button
           variant="warning"
           target="_blank"
-          href="https://kaiyuanshe.feishu.cn/share/base/form/shrcnDiXEqJIm09pXWjfGBy22hb"
+          href={fileForm}
           disabled={passed}
         >
-          议题课件提交
+          {t('submit_agenda_file')}
         </Button>
       </div>
     );

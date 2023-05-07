@@ -61,14 +61,21 @@ export default {
   member: 'member',
   department: 'department',
   organization_short: 'organization',
-
-  reset: 'reset',
-  altogether: 'altogether',
-  companies: 'companies',
-  filter: 'filter',
-  wonderful_activity: 'Wonderful activity',
-  member_x: 'member X',
   activity: 'activity',
+
+  // Organization page
+  reset: 'reset',
+  total_x_organizations: ({ totalCount }: { totalCount: number }) =>
+    `total ${totalCount} organizations`,
+  filter: 'filter',
+
+  // Activity pages
+  wonderful_activity: 'Wonderful activity',
+  register_volunteer: 'Register Volunteer',
+  submit_agenda: 'Submit Agenda',
+  submit_agenda_file: 'Submit Agenda File',
+
+  member_x: 'member X',
 
   // Cooperation Page
   主办单位: 'Hosted by',
