@@ -60,14 +60,21 @@ export default {
   member: '成員',
   department: '部門',
   organization_short: '組織',
-
-  reset: '重置',
-  altogether: '共',
-  companies: '家',
-  filter: '篩選',
-  wonderful_activity: '精彩活動',
-  member_x: '成員X',
   activity: '活動',
+
+  // Organization page
+  reset: '重置',
+  total_x_organizations: ({ totalCount }: { totalCount: number }) =>
+    `共 ${totalCount} 家`,
+  filter: '篩選',
+
+  // Activity pages
+  wonderful_activity: '精彩活動',
+  register_volunteer: '義工報名',
+  submit_agenda: '議題征集',
+  submit_agenda_file: '議題文檔提交',
+
+  member_x: '成員X',
 
   // Cooperation Page
   主办单位: '主辦單位',

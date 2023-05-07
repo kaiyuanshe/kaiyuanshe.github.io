@@ -62,7 +62,7 @@ export class OpenSourceMap extends PureComponent {
               </Badge>
             ))}
           </div>
-          {t('altogether')} {totalCount} {t('companies')}
+          {t('total_x_organizations', { totalCount })}
           <Button
             variant="warning"
             size="sm"

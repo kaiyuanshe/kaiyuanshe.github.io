@@ -11,6 +11,13 @@ export const lark = new LarkApp({
   secret: LARK_APP_SECRET,
 });
 
+export interface TableFormViewItem
+  extends Record<'name' | 'description' | 'shared_url', string>,
+    Record<'shared' | 'submit_limit_once', boolean> {
+  shared_limit: 'tenant_editable';
+}
+export type LarkFormData = LarkData<{ form: TableFormViewItem }>;
+
 export const proxyLark = <T extends LarkData>(
   dataFilter?: (path: string, data: T) => T,
 ) =>
