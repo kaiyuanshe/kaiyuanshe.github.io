@@ -25,6 +25,7 @@ export default {
   open_source_treasure_box: '開源百寶箱',
   Web_polyfill_CDN: 'Web 標準補丁 CDN',
   open_source_mirror: '開源鏡像站',
+  license_tool: '開源協議選擇器',
 
   no_more: '沒有更多',
   load_more: '加載更多……',

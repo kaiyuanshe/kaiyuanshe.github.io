@@ -49,6 +49,7 @@ export const MainRoutes = (): Link[] => [
       { title: t('china_open_source_landscape'), path: '/organization' },
       { title: t('Web_polyfill_CDN'), path: 'https://polyfill.kaiyuanshe.cn/' },
       { title: t('open_source_mirror'), path: 'http://mirror.kaiyuanshe.cn/' },
+      { title: t('license_tool'), path: '/license-tool/' },
     ],
   },
 ];

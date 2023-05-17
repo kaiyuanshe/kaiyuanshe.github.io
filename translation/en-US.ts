@@ -25,6 +25,7 @@ export default {
   open_source_treasure_box: 'Treasure-box',
   Web_polyfill_CDN: 'Web polyfill CDN',
   open_source_mirror: 'Open-source mirror',
+  license_tool: 'License tool',
 
   no_more: 'no more',
   load_more: 'load more...',
