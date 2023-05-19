@@ -53,7 +53,7 @@ const LicenseTool: NextPage = () => {
 
     const tempLists = filterLicenses(newObject);
 
-    setFilterOption({ ...newObject });
+    setFilterOption(newObject);
 
     setLists(tempLists);
 
