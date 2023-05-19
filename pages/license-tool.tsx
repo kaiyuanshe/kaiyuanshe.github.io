@@ -39,9 +39,6 @@ const LicenseTool: NextPage = () => {
     'marketingEndorsement',
   ];
 
-  // rome-ignore lint/style/useConst: <explanation>
-  let choose: string | null = null;
-
   const now = Math.ceil(100 / chooseSteps.length);
 
   useEffect(() => {
@@ -49,11 +46,7 @@ const LicenseTool: NextPage = () => {
   }, [chooseSteps.length, stepIndex]);
 
   const handleSelect = (value: string | null) => {
-    const choice = value
-      ? ['0', '1', '-1'].includes(value)
-        ? Number(value)
-        : value
-      : 0;
+    const choice = value ? +value : 0;
 
     const key = chooseSteps[keyIndex];
     const newObject = { ...filterOption, [key]: choice };
@@ -84,8 +77,7 @@ const LicenseTool: NextPage = () => {
       </div>
       <div>
         {licenseTips[chooseSteps[keyIndex]].map(({ text }) => (
-          // eslint-disable-next-line react/jsx-key
-          <p>{text}</p>
+          <p key={text}>{text}</p>
         ))}
       </div>
 
@@ -102,9 +94,9 @@ const LicenseTool: NextPage = () => {
           <Dropdown.Toggle
             disabled={disableDropdown}
             id="dropdown-basic-button"
-            title={choose || '请选择'}
+            title={'请选择'}
           >
-            {choose || '请选择'}
+            {'请选择'}
           </Dropdown.Toggle>
           <Dropdown.Menu>
             {optionValue[chooseSteps[keyIndex]].map(({ value, text }) => (
