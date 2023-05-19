@@ -1,8 +1,6 @@
 import { FeatureAttitude, InfectionRange } from 'license-filter';
 
-type OptionValue = {
-  [property: string]: { value: number; text: string }[];
-};
+type OptionValue = Record<string, { value: number; text: string }[]>;
 
 type LicenseTips = {
   [property: string]: { text: string }[];
@@ -119,6 +117,6 @@ const licenseTips: LicenseTips = {
   ],
 };
 
-const licenseKeyInfo = {};
+export const licenseKeyInfo = {};
 
-export { optionValue, licenseTips, licenseKeyInfo };
+export { optionValue, licenseTips };
