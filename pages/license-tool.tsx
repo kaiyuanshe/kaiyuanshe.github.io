@@ -111,7 +111,6 @@ const LicenseTool: NextPage = () => {
       <div className="mt-3">
         <Accordion defaultActiveKey="0">
           {lists.map(({ license, score }, index) => (
-            // eslint-disable-next-line react/jsx-key
             <Accordion.Item key={license.name} eventKey={index + 1 + ''}>
               <Accordion.Header>
                 {license.name} 评分: {score * 10}
