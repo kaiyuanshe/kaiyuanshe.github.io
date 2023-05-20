@@ -29,7 +29,7 @@ const LicenseTool: NextPage = () => {
   const [stepIndex, setStepIndex] = useState(0);
   const [keyIndex, setKeyIndex] = useState(0);
   const [filterOption, setFilterOption] = useState({});
-  const [disableDropdown, setDisableDropdown] = useState(false);
+  const [disableChoose, setDisableChoose] = useState(false);
   const [lists, setLists] = useState<List[]>([]);
 
   const chooseSteps: string[] = [
@@ -48,10 +48,10 @@ const LicenseTool: NextPage = () => {
   const now = Math.ceil(100 / chooseSteps.length);
 
   useEffect(() => {
-    if (stepIndex === chooseSteps.length) setDisableDropdown(true);
+    if (stepIndex === chooseSteps.length) setDisableChoose(true);
   }, [chooseSteps.length, stepIndex]);
 
-  const handleSelect = (value: string | null) => {
+  const handleChoose = (value: string | null) => {
     const choice = value ? +value : 0;
     console.log('handleSelect', choice);
     const key = chooseSteps[keyIndex];
@@ -102,7 +102,8 @@ const LicenseTool: NextPage = () => {
               key={value}
               value={value}
               id={`tb-${value}`}
-              onClick={e => handleSelect(e.currentTarget.value)}
+              disabled={disableChoose}
+              onClick={e => handleChoose(e.currentTarget.value)}
             >
               {text}
             </ToggleButton>
