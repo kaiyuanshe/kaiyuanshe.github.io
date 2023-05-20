@@ -49,7 +49,7 @@ const LicenseTool: NextPage = () => {
 
   useEffect(() => {
     if (stepIndex === chooseSteps.length) setDisableChoose(true);
-  }, [chooseSteps.length, stepIndex]);
+  }, [stepIndex]);
 
   const handleChoose = (value: string | null) => {
     const choice = value ? +value : 0;
