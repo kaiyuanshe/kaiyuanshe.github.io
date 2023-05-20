@@ -25,25 +25,25 @@ interface List {
   score: number;
 }
 
+const chooseSteps: string[] = [
+  'popularity',
+  'reuseCondition',
+  'infectionIntensity',
+  'infectionRange',
+  'jurisdiction',
+  'patentStatement',
+  'patentRetaliation',
+  'enhancedAttribution',
+  'privacyLoophole',
+  'marketingEndorsement',
+];
+
 const LicenseTool: NextPage = () => {
   const [stepIndex, setStepIndex] = useState(0);
   const [keyIndex, setKeyIndex] = useState(0);
   const [filterOption, setFilterOption] = useState({});
   const [disableChoose, setDisableChoose] = useState(false);
   const [lists, setLists] = useState<List[]>([]);
-
-  const chooseSteps: string[] = [
-    'popularity',
-    'reuseCondition',
-    'infectionIntensity',
-    'infectionRange',
-    'jurisdiction',
-    'patentStatement',
-    'patentRetaliation',
-    'enhancedAttribution',
-    'privacyLoophole',
-    'marketingEndorsement',
-  ];
 
   const now = Math.ceil(100 / chooseSteps.length);
 
@@ -77,9 +77,7 @@ const LicenseTool: NextPage = () => {
       </p>
       <p className="text-warning">切记：必须阅读并理解您选择的许可协议。</p>
       <div>
-        <p>
-          <h2>筛选条件</h2>
-        </p>
+        <h2>筛选条件</h2>
       </div>
       <div>
         {licenseTips[chooseSteps[keyIndex]].map(({ text }) => (
@@ -103,7 +101,7 @@ const LicenseTool: NextPage = () => {
               value={value}
               id={`tb-${value}`}
               disabled={disableChoose}
-              onClick={e => handleChoose(e.currentTarget.value)}
+              onClick={({ currentTarget: { value } }) => handleChoose(value)}
             >
               {text}
             </ToggleButton>
