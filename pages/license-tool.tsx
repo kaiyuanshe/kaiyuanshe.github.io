@@ -140,21 +140,25 @@ function renderInfo({ link, feature }: License) {
       [FeatureAttitude.Undefined]: '不明确',
     }[attitude] || '不明确');
 
+  const judgeInfectionRange = (infectionRange: InfectionRange | undefined) => {
+    if (infectionRange === undefined) return '不明确';
+
+    return {
+      [InfectionRange.Library]: 'Library',
+      [InfectionRange.File]: 'File',
+      [InfectionRange.Module]: 'Module',
+    }[infectionRange];
+  };
+
   return (
     <>
       <ul>
-        <li>{`流行程度:   ${judge(feature.popularity)}`}</li>
-        <li>{`复用条件: ${judge(feature.reuseCondition)}`}</li>
-        <li>{`传染强度: ${judge(feature.infectionIntensity)}`}</li>
-        {
-          <p>{`传染范围: ${
-            feature.infectionRange
-              ? feature.infectionRange in InfectionRangeKey
-                ? InfectionRangeKey[feature.infectionRange]
-                : '不明确'
-              : '不明确'
-          }`}</p>
-        }
+        <li>流行程度: {judge(feature.popularity)}</li>
+        <li>复用条件: {judge(feature.reuseCondition)}</li>
+        <li>传染强度: {judge(feature.infectionIntensity)}</li>
+
+        <li>传染范围: {judgeInfectionRange(feature.infectionRange)}</li>
+
         <li>法律管辖: {judge(feature.jurisdiction)}</li>
         <li>专利声明: {judge(feature.patentStatement)}</li>
         <li>专利报复: {judge(feature.patentRetaliation)}</li>
