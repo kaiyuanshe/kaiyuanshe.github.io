@@ -53,7 +53,7 @@ const LicenseTool: NextPage = () => {
 
   const handleChoose = (value: string | null) => {
     const choice = value ? +value : 0;
-    console.log('handleSelect', choice);
+
     const key = chooseSteps[keyIndex];
     const newObject = { ...filterOption, [key]: choice };
 
