@@ -8,7 +8,13 @@ import {
   License,
 } from 'license-filter';
 
-import { ProgressBar, Dropdown, Accordion } from 'react-bootstrap';
+import {
+  ProgressBar,
+  Dropdown,
+  Accordion,
+  ButtonGroup,
+  ToggleButton,
+} from 'react-bootstrap';
 
 import { optionValue, licenseTips } from '../components/License/helper';
 
@@ -47,7 +53,7 @@ const LicenseTool: NextPage = () => {
 
   const handleSelect = (value: string | null) => {
     const choice = value ? +value : 0;
-
+    console.log('handleSelect', choice);
     const key = chooseSteps[keyIndex];
     const newObject = { ...filterOption, [key]: choice };
 
@@ -90,22 +96,18 @@ const LicenseTool: NextPage = () => {
       </div>
       <br />
       <div>
-        <Dropdown onSelect={handleSelect}>
-          <Dropdown.Toggle
-            disabled={disableDropdown}
-            id="dropdown-basic-button"
-            title={'请选择'}
-          >
-            {'请选择'}
-          </Dropdown.Toggle>
-          <Dropdown.Menu>
-            {optionValue[chooseSteps[keyIndex]].map(({ value, text }) => (
-              <Dropdown.Item key={value} eventKey={value}>
-                {text}
-              </Dropdown.Item>
-            ))}
-          </Dropdown.Menu>
-        </Dropdown>
+        <ButtonGroup className="mb-2">
+          {optionValue[chooseSteps[keyIndex]].map(({ value, text }) => (
+            <ToggleButton
+              key={value}
+              value={value}
+              id={`tb-${value}`}
+              onClick={e => handleSelect(e.currentTarget.value)}
+            >
+              {text}
+            </ToggleButton>
+          ))}
+        </ButtonGroup>
       </div>
 
       <div className="mt-3">
