@@ -156,12 +156,12 @@ function renderInfo({ link, feature }: License) {
               : '不明确'
           }`}</p>
         }
-        <li>{`法律管辖: ${judge(feature.jurisdiction)}`}</li>
-        <li>{`专利声明: ${judge(feature.patentStatement)}`}</li>
-        <li>{`专利报复: ${judge(feature.patentRetaliation)}`}</li>
-        <li>{`增强署名: ${judge(feature.enhancedAttribution)}`}</li>
-        <li>{`隐私漏洞: ${judge(feature.privacyLoophole)}`}</li>
-        <li>{`营销背书：${judge(feature.marketingEndorsement)}`}</li>
+        <li>法律管辖: {judge(feature.jurisdiction)}</li>
+        <li>专利声明: {judge(feature.patentStatement)}</li>
+        <li>专利报复: {judge(feature.patentRetaliation)}</li>
+        <li>增强署名: {judge(feature.enhancedAttribution)}</li>
+        <li>隐私漏洞: {judge(feature.privacyLoophole)}</li>
+        <li>营销背书：{judge(feature.marketingEndorsement)}</li>
       </ul>
       <Button size="sm" target="_blank" href={link}>
         协议详情
