@@ -10,7 +10,6 @@ import {
 
 import {
   ProgressBar,
-  Dropdown,
   Accordion,
   ButtonGroup,
   ToggleButton,
