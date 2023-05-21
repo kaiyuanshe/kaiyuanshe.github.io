@@ -9,6 +9,7 @@ import {
 } from 'license-filter';
 
 import {
+  Container,
   ProgressBar,
   Accordion,
   ButtonGroup,
@@ -70,7 +71,7 @@ const LicenseTool: NextPage = () => {
   };
 
   return (
-    <div className="py-5">
+    <Container className="py-5">
       <PageHead title="Open-source License selector" />
       <h1>开源许可证选择器</h1>
       <p>
@@ -122,7 +123,7 @@ const LicenseTool: NextPage = () => {
           ))}
         </Accordion>
       </div>
-    </div>
+    </Container>
   );
 };
 
