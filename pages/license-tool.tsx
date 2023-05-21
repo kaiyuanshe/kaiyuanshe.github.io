@@ -81,48 +81,41 @@ const LicenseTool: NextPage = () => {
 
       <h2>筛选条件</h2>
 
-      <div>
-        {licenseTips[chooseSteps[keyIndex]].map(({ text }) => (
-          <p key={text}>{text}</p>
+      {licenseTips[chooseSteps[keyIndex]].map(({ text }) => (
+        <p key={text}>{text}</p>
+      ))}
+
+      <ProgressBar
+        className="mb-3"
+        variant="info"
+        now={(keyIndex + 1) * now}
+        label={`第${keyIndex + 1}步`}
+      />
+
+      <ButtonGroup className="mb-2">
+        {optionValue[chooseSteps[keyIndex]].map(({ value, text }) => (
+          <ToggleButton
+            key={value}
+            value={value}
+            id={`tb-${value}`}
+            disabled={disableChoose}
+            onClick={({ currentTarget: { value } }) => handleChoose(value)}
+          >
+            {text}
+          </ToggleButton>
         ))}
-      </div>
+      </ButtonGroup>
 
-      <div className="mb-3">
-        <ProgressBar
-          variant="info"
-          now={(keyIndex + 1) * now}
-          label={`第${keyIndex + 1}步`}
-        />
-      </div>
-
-      <div>
-        <ButtonGroup className="mb-2">
-          {optionValue[chooseSteps[keyIndex]].map(({ value, text }) => (
-            <ToggleButton
-              key={value}
-              value={value}
-              id={`tb-${value}`}
-              disabled={disableChoose}
-              onClick={({ currentTarget: { value } }) => handleChoose(value)}
-            >
-              {text}
-            </ToggleButton>
-          ))}
-        </ButtonGroup>
-      </div>
-
-      <div className="mt-3">
-        <Accordion defaultActiveKey="0">
-          {lists.map(({ license, score }, index) => (
-            <Accordion.Item key={license.name} eventKey={index + 1 + ''}>
-              <Accordion.Header>
-                {license.name} 评分: {score * 10}
-              </Accordion.Header>
-              <Accordion.Body>{renderInfo(license)}</Accordion.Body>
-            </Accordion.Item>
-          ))}
-        </Accordion>
-      </div>
+      <Accordion defaultActiveKey="0">
+        {lists.map(({ license, score }, index) => (
+          <Accordion.Item key={license.name} eventKey={index + 1 + ''}>
+            <Accordion.Header>
+              {license.name} 评分: {score * 10}
+            </Accordion.Header>
+            <Accordion.Body>{renderInfo(license)}</Accordion.Body>
+          </Accordion.Item>
+        ))}
+      </Accordion>
     </Container>
   );
 };
