@@ -4,93 +4,37 @@ type OptionValue = Record<string, { value: number; text: string }[]>;
 
 type LicenseTips = Record<string, { text: string }[]>;
 
-const optionValue: OptionValue = {
-  popularity: [
-    { value: FeatureAttitude.Undefined, text: '两者皆可' },
-    {
-      value: FeatureAttitude.Positive,
-      text: '我需要',
-    },
-    { value: FeatureAttitude.Negative, text: '我不需要' },
-  ],
+const options: string[] = [
+  'popularity',
+  'reuseCondition',
+  'infectionIntensity',
 
-  reuseCondition: [
-    { value: FeatureAttitude.Undefined, text: '两者皆可' },
-    {
-      value: FeatureAttitude.Positive,
-      text: '我需要',
-    },
-    { value: FeatureAttitude.Negative, text: '我不需要' },
-  ],
+  'jurisdiction',
+  'patentStatement',
+  'patentRetaliation',
+  'enhancedAttribution',
+  'privacyLoophole',
+  'marketingEndorsement',
+];
 
-  infectionIntensity: [
-    { value: FeatureAttitude.Undefined, text: '两者皆可' },
+const optionValue = options.reduce((optionValue: OptionValue, option) => {
+  optionValue[option] = [
+    { value: FeatureAttitude.Undefined, text: '两者皆可同时' },
     {
       value: FeatureAttitude.Positive,
       text: '我需要',
     },
     { value: FeatureAttitude.Negative, text: '我不需要' },
-  ],
-  jurisdiction: [
-    { value: FeatureAttitude.Undefined, text: '两者皆可' },
-    {
-      value: FeatureAttitude.Positive,
-      text: '我需要',
-    },
-    { value: FeatureAttitude.Negative, text: '我不需要' },
-  ],
+  ];
+  return optionValue;
+}, {});
 
-  patentStatement: [
-    { value: FeatureAttitude.Undefined, text: '两者皆可' },
-    {
-      value: FeatureAttitude.Positive,
-      text: '我需要',
-    },
-    { value: FeatureAttitude.Negative, text: '我不需要' },
-  ],
-
-  patentRetaliation: [
-    { value: FeatureAttitude.Undefined, text: '两者皆可' },
-    {
-      value: FeatureAttitude.Positive,
-      text: '我需要',
-    },
-    { value: FeatureAttitude.Negative, text: '我不需要' },
-  ],
-  enhancedAttribution: [
-    { value: FeatureAttitude.Undefined, text: '两者皆可' },
-    {
-      value: FeatureAttitude.Positive,
-      text: '我需要',
-    },
-    { value: FeatureAttitude.Negative, text: '我不需要' },
-  ],
-
-  privacyLoophole: [
-    { value: FeatureAttitude.Undefined, text: '两者皆可' },
-    {
-      value: FeatureAttitude.Positive,
-      text: '我需要',
-    },
-    { value: FeatureAttitude.Negative, text: '我不需要' },
-  ],
-
-  marketingEndorsement: [
-    { value: FeatureAttitude.Undefined, text: '两者皆可' },
-    {
-      value: FeatureAttitude.Positive,
-      text: '我需要',
-    },
-    { value: FeatureAttitude.Negative, text: '我不需要' },
-  ],
-
-  infectionRange: [
-    { value: 0, text: '不进行要求' },
-    { value: InfectionRange.Library, text: '传染范围到库' },
-    { value: InfectionRange.File, text: '传染范围到文件' },
-    { value: InfectionRange.Module, text: '传染范围到模块' },
-  ],
-};
+optionValue.infectionRange = [
+  { value: 0, text: '不进行要求' },
+  { value: InfectionRange.Library, text: '传染范围到库' },
+  { value: InfectionRange.File, text: '传染范围到文件' },
+  { value: InfectionRange.Module, text: '传染范围到模块' },
+];
 
 const licenseTips: LicenseTips = {
   popularity: [
