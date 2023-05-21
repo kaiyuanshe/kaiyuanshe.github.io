@@ -141,13 +141,13 @@ function renderInfo({ link, feature }: License) {
     }[attitude] || '不明确');
 
   const judgeInfectionRange = (infectionRange: InfectionRange | undefined) => {
-    if (infectionRange === undefined) return '不明确';
-
-    return {
-      [InfectionRange.Library]: 'Library',
-      [InfectionRange.File]: 'File',
-      [InfectionRange.Module]: 'Module',
-    }[infectionRange];
+    infectionRange != undefined
+      ? {
+          [InfectionRange.Library]: 'Library',
+          [InfectionRange.File]: 'File',
+          [InfectionRange.Module]: 'Module',
+        }[infectionRange]
+      : '不明确';
   };
 
   return (
