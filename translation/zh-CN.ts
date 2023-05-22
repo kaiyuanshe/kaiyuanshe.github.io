@@ -102,7 +102,7 @@ export default {
   社区伙伴: '社区伙伴',
 
   //License-tool Page
-  feature_attitude_undefined: '两者皆可同时',
+  feature_attitude_undefined: '两者皆可',
   feature_attitude_positive: '我需要',
   feature_attitude_negative: '我不需要',
   infection_range_library: '传染范围到库',
