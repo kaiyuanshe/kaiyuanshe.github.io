@@ -101,6 +101,30 @@ export default {
   媒体伙伴: '媒體夥伴',
   社区伙伴: '社區夥伴',
 
+  //License-tool Page
+  feature_attitude_undefined: '兩者皆可',
+  feature_attitude_positive: '我需要',
+  feature_attitude_negative: '我不需要',
+  infection_range_library: '傳染範圍到庫',
+  infection_range_file: '傳染範圍到檔案',
+  infection_range_module: '傳染範圍到模組',
+  infection_range_undefined: '不進行要求',
+
+  tip_popularity_0:
+    '您想將結果限定為開放原始碼促進會 (OSI) 所描述的“流行並廣泛使用，或擁有廣泛社群群”的許可協議嗎？',
+  tip_popularity_1:
+    '這將以犧牲一些更冷僻但或許有用的特徵為代價來確保該許可協議成為“主流”協議。',
+  tip_reuse_condition: '您想對程式碼的重複使用設定許可條件嗎?',
+  tip_infection_intensity: '您想對程式碼的重複使用設定許可條件嗎?',
+  tip_jurisdiction: '您是否想將自己所在區域作為司法管轄區',
+  tip_patent_statement: '您是否想使用明確授予專利權的許可協議（如果有）',
+  tip_patent_retaliation: '您是否想使用包含專利報復條款的許可協議',
+  tip_enhanced_attribution: '您是否想使用指定“增強型歸屬”的許可協議',
+  tip_privacy_loophole: '您是否想使用解决“隐私漏洞”的许可协议',
+  tip_marketing_endorsement: '您是否想允許推廣的許可協議',
+  tip_infection_range:
+    '您想對修改版的哪些部分可以適用其它許可協議,有 模組級，文件級，庫接口級，不進行要求四個選擇',
+
   // Election
   election: '選舉',
   candidate: '候選人',
