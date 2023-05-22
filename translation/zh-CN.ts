@@ -101,6 +101,30 @@ export default {
   媒体伙伴: '媒体伙伴',
   社区伙伴: '社区伙伴',
 
+  //License-tool Page
+  feature_attitude_undefined: '两者皆可同时',
+  feature_attitude_positive: '我需要',
+  feature_attitude_negative: '我不需要',
+  infection_range_library: '传染范围到库',
+  infection_range_file: '传染范围到文件',
+  infection_range_module: '传染范围到模块',
+  infection_range_undefined: '不进行要求',
+
+  tip_popularity_0:
+    '您想将结果限定为开放源代码促进会 (OSI) 所描述的“流行并广泛使用，或拥有广泛社区群”的许可协议吗？',
+  tip_popularity_1:
+    '这将以牺牲一些更冷僻但或许有用的特征为代价来确保该许可协议成为“主流”协议。',
+  tip_reuse_condition: '您想对代码的重复使用设置许可条件吗?',
+  tip_infection_intensity: '您是否想选择强传染的协议？',
+  tip_jurisdiction: '您是否想将自己所在区域作为司法管辖区',
+  tip_patent_statement: '您是否想使用明确授予专利权的许可协议（如果有）',
+  tip_patent_retaliation: '您是否想使用包含专利报复条款的许可协议',
+  tip_enhanced_attribution: '您是否想使用指定“增强型归属”的许可协议',
+  tip_privacy_loophole: '您是否想使用解决“隐私漏洞”的许可协议',
+  tip_marketing_endorsement: '您是否想允许推广的许可协议',
+  tip_infection_range:
+    '您想对修改版的哪些部分可以适用其它许可协议,有 模块级，文件级，库接口级，不进行要求四个选择',
+
   // Election
   election: '选举',
   candidate: '候选人',

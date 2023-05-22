@@ -1,4 +1,6 @@
 import { FeatureAttitude, InfectionRange } from 'license-filter';
+import { i18n } from '../../models/Translation';
+const { t } = i18n;
 
 type OptionValue = Record<string, { value: number; text: string }[]>;
 
@@ -19,43 +21,43 @@ const options: string[] = [
 
 const optionValue = options.reduce((optionValue: OptionValue, option) => {
   optionValue[option] = [
-    { value: FeatureAttitude.Undefined, text: '两者皆可同时' },
+    { value: FeatureAttitude.Undefined, text: t('feature_attitude_undefined') },
     {
       value: FeatureAttitude.Positive,
-      text: '我需要',
+      text: t('feature_attitude_positive'),
     },
-    { value: FeatureAttitude.Negative, text: '我不需要' },
+    { value: FeatureAttitude.Negative, text: t('feature_attitude_negative') },
   ];
   return optionValue;
 }, {});
 
 optionValue.infectionRange = [
-  { value: 0, text: '不进行要求' },
-  { value: InfectionRange.Library, text: '传染范围到库' },
-  { value: InfectionRange.File, text: '传染范围到文件' },
-  { value: InfectionRange.Module, text: '传染范围到模块' },
+  { value: 0, text: t('infection_range_undefined') },
+  { value: InfectionRange.Library, text: t('infection_range_library') },
+  { value: InfectionRange.File, text: t('infection_range_file') },
+  { value: InfectionRange.Module, text: t('infection_range_module') },
 ];
 
 const licenseTips: LicenseTips = {
   popularity: [
     {
-      text: '您想将结果限定为开放源代码促进会 (OSI) 所描述的“流行并广泛使用，或拥有广泛社区群”的许可协议吗？',
+      text: t('tip_popularity_0'),
     },
     {
-      text: '这将以牺牲一些更冷僻但或许有用的特征为代价来确保该许可协议成为“主流”协议。',
+      text: t('tip_popularity_1'),
     },
   ],
-  reuseCondition: [{ text: '您想对代码的重复使用设置许可条件吗?' }],
-  infectionIntensity: [{ text: '您是否想选择强传染的协议？' }],
-  jurisdiction: [{ text: '您是否想将自己所在区域作为司法管辖区' }],
-  patentStatement: [{ text: '您是否想使用明确授予专利权的许可协议（如果有）' }],
-  patentRetaliation: [{ text: '您是否想使用包含专利报复条款的许可协议' }],
-  enhancedAttribution: [{ text: '您是否想使用指定“增强型归属”的许可协议' }],
-  privacyLoophole: [{ text: '您是否想使用解决“隐私漏洞”的许可协议' }],
-  marketingEndorsement: [{ text: '您是否想允许推广的许可协议' }],
+  reuseCondition: [{ text: t('tip_reuse_condition') }],
+  infectionIntensity: [{ text: t('tip_infection_intensity') }],
+  jurisdiction: [{ text: t('tip_jurisdiction') }],
+  patentStatement: [{ text: t('tip_patent_statement') }],
+  patentRetaliation: [{ text: t('tip_patent_retaliation') }],
+  enhancedAttribution: [{ text: t('tip_enhanced_attribution') }],
+  privacyLoophole: [{ text: t('tip_privacy_loophole') }],
+  marketingEndorsement: [{ text: t('tip_marketing_endorsement') }],
   infectionRange: [
     {
-      text: '您想对修改版的哪些部分可以适用其它许可协议,有 模块级，文件级，库接口级三个选择',
+      text: t('tip_infection_range'),
     },
   ],
 };
