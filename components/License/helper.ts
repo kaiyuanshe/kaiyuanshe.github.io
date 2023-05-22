@@ -40,12 +40,8 @@ optionValue.infectionRange = [
 
 const licenseTips: LicenseTips = {
   popularity: [
-    {
-      text: t('tip_popularity_0'),
-    },
-    {
-      text: t('tip_popularity_1'),
-    },
+    { text: t('tip_popularity_0') },
+    { text: t('tip_popularity_1') },
   ],
   reuseCondition: [{ text: t('tip_reuse_condition') }],
   infectionIntensity: [{ text: t('tip_infection_intensity') }],
@@ -55,11 +51,7 @@ const licenseTips: LicenseTips = {
   enhancedAttribution: [{ text: t('tip_enhanced_attribution') }],
   privacyLoophole: [{ text: t('tip_privacy_loophole') }],
   marketingEndorsement: [{ text: t('tip_marketing_endorsement') }],
-  infectionRange: [
-    {
-      text: t('tip_infection_range'),
-    },
-  ],
+  infectionRange: [{ text: t('tip_infection_range') }],
 };
 
 export { optionValue, licenseTips };
