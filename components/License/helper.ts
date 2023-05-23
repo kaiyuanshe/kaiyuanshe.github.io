@@ -19,7 +19,7 @@ const options: string[] = [
 ];
 
 const optionValue = () => {
-  const optionValue = options.reduce((optionValue: OptionValue, option) => {
+  const optionValue = options.reduce((optionValue, option) => {
     optionValue[option] = [
       {
         value: FeatureAttitude.Undefined,
@@ -35,7 +35,7 @@ const optionValue = () => {
       },
     ];
     return optionValue;
-  }, {}) as OptionValue;
+  }, {} as OptionValue);
 
   optionValue.infectionRange = [
     { value: 0, text: t('infection_range_undefined') },
@@ -47,21 +47,20 @@ const optionValue = () => {
   return optionValue;
 };
 
-const licenseTips = () =>
-  ({
-    popularity: [
-      { text: t('tip_popularity_0') },
-      { text: t('tip_popularity_1') },
-    ],
-    reuseCondition: [{ text: t('tip_reuse_condition') }],
-    infectionIntensity: [{ text: t('tip_infection_intensity') }],
-    jurisdiction: [{ text: t('tip_jurisdiction') }],
-    patentStatement: [{ text: t('tip_patent_statement') }],
-    patentRetaliation: [{ text: t('tip_patent_retaliation') }],
-    enhancedAttribution: [{ text: t('tip_enhanced_attribution') }],
-    privacyLoophole: [{ text: t('tip_privacy_loophole') }],
-    marketingEndorsement: [{ text: t('tip_marketing_endorsement') }],
-    infectionRange: [{ text: t('tip_infection_range') }],
-  } as LicenseTips);
+const licenseTips: () => LicenseTips = () => ({
+  popularity: [
+    { text: t('tip_popularity_0') },
+    { text: t('tip_popularity_1') },
+  ],
+  reuseCondition: [{ text: t('tip_reuse_condition') }],
+  infectionIntensity: [{ text: t('tip_infection_intensity') }],
+  jurisdiction: [{ text: t('tip_jurisdiction') }],
+  patentStatement: [{ text: t('tip_patent_statement') }],
+  patentRetaliation: [{ text: t('tip_patent_retaliation') }],
+  enhancedAttribution: [{ text: t('tip_enhanced_attribution') }],
+  privacyLoophole: [{ text: t('tip_privacy_loophole') }],
+  marketingEndorsement: [{ text: t('tip_marketing_endorsement') }],
+  infectionRange: [{ text: t('tip_infection_range') }],
+});
 
 export { optionValue, licenseTips };
