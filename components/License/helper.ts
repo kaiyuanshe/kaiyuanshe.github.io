@@ -10,7 +10,6 @@ const options: string[] = [
   'popularity',
   'reuseCondition',
   'infectionIntensity',
-  // 'infectionRange',
   'jurisdiction',
   'patentStatement',
   'patentRetaliation',
@@ -19,27 +18,24 @@ const options: string[] = [
   'marketingEndorsement',
 ];
 
-const optionValue: () => OptionValue = () => {
-  const optionValue: OptionValue = options.reduce(
-    (optionValue: OptionValue, option) => {
-      optionValue[option] = [
-        {
-          value: FeatureAttitude.Undefined,
-          text: t('feature_attitude_undefined'),
-        },
-        {
-          value: FeatureAttitude.Positive,
-          text: t('feature_attitude_positive'),
-        },
-        {
-          value: FeatureAttitude.Negative,
-          text: t('feature_attitude_negative'),
-        },
-      ];
-      return optionValue;
-    },
-    {},
-  );
+const optionValue = () => {
+  const optionValue = options.reduce((optionValue: OptionValue, option) => {
+    optionValue[option] = [
+      {
+        value: FeatureAttitude.Undefined,
+        text: t('feature_attitude_undefined'),
+      },
+      {
+        value: FeatureAttitude.Positive,
+        text: t('feature_attitude_positive'),
+      },
+      {
+        value: FeatureAttitude.Negative,
+        text: t('feature_attitude_negative'),
+      },
+    ];
+    return optionValue;
+  }, {}) as OptionValue;
 
   optionValue.infectionRange = [
     { value: 0, text: t('infection_range_undefined') },
@@ -51,22 +47,21 @@ const optionValue: () => OptionValue = () => {
   return optionValue;
 };
 
-const licenseTips: () => LicenseTips = () => ({
-  popularity: [
-    { text: t('tip_popularity_0') },
-    { text: t('tip_popularity_1') },
-  ],
-  reuseCondition: [{ text: t('tip_reuse_condition') }],
-  infectionIntensity: [{ text: t('tip_infection_intensity') }],
-  jurisdiction: [{ text: t('tip_jurisdiction') }],
-  patentStatement: [{ text: t('tip_patent_statement') }],
-  patentRetaliation: [{ text: t('tip_patent_retaliation') }],
-  enhancedAttribution: [{ text: t('tip_enhanced_attribution') }],
-  privacyLoophole: [{ text: t('tip_privacy_loophole') }],
-  marketingEndorsement: [{ text: t('tip_marketing_endorsement') }],
-  infectionRange: [{ text: t('tip_infection_range') }],
-});
-
-console.log('licenseTips helper', licenseTips);
+const licenseTips = () =>
+  ({
+    popularity: [
+      { text: t('tip_popularity_0') },
+      { text: t('tip_popularity_1') },
+    ],
+    reuseCondition: [{ text: t('tip_reuse_condition') }],
+    infectionIntensity: [{ text: t('tip_infection_intensity') }],
+    jurisdiction: [{ text: t('tip_jurisdiction') }],
+    patentStatement: [{ text: t('tip_patent_statement') }],
+    patentRetaliation: [{ text: t('tip_patent_retaliation') }],
+    enhancedAttribution: [{ text: t('tip_enhanced_attribution') }],
+    privacyLoophole: [{ text: t('tip_privacy_loophole') }],
+    marketingEndorsement: [{ text: t('tip_marketing_endorsement') }],
+    infectionRange: [{ text: t('tip_infection_range') }],
+  } as LicenseTips);
 
 export { optionValue, licenseTips };
