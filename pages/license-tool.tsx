@@ -120,12 +120,6 @@ const LicenseTool: FC = observer(() => {
 });
 
 function renderInfo({ link, feature }: License) {
-  const InfectionRangeKey = {
-    [InfectionRange.Library]: 'Library',
-    [InfectionRange.File]: 'File',
-    [InfectionRange.Module]: 'Module',
-  };
-
   const judge = (attitude: FeatureAttitude) =>
     ({
       [FeatureAttitude.Positive]: 'Yes',
