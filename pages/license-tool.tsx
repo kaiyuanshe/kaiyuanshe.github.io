@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import type { NextPage } from 'next';
+import { useState, useEffect, FC } from 'react';
+import { observer } from 'mobx-react';
 
 import {
   FeatureAttitude,
@@ -19,8 +19,7 @@ import {
 
 import PageHead from '../components/PageHead';
 import { optionValue, licenseTips } from '../components/License/helper';
-
-import styles from '../styles/Home.module.less';
+console.log('licenseTips', licenseTips);
 
 interface List {
   license: License;
@@ -40,7 +39,7 @@ const chooseSteps: string[] = [
   'marketingEndorsement',
 ];
 
-const LicenseTool: NextPage = () => {
+const LicenseTool: FC = observer(() => {
   const [stepIndex, setStepIndex] = useState(0);
   const [keyIndex, setKeyIndex] = useState(0);
   const [filterOption, setFilterOption] = useState({});
@@ -81,7 +80,7 @@ const LicenseTool: NextPage = () => {
 
       <h2>筛选条件</h2>
 
-      {licenseTips[chooseSteps[keyIndex]].map(({ text }) => (
+      {licenseTips()[chooseSteps[keyIndex]].map(({ text }) => (
         <p key={text}>{text}</p>
       ))}
 
@@ -93,7 +92,7 @@ const LicenseTool: NextPage = () => {
       />
 
       <ButtonGroup className="mb-2">
-        {optionValue[chooseSteps[keyIndex]].map(({ value, text }) => (
+        {optionValue()[chooseSteps[keyIndex]].map(({ value, text }) => (
           <ToggleButton
             key={value}
             value={value}
@@ -118,7 +117,7 @@ const LicenseTool: NextPage = () => {
       </Accordion>
     </Container>
   );
-};
+});
 
 function renderInfo({ link, feature }: License) {
   const InfectionRangeKey = {
