@@ -131,8 +131,7 @@ export default {
   warn_info: '切记：必须阅读并理解您选择的许可协议',
   filter_option: '筛选条件',
   option_undefined: '不明确',
-  step: '第 ',
-  step_unit: ' 步',
+  step: ({ keyIndex }: { keyIndex: number }) => `第 ${keyIndex} 步`,
   license_score: '评分',
 
   // Election

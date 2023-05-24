@@ -88,7 +88,7 @@ const LicenseTool: FC = observer(() => {
         className="mb-3"
         variant="info"
         now={(keyIndex + 1) * now}
-        label={t('step') + (keyIndex + 1) + t('step_unit')}
+        label={t('step', { keyIndex })}
       />
 
       <ButtonGroup className="mb-2">
