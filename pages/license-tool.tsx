@@ -95,6 +95,7 @@ const LicenseTool: FC = observer(() => {
         {optionValue()[chooseSteps[keyIndex]].map(({ value, text }) => (
           <ToggleButton
             key={value}
+            className="mx-1"
             value={value}
             id={`tb-${value}`}
             disabled={disableChoose}
