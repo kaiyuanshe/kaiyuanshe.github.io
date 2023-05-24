@@ -125,6 +125,13 @@ export default {
   tip_infection_range:
     '您想對修改版的哪些部分可以適用其它許可協議,有 模組級，文件級，庫接口級，不進行要求四個選擇',
 
+  license_tool_headline: '開源許可證選擇器',
+  license_tool_description:
+    '該工具旨在幫助用戶理解他們自己對於自由和開源軟件許可協議的偏好。用戶必須自己閱讀這些許可協議。在將許可協議適用於您的項目之前，閱讀並完全理解您選擇的許可協議是非常重要的。支撐該工具運行的許可類型分類，會不可避免地有些縮減。因此，不能也切不可將該工具的輸出信息視爲法律意見。',
+  warn_info: '切記：必須閱讀並理解您選擇的許可協議',
+  filter_option: '篩選條件',
+  option_undefined: '不明確',
+
   // Election
   election: '選舉',
   candidate: '候選人',

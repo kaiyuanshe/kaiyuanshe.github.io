@@ -125,6 +125,13 @@ export default {
   tip_infection_range:
     '您想对修改版的哪些部分可以适用其它许可协议,有 模块级，文件级，库接口级，不进行要求四个选择',
 
+  license_tool_headline: '开源许可证选择器',
+  license_tool_description:
+    '该工具旨在帮助用户理解他们自己对于自由和开源软件许可协议的偏好。用户必须自己阅读这些许可协议。在将许可协议适用于您的项目之前，阅读并完全理解您选择的许可协议是非常重要的。支撑该工具运行的许可类型分类，会不可避免地有些缩减。因此，不能也切不可将该工具的输出信息视为法律意见。',
+  warn_info: '切记：必须阅读并理解您选择的许可协议',
+  filter_option: '筛选条件',
+  option_undefined: '不明确',
+
   // Election
   election: '选举',
   candidate: '候选人',

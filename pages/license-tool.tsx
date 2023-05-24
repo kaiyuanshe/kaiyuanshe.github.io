@@ -17,6 +17,7 @@ import {
   Button,
 } from 'react-bootstrap';
 
+import { i18n } from '../models/Translation';
 import PageHead from '../components/PageHead';
 import { optionValue, licenseTips } from '../components/License/helper';
 console.log('licenseTips', licenseTips);
@@ -25,6 +26,8 @@ interface List {
   license: License;
   score: number;
 }
+
+const { t } = i18n;
 
 const chooseSteps: string[] = [
   'popularity',
@@ -72,13 +75,11 @@ const LicenseTool: FC = observer(() => {
   return (
     <Container className="py-5">
       <PageHead title="Open-source License selector" />
-      <h1>开源许可证选择器</h1>
-      <p>
-        该工具旨在帮助用户理解他们自己对于自由和开源软件许可协议的偏好。用户必须自己阅读这些许可协议。在将许可协议适用于您的财产之前，阅读并完全理解您选择的许可协议是非常重要的。支撑该工具运行的许可类型分类，会不可避免地有些缩减。因此，不能也切不可将该工具的输出信息视为法律意见。
-      </p>
-      <p className="text-warning">切记：必须阅读并理解您选择的许可协议。</p>
+      <h1>{t('license_tool_headline')}</h1>
+      <p>{t('license_tool_description')}</p>
+      <p className="text-warning">{t('warn_info')}</p>
 
-      <h2>筛选条件</h2>
+      <h2>{t('filter_option')}</h2>
 
       {licenseTips()[chooseSteps[keyIndex]].map(({ text }) => (
         <p key={text}>{text}</p>
@@ -124,8 +125,8 @@ function renderInfo({ link, feature }: License) {
     ({
       [FeatureAttitude.Positive]: 'Yes',
       [FeatureAttitude.Negative]: 'No',
-      [FeatureAttitude.Undefined]: '不明确',
-    }[attitude] || '不明确');
+      [FeatureAttitude.Undefined]: t('option_undefined'),
+    }[attitude] || t('option_undefined'));
 
   const judgeInfectionRange = (infectionRange: InfectionRange | undefined) => {
     infectionRange != undefined
@@ -134,7 +135,7 @@ function renderInfo({ link, feature }: License) {
           [InfectionRange.File]: 'File',
           [InfectionRange.Module]: 'Module',
         }[infectionRange]
-      : '不明确';
+      : t('option_undefined');
   };
 
   return (
