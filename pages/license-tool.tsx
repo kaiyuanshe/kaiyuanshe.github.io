@@ -128,7 +128,7 @@ function renderInfo({ link, feature }: License) {
     }[attitude] || t('option_undefined'));
 
   const judgeInfectionRange = (infectionRange: InfectionRange | undefined) => {
-    infectionRange !== undefined
+    return infectionRange !== undefined
       ? {
           [InfectionRange.Library]: 'Library',
           [InfectionRange.File]: 'File',
