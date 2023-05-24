@@ -137,7 +137,7 @@ export default {
     'Remember: You must read and understand the license agreement you choose',
   filter_option: 'filter option',
   option_undefined: 'Not required',
-  step: ({ keyIndex }: { keyIndex: number }) => `step ${keyIndex}`,
+  step: ({ keyIndex }: { keyIndex: number }) => `step ${keyIndex + 1}`,
 
   license_score: 'score',
 
