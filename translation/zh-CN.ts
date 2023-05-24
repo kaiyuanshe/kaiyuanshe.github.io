@@ -133,6 +133,16 @@ export default {
   option_undefined: '不明确',
   step: ({ keyIndex }: { keyIndex: number }) => `第 ${keyIndex + 1} 步`,
   license_score: '评分',
+  feature_popularity: '流行程度',
+  feature_reuse_condition: '复用条件',
+  feature_infection_intensity: '传染强度',
+  feature_infection_range: '传染范围',
+  feature_jurisdiction: '法律管辖',
+  feature_patent_statement: '专利声明',
+  feature_patent_retaliation: '专利报复',
+  feature_enhanced_attribution: '增强署名',
+  feature_privacy_loophole: '隐私漏洞',
+  feature_marketing_endorsement: '营销背书',
 
   // Election
   election: '选举',

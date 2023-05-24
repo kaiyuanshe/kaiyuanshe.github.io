@@ -138,8 +138,17 @@ export default {
   filter_option: 'filter option',
   option_undefined: 'Not required',
   step: ({ keyIndex }: { keyIndex: number }) => `step ${keyIndex + 1}`,
-
   license_score: 'score',
+  feature_popularity: 'Popularity',
+  feature_reuse_condition: 'Reuse Condition',
+  feature_infection_intensity: 'Infection Intensity',
+  feature_infection_range: 'Infection Range',
+  feature_jurisdiction: 'Jurisdiction',
+  feature_patent_statement: 'Patent Statement',
+  feature_patent_retaliation: 'Patent Retaliation',
+  feature_enhanced_attribution: 'Enhanced Attribution',
+  feature_privacy_loophole: 'Privacy Loophole',
+  feature_marketing_endorsement: 'Marketing Endorsement',
 
   // Election
   election: 'Election',

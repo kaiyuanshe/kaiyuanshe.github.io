@@ -128,7 +128,7 @@ function renderInfo({ link, feature }: License) {
     }[attitude] || t('option_undefined'));
 
   const judgeInfectionRange = (infectionRange: InfectionRange | undefined) => {
-    infectionRange != undefined
+    infectionRange !== undefined
       ? {
           [InfectionRange.Library]: 'Library',
           [InfectionRange.File]: 'File',
@@ -140,18 +140,42 @@ function renderInfo({ link, feature }: License) {
   return (
     <>
       <ul>
-        <li>流行程度: {judge(feature.popularity)}</li>
-        <li>复用条件: {judge(feature.reuseCondition)}</li>
-        <li>传染强度: {judge(feature.infectionIntensity)}</li>
+        <li>
+          {t('feature_popularity')}: {judge(feature.popularity)}
+        </li>
+        <li>
+          {t('feature_reuse_condition')}: {judge(feature.reuseCondition)}
+        </li>
+        <li>
+          {t('feature_infection_intensity')}:{' '}
+          {judge(feature.infectionIntensity)}
+        </li>
 
-        <li>传染范围: {judgeInfectionRange(feature.infectionRange)}</li>
+        <li>
+          {t('feature_infection_range')}:{' '}
+          {judgeInfectionRange(feature.infectionRange)}
+        </li>
 
-        <li>法律管辖: {judge(feature.jurisdiction)}</li>
-        <li>专利声明: {judge(feature.patentStatement)}</li>
-        <li>专利报复: {judge(feature.patentRetaliation)}</li>
-        <li>增强署名: {judge(feature.enhancedAttribution)}</li>
-        <li>隐私漏洞: {judge(feature.privacyLoophole)}</li>
-        <li>营销背书：{judge(feature.marketingEndorsement)}</li>
+        <li>
+          {t('feature_jurisdiction')}: {judge(feature.jurisdiction)}
+        </li>
+        <li>
+          {t('feature_patent_statement')}: {judge(feature.patentStatement)}
+        </li>
+        <li>
+          {t('feature_patent_retaliation')}: {judge(feature.patentRetaliation)}
+        </li>
+        <li>
+          {t('feature_enhanced_attribution')}:{' '}
+          {judge(feature.enhancedAttribution)}
+        </li>
+        <li>
+          {t('feature_privacy_loophole')}: {judge(feature.privacyLoophole)}
+        </li>
+        <li>
+          {t('feature_marketing_endorsement')}:
+          {judge(feature.marketingEndorsement)}
+        </li>
       </ul>
       <Button size="sm" target="_blank" href={link}>
         协议详情

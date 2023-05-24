@@ -132,8 +132,17 @@ export default {
   filter_option: '篩選條件',
   option_undefined: '不明確',
   step: ({ keyIndex }: { keyIndex: number }) => `第 ${keyIndex + 1} 步`,
-
   license_score: '評分',
+  feature_popularity: '流行程度',
+  feature_reuse_condition: '復用條件',
+  feature_infection_intensity: '傳染強度',
+  feature_infection_range: '傳染範圍',
+  feature_jurisdiction: '法律管轄',
+  feature_patent_statement: '專利聲明',
+  feature_patent_retaliation: '專利報復',
+  feature_enhanced_attribution: '增強署名',
+  feature_privacy_loophole: '隱私漏洞',
+  feature_marketing_endorsement: '營銷背書',
 
   // Election
   election: '選舉',
