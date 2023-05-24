@@ -88,7 +88,7 @@ const LicenseTool: FC = observer(() => {
         className="mb-3"
         variant="info"
         now={(keyIndex + 1) * now}
-        label={`第${keyIndex + 1}步`}
+        label={t('step') + `${keyIndex + 1}` + t('step_unit')}
       />
 
       <ButtonGroup className="mb-2">
@@ -109,7 +109,7 @@ const LicenseTool: FC = observer(() => {
         {lists.map(({ license, score }, index) => (
           <Accordion.Item key={license.name} eventKey={index + 1 + ''}>
             <Accordion.Header>
-              {license.name} 评分: {score * 10}
+              {license.name} {t('license_score')}: {score * 10}
             </Accordion.Header>
             <Accordion.Body>{renderInfo(license)}</Accordion.Body>
           </Accordion.Item>

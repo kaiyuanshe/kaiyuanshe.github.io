@@ -137,6 +137,9 @@ export default {
     'Remember: You must read and understand the license agreement you choose',
   filter_option: 'filter option',
   option_undefined: 'Not required',
+  step: 'step ',
+  step_unit: ' ',
+  license_score: 'score',
 
   // Election
   election: 'Election',
