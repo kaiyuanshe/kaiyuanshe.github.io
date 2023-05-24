@@ -108,7 +108,7 @@ export default {
   infection_range_library: '傳染範圍到庫',
   infection_range_file: '傳染範圍到檔案',
   infection_range_module: '傳染範圍到模組',
-  infection_range_undefined: '不進行要求',
+  infection_range_undefined: '不要求',
 
   tip_popularity_0:
     '您想將結果限定為開放原始碼促進會 (OSI) 所描述的“流行並廣泛使用，或擁有廣泛社群群”的許可協議嗎？',
@@ -130,7 +130,7 @@ export default {
     '該工具旨在幫助用戶理解他們自己對於自由和開源軟件許可協議的偏好。用戶必須自己閱讀這些許可協議。在將許可協議適用於您的項目之前，閱讀並完全理解您選擇的許可協議是非常重要的。支撐該工具運行的許可類型分類，會不可避免地有些縮減。因此，不能也切不可將該工具的輸出信息視爲法律意見。',
   warn_info: '切記：必須閱讀並理解您選擇的許可協議',
   filter_option: '篩選條件',
-  option_undefined: '不明確',
+  option_undefined: '不要求',
   step: ({ keyIndex }: { keyIndex: number }) => `第 ${keyIndex + 1} 步`,
   license_score: '評分',
   feature_popularity: '流行程度',
