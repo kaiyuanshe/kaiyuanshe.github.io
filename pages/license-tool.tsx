@@ -20,7 +20,6 @@ import {
 import { i18n } from '../models/Translation';
 import PageHead from '../components/PageHead';
 import { optionValue, licenseTips } from '../components/License/helper';
-console.log('licenseTips', licenseTips);
 
 interface List {
   license: License;
