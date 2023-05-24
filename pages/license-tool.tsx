@@ -56,10 +56,9 @@ const LicenseTool: FC = observer(() => {
 
   const handleChoose = (value: string | null) => {
     const choice = value ? +value : 0;
-
     const key = chooseSteps[keyIndex];
-    const newObject = { ...filterOption, [key]: choice };
 
+    const newObject = { ...filterOption, [key]: choice };
     const tempLists = filterLicenses(newObject);
 
     setFilterOption(newObject);
@@ -93,7 +92,7 @@ const LicenseTool: FC = observer(() => {
 
       <ButtonGroup className="mb-2">
         {optionValue()[chooseSteps[keyIndex]].map(({ value, text }) => (
-          <ToggleButton
+          <Button
             key={value}
             className="mx-1"
             value={value}
@@ -102,7 +101,7 @@ const LicenseTool: FC = observer(() => {
             onClick={({ currentTarget: { value } }) => handleChoose(value)}
           >
             {text}
-          </ToggleButton>
+          </Button>
         ))}
       </ButtonGroup>
 
@@ -148,7 +147,8 @@ function renderInfo({ link, feature }: License) {
           {t('feature_reuse_condition')}: {judge(feature.reuseCondition)}
         </li>
         <li>
-          {t('feature_infection_intensity')}:{judge(feature.infectionIntensity)}
+          {t('feature_infection_intensity')}:{' '}
+          {judge(feature.infectionIntensity)}
         </li>
 
         <li>
@@ -166,7 +166,7 @@ function renderInfo({ link, feature }: License) {
           {t('feature_patent_retaliation')}: {judge(feature.patentRetaliation)}
         </li>
         <li>
-          {t('feature_enhanced_attribution')}:
+          {t('feature_enhanced_attribution')}:{' '}
           {judge(feature.enhancedAttribution)}
         </li>
         <li>
