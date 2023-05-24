@@ -143,6 +143,7 @@ export default {
   feature_enhanced_attribution: '增強署名',
   feature_privacy_loophole: '隱私漏洞',
   feature_marketing_endorsement: '營銷背書',
+  license_detail: '協議詳情',
 
   // Election
   election: '選舉',

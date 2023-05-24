@@ -149,6 +149,7 @@ export default {
   feature_enhanced_attribution: 'Enhanced Attribution',
   feature_privacy_loophole: 'Privacy Loophole',
   feature_marketing_endorsement: 'Marketing Endorsement',
+  license_detail: 'license detail',
 
   // Election
   election: 'Election',

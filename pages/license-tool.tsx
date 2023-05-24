@@ -178,7 +178,7 @@ function renderInfo({ link, feature }: License) {
         </li>
       </ul>
       <Button size="sm" target="_blank" href={link}>
-        协议详情
+        {t('license_detail')}
       </Button>
     </>
   );
