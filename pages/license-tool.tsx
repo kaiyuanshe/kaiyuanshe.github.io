@@ -148,12 +148,11 @@ function renderInfo({ link, feature }: License) {
           {t('feature_reuse_condition')}: {judge(feature.reuseCondition)}
         </li>
         <li>
-          {t('feature_infection_intensity')}:{' '}
-          {judge(feature.infectionIntensity)}
+          {t('feature_infection_intensity')}:{judge(feature.infectionIntensity)}
         </li>
 
         <li>
-          {t('feature_infection_range')}:{' '}
+          {t('feature_infection_range')}:
           {judgeInfectionRange(feature.infectionRange)}
         </li>
 
@@ -167,7 +166,7 @@ function renderInfo({ link, feature }: License) {
           {t('feature_patent_retaliation')}: {judge(feature.patentRetaliation)}
         </li>
         <li>
-          {t('feature_enhanced_attribution')}:{' '}
+          {t('feature_enhanced_attribution')}:
           {judge(feature.enhancedAttribution)}
         </li>
         <li>
