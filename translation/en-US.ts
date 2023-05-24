@@ -136,7 +136,7 @@ export default {
   warn_info:
     'Remember: You must read and understand the license agreement you choose',
   filter_option: 'filter option',
-  option_undefined: 'undefined',
+  option_undefined: 'Not required',
 
   // Election
   election: 'Election',
