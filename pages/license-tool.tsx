@@ -122,17 +122,17 @@ const LicenseTool: FC = observer(() => {
 function renderInfo({ link, feature }: License) {
   const judge = (attitude: FeatureAttitude) =>
     ({
-      [FeatureAttitude.Positive]: 'Yes',
-      [FeatureAttitude.Negative]: 'No',
+      [FeatureAttitude.Positive]: t('attitude_positive'),
+      [FeatureAttitude.Negative]: t('attitude_negative'),
       [FeatureAttitude.Undefined]: t('option_undefined'),
     }[attitude] || t('option_undefined'));
 
   const judgeInfectionRange = (infectionRange: InfectionRange | undefined) => {
     return infectionRange !== undefined
       ? {
-          [InfectionRange.Library]: 'Library',
-          [InfectionRange.File]: 'File',
-          [InfectionRange.Module]: 'Module',
+          [InfectionRange.Library]: t('range_library'),
+          [InfectionRange.File]: t('range_file'),
+          [InfectionRange.Module]: t('range_module'),
         }[infectionRange]
       : t('option_undefined');
   };
