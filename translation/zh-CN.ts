@@ -119,7 +119,7 @@ export default {
   tip_jurisdiction: '您是否想将自己所在区域作为司法管辖区',
   tip_patent_statement: '您是否想使用明确授予专利权的许可协议（如果有）',
   tip_patent_retaliation: '您是否想使用包含专利报复条款的许可协议',
-  tip_enhanced_attribution: '您是否想使用指定“增强型归属”的许可协议',
+  tip_enhanced_attribution: '您是否想使用指定“软件归属增强”的许可协议',
   tip_privacy_loophole: '您是否想使用解决“隐私漏洞”的许可协议',
   tip_marketing_endorsement: '您是否想允许推广的许可协议',
   tip_infection_range:
@@ -140,7 +140,7 @@ export default {
   feature_jurisdiction: '法律管辖',
   feature_patent_statement: '专利声明',
   feature_patent_retaliation: '专利报复',
-  feature_enhanced_attribution: '增强署名',
+  feature_enhanced_attribution: '归属增强',
   feature_privacy_loophole: '隐私漏洞',
   feature_marketing_endorsement: '营销背书',
   license_detail: '协议详情',
