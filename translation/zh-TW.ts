@@ -25,6 +25,7 @@ export default {
   open_source_treasure_box: '開源百寶箱',
   Web_polyfill_CDN: 'Web 標準補丁 CDN',
   open_source_mirror: '開源鏡像站',
+  license_tool: '開源協議選擇器',
 
   no_more: '沒有更多',
   load_more: '加載更多……',
@@ -99,6 +100,55 @@ export default {
   战略合作媒体: '戰略合作媒體',
   媒体伙伴: '媒體夥伴',
   社区伙伴: '社區夥伴',
+
+  //License-tool Page
+  feature_attitude_undefined: '兩者皆可',
+  feature_attitude_positive: '我需要',
+  feature_attitude_negative: '我不需要',
+  infection_range_library: '傳染範圍到庫',
+  infection_range_file: '傳染範圍到檔案',
+  infection_range_module: '傳染範圍到模組',
+  infection_range_undefined: '不要求',
+
+  tip_popularity_0:
+    '您想將結果限定為開放原始碼促進會 (OSI) 所描述的“流行並廣泛使用，或擁有廣泛社群群”的許可協議嗎？',
+  tip_popularity_1:
+    '這將以犧牲一些更冷僻但或許有用的特徵為代價來確保該許可協議成為“主流”協議。',
+  tip_reuse_condition: '您想對程式碼的重複使用設定許可條件嗎?',
+  tip_infection_intensity: '您想對程式碼的重複使用設定許可條件嗎?',
+  tip_jurisdiction: '您是否想將自己所在區域作為司法管轄區',
+  tip_patent_statement: '您是否想使用明確授予專利權的許可協議（如果有）',
+  tip_patent_retaliation: '您是否想使用包含專利報復條款的許可協議',
+  tip_enhanced_attribution: '您是否想使用指定“軟體歸屬增強”的許可協議',
+  tip_privacy_loophole: '您是否想使用解决“隐私漏洞”的许可协议',
+  tip_marketing_endorsement: '您是否想允許推廣的許可協議',
+  tip_infection_range:
+    '您想對修改版的哪些部分可以適用其它許可協議,有 模組級，文件級，庫接口級，不進行要求四個選擇',
+
+  license_tool_headline: '開源許可證選擇器',
+  license_tool_description:
+    '該工具旨在幫助用戶理解他們自己對於自由和開源軟件許可協議的偏好。用戶必須自己閱讀這些許可協議。在將許可協議適用於您的項目之前，閱讀並完全理解您選擇的許可協議是非常重要的。支撐該工具運行的許可類型分類，會不可避免地有些縮減。因此，不能也切不可將該工具的輸出信息視爲法律意見。',
+  warn_info: '切記：必須閱讀並理解您選擇的許可協議',
+  filter_option: '篩選條件',
+  option_undefined: '不要求',
+  step: ({ keyIndex }: { keyIndex: number }) => `第 ${keyIndex + 1} 步`,
+  license_score: '評分',
+  feature_popularity: '流行程度',
+  feature_reuse_condition: '復用條件',
+  feature_infection_intensity: '傳染強度',
+  feature_infection_range: '傳染範圍',
+  feature_jurisdiction: '法律管轄',
+  feature_patent_statement: '專利聲明',
+  feature_patent_retaliation: '專利報復',
+  feature_enhanced_attribution: '歸屬增強',
+  feature_privacy_loophole: '隱私漏洞',
+  feature_marketing_endorsement: '營銷背書',
+  license_detail: '協議詳情',
+  attitude_positive: '是',
+  attitude_negative: '否',
+  range_library: '庫',
+  range_file: '檔案',
+  range_module: '模組',
 
   // Election
   election: '選舉',

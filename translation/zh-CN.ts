@@ -25,6 +25,7 @@ export default {
   open_source_treasure_box: '开源百宝箱',
   Web_polyfill_CDN: 'Web 标准补丁 CDN',
   open_source_mirror: '开源镜像站',
+  license_tool: '开源协议选择器',
 
   no_more: '没有更多',
   load_more: '加载更多……',
@@ -99,6 +100,55 @@ export default {
   战略合作媒体: '战略合作媒体',
   媒体伙伴: '媒体伙伴',
   社区伙伴: '社区伙伴',
+
+  //License-tool Page
+  feature_attitude_undefined: '两者皆可',
+  feature_attitude_positive: '我需要',
+  feature_attitude_negative: '我不需要',
+  infection_range_library: '传染范围到库',
+  infection_range_file: '传染范围到文件',
+  infection_range_module: '传染范围到模块',
+  infection_range_undefined: '不进行要求',
+
+  tip_popularity_0:
+    '您想将结果限定为开放源代码促进会 (OSI) 所描述的“流行并广泛使用，或拥有社群”的许可协议吗？',
+  tip_popularity_1:
+    '为了确保许可协议为主流许可协议，将妥协放弃掉一些不那么主流但可能有用的特征。',
+  tip_reuse_condition: '您想对代码的重复使用设置许可条件吗?',
+  tip_infection_intensity: '您是否想选择强传染的协议？',
+  tip_jurisdiction: '您是否想将自己所在区域作为司法管辖区',
+  tip_patent_statement: '您是否想使用明确授予专利权的许可协议（如果有）',
+  tip_patent_retaliation: '您是否想使用包含专利报复条款的许可协议',
+  tip_enhanced_attribution: '您是否想使用指定“软件归属增强”的许可协议',
+  tip_privacy_loophole: '您是否想使用解决“隐私漏洞”的许可协议',
+  tip_marketing_endorsement: '您是否想允许推广的许可协议',
+  tip_infection_range:
+    '您想对修改版的哪些部分可以适用其它许可协议,有四个选择: 模块级，文件级，库接口级，不进行要求',
+
+  license_tool_headline: '开源许可证选择器',
+  license_tool_description:
+    '该工具旨在帮助用户理解他们自己对于自由和开源软件许可协议的偏好。用户必须自己阅读这些许可协议。在应用项目之前，阅读并完全理解许可协议非常重要。本工具借用的许可分类方式不能保证永远适用，因此，不可将本工具输出的信息作为法律依据。',
+  warn_info: '切记：必须阅读并理解您选择的许可协议',
+  filter_option: '筛选条件',
+  option_undefined: '不要求',
+  step: ({ keyIndex }: { keyIndex: number }) => `第 ${keyIndex + 1} 步`,
+  license_score: '评分',
+  feature_popularity: '流行程度',
+  feature_reuse_condition: '复用条件',
+  feature_infection_intensity: '传染强度',
+  feature_infection_range: '传染范围',
+  feature_jurisdiction: '法律管辖',
+  feature_patent_statement: '专利声明',
+  feature_patent_retaliation: '专利报复',
+  feature_enhanced_attribution: '归属增强',
+  feature_privacy_loophole: '隐私漏洞',
+  feature_marketing_endorsement: '营销背书',
+  license_detail: '协议详情',
+  attitude_positive: '是',
+  attitude_negative: '否',
+  range_library: '库',
+  range_file: '文件',
+  range_module: '模块',
 
   // Election
   election: '选举',

@@ -25,6 +25,7 @@ export default {
   open_source_treasure_box: 'Treasure-box',
   Web_polyfill_CDN: 'Web polyfill CDN',
   open_source_mirror: 'Open-source mirror',
+  license_tool: 'License tool',
 
   no_more: 'no more',
   load_more: 'load more...',
@@ -100,6 +101,60 @@ export default {
   战略合作媒体: 'Strategic partner media',
   媒体伙伴: 'Media partner',
   社区伙伴: 'Community partner',
+
+  //License-tool Page
+  feature_attitude_undefined: "I don't care",
+  feature_attitude_positive: 'I need',
+  feature_attitude_negative: "I don't need",
+  infection_range_library: 'Infection range to library',
+  infection_range_file: 'Infection range to file',
+  infection_range_module: 'Infection range to module',
+  infection_range_undefined: 'No request',
+
+  tip_popularity_0:
+    'Do you want to limit the result to a license agreement that is "popular and widely used, or has a broad community" as described by the Open Source Initiative (OSI)?',
+  tip_popularity_1:
+    'This will sacrifice some less popular but perhaps useful features to ensure that the license becomes a mainstream license.',
+  tip_reuse_condition: 'Do you want to set license conditions for code reuse?',
+  tip_infection_intensity:
+    'Do you want to choose a strongly infectious protocol?',
+  tip_jurisdiction: 'Do you want your region to be the jurisdiction?',
+  tip_patent_statement:
+    'Do you want to use a license agreement that explicitly grants patent rights (if any)?',
+  tip_patent_retaliation:
+    'Do you want to use a license agreement that includes a patent retaliation clause?',
+  tip_enhanced_attribution:
+    'Do you want to use a license agreement that specifies "enhanced attribution"?',
+  tip_privacy_loophole:
+    'Do you want to use a license that addresses a "privacy loophole"',
+  tip_marketing_endorsement: 'Do you want to allow promotional licenses?',
+  tip_infection_range:
+    'Which parts of the modified version do you want to allow for other licenses, with four options: module-level, file-level, library interface-level, and no requirements ?',
+  license_tool_headline: 'Open Source License Selector',
+  license_tool_description:
+    'This tool is designed to help users understand their own preferences for free and open source software licensing agreements. Users must read these license agreements themselves. It is important to read and fully understand the license agreement you choose before applying it to your project. The classification of license types that support the operation of the tool will inevitably be somewhat reduced. Therefore, the output of the tool cannot and must not be taken as legal advice.',
+  warn_info:
+    'Remember: You must read and understand the license agreement you choose',
+  filter_option: 'filter option',
+  option_undefined: 'Not required',
+  step: ({ keyIndex }: { keyIndex: number }) => `step ${keyIndex + 1}`,
+  license_score: 'score',
+  feature_popularity: 'Popularity',
+  feature_reuse_condition: 'Reuse Condition',
+  feature_infection_intensity: 'Infection Intensity',
+  feature_infection_range: 'Infection Range',
+  feature_jurisdiction: 'Jurisdiction',
+  feature_patent_statement: 'Patent Statement',
+  feature_patent_retaliation: 'Patent Retaliation',
+  feature_enhanced_attribution: 'Enhanced Attribution',
+  feature_privacy_loophole: 'Privacy Loophole',
+  feature_marketing_endorsement: 'Marketing Endorsement',
+  license_detail: 'license detail',
+  attitude_positive: 'Yes',
+  attitude_negative: 'Yes',
+  range_library: 'library',
+  range_file: 'file',
+  range_module: 'module',
 
   // Election
   election: 'Election',
