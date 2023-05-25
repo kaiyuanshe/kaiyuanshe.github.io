@@ -144,6 +144,11 @@ export default {
   feature_privacy_loophole: '隐私漏洞',
   feature_marketing_endorsement: '营销背书',
   license_detail: '协议详情',
+  attitude_positive: '是',
+  attitude_negative: '否',
+  range_library: '库',
+  range_file: '文件',
+  range_module: '模块',
 
   // Election
   election: '选举',

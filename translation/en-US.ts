@@ -150,6 +150,11 @@ export default {
   feature_privacy_loophole: 'Privacy Loophole',
   feature_marketing_endorsement: 'Marketing Endorsement',
   license_detail: 'license detail',
+  attitude_positive: 'Yes',
+  attitude_negative: 'Yes',
+  range_library: 'library',
+  range_file: 'file',
+  range_module: 'module',
 
   // Election
   election: 'Election',
