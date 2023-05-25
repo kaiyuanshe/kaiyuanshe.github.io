@@ -131,7 +131,7 @@ export default {
   warn_info: '切记：必须阅读并理解您选择的许可协议',
   filter_option: '筛选条件',
   option_undefined: '不要求',
-  step: ({ keyIndex }: { keyIndex: number }) => `第 ${keyIndex + 1} 步`,
+  step_x: ({ step }: { step: number }) => `第 ${step} 步`,
   license_score: '评分',
   feature_popularity: '流行程度',
   feature_reuse_condition: '复用条件',

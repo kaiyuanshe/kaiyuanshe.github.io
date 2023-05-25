@@ -82,14 +82,12 @@ const LicenseTool: FC = observer(() => {
       {licenseTips()[chooseSteps[keyIndex]].map(({ text }) => (
         <p key={text}>{text}</p>
       ))}
-
       <ProgressBar
         className="mb-3"
         variant="info"
         now={(keyIndex + 1) * now}
-        label={t('step', { keyIndex })}
+        label={t('step_x', { step: keyIndex + 1 })}
       />
-
       <ButtonGroup className="mb-2">
         {optionValue()[chooseSteps[keyIndex]].map(({ value, text }) => (
           <Button

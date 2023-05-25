@@ -35,15 +35,15 @@ gtag('config', 'G-MS73CZKMM3');
 
         <link
           rel="stylesheet"
-          href="https://unpkg.com/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
+          href="https://unpkg.com/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
         />
         <link
           rel="stylesheet"
-          href="https://unpkg.com/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
+          href="https://unpkg.com/bootstrap-icons@1.10.4/font/bootstrap-icons.css"
         />
         <link
           rel="stylesheet"
-          href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         />
       </Head>
 
