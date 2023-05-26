@@ -25,7 +25,7 @@ export default {
   open_source_treasure_box: '開源百寶箱',
   Web_polyfill_CDN: 'Web 標準補丁 CDN',
   open_source_mirror: '開源鏡像站',
-  license_tool: '開源協議選擇器',
+  license_tool: '開源許可證選擇器',
 
   no_more: '沒有更多',
   load_more: '加載更多……',
@@ -131,7 +131,7 @@ export default {
   warn_info: '切記：必須閱讀並理解您選擇的許可協議',
   filter_option: '篩選條件',
   option_undefined: '不要求',
-  step_x: ({ step }: { step: number }) => `第 ${step + 1} 步`,
+  step_x: ({ step }: { step: number }) => `第 ${step} 步`,
   license_score: '評分',
   feature_popularity: '流行程度',
   feature_reuse_condition: '復用條件',
