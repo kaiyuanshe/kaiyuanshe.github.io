@@ -20,15 +20,11 @@ export const ArticleCard: FC<ArticleCardProps> = ({
   publishedAt,
 }: ArticleCardProps) => (
   <Card className={`shadow-sm ${className}`}>
-    <div className="position-relative w-100" style={{ paddingBottom: '56%' }}>
-      <div className="position-absolute top-0 left-0 w-100 h-100">
-        <Card.Img
-          className="h-100 object-fit-cover"
-          style={{ objectPosition: 'top left' }}
-          src={blobURLOf(image)}
-        />
-      </div>
-    </div>
+    <Card.Img
+      className="object-fit-cover"
+      style={{ aspectRatio: '2.35 / 1' }}
+      src={blobURLOf(image)}
+    />
     <Card.Body className="d-flex flex-column">
       <Card.Title as="h3" className="h5 flex-fill">
         <a
