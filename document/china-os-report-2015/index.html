@@ -1,0 +1,1818 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+
+  <title>开源社</title>
+
+  
+  <meta name="description" content="更好地理解当前中国开源的整体生态环境，包括开源人士、社区、网站、公司、组织、会议和活动等。 三大板块：引进开源 —— 参与开源 —— 影响开源">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="2015年中国开源生态系统报告 V1.0">
+<meta property="og:url" content="http://kaiyuanshe.cn/document/china-os-report-2015/index.html">
+<meta property="og:site_name" content="开源社">
+<meta property="og:description" content="更好地理解当前中国开源的整体生态环境，包括开源人士、社区、网站、公司、组织、会议和活动等。 三大板块：引进开源 —— 参与开源 —— 影响开源">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://kaiyuanshe.cn/document/china-os-report-2015/GitHub_Individual.png">
+<meta property="og:image" content="http://kaiyuanshe.cn/document/china-os-report-2015/OpenStackContributor.png">
+<meta property="og:image" content="http://kaiyuanshe.cn/document/china-os-report-2015/LinuxKernalContributor.png">
+<meta property="og:image" content="http://kaiyuanshe.cn/document/china-os-report-2015/DockerContributor.png">
+<meta property="og:image" content="http://kaiyuanshe.cn/document/china-os-report-2015/PopProject.png">
+<meta property="article:published_time" content="2015-04-04T08:41:00.000Z">
+<meta property="article:modified_time" content="2016-01-27T15:53:00.000Z">
+<meta property="article:author" content="shiy2008@gmail.com">
+<meta property="article:tag" content="开源">
+<meta property="article:tag" content="社区">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://kaiyuanshe.cn/document/china-os-report-2015/GitHub_Individual.png">
+<meta name="twitter:site" content="contactkaiyuan1">
+  <meta name="author" content="shiy2008@gmail.com">
+  <meta name="generator" content="hexo">
+  <meta name="theme-color" content="#2f3241">
+
+  <!-- consumed by scripts/get-localized-strings -->
+  <meta name="localized.clipboard.copy" content="Copy">
+  <meta name="localized.clipboard.copy_to_clipboard" content="复制到剪贴板">
+  <meta name="localized.clipboard.copied" content="已复制">
+
+  <base href="/">
+
+  <link rel="shortcut icon" href="image/KaiYuanShe-logo.png">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5.1.0/github-markdown-light.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@master/devicon.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.18.5/styles/dark.css">
+  <link rel="stylesheet" href="library/index.css">
+  <link rel="stylesheet" href="common.css">
+  <style>
+    .site-header-nav-item a:link {
+      text-decoration: none;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/highlight.js@9.18.5/lib/highlight.js"></script>
+  <script src="common.js" defer async></script>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container">
+
+      <a class="site-header-logo no-underline-hover" href=".">
+        <img class="site-header-icon" src="image/KaiYuanShe-logo.png">
+        开源社
+      </a>
+
+      <nav class="site-header-nav">
+        
+          <div class="site-header-nav-item">
+            
+              <a role="button" href="/categories/Activity/Summit/" data-href-match="">
+                年度大会
+              </a>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_1" href="" data-href-match="">
+                资讯
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_1">
+                
+                  <a class="dropdown-item" href="/categories/Activity/">活动</a>
+                
+                  <a class="dropdown-item" href="/blog/">博客</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_2" href="" data-href-match="">
+                成员
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_2">
+                
+                  <a class="dropdown-item" href="/members/">正式成员</a>
+                
+                  <a class="dropdown-item" href="https://kaiyuanshe.feishu.cn/share/base/shrcnfO89tYlYIjZpS5PXJBaK2f" target="_blank" rel="noopener">加入我们</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a role="button" href="/partners" data-href-match="">
+                合作伙伴
+              </a>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_4" href="" data-href-match="">
+                资源
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_4">
+                
+                  <a class="dropdown-item" href="https://test.kaiyuanshe.cn/organization" target="_blank" rel="noopener">开源地图</a>
+                
+                  <a class="dropdown-item" href="/categories/Document">开源文档</a>
+                
+                  <a class="dropdown-item" href="/license-tool/">许可证选择器</a>
+                
+                  <a class="dropdown-item" href="http://mirror.kaiyuanshe.cn/" target="_blank" rel="noopener">开源镜像</a>
+                
+                  <a class="dropdown-item" href="https://polyfill.kaiyuanshe.cn/" target="_blank" rel="noopener">Web 标准补丁服务</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_5" href="" data-href-match="">
+                关于
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_5">
+                
+                  <a class="dropdown-item" href="/profile/about">介绍</a>
+                
+                  <a class="dropdown-item" href="/profile/structure">组织架构</a>
+                
+                  <a class="dropdown-item" href="/governance">工作组</a>
+                
+                  <a class="dropdown-item" href="/profile/charter">章程</a>
+                
+                  <a class="dropdown-item" href="/categories/Meeting">会议纪要</a>
+                
+              </div>
+            
+          </div>
+        
+        <form action="search/" class="ais-search-box">
+          <input type="search" name="keyword" required placeholder="搜索"
+            id="search-input" class="nav-search ais-search-box--input"
+            aria-label="search-box" autocapitalize="off" autocorrect="off" role="textbox">
+        </form>
+        <a class="site-header-nav-item octicon"
+          href="https://github.com/kaiyuanshe/"
+          title="Github Organization">
+          <span class="mega-octicon octicon-mark-github vertical-middle"></span>
+        </a>
+        <a class="site-header-nav-item bordered lang-select-button" href="#Language" data-toggle="collapse">
+          中文
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <div id="Language" class="container collapse">
+  <div class="m-4">
+    <div class="text-center-sm mb-4">
+      <strong>请选择语言</strong>
+    </div>
+    <div class="clearfix">
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/en-US" target="_blank" rel="noopener">
+          English
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ja-JP" target="_blank" rel="noopener">
+          日本語
+          
+          (Japanese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/es-ES" target="_blank" rel="noopener">
+          Español
+          
+          (Spanish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/zh-CN" target="_blank" rel="noopener">
+          中文
+          
+          (Chinese Simplified)
+          
+        </a>
+        
+        <span class="faint"><span class="octicon octicon-check mr-1"></span></span>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/tr-TR" target="_blank" rel="noopener">
+          Türkçe
+          
+          (Turkish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/id-ID" target="_blank" rel="noopener">
+          Indonesian
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fil-PH" target="_blank" rel="noopener">
+          Filipino
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fr-FR" target="_blank" rel="noopener">
+          Français
+          
+          (French)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ru-RU" target="_blank" rel="noopener">
+          Русский
+          
+          (Russian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ko-KR" target="_blank" rel="noopener">
+          한국어
+          
+          (Korean)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/it-IT" target="_blank" rel="noopener">
+          Italiano
+          
+          (Italian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/pt-BR" target="_blank" rel="noopener">
+          Português
+          
+          (Portuguese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/de-DE" target="_blank" rel="noopener">
+          Deutsch
+          
+          (German)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/uk-UA" target="_blank" rel="noopener">
+          Українська
+          
+          (Ukrainian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/zh-TW" target="_blank" rel="noopener">
+          中文
+          
+          (Chinese Traditional)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/pl-PL" target="_blank" rel="noopener">
+          język polski
+          
+          (Polish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/bg-BG" target="_blank" rel="noopener">
+          български език
+          
+          (Bulgarian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/hi-IN" target="_blank" rel="noopener">
+          हिन्दी
+          
+          (Hindi)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/nl-NL" target="_blank" rel="noopener">
+          Nederlands
+          
+          (Dutch)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/vi-VN" target="_blank" rel="noopener">
+          Tiếng Việt
+          
+          (Vietnamese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ar-SA" target="_blank" rel="noopener">
+          اللغة العربية
+          
+          (Arabic)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fa-IR" target="_blank" rel="noopener">
+          فارسی
+          
+          (Persian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/cs-CZ" target="_blank" rel="noopener">
+          čeština
+          
+          (Czech)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/th-TH" target="_blank" rel="noopener">
+          ไทย
+          
+          (Thai)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/he-IL" target="_blank" rel="noopener">
+          עברית
+          
+          (Hebrew)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ro-RO" target="_blank" rel="noopener">
+          limba română
+          
+          (Romanian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/tl-PH" target="_blank" rel="noopener">
+          Wikang Tagalog
+          
+          (Tagalog)
+          
+        </a>
+        
+      </div>
+      
+    </div>
+    <hr>
+    <div class="text-center-sm">
+      <a href="https://electronjs.org/languages" target="_blank" rel="noopener">查看更多语言详情</a>
+    </div>
+  </div>
+</div>
+
+
+  <style>
+  .blog-post hr:first-of-type {
+    display: block;
+  }
+</style>
+
+
+
+<section class="page-section blog-post">
+  <div class="container">
+    <h1>2015年中国开源生态系统报告 V1.0</h1>
+
+    
+
+    
+
+<div class="blog-byline mt-2 mb-4 d-flex justify-content-between align-items-center">
+  <span class="blog-index-time">2015-04-04 08:41:00</span>
+
+
+  <a class="author-link ml-3 text-center" href="https://github.com/leonchenzhy" target="_blank" rel="noopener">
+    <img
+      class="avatar mr-2"
+      style="max-width: 2.25rem"
+      src="https://github.com/leonchenzhy.png?size=36"
+      alt="leonchenzhy"
+    >
+    leonchenzhy
+  </a>
+
+  <a class="author-link ml-3 text-center" href="https://github.com/sssuyx" target="_blank" rel="noopener">
+    <img
+      class="avatar mr-2"
+      style="max-width: 2.25rem"
+      src="https://github.com/sssuyx.png?size=36"
+      alt="sssuyx"
+    >
+    sssuyx
+  </a>
+
+  <a class="author-link ml-3 text-center" href="https://github.com/summershrimp" target="_blank" rel="noopener">
+    <img
+      class="avatar mr-2"
+      style="max-width: 2.25rem"
+      src="https://github.com/summershrimp.png?size=36"
+      alt="summershrimp"
+    >
+    summershrimp
+  </a>
+
+  <a class="author-link ml-3 text-center" href="https://github.com/tvvocold" target="_blank" rel="noopener">
+    <img
+      class="avatar mr-2"
+      style="max-width: 2.25rem"
+      src="https://github.com/tvvocold.png?size=36"
+      alt="tvvocold"
+    >
+    tvvocold
+  </a>
+
+  <a class="author-link ml-3 text-center" href="https://github.com/baiqj" target="_blank" rel="noopener">
+    <img
+      class="avatar mr-2"
+      style="max-width: 2.25rem"
+      src="https://github.com/baiqj.png?size=36"
+      alt="baiqj"
+    >
+    baiqj
+  </a>
+
+
+  <span>
+    
+      <a class="badge badge-primary" href="categories/Document/">
+        Document
+      </a>
+    
+    
+  </span>
+</div>
+
+
+    
+
+    <details>
+      <summary>正文大纲</summary>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一部分-引进开源"><span class="toc-text">第一部分 引进开源</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-国内有影响力的开源专家"><span class="toc-text">1.国内有影响力的开源专家</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-国际有影响力的开源专家"><span class="toc-text">2.国际有影响力的开源专家</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-开源软件生态系统－实体－Linux-兴趣小组"><span class="toc-text">3.开源软件生态系统－实体－Linux 兴趣小组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-开源组织在全国各高校的分布"><span class="toc-text">4.开源组织在全国各高校的分布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-开源领域国内大会"><span class="toc-text">5.开源领域国内大会</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-开源领域国际会议"><span class="toc-text">6.开源领域国际会议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二部分-参与开源"><span class="toc-text">第二部分 参与开源</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-GitHub-上影响力比较大的个人"><span class="toc-text">1.GitHub 上影响力比较大的个人</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-OpenStack-国人贡献排行榜"><span class="toc-text">2.OpenStack 国人贡献排行榜</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Linux-Kernal-国人贡献排行榜"><span class="toc-text">3.Linux Kernal 国人贡献排行榜</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Docker-国人贡献排行榜"><span class="toc-text">4.Docker 国人贡献排行榜</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-热门项目-watch-start-fork"><span class="toc-text">5.热门项目 watch&#x2F;start&#x2F;fork</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-公共在线社区"><span class="toc-text">6.公共在线社区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-特定项目-技术社区"><span class="toc-text">7.特定项目&#x2F;技术社区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-国内开源项目托管平台"><span class="toc-text">8.国内开源项目托管平台</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-下载站点"><span class="toc-text">9.下载站点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-开源社区活动瓶颈"><span class="toc-text">10.开源社区活动瓶颈</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#线上活动瓶颈——主要存在于交流形式"><span class="toc-text">线上活动瓶颈——主要存在于交流形式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#线下活动瓶颈——最大的问题在于社区资源对接"><span class="toc-text">线下活动瓶颈——最大的问题在于社区资源对接</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第三部分-影响开源"><span class="toc-text">第三部分 影响开源</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-产业协会"><span class="toc-text">1. 产业协会</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#中国开源软件推进联盟（China-Open-Source-Promotion-Union，简称：COPU）"><span class="toc-text">中国开源软件推进联盟（China Open Source Promotion Union，简称：COPU）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#共创软件联盟（-CoCreate-OSS-Union）"><span class="toc-text">共创软件联盟（ CoCreate OSS Union）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#开源及基础软件通用技术创新联盟（简称：U-盟）"><span class="toc-text">开源及基础软件通用技术创新联盟（简称：U 盟）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#北京长风开放标准平台软件产业联盟（简称：长风联盟）"><span class="toc-text">北京长风开放标准平台软件产业联盟（简称：长风联盟）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#中国智能终端操作系统产业联盟"><span class="toc-text">中国智能终端操作系统产业联盟</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#湖北省开源软件推进联盟"><span class="toc-text">湖北省开源软件推进联盟</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-政策／重要事件"><span class="toc-text">2.政策／重要事件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#中央政府"><span class="toc-text">中央政府</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#广东省"><span class="toc-text">广东省</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#浙江省"><span class="toc-text">浙江省</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#大连市"><span class="toc-text">大连市</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#湖北省"><span class="toc-text">湖北省</span></a></li></ol></li></ol></li></ol>
+    </details>
+
+    <main class="markdown-body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><ul>
+<li>更好地理解当前中国开源的整体生态环境，包括开源人士、社区、网站、公司、组织、会议和活动等。</li>
+<li>三大板块：引进开源 —— 参与开源 —— 影响开源</li>
+</ul>
+<a id="more"></a>
+
+<h2 id="第一部分-引进开源"><a href="#第一部分-引进开源" class="headerlink" title="第一部分 引进开源"></a>第一部分 引进开源</h2><h3 id="1-国内有影响力的开源专家"><a href="#1-国内有影响力的开源专家" class="headerlink" title="1.国内有影响力的开源专家"></a>1.国内有影响力的开源专家</h3><table>
+<thead>
+<tr>
+<th>姓名</th>
+<th>职称</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>陆首群</td>
+<td>中国开源软件推进联盟名誉主席</td>
+<td>国内开源产业最积极的推动者</td>
+</tr>
+<tr>
+<td>倪光南</td>
+<td>中国工程院院士</td>
+<td>积极推动开源软件的专家学者</td>
+</tr>
+<tr>
+<td>廖湘科</td>
+<td>国防科技大学计算机学院，院长，教授，银河二号超级计算机项目总指挥</td>
+<td>在高校积极推动开源软件、开源社区的发展，和开源操作系统产业化</td>
+</tr>
+<tr>
+<td>毛德操</td>
+<td>Linux 内核专家</td>
+<td>所著 Linux 内核技术书籍在国内具有广泛的影响力</td>
+</tr>
+<tr>
+<td>宫敏</td>
+<td>Linux 内核专家</td>
+<td>最早在国内从事开源软件推广的专家之一</td>
+</tr>
+<tr>
+<td>陈渝</td>
+<td>清华大学，教授</td>
+<td>在高校积极推广开源软件，支持开源社区的发展</td>
+</tr>
+<tr>
+<td>陈钟</td>
+<td>北京大学，教授</td>
+<td>长期从事开源教育培训，支持社区发展</td>
+</tr>
+<tr>
+<td>冯晓焰</td>
+<td>Intel 亚太研发有限公司首席开源科学家</td>
+<td>参与相关国际、国内开源项目的发展，积极活跃于开源社区推广工作</td>
+</tr>
+<tr>
+<td>袁萌</td>
+<td>北京大学，教授</td>
+<td>最早从事开源软件推广的专家学者，著名的博客撰稿人</td>
+</tr>
+<tr>
+<td>章文嵩</td>
+<td>阿里巴巴，高级研究员，高级副总裁</td>
+<td>著名的 LVS 开源项目的创始人，淘宝开源项目的主要推动者，活跃于开源社区的技术、产业交流</td>
+</tr>
+</tbody></table>
+<p><em>本列表重点关注开源领域有突出贡献的专家学者，这些专家在开源领域尤其是在开源软件国内发展的初期起到了重要的推动作用。</em></p>
+<h3 id="2-国际有影响力的开源专家"><a href="#2-国际有影响力的开源专家" class="headerlink" title="2.国际有影响力的开源专家"></a>2.国际有影响力的开源专家</h3><table>
+<thead>
+<tr>
+<th>姓名</th>
+<th>职称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>David Chisnall</td>
+<td>FreeBSD 和 Etoile 项目核心成员,GNUstep 贡献者</td>
+</tr>
+<tr>
+<td>Valerie Lynch</td>
+<td>AND Technology Research 公司，CEO、咨询</td>
+</tr>
+<tr>
+<td>Martin Michlmayr</td>
+<td>Debian，项目经理</td>
+</tr>
+<tr>
+<td>Thomas Toirand</td>
+<td>GPL Host 公司，CEO</td>
+</tr>
+<tr>
+<td>Quentin stafford-fraser</td>
+<td>VNC 项目创始人, 剑桥大学计算机系老师</td>
+</tr>
+<tr>
+<td>Alan Mycroft</td>
+<td>Raspberry PI，合伙人</td>
+</tr>
+<tr>
+<td>Robert Watson</td>
+<td>FreeBSD 基金会，主任</td>
+</tr>
+<tr>
+<td>Jørgen Lindgaard Pedersen</td>
+<td>丹麦科技大学，教授</td>
+</tr>
+<tr>
+<td>Vaggelis Giannikas</td>
+<td>剑桥大学，研究员，开源研究</td>
+</tr>
+</tbody></table>
+<h3 id="3-开源软件生态系统－实体－Linux-兴趣小组"><a href="#3-开源软件生态系统－实体－Linux-兴趣小组" class="headerlink" title="3.开源软件生态系统－实体－Linux 兴趣小组"></a>3.开源软件生态系统－实体－Linux 兴趣小组</h3><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>简介</th>
+<th>网址</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>北京 Linux 用户组</td>
+<td>1.（固定）每周二晚上会有小聚，分享一些技术知识，聊天沙龙等等。 2.（固定）Coding for fun，一起做一些技术的编程活动。 3.组织每个月的随机线下活动，比如：教育自由日。 4.组织每年的 SFD 软件自由日。</td>
+<td><a href="http://beijinglug.org" target="_blank" rel="noopener">http://beijinglug.org</a></td>
+</tr>
+<tr>
+<td>上海 Linux 用户组</td>
+<td>1.每周四晚上会有小聚，分享一些技术知识，聊天沙龙等等。</td>
+<td><a href="http://www.shlug.org/" target="_blank" rel="noopener">http://www.shlug.org/</a></td>
+</tr>
+<tr>
+<td></td>
+<td>2.组织一些月度的技术分享</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>3.组织每年的 SFD 软件自由日</td>
+<td></td>
+</tr>
+<tr>
+<td>广州 Linux 用户组</td>
+<td>1.月度聚会 2.软件自由日 3.发行版的一些聚会</td>
+<td><a href="http://www.gzlug.org/" target="_blank" rel="noopener">http://www.gzlug.org/</a></td>
+</tr>
+<tr>
+<td>南京 Linux 用户组</td>
+<td>月度聚会</td>
+<td><a href="http://nanjinglug.org/" target="_blank" rel="noopener">http://nanjinglug.org/</a></td>
+</tr>
+<tr>
+<td>苏州自由软件用户组</td>
+<td>组织软件自由日</td>
+<td><a href="http://weibo.com/sfug" target="_blank" rel="noopener">http://weibo.com/sfug</a></td>
+</tr>
+<tr>
+<td>杭州 Linux 用户组</td>
+<td>Hacking Thursdays.周四晚上线下聚会</td>
+<td><a href="http://hzlug.org/" target="_blank" rel="noopener">http://hzlug.org/</a></td>
+</tr>
+<tr>
+<td>重庆 Linux 用户组</td>
+<td>1.重庆开源沙龙 2.月度活动，比如：教育自由日</td>
+<td><a href="http://www.chongqinglug.org" target="_blank" rel="noopener">http://www.chongqinglug.org</a></td>
+</tr>
+<tr>
+<td>福建 Linux 用户组</td>
+<td>组织软件自由日</td>
+<td><a href="https://groups.google.com/forum/?fromgroups#!forum/fujianlug" target="_blank" rel="noopener">https://groups.google.com/forum/?fromgroups#!forum/fujianlug</a></td>
+</tr>
+<tr>
+<td>河北 Linux 用户组</td>
+<td>组织一些线下的聚会与技术分享。</td>
+<td><a href="http://www.heblug.org" target="_blank" rel="noopener">http://www.heblug.org</a></td>
+</tr>
+<tr>
+<td>成都 Linux 用户组</td>
+<td>线下聚会</td>
+<td><a href="https://groups.google.com/forum/?hl=en#!forum/cdlug_community" target="_blank" rel="noopener">https://groups.google.com/forum/?hl=en#!forum/cdlug_community</a></td>
+</tr>
+<tr>
+<td>香港 Linux 用户组</td>
+<td>1.Linux talk 2.组织圣诞或者重要节日的聚会</td>
+<td><a href="http://test1.linux.org.hk" target="_blank" rel="noopener">http://test1.linux.org.hk</a></td>
+</tr>
+<tr>
+<td>深圳 Linux 用户组</td>
+<td>组织月度聚会</td>
+<td><a href="http://szlug.org" target="_blank" rel="noopener">http://szlug.org</a></td>
+</tr>
+<tr>
+<td>河南 Linux 用户组</td>
+<td>线下聚会</td>
+<td><a href="http://weibo.com/hnlug" target="_blank" rel="noopener">http://weibo.com/hnlug</a></td>
+</tr>
+<tr>
+<td>哈尔滨 Linux 用户组</td>
+<td>月度聚会</td>
+<td><a href="http://gitcafe.com/HrBLUG" target="_blank" rel="noopener">http://gitcafe.com/HrBLUG</a></td>
+</tr>
+</tbody></table>
+<p><em>只有很少的 Linux 兴趣小组存在，组织一直在变。总体上不会跨越地理位置，并且都是一些小的组织，做一些技术分享、聚会等等的活动。</em></p>
+<h3 id="4-开源组织在全国各高校的分布"><a href="#4-开源组织在全国各高校的分布" class="headerlink" title="4.开源组织在全国各高校的分布"></a>4.开源组织在全国各高校的分布</h3><table>
+<thead>
+<tr>
+<th>城市/省份</th>
+<th>学校</th>
+<th>社区</th>
+<th>开源软件镜像</th>
+<th>活动</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>北京</td>
+<td>中国科学院大学</td>
+<td>中科院开源软件协会</td>
+<td>Yes</td>
+<td>SFD, EFD，HFD，PyCon</td>
+</tr>
+<tr>
+<td></td>
+<td>北京交通大学</td>
+<td>Java 协会, Firfox 组</td>
+<td>Yes</td>
+<td>SFD, Firefox in Universities, The RedFlag CUP, ad-hoc speeches</td>
+</tr>
+<tr>
+<td></td>
+<td>清华大学</td>
+<td>网络管理组, 计算机俱乐部</td>
+<td>Yes</td>
+<td>SFD, ad-hoc speeches</td>
+</tr>
+<tr>
+<td></td>
+<td>北京航空航天大学</td>
+<td>计算机协会, 软件工程俱乐部</td>
+<td>Yes</td>
+<td>SFD, Firefox in Universities, 360 campus</td>
+</tr>
+<tr>
+<td></td>
+<td>北京邮电大学</td>
+<td>开源软件协会</td>
+<td>No</td>
+<td>SFD, Firefox in Universities, ad-hoc speeches</td>
+</tr>
+<tr>
+<td></td>
+<td>北京理工大学</td>
+<td>科学与技术协会</td>
+<td>Yes</td>
+<td>SFD</td>
+</tr>
+<tr>
+<td></td>
+<td>北京大学</td>
+<td>开源软件协会</td>
+<td>Yes</td>
+<td>Google Android competitions, SFD, open source time at the WeiMing lake, ad-hoc speeches</td>
+</tr>
+<tr>
+<td>上海</td>
+<td>上海交通大学</td>
+<td>IBM 俱乐部、Linux 协会</td>
+<td>Yes</td>
+<td>IBM annual meetings, SFD</td>
+</tr>
+<tr>
+<td></td>
+<td>同济大学</td>
+<td>开源软件协会</td>
+<td>No</td>
+<td>SFD, ad-hoc speeches</td>
+</tr>
+<tr>
+<td></td>
+<td>上海大学</td>
+<td>开源软件社区</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>天津</td>
+<td>天津大学</td>
+<td>北洋 Linux 协会</td>
+<td>Yes</td>
+<td>SFD, The RedFlag CUP, ad-hoc speeches</td>
+</tr>
+<tr>
+<td>安徽</td>
+<td>中国科技技术大学</td>
+<td>Linux 学生用户协会</td>
+<td>No</td>
+<td>Linux Install Party, SFD, Firefox in Universities, ad-hoc speeches</td>
+</tr>
+<tr>
+<td>江苏</td>
+<td>南京邮电大学</td>
+<td>开源软件社区</td>
+<td>No</td>
+<td>Open Source in Universities, SFD, The RedFlag CUP, ad-hoc speeches</td>
+</tr>
+<tr>
+<td>甘肃</td>
+<td>兰州大学</td>
+<td>开源软件组织、IBM 俱乐部</td>
+<td>Yes</td>
+<td>The Linux Open Day, SFD, The RedFlag CUP, ad-hoc speeches</td>
+</tr>
+<tr>
+<td>四川</td>
+<td>电子科技大学</td>
+<td>Linux 协会</td>
+<td>Yes</td>
+<td>SFD, The RedFlag CUP</td>
+</tr>
+<tr>
+<td></td>
+<td>四川大学</td>
+<td>科学与技术协会</td>
+<td>No</td>
+<td>SFD, The RedFlag CUP, Firefox</td>
+</tr>
+<tr>
+<td>重庆</td>
+<td>重庆大学</td>
+<td>开源软件协会</td>
+<td>No</td>
+<td>SFD, The Loongson CUP</td>
+</tr>
+<tr>
+<td></td>
+<td>西南大学</td>
+<td>开源软件协会</td>
+<td>Yes</td>
+<td>Nice Traveling on Linux, SFD, ad-hoc speeches</td>
+</tr>
+<tr>
+<td></td>
+<td>重庆邮电大学</td>
+<td>Linux 协会</td>
+<td>No</td>
+<td>SFD</td>
+</tr>
+<tr>
+<td>广东</td>
+<td>汕头大学</td>
+<td>Linux 协会</td>
+<td>No</td>
+<td>Night of Linux, SFD</td>
+</tr>
+<tr>
+<td></td>
+<td>广州大学</td>
+<td>开源软件协会</td>
+<td>No</td>
+<td>SFD, The RedFlag CUP</td>
+</tr>
+<tr>
+<td>湖北</td>
+<td>武汉科技大学</td>
+<td>开源软件协会</td>
+<td>No</td>
+<td>SFD, The RedFlag CUP, The Loongson CUP, open source competition among 3 universities in Wuhan</td>
+</tr>
+<tr>
+<td></td>
+<td>武汉大学</td>
+<td>计算机协会, 程序员协会</td>
+<td>No</td>
+<td>SFD, The RedFlag CUP, Firefox Open Source in Universities</td>
+</tr>
+<tr>
+<td>陕西</td>
+<td>西安邮电大学</td>
+<td>Linux 兴趣小组</td>
+<td>Yes</td>
+<td>SFD, The RedFlag CUP, Firefox Open Source in Universities, The Loongson CUP, scheduled technical speeches</td>
+</tr>
+<tr>
+<td></td>
+<td>西安大学</td>
+<td>西电开源软件协会</td>
+<td>No</td>
+<td>SFD, The RedFlag CUP, Firefox Open Source in Universities, ad-hoc speeches</td>
+</tr>
+<tr>
+<td></td>
+<td>西安财经学校</td>
+<td>Linux 兴趣小组</td>
+<td>No</td>
+<td>SFD, The RedFlag CUP, Firefox Open Source in Universities</td>
+</tr>
+<tr>
+<td></td>
+<td>西安理工大学</td>
+<td>Linux 小组</td>
+<td>No</td>
+<td>SFD, The RedFlag CUP</td>
+</tr>
+<tr>
+<td></td>
+<td>陕西科技大学</td>
+<td>Linux 兴趣小组</td>
+<td>No</td>
+<td>SFD, The RedFlag CUP</td>
+</tr>
+<tr>
+<td></td>
+<td>西北农林科技大学</td>
+<td>西农开源软件协会</td>
+<td>No</td>
+<td>SFD, The RedFlag CUP</td>
+</tr>
+<tr>
+<td></td>
+<td>西安科技大学</td>
+<td>开源软件协会</td>
+<td>No</td>
+<td>SFD, ad-hoc speeches</td>
+</tr>
+<tr>
+<td>山东</td>
+<td>山东大学</td>
+<td>开源软件俱乐部</td>
+<td>No</td>
+<td>SFD</td>
+</tr>
+<tr>
+<td></td>
+<td>青岛大学</td>
+<td>OSQDU OSS Organization</td>
+<td>Yes</td>
+<td>SFD, ad-hoc speeches</td>
+</tr>
+<tr>
+<td>黑龙江</td>
+<td>哈尔滨工业大学</td>
+<td>IBM 俱乐部, 计算机协会</td>
+<td>No</td>
+<td>SFD, debugging competitions</td>
+</tr>
+<tr>
+<td>浙江</td>
+<td>浙江大学</td>
+<td>Linux 用户组</td>
+<td>Yes</td>
+<td>SFD, ad-hoc open source speeches</td>
+</tr>
+<tr>
+<td>辽宁</td>
+<td>东北大学</td>
+<td>开源软件协会</td>
+<td>Yes</td>
+<td>SFD</td>
+</tr>
+<tr>
+<td>福建</td>
+<td>厦门大学</td>
+<td>Linux 用户组</td>
+<td>Yes</td>
+<td>ad-hoc speeches</td>
+</tr>
+</tbody></table>
+<h3 id="5-开源领域国内大会"><a href="#5-开源领域国内大会" class="headerlink" title="5.开源领域国内大会"></a>5.开源领域国内大会</h3><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>地点</th>
+<th>时间</th>
+<th>参加人数</th>
+<th>人员类型</th>
+<th>主办方</th>
+<th>影响力</th>
+<th>主流媒介</th>
+<th>网址</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>开源中国开源世界高峰论坛</td>
+<td>北京</td>
+<td>June 27th~28th, 2014</td>
+<td>300+</td>
+<td>government officials, business professionals, users, developers</td>
+<td>中国开源软件推进联盟（COPU）</td>
+<td>高</td>
+<td></td>
+<td><a href="http://www.copu.org.cn" target="_blank" rel="noopener">http://www.copu.org.cn</a></td>
+</tr>
+<tr>
+<td>CSS Conf</td>
+<td>Omni Amelia Island Resort</td>
+<td>May 26th~27th, 2014</td>
+<td></td>
+<td>users, developers,</td>
+<td></td>
+<td></td>
+<td></td>
+<td><a href="http://2014.cssconf.com/" target="_blank" rel="noopener">http://2014.cssconf.com/</a></td>
+</tr>
+<tr>
+<td>HTML5 峰会</td>
+<td>北京国际会议中心</td>
+<td>2014-8-16</td>
+<td>2000+</td>
+<td>users, developers,</td>
+<td>html5dw</td>
+<td>高</td>
+<td>w3ctechcsdnIT168</td>
+<td><a href="http://2014.html5dw.com/" target="_blank" rel="noopener">http://2014.html5dw.com/</a></td>
+</tr>
+<tr>
+<td>开源技术大会（CSDN）</td>
+<td>北京丽婷酒店</td>
+<td>2014-3-30</td>
+<td>500+</td>
+<td>users, developers,</td>
+<td>CSDN</td>
+<td>高</td>
+<td></td>
+<td><a href="http://ostc.csdn.net/m/zone/ostc_2014" target="_blank" rel="noopener">http://ostc.csdn.net/m/zone/ostc_2014</a></td>
+</tr>
+<tr>
+<td>中国 Linux 内核开发者大会</td>
+<td>北京清华大学美术学院</td>
+<td>2014-10-19</td>
+<td>300+</td>
+<td>users, developers,</td>
+<td>fujitsu IBM AKA 阿卡信息技术小组、英特尔公司开源技术中心、清华大学</td>
+<td>高</td>
+<td>水木社区内核版哲思自由软件社区 CSDNCSIP 开源中国社区龙芯俱乐部南京 Linux 用户组普智教育</td>
+<td><a href="http://www.ckernel.org/" target="_blank" rel="noopener">http://www.ckernel.org/</a></td>
+</tr>
+<tr>
+<td>开源开发工具大会（原 HelloGCC 技术讨论会）</td>
+<td>北京</td>
+<td>2014-9-13</td>
+<td>200</td>
+<td>users, developers,</td>
+<td>HelloGCC 工作组</td>
+<td></td>
+<td>CSDN</td>
+<td><a href="http://www.hellogcc.org/?p=33749" target="_blank" rel="noopener">http://www.hellogcc.org/?p=33749</a></td>
+</tr>
+<tr>
+<td>中国 PyCon 年会</td>
+<td>北京/上海/珠海/苏州/杭州 五城联办</td>
+<td>2014-11-15</td>
+<td>500+</td>
+<td>python 开发人员</td>
+<td>华莽社区</td>
+<td></td>
+<td>segmentfault 华莽社区 中国科技网</td>
+<td><a href="http://cn.pycon.org/" target="_blank" rel="noopener">http://cn.pycon.org/</a></td>
+</tr>
+<tr>
+<td>Ruby Conf</td>
+<td>San Diego</td>
+<td>November 17-19, 2014</td>
+<td>500+</td>
+<td></td>
+<td>Ruby Central, Inc.,</td>
+<td></td>
+<td></td>
+<td><a href="http://rubyconf.org/" target="_blank" rel="noopener">http://rubyconf.org/</a></td>
+</tr>
+<tr>
+<td>GNOME Asia Summit</td>
+<td>北京</td>
+<td>May 23 - 25, 2014</td>
+<td>300+</td>
+<td>users, developers, business professionals, media, students and government officials</td>
+<td>GNOME Community</td>
+<td></td>
+<td>CSDN</td>
+<td>2014.gnome.asia</td>
+</tr>
+<tr>
+<td>opensuse Asia summit</td>
+<td>Beijing / China</td>
+<td>October 18 - 19, 2014</td>
+<td>300+</td>
+<td>users, developers,</td>
+<td>OpenSUSE 社区</td>
+<td></td>
+<td></td>
+<td><a href="http://summit.opensuse.org" target="_blank" rel="noopener">http://summit.opensuse.org</a></td>
+</tr>
+<tr>
+<td>Software Freedom Day</td>
+<td>世界各地</td>
+<td>September 20th 2014</td>
+<td>10000+</td>
+<td>users, developers,</td>
+<td>Digital Freedom International (Aka SFI)</td>
+<td></td>
+<td></td>
+<td>softwarefreedomday.org</td>
+</tr>
+<tr>
+<td>Education Freedom Day</td>
+<td>世界各地</td>
+<td>January 18th 2014</td>
+<td></td>
+<td>users, developers,</td>
+<td>Digital Freedom International (Aka SFI)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>EclipseCon</td>
+<td>San Francisco</td>
+<td>March 17-20 2014</td>
+<td>2000+</td>
+<td>users, developers,</td>
+<td>ECLIPSE FOUNDATION</td>
+<td></td>
+<td>oreilly</td>
+<td><a href="https://www.eclipsecon.org/na2014/news" target="_blank" rel="noopener">https://www.eclipsecon.org/na2014/news</a></td>
+</tr>
+<tr>
+<td>The Embedded Linux Conference (ELC)</td>
+<td>San Jose Marriott,San Jose,CA</td>
+<td>April 29-May 1 2014</td>
+<td>300+</td>
+<td></td>
+<td>Linux Foundation</td>
+<td></td>
+<td>eecatalog.com <a href="http://www.embedded-computing.com" target="_blank" rel="noopener">www.embedded-computing.com</a> <a href="http://www.gacetatecnologica.com" target="_blank" rel="noopener">www.gacetatecnologica.com</a> <a href="http://www.lwn.netoreilly.com" target="_blank" rel="noopener">www.lwn.netoreilly.com</a></td>
+<td><a href="http://events.linuxfoundation.org/events/archive/2014/embedded-linux-conference" target="_blank" rel="noopener">http://events.linuxfoundation.org/events/archive/2014/embedded-linux-conference</a></td>
+</tr>
+<tr>
+<td>Akademy(the annual world summit of KDE)</td>
+<td>Brno, Czech Republic</td>
+<td>the 6th to 12th of September. 2014</td>
+<td>300+</td>
+<td></td>
+<td>the KDE Community</td>
+<td></td>
+<td></td>
+<td><a href="https://akademy.kde.org/2014" target="_blank" rel="noopener">https://akademy.kde.org/2014</a></td>
+</tr>
+<tr>
+<td>OpenDaylight Summit</td>
+<td>Hyatt Santa Clara,Santa Clara</td>
+<td>February 4-5 2014</td>
+<td>600+</td>
+<td></td>
+<td>Linux Foundation</td>
+<td></td>
+<td>sdncentral.com</td>
+<td><a href="http://events.linuxfoundation.org/events/archive/2014/opendaylight-summit" target="_blank" rel="noopener">http://events.linuxfoundation.org/events/archive/2014/opendaylight-summit</a></td>
+</tr>
+<tr>
+<td>Linux Storage, Filesystem and Memory Management Summit</td>
+<td>Napa, California</td>
+<td>March 24-25 2014</td>
+<td>90+</td>
+<td>developer</td>
+<td>Linux Foundation</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>The Linux Security Summit (LSS)</td>
+<td>Chicago, USA</td>
+<td>18 and 19 August 2014</td>
+<td></td>
+<td>Linux developers, researchers, and end users</td>
+<td>Linux Foundation</td>
+<td></td>
+<td>diy-community.com eecatalog.com gacetatecnologica.com hpcwire.com lwn.netsecuritysolutionswatch.com usenix.orgvirtual-strategy.com</td>
+<td><a href="http://kernsec.org/wiki/index.php/Linux_Security_Summit_2014" target="_blank" rel="noopener">http://kernsec.org/wiki/index.php/Linux_Security_Summit_2014</a></td>
+</tr>
+<tr>
+<td>CloudStack Collaboration Conference</td>
+<td>Budapest, Hungary</td>
+<td>2014 - November 19-21</td>
+<td>2000+</td>
+<td>developers, systems administrators and DevOps professionals</td>
+<td>Linux Foundation and Apache Software Foundation</td>
+<td></td>
+<td><a href="http://www.gacetatecnologica.com" target="_blank" rel="noopener">www.gacetatecnologica.com</a></td>
+<td></td>
+</tr>
+<tr>
+<td>ApacheCon</td>
+<td>Budapest, Hungary</td>
+<td>November 17-21, 2014</td>
+<td>2000+</td>
+<td>developers, systems administrators and DevOps professionals</td>
+<td>Linux Foundation and Apache Software Foundation</td>
+<td></td>
+<td><a href="http://www.hpcwire.com" target="_blank" rel="noopener">www.hpcwire.com</a></td>
+<td></td>
+</tr>
+<tr>
+<td>Xen Developer Summit</td>
+<td>Sheraton Chicago Chicago,IL</td>
+<td>August 18-19 2014</td>
+<td>1000+</td>
+<td>Xen Project’s community of developers and power users</td>
+<td>Linux Foundation</td>
+<td></td>
+<td></td>
+<td><a href="http://events.linuxfoundation.org/events/xen-project-developer-summit" target="_blank" rel="noopener">http://events.linuxfoundation.org/events/xen-project-developer-summit</a></td>
+</tr>
+</tbody></table>
+<h3 id="6-开源领域国际会议"><a href="#6-开源领域国际会议" class="headerlink" title="6.开源领域国际会议"></a>6.开源领域国际会议</h3><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>地点</th>
+<th>时间</th>
+<th>参加人数</th>
+<th>人员类型</th>
+<th>主办方</th>
+<th>影响力</th>
+<th>主流媒介</th>
+<th>网络</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>东北亚开源软件推进论坛</td>
+<td>武汉</td>
+<td>2014.11</td>
+<td>300+</td>
+<td>government officials, Developer, IT Pro</td>
+<td>中国开源软件推进联盟（COPU）</td>
+<td>高</td>
+<td></td>
+<td><a href="http://www.copu.org.cn" target="_blank" rel="noopener">http://www.copu.org.cn</a></td>
+</tr>
+<tr>
+<td>O’’Reilly Open Source Convention</td>
+<td>波特兰</td>
+<td>2014.07</td>
+<td>2000+</td>
+<td>TDM, Developer, IT Pro</td>
+<td>Github, bluehost.com,IBM</td>
+<td>高</td>
+<td>O’Rrilly Media</td>
+<td><a href="http://www.oscon.com/open-source-2015" target="_blank" rel="noopener">http://www.oscon.com/open-source-2015</a></td>
+</tr>
+<tr>
+<td>O’’Reilly Open Source Convention</td>
+<td>阿姆斯特丹</td>
+<td>2015.1</td>
+<td>2000+</td>
+<td>TDM, Developer</td>
+<td>Github</td>
+<td>高</td>
+<td>O’Rrilly Media</td>
+<td><a href="http://www.oreilly.com/conferences/" target="_blank" rel="noopener">http://www.oreilly.com/conferences/</a></td>
+</tr>
+<tr>
+<td>Open Source Bridge</td>
+<td>波特兰</td>
+<td>2015.06</td>
+<td>1000+</td>
+<td>Developer, IT Pro</td>
+<td>Mandrill</td>
+<td>高</td>
+<td>Open Source Bridge</td>
+<td><a href="http://opensourcebridge.org/attend" target="_blank" rel="noopener">http://opensourcebridge.org/attend</a></td>
+</tr>
+<tr>
+<td>11th Intl.Conf. on Open Source System</td>
+<td>意大利</td>
+<td>2015.05</td>
+<td>1000+</td>
+<td>Researchers</td>
+<td>Google</td>
+<td>高</td>
+<td>OSS 2015</td>
+<td><a href="http://www.oss2015.org/" target="_blank" rel="noopener">http://www.oss2015.org/</a></td>
+</tr>
+<tr>
+<td>POSSCON 2015</td>
+<td>哥伦比亚</td>
+<td>2015.04</td>
+<td>2000+</td>
+<td>TDM, Developer, IT Pro</td>
+<td>IT-ology, open source. com</td>
+<td>高</td>
+<td>Opensource.com</td>
+<td><a href="http://posscon.org/" target="_blank" rel="noopener">http://posscon.org/</a></td>
+</tr>
+<tr>
+<td>OpenWest Conferenece</td>
+<td>奥勒姆</td>
+<td>2015.05</td>
+<td>1000+</td>
+<td>Developer</td>
+<td>Utah Valley University, O’Reilly</td>
+<td>高</td>
+<td>O’Reilly</td>
+<td><a href="http://www.openwest.org/about/" target="_blank" rel="noopener">http://www.openwest.org/about/</a></td>
+</tr>
+<tr>
+<td>FOSDEM 2015</td>
+<td>布鲁塞尔</td>
+<td>2015.01</td>
+<td>5000+</td>
+<td>Influencer, TDM, IT Pro</td>
+<td>Redhat, Google, MySQL</td>
+<td>高</td>
+<td>Redhat,et al</td>
+<td><a href="https://fosdem.org/2015/" target="_blank" rel="noopener">https://fosdem.org/2015/</a></td>
+</tr>
+<tr>
+<td>HKOSCon 2015</td>
+<td>香港</td>
+<td>2015.06</td>
+<td>1000+</td>
+<td>Cloud, community, startups</td>
+<td>Oracle, MySQL</td>
+<td>高</td>
+<td>Oracle</td>
+<td><a href="https://2015.opensource.hk/" target="_blank" rel="noopener">https://2015.opensource.hk/</a></td>
+</tr>
+<tr>
+<td>Open source backup conference</td>
+<td></td>
+<td>2015.09</td>
+<td>1000+</td>
+<td>Influence, BDM, IT Pro</td>
+<td>bareos</td>
+<td>高</td>
+<td>Linux Magazine</td>
+<td><a href="http://osbconf.org/location/" target="_blank" rel="noopener">http://osbconf.org/location/</a></td>
+</tr>
+<tr>
+<td>Linaro Connect</td>
+<td>香港</td>
+<td>2015.02</td>
+<td></td>
+<td>TDM, Developer</td>
+<td>Linaro</td>
+<td>高</td>
+<td>Linux Journal</td>
+<td><a href="http://connect.linaro.org" target="_blank" rel="noopener">http://connect.linaro.org</a></td>
+</tr>
+<tr>
+<td>SCALE</td>
+<td>洛杉矶</td>
+<td>2015.02</td>
+<td></td>
+<td>TDM, BDM, Developer, IT Pro</td>
+<td>Linux Expo of Southern California Inc.</td>
+<td>高</td>
+<td>Linux Magazine</td>
+<td><a href="http://www.socallinuxexpo.org/scale/13x" target="_blank" rel="noopener">http://www.socallinuxexpo.org/scale/13x</a></td>
+</tr>
+<tr>
+<td>LinuxCon Japan</td>
+<td>东京</td>
+<td>2015.06</td>
+<td></td>
+<td>TDM, Devleoper</td>
+<td>Linux Foundation</td>
+<td>高</td>
+<td>Linux Journal, LWN</td>
+<td></td>
+</tr>
+<tr>
+<td>PyCon</td>
+<td>蒙特利尔</td>
+<td>2015.04</td>
+<td></td>
+<td>TDM, BDM, Developer, IT Pro</td>
+<td>Python Software Foundation</td>
+<td>高</td>
+<td>PyCoders</td>
+<td><a href="https://us.pycon.org/2015/" target="_blank" rel="noopener">https://us.pycon.org/2015/</a></td>
+</tr>
+<tr>
+<td>OpenStack Summit</td>
+<td>渥太华</td>
+<td>2015.05</td>
+<td></td>
+<td>TDM, BDM, Developer</td>
+<td>Rackspace</td>
+<td>高</td>
+<td></td>
+<td><a href="https://www.openstack.org/summit/" target="_blank" rel="noopener">https://www.openstack.org/summit/</a></td>
+</tr>
+<tr>
+<td>LPC</td>
+<td>西雅图</td>
+<td>2015.08</td>
+<td></td>
+<td>TDM, Developer</td>
+<td>Intel, Google, Facebokk</td>
+<td>高</td>
+<td>LWN</td>
+<td><a href="http://linuxplumbersconf.org" target="_blank" rel="noopener">http://linuxplumbersconf.org</a></td>
+</tr>
+</tbody></table>
+<h2 id="第二部分-参与开源"><a href="#第二部分-参与开源" class="headerlink" title="第二部分 参与开源"></a>第二部分 参与开源</h2><h3 id="1-GitHub-上影响力比较大的个人"><a href="#1-GitHub-上影响力比较大的个人" class="headerlink" title="1.GitHub 上影响力比较大的个人"></a>1.GitHub 上影响力比较大的个人</h3><img src="/document/china-os-report-2015/GitHub_Individual.png" class="">
+
+<h3 id="2-OpenStack-国人贡献排行榜"><a href="#2-OpenStack-国人贡献排行榜" class="headerlink" title="2.OpenStack 国人贡献排行榜"></a>2.OpenStack 国人贡献排行榜</h3><img src="/document/china-os-report-2015/OpenStackContributor.png" class="">
+
+<h3 id="3-Linux-Kernal-国人贡献排行榜"><a href="#3-Linux-Kernal-国人贡献排行榜" class="headerlink" title="3.Linux Kernal 国人贡献排行榜"></a>3.Linux Kernal 国人贡献排行榜</h3><img src="/document/china-os-report-2015/LinuxKernalContributor.png" class="">
+
+<h3 id="4-Docker-国人贡献排行榜"><a href="#4-Docker-国人贡献排行榜" class="headerlink" title="4.Docker 国人贡献排行榜"></a>4.Docker 国人贡献排行榜</h3><img src="/document/china-os-report-2015/DockerContributor.png" class="">
+
+<h3 id="5-热门项目-watch-start-fork"><a href="#5-热门项目-watch-start-fork" class="headerlink" title="5.热门项目 watch/start/fork"></a>5.热门项目 watch/start/fork</h3><img src="/document/china-os-report-2015/PopProject.png" class="">
+
+<h3 id="6-公共在线社区"><a href="#6-公共在线社区" class="headerlink" title="6.公共在线社区"></a>6.公共在线社区</h3><table>
+<thead>
+<tr>
+<th>社区名</th>
+<th>网址</th>
+<th>介绍</th>
+<th>补充说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>开源中国社区（OSChina）</td>
+<td>Oschina.net</td>
+<td>国内最活跃的，增长最快的线上技术社区，提供开源资讯，博客，开源软件查询，开源项目托管等功能，也举办源创汇等线下活动</td>
+<td>创立与 2008 年，目前与中国开源软件推进联盟（COPU）合作，是该联盟的官方支持社区</td>
+</tr>
+<tr>
+<td>CSDN</td>
+<td>Csdn.net</td>
+<td>国内著名的线上技术社区企业，最活跃的开源社区之一。提供开源资讯、博客、项目托管等线上功能</td>
+<td>有企业的强大支持，集线上社区，纸媒杂志，线下活动和会议于一身，有较高的社区品牌知名度</td>
+</tr>
+<tr>
+<td>开源社</td>
+<td><a href="http://www.kaiyuanshe.cn" target="_blank" rel="noopener">www.kaiyuanshe.cn</a></td>
+<td>由中国支持开源的企业，社区及个人所发起的一个开源联盟，有非常活跃的线上、线下社区。提供开源之星、博客、开源者行、开源社区研究等线上、线下功能</td>
+<td>创立于 2014 年，是一个成员广泛的社区，主要以线下活动为主，线上社区着重体现线下活动的成果</td>
+</tr>
+<tr>
+<td>开源中国网（China OSS）</td>
+<td>Oss.org.cn</td>
+<td>著名的开源产业资讯网站，主要关注开源软件产业，理念、开发模式、商业模式、社区和专家动态。提供资讯，开源软件黄页，Linux 内核代码浏览等功能</td>
+<td>创立于 2005 年，是中国开源软件推进联盟（COPU）支持的网站之一</td>
+</tr>
+<tr>
+<td>Linux 伊甸园 Linuxeden</td>
+<td><a href="http://www.linuxeden.com" target="_blank" rel="noopener">www.linuxeden.com</a></td>
+<td>成立较早，国内著名的线上开源社区，主要提供开源资讯</td>
+<td>除网站外，还以微博、微信等其它形式对外提供服务</td>
+</tr>
+<tr>
+<td>LUPA</td>
+<td>Lupaworld.com</td>
+<td>成立较早（早期最活跃的开源社区之一），提供开源资讯，专注于开源教育</td>
+<td>与政府及一些教育机构合作，推动开源教育和认证</td>
+</tr>
+<tr>
+<td>Open-Open</td>
+<td><a href="http://www.open-open.com" target="_blank" rel="noopener">www.open-open.com</a></td>
+<td>功能丰富的线上开源社区，提供论坛、博客、开源软件查询、资讯、文档等功能，一直比较稳定、活跃</td>
+<td>早期关注 Java 和开源软件查询，界面朴素，近年增加了较多功能</td>
+</tr>
+<tr>
+<td>我们的 Linux</td>
+<td>Linux.cn</td>
+<td>成立较早，今年仍比较活跃，主要以论坛的形式提供开源资讯和技术资料，特色是翻译了大量有观点的国外开源文章</td>
+<td>成立于 2003 年，其前身是炎黄角马（CNGNU）。是国内运营时间最长的线上社区之一</td>
+</tr>
+<tr>
+<td>Chinaunix</td>
+<td>Chinaunix.net</td>
+<td>早期国内最大的线上开源社区，以论坛、资讯、下载等服务为主，目前活跃度已不如前</td>
+<td>2008 年被 IT168 收购，提供大量的 Linux 操作系统相关的技术信息</td>
+</tr>
+<tr>
+<td>IMCN</td>
+<td>Imcn.me</td>
+<td>以博客的展示形式运维的开源资讯网站，提供很多有趣的开源文化、项目、创意的资讯，较活跃</td>
+<td>一个有趣的开源资讯站，关注 Ubuntu 系统相关的报道</td>
+</tr>
+</tbody></table>
+<h3 id="7-特定项目-技术社区"><a href="#7-特定项目-技术社区" class="headerlink" title="7.特定项目/技术社区"></a>7.特定项目/技术社区</h3><table>
+<thead>
+<tr>
+<th>社区名</th>
+<th>网址</th>
+<th>介绍</th>
+<th>补充说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Ubuntu 中国社区</td>
+<td>forum.ubuntu.org.cn</td>
+<td>国内最著名的线上 Ubuntu 社区，提供大量开源软件、Ubuntu 实用技术、社区交流信息</td>
+<td>该社区不是 Canonical 公司的 Ubuntu 中文官方社区，但它无疑是国内最受欢迎的 Ubuntu 社区</td>
+</tr>
+<tr>
+<td>火狐社区（中国）</td>
+<td>mozilla.com.cn</td>
+<td>火狐中国官方社区</td>
+<td>及时发布火狐和 Firefox OS 的各种信息，开展一系列项目推广活动</td>
+</tr>
+<tr>
+<td>Fedora 中文社区</td>
+<td><a href="http://www.fdzh.org" target="_blank" rel="noopener">www.fdzh.org</a></td>
+<td>Fedora 中文社区，提供关于 Fedora 的最新资讯，及一系列开源工具，包括构建系统，粘贴板等。</td>
+<td>非官方</td>
+</tr>
+<tr>
+<td>BlenderCN</td>
+<td><a href="http://www.blendercn.org" target="_blank" rel="noopener">www.blendercn.org</a></td>
+<td>开源软件 Blender 的国内社区</td>
+<td>聚集了大量 Blender 3D 建模使用者和开发者</td>
+</tr>
+<tr>
+<td>OpenFans 社区</td>
+<td><a href="http://www.openfans.org" target="_blank" rel="noopener">www.openfans.org</a></td>
+<td>专注于 cecOS 云平台和在线教育的社区组织</td>
+<td>定期发布 cecOS 系统平台和在线教育视频</td>
+</tr>
+<tr>
+<td>文泉驿</td>
+<td>wenq.org</td>
+<td>国内最著名的开源汉字库项目社区</td>
+<td>以社区的方式发展开放、开源的完整汉字库</td>
+</tr>
+<tr>
+<td>CentOS 中文</td>
+<td><a href="http://www.centoscn.com" target="_blank" rel="noopener">www.centoscn.com</a></td>
+<td>CentOS 中文社区</td>
+<td>提供下载和技术分享</td>
+</tr>
+<tr>
+<td>PHPChina</td>
+<td><a href="http://www.perlchina.org" target="_blank" rel="noopener">www.perlchina.org</a></td>
+<td>企业驱动的 PHP 技术社区</td>
+<td>同时开展各种技术推广活动</td>
+</tr>
+<tr>
+<td>CloudStack 中国社区</td>
+<td><a href="http://www.cloudstack-china.org" target="_blank" rel="noopener">www.cloudstack-china.org</a></td>
+<td>国内 CloudStack 这个新兴软件平台的重要社区之一</td>
+<td></td>
+</tr>
+<tr>
+<td>OpenWRT 中文应用技术网</td>
+<td><a href="http://www.openwrt.org.cn" target="_blank" rel="noopener">www.openwrt.org.cn</a></td>
+<td>开源硬件系统平台 OpenWRT 的中文社区</td>
+<td>有企业支持运维</td>
+</tr>
+<tr>
+<td>FreeBSDChina</td>
+<td><a href="http://www.freebsdchina.org" target="_blank" rel="noopener">www.freebsdchina.org</a></td>
+<td>FreeBSD 开源操作系统的中文社区</td>
+<td>建设了非常好的 WIKI 文档系统</td>
+</tr>
+</tbody></table>
+<h3 id="8-国内开源项目托管平台"><a href="#8-国内开源项目托管平台" class="headerlink" title="8.国内开源项目托管平台"></a>8.国内开源项目托管平台</h3><p>大多数开源软件都依赖于互联网而生。一个好的项目管理平台将能够帮助开源项目更高效和规范的管理与发展。而项目的发展中代码托管平台应该是开源项目发展中的刚性需求了，国内近几年出现了一批基于 SVN 和 GIT 版本控制系统的代码托管平台，除了代码托管他们也还提供各自不同的特色功能。下面列出几个主要平台：</p>
+<ul>
+<li>GitCafe（gitcafe.com）</li>
+<li>SVN China 中国源代码托管中心（<a href="http://www.svnchina.com）" target="_blank" rel="noopener">www.svnchina.com）</a></li>
+<li>GitCD（gitcd.com）</li>
+<li>CSDN CODE（code.csdn.net）</li>
+<li>Git@OSC（git.oschina.net）</li>
+<li>TaoCode（code.taobao.org/fastregister/）</li>
+<li>Coding (coding.net)</li>
+</ul>
+<h3 id="9-下载站点"><a href="#9-下载站点" class="headerlink" title="9.下载站点"></a>9.下载站点</h3><p>国内许多企业（如：搜狐，网易）提供开源软件的下载站，一些高效和科研机构的社团也对外提供稳定高速的下载服务。这里我们列举出一些比较稳定的资源下载站点：</p>
+<ul>
+<li>中国科学技术大学开源软件镜像（debian.ustc.edu.cn）</li>
+<li>清华大学 TUNA 镜像源（mirrors.tuna.tsinghua.edu.cn）</li>
+<li>浙江大学开源镜像站（mirrors.lifetoy.org）</li>
+<li>兰大开源社区镜像站（mirror.lzu.edu.cn）</li>
+<li>北京理工大学开源软件镜像（mirror.bit.edu.cn）</li>
+<li>中国互联网络信息中心开源镜像站（mirrors.cnnic.cn）</li>
+<li>中科院开源软件协会镜像站（mirrors.opencas.org）</li>
+</ul>
+<h3 id="10-开源社区活动瓶颈"><a href="#10-开源社区活动瓶颈" class="headerlink" title="10.开源社区活动瓶颈"></a>10.开源社区活动瓶颈</h3><h4 id="线上活动瓶颈——主要存在于交流形式"><a href="#线上活动瓶颈——主要存在于交流形式" class="headerlink" title="线上活动瓶颈——主要存在于交流形式"></a>线上活动瓶颈——主要存在于交流形式</h4><p>从传统社区到现在的各种新兴技术社区，线上交流工具的变化也非常大。部分社区仍然沿用邮件列表作为沟通的主要形式，新兴社区更多以 QQ 群，微信群为协作工具，或者由于技术界的某些偏见仅使用国外的即时通讯工具，部分团体和社区也借助各种团队协作工具来提高社区运作和团队管理效率。<br>各种工具和形式各有优劣，收到社区传统和成员的时代特点影响，不同社区所使用的协作和交流工具大相近庭，从而导致社区间协作出现问题，没有查收邮件和消息的情况大有人在。</p>
+<h4 id="线下活动瓶颈——最大的问题在于社区资源对接"><a href="#线下活动瓶颈——最大的问题在于社区资源对接" class="headerlink" title="线下活动瓶颈——最大的问题在于社区资源对接"></a>线下活动瓶颈——最大的问题在于社区资源对接</h4><p>众多的开源社区根据组织背景可以进行分类：高校社区，企业社区，项目社区，自发社区。<br>每个种类的社区都有各自的资源和优势。社区相互之间不能很好的取长补短，是造成线下活动成果不理想的主要原因。任何一个因素，如场地，资源，人员，受众，宣传等出现问题必然会影响到整个活动的质量。</p>
+<p><strong>高校社区：</strong>以高校社团为背景，由高校学生凭技术爱好自发组织的开源社区。这种类型的社区多以技术讨论，科普讲座和就业相关为主，拥有丰富的校园资源，可为活动提供场地和人力支持，有广泛的活动受众群体。但是缺乏专业技术指导和资金支持，规模通常不大。</p>
+<p><strong>企业社区：</strong>以企业为背景的开源社区，以企业开源项目或产品市场推广为中心。这种类型的社区拥有丰富的技术资源和财力支持，对于某项技术的推广和普及功不可没。但是任何形式的推广和扩大社区影响的活动都需要足够广的受众群体，缺乏足够的支持者会影响社区的壮大。</p>
+<p><strong>项目社区：</strong>拥有自己的社区项目和专业的技术人员，在社区中拥有较大的影响力和号召力。项目社区有强大的技术人力支持，项目支持者也为社区带来了巨大影响力，扩大社区规模，但同样也面临着活动场地，活动资金的压力。</p>
+<p><strong>自发社区：</strong>完全由技术爱好者发起并组建的社区，定期进行技术分享集会。面临的问题在于缺乏长期志愿的活动组织人员，缺乏资金和活动场地支持。</p>
+<h2 id="第三部分-影响开源"><a href="#第三部分-影响开源" class="headerlink" title="第三部分 影响开源"></a>第三部分 影响开源</h2><h3 id="1-产业协会"><a href="#1-产业协会" class="headerlink" title="1. 产业协会"></a>1. 产业协会</h3><h4 id="中国开源软件推进联盟（China-Open-Source-Promotion-Union，简称：COPU）"><a href="#中国开源软件推进联盟（China-Open-Source-Promotion-Union，简称：COPU）" class="headerlink" title="中国开源软件推进联盟（China Open Source Promotion Union，简称：COPU）"></a>中国开源软件推进联盟（China Open Source Promotion Union，简称：COPU）</h4><p>创立时间：2004 年 7 月 22 日</p>
+<p>介绍：国内最活跃的开源软件、开放技术产业联盟。工信部指导下，由致力于开源软件社区、技术、产业、教学、应用、服务的企业、社团、用户、 大专院校、科研机构等组织自愿组成的、民主议事的民间行业联合体。致力于推动中国开源软件的应用和发展；促进中日韩以及中国与全球开源运动的沟通、交流与合作；推动中国为全球开源运动事业做出更多贡献。</p>
+<p>成员：100+，包括：本地商业机构（华为，中标软件，中国移动，阿里巴巴等），社区社团，国际商业机构（Intel，HP，IBM，Oracle，SAP，Black Duck）和科研机构（北大，清华，中国电子技术标准化研究院等）。</p>
+<p>组织结构：主席，副主席，理事单位，专家委员会，国际智囊团</p>
+<p>指导单位：中华人民共和国工业和信息化部</p>
+<p>主要活动：</p>
+<ul>
+<li>东北亚开源论坛：每年一届，由中日韩三国轮流举办，论坛和开源训练营，开源项目和人物表彰。</li>
+<li>开源中国开源世界高峰论坛：每年一届（6 月底），国内最重要的开源产业和技术论坛，汇聚国内外众多企业、社团和研究机构，与开源商业客户探讨开源产业未来的发展。</li>
+<li>自由软件日：COPU 是相关活动的指导单位，为活动提供帮助和支持。</li>
+<li>中国 Linux 内核大会：COPU 为中国 Linux 内核大会的指导单位，提供帮助和支持。</li>
+</ul>
+<hr>
+<h4 id="共创软件联盟（-CoCreate-OSS-Union）"><a href="#共创软件联盟（-CoCreate-OSS-Union）" class="headerlink" title="共创软件联盟（ CoCreate OSS Union）"></a>共创软件联盟（ CoCreate OSS Union）</h4><p>创立时间：2000 年 3 月</p>
+<p>介绍：在国家 863 计划智能计算机系统主题专家组的倡导下，由国内多家高校、科研机构、企业等共同发起的共创软件联盟日前宣布成立。旨在联合国内的软件企业和科研机构，通过开放源码实现广泛的智力汇集和高效的成果传播，推进软件技术创新。</p>
+<p>成员：30+，包括 863 相关参与单位。</p>
+<p>组织结构：理事长，副理事长，理事单位</p>
+<p>指导单位：中华人民共和国科学技术部</p>
+<hr>
+<h4 id="开源及基础软件通用技术创新联盟（简称：U-盟）"><a href="#开源及基础软件通用技术创新联盟（简称：U-盟）" class="headerlink" title="开源及基础软件通用技术创新联盟（简称：U 盟）"></a>开源及基础软件通用技术创新联盟（简称：U 盟）</h4><p>创立时间：2009 年 10 月 15 日</p>
+<p>介绍：由“中国软件行业协会共创软件分会”牵头组织，由那些关注解决通用共性技术的软件企业、软件教育机构、软件研究机构、应用部门组成的非盈利的软件技术联盟，是以企业竞争前共性通用技术为牵引的利益共同体，是多维度的创新战略联盟。 “优盟”的宗旨是：探索在政府宏观调控下，构建“自主、安全、可靠、可控”的软件产业，为我国的现代服务业以及信息化提供基本的保障；从中观上，为国产软件提供一个自主创新的环境，有利于全面确定国产基础软件研究的技术路线，实现服务模式转型，探索全新的开源商业模式，增强国内企业的核心竞争力和国际竞争力；从微观上，通过统一技术标准，定义基础软件服务应用接口，开发公共开发工具集，建立软件和应用的网络化、工具化和服务化的技术创新支撑环境。探索和建立以契约为保障的产学研合作的信用机制、责任机制和利益机制，承担国家重大技术创新任务的组织模式和运行机制，发挥行业技术创新的引领和支撑作用。</p>
+<p>成员：24，包括企事业单位和教育科研机构</p>
+<p>组织结构：理事长，副理事长，理事单位</p>
+<p>指导单位：中华人民共和国科学技术部</p>
+<hr>
+<h4 id="北京长风开放标准平台软件产业联盟（简称：长风联盟）"><a href="#北京长风开放标准平台软件产业联盟（简称：长风联盟）" class="headerlink" title="北京长风开放标准平台软件产业联盟（简称：长风联盟）"></a>北京长风开放标准平台软件产业联盟（简称：长风联盟）</h4><p>创立时间：2005 年 4 月</p>
+<p>介绍：在北京市科委等政府有关部门的支持下，由坚持自主创新发展之路的软件与信息服务企业、科研机构、高等院校、用户和第三方机构联合成立的一个创新型产业联盟。长风联盟秉持“标准是纽带，联合是力量”的宗旨，通过组织创新与机制创新，汇聚产业资源，构筑“产学研用”协同创新的产业创新链，引导产业集群创新，提升产业整体竞争力。</p>
+<p>成员：127，包括企事业单位和教育科研机构</p>
+<p>组织结构：理事单位，普通成员</p>
+<p>指导单位：北京市科委</p>
+<p>联盟服务：产业资讯，品牌推广，成员交流，标准服务，人才培养服务</p>
+<hr>
+<h4 id="中国智能终端操作系统产业联盟"><a href="#中国智能终端操作系统产业联盟" class="headerlink" title="中国智能终端操作系统产业联盟"></a>中国智能终端操作系统产业联盟</h4><p>创立时间：2014 年 5 月</p>
+<p>介绍：为增强中国网络空间安全，中国电子信息产业集团公司（CEC）、中国电子科技集团公司（CETC）、中国软件行业协会、中国可信计算联盟、中国 TD 产业联盟、中国移动通信联合会、国家计算机网络应急技术处理协调中心、互联网实验室和中国有关“政产学研用”各界，发起组建“中国智能终端操作系统产业联盟”。</p>
+<p>成员：84，包括企事业单位和教育科研机构</p>
+<p>组织结构：理事单位，普通成员</p>
+<p>指导单位：中华人民共和国国家互联网信息办公室</p>
+<p>近期主要活动：举办多场产业研讨会</p>
+<p>联盟服务：产业资讯，品牌推广，成员交流，标准服务，人才培养服务</p>
+<hr>
+<h4 id="湖北省开源软件推进联盟"><a href="#湖北省开源软件推进联盟" class="headerlink" title="湖北省开源软件推进联盟"></a>湖北省开源软件推进联盟</h4><p>创立时间：2014 年 11 月</p>
+<p>介绍：首个省级开源软件联盟。依托于武汉众多高校近 130 万在校学生和超过 200 家直接或间接地涉及开源软件开发应用的企业，推动开源软件乃至湖北省软件产业的发展。</p>
+<p>成员：包括企事业单位和教育科研机构</p>
+<p>组织结构：100+，理事单位，普通成员</p>
+<p>指导单位：中国开源软件推进联盟；湖北省软件协会</p>
+<p>近期主要活动：协助 2014 年东北亚 IT 局长会议和开源论坛在武汉举办。</p>
+<p>联盟服务：产业资讯，品牌推广，成员交流，园区服务，创新服务</p>
+<hr>
+<h3 id="2-政策／重要事件"><a href="#2-政策／重要事件" class="headerlink" title="2.政策／重要事件"></a>2.政策／重要事件</h3><p>在我国，中央政府和地方政府比较少见出台直接针对开源产业发展的政策、法规。政府更多的是从促进信息产业发展的角度来推动开源软件和开源社区在国内的发展。政府主要依赖于各产业推进组织来协调促进开源产业相关事务。</p>
+<h4 id="中央政府"><a href="#中央政府" class="headerlink" title="中央政府"></a>中央政府</h4><ul>
+<li>1999 年 7 月 15 日，Linux 和中国软件产业论坛上，时任信息产业部副部长曲维枝第一次代表政府公开支持 Linux 和开源软件</li>
+<li>2004 年 4 月 3 日，中日韩东北亚开源软件司局长会议和东北亚开源软件论坛召开第一届大会，标志着东北亚开源产业合作的开始</li>
+<li>2004 年 7 月 22 日，在工业和信息化部的指导下，中国开源软件推进联盟（COPU）正式成立，中国开始大规模推动开源产业化</li>
+<li>2004 年，财政部和工业和信息化部就《政府采购法》做出解释：由本国企业发布的开源软件可以作为国产软件对待</li>
+<li>2005 年 5 月, 工业和信息化部与法国相关政府部门签署开源软件合作备忘录</li>
+<li>2011 年 7 月 13 日，国务院发布十二五规划中写入了促进开源软件产业发展的文字，标志着政府开始从战略层面上支持开源软件的发展,</li>
+<li>2013 年 3 月，人力资源和社会保障部批准将 Linux 操作系统作为计算机职称考试的一部分</li>
+<li>2015 年，国务院办公厅发布关于发展众创空间推进大众创新创业的指导意见，一些政策也为中国开源软件的发展打开了新的空间</li>
+</ul>
+<h4 id="广东省"><a href="#广东省" class="headerlink" title="广东省"></a>广东省</h4><ul>
+<li>Linux 公共服务平台，2004 年</li>
+<li>广东省 Linux 促进计划，2004 年</li>
+</ul>
+<h4 id="浙江省"><a href="#浙江省" class="headerlink" title="浙江省"></a>浙江省</h4><ul>
+<li>Linux 公共服务平台</li>
+</ul>
+<h4 id="大连市"><a href="#大连市" class="headerlink" title="大连市"></a>大连市</h4><ul>
+<li>开源软件公共开发平台</li>
+</ul>
+<h4 id="湖北省"><a href="#湖北省" class="headerlink" title="湖北省"></a>湖北省</h4><ul>
+<li>成立开源软件推进联盟，2014 年</li>
+<li>推进开源公共服务</li>
+</ul>
+<hr>
+<p>感谢以下开源社成员对本期开源报告的贡献：</p>
+<p><strong>白清杰，陈晓红，陈阳，陈越，苟颖琦，韩聪，刘天栋， 梁辰晔，李超，王玮</strong></p>
+<p><em>本 2015 年中国开源生态系统报告基于 Creative Commons Zero v1.0 Universal 分享。</em></p>
+</main>
+
+    
+  </div>
+</section>
+
+<nav class="page-section text-center">
+  <div class="btn-group" role="group" aria-label="Post navigator">
+    
+    <a class="btn btn-secondary" role="button" href="activity/summit/apache-roadshow-2015-china/">
+      &lt; 众人添柴火焰高，社区主导开发强
+    </a>
+    
+    <a class="btn btn-secondary" role="button" href="document/sage-lord-governance-model/">
+      “贤明君主”治理模型 &gt;
+    </a>
+    
+  </div>
+</nav>
+
+<script>
+(function () {
+
+  var path = self.location.href.split('#')[0];
+
+  $('details > .toc a[href]').attr('href', function (_, value) {
+
+    return path + value;
+  });
+
+  $('.blog-post').find('h1, h2, h3, h4, h5, h6').append(function () {
+
+    if ( this.id.trim() )
+      return '<a class="header-link" title="Permalink" href="' +
+        path + '#' + this.id +
+        '"><span class="octicon octicon-link"></span></a>';
+  });
+})();
+</script>
+
+
+  <footer class="footer">
+    <div class="container">
+      <nav class="footer-nav">
+        
+          <a class="footer-nav-item active" href="/categories/Activity/">
+            活动
+          </a>
+        
+          <a class="footer-nav-item " href="/page/2">
+            博客
+          </a>
+        
+          <a class="footer-nav-item " href="/profile/charter">
+            章程
+          </a>
+        
+          <a class="footer-nav-item " href="https://github.com/kaiyuanshe/kaiyuanshe.github.io/tree/hexo/License" target="_blank" rel="noopener">
+            许可
+          </a>
+        
+          <a class="footer-nav-item " href="/profile/contact">
+            联系我们
+          </a>
+        
+          <a class="footer-nav-item " href="https://git-pager.avosapps.us/?repository=kaiyuanshe/Wiki" target="_blank" rel="noopener">
+            协作编辑
+          </a>
+        
+      </nav>
+      <span class="col">沪 ICP 备 19006015 号</span>
+      <span class="col">公安备案 31011202006203 号</span>
+
+      <span class="footer-social">
+        
+          <a class="footer-nav-item icon"
+            href="https://github.com/kaiyuanshe"
+            title="Github Organization">
+            <i class="devicon-github-plain vertical-middle"></i>
+          </a>
+        
+          <a class="footer-nav-item icon"
+            href="https://twitter.com/contactkaiyuan1"
+            title="@contactkaiyuan1 on Twitter">
+            <i class="devicon-twitter-plain vertical-middle"></i>
+          </a>
+        
+          <a class="footer-nav-item icon"
+            href="https://www.facebook.com/kaiyuanshe.china"
+            title="Facebook account">
+            <i class="devicon-facebook-plain vertical-middle"></i>
+          </a>
+        
+      </span>
+    </div>
+  </footer>
+  <script src="library/virtual-anchor-sdk.js"></script>
+  <script>
+    new VirtualAnchor({ id: '191be2ab-8c6e-6201-c419-3ef2d26eadf2' });
+  </script>
+</body>
+
+</html>

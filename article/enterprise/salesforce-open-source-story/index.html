@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+
+  <title>开源社</title>
+
+  
+  <meta name="description" content="文章贡献者：Mike Linksvayer &amp; Chris Aniszczyk    Salesforce 在早期就了解到，开源项目在拥有一个有兴趣使软件成功的多元化利益相关者社区时，就能保持健康发展。 Ian Varley，Salesforce 领导开源计划的软件架构师说:“Apache Phoenix 一开始在 Salesforce 只是自己的开源项目。但直到 Salesforce">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Salesforce 的开源故事 | 世界顶级企业开源故事系列之二">
+<meta property="og:url" content="http://kaiyuanshe.cn/article/enterprise/salesforce-open-source-story/index.html">
+<meta property="og:site_name" content="开源社">
+<meta property="og:description" content="文章贡献者：Mike Linksvayer &amp; Chris Aniszczyk    Salesforce 在早期就了解到，开源项目在拥有一个有兴趣使软件成功的多元化利益相关者社区时，就能保持健康发展。 Ian Varley，Salesforce 领导开源计划的软件架构师说:“Apache Phoenix 一开始在 Salesforce 只是自己的开源项目。但直到 Salesforce">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://kaiyuanshe.cn/article/enterprise/salesforce-open-source-story/1i2b416sxmb.png">
+<meta property="article:published_time" content="2018-07-12T17:05:00.000Z">
+<meta property="article:modified_time" content="2019-08-09T21:37:41.000Z">
+<meta property="article:author" content="shiy2008@gmail.com">
+<meta property="article:tag" content="Salesforce">
+<meta property="article:tag" content="story">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://kaiyuanshe.cn/article/enterprise/salesforce-open-source-story/1i2b416sxmb.png">
+<meta name="twitter:site" content="contactkaiyuan1">
+  <meta name="author" content="shiy2008@gmail.com">
+  <meta name="generator" content="hexo">
+  <meta name="theme-color" content="#2f3241">
+
+  <!-- consumed by scripts/get-localized-strings -->
+  <meta name="localized.clipboard.copy" content="Copy">
+  <meta name="localized.clipboard.copy_to_clipboard" content="复制到剪贴板">
+  <meta name="localized.clipboard.copied" content="已复制">
+
+  <base href="/">
+
+  <link rel="shortcut icon" href="image/KaiYuanShe-logo.png">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5.1.0/github-markdown-light.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@master/devicon.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.18.5/styles/dark.css">
+  <link rel="stylesheet" href="library/index.css">
+  <link rel="stylesheet" href="common.css">
+  <style>
+    .site-header-nav-item a:link {
+      text-decoration: none;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/highlight.js@9.18.5/lib/highlight.js"></script>
+  <script src="common.js" defer async></script>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container">
+
+      <a class="site-header-logo no-underline-hover" href=".">
+        <img class="site-header-icon" src="image/KaiYuanShe-logo.png">
+        开源社
+      </a>
+
+      <nav class="site-header-nav">
+        
+          <div class="site-header-nav-item">
+            
+              <a role="button" href="/categories/Activity/Summit/" data-href-match="">
+                年度大会
+              </a>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_1" href="" data-href-match="">
+                资讯
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_1">
+                
+                  <a class="dropdown-item" href="/categories/Activity/">活动</a>
+                
+                  <a class="dropdown-item" href="/blog/">博客</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_2" href="" data-href-match="">
+                成员
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_2">
+                
+                  <a class="dropdown-item" href="/members/">正式成员</a>
+                
+                  <a class="dropdown-item" href="https://kaiyuanshe.feishu.cn/share/base/shrcnfO89tYlYIjZpS5PXJBaK2f" target="_blank" rel="noopener">加入我们</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a role="button" href="/partners" data-href-match="">
+                合作伙伴
+              </a>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_4" href="" data-href-match="">
+                资源
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_4">
+                
+                  <a class="dropdown-item" href="https://test.kaiyuanshe.cn/organization" target="_blank" rel="noopener">开源地图</a>
+                
+                  <a class="dropdown-item" href="/categories/Document">开源文档</a>
+                
+                  <a class="dropdown-item" href="/license-tool/">许可证选择器</a>
+                
+                  <a class="dropdown-item" href="http://mirror.kaiyuanshe.cn/" target="_blank" rel="noopener">开源镜像</a>
+                
+                  <a class="dropdown-item" href="https://polyfill.kaiyuanshe.cn/" target="_blank" rel="noopener">Web 标准补丁服务</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_5" href="" data-href-match="">
+                关于
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_5">
+                
+                  <a class="dropdown-item" href="/profile/about">介绍</a>
+                
+                  <a class="dropdown-item" href="/profile/structure">组织架构</a>
+                
+                  <a class="dropdown-item" href="/governance">工作组</a>
+                
+                  <a class="dropdown-item" href="/profile/charter">章程</a>
+                
+                  <a class="dropdown-item" href="/categories/Meeting">会议纪要</a>
+                
+              </div>
+            
+          </div>
+        
+        <form action="search/" class="ais-search-box">
+          <input type="search" name="keyword" required placeholder="搜索"
+            id="search-input" class="nav-search ais-search-box--input"
+            aria-label="search-box" autocapitalize="off" autocorrect="off" role="textbox">
+        </form>
+        <a class="site-header-nav-item octicon"
+          href="https://github.com/kaiyuanshe/"
+          title="Github Organization">
+          <span class="mega-octicon octicon-mark-github vertical-middle"></span>
+        </a>
+        <a class="site-header-nav-item bordered lang-select-button" href="#Language" data-toggle="collapse">
+          中文
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <div id="Language" class="container collapse">
+  <div class="m-4">
+    <div class="text-center-sm mb-4">
+      <strong>请选择语言</strong>
+    </div>
+    <div class="clearfix">
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/en-US" target="_blank" rel="noopener">
+          English
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ja-JP" target="_blank" rel="noopener">
+          日本語
+          
+          (Japanese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/es-ES" target="_blank" rel="noopener">
+          Español
+          
+          (Spanish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/zh-CN" target="_blank" rel="noopener">
+          中文
+          
+          (Chinese Simplified)
+          
+        </a>
+        
+        <span class="faint"><span class="octicon octicon-check mr-1"></span></span>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/tr-TR" target="_blank" rel="noopener">
+          Türkçe
+          
+          (Turkish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/id-ID" target="_blank" rel="noopener">
+          Indonesian
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fil-PH" target="_blank" rel="noopener">
+          Filipino
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fr-FR" target="_blank" rel="noopener">
+          Français
+          
+          (French)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ru-RU" target="_blank" rel="noopener">
+          Русский
+          
+          (Russian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ko-KR" target="_blank" rel="noopener">
+          한국어
+          
+          (Korean)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/it-IT" target="_blank" rel="noopener">
+          Italiano
+          
+          (Italian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/pt-BR" target="_blank" rel="noopener">
+          Português
+          
+          (Portuguese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/de-DE" target="_blank" rel="noopener">
+          Deutsch
+          
+          (German)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/uk-UA" target="_blank" rel="noopener">
+          Українська
+          
+          (Ukrainian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/zh-TW" target="_blank" rel="noopener">
+          中文
+          
+          (Chinese Traditional)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/pl-PL" target="_blank" rel="noopener">
+          język polski
+          
+          (Polish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/bg-BG" target="_blank" rel="noopener">
+          български език
+          
+          (Bulgarian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/hi-IN" target="_blank" rel="noopener">
+          हिन्दी
+          
+          (Hindi)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/nl-NL" target="_blank" rel="noopener">
+          Nederlands
+          
+          (Dutch)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/vi-VN" target="_blank" rel="noopener">
+          Tiếng Việt
+          
+          (Vietnamese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ar-SA" target="_blank" rel="noopener">
+          اللغة العربية
+          
+          (Arabic)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fa-IR" target="_blank" rel="noopener">
+          فارسی
+          
+          (Persian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/cs-CZ" target="_blank" rel="noopener">
+          čeština
+          
+          (Czech)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/th-TH" target="_blank" rel="noopener">
+          ไทย
+          
+          (Thai)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/he-IL" target="_blank" rel="noopener">
+          עברית
+          
+          (Hebrew)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ro-RO" target="_blank" rel="noopener">
+          limba română
+          
+          (Romanian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/tl-PH" target="_blank" rel="noopener">
+          Wikang Tagalog
+          
+          (Tagalog)
+          
+        </a>
+        
+      </div>
+      
+    </div>
+    <hr>
+    <div class="text-center-sm">
+      <a href="https://electronjs.org/languages" target="_blank" rel="noopener">查看更多语言详情</a>
+    </div>
+  </div>
+</div>
+
+
+  <style>
+  .blog-post hr:first-of-type {
+    display: block;
+  }
+</style>
+
+
+
+<section class="page-section blog-post">
+  <div class="container">
+    <h1>Salesforce 的开源故事 | 世界顶级企业开源故事系列之二</h1>
+
+    
+
+    
+
+<div class="blog-byline mt-2 mb-4 d-flex justify-content-between align-items-center">
+  <span class="blog-index-time">2018-07-12 17:05:00</span>
+
+
+  <a class="author-link ml-3 text-center" href="https://github.com/tedliu1" target="_blank" rel="noopener">
+    <img
+      class="avatar mr-2"
+      style="max-width: 2.25rem"
+      src="https://github.com/tedliu1.png?size=36"
+      alt="tedliu1"
+    >
+    tedliu1
+  </a>
+
+
+  <span>
+    
+      <a class="badge badge-primary" href="categories/Article/">
+        Article
+      </a>
+    
+      <a class="badge badge-primary" href="categories/Article/enterprise/">
+        enterprise
+      </a>
+    
+    
+      <a class="badge badge-primary" href="tags/Salesforce/">
+          Salesforce
+      </a>
+    
+      <a class="badge badge-primary" href="tags/story/">
+          story
+      </a>
+    
+  </span>
+</div>
+
+
+    
+    <blockquote>
+      <p>
+        原文链接：<a target="_blank" href="https://github.com/todogroup/guides/blob/master/casestudies/salesforce.md">
+          https://github.com/todogroup/guides/blob/master/casestudies/salesforce.md
+        </a>
+      </p>
+    </blockquote>
+    
+
+    <details>
+      <summary>正文大纲</summary>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Salesforce-开源计划的目标"><span class="toc-text">Salesforce 开源计划的目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Salesforce-如何衡量开源成功"><span class="toc-text">Salesforce 如何衡量开源成功</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#范例：Apache-Phoenix"><span class="toc-text">范例：Apache Phoenix</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-个开源计划经理的重要课程"><span class="toc-text">5 个开源计划经理的重要课程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#受访者介绍"><span class="toc-text">受访者介绍</span></a></li></ol>
+    </details>
+
+    <main class="markdown-body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><blockquote>
+<p>文章贡献者：Mike Linksvayer &amp; Chris Aniszczyk</p>
+</blockquote>
+<img src="/article/enterprise/salesforce-open-source-story/1i2b416sxmb.png" class="">
+
+<p>Salesforce 在早期就了解到，开源项目在拥有一个有兴趣使软件成功的多元化利益相关者社区时，就能保持健康发展。</p>
+<p>Ian Varley，Salesforce 领导开源计划的软件架构师说:“Apache Phoenix 一开始在 Salesforce 只是自己的开源项目。但直到 Salesforce 之外的人也开始投入，使得项目不再依赖于一家公司的需求和愿望之后，它才找到成功之路。”在一个真正的社区协同努力中，来自其他公司的人加入也说出，“这对我们很有用，我们想贡献”。最终，这个多元化的社区让这个项目成为 Apache 项目，并纳入了公司自己的工程师们做梦也想不到的许多新功能。</p>
+<p>Salesforce 将重点放在培养多元化利益来使用和参与 Salesforce 项目的概念。同时，它同样专注于将其内部利益相关者 —— 从工程、法律、营销和公关 —— 与它自身开源的努力相匹配。</p>
+<h2 id="Salesforce-开源计划的目标"><a href="#Salesforce-开源计划的目标" class="headerlink" title="Salesforce 开源计划的目标"></a>Salesforce 开源计划的目标</h2><p>Salesforce 在开源方面有许多优先事项。该公司的开源策略使每个人保持一致。专门设立的开源计划团队向公司的工程团队传播内部文档，提供战略指导，鼓励开源的创建和使用。这些文件为开源文化提供了基础，让团队毫不含糊地知道公司的领导人完全支持开源战略。</p>
+<p>开源逐渐成为每个公司中所有软件项目的一部分。它的理由是，开源的每一种可能的商业模式都将可以建立并在市场上尝试。</p>
+<p>Salesforce 是一个软件即服务（SaaS）的供应商，它没有发布或销售面向最终用户的开源产品。取而代之的是，工程团队将重点放在开源共享基础结构组件、库、工具、示例和软件开发包（SDK）上，其他公司可能会发现它们通常是有用并且有益于其客户。</p>
+<h2 id="Salesforce-如何衡量开源成功"><a href="#Salesforce-如何衡量开源成功" class="headerlink" title="Salesforce 如何衡量开源成功"></a>Salesforce 如何衡量开源成功</h2><p>公司开源计划的一个目标是在开发者中建立声誉。不使用 Salesforce 产品的工程师有时会看着公司的开源项目，并说:</p>
+<p>“嘿，这个公司真的参与了一些伟大的事情。”</p>
+<blockquote>
+<p>开源是外部开发人员看到公司内部正在进行伟大工程的一个窗口，他们原本无法做到这一点。</p>
+<p>—— Salesforce 软件架构师 Ian Varley</p>
+</blockquote>
+<p>Salesforce 开源计划还侧重于拓展与 Salesforce 自身开源项目能密切合作的诸多社区。这些社区不只是使用 Salesforce 的软件，同时也作出贡献。因此，Salesforce 开源计划专注于创建“接入点”到诸多开源项目里，例如为程序的补丁，改进的文档，健康的论坛，欢迎新贡献者等提供明确的审批程序，以及为积极响应的维护者创建的接入点。</p>
+<blockquote>
+<p>Varley 说：“我们成功地提供给人们参与我们的项目的各种方法，不要求他们有博士学位或在类似的领域工作了 25 年。你需要提供让他们快速参与的方法。”</p>
+</blockquote>
+<p>Salesforce 也基于全行业的成功标准衡量它自己的开源成功。在许多方面，开源的进展越多，对每个人都更有利，因为更多的开源意味着整个行业的更大的进步。如果 Salesforce 能提高商品软件的基准线，以及构成了大家都可以依赖的共享组件，那么整个行业就会受益。</p>
+<h3 id="范例：Apache-Phoenix"><a href="#范例：Apache-Phoenix" class="headerlink" title="范例：Apache Phoenix"></a>范例：Apache Phoenix</h3><p>作为 Apache 软件基金会的一部分，Apache Phoenix 是一个开源的大数据分析平台。但是，当 Phoenix 开始启动的时候，只是一个由几个 Salesforce 工程师为一些特定的内部使用案例而构建的项目。但是不久之前，这个小团队意识到，任何人都可以从这个项目中获益，如果全世界都在为这个项目努力的话，项目开发的速度将会提高。因此，他们在内部推动了这个项目的开源，并把它变成一个社区项目。</p>
+<p>在创建 Phoenix 开源项目的第一年内，Salesforce 工程师开始在二或三家发现并希望加入 Phoenix 项目的大公司获得重要的功能贡献。通过开放项目到外部使用和获得贡献，Phoenix 项目的进展远远超出了原来的项目工程师自己能够做到的程度。</p>
+<h2 id="5-个开源计划经理的重要课程"><a href="#5-个开源计划经理的重要课程" class="headerlink" title="5 个开源计划经理的重要课程"></a>5 个开源计划经理的重要课程</h2><p>回顾他在 Salesforce 管理开源的 4 年经验，Varley 对那些可能只是开始启动自己的开源计划的公司，有五个关键的教训:</p>
+<ol>
+<li><p>创建一个全公司范围内强烈鼓励在内部使用和创建开源的政策。</p>
+</li>
+<li><p>认识到一个社区能够远远地超出内部自己埋头苦干而推进一个项目。</p>
+</li>
+<li><p>从诸多不同类型的利益相关者那里寻求对开源计划的投入。工程师们不应该是唯一的利益相关者，例如，您的法律团队和执行管理人员也应该直接参与其中。</p>
+</li>
+<li><p>专注于利用完善的文档和健康的论坛，为您的开源项目建立良好的“接入点”。</p>
+</li>
+<li><p>认识到开源的成功可以推动全行业的成功和遍地更好的产品。</p>
+</li>
+</ol>
+<hr>
+<h2 id="受访者介绍"><a href="#受访者介绍" class="headerlink" title="受访者介绍"></a>受访者介绍</h2><p><strong>Ian Varley</strong></p>
+<ul>
+<li><p>首席架构师，Salesforce.com - 在 Salesforce.com 核心工程团队工作</p>
+</li>
+<li><p>应用程序开发总监，使用 Microsoft .Net 平台，开发数据库驱动的 Web 应用程序，供公司内部使用。</p>
+</li>
+<li><p>科学老师，Woodside 修道院学校教 AP 计算机科学 (C++)，七年级 Logo 编程，八年级 HTML、Javascript。以逻辑、探索和发现为重点的课程。</p>
+</li>
+<li><p>软件开发人员，Embark</p>
+</li>
+<li><p>软件开发人员，CollegeEdge</p>
+</li>
+</ul>
+</main>
+
+    
+  </div>
+</section>
+
+<nav class="page-section text-center">
+  <div class="btn-group" role="group" aria-label="Post navigator">
+    
+    <a class="btn btn-secondary" role="button" href="activity/summit/coscon-2018-summary/">
+      &lt; 回顾 | COSCon 桥接东西，Open Source 源力不息！
+    </a>
+    
+    <a class="btn btn-secondary" role="button" href="article/enterprise/big-players-microsoft-open-source-road/">
+      “大玩家” 微软的开源之路 | 世界顶级企业开源故事系列之一 &gt;
+    </a>
+    
+  </div>
+</nav>
+
+<script>
+(function () {
+
+  var path = self.location.href.split('#')[0];
+
+  $('details > .toc a[href]').attr('href', function (_, value) {
+
+    return path + value;
+  });
+
+  $('.blog-post').find('h1, h2, h3, h4, h5, h6').append(function () {
+
+    if ( this.id.trim() )
+      return '<a class="header-link" title="Permalink" href="' +
+        path + '#' + this.id +
+        '"><span class="octicon octicon-link"></span></a>';
+  });
+})();
+</script>
+
+
+  <footer class="footer">
+    <div class="container">
+      <nav class="footer-nav">
+        
+          <a class="footer-nav-item active" href="/categories/Activity/">
+            活动
+          </a>
+        
+          <a class="footer-nav-item " href="/page/2">
+            博客
+          </a>
+        
+          <a class="footer-nav-item " href="/profile/charter">
+            章程
+          </a>
+        
+          <a class="footer-nav-item " href="https://github.com/kaiyuanshe/kaiyuanshe.github.io/tree/hexo/License" target="_blank" rel="noopener">
+            许可
+          </a>
+        
+          <a class="footer-nav-item " href="/profile/contact">
+            联系我们
+          </a>
+        
+          <a class="footer-nav-item " href="https://git-pager.avosapps.us/?repository=kaiyuanshe/Wiki" target="_blank" rel="noopener">
+            协作编辑
+          </a>
+        
+      </nav>
+      <span class="col">沪 ICP 备 19006015 号</span>
+      <span class="col">公安备案 31011202006203 号</span>
+
+      <span class="footer-social">
+        
+          <a class="footer-nav-item icon"
+            href="https://github.com/kaiyuanshe"
+            title="Github Organization">
+            <i class="devicon-github-plain vertical-middle"></i>
+          </a>
+        
+          <a class="footer-nav-item icon"
+            href="https://twitter.com/contactkaiyuan1"
+            title="@contactkaiyuan1 on Twitter">
+            <i class="devicon-twitter-plain vertical-middle"></i>
+          </a>
+        
+          <a class="footer-nav-item icon"
+            href="https://www.facebook.com/kaiyuanshe.china"
+            title="Facebook account">
+            <i class="devicon-facebook-plain vertical-middle"></i>
+          </a>
+        
+      </span>
+    </div>
+  </footer>
+  <script src="library/virtual-anchor-sdk.js"></script>
+  <script>
+    new VirtualAnchor({ id: '191be2ab-8c6e-6201-c419-3ef2d26eadf2' });
+  </script>
+</body>
+
+</html>

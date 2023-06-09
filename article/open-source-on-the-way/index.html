@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+
+  <title>开源社</title>
+
+  
+  <meta name="description" content="作者：王暄转载自：PUPU Talk编辑：王玥敏设计：刘颖洁  开源社引言开源是一种新的开发模式，在源头上的确为不少创业公司解决了技术与产品原型的启动、成本、质量、更新迭代时间、早期用户拓展的一些问题。 然而，开源绝不仅止助力创业，更是各种企业乃至于社会与国家及全球经济转型的重要契机。除了传统的企业主导的资本主义与国家主导的社会主义之外，分享经济(主义)或将崭露头角甚至鼎足而立，而开源运动在分享">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="开源，一种全新的创业模式，正在悄然袭来">
+<meta property="og:url" content="http://kaiyuanshe.cn/article/open-source-on-the-way/index.html">
+<meta property="og:site_name" content="开源社">
+<meta property="og:description" content="作者：王暄转载自：PUPU Talk编辑：王玥敏设计：刘颖洁  开源社引言开源是一种新的开发模式，在源头上的确为不少创业公司解决了技术与产品原型的启动、成本、质量、更新迭代时间、早期用户拓展的一些问题。 然而，开源绝不仅止助力创业，更是各种企业乃至于社会与国家及全球经济转型的重要契机。除了传统的企业主导的资本主义与国家主导的社会主义之外，分享经济(主义)或将崭露头角甚至鼎足而立，而开源运动在分享">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://kaiyuanshe.cn/article/open-source-on-the-way/1kx054bg6cn.webp">
+<meta property="article:published_time" content="2020-05-06T16:29:01.000Z">
+<meta property="article:modified_time" content="2020-05-06T16:31:25.000Z">
+<meta property="article:author" content="shiy2008@gmail.com">
+<meta property="article:tag" content="startup">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://kaiyuanshe.cn/article/open-source-on-the-way/1kx054bg6cn.webp">
+<meta name="twitter:site" content="contactkaiyuan1">
+  <meta name="author" content="shiy2008@gmail.com">
+  <meta name="generator" content="hexo">
+  <meta name="theme-color" content="#2f3241">
+
+  <!-- consumed by scripts/get-localized-strings -->
+  <meta name="localized.clipboard.copy" content="Copy">
+  <meta name="localized.clipboard.copy_to_clipboard" content="复制到剪贴板">
+  <meta name="localized.clipboard.copied" content="已复制">
+
+  <base href="/">
+
+  <link rel="shortcut icon" href="image/KaiYuanShe-logo.png">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5.1.0/github-markdown-light.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@master/devicon.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.18.5/styles/dark.css">
+  <link rel="stylesheet" href="library/index.css">
+  <link rel="stylesheet" href="common.css">
+  <style>
+    .site-header-nav-item a:link {
+      text-decoration: none;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/highlight.js@9.18.5/lib/highlight.js"></script>
+  <script src="common.js" defer async></script>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container">
+
+      <a class="site-header-logo no-underline-hover" href=".">
+        <img class="site-header-icon" src="image/KaiYuanShe-logo.png">
+        开源社
+      </a>
+
+      <nav class="site-header-nav">
+        
+          <div class="site-header-nav-item">
+            
+              <a role="button" href="/categories/Activity/Summit/" data-href-match="">
+                年度大会
+              </a>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_1" href="" data-href-match="">
+                资讯
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_1">
+                
+                  <a class="dropdown-item" href="/categories/Activity/">活动</a>
+                
+                  <a class="dropdown-item" href="/blog/">博客</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_2" href="" data-href-match="">
+                成员
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_2">
+                
+                  <a class="dropdown-item" href="/members/">正式成员</a>
+                
+                  <a class="dropdown-item" href="https://kaiyuanshe.feishu.cn/share/base/shrcnfO89tYlYIjZpS5PXJBaK2f" target="_blank" rel="noopener">加入我们</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a role="button" href="/partners" data-href-match="">
+                合作伙伴
+              </a>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_4" href="" data-href-match="">
+                资源
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_4">
+                
+                  <a class="dropdown-item" href="https://test.kaiyuanshe.cn/organization" target="_blank" rel="noopener">开源地图</a>
+                
+                  <a class="dropdown-item" href="/categories/Document">开源文档</a>
+                
+                  <a class="dropdown-item" href="/license-tool/">许可证选择器</a>
+                
+                  <a class="dropdown-item" href="http://mirror.kaiyuanshe.cn/" target="_blank" rel="noopener">开源镜像</a>
+                
+                  <a class="dropdown-item" href="https://polyfill.kaiyuanshe.cn/" target="_blank" rel="noopener">Web 标准补丁服务</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_5" href="" data-href-match="">
+                关于
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_5">
+                
+                  <a class="dropdown-item" href="/profile/about">介绍</a>
+                
+                  <a class="dropdown-item" href="/profile/structure">组织架构</a>
+                
+                  <a class="dropdown-item" href="/governance">工作组</a>
+                
+                  <a class="dropdown-item" href="/profile/charter">章程</a>
+                
+                  <a class="dropdown-item" href="/categories/Meeting">会议纪要</a>
+                
+              </div>
+            
+          </div>
+        
+        <form action="search/" class="ais-search-box">
+          <input type="search" name="keyword" required placeholder="搜索"
+            id="search-input" class="nav-search ais-search-box--input"
+            aria-label="search-box" autocapitalize="off" autocorrect="off" role="textbox">
+        </form>
+        <a class="site-header-nav-item octicon"
+          href="https://github.com/kaiyuanshe/"
+          title="Github Organization">
+          <span class="mega-octicon octicon-mark-github vertical-middle"></span>
+        </a>
+        <a class="site-header-nav-item bordered lang-select-button" href="#Language" data-toggle="collapse">
+          中文
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <div id="Language" class="container collapse">
+  <div class="m-4">
+    <div class="text-center-sm mb-4">
+      <strong>请选择语言</strong>
+    </div>
+    <div class="clearfix">
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/en-US" target="_blank" rel="noopener">
+          English
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ja-JP" target="_blank" rel="noopener">
+          日本語
+          
+          (Japanese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/es-ES" target="_blank" rel="noopener">
+          Español
+          
+          (Spanish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/zh-CN" target="_blank" rel="noopener">
+          中文
+          
+          (Chinese Simplified)
+          
+        </a>
+        
+        <span class="faint"><span class="octicon octicon-check mr-1"></span></span>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/tr-TR" target="_blank" rel="noopener">
+          Türkçe
+          
+          (Turkish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/id-ID" target="_blank" rel="noopener">
+          Indonesian
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fil-PH" target="_blank" rel="noopener">
+          Filipino
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fr-FR" target="_blank" rel="noopener">
+          Français
+          
+          (French)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ru-RU" target="_blank" rel="noopener">
+          Русский
+          
+          (Russian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ko-KR" target="_blank" rel="noopener">
+          한국어
+          
+          (Korean)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/it-IT" target="_blank" rel="noopener">
+          Italiano
+          
+          (Italian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/pt-BR" target="_blank" rel="noopener">
+          Português
+          
+          (Portuguese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/de-DE" target="_blank" rel="noopener">
+          Deutsch
+          
+          (German)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/uk-UA" target="_blank" rel="noopener">
+          Українська
+          
+          (Ukrainian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/zh-TW" target="_blank" rel="noopener">
+          中文
+          
+          (Chinese Traditional)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/pl-PL" target="_blank" rel="noopener">
+          język polski
+          
+          (Polish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/bg-BG" target="_blank" rel="noopener">
+          български език
+          
+          (Bulgarian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/hi-IN" target="_blank" rel="noopener">
+          हिन्दी
+          
+          (Hindi)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/nl-NL" target="_blank" rel="noopener">
+          Nederlands
+          
+          (Dutch)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/vi-VN" target="_blank" rel="noopener">
+          Tiếng Việt
+          
+          (Vietnamese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ar-SA" target="_blank" rel="noopener">
+          اللغة العربية
+          
+          (Arabic)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fa-IR" target="_blank" rel="noopener">
+          فارسی
+          
+          (Persian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/cs-CZ" target="_blank" rel="noopener">
+          čeština
+          
+          (Czech)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/th-TH" target="_blank" rel="noopener">
+          ไทย
+          
+          (Thai)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/he-IL" target="_blank" rel="noopener">
+          עברית
+          
+          (Hebrew)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ro-RO" target="_blank" rel="noopener">
+          limba română
+          
+          (Romanian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/tl-PH" target="_blank" rel="noopener">
+          Wikang Tagalog
+          
+          (Tagalog)
+          
+        </a>
+        
+      </div>
+      
+    </div>
+    <hr>
+    <div class="text-center-sm">
+      <a href="https://electronjs.org/languages" target="_blank" rel="noopener">查看更多语言详情</a>
+    </div>
+  </div>
+</div>
+
+
+  <style>
+  .blog-post hr:first-of-type {
+    display: block;
+  }
+</style>
+
+
+
+<section class="page-section blog-post">
+  <div class="container">
+    <h1>开源，一种全新的创业模式，正在悄然袭来</h1>
+
+    
+
+    
+
+<div class="blog-byline mt-2 mb-4 d-flex justify-content-between align-items-center">
+  <span class="blog-index-time">2020-05-06 16:29:01</span>
+
+
+  <a class="author-link ml-3 text-center" href="https://github.com/cynbarby" target="_blank" rel="noopener">
+    <img
+      class="avatar mr-2"
+      style="max-width: 2.25rem"
+      src="https://github.com/cynbarby.png?size=36"
+      alt="cynbarby"
+    >
+    cynbarby
+  </a>
+
+
+  <span>
+    
+      <a class="badge badge-primary" href="categories/Article/">
+        Article
+      </a>
+    
+    
+      <a class="badge badge-primary" href="tags/startup/">
+          startup
+      </a>
+    
+  </span>
+</div>
+
+
+    
+
+    <details>
+      <summary>正文大纲</summary>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#开源社引言"><span class="toc-text">开源社引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#01-过去十年，创业有曹操型、孙权型、刘备型三种模式，开源是第四种，刘邦型"><span class="toc-text">01 过去十年，创业有曹操型、孙权型、刘备型三种模式，开源是第四种，刘邦型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#02-开源的前世今生：勇者斗恶龙"><span class="toc-text">02 开源的前世今生：勇者斗恶龙</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#03-为什么是开源：低投入，低门槛，低风险，高回报"><span class="toc-text">03 为什么是开源：低投入，低门槛，低风险，高回报</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#04-人类技术发展的大趋势"><span class="toc-text">04 人类技术发展的大趋势</span></a></li></ol>
+    </details>
+
+    <main class="markdown-body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><blockquote>
+<p>作者：王暄<br>转载自：PUPU Talk<br>编辑：王玥敏<br>设计：刘颖洁</p>
+</blockquote>
+<h2 id="开源社引言"><a href="#开源社引言" class="headerlink" title="开源社引言"></a>开源社引言</h2><p>开源是一种新的开发模式，在源头上的确为不少创业公司解决了技术与产品原型的启动、成本、质量、更新迭代时间、早期用户拓展的一些问题。</p>
+<p>然而，开源绝不仅止助力创业，更是各种企业乃至于社会与国家及全球经济转型的重要契机。除了传统的企业主导的资本主义与国家主导的社会主义之外，分享经济(主义)或将崭露头角甚至鼎足而立，而开源运动在分享经济里已经是最主要的根基。</p>
+<p>关于开源许可证问题，开源社长期专注于开源治理（包含了风险治理、项目治理、社区治理），开源社也是开源促进协会（ OSI - Open Source Initiative，开源许可证全球权威认证的协会）在中国唯一的成员单位。目前 OSI 认证的诸多开源许可证已经可以解决许多法律风险问题，同时还有许多新型许可证仍在陆续认证中，我国最近推出并经 OSI 认证通过的木兰宽松许可证（v2）就是最好的例子。目前有不少应用于互联网、公有云的开源许可证已经或正在推出。公有云坐享其成不回馈的问题或有机会逐步解决。</p>
+<p>开源主导的云计算、大数据、人工智能、区块链、物联网等新技术将改变人类的生活，而少年是否终将变身恶龙，则是一个影响更为深远的长期斗争议题，而开源则是可能的选项答案之一！</p>
+<p>2020 年，全球形势风云变化，资本市场跌宕起伏，经济危机迫在眉睫，创业公司面临的不再是如何发展，而是生死存亡问题。<strong>融资</strong>（资本紧缩）、<strong>用户</strong>（用户红利消失）、<strong>商业化</strong>（客户资源稀缺），在创业者面前的这三座大山，犹如千钧压顶，令人望而生畏。这既是最坏的年代，也是最好的年代，<strong>开源</strong>，一种新兴的革命力量正悄然来袭，即将在科技创业的草原上点燃星火，照亮前路，并最终形成燎原之势，深刻改变人类的未来。</p>
+<blockquote>
+<p>大多数优秀的程序员从事编程工作，不是因为期望获得报酬或公众称赞，而是因为编程真的很有趣。</p>
+<p>—— Linus Torvalds</p>
+</blockquote>
+<h2 id="01-过去十年，创业有曹操型、孙权型、刘备型三种模式，开源是第四种，刘邦型"><a href="#01-过去十年，创业有曹操型、孙权型、刘备型三种模式，开源是第四种，刘邦型" class="headerlink" title="01 过去十年，创业有曹操型、孙权型、刘备型三种模式，开源是第四种，刘邦型"></a>01 过去十年，创业有曹操型、孙权型、刘备型三种模式，开源是第四种，刘邦型</h2><p>过去十年创业模式主要有三种。</p>
+<p>第一种是看准一个赛道，上来就组建一个明星团队，有技术，有人脉，有融资渠道，然后招兵买马，重金烧钱疯狂掠地，快速扩充市场，打垮所有竞争对手，短短 2-3 年就可以上市。这种高举高打的模式我们可以称之为曹操型，胜利的关键在于粮草充足（资金），典型的成功者有拼多多，瑞幸（以上市来衡量），失败者则有 OFO 。</p>
+<p>第二种是从一个实际的刚需场景入手，几个志同道合的创业伙伴一起打磨技术，深耕业务，夯实产品，一步一个脚印稳健发展，用户规模逐步增长，然后到达一个临界阶段再借助资本的力量进入爆发期。这种进则问鼎中原，退则镇守一方的模式我们可以称之为孙权型，胜利的关键在于商业化（变现能力），成功者有快手，失败者有大众点评。</p>
+<p>第三种是第一种和第二种的结合，先是低调上线，摸索发展，然后市场形势突变，风口崛起，看准机会卷入市场大战，根据变化快速调整方向和策略，在千军万马的残酷竞争中拔得头筹。这种灵活调整的模式可以称之为刘备型，胜利的关键在于适应市场变化，成功者有滴滴，美团，失败者有易到。</p>
+<p>以上这三种模式，在 2010-2020 这十年的黄金创业时代，都是被市场反复验证过的成功路径。但到了地狱般开局的 2020 年，以往经验都被击个粉碎，如今摆在创业者们的三座大山：融资（资本紧缩）、用户（用户红利消失）、商业化（客户资源稀缺），创业的艰辛，困难的几乎令人窒息。</p>
+<p>在这种危急存亡之秋，创业不仅需要破釜沉舟的勇气，坚忍不拔的毅力，更需要运筹帷幄的智慧，能够巧妙避开高山峻岭，迂回作战，《孙子兵法》云，“料敌制胜，计险厄远近，上将之道也”。这个于艰危困苦中寻找一条路的第四种模式我们可以称之为刘邦型，胜利的关键在于创业模式：找到一条不需要千辛万苦找齐创业团队，不需要闭门造车长时间打磨产品，不需要为早期种子用户发愁，不需要每天东奔西走跑业务，不需要完全依靠融资活着的生存之路。</p>
+<p>这就是开源。</p>
+<h2 id="02-开源的前世今生：勇者斗恶龙"><a href="#02-开源的前世今生：勇者斗恶龙" class="headerlink" title="02 开源的前世今生：勇者斗恶龙"></a>02 开源的前世今生：勇者斗恶龙</h2><p><strong>开源的历史，是一部波澜壮阔的史诗</strong></p>
+<p>开源，通俗来讲就是开放软件源代码，供所有开发者学习与使用。这是最早一批互联网创建者们所追求的自由与开放的价值观，也是所有软件工程师们的终极梦想。</p>
+<p>不回顾历史，就无法展望未来。为了更好的理解开源模式，先让我们花几分钟来追溯一下开源的前世今生。</p>
+<p>纵观整个开源历史，就是一部勇者斗恶龙的传说故事。勇者是初创公司，恶龙是垄断巨头。其间几经波折，大起大落，犹如波澜壮阔的软件史诗。</p>
+<p>时间回到 1975 年。微软公司成立，推出的第一个产品 Basic 编程软件深受好评，在当时，软件使用者都是开发者，开放源代码是天经地义的事情，因而有不少人擅自拷贝 Basic 用于研究或工作，这让比尔盖茨大为光火，亲自写了一封信斥责这是剽窃行为，这封信题名为《致电脑爱好者的公开信》，在历史上非常有名，盖茨从此与广大开发者决裂，闭源与开源形成两大阵营，而微软公司也成为了开源历史上第一条恶龙。</p>
+<p>在整个 80-90 年代，微软在硅谷就是公敌一样的存在， Windows 操作系统捆绑 IE，打败了代表硅谷科技力量的 Netscape 等多家公司，大量专利所构建的森严壁垒，也让当时工程师们的开发变得异常艰难。同时，巨头们也都看到了开源软件的价值， AT&amp;T 在众多开源工程师参与开发的 Unix 成熟后，直接收归私有，收取高额授权费（这也导致了 Unix 的没落），让大众敢怒不敢言。</p>
+<p>在这种背景下，1983 年，美国人 Richard Stallman 建立起操作系统 GNU（ GNU’s Not Unix ），标志着开源思想的具体落地，并很快形成了轰轰烈烈的开源运动。1989 年， Stallman 主持起草了 GNU 协议，明确提出了反版权思想。1991 年，芬兰人   Linus Torvalds 基于 GNU  GPL 框架发布了 GNU/Linux ，标志着开源系统 Linux 的诞生。1998 年，开放软件计划（ Open Software Initiative ）创造了“开源”（ Open Source ）一词，一直延续至今。</p>
+<p>在这一时期，众多支持开源的工程师们把自己形象的比喻为《星球大战》中的自由反抗军联盟，对抗邪恶的垄断帝国。但当时开源的力量与巨头公司相比，显得非常渺小。第一代开源公司发展非常艰难， RedHat 与 Microsoft ， MySQL 与 Oracle ，XenSource 与 VMWare ，简直如同一株小草与参天巨树竞争，毕竟开源与商业化相互矛盾，一个著名的问题是：如果软件的源代码都可以无偿获得，那么程序员该如何谋生呢？业界当时一致认为开源软件是一种低价值商品，永远无法达到闭源公司的经济价值。</p>
+<p>不过随着互联网的崛起，以谷歌为代表的第二代开源公司孕育而生，终于打破了巨头们长达三十年的统治。</p>
+<p>与初代自由反抗军不同，谷歌绕开了桌面主战场，在移动端发力，在 2007 年开放了 Android 系统，让微软 Windows 平台这个庞然大物的统治力不再，而在商业策略上，谷歌尝试了一种非常聪明的策略，开源的只是 AOSP 部分（ Android Open Source Project，安卓开源项目），收费的是谷歌移动服务 Google Mobile Service，GMS 就是谷歌旗下各种应用及 API，包括我们熟知的地图、邮箱、Youtube 和应用商店等，是真正的印钞机。</p>
+<p>从开源 Chrome 浏览器、Android 系统、到深度学习框架 Tensorflow 等技术，作为近十年来软件技术发展的最大贡献者和获利者，开源是谷歌最重要的商业策略之一。将增值的闭源代码置于开源软件之上，项目中只有部分软件是免费许可的，可以根据商业许可向客户收取使用超出价值的闭源软件费用。</p>
+<p>在新一代开源力量的冲击下，老一代的龙微软不得不底下高昂的头颅，公开宣称拥抱开源，新任 CEO Satya Nadella 甚至高呼“微软爱 Linux ”，和上任 CEO Steve Ballmer 狂言“开源就是一个毒瘤”形成了鲜明的对比。</p>
+<img src="/article/open-source-on-the-way/gfpqwbv26ds.webp" class="">
+
+<p>老龙远去，新龙诞生。谷歌通过软件的网络效应和巨大用户基数，手机厂商最终不得不把它作为出厂标配，让谷歌延续了来自 IP 世界的“高利润、闭源且专属”的商业模式，奠定了其在移动操作系统的霸主地位。正如同当年微软捆绑 IE，谷歌也利用这种垄断地位，要求手机制造商捆绑安装谷歌产品，背离了当年自由反抗军们的理想初衷。这种垄断地位也成为了美国政府对付华为的利器。</p>
+<p>这是一个少年最终变恶龙的故事。</p>
+<p>不过历史大潮浩浩荡荡，第三次开源的革命浪潮正在不断酝酿，在不远的未来掀起惊涛骇浪。</p>
+<p>2008 年，新一代的革命种子 GitHub 开源社区诞生，这是一个开源的分布式版本控制系统，可以让全球数百万开发者参与开源项目，为协作写代码贡献自己的力量，并且通过开源项目构建 SaaS 服务。</p>
+<p>从某种意义上， GitHub 深刻改变了人们对编程的认知，今天几乎所有的程序员都离不开它，或是上传自己的开源项目，或是找到志同道合的协作伙伴，或是仅仅上去学习大神的代码。</p>
+<p>与开源的早期前辈们不同，从商业上来说，GitHub 极其成功，在几乎没有任何融资、投放广告、烧钱买用户的前提下，聚集了全球 4000 万开发者，300 万个组织账户，4400 万个 repo，并在 2018 年被微软以 75 亿美金收购。</p>
+<p>回想 2008 年 MySQL 被 Sun Microsystems 以 10 亿美元收购时，当时市场深信 10 亿美金代表任何开源公司所能获得的最大收益，这个价格记录保持了多年，被软件业视为开源公司破天荒的巨大价值。</p>
+<p>尽管开源已经带来了前所未有的技术创新，但是市场很长一段时间都没发现其潜在的商业价值，直到云计算与 SaaS 的兴起，终于让开源从技术创新走向了商业模式创新。</p>
+<p>2014 年，谷歌将新一代云计算容器 K8S（ Kubernetes ）正式开源，并随后移交给了 Linux 基金会下属的 CNCF 。这一标志性的事件不仅意味着谷歌后来居上，和 Amazon 争夺公有云市场，更关键的是开源思想已经深入人心，如果说在微软操作系统的旧技术时代还有闭源与开源之争的话，那么到了新兴的云时代，开源必将一统天下。</p>
+<p>与之而来的，则是开源商业价值的巨大提升。Cloudera、MongoDB、Mulesoft、Elastic 和 GitHub，都以数十亿美元 IPO 或并购。当然还有 RedHat，以 340 亿美金的天价卖给了 IBM。相信未来，会不断有更高的数字刷新记录。</p>
+<p>这一系列成功的案例，早就不再是对开源本身的认可，而是标志着开源作为一种商业行为，其模式和价值逐渐复兴，终于获得了资本市场的广泛推崇。</p>
+<img src="/article/open-source-on-the-way/1te3044kxzz.webp" class="">
+
+<h2 id="03-为什么是开源：低投入，低门槛，低风险，高回报"><a href="#03-为什么是开源：低投入，低门槛，低风险，高回报" class="headerlink" title="03 为什么是开源：低投入，低门槛，低风险，高回报"></a>03 为什么是开源：低投入，低门槛，低风险，高回报</h2><p><strong>开源在创业层面，有着不可比拟的巨大优势</strong></p>
+<p>作为一个创业者，在行动之前，有 4 点必须想清楚：团队，资金，产品，市场，缺一不可。具体来说，就是组建靠谱的创业团队，拿到天使或 A 轮融资，研发有核心竞争力的产品，以及找到初期种子用户。</p>
+<p>早几年市场环境良好时，这些都不成问题， 但在如今的经济形势下，大量中小公司濒临破产急于自救，上市公司大规模裁员，投资机构自身募资任务艰巨，连说服好友辞职一起出来干都成了奢望， 再以传统方式创业简直是 Hard 版本通关。</p>
+<p>这个时候，开源项目的优势就完全体现出来了。</p>
+<p>首先，在一个开源社区中，创业者更容易找到志同道合的合作伙伴。在传统模式中，人们更喜欢找大厂的高手，或是高学历背景的人才，或者干脆是自己的同学好友，但其实真正优秀的合伙人，是拥有相同价值观，对产品有深刻认知，并且投入无限热情的人。这样的人才在现实中很难遇到，但在开源社区中比比皆是，只要你有心去挖掘。</p>
+<p>其次，作为一个开源项目，前期并不需要天使投资，甚至很长时间都不需要资金维持，因为所有开源工作都是免费的，编写文档，开发，bug 修复，测试，版本迭代，这些在传统公司需要消耗大量人力、物力和财力的工作，都有各路高人在默默完成，当然这一切也取决于你在项目上的付出，不过钱从来不是开源社区主要关注的对象。</p>
+<p>再者，相比闭源软件，开源的产品质量更加稳定可靠。这是因为闭源软件的开发者良莠不齐，为了挣钱经常赶工，很难保证稳定输出，而开源社区通常有各路高手来维护，他们是凭着满腔热情做事，对产品精益求精，而且活跃的开源项目参与者众多，有源源不断的开发者关注并反馈 bug，风险较之更低，质量也更有保障。</p>
+<p>最后，一个好的开源项目，天生就会吸引一批忠诚的种子用户来使用，如果这个产品能解决核心问题，带来生产力的提高，会极大增加在开源社区中的关注度，引来真正的大神参与，形成良好的口碑与用户好感，甚至引起各大公司、组织与投资机构的兴趣，不需要投广告做营销，就能赢得市场，带来用户。</p>
+<p>近几年，云计算的兴起打开了新的大门，云计算可能是让开源公司实现商业化的最佳选择。在 SaaS 商业模型中，开源公司把开源项目重新打包，封装，直接以云服务的方式来提供，一开始就把开源软件作为基础设施，而用户不知道也不在乎，其背后是开源还是闭源，这导致对两者的估值相似，也在无形中提升了开源公司的商业价值。当然这种方式也导致了开源公司与云厂商的对立与竞争，我们后面再谈。</p>
+<p>与传统模式不同，开源创业的核心，其实不是技术本身，因为技术本来也不是独家的，而是根据需求组织管理开源项目，并且提供企业级别服务（比如大名鼎鼎的 MongoDB ），或是消费者服务（比如小米起家的 MIUI ），并且由于背后庞大的开发者，能够给客户更好的技术更新，永远不用担心软件过时。</p>
+<p>举个不太恰当的比喻。闭源公司就像闭门造车，在车（产品）没造出来之前，谁也不知道能不能真正上路（市场）。而开源公司就简单多了，车早就有人造好，并且在测试场（开源社区）跑很多遍了，大家就不必重新发明轮子了，拿来用就好。</p>
+<p>当然，天下没有免费的午餐。开源项目也存在不少困难与风险。</p>
+<p>在早期的开源中，版权问题是众多开发者的头号杀手。大家辛苦开发了一个项目，有人却可以堂而皇之拿走源代码，用于商业用途，委实令人寒心，当年 AT&amp;T 私有化 Unix 就引起开源界一片轩然大波。不过也正是鉴于此，各种开源许可证孕育而生，层出不穷。从法律层面来说，许可证是双方订立的契约，具备法律效力，但在实际应用过程中，违反契约却很难追究，至今没有特别好的解决办法。</p>
+<p>关于软件许可是一个辩论激烈的话题。版权实质是一种垄断，但开源离不开版权，这是否和自由分享矛盾？许可证越来越复杂，以后会不会成为羁绊？这些带有点哲学意味的价值判断很难分出对错，只能走一步看一步，留待后人解决。</p>
+<img src="/article/open-source-on-the-way/6pq33dm59fs.webp" class="">
+
+<p>另一方面，云计算的兴起虽然给开源公司带来了商业化前景，但也同时制造了一个新的竞争对手，那就是云厂商。</p>
+<p>MongoDB 公司 CTO Eliot Horowitz 曾说，“市场正日益将软件作为一种服务来消费，为培育新一轮伟大的开源服务软件创造了一个难以置信的机会。不幸的是，一旦一个开源项目变得有趣，那些没有开发该软件的云厂商就很容易抓住所有的价值，却没有为社区做出任何贡献。”</p>
+<p>由此可见，开源商业化达到一定成熟度，公有云的威胁就可能出现。</p>
+<p>其实我们不妨思考，是否过度考虑了来自公有云供应商的威胁。尽管这些供应商可能托管开放源代码项目，但到目前为止，还没有看到一家开源公司被云提供商完全取代。</p>
+<p>对于这个问题，PUPU talk 采访 APISIX 的创始人温铭，问及与互联网巨头的云厂如何竞争，温老师的回答是这样的：</p>
+<p>“公有云用开源项目，没问题。但是公有云也会做混合云部署，私有的解决方案，公有云用了我们的开源产品，私有的解决方案也会被打包进去。由于对开源产品并不熟悉，这块大厂并不擅长，于是这部分蛋糕变会留给我们。”</p>
+<p>其实这个答案可以回到开源模式为何可以如此强大上来，独立的开源公司具有三大竞争优势：</p>
+<ul>
+<li>企业客户不希望绑定云服务商</li>
+<li>客户想从编写代码的人那里购买</li>
+<li>云服务商并不具备开源公司一样的项目理解深度</li>
+</ul>
+<p>当把这三件事结合在一起时，便是真正的核心竞争力，这是为什么我们还没有看到大型云厂完全取代独立开源公司的原因。</p>
+<p>同时能够成为品类的领导者和品类的定义者更为重要（比如 Hadoop 没有一家可以单独定义这个品类）。对于开源公司来说，最重要的是在大厂之前抢占先机，让大家都知道这项技术是由你主导的。中国的企业级客户，IT 能力的欠缺，决定了在单一品类做到第一还不够，还需要完整的解决方案做到优势。</p>
+<p>同时，本质上开源公司的托管模式实际上和云厂商模式是一样的，只不过计算资源还是嫁接在公有云上，托管模式是否能跑得通，就在于 compliance 和 data privacy 能做多好，不然客户不敢放数据上来，哪怕对技术实际上是信任的。</p>
+<p>在最近的时间，Zoom 被安全事件群殴和轰炸，在媒体上的声誉因此跌到了谷底，股票每股下跌了近 30 美元。事实上，作为一家开源华人的云服务企业，必须做到 200%的努力，客户才会信任。</p>
+<h2 id="04-人类技术发展的大趋势"><a href="#04-人类技术发展的大趋势" class="headerlink" title="04 人类技术发展的大趋势"></a>04 人类技术发展的大趋势</h2><p><strong>全球开源产业已初步形成，无限机会孕育其中</strong></p>
+<p>在疫情造成的新时代与西方各国逆全球化的思潮下，可见的未来，经济形势恐怕都不会特别好转。反思互联网时代，对比重金烧钱圈地跑马的模式，开源无疑更高效、更持久、更符合商业逻辑的创业模式。如前文所述，对于创业公司而言，开源是一条不需要千辛万苦找齐创业团队，不需要闭门造车长时间打磨产品，不需要为早期种子用户发愁，不需要每天东奔西走跑业务，不需要完全依靠融资活着的生存之路。</p>
+<p>更重要的是，开源并不只是解决技术问题的一种方式，更是人类技术发展的大趋势，不止在软件和互联网的小圈子，而在固件、硬件等生态都会陆续建设起来，商业模式也会越来越清晰。</p>
+<p>2019 年，中国信息通信研究院（CAICT）发布《开源产业白皮书》，调查了全国 24 个省近 90 个城市，包括互联网、政府、金融、医疗、软件及信息技术服务、制造、电信、交通及物流、科教文卫和能源等多个行业，国内已经应用了开源技术的企业占比达到 86.7%，有计划应用开源技术的企业占比 10.6%，开源技术已经被企业普遍接受，产业链初步形成。</p>
+<p>在如今，全球几乎所有的高科技大公司，无论 Facebook 、Google 、Amazon 、Apple ，还是腾讯、阿里、百度、华为，都以开源软件作为技术后盾，越来越多地建立自己的开源项目。百度有 700 多个开源项目，阿里有 1200 个，而 Google 则高达 2000 多个。</p>
+<p>在未来，开源不止在软件和数据领域有所建树，在硬件方面，比如 AI 机器人、智能设备、物联网、安防、医疗健康等各领域均能发挥传统软件无法实现的作用，未来的开源公司也将不再是 RedHat，Elastic，Databricks 和 Cloudera ，而是 Facebook 、Google 、Amazon 、Apple 级别的顶尖技术公司，那些在 GitHub 上的各种优质项目，会陆续被挖掘，被实现，被扩散，逐渐形成星火燎原的势态，最终汇聚成新一代的科技革命浪潮，深刻改变人类社会的未来。</p>
+<p>开源，让我们拭目以待。</p>
+
+</main>
+
+    
+  </div>
+</section>
+
+<nav class="page-section text-center">
+  <div class="btn-group" role="group" aria-label="Post navigator">
+    
+    <a class="btn btn-secondary" role="button" href="meeting/council/2020-05-13/">
+      &lt; 理事会 2020-05-12 例会
+    </a>
+    
+    <a class="btn btn-secondary" role="button" href="article/apache/asf-new-chinese-member/">
+      华人新成员为 ASF 添柴火 &gt;
+    </a>
+    
+  </div>
+</nav>
+
+<script>
+(function () {
+
+  var path = self.location.href.split('#')[0];
+
+  $('details > .toc a[href]').attr('href', function (_, value) {
+
+    return path + value;
+  });
+
+  $('.blog-post').find('h1, h2, h3, h4, h5, h6').append(function () {
+
+    if ( this.id.trim() )
+      return '<a class="header-link" title="Permalink" href="' +
+        path + '#' + this.id +
+        '"><span class="octicon octicon-link"></span></a>';
+  });
+})();
+</script>
+
+
+  <footer class="footer">
+    <div class="container">
+      <nav class="footer-nav">
+        
+          <a class="footer-nav-item active" href="/categories/Activity/">
+            活动
+          </a>
+        
+          <a class="footer-nav-item " href="/page/2">
+            博客
+          </a>
+        
+          <a class="footer-nav-item " href="/profile/charter">
+            章程
+          </a>
+        
+          <a class="footer-nav-item " href="https://github.com/kaiyuanshe/kaiyuanshe.github.io/tree/hexo/License" target="_blank" rel="noopener">
+            许可
+          </a>
+        
+          <a class="footer-nav-item " href="/profile/contact">
+            联系我们
+          </a>
+        
+          <a class="footer-nav-item " href="https://git-pager.avosapps.us/?repository=kaiyuanshe/Wiki" target="_blank" rel="noopener">
+            协作编辑
+          </a>
+        
+      </nav>
+      <span class="col">沪 ICP 备 19006015 号</span>
+      <span class="col">公安备案 31011202006203 号</span>
+
+      <span class="footer-social">
+        
+          <a class="footer-nav-item icon"
+            href="https://github.com/kaiyuanshe"
+            title="Github Organization">
+            <i class="devicon-github-plain vertical-middle"></i>
+          </a>
+        
+          <a class="footer-nav-item icon"
+            href="https://twitter.com/contactkaiyuan1"
+            title="@contactkaiyuan1 on Twitter">
+            <i class="devicon-twitter-plain vertical-middle"></i>
+          </a>
+        
+          <a class="footer-nav-item icon"
+            href="https://www.facebook.com/kaiyuanshe.china"
+            title="Facebook account">
+            <i class="devicon-facebook-plain vertical-middle"></i>
+          </a>
+        
+      </span>
+    </div>
+  </footer>
+  <script src="library/virtual-anchor-sdk.js"></script>
+  <script>
+    new VirtualAnchor({ id: '191be2ab-8c6e-6201-c419-3ef2d26eadf2' });
+  </script>
+</body>
+
+</html>
