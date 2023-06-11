@@ -40,6 +40,22 @@ const { t } = i18n;
 
 const MainForumName = '主论坛';
 
+const shareInvitation = () => {
+  if (!navigator.canShare) {
+    //不支持
+    console.log('no support share');
+  } else if (
+    navigator.canShare({
+      title: document.title,
+      text: 'Hello World',
+      url: 'https://developer.mozilla.org',
+    })
+  ) {
+    //支持分享
+    console.log('support share');
+  }
+};
+
 @observer
 export default class ActivityDetailPage extends PureComponent<
   InferGetServerSidePropsType<typeof getServerSideProps>
@@ -173,10 +189,11 @@ export default class ActivityDetailPage extends PureComponent<
                 <h2 className="my-5 text-center" id={forum}>
                   {forum}
                 </h2>
-                <Row as="ol" className="list-unstyled g-4" xs={1} sm={2} md={3}>
+                <Row as="ol" className="list-unstyled g-5" xs={1} sm={2} md={3}>
                   {agendas.map(agenda => (
                     <Col as="li" key={agenda.id + ''}>
                       <AgendaCard {...agenda} />
+                      <Button onClick={() => shareInvitation()}>分享</Button>
                     </Col>
                   ))}
                 </Row>
