@@ -1,11 +1,12 @@
-import { observer } from 'mobx-react';
+// import { observer } from 'mobx-react';
 import { FC } from 'react';
 import { Row, Col } from 'react-bootstrap';
-import { ScrollListProps } from 'mobx-restful-table';
+// import { ScrollListProps } from 'mobx-restful-table';
 
-import { XScrollList } from '../ScrollList';
+// import { XScrollList } from '../ScrollList';
 import { OrganizationCard, OrganizationCardProps } from './Card';
-import { Organization, OrganizationModel } from '../../models/Organization';
+// import { Organization, OrganizationModel } from '../../models/Organization';
+import { Organization } from '../../models/Organization';
 
 export interface OrganizationListLayoutProps
   extends Pick<OrganizationCardProps, 'onSwitch'> {
@@ -25,6 +26,7 @@ export const OrganizationListLayout: FC<OrganizationListLayoutProps> = ({
   </Row>
 );
 
+/*
 export interface OrganizationListProps
   extends ScrollListProps<Organization>,
     Pick<OrganizationCardProps, 'onSwitch'> {
@@ -50,3 +52,4 @@ export class OrganizationList extends XScrollList<OrganizationListProps> {
     );
   }
 }
+*/

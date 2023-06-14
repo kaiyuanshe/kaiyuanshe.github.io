@@ -1,12 +1,13 @@
 import { Filter } from 'mobx-restful';
-import { observer } from 'mobx-react';
+// import { observer } from 'mobx-react';
 import { FC } from 'react';
 import { Row, Col, RowProps } from 'react-bootstrap';
-import { ScrollListProps } from 'mobx-restful-table';
+// import { ScrollListProps } from 'mobx-restful-table';
 
-import { XScrollList } from '../ScrollList';
+// import { XScrollList } from '../ScrollList';
 import { ArticleCard } from './Card';
-import { BaseArticle, Article, ArticleModel } from '../../models/Article';
+// import { BaseArticle, Article, ArticleModel } from '../../models/Article';
+import { BaseArticle, Article } from '../../models/Article';
 
 export interface ArticleListLayoutProps {
   className?: string;
@@ -28,6 +29,7 @@ export const ArticleListLayout: FC<ArticleListLayoutProps> = ({
   </Row>
 );
 
+/*
 export interface ArticleListProps
   extends Omit<ArticleListLayoutProps, 'data'>,
     ScrollListProps<Article> {
@@ -55,3 +57,4 @@ export class ArticleList extends XScrollList<ArticleListProps> {
     );
   }
 }
+*/

@@ -1,10 +1,12 @@
 import { PureComponent } from 'react';
 import { InferGetServerSidePropsType } from 'next';
 import { Container, Row, Col } from 'react-bootstrap';
+import { ScrollList } from 'mobx-restful-table';
 
 import PageHead from '../../../components/PageHead';
 import { CommentBox } from '../../../components/CommentBox';
-import { ArticleList } from '../../../components/Article/List';
+// import { ArticleList } from '../../../components/Article/List';
+import { ArticleListLayout } from '../../../components/Article/List';
 import {
   Article,
   ArticleModel,
@@ -59,11 +61,17 @@ export default class ArticleDetailPage extends PureComponent<
           <Col xs={12} sm={3}>
             {this.renderAuthorization()}
 
-            <ArticleList
+            {/* <ArticleList
               store={new SearchArticleModel()}
               filter={{ tags: (tags + '').split(/\s+/) }}
               rowCols={{ xs: 1 }}
               defaultData={recommends}
+            /> */}
+            <ScrollList
+              translator={i18n}
+              store={articleStore}
+              renderList={allItems => <ArticleListLayout data={allItems} />}
+              data={list}
             />
           </Col>
         </Row>

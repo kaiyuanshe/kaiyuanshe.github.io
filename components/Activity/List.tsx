@@ -1,13 +1,13 @@
-import { observer } from 'mobx-react';
+// import { observer } from 'mobx-react';
 import { FC } from 'react';
 import { Row, Col } from 'react-bootstrap';
-import { ScrollListProps } from 'mobx-restful-table';
+// import { ScrollListProps } from 'mobx-restful-table';
 
-import { XScrollList } from '../ScrollList';
+// import { XScrollList } from '../ScrollList';
 import { ActivityCard } from './Card';
 import activityStore, { Activity } from '../../models/Activity';
 
-export type ActivityListProps = ScrollListProps<Activity>;
+// export type ActivityListProps = ScrollListProps<Activity>;
 
 export const ActivityListLayout: FC<{ data: Activity[] }> = ({ data }) => (
   <Row as="section" xs={1} sm={2} xl={3} className="g-3 my-4">
@@ -18,7 +18,7 @@ export const ActivityListLayout: FC<{ data: Activity[] }> = ({ data }) => (
     ))}
   </Row>
 );
-
+/*
 @observer
 export class ActivityList extends XScrollList<ActivityListProps> {
   store = activityStore;
@@ -33,3 +33,4 @@ export class ActivityList extends XScrollList<ActivityListProps> {
     return <ActivityListLayout data={this.store.allItems} />;
   }
 }
+*/

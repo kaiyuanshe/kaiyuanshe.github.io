@@ -5,10 +5,12 @@ import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
 import { Badge, Button, Nav } from 'react-bootstrap';
 import { text2color } from 'idea-react';
+import { ScrollList } from 'mobx-restful-table';
 
 import { CityStatisticMap } from '../CityStatisticMap';
 import { OrganizationCardProps } from './Card';
-import { OrganizationList } from './List';
+// import { OrganizationList } from './List';
+import { OrganizationListLayout } from './List';
 
 import { i18n } from '../../models/Translation';
 import organizationStore from '../../models/Organization';
@@ -117,9 +119,11 @@ export class OpenSourceMap extends PureComponent {
 
         {this.renderFilter()}
 
-        <OrganizationList
+        <ScrollList
+          translator={i18n}
           store={organizationStore}
-          onSwitch={this.switchFilter}
+          renderList={allItems => <OrganizationListLayout data={allItems} />}
+          data={list}
         />
       </>
     );
