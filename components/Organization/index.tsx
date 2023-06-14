@@ -121,7 +121,7 @@ export class OpenSourceMap extends PureComponent {
 
         <ScrollList
           // translator={i18n}
-          store={organizationStore}
+          // store={organizationStore}
           renderList={allItems => <OrganizationListLayout data={allItems} />}
           data={list}
         />
