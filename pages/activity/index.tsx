@@ -31,12 +31,12 @@ const ActivityListPage: FC<
       <h1 className="mb-5 text-center">{t('wonderful_activity')}</h1>
 
       {/* <ActivityList defaultData={list} /> */}
-      <ScrollList
+      {/* <ScrollList
         // translator={i18n}
         store={activityStore}
         renderList={allItems => <ActivityListLayout data={allItems} />}
         data={list}
-      />
+      /> */}
     </Container>
   );
 });
