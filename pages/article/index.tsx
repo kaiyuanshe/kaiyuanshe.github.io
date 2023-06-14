@@ -30,7 +30,7 @@ const ArticleListPage: FC<
 
       {/* <ArticleList store={articleStore} defaultData={list} /> */}
       <ScrollList
-        translator={i18n}
+        // translator={i18n}
         store={articleStore}
         renderList={allItems => <ArticleListLayout data={allItems} />}
         data={list}

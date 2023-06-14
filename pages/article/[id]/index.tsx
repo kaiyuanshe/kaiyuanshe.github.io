@@ -68,7 +68,7 @@ export default class ArticleDetailPage extends PureComponent<
               defaultData={recommends}
             /> */}
             <ScrollList
-              translator={i18n}
+              // translator={i18n}
               store={articleStore}
               renderList={allItems => <ArticleListLayout data={allItems} />}
               data={list}

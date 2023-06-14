@@ -120,7 +120,7 @@ export class OpenSourceMap extends PureComponent {
         {this.renderFilter()}
 
         <ScrollList
-          translator={i18n}
+          // translator={i18n}
           store={organizationStore}
           renderList={allItems => <OrganizationListLayout data={allItems} />}
           data={list}
