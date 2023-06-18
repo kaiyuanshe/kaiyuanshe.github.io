@@ -67,12 +67,12 @@ export default class ArticleDetailPage extends PureComponent<
               rowCols={{ xs: 1 }}
               defaultData={recommends}
             /> */}
-            {/* <ScrollList
+            <ScrollList
               // translator={i18n}
               store={articleStore}
               renderList={allItems => <ArticleListLayout data={allItems} />}
               data={list}
-            /> */}
+            />
           </Col>
         </Row>
 

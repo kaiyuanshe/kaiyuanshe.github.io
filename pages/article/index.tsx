@@ -29,12 +29,12 @@ const ArticleListPage: FC<
       <h1 className="mb-5 text-center">{t('our_blogs')}</h1>
 
       {/* <ArticleList store={articleStore} defaultData={list} /> */}
-      {/* <ScrollList
+      <ScrollList
         translator={i18n}
         store={articleStore}
         renderList={allItems => <ArticleListLayout data={allItems} />}
         data={list}
-      /> */}
+      />
     </Container>
   );
 });
