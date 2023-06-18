@@ -32,10 +32,10 @@ const ActivityListPage: FC<
 
       {/* <ActivityList defaultData={list} /> */}
       <ScrollList
-        // translator={i18n}
+        translator={i18n}
         store={activityStore}
-        renderList={allItems => <ActivityListLayout data={allItems} />}
-        data={list}
+        renderList={allItems => <ActivityListLayout defaultData={allItems} />}
+        defaultData={list}
       />
     </Container>
   );
