@@ -3,14 +3,11 @@ import { InferGetServerSidePropsType } from 'next';
 import { Container, Row, Col } from 'react-bootstrap';
 import { ScrollList } from 'mobx-restful-table';
 
+import { i18n } from '../../../models/Translation';
 import PageHead from '../../../components/PageHead';
 import { CommentBox } from '../../../components/CommentBox';
 import { ArticleListLayout } from '../../../components/Article/List';
-import {
-  Article,
-  ArticleModel,
-  SearchArticleModel,
-} from '../../../models/Article';
+import articleStore, { Article, ArticleModel } from '../../../models/Article';
 import { withErrorLog } from '../../api/base';
 
 export const getServerSideProps = withErrorLog<
@@ -73,7 +70,7 @@ export default class ArticleDetailPage extends PureComponent<
               renderList={allItems => (
                 <ArticleListLayout defaultData={allItems} />
               )}
-              defaultData={list}
+              defaultData={recommends}
             />
           </Col>
         </Row>

@@ -27,7 +27,6 @@ const ArticleListPage: FC<
 
       <h1 className="mb-5 text-center">{t('our_blogs')}</h1>
 
-      {/* <ArticleList store={articleStore} defaultData={list} /> */}
       <ScrollList
         translator={i18n}
         store={articleStore}

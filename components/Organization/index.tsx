@@ -7,11 +7,10 @@ import { Badge, Button, Nav } from 'react-bootstrap';
 import { text2color } from 'idea-react';
 import { ScrollList } from 'mobx-restful-table';
 
+import { i18n } from '../../models/Translation';
 import { CityStatisticMap } from '../CityStatisticMap';
 import { OrganizationCardProps } from './Card';
 import { OrganizationListLayout } from './List';
-
-import { i18n } from '../../models/Translation';
 import organizationStore from '../../models/Organization';
 
 const OrganizationCharts = dynamic(() => import('./Charts'), { ssr: false });
@@ -124,7 +123,7 @@ export class OpenSourceMap extends PureComponent {
           renderList={allItems => (
             <OrganizationListLayout defaultData={allItems} />
           )}
-          defaultData={list}
+          // defaultData={list}
         />
       </>
     );

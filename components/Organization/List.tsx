@@ -1,11 +1,7 @@
-// import { observer } from 'mobx-react';
 import { FC } from 'react';
 import { Row, Col } from 'react-bootstrap';
-// import { ScrollListProps } from 'mobx-restful-table';
 
-// import { XScrollList } from '../ScrollList';
 import { OrganizationCard, OrganizationCardProps } from './Card';
-// import { Organization, OrganizationModel } from '../../models/Organization';
 import { Organization } from '../../models/Organization';
 
 export interface OrganizationListLayoutProps
@@ -25,31 +21,3 @@ export const OrganizationListLayout: FC<OrganizationListLayoutProps> = ({
     ))}
   </Row>
 );
-
-/*
-export interface OrganizationListProps
-  extends ScrollListProps<Organization>,
-    Pick<OrganizationCardProps, 'onSwitch'> {
-  store: OrganizationModel;
-}
-
-@observer
-export class OrganizationList extends XScrollList<OrganizationListProps> {
-  store = this.props.store;
-
-  constructor(props: OrganizationListProps) {
-    super(props);
-
-    this.boot();
-  }
-
-  renderList() {
-    return (
-      <OrganizationListLayout
-        data={this.store.allItems}
-        onSwitch={this.props.onSwitch}
-      />
-    );
-  }
-}
-*/

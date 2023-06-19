@@ -24,33 +24,3 @@ export const ArticleListLayout: FC<ArticleListLayoutProps> = ({
     ))}
   </Row>
 );
-
-/*
-export interface ArticleListProps
-  extends Omit<ArticleListLayoutProps, 'defaultData'>,
-    ScrollListProps<Article> {
-  store: ArticleModel;
-  filter?: Filter<Article>;
-}
-
-@observer
-export class ArticleList extends XScrollList<ArticleListProps> {
-  store = this.props.store;
-  filter = this.props.filter || {};
-
-  constructor(props: ArticleListProps) {
-    super(props);
-
-    this.boot();
-  }
-
-  renderList() {
-    return (
-      <ArticleListLayout
-        rowCols={this.props.rowCols}
-        defaultData={this.store.allItems}
-      />
-    );
-  }
-}
-*/
