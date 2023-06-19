@@ -57,8 +57,8 @@ dependencies:
     specifier: ^0.6.5
     version: 0.6.5(jsdom@21.1.1)(mobx@5.15.7)(typescript@5.1.3)
   mobx-restful-table:
-    specifier: ^1.0.2
-    version: 1.0.2(@types/react@17.0.59)(jsdom@21.1.1)(mobx@5.15.7)(react-dom@17.0.2)(react@17.0.2)(typescript@5.1.3)
+    specifier: ^1.0.3
+    version: 1.0.3(@types/react@17.0.59)(mobx-i18n@0.3.14)(mobx-react@6.3.1)(mobx-restful@0.6.5)(mobx@5.15.7)(react-dom@17.0.2)(react@17.0.2)(typescript@5.1.3)
   next:
     specifier: ^12.3.4
     version: 12.3.4(@babel/core@7.20.12)(react-dom@17.0.2)(react@17.0.2)
@@ -4391,11 +4391,14 @@ packages:
       - react-native
     dev: false
 
-  /mobx-restful-table@1.0.2(@types/react@17.0.59)(jsdom@21.1.1)(mobx@5.15.7)(react-dom@17.0.2)(react@17.0.2)(typescript@5.1.3):
-    resolution: {integrity: sha512-8BmQXAvTnEry5vtMU+hzvbVZyn//cqwAJF1T+rTI6F+MB5YXgUX+t8ikTSZYXzkdfvEf/huZ0JgfRyKPHz5Tdw==}
+  /mobx-restful-table@1.0.3(@types/react@17.0.59)(mobx-i18n@0.3.14)(mobx-react@6.3.1)(mobx-restful@0.6.5)(mobx@5.15.7)(react-dom@17.0.2)(react@17.0.2)(typescript@5.1.3):
+    resolution: {integrity: sha512-QQLWDfG8wAsElmd4uactCiX1SqGYWjb70h4dzZwlctJHExUvdK1/8SvMkHirnfhofEOEU8A5OyAik1Hr3Uq/XA==}
     peerDependencies:
       mobx: '>=4 <6'
-      react: '>=16 <18'
+      mobx-i18n: ^0.3
+      mobx-react: ^6
+      mobx-restful: ^0.6
+      react: '>=16.8'
     dependencies:
       '@swc/helpers': 0.4.14
       classnames: 2.3.2
@@ -4410,9 +4413,7 @@ packages:
       web-utility: 4.0.0(typescript@5.1.3)
     transitivePeerDependencies:
       - '@types/react'
-      - jsdom
       - react-dom
-      - react-native
       - typescript
     dev: false
 

@@ -9,7 +9,6 @@ import { ScrollList } from 'mobx-restful-table';
 
 import { CityStatisticMap } from '../CityStatisticMap';
 import { OrganizationCardProps } from './Card';
-// import { OrganizationList } from './List';
 import { OrganizationListLayout } from './List';
 
 import { i18n } from '../../models/Translation';
@@ -119,12 +118,14 @@ export class OpenSourceMap extends PureComponent {
 
         {this.renderFilter()}
 
-        {/* <ScrollList
+        <ScrollList
           translator={i18n}
           store={organizationStore}
-          renderList={allItems => <OrganizationListLayout data={allItems} />}
-          data={list}
-        /> */}
+          renderList={allItems => (
+            <OrganizationListLayout defaultData={allItems} />
+          )}
+          defaultData={list}
+        />
       </>
     );
   }

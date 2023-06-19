@@ -50,7 +50,7 @@ const SearchPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
 
           <h2>{t('article')}</h2>
 
-          {/* <ArticleListLayout defaultData={articles} /> */}
+          <ArticleListLayout defaultData={articles} />
 
           <h2>{t('activity')}</h2>
 
@@ -76,7 +76,7 @@ const SearchPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
 
           <h2>{t('organization_short')}</h2>
 
-          {/* <OrganizationListLayout data={organizations} /> */}
+          <OrganizationListLayout defaultData={organizations} />
         </Container>
       );
     },

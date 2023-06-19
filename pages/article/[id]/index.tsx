@@ -5,7 +5,6 @@ import { ScrollList } from 'mobx-restful-table';
 
 import PageHead from '../../../components/PageHead';
 import { CommentBox } from '../../../components/CommentBox';
-// import { ArticleList } from '../../../components/Article/List';
 import { ArticleListLayout } from '../../../components/Article/List';
 import {
   Article,
@@ -67,13 +66,15 @@ export default class ArticleDetailPage extends PureComponent<
               rowCols={{ xs: 1 }}
               defaultData={recommends}
             /> */}
-            {/*             
+
             <ScrollList
               translator={i18n}
               store={articleStore}
-              renderList={allItems => <ArticleListLayout data={allItems} />}
-              data={list}
-            /> */}
+              renderList={allItems => (
+                <ArticleListLayout defaultData={allItems} />
+              )}
+              defaultData={list}
+            />
           </Col>
         </Row>
 

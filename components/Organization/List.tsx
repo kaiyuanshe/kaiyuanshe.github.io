@@ -10,15 +10,15 @@ import { Organization } from '../../models/Organization';
 
 export interface OrganizationListLayoutProps
   extends Pick<OrganizationCardProps, 'onSwitch'> {
-  data: Organization[];
+  defaultData: Organization[];
 }
 
 export const OrganizationListLayout: FC<OrganizationListLayoutProps> = ({
-  data,
+  defaultData,
   onSwitch,
 }) => (
   <Row xs={1} sm={2} lg={3} xxl={4} className="g-4 my-2">
-    {data.map(({ id, ...org }) => (
+    {defaultData.map(({ id, ...org }) => (
       <Col key={org.name as string}>
         <OrganizationCard className="h-100" {...org} onSwitch={onSwitch} />
       </Col>
