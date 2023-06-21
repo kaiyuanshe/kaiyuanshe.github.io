@@ -1,6 +1,7 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { FC } from 'react';
 import { Container, Row, Col, Image, Card } from 'react-bootstrap';
+import { TableCellAttachment } from 'mobx-lark';
 
 import { DefaultImage } from '../../../../api/lark/file/[id]';
 
