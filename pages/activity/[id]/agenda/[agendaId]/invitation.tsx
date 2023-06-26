@@ -37,6 +37,7 @@ const Invitation: FC<
   console.log('agenda', agenda);
 
   const shareURL = () => {
+    console.log('shareURL');
     if (navigator.share) {
       navigator
         .share({
@@ -46,6 +47,8 @@ const Invitation: FC<
         })
         .then(() => console.log('Successful share'))
         .catch(error => console.log('Error sharing', error));
+    } else {
+      console.log('no support');
     }
   };
   return (
