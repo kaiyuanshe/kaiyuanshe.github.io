@@ -35,6 +35,19 @@ const Invitation: FC<
 > = ({ activity, agenda }) => {
   console.log('activity.id', activity);
   console.log('agenda', agenda);
+
+  const shareURL = () => {
+    if (navigator.share) {
+      navigator
+        .share({
+          title: 'web.dev',
+          text: 'Check out web.dev.',
+          url: 'https://web.dev/',
+        })
+        .then(() => console.log('Successful share'))
+        .catch(error => console.log('Error sharing', error));
+    }
+  };
   return (
     <>
       <Head>
@@ -52,6 +65,7 @@ const Invitation: FC<
         <h3>{agenda.title}</h3>
 
         <h3>👨‍🎓 {(agenda.mentors as string[]).join(' ')}</h3>
+        <button onClick={() => shareURL()}>分享</button>
       </Container>
     </>
   );
