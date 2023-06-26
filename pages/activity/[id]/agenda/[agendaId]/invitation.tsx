@@ -1,4 +1,5 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import Head from 'next/head';
 import { FC } from 'react';
 import { Container, Row, Col, Image, Card } from 'react-bootstrap';
 import { TableCellAttachment } from 'mobx-lark';
@@ -35,32 +36,24 @@ const Invitation: FC<
   console.log('activity.id', activity);
   console.log('agenda', agenda);
   return (
-    <Container className={styles.invitationBG}>
-      <h1>{activity.name}</h1>
-      <h2>{activity.city}</h2>
-      <h2>{activity.location}</h2>
+    <>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
+      <Container className={styles.invitationBG}>
+        <h1>{activity.name}</h1>
+        <h2>{activity.city}</h2>
+        <h2>{activity.location}</h2>
 
-      <h2>
-        🕒 {new Date(+agenda.startTime!).toLocaleString()} ~{' '}
-        {new Date(+agenda.endTime!).toLocaleString()}
-      </h2>
-      <h3>{agenda.title}</h3>
+        <h2>
+          🕒 {new Date(+agenda.startTime!).toLocaleString()} ~{' '}
+          {new Date(+agenda.endTime!).toLocaleString()}
+        </h2>
+        <h3>{agenda.title}</h3>
 
-      <div className="d-flex">
-        {(agenda.mentorAvatars as unknown as TableCellAttachment[])?.map(
-          file => (
-            <Card.Img
-              key={file.attachmentToken}
-              className="object-fit-cover"
-              style={{ height: '20rem' }}
-              loading="lazy"
-              src={blobURLOf([file])}
-            />
-          ),
-        )}
-      </div>
-      <h3>👨‍🎓 {(agenda.mentors as string[]).join(' ')}</h3>
-    </Container>
+        <h3>👨‍🎓 {(agenda.mentors as string[]).join(' ')}</h3>
+      </Container>
+    </>
   );
 };
 
