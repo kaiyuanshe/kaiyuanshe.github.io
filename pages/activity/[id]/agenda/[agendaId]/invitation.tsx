@@ -66,7 +66,7 @@ const Invitation: FC<
           {new Date(+agenda.endTime!).toLocaleString()}
         </h2>
         <h3>{agenda.title}</h3>
-
+        <p>show</p>
         <h3>👨‍🎓 {(agenda.mentors as string[]).join(' ')}</h3>
         <Button onClick={() => shareURL()}>分享</Button>
       </Container>
