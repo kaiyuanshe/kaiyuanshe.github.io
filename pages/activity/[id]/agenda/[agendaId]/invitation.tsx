@@ -1,7 +1,7 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Head from 'next/head';
 import { FC } from 'react';
-import { Container, Row, Col, Image, Card } from 'react-bootstrap';
+import { Container, Row, Col, Image, Card, Button } from 'react-bootstrap';
 import { TableCellAttachment } from 'mobx-lark';
 
 import { DefaultImage } from '../../../../api/lark/file/[id]';
@@ -65,7 +65,7 @@ const Invitation: FC<
         <h3>{agenda.title}</h3>
 
         <h3>👨‍🎓 {(agenda.mentors as string[]).join(' ')}</h3>
-        <button onClick={() => shareURL()}>分享</button>
+        <Button onClick={() => shareURL()}>分享</Button>
       </Container>
     </>
   );
