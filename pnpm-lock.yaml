@@ -53,8 +53,8 @@ dependencies:
     specifier: ^0.6.4
     version: 0.6.4(jsdom@21.1.1)(mobx@5.15.7)(typescript@5.0.4)
   mobx-restful-table:
-    specifier: ^0.10.0
-    version: 0.10.0(@types/react@17.0.59)(jsdom@21.1.1)(mobx@5.15.7)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
+    specifier: ^0.11.0
+    version: 0.11.0(@types/react@17.0.59)(jsdom@21.1.1)(mobx@5.15.7)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4)
   next:
     specifier: ^12.3.4
     version: 12.3.4(@babel/core@7.20.12)(react-dom@17.0.2)(react@17.0.2)
@@ -1518,6 +1518,7 @@ packages:
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
     requiresBuild: true
     dev: false
     optional: true
@@ -1527,6 +1528,7 @@ packages:
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
     requiresBuild: true
     dev: false
     optional: true
@@ -1536,6 +1538,7 @@ packages:
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
     requiresBuild: true
     dev: false
     optional: true
@@ -1545,6 +1548,7 @@ packages:
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
     requiresBuild: true
     dev: false
     optional: true
@@ -4387,8 +4391,9 @@ packages:
       - react-native
     dev: false
 
-  /mobx-restful-table@0.10.0(@types/react@17.0.59)(jsdom@21.1.1)(mobx@5.15.7)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4):
-    resolution: {integrity: sha512-Hg9Ui1jbPo+dF2o3d6c4u/osc7J7l4+lrRkXQdhD7ZSsg70hNOvxS9wayAnd2RTPUG+kfs0uFL8VgxiHX1Crdw==}
+  /mobx-restful-table@0.11.0(@types/react@17.0.59)(jsdom@21.1.1)(mobx@5.15.7)(react-dom@17.0.2)(react@17.0.2)(typescript@5.0.4):
+    resolution: {integrity: sha512-pGIDG4cu6rs62voO3Bdufmnj5mHYu7oyt5YfcJw+QBDC3S+TTcmwHpb6wMTFEwiYJE+qZyUhPSytg5uHpJbwsQ==}
+    deprecated: Don't use versions with old API & bugs
     peerDependencies:
       mobx: '>=4 <6'
       react: '>=16 <18'
