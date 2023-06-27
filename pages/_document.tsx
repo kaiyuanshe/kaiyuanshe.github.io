@@ -35,7 +35,7 @@ gtag('config', 'G-MS73CZKMM3');
 
         <link
           rel="stylesheet"
-          href="https://unpkg.com/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+          href="https://unpkg.com/bootstrap@5.3.0/dist/css/bootstrap.min.css"
         />
         <link
           rel="stylesheet"

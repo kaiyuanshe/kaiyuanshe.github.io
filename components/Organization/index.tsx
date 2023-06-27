@@ -5,12 +5,12 @@ import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
 import { Badge, Button, Nav } from 'react-bootstrap';
 import { text2color } from 'idea-react';
-
-import { CityStatisticMap } from '../CityStatisticMap';
-import { OrganizationCardProps } from './Card';
-import { OrganizationList } from './List';
+import { ScrollList } from 'mobx-restful-table';
 
 import { i18n } from '../../models/Translation';
+import { CityStatisticMap } from '../CityStatisticMap';
+import { OrganizationCardProps } from './Card';
+import { OrganizationListLayout } from './List';
 import organizationStore from '../../models/Organization';
 
 const OrganizationCharts = dynamic(() => import('./Charts'), { ssr: false });
@@ -117,9 +117,15 @@ export class OpenSourceMap extends PureComponent {
 
         {this.renderFilter()}
 
-        <OrganizationList
+        <ScrollList
+          translator={i18n}
           store={organizationStore}
-          onSwitch={this.switchFilter}
+          renderList={allItems => (
+            <OrganizationListLayout
+              defaultData={allItems}
+              onSwitch={this.switchFilter}
+            />
+          )}
         />
       </>
     );

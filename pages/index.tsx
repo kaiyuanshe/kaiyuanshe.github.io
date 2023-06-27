@@ -110,7 +110,7 @@ export default class HomePage extends PureComponent<
               {t('latest_news')}
             </h2>
             <p className="text-center text-muted">{t('slogan')}</p>
-            <ArticleListLayout data={articles} />
+            <ArticleListLayout defaultData={articles} />
           </section>
 
           <section>

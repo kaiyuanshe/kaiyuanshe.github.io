@@ -2,9 +2,10 @@ import { InferGetServerSidePropsType } from 'next';
 import { observer } from 'mobx-react';
 import { FC } from 'react';
 import { Container } from 'react-bootstrap';
+import { ScrollList } from 'mobx-restful-table';
 
 import PageHead from '../../components/PageHead';
-import { ArticleList } from '../../components/Article/List';
+import { ArticleListLayout } from '../../components/Article/List';
 import articleStore, { ArticleModel } from '../../models/Article';
 import { i18n } from '../../models/Translation';
 import { withTranslation } from '../api/base';
@@ -26,7 +27,12 @@ const ArticleListPage: FC<
 
       <h1 className="mb-5 text-center">{t('our_blogs')}</h1>
 
-      <ArticleList store={articleStore} defaultData={list} />
+      <ScrollList
+        translator={i18n}
+        store={articleStore}
+        renderList={allItems => <ArticleListLayout defaultData={allItems} />}
+        defaultData={list}
+      />
     </Container>
   );
 });

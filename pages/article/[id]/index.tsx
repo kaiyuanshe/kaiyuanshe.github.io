@@ -1,16 +1,19 @@
 import { PureComponent } from 'react';
 import { InferGetServerSidePropsType } from 'next';
 import { Container, Row, Col } from 'react-bootstrap';
+import { ScrollList } from 'mobx-restful-table';
 
+import { i18n } from '../../../models/Translation';
 import PageHead from '../../../components/PageHead';
 import { CommentBox } from '../../../components/CommentBox';
-import { ArticleList } from '../../../components/Article/List';
+import { ArticleListLayout } from '../../../components/Article/List';
 import {
   Article,
   ArticleModel,
   SearchArticleModel,
 } from '../../../models/Article';
 import { withErrorLog } from '../../api/base';
+import { SearchActivityModel } from '../../../models/Activity';
 
 export const getServerSideProps = withErrorLog<
   { id: string },
@@ -59,10 +62,13 @@ export default class ArticleDetailPage extends PureComponent<
           <Col xs={12} sm={3}>
             {this.renderAuthorization()}
 
-            <ArticleList
+            <ScrollList
+              translator={i18n}
               store={new SearchArticleModel()}
               filter={{ tags: (tags + '').split(/\s+/) }}
-              rowCols={{ xs: 1 }}
+              renderList={allItems => (
+                <ArticleListLayout defaultData={allItems} rowCols={{ xs: 1 }} />
+              )}
               defaultData={recommends}
             />
           </Col>
