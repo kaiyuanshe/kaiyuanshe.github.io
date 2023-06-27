@@ -15,8 +15,6 @@ import { blobURLOf } from '../../../../../models/Base';
 
 import styles from '../../../../../styles/invitation.module.less';
 
-const url = window.location.href;
-
 export const getServerSideProps: GetServerSideProps<
   { activity: Activity; agenda: Agenda },
   { id: string; agendaId: string }
@@ -70,7 +68,8 @@ const Invitation: FC<
         </h2>
         <h3>{agenda.title}</h3>
         <h3>👨‍🎓 {(agenda.mentors as string[]).join(' ')}</h3>
-        <QRCodeSVG value={url} />,
+        <QRCodeSVG value="https://kaiyuanshe-github-b65jxirgk-luojiyin.vercel.app/activity/recNgZ1MiV/agenda/recJK6FZCB/invitation" />
+        ,
       </Container>
     </>
   );
