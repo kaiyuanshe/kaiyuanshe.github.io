@@ -1,6 +1,8 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Head from 'next/head';
 import { FC } from 'react';
+
+import { QRCodeSVG } from 'qrcode.react';
 import { Container, Row, Col, Image, Card, Button } from 'react-bootstrap';
 import { TableCellAttachment } from 'mobx-lark';
 
@@ -12,6 +14,8 @@ import PageHead from '../../../../../components/PageHead';
 import { blobURLOf } from '../../../../../models/Base';
 
 import styles from '../../../../../styles/invitation.module.less';
+
+const url = window.location.href;
 
 export const getServerSideProps: GetServerSideProps<
   { activity: Activity; agenda: Agenda },
@@ -60,15 +64,13 @@ const Invitation: FC<
         <h1>{activity.name}</h1>
         <h2>{activity.city}</h2>
         <h2>{activity.location}</h2>
-
         <h2>
           🕒 {new Date(+agenda.startTime!).toLocaleString()} ~{' '}
           {new Date(+agenda.endTime!).toLocaleString()}
         </h2>
         <h3>{agenda.title}</h3>
-        <p>show</p>
         <h3>👨‍🎓 {(agenda.mentors as string[]).join(' ')}</h3>
-        <Button onClick={() => shareURL()}>分享</Button>
+        <QRCodeSVG value={url} />,
       </Container>
     </>
   );
