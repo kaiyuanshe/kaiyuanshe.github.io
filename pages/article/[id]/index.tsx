@@ -7,8 +7,13 @@ import { i18n } from '../../../models/Translation';
 import PageHead from '../../../components/PageHead';
 import { CommentBox } from '../../../components/CommentBox';
 import { ArticleListLayout } from '../../../components/Article/List';
-import articleStore, { Article, ArticleModel } from '../../../models/Article';
+import {
+  Article,
+  ArticleModel,
+  SearchArticleModel,
+} from '../../../models/Article';
 import { withErrorLog } from '../../api/base';
+import { SearchActivityModel } from '../../../models/Activity';
 
 export const getServerSideProps = withErrorLog<
   { id: string },
@@ -59,11 +64,11 @@ export default class ArticleDetailPage extends PureComponent<
 
             <ScrollList
               translator={i18n}
-              store={articleStore}
+              store={new SearchArticleModel()}
+              filter={{ tags: (tags + '').split(/\s+/) }}
               renderList={allItems => (
                 <ArticleListLayout defaultData={allItems} rowCols={{ xs: 1 }} />
               )}
-              filter={{ tags: (tags + '').split(/\s+/) }}
               defaultData={recommends}
             />
           </Col>

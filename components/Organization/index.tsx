@@ -121,7 +121,10 @@ export class OpenSourceMap extends PureComponent {
           translator={i18n}
           store={organizationStore}
           renderList={allItems => (
-            <OrganizationListLayout defaultData={allItems} />
+            <OrganizationListLayout
+              defaultData={allItems}
+              onSwitch={this.switchFilter}
+            />
           )}
         />
       </>
