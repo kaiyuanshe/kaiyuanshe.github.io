@@ -123,7 +123,6 @@ export class OpenSourceMap extends PureComponent {
           renderList={allItems => (
             <OrganizationListLayout defaultData={allItems} />
           )}
-          // defaultData={list}
         />
       </>
     );
