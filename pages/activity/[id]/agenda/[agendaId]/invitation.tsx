@@ -44,6 +44,8 @@ const Invitation: FC<
 > = ({ activity, agenda, currentUrl }) => {
   console.log('activity.id', activity);
   console.log('agenda', agenda);
+  const { name, city, location } = activity;
+  const { startTime, endTime, title, mentors } = agenda;
   // const currentUrl =  withRoute.asPath;
   console.log('currentUrl', currentUrl);
   const shareURL = async () => {
@@ -70,15 +72,15 @@ const Invitation: FC<
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Container className={styles.invitationBG}>
-        <h1>{activity.name}</h1>
-        <h2>{activity.city}</h2>
-        <h2>{activity.location}</h2>
+        <h1>{name}</h1>
+        <h2>{city}</h2>
+        <h2>{location}</h2>
         <h2>
-          🕒 {new Date(+agenda.startTime!).toLocaleString()} ~{' '}
-          {new Date(+agenda.endTime!).toLocaleString()}
+          🕒 {new Date(startTime).toLocaleString()} ~{' '}
+          {new Date(endTime).toLocaleString()}
         </h2>
-        <h3>{agenda.title}</h3>
-        <h3>👨‍🎓 {(agenda.mentors as string[]).join(' ')}</h3>
+        <h3>{title}</h3>
+        <h3>👨‍🎓 {(mentors as string[]).join(' ')}</h3>
         <QRCodeSVG value={currentUrl} />
       </Container>
     </>
