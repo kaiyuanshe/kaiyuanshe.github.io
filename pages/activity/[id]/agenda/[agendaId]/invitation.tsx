@@ -38,21 +38,24 @@ const Invitation: FC<
   console.log('activity.id', activity);
   console.log('agenda', agenda);
 
-  const shareURL = () => {
+  const shareURL = async () => {
     console.log('shareURL');
     if (navigator.share) {
-      navigator
-        .share({
+      try {
+        await navigator.share({
           title: 'web.dev',
           text: 'Check out web.dev.',
           url: 'https://web.dev/',
-        })
-        .then(() => console.log('Successful share'))
-        .catch(error => console.log('Error sharing', error));
+        });
+        console.log('share success');
+      } catch (error) {
+        console.log('share error', error);
+      }
     } else {
-      console.log('no support');
+      console.log('share fail');
     }
   };
+
   return (
     <>
       <Head>
@@ -68,8 +71,7 @@ const Invitation: FC<
         </h2>
         <h3>{agenda.title}</h3>
         <h3>👨‍🎓 {(agenda.mentors as string[]).join(' ')}</h3>
-        <QRCodeSVG value="https://kaiyuanshe-github-b65jxirgk-luojiyin.vercel.app/activity/recNgZ1MiV/agenda/recJK6FZCB/invitation" />
-        ,
+        <QRCodeSVG value={globalThis.location?.href} />
       </Container>
     </>
   );
