@@ -1,5 +1,6 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Head from 'next/head';
+import withRoute from 'next/router';
 import { FC } from 'react';
 
 import { QRCodeSVG } from 'qrcode.react';
@@ -17,27 +18,34 @@ import styles from '../../../../../styles/invitation.module.less';
 
 export const getServerSideProps: GetServerSideProps<
   { activity: Activity; agenda: Agenda },
-  { id: string; agendaId: string }
+  { id: string; agendaId: string },
+  { currentUrl: string }
 > = async context => {
   const activityStore = new ActivityModel();
   const { id, agendaId } = context.params!;
   const activity = await activityStore.getOne(id + '');
   const agenda = await activityStore.currentAgenda!.getOne(agendaId + '');
+  const { host, referer } = context.req.headers;
+  const currentUrl = `${referer ? new URL(referer).origin : `http://${host}`}${
+    context.req.url
+  }`;
 
   return {
     props: {
       activity,
       agenda,
+      currentUrl,
     },
   };
 };
 
 const Invitation: FC<
   InferGetServerSidePropsType<typeof getServerSideProps>
-> = ({ activity, agenda }) => {
+> = ({ activity, agenda, currentUrl }) => {
   console.log('activity.id', activity);
   console.log('agenda', agenda);
-
+  // const currentUrl =  withRoute.asPath;
+  console.log('currentUrl', currentUrl);
   const shareURL = async () => {
     console.log('shareURL');
     if (navigator.share) {
@@ -71,7 +79,7 @@ const Invitation: FC<
         </h2>
         <h3>{agenda.title}</h3>
         <h3>👨‍🎓 {(agenda.mentors as string[]).join(' ')}</h3>
-        <QRCodeSVG value={globalThis.location?.href} />
+        <QRCodeSVG value={currentUrl} />
       </Container>
     </>
   );
