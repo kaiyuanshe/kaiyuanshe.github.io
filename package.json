@@ -11,6 +11,7 @@
     "classnames": "^2.3.2",
     "echarts-jsx": "^0.5.0",
     "file-type": "^18.4.0",
+    "html2canvas": "^1.4.1",
     "idea-react": "^1.0.0-beta.1",
     "koajax": "^0.8.4",
     "leaflet": "^1.9.4",
