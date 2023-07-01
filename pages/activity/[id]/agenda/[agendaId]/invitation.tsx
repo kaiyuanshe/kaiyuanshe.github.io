@@ -32,12 +32,12 @@ export const getServerSideProps: GetServerSideProps<{
   const { id, agendaId } = params!;
   const activity = await activityStore.getOne(id + '');
   const agenda = await activityStore.currentAgenda!.getOne(agendaId + '');
-
+  const currentUrl = API_Host + resolvedUrl;
   return {
     props: {
       activity,
       agenda,
-      currentUrl: API_Host + resolvedUrl,
+      currentUrl,
     },
   };
 };
@@ -71,8 +71,8 @@ const Invitation: FC<
         <ul>{city}</ul>
         <ul>{location}</ul>
         <ul>
-          🕒 {new Date(startTime).toLocaleString()} ~{' '}
-          {new Date(endTime).toLocaleString()}
+          🕒 {new Date(+startTime!).toLocaleString()} ~{' '}
+          {new Date(+endTime!).toLocaleString()}
         </ul>
         <ul>{title}</ul>
         <ul>👨‍🎓 {(mentors as string[]).join(' ')}</ul>
