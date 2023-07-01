@@ -6,15 +6,14 @@ import { FC } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
 import { Container, Row, Col, Image, Card, Button } from 'react-bootstrap';
 import { TableCellAttachment } from 'mobx-lark';
+import html2canvas from 'html2canvas';
 
 import { DefaultImage } from '../../../../api/lark/file/[id]';
-
 import { Activity, ActivityModel } from '../../../../../models/Activity';
 import { Agenda } from '../../../../../models/Agenda';
 import PageHead from '../../../../../components/PageHead';
 import { withRoute } from '../../../../api/base';
 import { isServer } from '../../../../../models/Base';
-
 import styles from '../../../../../styles/invitation.module.less';
 
 const VercelHost = process.env.VERCEL_URL;
@@ -24,21 +23,21 @@ const API_Host = isServer()
     : 'http://192.168.2.114:3000'
   : globalThis.location.origin;
 
-export const getServerSideProps: GetServerSideProps<
-  { activity: Activity; agenda: Agenda },
-  { id: string; agendaId: string },
-  { currentUrl: string }
-> = async ({ resolvedUrl, params }) => {
+export const getServerSideProps: GetServerSideProps<{
+  activity: Activity;
+  agenda: Agenda;
+  currentUrl: string;
+}> = async ({ resolvedUrl, params }) => {
   const activityStore = new ActivityModel();
   const { id, agendaId } = params!;
   const activity = await activityStore.getOne(id + '');
   const agenda = await activityStore.currentAgenda!.getOne(agendaId + '');
-  const currentUrl = API_Host + resolvedUrl;
+
   return {
     props: {
       activity,
       agenda,
-      currentUrl,
+      currentUrl: API_Host + resolvedUrl,
     },
   };
 };
@@ -67,10 +66,7 @@ const Invitation: FC<
 
   return (
     <>
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Head>
-      <Container className={styles.invitationBG}>
+      <Container className={styles.invitationBG} id="shareImg">
         <ul>{name}</ul>
         <ul>{city}</ul>
         <ul>{location}</ul>
