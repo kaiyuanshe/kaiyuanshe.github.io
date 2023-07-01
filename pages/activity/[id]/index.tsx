@@ -40,19 +40,16 @@ const { t } = i18n;
 
 const MainForumName = '主论坛';
 
-const shareInvitation = () => {
-  if (!navigator.canShare) {
-    //不支持
-    console.log('no support share');
-  } else if (
-    navigator.canShare({
-      title: document.title,
-      text: 'Hello World',
-      url: 'https://developer.mozilla.org',
-    })
-  ) {
-    //支持分享
-    console.log('support share');
+const shareInvitation = async () => {
+  try {
+    await navigator.share?.({
+      title: 'web.dev',
+      text: 'Check out web.dev.',
+      url: 'https://web.dev/',
+    });
+    console.log('share success');
+  } catch (error) {
+    console.log('share error', error);
   }
 };
 
