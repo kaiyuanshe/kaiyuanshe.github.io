@@ -23,11 +23,11 @@ const API_Host = isServer()
     : 'http://192.168.2.114:3000'
   : globalThis.location.origin;
 
-export const getServerSideProps: GetServerSideProps<{
-  activity: Activity;
-  agenda: Agenda;
-  currentUrl: string;
-}> = async ({ resolvedUrl, params }) => {
+export const getServerSideProps: GetServerSideProps<
+  { activity: Activity; agenda: Agenda },
+  { id: string; agendaId: string },
+  { currentUrl: string }
+> = async ({ resolvedUrl, params }) => {
   const activityStore = new ActivityModel();
   const { id, agendaId } = params!;
   const activity = await activityStore.getOne(id + '');
@@ -65,22 +65,22 @@ const Invitation: FC<
   };
 
   return (
-    <>
-      <Container className={styles.invitationBG} id="shareImg">
-        <ul>{name}</ul>
-        <ul>{city}</ul>
-        <ul>{location}</ul>
-        <ul>
+    <Container className={styles.invitationBG} id="shareImg">
+      <ul style={{ listStyle: 'none' }}>
+        <li>{name}</li>
+        <li>{city}</li>
+        <li>{location}</li>
+        <li>
           🕒 {new Date(+startTime!).toLocaleString()} ~{' '}
           {new Date(+endTime!).toLocaleString()}
-        </ul>
-        <ul>{title}</ul>
-        <ul>👨‍🎓 {(mentors as string[]).join(' ')}</ul>
-        <ul>
+        </li>
+        <li>{title}</li>
+        <li>👨‍🎓 {(mentors as string[]).join(' ')}</li>
+        <li>
           <QRCodeSVG value={currentUrl} />
-        </ul>
-      </Container>
-    </>
+        </li>
+      </ul>
+    </Container>
   );
 };
 
