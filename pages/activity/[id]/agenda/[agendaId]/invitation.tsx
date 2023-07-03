@@ -77,25 +77,23 @@ const Invitation: FC<
   };
 
   return (
-    <div ref={elementRef}>
-      <Container className={styles.invitationBG} id="shareImg">
-        <ul style={{ listStyle: 'none' }}>
-          <li>{name}</li>
-          <li>{city}</li>
-          <li>{location}</li>
-          <li>
-            🕒 {new Date(+startTime!).toLocaleString()} ~{' '}
-            {new Date(+endTime!).toLocaleString()}
-          </li>
-          <li>{title}</li>
-          <li>👨‍🎓 {(mentors as string[]).join(' ')}</li>
-          <li>
-            <QRCodeSVG value={currentUrl} />
-          </li>
-        </ul>
-        <button onClick={generateImage}>生成图片</button>
-      </Container>
-    </div>
+    <Container className={styles.invitationBG} id="shareImg" ref={elementRef}>
+      <ul style={{ listStyle: 'none' }}>
+        <li>{name}</li>
+        <li>{city}</li>
+        <li>{location}</li>
+        <li>
+          🕒 {new Date(+startTime!).toLocaleString()} ~{' '}
+          {new Date(+endTime!).toLocaleString()}
+        </li>
+        <li>{title}</li>
+        <li>👨‍🎓 {(mentors as string[]).join(' ')}</li>
+        <li>
+          <QRCodeSVG value={currentUrl} />
+        </li>
+      </ul>
+      <button onClick={generateImage}>生成图片</button>
+    </Container>
   );
 };
 
