@@ -1,7 +1,7 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Head from 'next/head';
 
-import { FC, useRef } from 'react';
+import { FC, useRef, useState } from 'react';
 
 import { QRCodeSVG } from 'qrcode.react';
 import { Container, Row, Col, Image, Card, Button } from 'react-bootstrap';
@@ -46,6 +46,7 @@ const Invitation: FC<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = ({ activity, agenda, currentUrl }) => {
   const elementRef = useRef(null);
+  const [imageDataURL, setImageDataURL] = useState(null);
   console.log('activity.id', activity);
   console.log('agenda', agenda);
   const { name, city, location } = activity;
@@ -70,7 +71,7 @@ const Invitation: FC<
 
     html2canvas(element!).then(canvas => {
       const image = canvas.toDataURL();
-
+      setImageDataURL(image);
       // 在这里可以使用生成的图片数据
       console.log(image);
     });
@@ -93,6 +94,16 @@ const Invitation: FC<
         </li>
       </ul>
       <button onClick={generateImage}>生成图片</button>
+      {imageDataURL && (
+        <div>
+          <img src={imageDataURL} alt="Generated" />
+        </div>
+      )}
+      {imageDataURL && (
+        <a href={imageDataURL} download="generated.png">
+          下载图片
+        </a>
+      )}
     </Container>
   );
 };
