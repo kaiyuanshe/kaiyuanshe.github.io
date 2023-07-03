@@ -70,7 +70,7 @@ const Invitation: FC<
     const element = elementRef.current;
 
     html2canvas(element!).then(canvas => {
-      const image = canvas.toDataURL();
+      const image = canvas.toDataURL('image/jpeg', 0.92);
       setImageDataURL(image as string);
       // 在这里可以使用生成的图片数据
       console.log(image);
