@@ -1,7 +1,7 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Head from 'next/head';
 
-import { FC } from 'react';
+import { FC, useRef } from 'react';
 
 import { QRCodeSVG } from 'qrcode.react';
 import { Container, Row, Col, Image, Card, Button } from 'react-bootstrap';
@@ -45,6 +45,7 @@ export const getServerSideProps: GetServerSideProps<
 const Invitation: FC<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = ({ activity, agenda, currentUrl }) => {
+  const elementRef = useRef(null);
   console.log('activity.id', activity);
   console.log('agenda', agenda);
   const { name, city, location } = activity;
@@ -64,23 +65,37 @@ const Invitation: FC<
     }
   };
 
+  const generateImage = () => {
+    const element = elementRef.current;
+
+    html2canvas(element).then(canvas => {
+      const image = canvas.toDataURL();
+
+      // 在这里可以使用生成的图片数据
+      console.log(image);
+    });
+  };
+
   return (
-    <Container className={styles.invitationBG} id="shareImg">
-      <ul style={{ listStyle: 'none' }}>
-        <li>{name}</li>
-        <li>{city}</li>
-        <li>{location}</li>
-        <li>
-          🕒 {new Date(+startTime!).toLocaleString()} ~{' '}
-          {new Date(+endTime!).toLocaleString()}
-        </li>
-        <li>{title}</li>
-        <li>👨‍🎓 {(mentors as string[]).join(' ')}</li>
-        <li>
-          <QRCodeSVG value={currentUrl} />
-        </li>
-      </ul>
-    </Container>
+    <div ref={elementRef}>
+      <Container className={styles.invitationBG} id="shareImg">
+        <ul style={{ listStyle: 'none' }}>
+          <li>{name}</li>
+          <li>{city}</li>
+          <li>{location}</li>
+          <li>
+            🕒 {new Date(+startTime!).toLocaleString()} ~{' '}
+            {new Date(+endTime!).toLocaleString()}
+          </li>
+          <li>{title}</li>
+          <li>👨‍🎓 {(mentors as string[]).join(' ')}</li>
+          <li>
+            <QRCodeSVG value={currentUrl} />
+          </li>
+        </ul>
+        <button onClick={generateImage}>生成图片</button>
+      </Container>
+    </div>
   );
 };
 
