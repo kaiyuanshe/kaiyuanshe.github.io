@@ -96,7 +96,7 @@ const Invitation: FC<
       <button onClick={generateImage}>生成图片</button>
       {imageDataURL && (
         <div>
-          <img src={imageDataURL} alt="Generated" />
+          <Image src={imageDataURL} alt="Generated" />
         </div>
       )}
       {imageDataURL && (
