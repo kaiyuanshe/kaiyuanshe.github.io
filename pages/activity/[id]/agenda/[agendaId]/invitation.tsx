@@ -46,7 +46,7 @@ const Invitation: FC<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = ({ activity, agenda, currentUrl }) => {
   const elementRef = useRef(null);
-  const [imageDataURL, setImageDataURL] = useState(null);
+  const [imageDataURL, setImageDataURL] = useState<string | null>(null);
   console.log('activity.id', activity);
   console.log('agenda', agenda);
   const { name, city, location } = activity;
@@ -71,7 +71,7 @@ const Invitation: FC<
 
     html2canvas(element!).then(canvas => {
       const image = canvas.toDataURL();
-      setImageDataURL(image);
+      setImageDataURL(image as string);
       // 在这里可以使用生成的图片数据
       console.log(image);
     });
