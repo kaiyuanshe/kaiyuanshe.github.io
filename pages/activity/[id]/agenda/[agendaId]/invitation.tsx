@@ -68,7 +68,7 @@ const Invitation: FC<
   const generateImage = () => {
     const element = elementRef.current;
 
-    html2canvas(element).then(canvas => {
+    html2canvas(element!).then(canvas => {
       const image = canvas.toDataURL();
 
       // 在这里可以使用生成的图片数据
