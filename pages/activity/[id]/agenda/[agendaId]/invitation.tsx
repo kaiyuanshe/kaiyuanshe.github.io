@@ -102,8 +102,8 @@ const Invitation: FC<
       )}
 
       {imageDataURL && (
-        <div style={{ display: 'block' }}>
-          <Image src={imageDataURL} alt="Generated" />
+        <div style={{}}>
+          <Image src={imageDataURL} alt="Generated" className="img-fluid" />
         </div>
       )}
     </Container>
