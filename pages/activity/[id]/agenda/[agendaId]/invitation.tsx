@@ -1,7 +1,7 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Head from 'next/head';
 
-import { FC, useRef, useState } from 'react';
+import { FC, useRef, useState, useEffect } from 'react';
 
 import { QRCodeSVG } from 'qrcode.react';
 import { Container, Row, Col, Image, Card, Button } from 'react-bootstrap';
@@ -47,6 +47,11 @@ const Invitation: FC<
 > = ({ activity, agenda, currentUrl }) => {
   const elementRef = useRef(null);
   const [imageDataURL, setImageDataURL] = useState<string | null>(null);
+
+  useEffect(() => {
+    generateImage();
+  }, []);
+
   console.log('activity.id', activity);
   console.log('agenda', agenda);
   const { name, city, location } = activity;
@@ -73,36 +78,33 @@ const Invitation: FC<
       const image = canvas.toDataURL('image/jpeg', 0.92);
       setImageDataURL(image as string);
       // 在这里可以使用生成的图片数据
-      console.log(image);
+      //console.log(image);
     });
   };
 
   return (
     <Container className={styles.invitationBG} id="shareImg" ref={elementRef}>
-      <ul style={{ listStyle: 'none' }}>
-        <li>{name}</li>
-        <li>{city}</li>
-        <li>{location}</li>
-        <li>
-          🕒 {new Date(+startTime!).toLocaleString()} ~{' '}
-          {new Date(+endTime!).toLocaleString()}
-        </li>
-        <li>{title}</li>
-        <li>👨‍🎓 {(mentors as string[]).join(' ')}</li>
-        <li>
-          <QRCodeSVG value={currentUrl} />
-        </li>
-      </ul>
-      <button onClick={generateImage}>生成图片</button>
+      {!imageDataURL && (
+        <ul style={{ listStyle: 'none' }}>
+          <li>{name}</li>
+          <li>{city}</li>
+          <li>{location}</li>
+          <li>
+            🕒 {new Date(+startTime!).toLocaleString()} ~{' '}
+            {new Date(+endTime!).toLocaleString()}
+          </li>
+          <li>{title}</li>
+          <li>👨‍🎓 {(mentors as string[]).join(' ')}</li>
+          <li>
+            <QRCodeSVG value={currentUrl} />
+          </li>
+        </ul>
+      )}
+
       {imageDataURL && (
-        <div>
+        <div style={{ display: 'block' }}>
           <Image src={imageDataURL} alt="Generated" />
         </div>
-      )}
-      {imageDataURL && (
-        <a href={imageDataURL} download="generated.png">
-          下载图片
-        </a>
       )}
     </Container>
   );
