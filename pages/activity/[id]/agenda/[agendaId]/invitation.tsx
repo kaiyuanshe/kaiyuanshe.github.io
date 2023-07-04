@@ -58,7 +58,7 @@ const Invitation: FC<
   const { startTime, endTime, title, mentors } = agenda;
   // const currentUrl =  withRoute.asPath;
   console.log('currentUrl', currentUrl);
-  const shareURL = async () => {
+  const share = async () => {
     try {
       await navigator.share?.({
         title: 'web.dev',
@@ -103,7 +103,7 @@ const Invitation: FC<
             </li>
           </ul>
         ) : (
-          <div>
+          <div onClick={share}>
             <Image src={imageDataURL} alt="Generated" className="img-fluid" />
           </div>
         )}
