@@ -49,10 +49,8 @@ const Invitation: FC<
   const [imageDataURL, setImageDataURL] = useState('');
 
   useEffect(() => {
-    if (!imageDataURL) {
-      generateImage();
-    }
-  }, [imageDataURL]);
+    generateImage();
+  }, []);
 
   console.log('activity.id', activity);
   console.log('agenda', agenda);
