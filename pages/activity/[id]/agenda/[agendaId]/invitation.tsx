@@ -5,6 +5,7 @@ import { FC, useRef, useState, useEffect } from 'react';
 
 import { QRCodeSVG } from 'qrcode.react';
 import { Container, Row, Col, Image, Card, Button } from 'react-bootstrap';
+import { Loading } from 'idea-react';
 import { TableCellAttachment } from 'mobx-lark';
 import html2canvas from 'html2canvas';
 
@@ -83,28 +84,31 @@ const Invitation: FC<
   };
 
   return (
-    <Container className={styles.invitationBG} id="shareImg" ref={elementRef}>
-      {!imageDataURL ? (
-        <ul className="list-unstyled">
-          <li>{name}</li>
-          <li>{city}</li>
-          <li>{location}</li>
-          <li>
-            🕒 {new Date(+startTime!).toLocaleString()} ~{' '}
-            {new Date(+endTime!).toLocaleString()}
-          </li>
-          <li>{title}</li>
-          <li>👨‍🎓 {(mentors as string[]).join(' ')}</li>
-          <li>
-            <QRCodeSVG value={currentUrl} />
-          </li>
-        </ul>
-      ) : (
-        <div>
-          <Image src={imageDataURL} alt="Generated" className="img-fluid" />
-        </div>
-      )}
-    </Container>
+    <>
+      {!imageDataURL && <Loading />}
+      <Container className={styles.invitationBG} id="shareImg" ref={elementRef}>
+        {!imageDataURL ? (
+          <ul className="list-unstyled">
+            <li>{name}</li>
+            <li>{city}</li>
+            <li>{location}</li>
+            <li>
+              🕒 {new Date(+startTime!).toLocaleString()} ~{' '}
+              {new Date(+endTime!).toLocaleString()}
+            </li>
+            <li>{title}</li>
+            <li>👨‍🎓 {(mentors as string[]).join(' ')}</li>
+            <li>
+              <QRCodeSVG value={currentUrl} />
+            </li>
+          </ul>
+        ) : (
+          <div>
+            <Image src={imageDataURL} alt="Generated" className="img-fluid" />
+          </div>
+        )}
+      </Container>
+    </>
   );
 };
 
