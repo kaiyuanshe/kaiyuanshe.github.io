@@ -49,10 +49,10 @@ const Invitation: FC<
   const [imageDataURL, setImageDataURL] = useState('');
 
   useEffect(() => {
-    if (!setImageDataURL) {
+    if (!imageDataURL) {
       generateImage();
     }
-  }, [setImageDataURL]);
+  }, [imageDataURL]);
 
   console.log('activity.id', activity);
   console.log('agenda', agenda);
@@ -80,6 +80,7 @@ const Invitation: FC<
       const canvas = await html2canvas(element!);
       const image = canvas.toDataURL('image/jpeg', 0.92);
       setImageDataURL(image as string);
+      console.log('image run finish');
     } catch (error) {
       console.log('error', error);
     }
