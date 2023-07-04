@@ -61,9 +61,9 @@ const Invitation: FC<
   const share = async () => {
     try {
       await navigator.share?.({
-        title: 'web.dev',
-        text: 'Check out web.dev.',
-        url: 'https://web.dev/',
+        title: '开源社',
+        text: '邀请函',
+        url: currentUrl,
       });
       console.log('share success');
     } catch (error) {
