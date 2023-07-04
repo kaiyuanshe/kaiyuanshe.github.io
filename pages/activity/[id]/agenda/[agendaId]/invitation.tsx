@@ -101,6 +101,7 @@ const Invitation: FC<
             <li>
               <QRCodeSVG value={currentUrl} />
             </li>
+            <li>长按图片分享</li>
           </ul>
         ) : (
           <div onClick={share}>
