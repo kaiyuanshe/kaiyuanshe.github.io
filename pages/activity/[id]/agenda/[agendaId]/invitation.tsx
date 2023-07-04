@@ -24,9 +24,8 @@ const API_Host = isServer()
   : globalThis.location.origin;
 
 export const getServerSideProps: GetServerSideProps<
-  { activity: Activity; agenda: Agenda },
-  { id: string; agendaId: string },
-  { currentUrl: string }
+  { activity: Activity; agenda: Agenda; currentUrl: string },
+  { id: string; agendaId: string }
 > = async ({ resolvedUrl, params }) => {
   const activityStore = new ActivityModel();
   const { id, agendaId } = params!;
@@ -45,8 +44,8 @@ export const getServerSideProps: GetServerSideProps<
 const Invitation: FC<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = ({ activity, agenda, currentUrl }) => {
-  const elementRef = useRef(null);
-  const [imageDataURL, setImageDataURL] = useState<string | null>(null);
+  const elementRef = useRef<HTMLDivElement>(null);
+  const [imageDataURL, setImageDataURL] = useState('');
 
   useEffect(() => {
     generateImage();
@@ -71,21 +70,22 @@ const Invitation: FC<
     }
   };
 
-  const generateImage = () => {
+  const generateImage = async () => {
     const element = elementRef.current;
 
-    html2canvas(element!).then(canvas => {
+    try {
+      const canvas = await html2canvas(element!);
       const image = canvas.toDataURL('image/jpeg', 0.92);
       setImageDataURL(image as string);
-      // 在这里可以使用生成的图片数据
-      //console.log(image);
-    });
+    } catch (error) {
+      console.log('error', error);
+    }
   };
 
   return (
     <Container className={styles.invitationBG} id="shareImg" ref={elementRef}>
-      {!imageDataURL && (
-        <ul style={{ listStyle: 'none' }}>
+      {!imageDataURL ? (
+        <ul className="list-unstyled">
           <li>{name}</li>
           <li>{city}</li>
           <li>{location}</li>
@@ -99,10 +99,8 @@ const Invitation: FC<
             <QRCodeSVG value={currentUrl} />
           </li>
         </ul>
-      )}
-
-      {imageDataURL && (
-        <div style={{}}>
+      ) : (
+        <div>
           <Image src={imageDataURL} alt="Generated" className="img-fluid" />
         </div>
       )}
