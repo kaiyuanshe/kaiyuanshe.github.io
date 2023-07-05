@@ -8,7 +8,9 @@ const SelfHost = process.env.SelfHost;
 export const API_Host = isServer()
   ? VercelHost
     ? `https://${VercelHost}`
-    : SelfHost || 'http://localhost:3000'
+    : SelfHost
+    ? SelfHost
+    : 'http://localhost:3000'
   : globalThis.location.origin;
 
 export const client = new HTTPClient({
