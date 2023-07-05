@@ -40,12 +40,9 @@ const Invitation: FC<
     generateImage();
   }, []);
 
-  console.log('activity.id', activity);
-  console.log('agenda', agenda);
   const { name, city, location } = activity;
   const { startTime, endTime, title, mentors } = agenda;
-  // const currentUrl =  withRoute.asPath;
-  console.log('currentUrl', currentUrl);
+
   const share = async () => {
     try {
       await navigator.share?.({
@@ -53,7 +50,6 @@ const Invitation: FC<
         text: '邀请函',
         url: currentUrl,
       });
-      console.log('share success');
     } catch (error) {
       console.log('share error', error);
     }
@@ -66,9 +62,6 @@ const Invitation: FC<
       const canvas = await html2canvas(element!);
       const image = canvas.toDataURL('image/jpeg', 0.92);
       setImageDataURL(image as string);
-      console.log('image run finish');
-      const tempUrl = window.location.href;
-      console.log('tempUrl', tempUrl);
     } catch (error) {
       console.log('error', error);
     }
