@@ -15,7 +15,7 @@ import { Agenda } from '../../../../../models/Agenda';
 import PageHead from '../../../../../components/PageHead';
 import { withRoute } from '../../../../api/base';
 import { API_Host } from '../../../../../models/Base';
-import styles from '../../../../../styles/invitation.module.less';
+import styles from './invitation.module.less';
 
 export const getServerSideProps: GetServerSideProps<
   { activity: Activity; agenda: Agenda; currentUrl: string },
