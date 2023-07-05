@@ -5,7 +5,7 @@ export const isServer = () => typeof window === 'undefined';
 
 const VercelHost = process.env.VERCEL_URL;
 
-const API_Host = isServer()
+export const API_Host = isServer()
   ? VercelHost
     ? `https://${VercelHost}`
     : 'http://localhost:3000'

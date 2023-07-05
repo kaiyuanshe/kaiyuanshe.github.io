@@ -14,15 +14,8 @@ import { Activity, ActivityModel } from '../../../../../models/Activity';
 import { Agenda } from '../../../../../models/Agenda';
 import PageHead from '../../../../../components/PageHead';
 import { withRoute } from '../../../../api/base';
-import { isServer } from '../../../../../models/Base';
+import { API_Host } from '../../../../../models/Base';
 import styles from '../../../../../styles/invitation.module.less';
-
-const VercelHost = process.env.VERCEL_URL;
-const API_Host = isServer()
-  ? VercelHost
-    ? `https://${VercelHost}`
-    : 'http://192.168.2.114:3000'
-  : globalThis.location.origin;
 
 export const getServerSideProps: GetServerSideProps<
   { activity: Activity; agenda: Agenda; currentUrl: string },
@@ -79,9 +72,15 @@ const Invitation: FC<
       const image = canvas.toDataURL('image/jpeg', 0.92);
       setImageDataURL(image as string);
       console.log('image run finish');
+      const tempUrl = window.location.href;
+      console.log('tempUrl', tempUrl);
     } catch (error) {
       console.log('error', error);
     }
+  };
+
+  const getURL = () => {
+    return window.location.href;
   };
 
   return (
