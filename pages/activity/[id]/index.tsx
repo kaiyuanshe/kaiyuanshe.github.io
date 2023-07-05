@@ -14,7 +14,6 @@ import { blobURLOf } from '../../../models/Base';
 import { i18n } from '../../../models/Translation';
 import { withErrorLog } from '../../api/base';
 import styles from './index.module.less';
-import { isServer } from '../../../models/Base';
 
 export const getServerSideProps = withErrorLog<
   { id: string },
@@ -39,16 +38,11 @@ export const getServerSideProps = withErrorLog<
 
 const { t } = i18n;
 
-const VercelHost = process.env.VERCEL_URL;
-const API_Host = isServer()
-  ? VercelHost
-    ? `https://${VercelHost}`
-    : 'http://192.168.2.114:3000'
-  : globalThis.location.origin;
-
 const MainForumName = '主论坛';
 
 const shareInvitation = async (activityID: string, agendaID: string) => {
+  const API_Host = globalThis.location.origin;
+
   const shareURL = `${API_Host}/activity/${activityID}/agenda/${agendaID}/invitation`;
   const shareData = {
     title: 'kaiyuanshe',
@@ -57,7 +51,7 @@ const shareInvitation = async (activityID: string, agendaID: string) => {
   };
 
   if (!navigator.canShare) {
-    window.open(shareURL, '_blank');
+    globalThis.open(shareURL, '_blank');
   } else {
     try {
       await navigator.share?.(shareData);
