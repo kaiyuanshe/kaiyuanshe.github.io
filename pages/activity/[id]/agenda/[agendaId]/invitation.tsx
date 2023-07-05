@@ -1,19 +1,14 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
-import Head from 'next/head';
 
-import { FC, useRef, useState, useEffect } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 
-import { QRCodeSVG } from 'qrcode.react';
-import { Container, Row, Col, Image, Card, Button } from 'react-bootstrap';
-import { Loading } from 'idea-react';
-import { TableCellAttachment } from 'mobx-lark';
 import html2canvas from 'html2canvas';
+import { Loading } from 'idea-react';
+import { QRCodeSVG } from 'qrcode.react';
+import { Container, Image } from 'react-bootstrap';
 
-import { DefaultImage } from '../../../../api/lark/file/[id]';
 import { Activity, ActivityModel } from '../../../../../models/Activity';
 import { Agenda } from '../../../../../models/Agenda';
-import PageHead from '../../../../../components/PageHead';
-import { withRoute } from '../../../../api/base';
 import { API_Host } from '../../../../../models/Base';
 import styles from './invitation.module.less';
 
