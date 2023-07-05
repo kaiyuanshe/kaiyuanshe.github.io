@@ -4,11 +4,11 @@ import { TableCellValue } from 'mobx-lark';
 export const isServer = () => typeof window === 'undefined';
 
 const VercelHost = process.env.VERCEL_URL;
-
+const SelfHost = process.env.SelfHost;
 export const API_Host = isServer()
   ? VercelHost
     ? `https://${VercelHost}`
-    : 'http://localhost:3000'
+    : SelfHost || 'http://localhost:3000'
   : globalThis.location.origin;
 
 export const client = new HTTPClient({
