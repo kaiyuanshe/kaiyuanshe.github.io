@@ -93,7 +93,7 @@ const Invitation: FC<
           </ul>
         ) : (
           <div className={styles.invitationImage} onClick={share}>
-            <Image src={imageDataURL} alt="Generated" className="img-fluid" />
+            <Image src={imageDataURL} alt="shareQRcode" className="img-fluid" />
           </div>
         )}
       </Container>
