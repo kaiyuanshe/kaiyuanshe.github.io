@@ -87,9 +87,9 @@ const Invitation: FC<
   return (
     <>
       {!imageDataURL && <Loading />}
-      <Container className={styles.invitationBG} id="shareImg" ref={elementRef}>
+      <Container className={styles.invitationBG} ref={elementRef}>
         {!imageDataURL ? (
-          <ul className="list-unstyled ">
+          <ul className="list-unstyled">
             <li>{name}</li>
             <li>{city}</li>
             <li>{location}</li>
@@ -105,10 +105,7 @@ const Invitation: FC<
             <li>长按图片分享</li>
           </ul>
         ) : (
-          <div
-            style={{ position: 'absolute', top: 80, left: 0, zIndex: 1 }}
-            onClick={share}
-          >
+          <div className={styles.invitationImage} onClick={share}>
             <Image src={imageDataURL} alt="Generated" className="img-fluid" />
           </div>
         )}
