@@ -14,6 +14,7 @@ import { blobURLOf } from '../../../models/Base';
 import { i18n } from '../../../models/Translation';
 import { withErrorLog } from '../../api/base';
 import styles from './index.module.less';
+import { isServer } from '../../../models/Base';
 
 export const getServerSideProps = withErrorLog<
   { id: string },
@@ -38,18 +39,32 @@ export const getServerSideProps = withErrorLog<
 
 const { t } = i18n;
 
+const VercelHost = process.env.VERCEL_URL;
+const API_Host = isServer()
+  ? VercelHost
+    ? `https://${VercelHost}`
+    : 'http://192.168.2.114:3000'
+  : globalThis.location.origin;
+
 const MainForumName = '主论坛';
 
-const shareInvitation = async () => {
-  try {
-    await navigator.share?.({
-      title: 'web.dev',
-      text: 'Check out web.dev.',
-      url: 'https://web.dev/',
-    });
-    console.log('share success');
-  } catch (error) {
-    console.log('share error', error);
+const shareInvitation = async (activityID: string, agendaID: string) => {
+  const shareURL = `${API_Host}/activity/${activityID}/agenda/${agendaID}/invitation`;
+  const shareData = {
+    title: 'kaiyuanshe',
+    text: '开源社活动邀请',
+    url: shareURL,
+  };
+
+  if (!navigator.canShare) {
+    window.open(shareURL, '_blank');
+  } else {
+    try {
+      await navigator.share?.(shareData);
+      console.log('share success');
+    } catch (error) {
+      console.log('share error', error);
+    }
   }
 };
 
@@ -190,7 +205,13 @@ export default class ActivityDetailPage extends PureComponent<
                   {agendas.map(agenda => (
                     <Col as="li" key={agenda.id + ''}>
                       <AgendaCard {...agenda} />
-                      <Button onClick={() => shareInvitation()}>分享</Button>
+                      <Button
+                        onClick={() =>
+                          shareInvitation(activity.id + '', agenda.id + '')
+                        }
+                      >
+                        分享
+                      </Button>
                     </Col>
                   ))}
                 </Row>
