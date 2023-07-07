@@ -78,6 +78,9 @@ export default {
   member_x: '成員X',
   share: '分享',
 
+  //invitation pages
+  press_to_share: '長按圖片分享',
+
   // Cooperation Page
   主办单位: '主辦單位',
   承办单位: '承辦單位',

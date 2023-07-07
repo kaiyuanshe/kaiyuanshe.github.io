@@ -7,10 +7,13 @@ import { Loading } from 'idea-react';
 import { QRCodeSVG } from 'qrcode.react';
 import { Container, Image } from 'react-bootstrap';
 
+import { i18n } from '../../../../../models/Translation';
 import { Activity, ActivityModel } from '../../../../../models/Activity';
 import { Agenda } from '../../../../../models/Agenda';
 import { API_Host } from '../../../../../models/Base';
 import styles from './invitation.module.less';
+
+const { t } = i18n;
 
 export const getServerSideProps: GetServerSideProps<
   { activity: Activity; agenda: Agenda; currentUrl: string },
@@ -46,8 +49,8 @@ const Invitation: FC<
   const share = async () => {
     try {
       await navigator.share?.({
-        title: '开源社',
-        text: '邀请函',
+        title: title as string,
+        text: '',
         url: currentUrl,
       });
     } catch (error) {
@@ -89,7 +92,7 @@ const Invitation: FC<
             <li>
               <QRCodeSVG value={currentUrl} />
             </li>
-            <li>长按图片分享</li>
+            <li>{t('press_to_share')}</li>
           </ul>
         ) : (
           <div className={styles.invitationImage} onClick={share}>

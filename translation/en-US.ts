@@ -79,6 +79,9 @@ export default {
   member_x: 'member X',
   share: 'share',
 
+  //invitation pages
+  press_to_share: 'press image to share',
+
   // Cooperation Page
   主办单位: 'Hosted by',
   承办单位: 'Organized by',
