@@ -10,7 +10,6 @@ import { AgendaCard } from '../../../components/Activity/Agenda/Card';
 import PageHead from '../../../components/PageHead';
 import { Activity, ActivityModel } from '../../../models/Activity';
 import { AgendaModel } from '../../../models/Agenda';
-import { Agenda } from '../../../models/Agenda';
 import { blobURLOf } from '../../../models/Base';
 import { i18n } from '../../../models/Translation';
 import { withErrorLog } from '../../api/base';
