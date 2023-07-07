@@ -58,23 +58,21 @@ const Invitation: FC<
 
   const generateImage = async () => {
     const element = elementRef.current;
-
-    try {
-      const canvas = await html2canvas(element!);
-      const image = canvas.toDataURL('image/jpeg', 0.92);
-      setImageDataURL(image as string);
-    } catch (error) {
-      console.log('error', error);
-    }
-  };
-
-  const getURL = () => {
-    return window.location.href;
+    const canvas = await html2canvas(element!);
+    const image = await new Promise<string>(resolve =>
+      canvas.toBlob(
+        blob => resolve(URL.createObjectURL(blob as Blob)),
+        'image/jpeg',
+        0.92,
+      ),
+    );
+    setImageDataURL(image);
   };
 
   return (
     <>
       {!imageDataURL && <Loading />}
+
       <Container className={styles.invitationBG} ref={elementRef}>
         {!imageDataURL ? (
           <ul className="list-unstyled">
