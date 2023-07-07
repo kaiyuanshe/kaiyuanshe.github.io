@@ -1,3 +1,5 @@
+import '../styles/globals.less';
+
 import { Icon } from 'idea-react';
 import { observer } from 'mobx-react';
 import type { AppProps } from 'next/app';
@@ -8,7 +10,6 @@ import { Col, Container, Row } from 'react-bootstrap';
 import { MainRoutes } from '../components/data';
 import MainNav from '../components/MainNav';
 import { i18n } from '../models/Translation';
-import '../styles/globals.less';
 import { social } from './api/home';
 import { DefaultImage } from './api/lark/file/[id]';
 

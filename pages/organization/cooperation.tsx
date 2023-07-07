@@ -1,15 +1,15 @@
 import classNames from 'classnames';
 import { observer } from 'mobx-react';
-import { PureComponent } from 'react';
-import { Container, ListGroup, Image, Row, Col } from 'react-bootstrap';
 import { InferGetServerSidePropsType } from 'next';
+import { PureComponent } from 'react';
+import { Col, Container, Image, ListGroup, Row } from 'react-bootstrap';
 
 import PageHead from '../../components/PageHead';
-import { withTranslation } from '../api/base';
-import { fileURLOf } from '../api/lark/file/[id]';
-import { i18n } from '../../models/Translation';
 import { blobURLOf } from '../../models/Base';
 import { Cooperation, CooperationModel } from '../../models/Cooperation';
+import { i18n } from '../../models/Translation';
+import { withTranslation } from '../api/base';
+import { fileURLOf } from '../api/lark/file/[id]';
 
 const Levels = [
   '主办单位',

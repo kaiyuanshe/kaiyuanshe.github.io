@@ -1,15 +1,14 @@
-import { InferGetServerSidePropsType } from 'next';
 import { observer } from 'mobx-react';
+import { InferGetServerSidePropsType } from 'next';
 import { FC } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 
-import PageHead from '../../components/PageHead';
-import { ArticleListLayout } from '../../components/Article/List';
 import { ActivityListLayout } from '../../components/Activity/List';
-import { MemberList } from '../../components/Member/List';
+import { ArticleListLayout } from '../../components/Article/List';
 import { GroupCard } from '../../components/Group/Card';
+import { MemberList } from '../../components/Member/List';
 import { OrganizationListLayout } from '../../components/Organization/List';
-
+import PageHead from '../../components/PageHead';
 import { SystemModel } from '../../models/System';
 import { i18n } from '../../models/Translation';
 import { withRoute, withTranslation } from '../api/base';

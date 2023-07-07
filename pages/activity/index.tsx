@@ -1,11 +1,11 @@
 import { observer } from 'mobx-react';
-import { FC } from 'react';
-import { InferGetServerSidePropsType } from 'next';
-import { Container } from 'react-bootstrap';
 import { ScrollList } from 'mobx-restful-table';
+import { InferGetServerSidePropsType } from 'next';
+import { FC } from 'react';
+import { Container } from 'react-bootstrap';
 
-import PageHead from '../../components/PageHead';
 import { ActivityListLayout } from '../../components/Activity/List';
+import PageHead from '../../components/PageHead';
 import activityStore, { ActivityModel } from '../../models/Activity';
 import { i18n } from '../../models/Translation';
 import { withTranslation } from '../api/base';

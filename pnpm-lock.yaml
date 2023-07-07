@@ -112,6 +112,9 @@ devDependencies:
   eslint-config-next:
     specifier: ^12.3.4
     version: 12.3.4(eslint@8.44.0)(typescript@5.1.6)
+  eslint-plugin-simple-import-sort:
+    specifier: ^10.0.0
+    version: 10.0.0(eslint@8.44.0)
   get-git-folder:
     specifier: ^0.1.0
     version: 0.1.0
@@ -3111,6 +3114,14 @@ packages:
       resolve: 2.0.0-next.4
       semver: 6.3.0
       string.prototype.matchall: 4.0.8
+    dev: true
+
+  /eslint-plugin-simple-import-sort@10.0.0(eslint@8.44.0):
+    resolution: {integrity: sha512-AeTvO9UCMSNzIHRkg8S6c3RPy5YEwKWSQPx3DYghLedo2ZQxowPFLGDN1AZ2evfg6r6mjBSZSLxLFsWSu3acsw==}
+    peerDependencies:
+      eslint: '>=5.0.0'
+    dependencies:
+      eslint: 8.44.0
     dev: true
 
   /eslint-scope@5.1.1:

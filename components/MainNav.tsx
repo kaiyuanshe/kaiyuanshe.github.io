@@ -1,12 +1,12 @@
-import { observer } from 'mobx-react';
-import { PureComponent } from 'react';
-import { NextRouter, withRouter } from 'next/router';
-import { Container, Image, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { Option, Select } from 'idea-react';
+import { observer } from 'mobx-react';
+import { NextRouter, withRouter } from 'next/router';
+import { PureComponent } from 'react';
+import { Container, Image, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 
-import { SearchBar } from './SearchBar';
-import styles from '../styles/MainNav.module.less';
 import { i18n, LanguageName } from '../models/Translation';
+import styles from '../styles/MainNav.module.less';
+import { SearchBar } from './SearchBar';
 
 export interface Link {
   title: string;

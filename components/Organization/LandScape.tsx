@@ -1,11 +1,11 @@
+import { SVGCharts, Tooltip, TreeMapSeries } from 'echarts-jsx';
+import { Loading } from 'idea-react';
 import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { Loading } from 'idea-react';
-import { SVGCharts, Tooltip, TreeMapSeries } from 'echarts-jsx';
 
-import { OrganizationCard } from './Card';
 import organizationStore from '../../models/Organization';
+import { OrganizationCard } from './Card';
 
 @observer
 export default class OrganizationLandscape extends PureComponent {

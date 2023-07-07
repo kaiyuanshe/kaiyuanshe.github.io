@@ -1,17 +1,17 @@
-import { isEmpty } from 'web-utility';
-import dynamic from 'next/dynamic';
+import { text2color } from 'idea-react';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
+import { ScrollList } from 'mobx-restful-table';
+import dynamic from 'next/dynamic';
 import { PureComponent } from 'react';
 import { Badge, Button, Nav } from 'react-bootstrap';
-import { text2color } from 'idea-react';
-import { ScrollList } from 'mobx-restful-table';
+import { isEmpty } from 'web-utility';
 
+import organizationStore from '../../models/Organization';
 import { i18n } from '../../models/Translation';
 import { CityStatisticMap } from '../CityStatisticMap';
 import { OrganizationCardProps } from './Card';
 import { OrganizationListLayout } from './List';
-import organizationStore from '../../models/Organization';
 
 const OrganizationCharts = dynamic(() => import('./Charts'), { ssr: false });
 

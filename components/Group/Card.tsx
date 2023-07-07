@@ -1,10 +1,10 @@
 import classNames from 'classnames';
+import { text2color } from 'idea-react';
 import { FC } from 'react';
 import { Badge } from 'react-bootstrap';
-import { text2color } from 'idea-react';
 
-import { fileURLOf } from '../../pages/api/lark/file/[id]';
 import { Group } from '../../models/Group';
+import { fileURLOf } from '../../pages/api/lark/file/[id]';
 
 export interface GroupCardProps extends Group {
   className?: string;

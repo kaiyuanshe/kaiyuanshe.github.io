@@ -1,8 +1,8 @@
 import { FC } from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 
-import { OrganizationCard, OrganizationCardProps } from './Card';
 import { Organization } from '../../models/Organization';
+import { OrganizationCard, OrganizationCardProps } from './Card';
 
 export interface OrganizationListLayoutProps
   extends Pick<OrganizationCardProps, 'onSwitch'> {

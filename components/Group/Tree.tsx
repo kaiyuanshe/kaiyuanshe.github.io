@@ -1,14 +1,14 @@
-import { buildURLData, groupBy, parseURLData } from 'web-utility';
+import { SVGCharts, Tooltip, TreeSeries, TreeSeriesProps } from 'echarts-jsx';
+import { Loading } from 'idea-react';
 import { computed } from 'mobx';
 import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { Loading } from 'idea-react';
-import { SVGCharts, Tooltip, TreeSeriesProps, TreeSeries } from 'echarts-jsx';
+import { buildURLData, groupBy, parseURLData } from 'web-utility';
 
-import { GroupCard } from './Card';
 import groupStore from '../../models/Group';
 import { i18n } from '../../models/Translation';
+import { GroupCard } from './Card';
 
 @observer
 export default class DepartmentTree extends PureComponent {

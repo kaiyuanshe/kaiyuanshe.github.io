@@ -1,21 +1,21 @@
-import { observer } from 'mobx-react';
-import { FC } from 'react';
-import { Row } from 'react-bootstrap';
 import {
+  BarSeries,
+  PieSeries,
   SVGCharts,
   Title,
   Tooltip,
   XAxis,
   YAxis,
-  BarSeries,
-  PieSeries,
 } from 'echarts-jsx';
+import { observer } from 'mobx-react';
+import { FC } from 'react';
+import { Row } from 'react-bootstrap';
 
-import { i18n } from '../../models/Translation';
 import {
   OrganizationStatistic,
   sortStatistic,
 } from '../../models/Organization';
+import { i18n } from '../../models/Translation';
 
 const OrganizationCharts: FC<OrganizationStatistic> = observer(
   ({ type, tag, year, city }) => {

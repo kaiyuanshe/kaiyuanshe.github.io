@@ -1,6 +1,6 @@
-import { FC } from 'react';
-import { FormProps, Form, InputGroup } from 'react-bootstrap';
 import { Icon } from 'idea-react';
+import { FC } from 'react';
+import { Form, FormProps, InputGroup } from 'react-bootstrap';
 
 import styles from '../styles/SearchBar.module.less';
 

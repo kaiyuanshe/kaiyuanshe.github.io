@@ -7,9 +7,9 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 import { ElectorCard } from '../../../components/Election/ElectorCard';
 import PageHead from '../../../components/PageHead';
 import {
-  ElectionTarget,
   ELECTION_BASE_ID,
   ELECTION_TABLE_ID,
+  ElectionTarget,
   Elector,
   ElectorModel,
 } from '../../../models/Elector';

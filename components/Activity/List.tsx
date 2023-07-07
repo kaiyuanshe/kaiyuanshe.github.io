@@ -1,8 +1,8 @@
 import { FC } from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 
-import { ActivityCard } from './Card';
 import { Activity } from '../../models/Activity';
+import { ActivityCard } from './Card';
 
 export const ActivityListLayout: FC<{ defaultData: Activity[] }> = ({
   defaultData,

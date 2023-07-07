@@ -44,6 +44,7 @@
     "@types/react-dom": "^17.0.20",
     "eslint": "^8.44.0",
     "eslint-config-next": "^12.3.4",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
     "get-git-folder": "^0.1.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.3",
@@ -66,7 +67,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "npm run lint  &&  lint-staged",
+    "test": "lint-staged  &&  npm run lint",
     "pack-image": "docker build -t kys-ows:latest .",
     "container": "docker rm -f kys-ows  &&  docker run --name kys-ows -p 3000:3000 -d kys-ows:latest"
   }

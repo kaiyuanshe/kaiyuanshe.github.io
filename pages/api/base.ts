@@ -1,6 +1,6 @@
-import { DataObject } from 'mobx-restful';
-import { ParsedUrlQuery } from 'querystring';
 import { HTTPError } from 'koajax';
+import { parseLanguageHeader } from 'mobx-i18n';
+import { DataObject } from 'mobx-restful';
 import {
   GetServerSideProps,
   GetServerSidePropsContext,
@@ -9,7 +9,7 @@ import {
   NextApiRequest,
   NextApiResponse,
 } from 'next';
-import { parseLanguageHeader } from 'mobx-i18n';
+import { ParsedUrlQuery } from 'querystring';
 
 import { i18n } from '../../models/Translation';
 
