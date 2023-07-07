@@ -1,5 +1,5 @@
 import { FC, SetStateAction, useState } from 'react';
-import { Tabs, Tab } from 'react-bootstrap';
+import { Tab, Tabs } from 'react-bootstrap';
 
 import { Member } from '../../models/Member';
 import { MemberList } from './List';

@@ -20,7 +20,7 @@ const options: string[] = [
   'marketingEndorsement',
 ];
 
-const optionValue = () => {
+export const optionValue = () => {
   const optionValue = options.reduce((optionValue, option) => {
     optionValue[option] = [
       {
@@ -49,7 +49,7 @@ const optionValue = () => {
   return optionValue;
 };
 
-const licenseTips: () => LicenseTips = () => ({
+export const licenseTips: () => LicenseTips = () => ({
   popularity: [
     { text: t('tip_popularity_0') },
     { text: t('tip_popularity_1') },
@@ -64,5 +64,3 @@ const licenseTips: () => LicenseTips = () => ({
   marketingEndorsement: [{ text: t('tip_marketing_endorsement') }],
   infectionRange: [{ text: t('tip_infection_range') }],
 });
-
-export { optionValue, licenseTips };

@@ -1,5 +1,5 @@
-import dynamic from 'next/dynamic';
 import { observer } from 'mobx-react';
+import dynamic from 'next/dynamic';
 import { FC } from 'react';
 import { Container } from 'react-bootstrap';
 

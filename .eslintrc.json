@@ -1,7 +1,10 @@
 {
   "extends": "next/core-web-vitals",
+  "plugins": ["simple-import-sort"],
   "rules": {
     "react/jsx-no-target-blank": "warn",
-    "@next/next/no-sync-scripts": "warn"
+    "@next/next/no-sync-scripts": "warn",
+    "simple-import-sort/exports": "error",
+    "simple-import-sort/imports": "error"
   }
 }

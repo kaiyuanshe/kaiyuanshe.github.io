@@ -1,10 +1,10 @@
+import { text2color, TimeDistance } from 'idea-react';
 import type { FC } from 'react';
-import { Row, Col, Card, Badge } from 'react-bootstrap';
-import { TimeDistance, text2color } from 'idea-react';
+import { Badge, Card, Col, Row } from 'react-bootstrap';
 
-import { TimeOption } from '../data';
-import { blobURLOf } from '../../models/Base';
 import type { Activity } from '../../models/Activity';
+import { blobURLOf } from '../../models/Base';
+import { TimeOption } from '../data';
 
 export interface ActivityCardProps extends Activity {
   className?: string;

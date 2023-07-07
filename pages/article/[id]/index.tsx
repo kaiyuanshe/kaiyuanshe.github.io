@@ -1,19 +1,18 @@
-import { PureComponent } from 'react';
-import { InferGetServerSidePropsType } from 'next';
-import { Container, Row, Col } from 'react-bootstrap';
 import { ScrollList } from 'mobx-restful-table';
+import { InferGetServerSidePropsType } from 'next';
+import { PureComponent } from 'react';
+import { Col, Container, Row } from 'react-bootstrap';
 
-import { i18n } from '../../../models/Translation';
-import PageHead from '../../../components/PageHead';
-import { CommentBox } from '../../../components/CommentBox';
 import { ArticleListLayout } from '../../../components/Article/List';
+import { CommentBox } from '../../../components/CommentBox';
+import PageHead from '../../../components/PageHead';
 import {
   Article,
   ArticleModel,
   SearchArticleModel,
 } from '../../../models/Article';
+import { i18n } from '../../../models/Translation';
 import { withErrorLog } from '../../api/base';
-import { SearchActivityModel } from '../../../models/Activity';
 
 export const getServerSideProps = withErrorLog<
   { id: string },

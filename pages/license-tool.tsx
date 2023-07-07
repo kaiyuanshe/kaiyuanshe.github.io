@@ -1,24 +1,22 @@
-import { useState, useEffect, FC } from 'react';
-import { observer } from 'mobx-react';
-
 import {
   FeatureAttitude,
-  InfectionRange,
   filterLicenses,
+  InfectionRange,
   License,
 } from 'license-filter';
-
+import { observer } from 'mobx-react';
+import { FC, useEffect, useState } from 'react';
 import {
+  Accordion,
+  Button,
+  ButtonGroup,
   Container,
   ProgressBar,
-  Accordion,
-  ButtonGroup,
-  Button,
 } from 'react-bootstrap';
 
-import { i18n } from '../models/Translation';
+import { licenseTips, optionValue } from '../components/License/helper';
 import PageHead from '../components/PageHead';
-import { optionValue, licenseTips } from '../components/License/helper';
+import { i18n } from '../models/Translation';
 
 interface List {
   license: License;
@@ -122,7 +120,7 @@ function renderInfo({ link, feature }: License) {
       [FeatureAttitude.Positive]: t('attitude_positive'),
       [FeatureAttitude.Negative]: t('attitude_negative'),
       [FeatureAttitude.Undefined]: t('option_undefined'),
-    }[attitude] || t('option_undefined'));
+    })[attitude] || t('option_undefined');
 
   const judgeInfectionRange = (infectionRange: InfectionRange | undefined) => {
     return infectionRange !== undefined

@@ -1,3 +1,4 @@
+// eslint-disable-next-line simple-import-sort/imports
 import { FC, useEffect } from 'react';
 import { tileLayer } from 'leaflet';
 import 'leaflet.chinatmsproviders';

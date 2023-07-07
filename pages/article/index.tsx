@@ -1,11 +1,11 @@
-import { InferGetServerSidePropsType } from 'next';
 import { observer } from 'mobx-react';
+import { ScrollList } from 'mobx-restful-table';
+import { InferGetServerSidePropsType } from 'next';
 import { FC } from 'react';
 import { Container } from 'react-bootstrap';
-import { ScrollList } from 'mobx-restful-table';
 
-import PageHead from '../../components/PageHead';
 import { ArticleListLayout } from '../../components/Article/List';
+import PageHead from '../../components/PageHead';
 import articleStore, { ArticleModel } from '../../models/Article';
 import { i18n } from '../../models/Translation';
 import { withTranslation } from '../api/base';

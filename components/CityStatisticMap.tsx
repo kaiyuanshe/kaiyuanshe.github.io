@@ -1,8 +1,8 @@
-import dynamic from 'next/dynamic';
+import { MarkerMeta, OpenMapProps } from 'idea-react';
 import { computed } from 'mobx';
 import { observer } from 'mobx-react';
+import dynamic from 'next/dynamic';
 import { PureComponent } from 'react';
-import { MarkerMeta, OpenMapProps } from 'idea-react';
 
 import metaStore from '../models/System';
 

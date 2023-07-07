@@ -1,10 +1,10 @@
-import { FC } from 'react';
 import { ParsedUrlQuery } from 'querystring';
+import { FC } from 'react';
 
 import { Member, MembersGroup } from '../../models/Member';
-import { MemberTitle } from './Title';
 import { MemberList } from './List';
 import { MemberTabs, TabsData } from './Tabs';
+import { MemberTitle } from './Title';
 
 export interface MemberStaticProps {
   membersGroup: MembersGroup;
