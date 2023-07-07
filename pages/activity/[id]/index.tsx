@@ -41,28 +41,6 @@ const { t } = i18n;
 
 const MainForumName = '主论坛';
 
-const shareInvitation = async (activityID: string, agenda: Agenda) => {
-  const API_Host = globalThis.location.origin;
-  const { id, title } = agenda;
-  const shareURL = `${API_Host}/activity/${activityID}/agenda/${id}/invitation`;
-  const shareData = {
-    title: title as string,
-    text: '',
-    url: shareURL,
-  };
-
-  if (!navigator.canShare) {
-    globalThis.open(shareURL, '_blank');
-  } else {
-    try {
-      await navigator.share?.(shareData);
-      console.log('share success');
-    } catch (error) {
-      console.log('share error', error);
-    }
-  }
-};
-
 @observer
 export default class ActivityDetailPage extends PureComponent<
   InferGetServerSidePropsType<typeof getServerSideProps>
@@ -201,9 +179,8 @@ export default class ActivityDetailPage extends PureComponent<
                     <Col as="li" key={agenda.id + ''}>
                       <AgendaCard {...agenda} />
                       <Button
-                        onClick={() =>
-                          shareInvitation(activity.id + '', agenda)
-                        }
+                        target="_blank"
+                        href={`./${activity.id}/agenda/${agenda.id}/invitation`}
                       >
                         {t('share')}
                       </Button>
