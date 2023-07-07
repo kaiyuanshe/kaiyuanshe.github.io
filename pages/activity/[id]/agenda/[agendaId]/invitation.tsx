@@ -1,7 +1,5 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
-
 import { FC, useEffect, useRef, useState } from 'react';
-
 import html2canvas from 'html2canvas';
 import { Loading } from 'idea-react';
 import { QRCodeSVG } from 'qrcode.react';
@@ -23,12 +21,12 @@ export const getServerSideProps: GetServerSideProps<
   const { id, agendaId } = params!;
   const activity = await activityStore.getOne(id + '');
   const agenda = await activityStore.currentAgenda!.getOne(agendaId + '');
-  const currentUrl = API_Host + resolvedUrl;
+
   return {
     props: {
       activity,
       agenda,
-      currentUrl,
+      currentUrl: API_Host + resolvedUrl,
     },
   };
 };
