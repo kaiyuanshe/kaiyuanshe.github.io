@@ -1,7 +1,6 @@
 import {
   BiDataTable,
   makeSimpleFilter,
-  normalizeText,
   TableCellLink,
   TableCellValue,
   TableRecordList,
@@ -55,11 +54,9 @@ export class ArticleModel extends BiDataTable<Article>() {
     );
     const item = this.normalize(body!.data.items[0]);
 
-    const path = `article/${
-      normalizeText(item.link as TableCellLink)
-        .split('/')
-        .slice(-1)[0]
-    }.html`;
+    const path = `article/${(item.link as TableCellLink)?.link
+      .split('/')
+      .slice(-1)[0]}.html`;
 
     const { body: raw } = await blobClient.get<ArrayBuffer>(path);
 

@@ -1,5 +1,5 @@
-import { TableCellLink, TableCellText, normalizeText } from 'mobx-lark';
 import { observable } from 'mobx';
+import { normalizeText, TableCellLink, TableCellText } from 'mobx-lark';
 import { BaseModel, toggle } from 'mobx-restful';
 import { buildURLData } from 'web-utility';
 
@@ -28,7 +28,7 @@ export class SystemModel extends BaseModel {
     const activities = body!.activities.map(
       ({ link, organizers, ...activity }) => ({
         ...activity,
-        link: link && normalizeText(link as TableCellLink),
+        link: (link as TableCellLink)?.link,
         organizers: (organizers as TableCellText[])?.map(normalizeText),
       }),
     );

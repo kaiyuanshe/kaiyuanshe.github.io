@@ -129,7 +129,7 @@ export class ActivityModel extends BiDataTable<Activity>() {
       ...fields,
       id: id!,
       organizers: (organizers as TableCellRelation[])?.map(normalizeText),
-      link: normalizeText(link as TableCellLink),
+      link: (link as TableCellLink)?.link,
       database: (database as TableCellLink)?.link,
     };
   }
