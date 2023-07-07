@@ -178,8 +178,7 @@ export default class ActivityDetailPage extends PureComponent<
                     <Col as="li" key={agenda.id + ''}>
                       <AgendaCard {...agenda} />
                       <Button
-                        target="_blank"
-                        href={`./${activity.id}/agenda/${agenda.id}/invitation`}
+                        href={`/activity/${activity.id}/agenda/${agenda.id}/invitation`}
                       >
                         {t('share')}
                       </Button>

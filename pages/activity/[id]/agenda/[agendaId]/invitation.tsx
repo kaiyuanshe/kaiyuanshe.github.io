@@ -55,9 +55,9 @@ const Invitation: FC<
   const generateImage = async () => {
     const element = elementRef.current;
     const canvas = await html2canvas(element!);
-    const image = await new Promise<string>(resolve =>
+    const image = await new Promise<string>((resolve, reject) =>
       canvas.toBlob(
-        blob => resolve(URL.createObjectURL(blob as Blob)),
+        blob => (blob ? resolve(URL.createObjectURL(blob)) : reject()),
         'image/jpeg',
         0.92,
       ),
@@ -88,7 +88,7 @@ const Invitation: FC<
           </ul>
         ) : (
           <div className={styles.invitationImage} onClick={share}>
-            <Image src={imageDataURL} alt="shareQRcode" fluid />
+            <Image fluid src={imageDataURL} alt="shareQRcode" />
           </div>
         )}
       </Container>
