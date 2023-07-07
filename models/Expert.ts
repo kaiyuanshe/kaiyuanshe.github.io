@@ -28,7 +28,7 @@ export class ExpertModel extends BiDataTable<Member>() {
     return {
       ...fields,
       id: id!,
-      post: normalizeText(post as TableCellLink),
+      post: (post as TableCellLink)?.link,
       GitHubID: normalizeText(GitHubID as TableCellLink),
     };
   }

@@ -2,6 +2,7 @@ import { computed, observable } from 'mobx';
 import {
   BiDataTable,
   normalizeText,
+  TableCellAttachment,
   TableCellLink,
   TableCellRelation,
   TableCellValue,
@@ -54,11 +55,13 @@ export class CooperationModel extends BiDataTable<Cooperation>() {
           organization: (organization as TableCellRelation[]).map(
             normalizeText,
           ),
-          link: (link as TableCellLink[])?.map(normalizeText),
-          logos: (logos as any[])?.map(({ attachmentToken, ...logo }) => ({
-            ...logo,
-            file_token: attachmentToken,
-          })),
+          link: (link as TableCellLink[])?.map(({ link }) => link),
+          logos: (logos as TableCellAttachment[])?.map(
+            ({ attachmentToken, ...logo }) => ({
+              ...logo,
+              file_token: attachmentToken,
+            }),
+          ) as any[],
         })),
       ]),
     );

@@ -82,12 +82,12 @@ export class MemberModel extends BiDataTable<Member>() {
 
   normalize({
     id,
-    fields: { GitHubID,post, ...fields },
+    fields: { GitHubID, post, ...fields },
   }: TableRecordList<Member>['data']['items'][number]) {
     return {
       ...fields,
       id: id!,
-      post: normalizeText(post as TableCellLink),
+      post: (post as TableCellLink)?.link,
       GitHubID: normalizeText(GitHubID as TableCellLink),
     };
   }
