@@ -45,15 +45,11 @@ const Invitation: FC<
   const { startTime, endTime, title, mentors } = agenda;
 
   const share = async () => {
-    try {
-      await navigator.share?.({
-        title: title as string,
-        text: '',
-        url: currentUrl,
-      });
-    } catch (error) {
-      console.log('share error', error);
-    }
+    await navigator.share?.({
+      title: title as string,
+      text: '',
+      url: currentUrl,
+    });
   };
 
   const generateImage = async () => {
