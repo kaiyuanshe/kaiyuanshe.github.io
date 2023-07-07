@@ -76,6 +76,7 @@ export default {
   submit_agenda_file: '議題文檔提交',
 
   member_x: '成員X',
+  share: '分享',
 
   // Cooperation Page
   主办单位: '主辦單位',

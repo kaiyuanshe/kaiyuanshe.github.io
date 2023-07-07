@@ -10,6 +10,7 @@ import { AgendaCard } from '../../../components/Activity/Agenda/Card';
 import PageHead from '../../../components/PageHead';
 import { Activity, ActivityModel } from '../../../models/Activity';
 import { AgendaModel } from '../../../models/Agenda';
+import { Agenda } from '../../../models/Agenda';
 import { blobURLOf } from '../../../models/Base';
 import { i18n } from '../../../models/Translation';
 import { withErrorLog } from '../../api/base';
@@ -40,13 +41,13 @@ const { t } = i18n;
 
 const MainForumName = '主论坛';
 
-const shareInvitation = async (activityID: string, agendaID: string) => {
+const shareInvitation = async (activityID: string, agenda: Agenda) => {
   const API_Host = globalThis.location.origin;
-
-  const shareURL = `${API_Host}/activity/${activityID}/agenda/${agendaID}/invitation`;
+  const { id, title } = agenda;
+  const shareURL = `${API_Host}/activity/${activityID}/agenda/${id}/invitation`;
   const shareData = {
-    title: 'kaiyuanshe',
-    text: '开源社活动邀请',
+    title: title as string,
+    text: '',
     url: shareURL,
   };
 
@@ -201,10 +202,10 @@ export default class ActivityDetailPage extends PureComponent<
                       <AgendaCard {...agenda} />
                       <Button
                         onClick={() =>
-                          shareInvitation(activity.id + '', agenda.id + '')
+                          shareInvitation(activity.id + '', agenda)
                         }
                       >
-                        分享
+                        {t('share')}
                       </Button>
                     </Col>
                   ))}
