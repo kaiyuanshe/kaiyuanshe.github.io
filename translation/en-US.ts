@@ -77,6 +77,10 @@ export default {
   submit_agenda_file: 'Submit Agenda File',
 
   member_x: 'member X',
+  share: 'share',
+
+  //invitation pages
+  press_to_share: 'press image to share',
 
   // Cooperation Page
   主办单位: 'Hosted by',
