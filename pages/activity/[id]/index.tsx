@@ -177,6 +177,11 @@ export default class ActivityDetailPage extends PureComponent<
                   {agendas.map(agenda => (
                     <Col as="li" key={agenda.id + ''}>
                       <AgendaCard {...agenda} />
+                      <Button
+                        href={`/activity/${activity.id}/agenda/${agenda.id}/invitation`}
+                      >
+                        {t('share')}
+                      </Button>
                     </Col>
                   ))}
                 </Row>
