@@ -34,6 +34,7 @@ export type Activity = Record<
   | 'organizers'
   | 'link'
   | 'image'
+  | 'cardImage'
   | 'database',
   TableCellValue
 >;
