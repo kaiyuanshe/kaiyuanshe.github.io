@@ -13,6 +13,7 @@ import { larkClient } from './Base';
 export type Agenda = Record<
   | 'id'
   | 'title'
+  | 'summary'
   | 'forum'
   | 'mentors'
   | 'mentorAvatars'
