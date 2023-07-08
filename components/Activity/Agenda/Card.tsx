@@ -1,6 +1,6 @@
 import { TableCellAttachment } from 'mobx-lark';
 import { FC } from 'react';
-import { Card, Image } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 
 import { Agenda } from '../../../models/Agenda';
 import { blobURLOf } from '../../../models/Base';

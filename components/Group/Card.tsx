@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import { text2color } from 'idea-react';
+import Image from 'next/image';
 import { FC } from 'react';
 import { Badge } from 'react-bootstrap';
 
@@ -22,10 +23,11 @@ export const GroupCard: FC<GroupCardProps> = ({
   >
     <h3 className="h5 mb-3 flex-fill">{name}</h3>
     {logo && (
-      <img
+      <Image
         className="mb-3 flex-fill"
         style={{ maxWidth: '10rem', objectFit: 'contain' }}
         src={fileURLOf(logo)}
+        alt=""
       />
     )}
     <nav>
