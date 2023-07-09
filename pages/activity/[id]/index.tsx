@@ -176,7 +176,11 @@ export default class ActivityDetailPage extends PureComponent<
                 <Row as="ol" className="list-unstyled g-4" xs={1} sm={2} md={3}>
                   {agendas.map(agenda => (
                     <Col as="li" key={agenda.id + ''}>
-                      <AgendaCard activityId={activity.id + ''} {...agenda} />
+                      <AgendaCard
+                        activityId={activity.id + ''}
+                        location={activity.location + ''}
+                        {...agenda}
+                      />
                     </Col>
                   ))}
                 </Row>

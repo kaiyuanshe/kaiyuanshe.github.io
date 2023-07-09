@@ -1,20 +1,22 @@
 import { TableCellAttachment } from 'mobx-lark';
 import { observer } from 'mobx-react';
 import { FC } from 'react';
-import { Button, Card } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 
-import { Agenda } from '../../../models/Agenda';
 import { blobURLOf } from '../../../models/Base';
-import { i18n } from '../../../models/Translation';
+import { AgendaToolbar, AgendaToolbarProps } from './Toolbar';
 
-const { t } = i18n;
-
-export interface AgendaCardProps extends Agenda {
-  activityId: string;
-}
-
-export const AgendaCard: FC<AgendaCardProps> = observer(
-  ({ activityId, id, title, mentors, mentorAvatars, startTime, endTime }) => (
+export const AgendaCard: FC<AgendaToolbarProps> = observer(
+  ({
+    activityId,
+    id,
+    title,
+    mentors,
+    mentorAvatars,
+    startTime,
+    endTime,
+    ...props
+  }) => (
     <Card className="h-100">
       <div className="d-flex">
         {(mentorAvatars as unknown as TableCellAttachment[])?.map(file => (
@@ -45,9 +47,18 @@ export const AgendaCard: FC<AgendaCardProps> = observer(
         </ul>
       </Card.Body>
       <Card.Footer className="d-flex justify-content-end">
-        <Button href={`/activity/${activityId}/agenda/${id}/invitation`}>
-          {t('share')}
-        </Button>
+        <AgendaToolbar
+          {...{
+            activityId,
+            id,
+            title,
+            mentors,
+            mentorAvatars,
+            startTime,
+            endTime,
+            ...props,
+          }}
+        />
       </Card.Footer>
     </Card>
   ),
