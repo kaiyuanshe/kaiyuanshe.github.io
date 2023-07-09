@@ -19,7 +19,8 @@ export type Agenda = Record<
   | 'mentorAvatars'
   | 'startTime'
   | 'endTime'
-  | 'files',
+  | 'files'
+  | 'mentorPosition',
   TableCellValue
 >;
 

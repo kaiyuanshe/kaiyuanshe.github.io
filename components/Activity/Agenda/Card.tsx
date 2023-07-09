@@ -28,7 +28,13 @@ export const AgendaCard: FC<AgendaCardProps> = observer(
         ))}
       </div>
       <Card.Body className="d-flex flex-column justify-content-end">
-        <Card.Title>{title}</Card.Title>
+        <Card.Title
+          as="a"
+          className="text-decoration-none text-secondary text-truncation-lines"
+          href={`/activity/${activityId}/agenda/${id}`}
+        >
+          {title}
+        </Card.Title>
 
         <ul className="list-unstyled">
           <li>👨‍🎓 {(mentors as string[]).join(' ')}</li>
