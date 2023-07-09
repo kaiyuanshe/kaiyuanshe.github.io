@@ -1,4 +1,8 @@
-lockfileVersion: '6.0'
+lockfileVersion: '6.1'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
 
 dependencies:
   '@giscus/react':
@@ -17,8 +21,8 @@ dependencies:
     specifier: ^1.4.1
     version: 1.4.1
   idea-react:
-    specifier: ^1.0.0-rc.3
-    version: 1.0.0-rc.3(@types/react@17.0.62)(jsdom@21.1.2)(react-dom@17.0.2)(react@17.0.2)(typescript@5.1.6)
+    specifier: ^1.0.0-rc.5
+    version: 1.0.0-rc.5(@types/react@17.0.62)(jsdom@21.1.2)(react-dom@17.0.2)(react@17.0.2)(typescript@5.1.6)
   koajax:
     specifier: ^0.8.4
     version: 0.8.4(jsdom@21.1.2)(typescript@5.1.6)
@@ -3694,8 +3698,8 @@ packages:
     resolution: {integrity: sha512-gchesWBzyvGHRO9W8tzUWFDycow5gwjvFKfyV9FF32Y7F50yZMp7mP+T2mJIWFx49zicqyC4uefHM17o6xKIVQ==}
     dev: false
 
-  /idea-react@1.0.0-rc.3(@types/react@17.0.62)(jsdom@21.1.2)(react-dom@17.0.2)(react@17.0.2)(typescript@5.1.6):
-    resolution: {integrity: sha512-+R611mSx+tF/pr4OPL/ThzNgBrntCdhdAvulq0GcaRSUiHfk9x5gV7SNI4vfyME9rDqo9sLV4BfMwxPOoQN1Ug==}
+  /idea-react@1.0.0-rc.5(@types/react@17.0.62)(jsdom@21.1.2)(react-dom@17.0.2)(react@17.0.2)(typescript@5.1.6):
+    resolution: {integrity: sha512-C/Q4mHUoKXNlEDdv4KT51AzIK6tw6y+KNVgZ31rCAudBx5R99cS8hH9d8W6JfrF6/dgcoPlF4O5PfNYaW+NMtA==}
     peerDependencies:
       react: '>=16'
       react-dom: '>=16'
