@@ -76,6 +76,7 @@ export default {
   submit_agenda_file: '議題文檔提交',
 
   member_x: '成員X',
+  calendar: '日曆',
   share: '分享',
 
   //invitation pages

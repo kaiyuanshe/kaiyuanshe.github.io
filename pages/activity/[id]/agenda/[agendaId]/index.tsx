@@ -2,9 +2,10 @@ import { TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
 import { PureComponent } from 'react';
-import { Button, Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 
 import { AgendaPeople } from '../../../../../components/Activity/Agenda/People';
+import { AgendaToolbar } from '../../../../../components/Activity/Agenda/Toolbar';
 import { CommentBox } from '../../../../../components/CommentBox';
 import PageHead from '../../../../../components/PageHead';
 import { Activity, ActivityModel } from '../../../../../models/Activity';
@@ -33,18 +34,40 @@ const { t } = i18n;
 export default class AgendaDetailPage extends PureComponent<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > {
+  renderHeader() {
+    const { id, location } = this.props.activity;
+    const { forum, title, startTime, endTime } = this.props.agenda;
+
+    return (
+      <header>
+        <div className="d-flex align-items-center justify-content-between">
+          <h1>{title}</h1>
+
+          <AgendaToolbar
+            activityId={id + ''}
+            location={location + ''}
+            {...this.props.agenda}
+          />
+        </div>
+        <div className="d-flex gap-3">
+          <div className="text-success">{forum}</div>
+          <div>
+            🕒 {new Date(+startTime!).toLocaleString()} ~{' '}
+            {new Date(+endTime!).toLocaleString()}
+          </div>
+        </div>
+      </header>
+    );
+  }
+
   render() {
-    const { id: activityId, name } = this.props.activity;
+    const { name } = this.props.activity;
     const {
-      id,
-      forum,
       title,
       mentors,
       mentorAvatars,
       mentorPositions,
       mentorSummaries,
-      startTime,
-      endTime,
       summary = t('no_data'),
     } = this.props.agenda;
 
@@ -54,25 +77,8 @@ export default class AgendaDetailPage extends PureComponent<
 
         <Row>
           <Col xs={12} sm={9}>
-            <header>
-              <div className="d-flex align-items-center justify-content-between">
-                <h1>{title}</h1>
-                <Button
-                  size="sm"
-                  variant="warning"
-                  href={`/activity/${activityId}/agenda/${id}/invitation`}
-                >
-                  {t('share')}
-                </Button>
-              </div>
-              <div className="d-flex gap-3">
-                <div className="text-success">{forum}</div>
-                <div>
-                  🕒 {new Date(+startTime!).toLocaleString()} ~{' '}
-                  {new Date(+endTime!).toLocaleString()}
-                </div>
-              </div>
-            </header>
+            {this.renderHeader()}
+
             <main className="my-2">{summary}</main>
           </Col>
           <Col xs={12} sm={3}>
