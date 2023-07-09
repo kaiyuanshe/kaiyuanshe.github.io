@@ -4,10 +4,11 @@ import { TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { QRCodeSVG } from 'qrcode.react';
-import { createRef,MouseEvent, PureComponent } from 'react';
+import { createRef, MouseEvent, PureComponent } from 'react';
 import { Container, Image } from 'react-bootstrap';
 
 import { AgendaPeople } from '../../../../../components/Activity/Agenda/People';
+import PageHead from '../../../../../components/PageHead';
 import { Activity, ActivityModel } from '../../../../../models/Activity';
 import { Agenda } from '../../../../../models/Agenda';
 import { API_Host, blobURLOf } from '../../../../../models/Base';
@@ -68,6 +69,8 @@ export default class InvitationPage extends PureComponent<
 
     return (
       <>
+        <PageHead title={`${title} - ${name}`} />
+
         <header className="d-flex flex-column align-items-center gap-4">
           <h1>{name}</h1>
 
@@ -122,9 +125,9 @@ export default class InvitationPage extends PureComponent<
           }}
           onClick={imageDataURL ? undefined : this.generateImage}
         >
-          {!imageDataURL ? (
-            this.renderContent()
-          ) : (
+          {this.renderContent()}
+
+          {imageDataURL && (
             <Image
               className="position-absolute start-0 top-0 w-100 h-100"
               fluid

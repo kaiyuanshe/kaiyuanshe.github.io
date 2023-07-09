@@ -27,7 +27,7 @@ export class SystemModel extends BaseModel {
     type?: string,
     quality?: number,
   ) {
-    const canvas = await html2canvas(element);
+    const canvas = await html2canvas(element, { useCORS: true });
 
     return new Promise<string>((resolve, reject) =>
       canvas.toBlob(
