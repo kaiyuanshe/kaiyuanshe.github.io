@@ -11,7 +11,7 @@ import { AgendaPeople } from '../../../../../components/Activity/Agenda/People';
 import PageHead from '../../../../../components/PageHead';
 import { Activity, ActivityModel } from '../../../../../models/Activity';
 import { Agenda } from '../../../../../models/Agenda';
-import { API_Host, blobURLOf } from '../../../../../models/Base';
+import { API_Host, blobURLOf, isServer } from '../../../../../models/Base';
 import systemStore from '../../../../../models/System';
 import { i18n } from '../../../../../models/Translation';
 import { fileURLOf } from '../../../../api/lark/file/[id]';
@@ -60,6 +60,7 @@ export default class InvitationPage extends PureComponent<
     (this.imageDataURL = await systemStore.convertToImageURI(
       this.elementRef.current!,
     ));
+
   renderContent() {
     const { activity, agenda } = this.props,
       { sharedURL } = this;
@@ -100,7 +101,7 @@ export default class InvitationPage extends PureComponent<
           </ul>
         </section>
         <footer className="d-flex flex-column align-items-center gap-4">
-          <QRCodeSVG value={sharedURL} />
+          {!isServer() && <QRCodeSVG value={sharedURL} />}
 
           <div>{t('press_to_share')}</div>
         </footer>
