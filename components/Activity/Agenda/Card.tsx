@@ -28,13 +28,12 @@ export const AgendaCard: FC<AgendaCardProps> = observer(
         ))}
       </div>
       <Card.Body className="d-flex flex-column justify-content-end">
-        <Card.Title>
-          <a
-            className="text-decoration-none text-secondary text-truncation-lines"
-            href={`/activity/${activityId}/agenda/${id}`}
-          >
-            {title}
-          </a>
+        <Card.Title
+          as="a"
+          className="text-decoration-none text-secondary text-truncation-lines"
+          href={`/activity/${activityId}/agenda/${id}`}
+        >
+          {title}
         </Card.Title>
 
         <ul className="list-unstyled">

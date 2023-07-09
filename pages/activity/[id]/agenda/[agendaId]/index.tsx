@@ -1,8 +1,9 @@
 import { observer } from 'mobx-react';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import React, { PureComponent } from 'react';
-import { Badge } from 'react-bootstrap';
+import { Badge, Container } from 'react-bootstrap';
 
+import { CommentBox } from '../../../../../components/CommentBox';
 import { Activity, ActivityModel } from '../../../../../models/Activity';
 import { Agenda } from '../../../../../models/Agenda';
 
@@ -25,7 +26,14 @@ export default class AgendaDetailPage extends PureComponent<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > {
   render() {
-    const { forum, title, mentors, startTime, endTime } = this.props.agenda;
+    const {
+      forum,
+      title,
+      mentors,
+      startTime,
+      endTime,
+      summary = '暂无内容',
+    } = this.props.agenda;
 
     const mentorPosition: any = this.props.agenda.mentorPosition;
     const mentorPositionList = mentorPosition
@@ -33,7 +41,7 @@ export default class AgendaDetailPage extends PureComponent<
       : [];
 
     return (
-      <div className="p-5">
+      <Container className="pt-3">
         <header>
           <div className="text-end text-success">{forum}</div>
           <h2>{title}</h2>
@@ -48,11 +56,11 @@ export default class AgendaDetailPage extends PureComponent<
             {new Date(+endTime!).toLocaleString()}
           </div>
         </header>
-        {/* <iframe className='rounded my-4 mw-100' src="//player.bilibili.com/player.html?aid=436167128&bvid=BV1i341197qa&cid=990587486&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-        <main>
-          会议内容
-        </main> */}
-      </div>
+        <main className="my-2">{summary}</main>
+        <footer>
+          <CommentBox category="General" categoryId="DIC_kwDOB88JLM4COLSV" />
+        </footer>
+      </Container>
     );
   }
 }
