@@ -1,4 +1,4 @@
-import { LarkApp, LarkData } from 'mobx-lark';
+import { LarkApp, LarkData, normalizeText,TableCellText } from 'mobx-lark';
 
 import { safeAPI } from '../base';
 
@@ -17,6 +17,17 @@ export interface TableFormViewItem
   shared_limit: 'tenant_editable';
 }
 export type LarkFormData = LarkData<{ form: TableFormViewItem }>;
+
+export const normalizeTextArray = (list: TableCellText[]) =>
+  list.reduce(
+    (sum, item) => {
+      if (item.text === ',') sum.push('');
+      else sum[sum.length - 1] += normalizeText(item);
+
+      return sum;
+    },
+    [''],
+  );
 
 export const proxyLark = <T extends LarkData>(
   dataFilter?: (path: string, data: T) => T,

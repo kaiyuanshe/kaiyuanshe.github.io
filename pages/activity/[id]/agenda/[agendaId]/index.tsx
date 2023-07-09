@@ -35,9 +35,9 @@ export default class AgendaDetailPage extends PureComponent<
       summary = '暂无内容',
     } = this.props.agenda;
 
-    const mentorPosition: any = this.props.agenda.mentorPosition;
-    const mentorPositionList = mentorPosition
-      ? mentorPosition[0]?.text.split(',')
+    const mentorPositions: any = this.props.agenda.mentorPositions;
+    const mentorPositionList = mentorPositions
+      ? mentorPositions[0]?.text.split(',')
       : [];
 
     return (
