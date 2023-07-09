@@ -25,8 +25,9 @@ export default class AgendaDetailPage extends PureComponent<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > {
   render() {
-    const { forum, title, mentors, mentorPosition, startTime, endTime } =
-      this.props.agenda;
+    const { forum, title, mentors, startTime, endTime } = this.props.agenda;
+
+    const mentorPosition: any = this.props.agenda.mentorPosition;
     const mentorPositionList = mentorPosition
       ? mentorPosition[0]?.text.split(',')
       : [];
