@@ -20,6 +20,7 @@ const ActivityListPage: FC<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = observer(({ list }) => {
   const { t } = i18n;
+  console.log(list);
 
   return (
     <Container className="py-5">

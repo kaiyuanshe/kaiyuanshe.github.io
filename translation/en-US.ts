@@ -167,4 +167,6 @@ export default {
   last_project_group: 'Last Project Group',
   next_term_plan: 'Next Term Plan',
   expert_committee: 'Expert Committee',
+  producer: 'Producer:',
+  volunteer: 'Volunteer:',
 } as const;

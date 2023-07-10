@@ -21,6 +21,7 @@ import {
 } from '../pages/api/lark/core';
 import { Agenda, AgendaModel } from './Agenda';
 import { larkClient } from './Base';
+import { ForumModel, Forum } from './Forum';
 
 export const ACTIVITY_TABLE_ID = process.env.NEXT_PUBLIC_ACTIVITY_TABLE_ID!;
 
@@ -83,6 +84,10 @@ export class ActivityTableModel extends BiTable<Agenda>() {
   }
 }
 
+export class ForumTableModel extends BiTable<Forum>() {
+  client = larkClient;
+}
+
 export class ActivityModel extends BiDataTable<Activity>() {
   client = larkClient;
 
@@ -98,6 +103,7 @@ export class ActivityModel extends BiDataTable<Activity>() {
   formMap = {} as ActivityTableModel['formMap'];
 
   currentAgenda?: AgendaModel;
+  currentForum?: ForumModel;
 
   @observable
   statistic: ActivityStatistic = {} as ActivityStatistic;
@@ -139,12 +145,16 @@ export class ActivityModel extends BiDataTable<Activity>() {
     const { database } = await super.getOne(id);
 
     if (database) {
-      const table = new ActivityTableModel((database + '').split('/').at(-1)!);
+      const dbName = (database + '').split('/').at(-1)!;
+      const table = new ActivityTableModel(dbName);
+      const forumTable = new ForumTableModel(dbName);
 
       await table.getOne('Agenda', AgendaModel);
+      await forumTable.getOne('Forum', ForumModel);
 
       this.formMap = table.formMap;
       this.currentAgenda = table.currentDataTable as AgendaModel;
+      this.currentForum = forumTable.currentDataTable as ForumModel;
     }
     return this.currentOne;
   }

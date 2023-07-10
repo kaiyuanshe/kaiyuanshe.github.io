@@ -2,18 +2,21 @@ import { Icon } from 'idea-react';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
-import { MouseEvent, PureComponent } from 'react';
+import { JSX, MouseEvent, PureComponent, ReactNode } from 'react';
 import { Button, Col, Container, Nav, Offcanvas, Row } from 'react-bootstrap';
 import { scrollTo, sleep } from 'web-utility';
 
 import { AgendaCard } from '../../../components/Activity/Agenda/Card';
 import PageHead from '../../../components/PageHead';
 import { Activity, ActivityModel } from '../../../models/Activity';
-import { AgendaModel } from '../../../models/Agenda';
+import { Agenda, AgendaModel } from '../../../models/Agenda';
+import { Forum } from '../../../models/Forum';
+
 import { blobURLOf } from '../../../models/Base';
 import { i18n } from '../../../models/Translation';
 import { withErrorLog } from '../../api/base';
 import styles from './index.module.less';
+import { Staff } from '../../../components/Activity/Staff';
 
 export const getServerSideProps = withErrorLog<
   { id: string },
@@ -21,6 +24,7 @@ export const getServerSideProps = withErrorLog<
     activity: Activity;
     currentMeta: ActivityModel['currentMeta'];
     agendaGroup: AgendaModel['group'];
+    forums: Forum[];
   }
 >(async ({ params }) => {
   const activityStore = new ActivityModel();
@@ -31,8 +35,12 @@ export const getServerSideProps = withErrorLog<
 
   const { currentMeta } = activityStore;
 
+  const forums = await activityStore.currentForum!.getAll();
+
   return {
-    props: JSON.parse(JSON.stringify({ activity, currentMeta, agendaGroup })),
+    props: JSON.parse(
+      JSON.stringify({ activity, currentMeta, agendaGroup, forums }),
+    ),
   };
 });
 
@@ -145,7 +153,19 @@ export default class ActivityDetailPage extends PureComponent<
   }
 
   render() {
-    const { activity, agendaGroup } = this.props;
+    const { activity, agendaGroup, forums } = this.props;
+
+    const combinedInfo = forums.reduce((acc, item) => {
+      const { name, producers, producerAvatars, volunteers, volunteerAvatars } =
+        item;
+      if (name in acc) {
+        acc[name].producers = producers;
+        acc[name].producerAvatars = producerAvatars;
+        acc[name].volunteers = volunteers;
+        acc[name].volunteerAvatars = volunteerAvatars;
+      }
+      return acc;
+    }, agendaGroup as Record<string, Agenda[] | any>);
 
     return (
       <>
@@ -164,24 +184,57 @@ export default class ActivityDetailPage extends PureComponent<
         {this.renderDrawer()}
 
         <Container>
-          {Object.entries(agendaGroup)
+          {Object.entries(combinedInfo)
             .sort(([a], [b]) =>
               a === MainForumName ? -1 : b === MainForumName ? 1 : 0,
             )
-            .map(([forum, agendas]) => (
-              <section key={forum}>
-                <h2 className="my-5 text-center" id={forum}>
-                  {forum}
-                </h2>
-                <Row as="ol" className="list-unstyled g-4" xs={1} sm={2} md={3}>
-                  {agendas.map(agenda => (
-                    <Col as="li" key={agenda.id + ''}>
-                      <AgendaCard {...agenda} />
-                    </Col>
-                  ))}
-                </Row>
-              </section>
-            ))}
+            .map(([forum, agendas]) => {
+              const {
+                producers,
+                producerAvatars,
+                volunteers,
+                volunteerAvatars,
+              } = agendas;
+
+              return (
+                <section key={forum}>
+                  <h2 className="my-5 text-center" id={forum}>
+                    {forum}
+                  </h2>
+
+                  <Staff
+                    producerNames={producers as string[]}
+                    producerAvatars={producerAvatars}
+                    volunteerNames={volunteers as string[]}
+                    volunteerAvatars={volunteerAvatars}
+                  />
+
+                  {forums.forEach(item => {
+                    if (item.name === forum) {
+                      return <h3>{item.producers}</h3>;
+                    }
+                  })}
+                  <Row
+                    as="ol"
+                    className="list-unstyled g-4"
+                    xs={1}
+                    sm={2}
+                    md={3}
+                  >
+                    {agendas.map(
+                      (
+                        agenda: JSX.IntrinsicAttributes &
+                          Agenda & { children?: ReactNode },
+                      ) => (
+                        <Col as="li" key={agenda.id + ''}>
+                          <AgendaCard {...agenda} />
+                        </Col>
+                      ),
+                    )}
+                  </Row>
+                </section>
+              );
+            })}
         </Container>
       </>
     );
