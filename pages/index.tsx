@@ -1,22 +1,20 @@
-import { InferGetServerSidePropsType } from 'next';
-import { observer } from 'mobx-react';
-import { Fragment, PureComponent } from 'react';
-import { Container, Row, Col, Image } from 'react-bootstrap';
 import { Icon } from 'idea-react';
+import { observer } from 'mobx-react';
+import { InferGetServerSidePropsType } from 'next';
+import { Fragment, PureComponent } from 'react';
+import { Col, Container, Image, Row } from 'react-bootstrap';
 
-import PageHead from '../components/PageHead';
 import { ArticleListLayout } from '../components/Article/List';
 import { CityStatisticMap } from '../components/CityStatisticMap';
-
-import { blobURLOf } from '../models/Base';
-import { i18n } from '../models/Translation';
-import { Article, ArticleModel } from '../models/Article';
-import { Group, GroupModel } from '../models/Group';
+import PageHead from '../components/PageHead';
 import activityStore from '../models/Activity';
-
+import { Article, ArticleModel } from '../models/Article';
+import { blobURLOf } from '../models/Base';
+import { Group, GroupModel } from '../models/Group';
+import { i18n } from '../models/Translation';
 import { withTranslation } from './api/base';
-import { DefaultImage } from './api/lark/file/[id]';
 import { slogan } from './api/home';
+import { DefaultImage } from './api/lark/file/[id]';
 
 export const getServerSideProps = withTranslation(async () => {
   const [articles, projects] = await Promise.all([
@@ -64,7 +62,7 @@ export default class HomePage extends PureComponent<
         <PageHead />
 
         <section className="py-5 text-center bg-primary">
-          <Image fluid src="/image/Heart_of_Community.png" />
+          <Image fluid src="/image/Heart_of_Community.png" alt={'Head Image'} />
         </section>
 
         <Container>

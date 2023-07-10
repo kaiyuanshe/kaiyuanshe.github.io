@@ -8,6 +8,7 @@ import {
 } from 'mobx-lark';
 import { NewData } from 'mobx-restful';
 import { groupBy } from 'web-utility';
+
 import { larkClient } from './Base';
 
 export const ELECTION_BASE_ID = process.env.NEXT_PUBLIC_ELECTION_BASE_ID!,

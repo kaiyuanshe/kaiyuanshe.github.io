@@ -1,5 +1,6 @@
-import { TableCellLink, TableCellText, normalizeText } from 'mobx-lark';
+import html2canvas from 'html2canvas';
 import { observable } from 'mobx';
+import { normalizeText, TableCellLink, TableCellText } from 'mobx-lark';
 import { BaseModel, toggle } from 'mobx-restful';
 import { buildURLData } from 'web-utility';
 
@@ -20,6 +21,23 @@ export class SystemModel extends BaseModel {
     return (this.cityCoordinate = body!);
   }
 
+  @toggle('uploading')
+  async convertToImageURI(
+    element: HTMLElement,
+    type?: string,
+    quality?: number,
+  ) {
+    const canvas = await html2canvas(element, { useCORS: true });
+
+    return new Promise<string>((resolve, reject) =>
+      canvas.toBlob(
+        blob => (blob ? resolve(URL.createObjectURL(blob)) : reject()),
+        type,
+        quality,
+      ),
+    );
+  }
+
   @toggle('downloading')
   async search(query: SearchQuery) {
     const { body } = await client.get<SearchResult>(
@@ -28,7 +46,7 @@ export class SystemModel extends BaseModel {
     const activities = body!.activities.map(
       ({ link, organizers, ...activity }) => ({
         ...activity,
-        link: link && normalizeText(link as TableCellLink),
+        link: (link as TableCellLink)?.link,
         organizers: (organizers as TableCellText[])?.map(normalizeText),
       }),
     );

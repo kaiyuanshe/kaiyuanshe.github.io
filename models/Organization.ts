@@ -2,7 +2,6 @@ import { observable } from 'mobx';
 import {
   BiDataTable,
   makeSimpleFilter,
-  normalizeText,
   TableCellLink,
   TableCellValue,
   TableRecordList,
@@ -65,9 +64,9 @@ export class OrganizationModel extends BiDataTable<Organization>() {
     return {
       ...fields,
       id: id!,
-      link: normalizeText(link as TableCellLink),
-      codeLink: normalizeText(codeLink as TableCellLink),
-      email: normalizeText(email as TableCellLink),
+      link: (link as TableCellLink)?.link,
+      codeLink: (codeLink as TableCellLink)?.link,
+      email: (email as TableCellLink)?.link,
     };
   }
 

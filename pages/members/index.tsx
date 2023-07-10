@@ -1,15 +1,15 @@
-import { FC, useEffect } from 'react';
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
-import { Container } from 'react-bootstrap';
 import { useRouter } from 'next/router';
+import { FC, useEffect } from 'react';
+import { Container } from 'react-bootstrap';
 import { scrollTo } from 'web-utility';
 
-import PageHead from '../../components/PageHead';
 import { MemberStatic } from '../../components/Member/Static';
-import { withTranslation } from '../api/base';
-import { i18n } from '../../models/Translation';
+import PageHead from '../../components/PageHead';
 import { MemberModel } from '../../models/Member';
+import { i18n } from '../../models/Translation';
+import { withTranslation } from '../api/base';
 
 export const getServerSideProps = withTranslation(async () => {
   const data = await new MemberModel().getStatic();
@@ -25,9 +25,9 @@ const MembersPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
     const { t } = i18n;
     const { query } = useRouter();
     useEffect(() => {
-      setTimeout(()=>{
+      setTimeout(() => {
         scrollTo('#' + query!.anchor);
-      },10)
+      }, 10);
     });
 
     return (

@@ -1,16 +1,18 @@
 import {
   BiDataTable,
   normalizeText,
-  TableCellLink,
   TableCellRelation,
+  TableCellText,
   TableCellValue,
   TableRecordList,
 } from 'mobx-lark';
 
+import { normalizeTextArray } from '../pages/api/lark/core';
 import { larkClient } from './Base';
 
 export type Forum = Record<
   | 'id'
+  | 'name'
   | 'producers'
   | 'volunteers'
   | 'startTime'
@@ -19,9 +21,10 @@ export type Forum = Record<
   | 'standard'
   | 'type'
   | 'producerAvatars'
-  | 'volunteerAvatars',
+  | 'volunteerAvatars'
+  | 'producerPositions',
   TableCellValue
-> & { name: string };
+>;
 
 export class ForumModel extends BiDataTable<Forum>() {
   client = larkClient;
@@ -30,21 +33,16 @@ export class ForumModel extends BiDataTable<Forum>() {
 
   normalize({
     id,
-    fields: {
-      producers,
-      volunteers,
-      producerAvatars,
-      volunteerAvatars,
-      ...data
-    },
+    fields: { producers, volunteers, producerPositions, ...data },
   }: TableRecordList<Forum>['data']['items'][number]) {
     return {
       ...data,
       id: id!,
       producers: (producers as TableCellRelation[])?.map(normalizeText),
       volunteers: (volunteers as TableCellRelation[])?.map(normalizeText),
-      producerAvatars: producerAvatars,
-      volunteerAvatars: volunteerAvatars,
+      producerPositions:
+        producerPositions &&
+        normalizeTextArray(producerPositions as TableCellText[]),
     };
   }
 }

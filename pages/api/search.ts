@@ -3,9 +3,9 @@ import { parseURLData } from 'web-utility';
 
 import { Activity, SearchActivityModel } from '../../models/Activity';
 import { BaseArticle, SearchArticleModel } from '../../models/Article';
+import { SearchExpertModel } from '../../models/Expert';
 import { Group, SearchGroupModel } from '../../models/Group';
 import { Member, SearchMemberModel } from '../../models/Member';
-import { SearchExpertModel } from '../../models/Expert';
 import {
   Organization,
   SearchOrganizationModel,

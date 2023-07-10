@@ -76,6 +76,11 @@ export default {
   submit_agenda_file: '议题课件提交',
 
   member_x: '成员X',
+  calendar: '日历',
+  share: '分享',
+
+  //invitation pages
+  press_to_share: '长按图片分享',
 
   // Cooperation Page
   主办单位: '主办单位',

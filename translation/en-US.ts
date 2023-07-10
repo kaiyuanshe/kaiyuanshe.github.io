@@ -77,6 +77,11 @@ export default {
   submit_agenda_file: 'Submit Agenda File',
 
   member_x: 'member X',
+  calendar: 'Calendar',
+  share: 'share',
+
+  //invitation pages
+  press_to_share: 'press image to share',
 
   // Cooperation Page
   主办单位: 'Hosted by',
@@ -167,6 +172,6 @@ export default {
   last_project_group: 'Last Project Group',
   next_term_plan: 'Next Term Plan',
   expert_committee: 'Expert Committee',
-  producer: 'Producer:',
-  volunteer: 'Volunteer:',
+  producer: 'Producer: ',
+  volunteer: 'Volunteer: ',
 } as const;

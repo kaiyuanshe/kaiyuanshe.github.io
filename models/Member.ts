@@ -1,4 +1,3 @@
-import { isEmpty } from 'web-utility';
 import {
   BiDataTable,
   makeSimpleFilter,
@@ -8,6 +7,7 @@ import {
   TableRecordList,
 } from 'mobx-lark';
 import { NewData } from 'mobx-restful';
+import { isEmpty } from 'web-utility';
 
 import { MemberTabsProps } from '../components/Member/Tabs';
 import { MAIN_BASE_ID } from '../pages/api/lark/core';
@@ -82,12 +82,12 @@ export class MemberModel extends BiDataTable<Member>() {
 
   normalize({
     id,
-    fields: { GitHubID,post, ...fields },
+    fields: { GitHubID, post, ...fields },
   }: TableRecordList<Member>['data']['items'][number]) {
     return {
       ...fields,
       id: id!,
-      post: normalizeText(post as TableCellLink),
+      post: (post as TableCellLink)?.link,
       GitHubID: normalizeText(GitHubID as TableCellLink),
     };
   }

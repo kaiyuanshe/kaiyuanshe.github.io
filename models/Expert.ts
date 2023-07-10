@@ -1,4 +1,3 @@
-import { isEmpty } from 'web-utility';
 import {
   BiDataTable,
   makeSimpleFilter,
@@ -7,6 +6,7 @@ import {
   TableRecordList,
 } from 'mobx-lark';
 import { NewData } from 'mobx-restful';
+import { isEmpty } from 'web-utility';
 
 import { MAIN_BASE_ID } from '../pages/api/lark/core';
 import { larkClient } from './Base';
@@ -28,7 +28,7 @@ export class ExpertModel extends BiDataTable<Member>() {
     return {
       ...fields,
       id: id!,
-      post: normalizeText(post as TableCellLink),
+      post: (post as TableCellLink)?.link,
       GitHubID: normalizeText(GitHubID as TableCellLink),
     };
   }

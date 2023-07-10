@@ -1,10 +1,10 @@
 import classNames from 'classnames';
-import { FC } from 'react';
-import { Badge } from 'react-bootstrap';
 import { text2color } from 'idea-react';
+import { FC } from 'react';
+import { Badge, Image } from 'react-bootstrap';
 
-import { fileURLOf } from '../../pages/api/lark/file/[id]';
 import { Group } from '../../models/Group';
+import { fileURLOf } from '../../pages/api/lark/file/[id]';
 
 export interface GroupCardProps extends Group {
   className?: string;
@@ -22,10 +22,11 @@ export const GroupCard: FC<GroupCardProps> = ({
   >
     <h3 className="h5 mb-3 flex-fill">{name}</h3>
     {logo && (
-      <img
+      <Image
         className="mb-3 flex-fill"
         style={{ maxWidth: '10rem', objectFit: 'contain' }}
         src={fileURLOf(logo)}
+        alt={name as string}
       />
     )}
     <nav>

@@ -1,7 +1,7 @@
-import dynamic from 'next/dynamic';
 import { observer } from 'mobx-react';
+import dynamic from 'next/dynamic';
 import { FC } from 'react';
-import { Container, Button } from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
 
 import PageHead from '../../components/PageHead';
 import { i18n } from '../../models/Translation';

@@ -1,9 +1,8 @@
-import classNames from 'classnames';
+import { Icon, text2color } from 'idea-react';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { HTMLAttributes, PureComponent } from 'react';
-import { Card, CardProps, Badge, Button, Image } from 'react-bootstrap';
-import { text2color, Icon } from 'idea-react';
+import { Badge, Button, Card, CardProps, Image } from 'react-bootstrap';
 
 import { blobURLOf } from '../../models/Base';
 import { Organization } from '../../models/Organization';
@@ -137,6 +136,7 @@ export class OrganizationCard extends PureComponent<OrganizationCardProps> {
               fluid
               className="mt-2"
               src={`https://open.weixin.qq.com/qr/code?username=${wechatName}`}
+              alt={wechatName as string}
             />
           )}
         </Card.Footer>

@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { Badge } from 'react-bootstrap';
 
-import styles from '../../styles/Members.module.less';
 import { i18n } from '../../models/Translation';
+import styles from '../../styles/Members.module.less';
 
 export interface MemberTitleProps {
   title?: string;

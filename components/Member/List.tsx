@@ -1,12 +1,12 @@
+import classNames from 'classnames';
 import { observer } from 'mobx-react';
 import { FC, useEffect, useState } from 'react';
-import { Row, Col } from 'react-bootstrap';
-import classNames from 'classnames';
+import { Col, Row } from 'react-bootstrap';
 
-import { LazyImage } from '../LazyImage';
-import styles from '../../styles/Members.module.less';
-import { i18n } from '../../models/Translation';
 import { Member } from '../../models/Member';
+import { i18n } from '../../models/Translation';
+import styles from '../../styles/Members.module.less';
+import { LazyImage } from '../LazyImage';
 
 export interface MemberListProps {
   list?: Member[];
@@ -15,7 +15,7 @@ export interface MemberListProps {
 export const MemberList: FC<MemberListProps> = observer(({ list = [] }) => {
   const { t } = i18n;
   const [isMore, setIsMore] = useState(false);
- 
+
   useEffect(() => {
     //Judgment exceeds 3 lines
     if (list?.length > 3 * Math.floor(globalThis.innerWidth / 120))

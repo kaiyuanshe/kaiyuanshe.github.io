@@ -21,7 +21,7 @@ import {
 } from '../pages/api/lark/core';
 import { Agenda, AgendaModel } from './Agenda';
 import { larkClient } from './Base';
-import { ForumModel, Forum } from './Forum';
+import { Forum,ForumModel } from './Forum';
 
 export const ACTIVITY_TABLE_ID = process.env.NEXT_PUBLIC_ACTIVITY_TABLE_ID!;
 
@@ -35,6 +35,7 @@ export type Activity = Record<
   | 'organizers'
   | 'link'
   | 'image'
+  | 'cardImage'
   | 'database',
   TableCellValue
 >;
@@ -135,7 +136,7 @@ export class ActivityModel extends BiDataTable<Activity>() {
       ...fields,
       id: id!,
       organizers: (organizers as TableCellRelation[])?.map(normalizeText),
-      link: normalizeText(link as TableCellLink),
+      link: (link as TableCellLink)?.link,
       database: (database as TableCellLink)?.link,
     };
   }

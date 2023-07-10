@@ -1,22 +1,22 @@
 import { Icon } from 'idea-react';
 import { observable } from 'mobx';
+import { TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
-import { JSX, MouseEvent, PureComponent, ReactNode } from 'react';
+import { MouseEvent, PureComponent } from 'react';
 import { Button, Col, Container, Nav, Offcanvas, Row } from 'react-bootstrap';
 import { scrollTo, sleep } from 'web-utility';
 
 import { AgendaCard } from '../../../components/Activity/Agenda/Card';
+import { AgendaPeople } from '../../../components/Activity/Agenda/People';
 import PageHead from '../../../components/PageHead';
 import { Activity, ActivityModel } from '../../../models/Activity';
-import { Agenda, AgendaModel } from '../../../models/Agenda';
-import { Forum } from '../../../models/Forum';
-
+import { AgendaModel } from '../../../models/Agenda';
 import { blobURLOf } from '../../../models/Base';
+import { Forum } from '../../../models/Forum';
 import { i18n } from '../../../models/Translation';
 import { withErrorLog } from '../../api/base';
 import styles from './index.module.less';
-import { Staff } from '../../../components/Activity/Staff';
 
 export const getServerSideProps = withErrorLog<
   { id: string },
@@ -155,18 +155,6 @@ export default class ActivityDetailPage extends PureComponent<
   render() {
     const { activity, agendaGroup, forums } = this.props;
 
-    const combinedInfo = forums.reduce((acc, item) => {
-      const { name, producers, producerAvatars, volunteers, volunteerAvatars } =
-        item;
-      if (name in acc) {
-        acc[name].producers = producers;
-        acc[name].producerAvatars = producerAvatars;
-        acc[name].volunteers = volunteers;
-        acc[name].volunteerAvatars = volunteerAvatars;
-      }
-      return acc;
-    }, agendaGroup as Record<string, Agenda[] | any>);
-
     return (
       <>
         <PageHead title={activity.name + ''} />
@@ -184,57 +172,69 @@ export default class ActivityDetailPage extends PureComponent<
         {this.renderDrawer()}
 
         <Container>
-          {Object.entries(combinedInfo)
+          {Object.entries(agendaGroup)
             .sort(([a], [b]) =>
               a === MainForumName ? -1 : b === MainForumName ? 1 : 0,
             )
-            .map(([forum, agendas]) => {
-              const {
-                producers,
-                producerAvatars,
-                volunteers,
-                volunteerAvatars,
-              } = agendas;
+            .map(([forum, agendas]) => (
+              <section key={forum}>
+                <h2 className="my-5 text-center" id={forum}>
+                  {forum}
+                </h2>
+                {forums.map(
+                  ({
+                    name,
+                    volunteers,
+                    volunteerAvatars,
+                    producers,
+                    producerAvatars,
+                    producerPositions,
+                  }) =>
+                    name === forum && (
+                      <div
+                        className="d-flex justify-content-center"
+                        id="name"
+                        key={name}
+                      >
+                        <div className="d-flex align-items-center px-5">
+                          <p>{t('producer')}</p>
+                          <AgendaPeople
+                            names={producers as string[]}
+                            avatars={(producerAvatars as TableCellValue[])?.map(
+                              file => blobURLOf([file] as TableCellValue),
+                            )}
+                            positions={producerPositions as string[]}
+                            summaries={[]}
+                          />
+                        </div>
+                        <div className="d-flex align-items-center px-5">
+                          <p>{t('volunteer')}</p>
+                          <AgendaPeople
+                            names={volunteers as string[]}
+                            avatars={(
+                              volunteerAvatars as TableCellValue[]
+                            )?.map(file => blobURLOf([file] as TableCellValue))}
+                            positions={[]}
+                            summaries={[]}
+                          />
+                        </div>
+                      </div>
+                    ),
+                )}
 
-              return (
-                <section key={forum}>
-                  <h2 className="my-5 text-center" id={forum}>
-                    {forum}
-                  </h2>
-
-                  <Staff
-                    producerNames={producers as string[]}
-                    producerAvatars={producerAvatars}
-                    volunteerNames={volunteers as string[]}
-                    volunteerAvatars={volunteerAvatars}
-                  />
-
-                  {forums.forEach(item => {
-                    if (item.name === forum) {
-                      return <h3>{item.producers}</h3>;
-                    }
-                  })}
-                  <Row
-                    as="ol"
-                    className="list-unstyled g-4"
-                    xs={1}
-                    sm={2}
-                    md={3}
-                  >
-                    {agendas.map(
-                      (
-                        agenda: JSX.IntrinsicAttributes &
-                          Agenda & { children?: ReactNode },
-                      ) => (
-                        <Col as="li" key={agenda.id + ''}>
-                          <AgendaCard {...agenda} />
-                        </Col>
-                      ),
-                    )}
-                  </Row>
-                </section>
-              );
-            })}
+                <Row as="ol" className="list-unstyled g-4" xs={1} sm={2} md={3}>
+                  {agendas.map(agenda => (
+                    <Col as="li" key={agenda.id + ''}>
+                      <AgendaCard
+                        activityId={activity.id + ''}
+                        location={activity.location + ''}
+                        {...agenda}
+                      />
+                    </Col>
+                  ))}
+                </Row>
+              </section>
+            ))}
         </Container>
       </>
     );
