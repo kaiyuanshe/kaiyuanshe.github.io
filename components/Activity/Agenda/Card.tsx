@@ -1,20 +1,22 @@
 import { TableCellAttachment } from 'mobx-lark';
 import { observer } from 'mobx-react';
 import { FC } from 'react';
-import { Button, Card, Carousel } from 'react-bootstrap';
+import { Card, Carousel } from 'react-bootstrap';
 
-import { Agenda } from '../../../models/Agenda';
 import { blobURLOf } from '../../../models/Base';
-import { i18n } from '../../../models/Translation';
+import { AgendaToolbar, AgendaToolbarProps } from './Toolbar';
 
-const { t } = i18n;
-
-export interface AgendaCardProps extends Agenda {
-  activityId: string;
-}
-
-export const AgendaCard: FC<AgendaCardProps> = observer(
-  ({ activityId, id, title, mentors, mentorAvatars, startTime, endTime }) => (
+export const AgendaCard: FC<AgendaToolbarProps> = observer(
+  ({
+    activityId,
+    id,
+    title,
+    mentors,
+    mentorAvatars,
+    startTime,
+    endTime,
+    ...props
+  }) => (
     <Card className="h-100">
       <div className="d-flex">
         <Carousel>
@@ -33,7 +35,13 @@ export const AgendaCard: FC<AgendaCardProps> = observer(
       </div>
 
       <Card.Body className="d-flex flex-column justify-content-end">
-        <Card.Title>{title}</Card.Title>
+        <Card.Title
+          as="a"
+          className="text-decoration-none text-secondary text-truncation-lines"
+          href={`/activity/${activityId}/agenda/${id}`}
+        >
+          {title}
+        </Card.Title>
 
         <ul className="list-unstyled">
           <li>👨‍🎓 {(mentors as string[]).join(' ')}</li>
@@ -44,9 +52,18 @@ export const AgendaCard: FC<AgendaCardProps> = observer(
         </ul>
       </Card.Body>
       <Card.Footer className="d-flex justify-content-end">
-        <Button href={`/activity/${activityId}/agenda/${id}/invitation`}>
-          {t('share')}
-        </Button>
+        <AgendaToolbar
+          {...{
+            activityId,
+            id,
+            title,
+            mentors,
+            mentorAvatars,
+            startTime,
+            endTime,
+            ...props,
+          }}
+        />
       </Card.Footer>
     </Card>
   ),

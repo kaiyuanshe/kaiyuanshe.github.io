@@ -77,6 +77,7 @@ export default {
   submit_agenda_file: 'Submit Agenda File',
 
   member_x: 'member X',
+  calendar: 'Calendar',
   share: 'share',
 
   //invitation pages

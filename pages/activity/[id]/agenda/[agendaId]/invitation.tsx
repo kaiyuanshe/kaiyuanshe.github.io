@@ -1,15 +1,18 @@
-import html2canvas from 'html2canvas';
 import { Loading } from 'idea-react';
 import { observable } from 'mobx';
+import { TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { QRCodeSVG } from 'qrcode.react';
-import { createRef,PureComponent } from 'react';
+import { createRef, MouseEvent, PureComponent } from 'react';
 import { Container, Image } from 'react-bootstrap';
 
+import { AgendaPeople } from '../../../../../components/Activity/Agenda/People';
+import PageHead from '../../../../../components/PageHead';
 import { Activity, ActivityModel } from '../../../../../models/Activity';
 import { Agenda } from '../../../../../models/Agenda';
-import { API_Host, isServer } from '../../../../../models/Base';
+import { API_Host, blobURLOf, isServer } from '../../../../../models/Base';
+import systemStore from '../../../../../models/System';
 import { i18n } from '../../../../../models/Translation';
 import { fileURLOf } from '../../../../api/lark/file/[id]';
 import styles from './invitation.module.less';
@@ -41,11 +44,9 @@ export default class InvitationPage extends PureComponent<
   @observable
   imageDataURL = '';
 
-  componentDidMount() {
-    if (!isServer()) this.generateImage();
-  }
+  share = (event: MouseEvent<HTMLImageElement>) => {
+    event.stopPropagation();
 
-  share = () => {
     const { title, summary } = this.props.agenda;
 
     navigator.share?.({
@@ -55,26 +56,22 @@ export default class InvitationPage extends PureComponent<
     });
   };
 
-  generateImage = async () => {
-    const canvas = await html2canvas(this.elementRef.current!);
-
-    this.imageDataURL = await new Promise<string>((resolve, reject) =>
-      canvas.toBlob(
-        blob => (blob ? resolve(URL.createObjectURL(blob)) : reject()),
-        'image/jpeg',
-        0.92,
-      ),
-    );
-  };
+  generateImage = async () =>
+    (this.imageDataURL = await systemStore.convertToImageURI(
+      this.elementRef.current!,
+    ));
 
   renderContent() {
     const { activity, agenda } = this.props,
       { sharedURL } = this;
     const { name, city, location } = activity,
-      { startTime, endTime, title, mentors } = agenda;
+      { startTime, endTime, title, mentors, mentorAvatars, mentorPositions } =
+        agenda;
 
     return (
       <>
+        <PageHead title={`${title} - ${name}`} />
+
         <header className="d-flex flex-column align-items-center gap-4">
           <h1>{name}</h1>
 
@@ -87,7 +84,16 @@ export default class InvitationPage extends PureComponent<
           <h2>{title}</h2>
 
           <ul className="list-unstyled d-flex flex-column align-items-center gap-4">
-            <li>👨‍🎓 {(mentors as string[]).join(' ')}</li>
+            <li>
+              <AgendaPeople
+                names={mentors as string[]}
+                avatars={(mentorAvatars as TableCellValue[]).map(file =>
+                  blobURLOf([file] as TableCellValue),
+                )}
+                positions={mentorPositions as string[]}
+                summaries={[]}
+              />
+            </li>
             <li>
               🕒 {new Date(+startTime!).toLocaleString()} ~{' '}
               {new Date(+endTime!).toLocaleString()}
@@ -95,7 +101,7 @@ export default class InvitationPage extends PureComponent<
           </ul>
         </section>
         <footer className="d-flex flex-column align-items-center gap-4">
-          <QRCodeSVG value={sharedURL} />
+          {!isServer() && <QRCodeSVG value={sharedURL} />}
 
           <div>{t('press_to_share')}</div>
         </footer>
@@ -105,11 +111,12 @@ export default class InvitationPage extends PureComponent<
 
   render() {
     const { image, cardImage } = this.props.activity,
-      { elementRef, imageDataURL } = this;
+      { elementRef, imageDataURL } = this,
+      { uploading } = systemStore;
 
     return (
       <>
-        {!imageDataURL && <Loading />}
+        {uploading > 0 && <Loading />}
 
         <Container
           ref={elementRef}
@@ -117,16 +124,18 @@ export default class InvitationPage extends PureComponent<
           style={{
             backgroundImage: `url(${fileURLOf(cardImage || image)})`,
           }}
+          onClick={imageDataURL ? undefined : this.generateImage}
         >
-          {!imageDataURL ? (
-            this.renderContent()
-          ) : (
-            <div
+          {this.renderContent()}
+
+          {imageDataURL && (
+            <Image
               className="position-absolute start-0 top-0 w-100 h-100"
+              fluid
+              src={imageDataURL}
+              alt="shareQRcode"
               onClick={this.share}
-            >
-              <Image fluid src={imageDataURL} alt="shareQRcode" />
-            </div>
+            />
           )}
         </Container>
       </>
