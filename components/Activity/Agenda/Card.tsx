@@ -22,13 +22,13 @@ export const AgendaCard: FC<AgendaToolbarProps> = observer(
         {mentorAvatars &&
         Array.isArray(mentorAvatars) &&
         mentorAvatars.length! > 1 ? (
-          <Carousel>
+          <Carousel className="w-100">
             {(mentorAvatars as unknown as TableCellAttachment[])?.map(file => (
               <Carousel.Item key={file.attachmentToken}>
                 <Card.Img
                   key={file.attachmentToken}
                   className=" object-fit-cover"
-                  style={{ height: '25rem' }}
+                  style={{ height: '25rem', margin: 'auto' }}
                   loading="lazy"
                   src={blobURLOf([file])}
                 />
