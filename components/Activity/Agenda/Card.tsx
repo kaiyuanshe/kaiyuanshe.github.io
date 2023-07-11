@@ -19,7 +19,7 @@ export const AgendaCard: FC<AgendaToolbarProps> = observer(
   }) => (
     <Card className="h-100">
       <div className="d-flex">
-        {Array.isArray(mentorAvatars) && mentorAvatars?.[1] ? (
+        {(mentorAvatars as TableCellAttachment[])?.[1] ? (
           <Carousel className="w-100">
             {(mentorAvatars as unknown as TableCellAttachment[])?.map(file => (
               <Carousel.Item key={file.attachmentToken}>
