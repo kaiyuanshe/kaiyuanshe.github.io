@@ -31,6 +31,8 @@ export class ForumModel extends BiDataTable<Forum>() {
 
   requiredKeys = ['name'] as const;
 
+  sort = { startTime: 'ASC' } as const;
+
   normalize({
     id,
     fields: { producers, volunteers, producerPositions, ...data },

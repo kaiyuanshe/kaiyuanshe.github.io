@@ -172,69 +172,69 @@ export default class ActivityDetailPage extends PureComponent<
         {this.renderDrawer()}
 
         <Container>
-          {Object.entries(agendaGroup)
-            .sort(([a], [b]) =>
-              a === MainForumName ? -1 : b === MainForumName ? 1 : 0,
-            )
-            .map(([forum, agendas]) => (
-              <section key={forum}>
-                <h2 className="my-5 text-center" id={forum}>
-                  {forum}
+          {forums.map(
+            ({
+              name,
+              volunteers,
+              volunteerAvatars,
+              producers,
+              producerAvatars,
+              producerPositions,
+            }) => (
+              <section key={name as string}>
+                <h2 className="my-5 text-center" id={name as string}>
+                  {name}
                 </h2>
-                {forums.map(
-                  ({
-                    name,
-                    volunteers,
-                    volunteerAvatars,
-                    producers,
-                    producerAvatars,
-                    producerPositions,
-                  }) =>
-                    name === forum && (
-                      <div
-                        className="d-flex justify-content-center"
-                        id="name"
-                        key={name}
+                <div className="d-flex justify-content-center">
+                  <div className="d-flex align-items-center px-5">
+                    <h6>{t('producer')}</h6>
+                    <AgendaPeople
+                      names={producers as string[]}
+                      avatars={(producerAvatars as TableCellValue[])?.map(
+                        file => blobURLOf([file] as TableCellValue),
+                      )}
+                      positions={producerPositions as string[]}
+                      summaries={[]}
+                    />
+                  </div>
+                  <div className="d-flex align-items-center px-5">
+                    <h6>{t('volunteer')}</h6>
+                    <AgendaPeople
+                      names={volunteers as string[]}
+                      avatars={(volunteerAvatars as TableCellValue[])?.map(
+                        file => blobURLOf([file] as TableCellValue),
+                      )}
+                      positions={[]}
+                      summaries={[]}
+                    />
+                  </div>
+                </div>
+                {Object.entries(agendaGroup).map(
+                  ([forum, agendas]) =>
+                    forum === name && (
+                      <Row
+                        as="ol"
+                        className="list-unstyled g-4"
+                        key={forum}
+                        xs={1}
+                        sm={2}
+                        md={3}
                       >
-                        <div className="d-flex align-items-center px-5">
-                          <p>{t('producer')}</p>
-                          <AgendaPeople
-                            names={producers as string[]}
-                            avatars={(producerAvatars as TableCellValue[])?.map(
-                              file => blobURLOf([file] as TableCellValue),
-                            )}
-                            positions={producerPositions as string[]}
-                            summaries={[]}
-                          />
-                        </div>
-                        <div className="d-flex align-items-center px-5">
-                          <p>{t('volunteer')}</p>
-                          <AgendaPeople
-                            names={volunteers as string[]}
-                            avatars={(
-                              volunteerAvatars as TableCellValue[]
-                            )?.map(file => blobURLOf([file] as TableCellValue))}
-                            positions={[]}
-                            summaries={[]}
-                          />
-                        </div>
-                      </div>
+                        {agendas.map(agenda => (
+                          <Col as="li" key={agenda.id + ''}>
+                            <AgendaCard
+                              activityId={activity.id + ''}
+                              location={activity.location + ''}
+                              {...agenda}
+                            />
+                          </Col>
+                        ))}
+                      </Row>
                     ),
                 )}
-
-                <Row as="ol" className="list-unstyled g-4" xs={1} sm={2} md={3}>
-                  {agendas.map(agenda => (
-                    <Col as="li" key={agenda.id + ''}>
-                      <AgendaCard
-                        activityId={activity.id + ''}
-                        location={activity.location + ''}
-                        {...agenda}
-                      />
-                    </Col>
-                  ))}
-                </Row>
               </section>
-            ))}
+            ),
+          )}
         </Container>
       </>
     );

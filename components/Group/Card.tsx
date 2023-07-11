@@ -23,8 +23,8 @@ export const GroupCard: FC<GroupCardProps> = ({
     <h3 className="h5 mb-3 flex-fill">{name}</h3>
     {logo && (
       <Image
-        className="mb-3 flex-fill"
-        style={{ maxWidth: '10rem', objectFit: 'contain' }}
+        className="mb-3 flex-fill object-fit-contain"
+        style={{ maxWidth: '10rem' }}
         src={fileURLOf(logo)}
         alt={name as string}
       />

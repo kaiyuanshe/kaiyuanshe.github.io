@@ -21,7 +21,7 @@ import {
 } from '../pages/api/lark/core';
 import { Agenda, AgendaModel } from './Agenda';
 import { larkClient } from './Base';
-import { Forum,ForumModel } from './Forum';
+import { Forum, ForumModel } from './Forum';
 
 export const ACTIVITY_TABLE_ID = process.env.NEXT_PUBLIC_ACTIVITY_TABLE_ID!;
 
