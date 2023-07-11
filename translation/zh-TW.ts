@@ -74,6 +74,8 @@ export default {
   register_volunteer: '義工報名',
   submit_agenda: '議題征集',
   submit_agenda_file: '議題文檔提交',
+  reimbursement_application: '報銷申請',
+  participant_registration: '參會註冊',
 
   member_x: '成員X',
   calendar: '日曆',

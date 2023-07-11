@@ -1,6 +1,6 @@
 {
   "name": "@kaiyuanshe/ows",
-  "version": "2.2.0-rc",
+  "version": "2.3.0-rc",
   "description": "React project scaffold based on TypeScript, Next.js & Bootstrap.",
   "private": true,
   "engines": {
