@@ -154,6 +154,7 @@ export default class ActivityDetailPage extends PureComponent<
 
   render() {
     const { activity, agendaGroup, forums } = this.props;
+    const [forum] = Object.keys(agendaGroup);
 
     return (
       <>
@@ -187,7 +188,7 @@ export default class ActivityDetailPage extends PureComponent<
                 </h2>
                 <div className="d-flex justify-content-center">
                   <div className="d-flex align-items-center px-5">
-                    <h6>{t('producer')}</h6>
+                    <h3 className="h6">{t('producer')}</h3>
                     <AgendaPeople
                       names={producers as string[]}
                       avatars={(producerAvatars as TableCellValue[])?.map(
@@ -198,7 +199,7 @@ export default class ActivityDetailPage extends PureComponent<
                     />
                   </div>
                   <div className="d-flex align-items-center px-5">
-                    <h6>{t('volunteer')}</h6>
+                    <h3 className="h6">{t('volunteer')}</h3>
                     <AgendaPeople
                       names={volunteers as string[]}
                       avatars={(volunteerAvatars as TableCellValue[])?.map(
@@ -209,29 +210,24 @@ export default class ActivityDetailPage extends PureComponent<
                     />
                   </div>
                 </div>
-                {Object.entries(agendaGroup).map(
-                  ([forum, agendas]) =>
-                    forum === name && (
-                      <Row
-                        as="ol"
-                        className="list-unstyled g-4"
-                        key={forum}
-                        xs={1}
-                        sm={2}
-                        md={3}
-                      >
-                        {agendas.map(agenda => (
-                          <Col as="li" key={agenda.id + ''}>
-                            <AgendaCard
-                              activityId={activity.id + ''}
-                              location={activity.location + ''}
-                              {...agenda}
-                            />
-                          </Col>
-                        ))}
-                      </Row>
-                    ),
-                )}
+                <Row
+                  as="ol"
+                  className="list-unstyled g-4"
+                  key={forum}
+                  xs={1}
+                  sm={2}
+                  md={3}
+                >
+                  {agendaGroup[forum].map(agenda => (
+                    <Col as="li" key={agenda.id + ''}>
+                      <AgendaCard
+                        activityId={activity.id + ''}
+                        location={activity.location + ''}
+                        {...agenda}
+                      />
+                    </Col>
+                  ))}
+                </Row>
               </section>
             ),
           )}
