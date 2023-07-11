@@ -154,7 +154,6 @@ export default class ActivityDetailPage extends PureComponent<
 
   render() {
     const { activity, agendaGroup, forums } = this.props;
-    const [forum] = Object.keys(agendaGroup);
 
     return (
       <>
@@ -210,15 +209,9 @@ export default class ActivityDetailPage extends PureComponent<
                     />
                   </div>
                 </div>
-                <Row
-                  as="ol"
-                  className="list-unstyled g-4"
-                  key={forum}
-                  xs={1}
-                  sm={2}
-                  md={3}
-                >
-                  {agendaGroup[forum].map(agenda => (
+
+                <Row as="ol" className="list-unstyled g-4" xs={1} sm={2} md={3}>
+                  {agendaGroup[name as string].map(agenda => (
                     <Col as="li" key={agenda.id + ''}>
                       <AgendaCard
                         activityId={activity.id + ''}
