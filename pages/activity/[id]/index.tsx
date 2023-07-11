@@ -78,24 +78,25 @@ export default class ActivityDetailPage extends PureComponent<
   };
 
   renderButtonBar() {
-    const { startTime, personForm, agendaForm, fileForm } =
-      this.props.currentMeta;
+    const { startTime, personForm, agendaForm, fileForm, billForm } =
+        this.props.currentMeta,
+      { link } = this.props.activity;
     const passed = +new Date(+startTime!) <= Date.now();
 
     return (
-      <div className="d-flex justify-content-center gap-3 my-3">
+      <div className="d-flex flex-wrap justify-content-center gap-3 my-3">
         {personForm && (
-          <Button
-            variant="success"
-            target="_blank"
-            href={personForm}
-            disabled={passed}
-          >
+          <Button target="_blank" href={personForm} disabled={passed}>
             {t('register_volunteer')}
           </Button>
         )}
         {agendaForm && (
-          <Button target="_blank" href={agendaForm} disabled={passed}>
+          <Button
+            variant="success"
+            target="_blank"
+            href={agendaForm}
+            disabled={passed}
+          >
             {t('submit_agenda')}
           </Button>
         )}
@@ -109,13 +110,33 @@ export default class ActivityDetailPage extends PureComponent<
             {t('submit_agenda_file')}
           </Button>
         )}
+        {billForm && (
+          <Button
+            variant="info"
+            target="_blank"
+            href={billForm}
+            disabled={passed}
+          >
+            {t('reimbursement_application')}
+          </Button>
+        )}
+        {link && (
+          <Button
+            variant="danger"
+            target="_blank"
+            href={link as string}
+            disabled={passed}
+          >
+            {t('participant_registration')}
+          </Button>
+        )}
       </div>
     );
   }
 
   renderDrawer() {
     const { showDrawer } = this,
-      { agendaGroup } = this.props;
+      { forums } = this.props;
 
     return (
       <>
@@ -132,19 +153,15 @@ export default class ActivityDetailPage extends PureComponent<
         >
           <Offcanvas.Body>
             <Nav className="flex-column">
-              {Object.keys(agendaGroup)
-                .sort((a, b) =>
-                  a === MainForumName ? -1 : b === MainForumName ? 1 : 0,
-                )
-                .map(forum => (
-                  <Nav.Link
-                    key={forum}
-                    href={`#${forum}`}
-                    onClick={this.scrollTo}
-                  >
-                    {forum}
-                  </Nav.Link>
-                ))}
+              {forums.map(({ name }) => (
+                <Nav.Link
+                  key={name + ''}
+                  href={`#${name}`}
+                  onClick={this.scrollTo}
+                >
+                  {name}
+                </Nav.Link>
+              ))}
             </Nav>
           </Offcanvas.Body>
         </Offcanvas>
@@ -162,7 +179,9 @@ export default class ActivityDetailPage extends PureComponent<
         <header
           className={`d-flex flex-column align-items-center justify-content-around ${styles.header}`}
           style={{
-            backgroundImage: `url(${blobURLOf(activity.image)})`,
+            backgroundImage: `url(${JSON.stringify(
+              blobURLOf(activity.image),
+            )})`,
           }}
         >
           <h1 className="visually-hidden">{activity.name}</h1>
@@ -211,7 +230,7 @@ export default class ActivityDetailPage extends PureComponent<
                 </div>
 
                 <Row as="ol" className="list-unstyled g-4" xs={1} sm={2} md={3}>
-                  {agendaGroup[name as string].map(agenda => (
+                  {agendaGroup[name as string]?.map(agenda => (
                     <Col as="li" key={agenda.id + ''}>
                       <AgendaCard
                         activityId={activity.id + ''}

@@ -1,11 +1,11 @@
-import { Loading } from 'idea-react';
+import { Loading, text2color } from 'idea-react';
 import { observable } from 'mobx';
 import { TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { QRCodeSVG } from 'qrcode.react';
 import { createRef, MouseEvent, PureComponent } from 'react';
-import { Container, Image } from 'react-bootstrap';
+import { Badge, Container, Image } from 'react-bootstrap';
 
 import { AgendaPeople } from '../../../../../components/Activity/Agenda/People';
 import PageHead from '../../../../../components/PageHead';
@@ -29,7 +29,7 @@ export const getServerSideProps: GetServerSideProps<
     agenda = await activityStore.currentAgenda!.getOne(agendaId + '');
 
   return {
-    props: { activity, agenda },
+    props: JSON.parse(JSON.stringify({ activity, agenda })),
   };
 };
 
@@ -44,29 +44,49 @@ export default class InvitationPage extends PureComponent<
   @observable
   imageDataURL = '';
 
+  componentDidMount() {
+    globalThis.addEventListener?.('resize', this.generateImage);
+  }
+
+  componentWillUnmount() {
+    globalThis.removeEventListener?.('resize', this.generateImage);
+  }
+
+  generateImage = async () => {
+    if (this.imageDataURL) {
+      URL.revokeObjectURL(this.imageDataURL);
+      this.imageDataURL = '';
+    }
+    this.imageDataURL = await systemStore.convertToImageURI(
+      this.elementRef.current!,
+    );
+  };
+
   share = (event: MouseEvent<HTMLImageElement>) => {
     event.stopPropagation();
 
     const { title, summary } = this.props.agenda;
 
-    navigator.share?.({
+    return navigator.share?.({
       title: title as string,
       text: summary as string,
       url: this.sharedURL,
     });
   };
 
-  generateImage = async () =>
-    (this.imageDataURL = await systemStore.convertToImageURI(
-      this.elementRef.current!,
-    ));
-
   renderContent() {
     const { activity, agenda } = this.props,
       { sharedURL } = this;
     const { name, city, location } = activity,
-      { startTime, endTime, title, mentors, mentorAvatars, mentorPositions } =
-        agenda;
+      {
+        type,
+        startTime,
+        endTime,
+        title,
+        mentors,
+        mentorAvatars,
+        mentorPositions,
+      } = agenda;
 
     return (
       <>
@@ -81,7 +101,11 @@ export default class InvitationPage extends PureComponent<
           </ul>
         </header>
         <section className="d-flex flex-column align-items-center gap-4">
-          <h2>{title}</h2>
+          <h2 className="d-flex align-items-center gap-2 text-start">
+            <Badge bg={text2color(type as string, ['light'])}>{type}</Badge>
+
+            {title}
+          </h2>
 
           <ul className="list-unstyled d-flex flex-column align-items-center gap-4">
             <li>
@@ -124,7 +148,8 @@ export default class InvitationPage extends PureComponent<
           style={{
             backgroundImage: `url(${fileURLOf(cardImage || image)})`,
           }}
-          onClick={imageDataURL ? undefined : this.generateImage}
+          onMouseEnter={imageDataURL ? undefined : this.generateImage}
+          onTouchStart={imageDataURL ? undefined : this.generateImage}
         >
           {this.renderContent()}
 

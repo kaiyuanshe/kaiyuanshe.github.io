@@ -117,7 +117,7 @@ export class ActivityModel extends BiDataTable<Activity>() {
       ) || [];
     const { startTime } = list[0] || {},
       { endTime } = list.slice(-1)[0] || {};
-    const { Person, Agenda, File } = this.formMap;
+    const { Person, Agenda, File, Bill } = this.formMap;
 
     return {
       startTime,
@@ -125,6 +125,7 @@ export class ActivityModel extends BiDataTable<Activity>() {
       personForm: Person[0]?.shared_url,
       agendaForm: Agenda[0]?.shared_url,
       fileForm: File[0]?.shared_url,
+      billForm: Bill[0]?.shared_url,
     };
   }
 

@@ -1,7 +1,8 @@
+import { text2color } from 'idea-react';
 import { TableCellAttachment } from 'mobx-lark';
 import { observer } from 'mobx-react';
 import { FC } from 'react';
-import { Card } from 'react-bootstrap';
+import { Badge, Card } from 'react-bootstrap';
 
 import { blobURLOf } from '../../../models/Base';
 import { AgendaToolbar, AgendaToolbarProps } from './Toolbar';
@@ -10,6 +11,7 @@ export const AgendaCard: FC<AgendaToolbarProps> = observer(
   ({
     activityId,
     id,
+    type,
     title,
     mentors,
     mentorAvatars,
@@ -30,12 +32,15 @@ export const AgendaCard: FC<AgendaToolbarProps> = observer(
         ))}
       </div>
       <Card.Body className="d-flex flex-column justify-content-end">
-        <Card.Title
-          as="a"
-          className="text-decoration-none text-secondary text-truncation-lines"
-          href={`/activity/${activityId}/agenda/${id}`}
-        >
-          {title}
+        <Card.Title as="h3" className="h5 d-flex align-items-center gap-2">
+          <Badge bg={text2color(type as string, ['light'])}>{type}</Badge>
+          <a
+            className="text-decoration-none text-secondary text-truncate"
+            href={`/activity/${activityId}/agenda/${id}`}
+            title={title as string}
+          >
+            {title}
+          </a>
         </Card.Title>
 
         <ul className="list-unstyled">
@@ -51,6 +56,7 @@ export const AgendaCard: FC<AgendaToolbarProps> = observer(
           {...{
             activityId,
             id,
+            type,
             title,
             mentors,
             mentorAvatars,
