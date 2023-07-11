@@ -1,4 +1,4 @@
-import { LarkApp, LarkData, normalizeText,TableCellText } from 'mobx-lark';
+import { LarkApp, LarkData, normalizeText, TableCellText } from 'mobx-lark';
 
 import { safeAPI } from '../base';
 
