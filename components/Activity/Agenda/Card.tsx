@@ -26,7 +26,7 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
       <div className="d-flex">
         {(mentorAvatars as TableCellAttachment[])?.[1] ? (
           <Carousel className="w-100">
-            {(mentorAvatars as unknown as TableCellAttachment[])?.map(file => (
+            {(mentorAvatars as unknown as TableCellAttachment[]).map(file => (
               <Carousel.Item key={file.attachmentToken}>
                 {this.renderCardImage(file)}
               </Carousel.Item>
