@@ -6,20 +6,20 @@ import { Card, Carousel } from 'react-bootstrap';
 import { blobURLOf } from '../../../models/Base';
 import { AgendaToolbar, AgendaToolbarProps } from './Toolbar';
 
-const renderCardImage = (file: TableCellAttachment) => {
-  return (
-    <Card.Img
-      key={file.attachmentToken}
-      className="m-auto object-fit-cover"
-      style={{ height: '25rem' }}
-      loading="lazy"
-      src={blobURLOf([file])}
-    />
-  );
-};
-
 @observer
 export class AgendaCard extends Component<AgendaToolbarProps> {
+  renderCardImage = (file: TableCellAttachment) => {
+    return (
+      <Card.Img
+        key={file.attachmentToken}
+        className="m-auto object-fit-cover"
+        style={{ height: '25rem' }}
+        loading="lazy"
+        src={blobURLOf([file])}
+      />
+    );
+  };
+
   renderAvatarImages() {
     const { mentorAvatars } = this.props;
 
@@ -29,13 +29,13 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
           <Carousel className="w-100">
             {(mentorAvatars as unknown as TableCellAttachment[])?.map(file => (
               <Carousel.Item key={file.attachmentToken}>
-                {renderCardImage(file)}
+                {this.renderCardImage(file)}
               </Carousel.Item>
             ))}
           </Carousel>
         ) : (
           (mentorAvatars as unknown as TableCellAttachment[])?.map(file =>
-            renderCardImage(file),
+            this.renderCardImage(file),
           )
         )}
       </div>
