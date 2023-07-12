@@ -9,8 +9,7 @@ import { AgendaToolbar, AgendaToolbarProps } from './Toolbar';
 
 @observer
 export class AgendaCard extends Component<AgendaToolbarProps> {
-  renderCardImage = (file: TableCellAttachment) => {
-    return (
+  renderCardImage = (file: TableCellAttachment) => (
       <Card.Img
         key={file.attachmentToken}
         className="m-auto object-fit-cover"
@@ -19,7 +18,6 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
         src={blobURLOf([file])}
       />
     );
-  };
 
   renderAvatarImages() {
     const { mentorAvatars } = this.props;
