@@ -8,7 +8,7 @@ import { Button, Col, Container, Nav, Offcanvas, Row } from 'react-bootstrap';
 import { scrollTo, sleep } from 'web-utility';
 
 import { AgendaCard } from '../../../components/Activity/Agenda/Card';
-import { AgendaPeople } from '../../../components/Activity/Agenda/People';
+import { ActivityPeople } from '../../../components/Activity/People';
 import PageHead from '../../../components/PageHead';
 import { Activity, ActivityModel } from '../../../models/Activity';
 import { AgendaModel } from '../../../models/Agenda';
@@ -45,8 +45,6 @@ export const getServerSideProps = withErrorLog<
 });
 
 const { t } = i18n;
-
-const MainForumName = '主论坛';
 
 @observer
 export default class ActivityDetailPage extends PureComponent<
@@ -207,24 +205,21 @@ export default class ActivityDetailPage extends PureComponent<
                 <div className="d-flex justify-content-center">
                   <div className="d-flex align-items-center px-5">
                     <h3 className="h6">{t('producer')}</h3>
-                    <AgendaPeople
+                    <ActivityPeople
                       names={producers as string[]}
                       avatars={(producerAvatars as TableCellValue[])?.map(
                         file => blobURLOf([file] as TableCellValue),
                       )}
                       positions={producerPositions as string[]}
-                      summaries={[]}
                     />
                   </div>
                   <div className="d-flex align-items-center px-5">
                     <h3 className="h6">{t('volunteer')}</h3>
-                    <AgendaPeople
+                    <ActivityPeople
                       names={volunteers as string[]}
                       avatars={(volunteerAvatars as TableCellValue[])?.map(
                         file => blobURLOf([file] as TableCellValue),
                       )}
-                      positions={[]}
-                      summaries={[]}
                     />
                   </div>
                 </div>

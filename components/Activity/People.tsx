@@ -1,10 +1,10 @@
 import { AvatarProps } from 'idea-react';
 import { FC } from 'react';
 
-export type AgendaPeopleProps = Pick<AvatarProps, 'size'> &
-  Record<'names' | 'avatars' | 'positions' | 'summaries', string[]>;
+export type ActivityPeopleProps = Pick<AvatarProps, 'size'> &
+  Partial<Record<'names' | 'avatars' | 'positions' | 'summaries', string[]>>;
 
-export const AgendaPeople: FC<AgendaPeopleProps> = ({
+export const ActivityPeople: FC<ActivityPeopleProps> = ({
   size = 3,
   names,
   avatars,
@@ -20,14 +20,14 @@ export const AgendaPeople: FC<AgendaPeopleProps> = ({
           style={{
             width: `${size}rem`,
             height: `${size}rem`,
-            background: avatars && `url(${avatars[index]}) center no-repeat`,
+            background: `url(${avatars?.[index]}) center no-repeat`,
             backgroundSize: 'cover',
           }}
         />
         <ul className="list-unstyled">
           <li>{name}</li>
-          <li>{positions && positions[index]}</li>
-          <li>{summaries && summaries[index]}</li>
+          <li>{positions?.[index]}</li>
+          <li>{summaries?.[index]}</li>
         </ul>
       </li>
     ))}

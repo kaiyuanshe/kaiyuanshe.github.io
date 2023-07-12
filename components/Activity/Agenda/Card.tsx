@@ -10,49 +10,40 @@ import { AgendaToolbar, AgendaToolbarProps } from './Toolbar';
 @observer
 export class AgendaCard extends Component<AgendaToolbarProps> {
   renderCardImage = (file: TableCellAttachment) => (
-      <Card.Img
-        key={file.attachmentToken}
-        className="m-auto object-fit-cover"
-        style={{ height: '25rem' }}
-        loading="lazy"
-        src={blobURLOf([file])}
-      />
-    );
+    <Card.Img
+      key={file.attachmentToken}
+      className="m-auto object-fit-cover"
+      style={{ height: '25rem' }}
+      loading="lazy"
+      src={blobURLOf([file])}
+    />
+  );
 
   renderAvatarImages() {
     const { mentorAvatars } = this.props;
 
     return (
-      <div className="d-flex">
+      <>
         {(mentorAvatars as TableCellAttachment[])?.[1] ? (
           <Carousel className="w-100">
-            {(mentorAvatars as unknown as TableCellAttachment[]).map(file => (
+            {(mentorAvatars as TableCellAttachment[]).map(file => (
               <Carousel.Item key={file.attachmentToken}>
                 {this.renderCardImage(file)}
               </Carousel.Item>
             ))}
           </Carousel>
         ) : (
-          (mentorAvatars as unknown as TableCellAttachment[])?.map(file =>
+          (mentorAvatars as TableCellAttachment[])?.map(file =>
             this.renderCardImage(file),
           )
         )}
-      </div>
+      </>
     );
   }
 
   render() {
-    const {
-      activityId,
-      id,
-      type,
-      title,
-      mentors,
-      mentorAvatars,
-      startTime,
-      endTime,
-      ...props
-    } = this.props;
+    const { activityId, id, type, title, mentors, startTime, endTime } =
+      this.props;
 
     return (
       <Card className="h-100">
@@ -79,19 +70,7 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
           </ul>
         </Card.Body>
         <Card.Footer className="d-flex justify-content-end">
-          <AgendaToolbar
-            {...{
-              activityId,
-              id,
-              type,
-              title,
-              mentors,
-              mentorAvatars,
-              startTime,
-              endTime,
-              ...props,
-            }}
-          />
+          <AgendaToolbar {...{ ...this.props, activityId }} />
         </Card.Footer>
       </Card>
     );

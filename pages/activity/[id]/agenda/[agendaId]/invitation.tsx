@@ -7,7 +7,7 @@ import { QRCodeSVG } from 'qrcode.react';
 import { createRef, MouseEvent, PureComponent } from 'react';
 import { Badge, Container, Image } from 'react-bootstrap';
 
-import { AgendaPeople } from '../../../../../components/Activity/Agenda/People';
+import { ActivityPeople } from '../../../../../components/Activity/People';
 import PageHead from '../../../../../components/PageHead';
 import { Activity, ActivityModel } from '../../../../../models/Activity';
 import { Agenda } from '../../../../../models/Agenda';
@@ -109,13 +109,12 @@ export default class InvitationPage extends PureComponent<
 
           <ul className="list-unstyled d-flex flex-column align-items-center gap-4">
             <li>
-              <AgendaPeople
+              <ActivityPeople
                 names={mentors as string[]}
                 avatars={(mentorAvatars as TableCellValue[]).map(file =>
                   blobURLOf([file] as TableCellValue),
                 )}
                 positions={mentorPositions as string[]}
-                summaries={[]}
               />
             </li>
             <li>

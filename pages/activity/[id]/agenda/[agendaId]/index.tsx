@@ -5,8 +5,8 @@ import { InferGetServerSidePropsType } from 'next';
 import { PureComponent } from 'react';
 import { Badge, Col, Container, Row } from 'react-bootstrap';
 
-import { AgendaPeople } from '../../../../../components/Activity/Agenda/People';
 import { AgendaToolbar } from '../../../../../components/Activity/Agenda/Toolbar';
+import { ActivityPeople } from '../../../../../components/Activity/People';
 import { CommentBox } from '../../../../../components/CommentBox';
 import PageHead from '../../../../../components/PageHead';
 import { Activity, ActivityModel } from '../../../../../models/Activity';
@@ -85,7 +85,7 @@ export default class AgendaDetailPage extends PureComponent<
             <main className="my-2">{summary}</main>
           </Col>
           <Col xs={12} sm={3}>
-            <AgendaPeople
+            <ActivityPeople
               names={mentors as string[]}
               avatars={(mentorAvatars as TableCellValue[]).map(file =>
                 blobURLOf([file] as TableCellValue),
