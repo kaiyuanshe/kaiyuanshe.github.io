@@ -8,6 +8,40 @@ import { AgendaToolbar, AgendaToolbarProps } from './Toolbar';
 
 @observer
 export class AgendaCard extends Component<AgendaToolbarProps> {
+  renderAvatarImages() {
+    const { mentorAvatars } = this.props;
+
+    return (
+      <div className="d-flex">
+        {(mentorAvatars as TableCellAttachment[])?.[1] ? (
+          <Carousel className="w-100">
+            {(mentorAvatars as unknown as TableCellAttachment[])?.map(file => (
+              <Carousel.Item key={file.attachmentToken}>
+                <Card.Img
+                  key={file.attachmentToken}
+                  className="m-auto object-fit-cover"
+                  style={{ height: '25rem' }}
+                  loading="lazy"
+                  src={blobURLOf([file])}
+                />
+              </Carousel.Item>
+            ))}
+          </Carousel>
+        ) : (
+          (mentorAvatars as unknown as TableCellAttachment[])?.map(file => (
+            <Card.Img
+              key={file.attachmentToken}
+              className="object-fit-cover"
+              style={{ height: '25rem' }}
+              loading="lazy"
+              src={blobURLOf([file])}
+            />
+          ))
+        )}
+      </div>
+    );
+  }
+
   render() {
     const {
       activityId,
@@ -22,35 +56,7 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
 
     return (
       <Card className="h-100">
-        <div className="d-flex">
-          {(mentorAvatars as TableCellAttachment[])?.[1] ? (
-            <Carousel className="w-100">
-              {(mentorAvatars as unknown as TableCellAttachment[])?.map(
-                file => (
-                  <Carousel.Item key={file.attachmentToken}>
-                    <Card.Img
-                      key={file.attachmentToken}
-                      className="m-auto object-fit-cover"
-                      style={{ height: '25rem' }}
-                      loading="lazy"
-                      src={blobURLOf([file])}
-                    />
-                  </Carousel.Item>
-                ),
-              )}
-            </Carousel>
-          ) : (
-            (mentorAvatars as unknown as TableCellAttachment[])?.map(file => (
-              <Card.Img
-                key={file.attachmentToken}
-                className="object-fit-cover"
-                style={{ height: '25rem' }}
-                loading="lazy"
-                src={blobURLOf([file])}
-              />
-            ))
-          )}
-        </div>
+        {this.renderAvatarImages()}
 
         <Card.Body className="d-flex flex-column justify-content-end">
           <Card.Title
