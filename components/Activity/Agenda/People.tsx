@@ -12,7 +12,7 @@ export const AgendaPeople: FC<AgendaPeopleProps> = ({
   summaries,
 }) => (
   <ul className="list-unstyled d-flex align-items-center justify-content-around">
-    {names.map((name, index) => (
+    {names?.map((name, index) => (
       <li key={name} className="text-center">
         <span
           role="img"
@@ -20,14 +20,14 @@ export const AgendaPeople: FC<AgendaPeopleProps> = ({
           style={{
             width: `${size}rem`,
             height: `${size}rem`,
-            background: `url(${avatars[index]}) center no-repeat`,
+            background: avatars && `url(${avatars[index]}) center no-repeat`,
             backgroundSize: 'cover',
           }}
         />
         <ul className="list-unstyled">
           <li>{name}</li>
-          <li>{positions[index]}</li>
-          <li>{summaries[index]}</li>
+          <li>{positions && positions[index]}</li>
+          <li>{summaries && summaries[index]}</li>
         </ul>
       </li>
     ))}

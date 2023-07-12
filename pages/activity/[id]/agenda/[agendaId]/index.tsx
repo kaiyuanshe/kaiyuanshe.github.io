@@ -1,8 +1,9 @@
+import { text2color } from 'idea-react';
 import { TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
 import { PureComponent } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Badge, Col, Container, Row } from 'react-bootstrap';
 
 import { AgendaPeople } from '../../../../../components/Activity/Agenda/People';
 import { AgendaToolbar } from '../../../../../components/Activity/Agenda/Toolbar';
@@ -36,7 +37,7 @@ export default class AgendaDetailPage extends PureComponent<
 > {
   renderHeader() {
     const { id, location } = this.props.activity;
-    const { forum, title, startTime, endTime } = this.props.agenda;
+    const { type, forum, title, startTime, endTime } = this.props.agenda;
 
     return (
       <header>
@@ -49,7 +50,9 @@ export default class AgendaDetailPage extends PureComponent<
             {...this.props.agenda}
           />
         </div>
-        <div className="d-flex gap-3">
+        <div className="d-flex align-items-center gap-3">
+          <Badge bg={text2color(type as string, ['light'])}>{type}</Badge>
+
           <div className="text-success">{forum}</div>
           <div>
             🕒 {new Date(+startTime!).toLocaleString()} ~{' '}
