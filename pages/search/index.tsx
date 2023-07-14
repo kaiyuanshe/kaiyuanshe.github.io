@@ -6,6 +6,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import { ActivityListLayout } from '../../components/Activity/List';
 import { ArticleListLayout } from '../../components/Article/List';
 import { GroupCard } from '../../components/Group/Card';
+import { MemberCard } from '../../components/Member/Card';
 import { MemberList } from '../../components/Member/List';
 import { OrganizationListLayout } from '../../components/Organization/List';
 import PageHead from '../../components/PageHead';
@@ -30,7 +31,7 @@ const SearchPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
       route,
       articles,
       activities,
-      members,
+      people,
       expert,
       groups,
       organizations,
@@ -57,7 +58,16 @@ const SearchPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
 
           <h2>{t('member')}</h2>
 
-          <MemberList list={members} />
+          <Row className="my-0 g-4 text-center" xs={1} sm={2} md={4}>
+            {people.map(({ id, name, github }) => (
+              <Col key={id + ''}>
+                <MemberCard
+                  name={name}
+                  GitHubID={(github as string)?.split('/').at(-1)}
+                />
+              </Col>
+            ))}
+          </Row>
 
           <h2>{t('expert_committee')}</h2>
 

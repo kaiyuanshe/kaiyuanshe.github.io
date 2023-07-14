@@ -5,11 +5,12 @@ import { Activity, SearchActivityModel } from '../../models/Activity';
 import { BaseArticle, SearchArticleModel } from '../../models/Article';
 import { SearchExpertModel } from '../../models/Expert';
 import { Group, SearchGroupModel } from '../../models/Group';
-import { Member, SearchMemberModel } from '../../models/Member';
+import { Member } from '../../models/Member';
 import {
   Organization,
   SearchOrganizationModel,
 } from '../../models/Organization';
+import { Person, SearchPersonModel } from '../../models/Person';
 import { safeAPI } from './base';
 
 export type SearchQuery = Partial<Record<'keywords' | 'tag', string>>;
@@ -17,7 +18,7 @@ export type SearchQuery = Partial<Record<'keywords' | 'tag', string>>;
 export interface SearchResult {
   activities: Activity[];
   articles: BaseArticle[];
-  members: Member[];
+  people: Person[];
   expert: Member[];
   groups: Group[];
   organizations: Organization[];
@@ -67,10 +68,11 @@ export default safeAPI(
             ],
           );
         if (keywordList)
-          var [members, expert] = await Promise.all([
-            new SearchMemberModel().getList({
+          var [people, expert] = await Promise.all([
+            new SearchPersonModel().getList({
               name: keywordList,
-              nickname: keywordList,
+              email: keywordList,
+              summary: keywordList,
             }),
             new SearchExpertModel().getList({
               name: keywordList,
@@ -78,7 +80,7 @@ export default safeAPI(
             }),
           ]);
         //@ts-ignore
-        const membersData = { members, expert };
+        const membersData = { people, expert };
         //@ts-ignore
         const articlesData = { articles, activities, groups, organizations };
         //@ts-ignore

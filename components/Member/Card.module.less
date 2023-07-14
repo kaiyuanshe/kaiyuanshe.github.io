@@ -1,27 +1,3 @@
-.memberRow.isMore {
-  max-height: 24rem;
-  background: linear-gradient(#fff, transparent 100%),
-    linear-gradient(rgba(124, 120, 120, 0.1), transparent 100%);
-  background-size: 100% 10rem, 100% 0.5rem;
-  background-repeat: no-repeat;
-  background-attachment: local, scroll;
-  mask-image: linear-gradient(0deg, transparent, #000 5rem);
-  mask-position: left;
-  mask-repeat: no-repeat;
-  padding-bottom: 3rem;
-  margin-bottom: 0 !important;
-  cursor: s-resize;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-}
-.memberTitle::before {
-    content: '';
-    display: block;
-    width: 100%;
-    height: 88px;
-    margin-top: -88px;
-}
 .member {
   flex: none;
   .avatar {
@@ -57,7 +33,9 @@
     & > i {
       transform: scale3d(0.2, 0.2, 1);
       opacity: 0;
-      transition: transform 0.5s, opacity 0.5s;
+      transition:
+        transform 0.5s,
+        opacity 0.5s;
       transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
     }
   }
