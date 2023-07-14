@@ -1,0 +1,19 @@
+.memberRow.isMore {
+  max-height: 24rem;
+  background: linear-gradient(#fff, transparent 100%),
+    linear-gradient(rgba(124, 120, 120, 0.1), transparent 100%);
+  background-size:
+    100% 10rem,
+    100% 0.5rem;
+  background-repeat: no-repeat;
+  background-attachment: local, scroll;
+  mask-image: linear-gradient(0deg, transparent, #000 5rem);
+  mask-position: left;
+  mask-repeat: no-repeat;
+  padding-bottom: 3rem;
+  margin-bottom: 0 !important;
+  cursor: s-resize;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

@@ -1,13 +1,17 @@
 import {
   BiDataTable,
+  makeSimpleFilter,
   TableCellLink,
   TableCellValue,
   TableRecordList,
 } from 'mobx-lark';
+import { NewData } from 'mobx-restful';
+import { isEmpty } from 'web-utility';
 
 import { larkClient } from './Base';
 
 export type Person = Record<
+  | 'id'
   | 'name'
   | 'gender'
   | 'city'
@@ -41,5 +45,11 @@ export class PersonModel extends BiDataTable<Person>() {
       website: (website as TableCellLink)?.link,
       github: (github as TableCellLink)?.link,
     };
+  }
+}
+
+export class SearchPersonModel extends PersonModel {
+  makeFilter(filter: NewData<Person>) {
+    return isEmpty(filter) ? '' : makeSimpleFilter(filter, 'contains', 'OR');
   }
 }
