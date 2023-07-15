@@ -45,7 +45,7 @@
     "@types/qs": "^6.9.7",
     "@types/react": "^17.0.62",
     "@types/react-dom": "^17.0.20",
-    "eslint": "^8.44.0",
+    "eslint": "^8.45.0",
     "eslint-config-next": "^12.3.4",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "get-git-folder": "^0.1.0",

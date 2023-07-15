@@ -1,3 +1,4 @@
+import { observable } from 'mobx';
 import {
   BiDataTable,
   makeSimpleFilter,
@@ -8,7 +9,7 @@ import {
   TableRecordList,
 } from 'mobx-lark';
 import { NewData } from 'mobx-restful';
-import { isEmpty } from 'web-utility';
+import { groupBy, isEmpty } from 'web-utility';
 
 import { larkClient } from './Base';
 import { HR_BASE_ID } from './Person';
@@ -23,6 +24,8 @@ export type Personnel = Record<
   | 'position'
   | 'award'
   | 'reason'
+  | 'approvers'
+  | 'rejecters'
   | 'passed',
   TableCellValue
 >;
@@ -40,9 +43,18 @@ export class PersonnelModel extends BiDataTable<Personnel>() {
 
   sort = { createdAt: 'DESC' } as const;
 
-  makeFilter(filter: NewData<Personnel>) {
+  @observable
+  group: Record<string, Personnel[]> = {};
+
+  currentYear?: number;
+
+  makeFilter({ passed, ...filter }: NewData<Personnel>) {
+    const { currentYear } = this;
+
     return [
-      'CurrentValue.[passed]=true',
+      passed && `CurrentValue.[passed]=${passed}`,
+      currentYear && `CurrentValue.[createdAt]>=TODATE("${currentYear}-01-01")`,
+      currentYear && `CurrentValue.[createdAt]<=TODATE("${currentYear}-12-31")`,
       !isEmpty(filter) && makeSimpleFilter(filter),
     ]
       .filter(Boolean)
@@ -71,5 +83,18 @@ export class PersonnelModel extends BiDataTable<Personnel>() {
       award: (award as TableCellRelation[])?.map(normalizeText),
       passed: JSON.parse(normalizeText((passed as TableCellText[])[0])),
     };
+  }
+
+  async getGroup(year = this.currentYear) {
+    this.currentYear = year;
+
+    try {
+      return (this.group = groupBy(
+        await this.getAll(),
+        ({ position, award }) => (position || award) as string,
+      ));
+    } finally {
+      this.currentYear = undefined;
+    }
   }
 }
