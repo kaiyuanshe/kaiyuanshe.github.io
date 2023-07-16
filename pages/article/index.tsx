@@ -23,9 +23,9 @@ const ArticleListPage: FC<
 
   return (
     <Container className="py-5">
-      <PageHead title={t('our_blogs')} />
+      <PageHead title={t('our_articles')} />
 
-      <h1 className="mb-5 text-center">{t('our_blogs')}</h1>
+      <h1 className="mb-5 text-center">{t('our_articles')}</h1>
 
       <ScrollList
         translator={i18n}

@@ -50,7 +50,7 @@ export const MainRoutes = (): Link[] => [
     ],
   },
   {
-    title: t('our_blogs'),
+    title: t('our_articles'),
     subs: [
       { title: t('coscon'), path: '/search?tag=COSCon' },
       {
@@ -59,17 +59,17 @@ export const MainRoutes = (): Link[] => [
       },
       {
         title: t('open_source_book_club'),
+        path: '/search?tag=读书会',
+      },
+      {
+        title: t('original_articles'),
         path: '',
       },
       {
-        title: t('original_blogs'),
+        title: t('translated_articles'),
         path: '',
       },
-      {
-        title: t('translation_blogs'),
-        path: '',
-      },
-      { title: t('all_blogs'), path: '/article' },
+      { title: t('all_articles'), path: '/article' },
     ],
   },
   {
