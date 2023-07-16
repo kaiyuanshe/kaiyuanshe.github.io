@@ -12,7 +12,7 @@ export interface ElectorCardProps extends CardProps, Omit<Personnel, 'id'> {
   order: number;
 }
 
-export const ElectionCard: FC<ElectorCardProps> = ({
+export const ElectorCard: FC<ElectorCardProps> = ({
   createdAt,
   recipient,
   recipientAvatar,
