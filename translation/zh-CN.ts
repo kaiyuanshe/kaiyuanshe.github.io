@@ -94,8 +94,15 @@ export default {
   register_volunteer: '志愿者报名',
   submit_agenda: '议题征集',
   submit_agenda_file: '议题课件提交',
+  reimbursement_application: '报销申请',
+  participant_registration: '参会注册',
 
   member_x: '成员X',
+  calendar: '日历',
+  share: '分享',
+
+  //invitation pages
+  press_to_share: '长按图片分享',
 
   // Cooperation Page
   主办单位: '主办单位',
@@ -181,4 +188,6 @@ export default {
   last_project_group: '上届任职项目组',
   next_term_plan: '下届规划',
   expert_committee: '专家委员会',
+  producer: '出品人：',
+  volunteer: '志愿者：',
 } as const;

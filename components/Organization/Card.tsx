@@ -136,7 +136,7 @@ export class OrganizationCard extends PureComponent<OrganizationCardProps> {
               fluid
               className="mt-2"
               src={`https://open.weixin.qq.com/qr/code?username=${wechatName}`}
-              alt=""
+              alt={wechatName as string}
             />
           )}
         </Card.Footer>

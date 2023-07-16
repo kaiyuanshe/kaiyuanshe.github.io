@@ -24,7 +24,7 @@
 
 ## Technology stack
 
-- Language: [TypeScript v4][2]
+- Language: [TypeScript v5][2]
 - Component engine: [Nextjs v12][3]
 - Component suite: [Bootstrap v5][4]
 - State management: [MobX][8]

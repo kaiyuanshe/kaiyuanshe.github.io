@@ -16,25 +16,23 @@ export const getServerSideProps = withTranslation(async () => {
   return { props: { list: JSON.parse(JSON.stringify(list)) } };
 });
 
+const { t } = i18n;
+
 const ActivityListPage: FC<
   InferGetServerSidePropsType<typeof getServerSideProps>
-> = observer(({ list }) => {
-  const { t } = i18n;
+> = observer(({ list }) => (
+  <Container className="py-5">
+    <PageHead title={t('wonderful_activity')} />
 
-  return (
-    <Container className="py-5">
-      <PageHead title={t('wonderful_activity')} />
+    <h1 className="mb-5 text-center">{t('wonderful_activity')}</h1>
 
-      <h1 className="mb-5 text-center">{t('wonderful_activity')}</h1>
-
-      <ScrollList
-        translator={i18n}
-        store={activityStore}
-        renderList={allItems => <ActivityListLayout defaultData={allItems} />}
-        defaultData={list}
-      />
-    </Container>
-  );
-});
+    <ScrollList
+      translator={i18n}
+      store={activityStore}
+      renderList={allItems => <ActivityListLayout defaultData={allItems} />}
+      defaultData={list}
+    />
+  </Container>
+));
 
 export default ActivityListPage;

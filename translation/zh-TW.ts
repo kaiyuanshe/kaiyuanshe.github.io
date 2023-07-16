@@ -91,8 +91,15 @@ export default {
   register_volunteer: '義工報名',
   submit_agenda: '議題征集',
   submit_agenda_file: '議題文檔提交',
+  reimbursement_application: '報銷申請',
+  participant_registration: '參會註冊',
 
   member_x: '成員X',
+  calendar: '日曆',
+  share: '分享',
+
+  //invitation pages
+  press_to_share: '長按圖片分享',
 
   // Cooperation Page
   主办单位: '主辦單位',
@@ -178,4 +185,6 @@ export default {
   last_project_group: '上屆任職專案組',
   next_term_plan: '下屆規劃',
   expert_committee: '專家委員會',
+  producer: '出品人：',
+  volunteer: '志願者：',
 } as const;

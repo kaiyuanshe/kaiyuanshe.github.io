@@ -93,8 +93,15 @@ export default {
   register_volunteer: 'Register Volunteer',
   submit_agenda: 'Submit Agenda',
   submit_agenda_file: 'Submit Agenda File',
+  reimbursement_application: 'Reimbursement application',
+  participant_registration: 'Participant registration',
 
   member_x: 'member X',
+  calendar: 'Calendar',
+  share: 'share',
+
+  //invitation pages
+  press_to_share: 'press image to share',
 
   // Cooperation Page
   主办单位: 'Hosted by',
@@ -185,4 +192,6 @@ export default {
   last_project_group: 'Last Project Group',
   next_term_plan: 'Next Term Plan',
   expert_committee: 'Expert Committee',
+  producer: 'Producer: ',
+  volunteer: 'Volunteer: ',
 } as const;

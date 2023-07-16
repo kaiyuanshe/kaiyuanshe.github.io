@@ -3,19 +3,25 @@ import {
   BiDataTable,
   normalizeText,
   TableCellRelation,
+  TableCellText,
   TableCellValue,
   TableRecordList,
 } from 'mobx-lark';
 import { groupBy } from 'web-utility';
 
+import { normalizeTextArray } from '../pages/api/lark/core';
 import { larkClient } from './Base';
 
 export type Agenda = Record<
   | 'id'
+  | 'type'
   | 'title'
+  | 'summary'
   | 'forum'
   | 'mentors'
   | 'mentorAvatars'
+  | 'mentorPositions'
+  | 'mentorSummaries'
   | 'startTime'
   | 'endTime'
   | 'files',
@@ -34,13 +40,21 @@ export class AgendaModel extends BiDataTable<Agenda>() {
 
   normalize({
     id,
-    fields: { forum, mentors, ...data },
+    fields: { forum, mentors, mentorPositions, mentorSummaries, ...data },
   }: TableRecordList<Agenda>['data']['items'][number]) {
     return {
       ...data,
       id: id!,
       forum: (forum as TableCellRelation[])?.map(normalizeText),
-      mentors: (mentors as TableCellRelation[])?.map(normalizeText),
+      mentors: (mentors as TableCellRelation[])
+        ?.map(mentor => normalizeText(mentor).split(','))
+        .flat(),
+      mentorPositions:
+        mentorPositions &&
+        normalizeTextArray(mentorPositions as TableCellText[]),
+      mentorSummaries:
+        mentorSummaries &&
+        normalizeTextArray(mentorSummaries as TableCellText[]),
     };
   }
 

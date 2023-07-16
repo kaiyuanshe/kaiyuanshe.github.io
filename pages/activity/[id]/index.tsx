@@ -1,5 +1,6 @@
 import { Icon } from 'idea-react';
 import { observable } from 'mobx';
+import { TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
 import { MouseEvent, PureComponent } from 'react';
@@ -7,10 +8,12 @@ import { Button, Col, Container, Nav, Offcanvas, Row } from 'react-bootstrap';
 import { scrollTo, sleep } from 'web-utility';
 
 import { AgendaCard } from '../../../components/Activity/Agenda/Card';
+import { ActivityPeople } from '../../../components/Activity/People';
 import PageHead from '../../../components/PageHead';
 import { Activity, ActivityModel } from '../../../models/Activity';
 import { AgendaModel } from '../../../models/Agenda';
 import { blobURLOf } from '../../../models/Base';
+import { Forum } from '../../../models/Forum';
 import { i18n } from '../../../models/Translation';
 import { withErrorLog } from '../../api/base';
 import styles from './index.module.less';
@@ -21,6 +24,7 @@ export const getServerSideProps = withErrorLog<
     activity: Activity;
     currentMeta: ActivityModel['currentMeta'];
     agendaGroup: AgendaModel['group'];
+    forums: Forum[];
   }
 >(async ({ params }) => {
   const activityStore = new ActivityModel();
@@ -31,14 +35,16 @@ export const getServerSideProps = withErrorLog<
 
   const { currentMeta } = activityStore;
 
+  const forums = await activityStore.currentForum!.getAll();
+
   return {
-    props: JSON.parse(JSON.stringify({ activity, currentMeta, agendaGroup })),
+    props: JSON.parse(
+      JSON.stringify({ activity, currentMeta, agendaGroup, forums }),
+    ),
   };
 });
 
 const { t } = i18n;
-
-const MainForumName = '主论坛';
 
 @observer
 export default class ActivityDetailPage extends PureComponent<
@@ -70,24 +76,25 @@ export default class ActivityDetailPage extends PureComponent<
   };
 
   renderButtonBar() {
-    const { startTime, personForm, agendaForm, fileForm } =
-      this.props.currentMeta;
+    const { startTime, personForm, agendaForm, fileForm, billForm } =
+        this.props.currentMeta,
+      { link } = this.props.activity;
     const passed = +new Date(+startTime!) <= Date.now();
 
     return (
-      <div className="d-flex justify-content-center gap-3 my-3">
+      <div className="d-flex flex-wrap justify-content-center gap-3 my-3">
         {personForm && (
-          <Button
-            variant="success"
-            target="_blank"
-            href={personForm}
-            disabled={passed}
-          >
+          <Button target="_blank" href={personForm} disabled={passed}>
             {t('register_volunteer')}
           </Button>
         )}
         {agendaForm && (
-          <Button target="_blank" href={agendaForm} disabled={passed}>
+          <Button
+            variant="success"
+            target="_blank"
+            href={agendaForm}
+            disabled={passed}
+          >
             {t('submit_agenda')}
           </Button>
         )}
@@ -101,13 +108,33 @@ export default class ActivityDetailPage extends PureComponent<
             {t('submit_agenda_file')}
           </Button>
         )}
+        {billForm && (
+          <Button
+            variant="info"
+            target="_blank"
+            href={billForm}
+            disabled={passed}
+          >
+            {t('reimbursement_application')}
+          </Button>
+        )}
+        {link && (
+          <Button
+            variant="danger"
+            target="_blank"
+            href={link as string}
+            disabled={passed}
+          >
+            {t('participant_registration')}
+          </Button>
+        )}
       </div>
     );
   }
 
   renderDrawer() {
     const { showDrawer } = this,
-      { agendaGroup } = this.props;
+      { forums } = this.props;
 
     return (
       <>
@@ -124,19 +151,15 @@ export default class ActivityDetailPage extends PureComponent<
         >
           <Offcanvas.Body>
             <Nav className="flex-column">
-              {Object.keys(agendaGroup)
-                .sort((a, b) =>
-                  a === MainForumName ? -1 : b === MainForumName ? 1 : 0,
-                )
-                .map(forum => (
-                  <Nav.Link
-                    key={forum}
-                    href={`#${forum}`}
-                    onClick={this.scrollTo}
-                  >
-                    {forum}
-                  </Nav.Link>
-                ))}
+              {forums.map(({ name }) => (
+                <Nav.Link
+                  key={name + ''}
+                  href={`#${name}`}
+                  onClick={this.scrollTo}
+                >
+                  {name}
+                </Nav.Link>
+              ))}
             </Nav>
           </Offcanvas.Body>
         </Offcanvas>
@@ -145,7 +168,7 @@ export default class ActivityDetailPage extends PureComponent<
   }
 
   render() {
-    const { activity, agendaGroup } = this.props;
+    const { activity, agendaGroup, forums } = this.props;
 
     return (
       <>
@@ -154,7 +177,9 @@ export default class ActivityDetailPage extends PureComponent<
         <header
           className={`d-flex flex-column align-items-center justify-content-around ${styles.header}`}
           style={{
-            backgroundImage: `url(${blobURLOf(activity.image)})`,
+            backgroundImage: `url(${JSON.stringify(
+              blobURLOf(activity.image),
+            )})`,
           }}
         >
           <h1 className="visually-hidden">{activity.name}</h1>
@@ -164,24 +189,55 @@ export default class ActivityDetailPage extends PureComponent<
         {this.renderDrawer()}
 
         <Container>
-          {Object.entries(agendaGroup)
-            .sort(([a], [b]) =>
-              a === MainForumName ? -1 : b === MainForumName ? 1 : 0,
-            )
-            .map(([forum, agendas]) => (
-              <section key={forum}>
-                <h2 className="my-5 text-center" id={forum}>
-                  {forum}
+          {forums.map(
+            ({
+              name,
+              volunteers,
+              volunteerAvatars,
+              producers,
+              producerAvatars,
+              producerPositions,
+            }) => (
+              <section key={name as string}>
+                <h2 className="my-5 text-center" id={name as string}>
+                  {name}
                 </h2>
+                <div className="d-flex justify-content-center">
+                  <div className="d-flex align-items-center px-5">
+                    <h3 className="h6">{t('producer')}</h3>
+                    <ActivityPeople
+                      names={producers as string[]}
+                      avatars={(producerAvatars as TableCellValue[])?.map(
+                        file => blobURLOf([file] as TableCellValue),
+                      )}
+                      positions={producerPositions as string[]}
+                    />
+                  </div>
+                  <div className="d-flex align-items-center px-5">
+                    <h3 className="h6">{t('volunteer')}</h3>
+                    <ActivityPeople
+                      names={volunteers as string[]}
+                      avatars={(volunteerAvatars as TableCellValue[])?.map(
+                        file => blobURLOf([file] as TableCellValue),
+                      )}
+                    />
+                  </div>
+                </div>
+
                 <Row as="ol" className="list-unstyled g-4" xs={1} sm={2} md={3}>
-                  {agendas.map(agenda => (
+                  {agendaGroup[name as string]?.map(agenda => (
                     <Col as="li" key={agenda.id + ''}>
-                      <AgendaCard {...agenda} />
+                      <AgendaCard
+                        activityId={activity.id + ''}
+                        location={activity.location + ''}
+                        {...agenda}
+                      />
                     </Col>
                   ))}
                 </Row>
               </section>
-            ))}
+            ),
+          )}
         </Container>
       </>
     );

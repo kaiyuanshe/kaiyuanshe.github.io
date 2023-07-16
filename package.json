@@ -1,6 +1,6 @@
 {
   "name": "@kaiyuanshe/ows",
-  "version": "2.2.0-beta",
+  "version": "2.3.0-rc",
   "description": "React project scaffold based on TypeScript, Next.js & Bootstrap.",
   "private": true,
   "engines": {
@@ -11,7 +11,8 @@
     "classnames": "^2.3.2",
     "echarts-jsx": "^0.5.0",
     "file-type": "^18.5.0",
-    "idea-react": "^1.0.0-rc.3",
+    "html2canvas": "^1.4.1",
+    "idea-react": "^1.0.0-rc.5",
     "koajax": "^0.8.4",
     "leaflet": "^1.9.4",
     "leaflet.chinatmsproviders": "^3.0.6",
@@ -28,9 +29,11 @@
     "next": "^12.3.4",
     "next-pwa": "^5.6.0",
     "next-with-less": "^2.0.5",
+    "qrcode.react": "^3.1.0",
     "react": "^17.0.2",
     "react-bootstrap": "^2.8.0",
     "react-dom": "^17.0.2",
+    "react-icalendar-link": "^3.0.2",
     "react-leaflet": "^3.2.5",
     "web-utility": "^4.0.0",
     "webpack": "^5.88.1"

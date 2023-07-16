@@ -33,7 +33,7 @@ export default function Document() {
         />
         <link
           rel="stylesheet"
-          href="https://unpkg.com/bootstrap-icons@1.10.4/font/bootstrap-icons.css"
+          href="https://unpkg.com/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
         />
         <link
           rel="stylesheet"

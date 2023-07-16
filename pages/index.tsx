@@ -62,11 +62,7 @@ export default class HomePage extends PureComponent<
         <PageHead />
 
         <section className="py-5 text-center bg-primary">
-          <Image
-            fluid
-            src="/image/Heart_of_Community.png"
-            alt="Heart of Community"
-          />
+          <Image fluid src="/image/Heart_of_Community.png" alt="Head Image" />
         </section>
 
         <Container>
