@@ -1,9 +1,11 @@
 import { text2color } from 'idea-react';
+import { marked } from 'marked';
 import { InferGetServerSidePropsType } from 'next';
 import { PureComponent } from 'react';
 import { Badge, Col, Container, Image, Row } from 'react-bootstrap';
 import { formatDate } from 'web-utility';
 
+import { CommentBox } from '../../components/CommentBox';
 import PageHead from '../../components/PageHead';
 import { Person, PersonModel } from '../../models/Person';
 import { Personnel, PersonnelModel } from '../../models/Personnel';
@@ -18,7 +20,10 @@ export const getServerSideProps = withErrorLog<
 
     if (!person) return { notFound: true, props: {} };
 
-    const personnels = await new PersonnelModel().getList({ recipient: name });
+    const personnels = await new PersonnelModel().getList({
+      passed: true,
+      recipient: name,
+    });
 
     return {
       props: JSON.parse(JSON.stringify({ person, personnels })),
@@ -37,7 +42,6 @@ export default class PersonDetailPage extends PureComponent<
     website,
     github = 'https://github.com/kaiyuanshe',
     skills,
-    summary,
   }: Person) => (
     <>
       <Image src={`${github}.png`} alt="GitHub profile image" />
@@ -75,7 +79,6 @@ export default class PersonDetailPage extends PureComponent<
           </a>
         </li>
       </ul>
-      <article>{summary}</article>
     </>
   );
 
@@ -86,6 +89,7 @@ export default class PersonDetailPage extends PureComponent<
     department,
     position,
     award,
+    applicants,
     reason,
   }: Personnel) => (
     <li key={id as string} className="mb-3">
@@ -107,7 +111,16 @@ export default class PersonDetailPage extends PureComponent<
           </div>
         </summary>
 
-        {reason}
+        <figure className="mt-3 px-3">
+          <blockquote className="blockquote">
+            <p>{reason}</p>
+          </blockquote>
+          {applicants && (
+            <figcaption className="blockquote-footer">
+              <cite>{(applicants as string[])[0]}</cite>
+            </figcaption>
+          )}
+        </figure>
       </details>
     </li>
   );
@@ -124,9 +137,20 @@ export default class PersonDetailPage extends PureComponent<
             {this.renderProfile(person)}
           </Col>
           <Col xs={12} sm={8} as="ol" className="list-unstyled">
+            {person.summary && (
+              <article
+                dangerouslySetInnerHTML={{
+                  __html: marked(person.summary as string),
+                }}
+              />
+            )}
+            <hr className="my-5" />
+
             {personnels.map(this.renderPersonnel)}
           </Col>
         </Row>
+
+        <CommentBox category="General" categoryId="DIC_kwDOB88JLM4COLSV" />
       </Container>
     );
   }

@@ -16,12 +16,12 @@ import { safeAPI } from './base';
 export type SearchQuery = Partial<Record<'keywords' | 'tag', string>>;
 
 export interface SearchResult {
-  activities: Activity[];
-  articles: BaseArticle[];
-  people: Person[];
-  expert: Member[];
-  groups: Group[];
-  organizations: Organization[];
+  activities?: Activity[];
+  articles?: BaseArticle[];
+  people?: Person[];
+  expert?: Member[];
+  groups?: Group[];
+  organizations?: Organization[];
 }
 
 export default safeAPI(

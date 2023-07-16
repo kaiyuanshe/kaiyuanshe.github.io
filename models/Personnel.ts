@@ -1,14 +1,17 @@
+import { observable } from 'mobx';
 import {
   BiDataTable,
   makeSimpleFilter,
   normalizeText,
+  TableCellAttachment,
+  TableCellMedia,
   TableCellRelation,
   TableCellText,
   TableCellValue,
   TableRecordList,
 } from 'mobx-lark';
 import { NewData } from 'mobx-restful';
-import { isEmpty } from 'web-utility';
+import { groupBy, isEmpty } from 'web-utility';
 
 import { larkClient } from './Base';
 import { HR_BASE_ID } from './Person';
@@ -19,15 +22,20 @@ export type Personnel = Record<
   | 'type'
   | 'applicants'
   | 'recipient'
+  | 'recipientAvatar'
   | 'department'
   | 'position'
   | 'award'
   | 'reason'
+  | 'approvers'
+  | 'rejecters'
   | 'passed',
   TableCellValue
 >;
 
 export const PERSONNEL_TABLE_ID = process.env.NEXT_PUBLIC_PERSONNEL_TABLE_ID!;
+
+export type ElectionTarget = '理事' | '正式成员';
 
 export class PersonnelModel extends BiDataTable<Personnel>() {
   client = larkClient;
@@ -40,9 +48,18 @@ export class PersonnelModel extends BiDataTable<Personnel>() {
 
   sort = { createdAt: 'DESC' } as const;
 
-  makeFilter(filter: NewData<Personnel>) {
+  @observable
+  group: Record<string, Personnel[]> = {};
+
+  currentYear?: number;
+
+  makeFilter({ passed, ...filter }: NewData<Personnel>) {
+    const { currentYear } = this;
+
     return [
-      'CurrentValue.[passed]=true',
+      passed && `CurrentValue.[passed]=${passed}`,
+      currentYear && `CurrentValue.[createdAt]>=TODATE("${currentYear}-01-01")`,
+      currentYear && `CurrentValue.[createdAt]<=TODATE("${currentYear}-12-31")`,
       !isEmpty(filter) && makeSimpleFilter(filter),
     ]
       .filter(Boolean)
@@ -54,6 +71,7 @@ export class PersonnelModel extends BiDataTable<Personnel>() {
     fields: {
       applicants,
       recipient,
+      recipientAvatar,
       department,
       position,
       award,
@@ -66,10 +84,30 @@ export class PersonnelModel extends BiDataTable<Personnel>() {
       id: id!,
       applicants: (applicants as TableCellRelation[])?.map(normalizeText),
       recipient: (recipient as TableCellRelation[])?.map(normalizeText),
+      recipientAvatar: (recipientAvatar as TableCellAttachment[])?.map(
+        ({ attachmentToken, ...file }) =>
+          ({
+            ...file,
+            file_token: attachmentToken,
+          }) as unknown as TableCellMedia,
+      ),
       department: (department as TableCellRelation[])?.map(normalizeText),
       position: (position as TableCellRelation[])?.map(normalizeText),
       award: (award as TableCellRelation[])?.map(normalizeText),
       passed: JSON.parse(normalizeText((passed as TableCellText[])[0])),
     };
+  }
+
+  async getGroup(year = this.currentYear) {
+    this.currentYear = year;
+
+    try {
+      return (this.group = groupBy(
+        await this.getAll(),
+        ({ position, award }) => (position || award) as string,
+      ));
+    } finally {
+      this.currentYear = undefined;
+    }
   }
 }
