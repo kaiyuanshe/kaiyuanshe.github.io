@@ -3,6 +3,8 @@ import {
   BiDataTable,
   makeSimpleFilter,
   normalizeText,
+  TableCellAttachment,
+  TableCellMedia,
   TableCellRelation,
   TableCellText,
   TableCellValue,
@@ -20,6 +22,7 @@ export type Personnel = Record<
   | 'type'
   | 'applicants'
   | 'recipient'
+  | 'recipientAvatar'
   | 'department'
   | 'position'
   | 'award'
@@ -66,6 +69,7 @@ export class PersonnelModel extends BiDataTable<Personnel>() {
     fields: {
       applicants,
       recipient,
+      recipientAvatar,
       department,
       position,
       award,
@@ -78,6 +82,13 @@ export class PersonnelModel extends BiDataTable<Personnel>() {
       id: id!,
       applicants: (applicants as TableCellRelation[])?.map(normalizeText),
       recipient: (recipient as TableCellRelation[])?.map(normalizeText),
+      recipientAvatar: (recipientAvatar as TableCellAttachment[])?.map(
+        ({ attachmentToken, ...file }) =>
+          ({
+            ...file,
+            file_token: attachmentToken,
+          }) as unknown as TableCellMedia,
+      ),
       department: (department as TableCellRelation[])?.map(normalizeText),
       position: (position as TableCellRelation[])?.map(normalizeText),
       award: (award as TableCellRelation[])?.map(normalizeText),

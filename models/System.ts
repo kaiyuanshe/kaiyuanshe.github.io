@@ -43,7 +43,7 @@ export class SystemModel extends BaseModel {
     const { body } = await client.get<SearchResult>(
       `search?${buildURLData(query)}`,
     );
-    const activities = body!.activities.map(
+    const activities = body!.activities?.map(
       ({ link, organizers, ...activity }) => ({
         ...activity,
         link: (link as TableCellLink)?.link,

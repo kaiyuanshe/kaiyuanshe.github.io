@@ -29,12 +29,12 @@ const SearchPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
   observer(
     ({
       route,
-      articles,
-      activities,
-      people,
-      expert,
-      groups,
-      organizations,
+      articles = [],
+      activities = [],
+      people = [],
+      expert = [],
+      groups = [],
+      organizations = [],
     }) => {
       const { t } = i18n,
         { tag, keywords } = route.query as SearchQuery;

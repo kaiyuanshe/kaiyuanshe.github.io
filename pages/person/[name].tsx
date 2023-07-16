@@ -5,6 +5,7 @@ import { PureComponent } from 'react';
 import { Badge, Col, Container, Image, Row } from 'react-bootstrap';
 import { formatDate } from 'web-utility';
 
+import { CommentBox } from '../../components/CommentBox';
 import PageHead from '../../components/PageHead';
 import { Person, PersonModel } from '../../models/Person';
 import { Personnel, PersonnelModel } from '../../models/Personnel';
@@ -148,6 +149,8 @@ export default class PersonDetailPage extends PureComponent<
             {personnels.map(this.renderPersonnel)}
           </Col>
         </Row>
+
+        <CommentBox category="General" categoryId="DIC_kwDOB88JLM4COLSV" />
       </Container>
     );
   }

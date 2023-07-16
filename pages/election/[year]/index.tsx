@@ -86,9 +86,13 @@ const ElectionPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
                     (b1 as string[])?.length - (a1 as string[])?.length ||
                     (a2 as string[])?.length - (b2 as string[])?.length,
                 )
-                .map(({ id, ...item }) => (
+                .map(({ id, ...item }, index) => (
                   <Col as="li" key={id + ''}>
-                    <ElectionCard className="h-100" {...item} />
+                    <ElectionCard
+                      className="h-100"
+                      {...item}
+                      order={index + 1}
+                    />
                   </Col>
                 ))}
             </Row>

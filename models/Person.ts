@@ -14,6 +14,7 @@ export type Person = Record<
   | 'id'
   | 'name'
   | 'gender'
+  | 'avatar'
   | 'city'
   | 'mobilePhone'
   | 'email'
