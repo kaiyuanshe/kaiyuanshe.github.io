@@ -4,12 +4,8 @@ const { t } = i18n;
 
 export const slogan = () => [
   {
-    title: t('our_principles'),
-    items: [
-      { text: t('contribution'), icon: 'vector-pen' },
-      { text: t('consensus'), icon: 'person-hearts' },
-      { text: t('collegiality'), icon: 'diagram-3' },
-    ],
+    title: t('our_vision'),
+    items: [{ text: t('our_vision_content') }],
   },
   {
     title: t('our_mission'),
@@ -18,6 +14,14 @@ export const slogan = () => [
       { text: t('global_bridging'), icon: 'globe2' },
       { text: t('community_development'), icon: 'people' },
       { text: t('project_incubation'), icon: 'git' },
+    ],
+  },
+  {
+    title: t('our_principles'),
+    items: [
+      { text: t('contribution'), icon: 'vector-pen' },
+      { text: t('consensus'), icon: 'person-hearts' },
+      { text: t('collegiality'), icon: 'diagram-3' },
     ],
   },
 ];
