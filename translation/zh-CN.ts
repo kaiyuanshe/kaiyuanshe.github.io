@@ -1,5 +1,7 @@
 export default {
   KaiYuanShe: '开源社',
+  our_vision: '我们的愿景',
+  our_vision_content: '立足中国、贡献全球，推动开源成为新时代的生活方式',
   our_principles: '我们的原则',
   contribution: '贡献',
   consensus: '共识',
@@ -16,16 +18,34 @@ export default {
   activity_map: '活动地图',
 
   // Main Navigator
-  about_us: '关于我们',
-  our_blogs: '开源文库',
+  our_community_structure: '组织架构',
+  our_community_structure_overview: '组织架构全景图',
+  our_council: '理事会',
+  our_executive_committee: '执行委员会',
+  our_project_committee: '项目委员会',
+  our_advisory_committee: '顾问委员会',
+  our_legal_advisory_committee: '法律咨询委员会',
   our_members: '正式成员',
-  our_community_structure: '组织机构',
+
+  our_blogs: '开源文库',
+  coscon: '中国开源年会(COSCon)',
+  kcc: '开源社城市社区(KCC)',
+  open_source_book_club: '开源读书会',
+  original_blogs: '原创文章',
+  translation_blogs: '翻译文章',
+  all_blogs: '全部文章',
+
+  our_annual_report: '年度报告',
+  china_open_source_annual_report: '中国开源年度报告',
+  kaiyuanshe_annual_report: '开源社年度报告',
+
   china_open_source_landscape: '开源地图',
   our_partners: '合作伙伴',
   open_source_treasure_box: '开源百宝箱',
   Web_polyfill_CDN: 'Web 标准补丁 CDN',
   open_source_mirror: '开源镜像站',
   license_tool: '开源许可证选择器',
+  about_us: '关于我们',
 
   no_more: '没有更多',
   load_more: '加载更多……',
