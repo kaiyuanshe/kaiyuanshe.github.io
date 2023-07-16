@@ -19,13 +19,9 @@ export default {
   activity_map: 'Activity Map',
 
   // Main Navigator
-  our_community_structure: 'Our community structure',
-  our_community_structure_overview: 'Our community structure overview',
-  our_council: 'Our council',
-  our_executive_committee: 'Our executive committee',
-  our_project_committee: 'Our project committee',
-  our_advisory_committee: 'Our advisory committee',
-  our_legal_advisory_committee: 'Our legal advisory committee',
+  community_structure: 'Community structure',
+  community_structure_overview: 'Community structure overview',
+  advisory_committee: 'Advisory committee',
   our_members: 'Our members',
   our_blogs: 'Our blogs',
   coscon: 'China Open Source Conference',

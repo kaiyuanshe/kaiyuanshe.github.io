@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import { text2color } from 'idea-react';
-import Image from 'next/image';
 import { FC } from 'react';
 import { Badge, Image } from 'react-bootstrap';
 

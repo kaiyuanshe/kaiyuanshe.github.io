@@ -26,24 +26,24 @@ export const TimeOption: Pick<
 
 export const MainRoutes = (): Link[] => [
   {
-    title: t('our_community_structure'),
+    title: t('community_structure'),
     subs: [
-      { title: t('our_community_structure_overview'), path: '/department' },
-      { title: t('our_council'), path: '/members?anchor=理事会' },
+      { title: t('community_structure_overview'), path: '/department' },
+      { title: t('council'), path: '/members?anchor=理事会' },
       {
-        title: t('our_executive_committee'),
+        title: t('executive_committee'),
         path: '/members?anchor=执行委员会',
       },
       {
-        title: t('our_project_committee'),
+        title: t('project_committee'),
         path: '/members?anchor=项目委员会',
       },
       {
-        title: t('our_advisory_committee'),
+        title: t('advisory_committee'),
         path: '/members?anchor=顾问委员会',
       },
       {
-        title: t('our_legal_advisory_committee'),
+        title: t('legal_advisory_committee'),
         path: '/members?anchor=法律咨询委员会',
       },
       { title: t('our_members'), path: '/members' },
