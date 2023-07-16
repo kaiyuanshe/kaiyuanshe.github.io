@@ -35,6 +35,8 @@ export type Personnel = Record<
 
 export const PERSONNEL_TABLE_ID = process.env.NEXT_PUBLIC_PERSONNEL_TABLE_ID!;
 
+export type ElectionTarget = '理事' | '正式成员';
+
 export class PersonnelModel extends BiDataTable<Personnel>() {
   client = larkClient;
 

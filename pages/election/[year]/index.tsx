@@ -7,8 +7,7 @@ import { isEmpty } from 'web-utility';
 
 import { ElectionCard } from '../../../components/Election/ElectorCard';
 import PageHead from '../../../components/PageHead';
-import { ElectionTarget } from '../../../models/Elector';
-import { PersonnelModel } from '../../../models/Personnel';
+import { ElectionTarget, PersonnelModel } from '../../../models/Personnel';
 import { i18n } from '../../../models/Translation';
 import { withErrorLog, withRoute, withTranslation } from '../../api/base';
 
