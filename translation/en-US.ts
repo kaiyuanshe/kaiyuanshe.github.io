@@ -2,7 +2,7 @@ export default {
   KaiYuanShe: 'KaiYuanShe',
   our_vision: 'Our vision',
   our_vision_content:
-    'Based in China, contribute to the world, and promote open source a way of life in the new era',
+    'Based in China, contribute to the world, and promote open source as a way of life in the new era',
   our_principles: 'Our principles',
   contribution: 'Contribution',
   consensus: 'Consensus',
