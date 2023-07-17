@@ -80,9 +80,8 @@ export default class HomePage extends PureComponent<
                 >
                   {items.map(({ icon, text }) =>
                     text === t('our_vision_content') ? (
-                      <Col as="li" className="w-100" key={text}>
-                        <Icon name={icon} size={6} />
-                        <div className="h3">{text}</div>
+                      <Col as="li" className="h3" xs={12} key={text}>
+                        {text}
                       </Col>
                     ) : (
                       <Col as="li" key={text}>
