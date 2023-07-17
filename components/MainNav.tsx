@@ -3,6 +3,7 @@ import { observer } from 'mobx-react';
 import { NextRouter, withRouter } from 'next/router';
 import { PureComponent } from 'react';
 import { Container, Image, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { isXDomain } from 'web-utility';
 
 import { i18n, LanguageName } from '../models/Translation';
 import styles from '../styles/MainNav.module.less';
@@ -37,11 +38,7 @@ class MainNav extends PureComponent<MainNavProps> {
                 key={title}
                 className="text-nowrap"
                 href={path}
-                target={
-                  isXDomain(path)
-                    ? '_blank'
-                    : 'undefined'
-                }
+                target={isXDomain(path) ? '_blank' : ''}
                 active={pathname.startsWith(path)}
               >
                 {title}
