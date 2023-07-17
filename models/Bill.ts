@@ -12,7 +12,7 @@ import {
   TableRecordList,
 } from 'mobx-lark';
 import { Filter, NewData, toggle } from 'mobx-restful';
-import { cache, countBy, Hour, isEmpty } from 'web-utility';
+import { cache, countBy, groupBy, Hour, isEmpty } from 'web-utility';
 
 import {
   LarkFormData,
@@ -39,3 +39,27 @@ export type Bill = Record<
   | 'agendas',
   TableCellValue
 >;
+
+export type BillStatistic = Record<'price', Record<string, number>>;
+
+export class BillViewModel extends BiTableView() {
+  client = larkClient;
+}
+
+export class BillTableModel extends BiDataTable<Bill>() {
+  client = larkClient;
+
+  requiredKeys = ['price', 'invoice', 'forum', 'agendas'] as const;
+
+  sort = { createAt: 'ASC' } as const;
+
+  @observable
+  group: Record<string, Bill[]> = {};
+
+  async getGroup() {
+    return (this.group = groupBy(
+      await this.getAll(),
+      ({ forum }) => forum + '',
+    ));
+  }
+}
