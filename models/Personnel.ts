@@ -53,13 +53,14 @@ export class PersonnelModel extends BiDataTable<Personnel>() {
 
   currentYear?: number;
 
-  makeFilter({ passed, ...filter }: NewData<Personnel>) {
+  makeFilter({ position, passed, ...filter }: NewData<Personnel>) {
     const { currentYear } = this;
 
     return [
-      passed && `CurrentValue.[passed]=${passed}`,
       currentYear && `CurrentValue.[createdAt]>=TODATE("${currentYear}-01-01")`,
       currentYear && `CurrentValue.[createdAt]<=TODATE("${currentYear}-12-31")`,
+      position && makeSimpleFilter({ position }, 'contains', 'OR'),
+      passed && `CurrentValue.[passed]=${passed}`,
       !isEmpty(filter) && makeSimpleFilter(filter),
     ]
       .filter(Boolean)
