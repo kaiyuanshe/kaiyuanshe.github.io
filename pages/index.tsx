@@ -78,12 +78,19 @@ export default class HomePage extends PureComponent<
                   sm={2}
                   md={4}
                 >
-                  {items.map(({ icon, text }) => (
-                    <Col as="li" key={text}>
-                      <Icon name={icon} size={6} />
-                      <div className="h3">{text}</div>
-                    </Col>
-                  ))}
+                  {items.map(({ icon, text }) =>
+                    text === t('our_vision_content') ? (
+                      <Col as="li" className="w-100" key={text}>
+                        <Icon name={icon} size={6} />
+                        <div className="h3">{text}</div>
+                      </Col>
+                    ) : (
+                      <Col as="li" key={text}>
+                        <Icon name={icon} size={6} />
+                        <div className="h3">{text}</div>
+                      </Col>
+                    ),
+                  )}
                 </Row>
               </Fragment>
             ))}
