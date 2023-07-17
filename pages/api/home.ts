@@ -5,7 +5,7 @@ const { t } = i18n;
 export const slogan = () => [
   {
     title: t('our_vision'),
-    items: [{ text: t('our_vision_content'), icon: 'globe2' }],
+    items: [{ text: t('our_vision_content'), icon: '' }],
   },
   {
     title: t('our_mission'),
