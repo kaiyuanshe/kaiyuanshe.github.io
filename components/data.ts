@@ -37,6 +37,10 @@ export const MainRoutes = (): Link[] => [
         title: t('expert_committee'),
         path: '/members/expert',
       },
+      {
+        title: t('honor_wall'),
+        path: '/members/honorWall',
+      }
     ],
   },
   { title: t('our_community_structure'), path: '/department' },

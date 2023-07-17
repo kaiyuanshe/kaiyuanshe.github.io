@@ -165,4 +165,5 @@ export default {
   last_project_group: '上屆任職專案組',
   next_term_plan: '下屆規劃',
   expert_committee: '專家委員會',
+  honor_wall: '榮譽牆'
 } as const;
