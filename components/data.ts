@@ -26,21 +26,65 @@ export const TimeOption: Pick<
 
 export const MainRoutes = (): Link[] => [
   {
-    title: t('about_us'),
-    path: 'https://kaiyuanshe.feishu.cn/wiki/wikcn749HAOCD2dwaNq4dOC67db',
+    title: t('community_structure'),
+    subs: [
+      { title: t('community_structure_overview'), path: '/department' },
+      { title: t('council'), path: '/members?anchor=理事会' },
+      {
+        title: t('executive_committee'),
+        path: '/members?anchor=执行委员会',
+      },
+      {
+        title: t('project_committee'),
+        path: '/members?anchor=项目委员会',
+      },
+      {
+        title: t('advisory_committee'),
+        path: '/members?anchor=顾问委员会',
+      },
+      {
+        title: t('legal_advisory_committee'),
+        path: '/members?anchor=法律咨询委员会',
+      },
+      { title: t('our_members'), path: '/members' },
+    ],
   },
   {
-    title: t('our_members'),
+    title: t('our_articles'),
     subs: [
-      { title: t('our_members'), path: '/members' },
+      { title: t('coscon'), path: '/search?tag=COSCon' },
       {
-        title: t('expert_committee'),
-        path: '/members/expert',
+        title: t('kcc'),
+        path: '/search?tag=KCC',
+      },
+      {
+        title: t('open_source_book_club'),
+        path: '/search?tag=读书会',
+      },
+      {
+        title: t('original_articles'),
+        path: '',
+      },
+      {
+        title: t('translated_articles'),
+        path: '',
+      },
+      { title: t('all_articles'), path: '/article' },
+    ],
+  },
+  {
+    title: t('our_annual_report'),
+    subs: [
+      {
+        title: t('china_open_source_annual_report'),
+        path: 'https://kaiyuanshe.feishu.cn/wiki/wikcnUDeVll6PNzw900yPV71Sxd',
+      },
+      {
+        title: t('kaiyuanshe_annual_report'),
+        path: 'https://kaiyuanshe.feishu.cn/wiki/U2S7wudEUisLdnkqUadczo1SnSc',
       },
     ],
   },
-  { title: t('our_community_structure'), path: '/department' },
-  { title: t('our_blogs'), path: '/article' },
   { title: t('wonderful_activity'), path: '/activity' },
   { title: t('our_partners'), path: '/organization/cooperation' },
   {
@@ -51,5 +95,9 @@ export const MainRoutes = (): Link[] => [
       { title: t('open_source_mirror'), path: 'http://mirror.kaiyuanshe.cn/' },
       { title: t('license_tool'), path: '/license-tool' },
     ],
+  },
+  {
+    title: t('about_us'),
+    path: 'https://kaiyuanshe.feishu.cn/wiki/wikcn749HAOCD2dwaNq4dOC67db',
   },
 ];

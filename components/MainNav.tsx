@@ -4,6 +4,7 @@ import { NextRouter, withRouter } from 'next/router';
 import { PureComponent } from 'react';
 import { Container, Image, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 
+import { API_Host } from '../models/Base';
 import { i18n, LanguageName } from '../models/Translation';
 import styles from '../styles/MainNav.module.less';
 import { SearchBar } from './SearchBar';
@@ -37,6 +38,9 @@ class MainNav extends PureComponent<MainNavProps> {
                 key={title}
                 className="text-nowrap"
                 href={path}
+                target={
+                  new URL(path, API_Host).origin !== API_Host ? '_blank' : ''
+                }
                 active={pathname.startsWith(path)}
               >
                 {title}
