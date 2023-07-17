@@ -38,7 +38,7 @@ class MainNav extends PureComponent<MainNavProps> {
                 className="text-nowrap"
                 href={path}
                 target={
-                  path.includes('https://kaiyuanshe.feishu.cn/')
+                  isXDomain(path)
                     ? '_blank'
                     : 'undefined'
                 }
