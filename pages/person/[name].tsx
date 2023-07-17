@@ -44,7 +44,7 @@ export default class PersonDetailPage extends PureComponent<
     skills,
   }: Person) => (
     <>
-      <Image fluid src={`${github}.png`} />
+      <Image fluid src={`${github}.png`} alt="GitHub profile image" />
 
       <h1>{name}</h1>
       <ul>

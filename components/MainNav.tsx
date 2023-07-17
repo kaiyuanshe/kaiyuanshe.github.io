@@ -37,6 +37,11 @@ class MainNav extends PureComponent<MainNavProps> {
                 key={title}
                 className="text-nowrap"
                 href={path}
+                target={
+                  path.includes('https://kaiyuanshe.feishu.cn/')
+                    ? '_blank'
+                    : 'undefined'
+                }
                 active={pathname.startsWith(path)}
               >
                 {title}
