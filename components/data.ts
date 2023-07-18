@@ -29,24 +29,16 @@ export const MainRoutes = (): Link[] => [
     title: t('community_structure'),
     subs: [
       { title: t('community_structure_overview'), path: '/department' },
-      { title: t('council'), path: '/members?anchor=理事会' },
-      {
-        title: t('executive_committee'),
-        path: '/members?anchor=执行委员会',
-      },
-      {
-        title: t('project_committee'),
-        path: '/members?anchor=项目委员会',
-      },
+      { title: t('council'), path: '/department/council' },
       {
         title: t('advisory_committee'),
-        path: '/members?anchor=顾问委员会',
+        path: '/department/committee/consultant',
       },
       {
         title: t('legal_advisory_committee'),
-        path: '/members?anchor=法律咨询委员会',
+        path: '/department/committee/legal-advisory',
       },
-      { title: t('our_members'), path: '/members' },
+      { title: t('our_members'), path: '/member' },
     ],
   },
   {
@@ -93,7 +85,7 @@ export const MainRoutes = (): Link[] => [
       { title: t('china_open_source_landscape'), path: '/organization' },
       { title: t('Web_polyfill_CDN'), path: 'https://polyfill.kaiyuanshe.cn/' },
       { title: t('open_source_mirror'), path: 'http://mirror.kaiyuanshe.cn/' },
-      { title: t('license_tool'), path: '/license-tool' },
+      { title: t('license_tool'), path: '/tool/license-filter' },
     ],
   },
   {

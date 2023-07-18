@@ -7,7 +7,6 @@ import { ActivityListLayout } from '../../components/Activity/List';
 import { ArticleListLayout } from '../../components/Article/List';
 import { GroupCard } from '../../components/Group/Card';
 import { MemberCard } from '../../components/Member/Card';
-import { MemberList } from '../../components/Member/List';
 import { OrganizationListLayout } from '../../components/Organization/List';
 import PageHead from '../../components/PageHead';
 import { SystemModel } from '../../models/System';
@@ -32,7 +31,6 @@ const SearchPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
       articles = [],
       activities = [],
       people = [],
-      expert = [],
       groups = [],
       organizations = [],
     }) => {
@@ -61,17 +59,10 @@ const SearchPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
           <Row className="my-0 g-4 text-center" xs={1} sm={2} md={4}>
             {people.map(({ id, name, github }) => (
               <Col key={id + ''}>
-                <MemberCard
-                  name={name}
-                  GitHubID={(github as string)?.split('/').at(-1)}
-                />
+                <MemberCard name={name as string} avatar={github as string} />
               </Col>
             ))}
           </Row>
-
-          <h2>{t('expert_committee')}</h2>
-
-          <MemberList list={expert} />
 
           <h2>{t('department')}</h2>
 

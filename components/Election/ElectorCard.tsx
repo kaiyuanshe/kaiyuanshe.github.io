@@ -44,7 +44,7 @@ export const ElectorCard: FC<ElectorCardProps> = ({
       <Card.Title as="h3">
         <a
           className="stretched-link text-decoration-none"
-          href={`/person/${recipient}`}
+          href={`/member/${recipient}`}
         >
           {recipient}
         </a>

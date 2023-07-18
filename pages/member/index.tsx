@@ -1,12 +1,13 @@
 import 'array-unique-proposal';
 
-import { Avatar } from 'idea-react';
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
 import { PureComponent } from 'react';
 import { Container } from 'react-bootstrap';
 import { TimeData } from 'web-utility';
 
+import { MemberCard } from '../../components/Member/Card';
+import { MemberTitle } from '../../components/Member/Title';
 import PageHead from '../../components/PageHead';
 import { Personnel, PersonnelModel } from '../../models/Personnel';
 import { i18n } from '../../models/Translation';
@@ -46,16 +47,14 @@ export default class MemberPage extends PureComponent<
       key={id as string}
       className="d-flex flex-column align-items-center gap-2 position-relative"
     >
-      <Avatar size={5} src={fileURLOf(recipientAvatar)} />
-      <a
-        className="text-decoration-none stretched-link"
-        href={`/person/${recipient}`}
-      >
-        {position}{' '}
-        {(position as string).includes('组长') &&
-          `(${new Date(createdAt as TimeData).getFullYear()})`}{' '}
-        {recipient}
-      </a>
+      <MemberCard
+        name={recipient + ''}
+        nickname={`${position}${
+          (position as string).includes('组长') &&
+          `(${new Date(createdAt as TimeData).getFullYear()})`
+        }`}
+        avatar={fileURLOf(recipientAvatar)}
+      />
     </li>
   );
 
@@ -68,15 +67,22 @@ export default class MemberPage extends PureComponent<
 
         <h1 className="text-center">{t('正式成员')}</h1>
 
-        {Object.entries(group).map(([department, list]) => (
-          <section key={department} id={department}>
-            <h2 className="text-center my-5">{department}</h2>
+        {Object.entries(group).map(([department, list]) => {
+          list = list.uniqueBy(({ recipient }) => recipient + '');
 
-            <ul className="list-unstyled d-flex flex-wrap justify-content-center gap-3">
-              {list.uniqueBy('recipient').map(this.renderMember)}
-            </ul>
-          </section>
-        ))}
+          return (
+            <section key={department} id={department}>
+              <MemberTitle
+                className="my-5"
+                title={department as string}
+                count={list.length}
+              />
+              <ul className="list-unstyled d-flex flex-wrap justify-content-center gap-3">
+                {list.map(this.renderMember)}
+              </ul>
+            </section>
+          );
+        })}
       </Container>
     );
   }

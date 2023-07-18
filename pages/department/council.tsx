@@ -1,9 +1,9 @@
-import { Avatar } from 'idea-react';
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
 import { FC } from 'react';
 import { Container } from 'react-bootstrap';
 
+import { MemberCard } from '../../components/Member/Card';
 import PageHead from '../../components/PageHead';
 import { PersonnelModel } from '../../models/Personnel';
 import { i18n } from '../../models/Translation';
@@ -48,13 +48,11 @@ const CouncilPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
                   key={id as string}
                   className="d-flex flex-column align-items-center gap-2 position-relative"
                 >
-                  <Avatar size={5} src={fileURLOf(recipientAvatar)} />
-                  <a
-                    className="text-decoration-none stretched-link"
-                    href={`/person/${recipient}`}
-                  >
-                    {position} {recipient}
-                  </a>
+                  <MemberCard
+                    name={recipient + ''}
+                    nickname={position + ''}
+                    avatar={fileURLOf(recipientAvatar)}
+                  />
                 </li>
               ))}
             </ul>

@@ -1,7 +1,6 @@
 import { observer } from 'mobx-react';
 import { FC } from 'react';
 
-import { Member } from '../../models/Member';
 import { i18n } from '../../models/Translation';
 import { LazyImage } from '../LazyImage';
 import styles from './Card.module.less';
@@ -9,32 +8,32 @@ import styles from './Card.module.less';
 const { t } = i18n;
 
 export type MemberCard = Partial<
-  Pick<Member, 'name' | 'nickname' | 'GitHubID'>
+  Record<'name' | 'nickname' | 'avatar', string>
 >;
 
 export const MemberCard: FC<MemberCard> = observer(
-  ({ name, nickname, GitHubID }) => (
+  ({ name, nickname, avatar }) => (
     <div
-      className={`d-inline-block position-relative w-auto ${styles.member}`}
-      title={'' + (nickname || name || GitHubID || t('member_x'))}
+      className={`d-inline-block position-relative w-auto text-center ${styles.member}`}
+      title={'' + (name || nickname || t('member_x'))}
     >
       <LazyImage
         className={`d-inlink-block overflow-hidden rounded-circle position-relative ${styles.avatar}`}
-        src={`https://github.com/${GitHubID}.png`}
-        alt={'' + GitHubID}
+        src={avatar}
       />
       <h3 className="h4 my-3">
         <a
           className="fs-6 stretched-link"
           target="_blank"
-          href={`/person/${name}`} rel="noreferrer"
+          href={`/member/${name}`}
+          rel="noreferrer"
         >
           <span
             className={`d-inline-block position-relative text-truncate ${styles.btn_tamaya}`}
-            data-text={nickname || name || t('member_x')}
+            data-text={name || nickname || t('member_x')}
           >
             <i className="d-inline-block fst-normal overflow-hidden">
-              {name || nickname || t('unpublished')}
+              {nickname || name || t('unpublished')}
             </i>
           </span>
         </a>
