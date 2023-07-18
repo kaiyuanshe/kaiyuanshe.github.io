@@ -18,7 +18,7 @@ const DepartmentPage: FC = observer(() => {
 
   return (
     <Container className="py-5 text-center">
-      <PageHead title={t('our_community_structure')} />
+      <PageHead title={t('community_structure')} />
 
       <h1>{t('organization_of_open_source_society')}</h1>
 
