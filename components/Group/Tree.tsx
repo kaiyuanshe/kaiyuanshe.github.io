@@ -1,87 +1,41 @@
-import { SVGCharts, Tooltip, TreeSeries, TreeSeriesProps } from 'echarts-jsx';
+import { SVGCharts, Tooltip, TreeSeries } from 'echarts-jsx';
 import { Loading } from 'idea-react';
-import { computed } from 'mobx';
 import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { buildURLData, groupBy, parseURLData } from 'web-utility';
 
-import groupStore from '../../models/Group';
-import { i18n } from '../../models/Translation';
+import { DepartmentModel, DepartmentNode } from '../../models/Department';
 import { GroupCard } from './Card';
 
 @observer
 export default class DepartmentTree extends PureComponent {
+  store = new DepartmentModel();
+
   componentDidMount() {
-    groupStore.getAll();
-  }
-
-  @computed
-  get treeData(): TreeSeriesProps['data'] {
-    const { t } = i18n,
-      { 职能: departments, 项目: projects } = groupBy(
-        groupStore.allItems,
-        'type',
-      );
-
-    return [
-      {
-        name: t('KaiYuanShe'),
-        children: [
-          {
-            name: t('council'),
-            children: [
-              {
-                name: t('executive_committee'),
-                collapsed: false,
-                children: departments?.map(({ name }) => ({
-                  name: name + '',
-                  target: '?anchor=执行委员会',
-                })),
-              },
-              {
-                name: t('project_committee'),
-                collapsed: false,
-                children: projects?.map(({ fullName }) => ({
-                  name: fullName + '',
-                  target: '?anchor=项目委员会',
-                })),
-              },
-            ],
-          },
-          {
-            name: t('consultant_committee'),
-            target: '/expert?anchor=顾问委员会',
-          },
-          {
-            name: t('legal_advisory_committee'),
-            target: '/expert?anchor=法律咨询委员会',
-          },
-        ],
-      },
-    ];
+    this.store.getAll();
   }
 
   renderGroup(name: string) {
-    const group = groupStore.allItems.find(
-      ({ name: n, fullName }) => n === name || fullName === name,
-    );
+    const group = this.store.allItems.find(({ name: n }) => n === name);
+
     return renderToStaticMarkup(
       group?.summary ? <GroupCard {...group} /> : <></>,
     );
   }
 
-  jumpLink({ target, name }: Record<string, string>) {
-    if (!target) return;
-    const [path, data] = target.split('?');
-    window.location.href = `/members/${path}?${buildURLData({
-      ...parseURLData(data),
-      name: name?.replace(/项目组$/, ''),
-    })}`;
+  jumpLink({ name, superior }: DepartmentNode) {
+    if (name === '理事会') {
+      location.href = '/department/council';
+    } else if (name === '顾问委员会') {
+      location.href = '/department/committee/consultant';
+    } else if (name === '法律咨询委员会') {
+      location.href = '/department/committee/legal-advisory';
+    } else if (['执行委员会', '项目委员会'].includes(superior))
+      location.href = `/member#${name}`;
   }
 
   render() {
-    const { downloading } = groupStore;
+    const { downloading, tree } = this.store;
 
     return (
       <>
@@ -99,10 +53,8 @@ export default class DepartmentTree extends PureComponent {
             tooltip={{
               formatter: ({ name }) => this.renderGroup(name),
             }}
-            data={this.treeData}
-            onClick={({ data }) =>
-              this.jumpLink(data as Record<string, string>)
-            }
+            data={[tree]}
+            onClick={({ data }) => this.jumpLink(data as DepartmentNode)}
           />
         </SVGCharts>
       </>

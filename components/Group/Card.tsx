@@ -3,10 +3,11 @@ import { text2color } from 'idea-react';
 import { FC } from 'react';
 import { Badge, Image } from 'react-bootstrap';
 
-import { Group } from '../../models/Group';
+import { Department } from '../../models/Department';
 import { fileURLOf } from '../../pages/api/lark/file/[id]';
 
-export interface GroupCardProps extends Group {
+export interface GroupCardProps
+  extends Pick<Department, 'name' | 'logo' | 'tags' | 'summary'> {
   className?: string;
 }
 
