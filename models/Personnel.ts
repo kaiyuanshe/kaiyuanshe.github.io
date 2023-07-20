@@ -8,7 +8,7 @@ import {
   TableCellRelation,
   TableCellText,
   TableCellValue,
-  TableRecordList,
+  TableRecord,
 } from 'mobx-lark';
 import { NewData } from 'mobx-restful';
 import { groupBy, isEmpty, TimeData } from 'web-utility';
@@ -79,7 +79,7 @@ export class PersonnelModel extends BiDataTable<Personnel>() {
       passed,
       ...fields
     },
-  }: TableRecordList<Personnel>['data']['items'][number]) {
+  }: TableRecord<Personnel>) {
     return {
       ...fields,
       id: id!,

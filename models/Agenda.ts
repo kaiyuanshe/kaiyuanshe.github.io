@@ -5,7 +5,7 @@ import {
   TableCellRelation,
   TableCellText,
   TableCellValue,
-  TableRecordList,
+  TableRecord,
 } from 'mobx-lark';
 import { groupBy } from 'web-utility';
 
@@ -41,7 +41,7 @@ export class AgendaModel extends BiDataTable<Agenda>() {
   normalize({
     id,
     fields: { forum, mentors, mentorPositions, mentorSummaries, ...data },
-  }: TableRecordList<Agenda>['data']['items'][number]) {
+  }: TableRecord<Agenda>) {
     return {
       ...data,
       id: id!,

@@ -4,7 +4,7 @@ import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 
-import { DepartmentModel, DepartmentNode } from '../../models/Department';
+import { DepartmentModel, DepartmentNode } from '../../models/Group';
 import { GroupCard } from './Card';
 
 @observer

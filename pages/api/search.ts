@@ -3,7 +3,7 @@ import { parseURLData } from 'web-utility';
 
 import { Activity, SearchActivityModel } from '../../models/Activity';
 import { BaseArticle, SearchArticleModel } from '../../models/Article';
-import { Group, SearchGroupModel } from '../../models/Group';
+import { Department, SearchDepartmentModel } from '../../models/Group';
 import {
   Organization,
   SearchOrganizationModel,
@@ -17,7 +17,7 @@ export interface SearchResult {
   activities?: Activity[];
   articles?: BaseArticle[];
   people?: Person[];
-  groups?: Group[];
+  departments?: Department[];
   organizations?: Organization[];
 }
 
@@ -44,10 +44,7 @@ export default safeAPI(
                 location: keywordList,
                 organizers: tag,
               }),
-              new SearchGroupModel().getList({
-                fullName: keywordList,
-                leader: keywordList,
-                members: keywordList,
+              new SearchDepartmentModel().getList({
                 tags: tag,
                 summary: keywordList,
                 link: keywordList,

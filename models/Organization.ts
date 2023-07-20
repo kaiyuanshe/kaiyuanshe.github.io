@@ -4,7 +4,7 @@ import {
   makeSimpleFilter,
   TableCellLink,
   TableCellValue,
-  TableRecordList,
+  TableRecord,
 } from 'mobx-lark';
 import { NewData } from 'mobx-restful';
 import { cache, countBy, groupBy, Hour, isEmpty } from 'web-utility';
@@ -60,7 +60,7 @@ export class OrganizationModel extends BiDataTable<Organization>() {
   normalize({
     id,
     fields: { link, codeLink, email, ...fields },
-  }: TableRecordList<Organization>['data']['items'][number]) {
+  }: TableRecord<Organization>) {
     return {
       ...fields,
       id: id!,

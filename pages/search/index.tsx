@@ -31,7 +31,7 @@ const SearchPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
       articles = [],
       activities = [],
       people = [],
-      groups = [],
+      departments = [],
       organizations = [],
     }) => {
       const { t } = i18n,
@@ -67,7 +67,7 @@ const SearchPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
           <h2>{t('department')}</h2>
 
           <Row className="my-0 g-4" xs={1} sm={2} md={4}>
-            {groups.map(group => (
+            {departments.map(group => (
               <Col key={group.id + ''}>
                 <GroupCard className="h-100 border rounded-3 p-3" {...group} />
               </Col>

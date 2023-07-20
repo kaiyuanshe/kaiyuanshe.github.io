@@ -3,7 +3,7 @@ import { text2color } from 'idea-react';
 import { FC } from 'react';
 import { Badge, Image } from 'react-bootstrap';
 
-import { Department } from '../../models/Department';
+import { Department } from '../../models/Group';
 import { fileURLOf } from '../../pages/api/lark/file/[id]';
 
 export interface GroupCardProps

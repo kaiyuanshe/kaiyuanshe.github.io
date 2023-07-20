@@ -9,7 +9,7 @@ import {
   TableCellLink,
   TableCellRelation,
   TableCellValue,
-  TableRecordList,
+  TableRecord,
 } from 'mobx-lark';
 import { Filter, NewData, toggle } from 'mobx-restful';
 import { cache, countBy, Hour, isEmpty } from 'web-utility';
@@ -132,7 +132,7 @@ export class ActivityModel extends BiDataTable<Activity>() {
   normalize({
     id,
     fields: { organizers, link, database, ...fields },
-  }: TableRecordList<Activity>['data']['items'][number]) {
+  }: TableRecord<Activity>) {
     return {
       ...fields,
       id: id!,

@@ -1,28 +1,28 @@
+import { computed } from 'mobx';
 import {
   BiDataTable,
   makeSimpleFilter,
+  normalizeText,
   TableCellLink,
+  TableCellRelation,
   TableCellValue,
-  TableRecordList,
+  TableRecord,
 } from 'mobx-lark';
 import { NewData } from 'mobx-restful';
 import { isEmpty } from 'web-utility';
 
-import { MAIN_BASE_ID } from '../pages/api/lark/core';
 import { larkClient } from './Base';
+import { HR_BASE_ID } from './Person';
 
-export const GROUP_TABLE_ID = process.env.NEXT_PUBLIC_GROUP_TABLE_ID!;
+export const DEPARTMENT_TABLE_ID = process.env.NEXT_PUBLIC_DEPARTMENT_TABLE_ID!;
 
-export type Group = Record<
+export type Department = Record<
   | 'id'
   | 'name'
-  | 'type'
-  | 'fullName'
   | 'tags'
   | 'startDate'
-  | 'leader'
-  | 'members'
   | 'summary'
+  | 'superior'
   | 'document'
   | 'email'
   | 'link'
@@ -31,22 +31,51 @@ export type Group = Record<
   TableCellValue
 >;
 
-export class GroupModel extends BiDataTable<Group>() {
+export interface DepartmentNode extends Record<keyof Department, string> {
+  children: DepartmentNode[];
+  collapsed: boolean;
+}
+
+export class DepartmentModel extends BiDataTable<Department>() {
   client = larkClient;
 
-  constructor(appId = MAIN_BASE_ID, tableId = GROUP_TABLE_ID) {
+  constructor(appId = HR_BASE_ID, tableId = DEPARTMENT_TABLE_ID) {
     super(appId, tableId);
   }
 
-  requiredKeys = ['name', 'type', 'tags', 'leader'] as const;
+  requiredKeys = ['name'] as const;
+
+  @computed
+  get tree() {
+    var rootName = '';
+
+    const tempList = this.allItems.map(({ name, ...meta }) => [
+      name,
+      { ...meta, name, children: [], collapsed: false },
+    ]) as [string, DepartmentNode][];
+
+    const tempMap = Object.fromEntries(tempList) as Record<
+      string,
+      DepartmentNode
+    >;
+
+    for (const [name, node] of tempList) {
+      const superChildrenLength = tempMap[node.superior]?.children.push(node);
+
+      if (superChildrenLength === undefined) rootName = name;
+    }
+
+    return tempMap[rootName] || {};
+  }
 
   normalize({
     id,
-    fields: { link, codeLink, email, ...fields },
-  }: TableRecordList<Group>['data']['items'][number]) {
+    fields: { superior, link, codeLink, email, ...fields },
+  }: TableRecord<Department>): Department {
     return {
       ...fields,
       id: id!,
+      superior: (superior as TableCellRelation[])?.map(normalizeText)[0],
       link: (link as TableCellLink)?.link,
       codeLink: (codeLink as TableCellLink)?.link,
       email: (email as TableCellLink)?.link,
@@ -54,10 +83,8 @@ export class GroupModel extends BiDataTable<Group>() {
   }
 }
 
-export class SearchGroupModel extends GroupModel {
-  makeFilter(filter: NewData<Group>) {
+export class SearchDepartmentModel extends DepartmentModel {
+  makeFilter(filter: NewData<Department>) {
     return isEmpty(filter) ? '' : makeSimpleFilter(filter, 'contains', 'OR');
   }
 }
-
-export default new GroupModel();
