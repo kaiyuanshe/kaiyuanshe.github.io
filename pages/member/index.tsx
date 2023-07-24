@@ -50,8 +50,9 @@ export default class MemberPage extends PureComponent<
       <MemberCard
         name={recipient + ''}
         nickname={`${position}${
-          (position as string).includes('组长') &&
-          `(${new Date(createdAt as TimeData).getFullYear()})`
+          (position as string).includes('组长')
+            ? `(${new Date(createdAt as TimeData).getFullYear()})`
+            : ''
         }`}
         avatar={fileURLOf(recipientAvatar)}
       />

@@ -54,8 +54,8 @@ dependencies:
     specifier: ^0.3.15
     version: 0.3.15(mobx@5.15.7)
   mobx-lark:
-    specifier: ^1.0.0-beta.6
-    version: 1.0.0-beta.6(jsdom@21.1.2)(mobx@5.15.7)(typescript@5.1.6)
+    specifier: ^1.0.0-rc.2
+    version: 1.0.0-rc.2(jsdom@21.1.2)(mobx@5.15.7)(typescript@5.1.6)
   mobx-react:
     specifier: ^6.3.1
     version: 6.3.1(mobx@5.15.7)(react-dom@17.0.2)(react@17.0.2)
@@ -4640,8 +4640,8 @@ packages:
       regenerator-runtime: 0.13.11
     dev: false
 
-  /mobx-lark@1.0.0-beta.6(jsdom@21.1.2)(mobx@5.15.7)(typescript@5.1.6):
-    resolution: {integrity: sha512-tZMZF0rDDVVooM/YbWAkBKyAzZ+NQu7KxWzuXOWkyuGm2wdiG9kqabw5CD6ZEaeFgFk7twj+FTcV7natixgYnw==}
+  /mobx-lark@1.0.0-rc.2(jsdom@21.1.2)(mobx@5.15.7)(typescript@5.1.6):
+    resolution: {integrity: sha512-Qx1K8+4QjlG6s/2a1gc+NXS+oveOx1hdwFPiWvPq+my53AqYQLrhBnFH34uPuCR4A4ubUNu2txOqUTTeF4yw2w==}
     peerDependencies:
       mobx: '>=4 <6'
     dependencies:
