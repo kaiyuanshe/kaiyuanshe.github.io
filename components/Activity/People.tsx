@@ -23,7 +23,7 @@ export const ActivityPeople: FC<ActivityPeopleProps> = ({
             width: `${size}rem`,
             height: `${size}rem`,
             background: `url(${
-              avatars ? avatars[index] : DefaultImage
+              avatars?.[index] || DefaultImage
             }) center no-repeat`,
             backgroundSize: 'cover',
           }}
