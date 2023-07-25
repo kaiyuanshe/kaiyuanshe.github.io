@@ -1,6 +1,8 @@
 import { AvatarProps } from 'idea-react';
 import { FC } from 'react';
 
+import { DefaultImage } from '../../pages/api/lark/file/[id]';
+
 export type ActivityPeopleProps = Pick<AvatarProps, 'size'> &
   Partial<Record<'names' | 'avatars' | 'positions' | 'summaries', string[]>>;
 
@@ -20,10 +22,13 @@ export const ActivityPeople: FC<ActivityPeopleProps> = ({
           style={{
             width: `${size}rem`,
             height: `${size}rem`,
-            background: `url(${avatars?.[index]}) center no-repeat`,
+            background: `url(${
+              avatars ? avatars[index] : DefaultImage
+            }) center no-repeat`,
             backgroundSize: 'cover',
           }}
         />
+
         <ul className="list-unstyled">
           <li>{name}</li>
           <li>{positions?.[index]}</li>
