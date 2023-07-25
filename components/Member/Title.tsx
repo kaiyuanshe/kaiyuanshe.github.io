@@ -1,21 +1,23 @@
-import { FC } from 'react';
+import { FC, HTMLAttributes } from 'react';
 import { Badge } from 'react-bootstrap';
 
 import { i18n } from '../../models/Translation';
-import styles from '../../styles/Members.module.less';
+import styles from './Title.module.less';
 
-export interface MemberTitleProps {
-  title?: string;
+export interface MemberTitleProps extends HTMLAttributes<HTMLHeadingElement> {
   count?: number;
 }
 
 export const MemberTitle: FC<MemberTitleProps> = ({
+  className = '',
   title = i18n.t('unclassified'),
   count = 0,
+  ...props
 }) => (
   <h2
     id={title}
-    className={`position-relative border-bottom border-2 border-info lh-lg mb-4 ${styles.memberTitle}`}
+    className={`position-relative border-bottom border-2 border-info lh-lg mb-4 ${styles.memberTitle} ${className}`}
+    {...props}
   >
     {title}
     <Badge

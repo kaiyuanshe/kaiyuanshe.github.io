@@ -6,7 +6,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import { ActivityListLayout } from '../../components/Activity/List';
 import { ArticleListLayout } from '../../components/Article/List';
 import { GroupCard } from '../../components/Group/Card';
-import { MemberList } from '../../components/Member/List';
+import { MemberCard } from '../../components/Member/Card';
 import { OrganizationListLayout } from '../../components/Organization/List';
 import PageHead from '../../components/PageHead';
 import { SystemModel } from '../../models/System';
@@ -28,12 +28,11 @@ const SearchPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
   observer(
     ({
       route,
-      articles,
-      activities,
-      members,
-      expert,
-      groups,
-      organizations,
+      articles = [],
+      activities = [],
+      people = [],
+      departments = [],
+      organizations = [],
     }) => {
       const { t } = i18n,
         { tag, keywords } = route.query as SearchQuery;
@@ -57,16 +56,18 @@ const SearchPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
 
           <h2>{t('member')}</h2>
 
-          <MemberList list={members} />
-
-          <h2>{t('expert_committee')}</h2>
-
-          <MemberList list={expert} />
+          <Row className="my-0 g-4 text-center" xs={1} sm={2} md={4}>
+            {people.map(({ id, name, github }) => (
+              <Col key={id + ''}>
+                <MemberCard name={name as string} avatar={github as string} />
+              </Col>
+            ))}
+          </Row>
 
           <h2>{t('department')}</h2>
 
           <Row className="my-0 g-4" xs={1} sm={2} md={4}>
-            {groups.map(group => (
+            {departments.map(group => (
               <Col key={group.id + ''}>
                 <GroupCard className="h-100 border rounded-3 p-3" {...group} />
               </Col>

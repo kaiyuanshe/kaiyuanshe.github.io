@@ -1,5 +1,6 @@
 import { useStaticRendering } from 'mobx-react';
 import { Head, Html, Main, NextScript } from 'next/document';
+import Script from 'next/script';
 
 import { isServer } from '../models/Base';
 import { DefaultImage } from './api/lark/file/[id]';
@@ -11,27 +12,20 @@ export default function Document() {
   return (
     <Html>
       <Head>
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-MS73CZKMM3"
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-window.dataLayer = window.dataLayer || [];
-
-function gtag() { dataLayer.push(arguments); }
-
-gtag('js', new Date());
-
-gtag('config', 'G-MS73CZKMM3');
-`,
-          }}
-        />
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-MS73CZKMM3" />
+        <Script id="google-analytics">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+  
+            gtag('config', 'G-MS73CZKMM3');
+          `}
+        </Script>
         <link rel="icon" href={DefaultImage} />
 
         <link rel="manifest" href="/manifest.json" />
-        <script src="https://polyfill.kaiyuanshe.cn/feature/PWAManifest.js" />
+        <Script src="https://polyfill.kaiyuanshe.cn/feature/PWAManifest.js" />
 
         <link
           rel="stylesheet"

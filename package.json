@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@giscus/react": "^2.3.0",
+    "array-unique-proposal": "^0.3.4",
     "classnames": "^2.3.2",
     "echarts-jsx": "^0.5.0",
     "file-type": "^18.5.0",
@@ -22,7 +23,7 @@
     "marked": "^4.3.0",
     "mobx": "^5.15.7",
     "mobx-i18n": "^0.3.15",
-    "mobx-lark": "^1.0.0-beta.6",
+    "mobx-lark": "^1.0.0-rc.2",
     "mobx-react": "^6.3.1",
     "mobx-restful": "^0.6.5",
     "mobx-restful-table": "^1.0.4",
@@ -35,8 +36,8 @@
     "react-dom": "^17.0.2",
     "react-icalendar-link": "^3.0.2",
     "react-leaflet": "^3.2.5",
-    "web-utility": "^4.0.0",
-    "webpack": "^5.88.1"
+    "web-utility": "^4.0.1",
+    "webpack": "^5.88.2"
   },
   "devDependencies": {
     "@types/leaflet": "^1.9.3",
@@ -45,7 +46,7 @@
     "@types/qs": "^6.9.7",
     "@types/react": "^17.0.62",
     "@types/react-dom": "^17.0.20",
-    "eslint": "^8.44.0",
+    "eslint": "^8.45.0",
     "eslint-config-next": "^12.3.4",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "get-git-folder": "^0.1.0",

@@ -4,8 +4,10 @@ import {
   normalizeText,
   TableCellAttachment,
   TableCellLink,
+  TableCellMedia,
   TableCellRelation,
   TableCellValue,
+  TableRecord,
 } from 'mobx-lark';
 import { groupBy } from 'web-utility';
 
@@ -44,27 +46,25 @@ export class CooperationModel extends BiDataTable<Cooperation>() {
     ][];
   }
 
-  async getGroup() {
-    var group = groupBy(await this.getAll(), ({ year }) => year + '');
+  normalize({
+    id,
+    fields: { organization, link, logos, ...fields },
+  }: TableRecord<Cooperation>): Cooperation {
+    return {
+      ...fields,
+      id: id!,
+      organization: (organization as TableCellRelation[]).map(normalizeText),
+      link: (link as TableCellLink[])?.map(({ link }) => link),
+      logos: (logos as TableCellAttachment[])?.map(
+        ({ attachmentToken, ...logo }) => ({
+          ...logo,
+          file_token: attachmentToken,
+        }),
+      ) as unknown as TableCellMedia[],
+    };
+  }
 
-    group = Object.fromEntries(
-      Object.entries(group).map(([year, list]) => [
-        year,
-        list.map(({ organization, link, logos, ...item }) => ({
-          ...item,
-          organization: (organization as TableCellRelation[]).map(
-            normalizeText,
-          ),
-          link: (link as TableCellLink[])?.map(({ link }) => link),
-          logos: (logos as TableCellAttachment[])?.map(
-            ({ attachmentToken, ...logo }) => ({
-              ...logo,
-              file_token: attachmentToken,
-            }),
-          ) as any[],
-        })),
-      ]),
-    );
-    return (this.group = group);
+  async getGroup() {
+    return (this.group = groupBy(await this.getAll(), ({ year }) => year + ''));
   }
 }

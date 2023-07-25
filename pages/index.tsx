@@ -10,31 +10,33 @@ import PageHead from '../components/PageHead';
 import activityStore from '../models/Activity';
 import { Article, ArticleModel } from '../models/Article';
 import { blobURLOf } from '../models/Base';
-import { Group, GroupModel } from '../models/Group';
+import { Department, DepartmentModel } from '../models/Group';
 import { i18n } from '../models/Translation';
-import { withTranslation } from './api/base';
+import { withErrorLog, withTranslation } from './api/base';
 import { slogan } from './api/home';
 import { DefaultImage } from './api/lark/file/[id]';
 
-export const getServerSideProps = withTranslation(async () => {
-  const [articles, projects] = await Promise.all([
-    new ArticleModel().getList({}, 1, 3),
-    new GroupModel().getAll({ type: '项目' }),
-  ]);
+export const getServerSideProps = withErrorLog<
+  {},
+  { articles: Article[]; projects: Department[] }
+>(
+  withTranslation(async () => {
+    const [articles, projects] = await Promise.all([
+      new ArticleModel().getList({}, 1, 3),
+      new DepartmentModel().getAll({ superior: '项目委员会' }),
+    ]);
 
-  return {
-    props: {
-      articles: JSON.parse(JSON.stringify(articles)) as Article[],
-      projects: JSON.parse(JSON.stringify(projects)) as Group[],
-    },
-  };
-});
+    return {
+      props: JSON.parse(JSON.stringify({ articles, projects })),
+    };
+  }),
+);
 
 @observer
 export default class HomePage extends PureComponent<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > {
-  renderProject = ({ id, name, logo = DefaultImage, link }: Group) => (
+  renderProject = ({ id, name, logo = DefaultImage, link }: Department) => (
     <Col as="li" key={id + ''} className="position-relative">
       <Image
         style={{ height: '8rem' }}
@@ -48,7 +50,7 @@ export default class HomePage extends PureComponent<
         href={link + ''}
         rel="noreferrer"
       >
-        {name}
+        {(name as string).replace('项目组', '')}
       </a>
     </Col>
   );
@@ -78,12 +80,25 @@ export default class HomePage extends PureComponent<
                   sm={2}
                   md={4}
                 >
-                  {items.map(({ icon, text }) => (
-                    <Col as="li" key={text}>
-                      <Icon name={icon} size={6} />
-                      <div className="h3">{text}</div>
-                    </Col>
-                  ))}
+                  {items.map(({ icon, text }) =>
+                    text === t('our_vision_content') ? (
+                      <Col
+                        as="li"
+                        className="h3"
+                        xs={8}
+                        sm={6}
+                        md={8}
+                        key={text}
+                      >
+                        {text}
+                      </Col>
+                    ) : (
+                      <Col as="li" key={text}>
+                        <Icon name={icon} size={6} />
+                        <div className="h3">{text}</div>
+                      </Col>
+                    ),
+                  )}
                 </Row>
               </Fragment>
             ))}

@@ -3,24 +3,22 @@ import { parseURLData } from 'web-utility';
 
 import { Activity, SearchActivityModel } from '../../models/Activity';
 import { BaseArticle, SearchArticleModel } from '../../models/Article';
-import { SearchExpertModel } from '../../models/Expert';
-import { Group, SearchGroupModel } from '../../models/Group';
-import { Member, SearchMemberModel } from '../../models/Member';
+import { Department, SearchDepartmentModel } from '../../models/Group';
 import {
   Organization,
   SearchOrganizationModel,
 } from '../../models/Organization';
+import { Person, SearchPersonModel } from '../../models/Person';
 import { safeAPI } from './base';
 
 export type SearchQuery = Partial<Record<'keywords' | 'tag', string>>;
 
 export interface SearchResult {
-  activities: Activity[];
-  articles: BaseArticle[];
-  members: Member[];
-  expert: Member[];
-  groups: Group[];
-  organizations: Organization[];
+  activities?: Activity[];
+  articles?: BaseArticle[];
+  people?: Person[];
+  departments?: Department[];
+  organizations?: Organization[];
 }
 
 export default safeAPI(
@@ -46,10 +44,7 @@ export default safeAPI(
                 location: keywordList,
                 organizers: tag,
               }),
-              new SearchGroupModel().getList({
-                fullName: keywordList,
-                leader: keywordList,
-                members: keywordList,
+              new SearchDepartmentModel().getList({
                 tags: tag,
                 summary: keywordList,
                 link: keywordList,
@@ -67,18 +62,13 @@ export default safeAPI(
             ],
           );
         if (keywordList)
-          var [members, expert] = await Promise.all([
-            new SearchMemberModel().getList({
-              name: keywordList,
-              nickname: keywordList,
-            }),
-            new SearchExpertModel().getList({
-              name: keywordList,
-              nickname: keywordList,
-            }),
-          ]);
+          var people = await new SearchPersonModel().getList({
+            name: keywordList,
+            email: keywordList,
+            summary: keywordList,
+          });
         //@ts-ignore
-        const membersData = { members, expert };
+        const membersData = { people };
         //@ts-ignore
         const articlesData = { articles, activities, groups, organizations };
         //@ts-ignore
