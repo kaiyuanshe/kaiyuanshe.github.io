@@ -1,13 +1,11 @@
-import { Icon } from 'idea-react';
-import { observable } from 'mobx';
 import { TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
-import { MouseEvent, PureComponent } from 'react';
-import { Button, Col, Container, Nav, Offcanvas, Row } from 'react-bootstrap';
-import { scrollTo, sleep } from 'web-utility';
+import { PureComponent } from 'react';
+import { Button, Col, Container, Row } from 'react-bootstrap';
 
 import { AgendaCard } from '../../../components/Activity/Agenda/Card';
+import { DrawerNav } from '../../../components/Activity/DrawerNav';
 import { ActivityPeople } from '../../../components/Activity/People';
 import PageHead from '../../../components/PageHead';
 import { Activity, ActivityModel } from '../../../models/Activity';
@@ -50,31 +48,6 @@ const { t } = i18n;
 export default class ActivityDetailPage extends PureComponent<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > {
-  @observable
-  showDrawer = false;
-
-  closeDrawer = async () => {
-    var { scrollTop } = document.scrollingElement || {};
-
-    do {
-      await sleep(0.1);
-
-      if (scrollTop === document.scrollingElement?.scrollTop) {
-        this.showDrawer = false;
-        break;
-      }
-      scrollTop = document.scrollingElement?.scrollTop;
-    } while (true);
-  };
-
-  scrollTo = (event: MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
-
-    scrollTo(event.currentTarget.getAttribute('href')!);
-
-    this.closeDrawer();
-  };
-
   renderButtonBar() {
     const { startTime, personForm, agendaForm, fileForm, billForm } =
         this.props.currentMeta,
@@ -132,41 +105,6 @@ export default class ActivityDetailPage extends PureComponent<
     );
   }
 
-  renderDrawer() {
-    const { showDrawer } = this,
-      { forums } = this.props;
-
-    return (
-      <>
-        <div className="fixed-bottom p-3">
-          <Button onClick={() => (this.showDrawer = true)}>
-            <Icon name="layout-text-sidebar" />
-          </Button>
-        </div>
-
-        <Offcanvas
-          style={{ width: 'max-content' }}
-          show={showDrawer}
-          onHide={this.closeDrawer}
-        >
-          <Offcanvas.Body>
-            <Nav className="flex-column">
-              {forums.map(({ name }) => (
-                <Nav.Link
-                  key={name + ''}
-                  href={`#${name}`}
-                  onClick={this.scrollTo}
-                >
-                  {name}
-                </Nav.Link>
-              ))}
-            </Nav>
-          </Offcanvas.Body>
-        </Offcanvas>
-      </>
-    );
-  }
-
   render() {
     const { activity, agendaGroup, forums } = this.props;
 
@@ -186,7 +124,6 @@ export default class ActivityDetailPage extends PureComponent<
         </header>
 
         {this.renderButtonBar()}
-        {this.renderDrawer()}
 
         <Container>
           {forums.map(
@@ -238,6 +175,7 @@ export default class ActivityDetailPage extends PureComponent<
               </section>
             ),
           )}
+          <DrawerNav />
         </Container>
       </>
     );
