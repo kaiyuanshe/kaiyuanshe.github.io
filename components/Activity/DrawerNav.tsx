@@ -1,8 +1,8 @@
-import { Icon,PageNav } from 'idea-react';
+import { Icon, PageNav } from 'idea-react';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
-import { Button,Offcanvas } from 'react-bootstrap';
+import { Button, Offcanvas } from 'react-bootstrap';
 import { sleep } from 'web-utility';
 
 @observer
@@ -15,6 +15,7 @@ export class DrawerNav extends PureComponent {
 
     do {
       await sleep(0.1);
+
       if (scrollTop === document.scrollingElement?.scrollTop) {
         this.drawerShown = false;
         break;
@@ -40,7 +41,7 @@ export class DrawerNav extends PureComponent {
           onHide={closeDrawer}
         >
           <Offcanvas.Body>
-            <PageNav onItemClick={this.closeDrawer} depth={2} />
+            <PageNav depth={2} onItemClick={this.closeDrawer} />
           </Offcanvas.Body>
         </Offcanvas>
       </>
