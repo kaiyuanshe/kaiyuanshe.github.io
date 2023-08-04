@@ -9,9 +9,10 @@ import {
   TableCellLink,
   TableCellRelation,
   TableCellValue,
+  TableRecord,
   TableRecordList,
 } from 'mobx-lark';
-import { Filter, NewData, toggle } from 'mobx-restful';
+import { Filter, NewData, RESTClient, toggle } from 'mobx-restful';
 import { cache, countBy, groupBy, Hour, isEmpty } from 'web-utility';
 
 import {
@@ -46,20 +47,66 @@ export class BillViewModel extends BiTableView() {
   client = larkClient;
 }
 
-export class BillTableModel extends BiDataTable<Bill>() {
+export class BillTableModel extends BiTable() {
   client = larkClient;
 
-  requiredKeys = ['price', 'invoice', 'forum', 'agendas'] as const;
+  @observable
+  formMap = {} as Record<string, TableFormViewItem[]>;
 
-  sort = { createAt: 'ASC' } as const;
+  async *loadFormStream() {
+    for (const { table_id, name } of this.allItems) {
+      const views = await new BillViewModel(this.id, table_id).getAll(),
+        forms: TableFormViewItem[] = [];
+
+      for (const { view_type, view_id } of views)
+        if (view_type === 'form') {
+          const { body } = await this.client.get<LarkFormData>(
+            `${this.baseURI}/${table_id}/forms/${view_id}`,
+          );
+          forms.push(body!.data.form);
+        }
+      yield [name, forms] as const;
+    }
+  }
+
+  @action
+  @toggle('downloading')
+  // @ts-ignore
+  async getAll(filter?: Filter<BiTableItem>, pageSize?: number) {
+    // @ts-ignore
+    const tables = await super.getAll(filter, pageSize);
+
+    const formList: (readonly [string, TableFormViewItem[]])[] = [];
+
+    for await (const item of this.loadFormStream()) formList.push(item);
+
+    this.formMap = Object.fromEntries(formList);
+
+    return tables;
+  }
+}
+
+export class BillModel extends BiDataTable<Bill>() {
+  client = larkClient;
+
+  constructor(appId = MAIN_BASE_ID, tableId = BILL_TABLE_ID) {
+    super(appId, tableId);
+  }
+
+  requiredKeys = ['createAt', 'price', 'forum', 'agendas'] as const;
+
+  sort = { createAt: 'DESC' } as const;
 
   @observable
-  group: Record<string, Bill[]> = {};
+  formMap = {} as BillTableModel['formMap'];
 
-  async getGroup() {
-    return (this.group = groupBy(
-      await this.getAll(),
-      ({ forum }) => forum + '',
-    ));
+  currentAgenda?: AgendaModel;
+  currentForum?: ForumModel;
+
+  normalize({ id, fields, ...meta }: TableRecord<Bill>): Bill {
+    return {
+      ...fields,
+      id: id!,
+    };
   }
 }
