@@ -3,7 +3,7 @@ import {
   makeSimpleFilter,
   TableCellLink,
   TableCellValue,
-  TableRecordList,
+  TableRecord,
 } from 'mobx-lark';
 import { NewData } from 'mobx-restful';
 import { isEmpty } from 'web-utility';
@@ -38,7 +38,7 @@ export class PersonModel extends BiDataTable<Person>() {
   normalize({
     id,
     fields: { email, website, github, ...fields },
-  }: TableRecordList<Person>['data']['items'][number]) {
+  }: TableRecord<Person>) {
     return {
       ...fields,
       id: id!,

@@ -4,7 +4,7 @@ import {
   TableCellRelation,
   TableCellText,
   TableCellValue,
-  TableRecordList,
+  TableRecord,
 } from 'mobx-lark';
 
 import { normalizeTextArray } from '../pages/api/lark/core';
@@ -36,7 +36,7 @@ export class ForumModel extends BiDataTable<Forum>() {
   normalize({
     id,
     fields: { producers, volunteers, producerPositions, ...data },
-  }: TableRecordList<Forum>['data']['items'][number]) {
+  }: TableRecord<Forum>) {
     return {
       ...data,
       id: id!,

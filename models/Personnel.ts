@@ -8,10 +8,10 @@ import {
   TableCellRelation,
   TableCellText,
   TableCellValue,
-  TableRecordList,
+  TableRecord,
 } from 'mobx-lark';
 import { NewData } from 'mobx-restful';
-import { groupBy, isEmpty } from 'web-utility';
+import { groupBy, isEmpty, TimeData } from 'web-utility';
 
 import { larkClient } from './Base';
 import { HR_BASE_ID } from './Person';
@@ -53,13 +53,14 @@ export class PersonnelModel extends BiDataTable<Personnel>() {
 
   currentYear?: number;
 
-  makeFilter({ passed, ...filter }: NewData<Personnel>) {
+  makeFilter({ position, passed, ...filter }: NewData<Personnel>) {
     const { currentYear } = this;
 
     return [
-      passed && `CurrentValue.[passed]=${passed}`,
       currentYear && `CurrentValue.[createdAt]>=TODATE("${currentYear}-01-01")`,
       currentYear && `CurrentValue.[createdAt]<=TODATE("${currentYear}-12-31")`,
+      position && makeSimpleFilter({ position }, 'contains', 'OR'),
+      passed && `CurrentValue.[passed]=${passed}`,
       !isEmpty(filter) && makeSimpleFilter(filter),
     ]
       .filter(Boolean)
@@ -78,7 +79,7 @@ export class PersonnelModel extends BiDataTable<Personnel>() {
       passed,
       ...fields
     },
-  }: TableRecordList<Personnel>['data']['items'][number]) {
+  }: TableRecord<Personnel>) {
     return {
       ...fields,
       id: id!,
@@ -98,16 +99,35 @@ export class PersonnelModel extends BiDataTable<Personnel>() {
     };
   }
 
-  async getGroup(year = this.currentYear) {
+  async getGroup(
+    filter: Partial<NewData<Personnel>> = {},
+    groupKeys: (keyof Personnel)[] = [],
+    year?: number,
+  ) {
     this.currentYear = year;
 
     try {
-      return (this.group = groupBy(
-        await this.getAll(),
-        ({ position, award }) => (position || award) as string,
-      ));
+      return (this.group = groupBy(await this.getAll(filter), data => {
+        for (const key of groupKeys)
+          if (data[key] != null) return data[key] as string;
+
+        return '';
+      }));
     } finally {
       this.currentYear = undefined;
     }
+  }
+
+  async getYearGroup(
+    filter: Partial<NewData<Personnel>>,
+    groupKeys: (keyof Personnel)[],
+  ) {
+    return (this.group = groupBy(await this.getAll(filter), data => {
+      for (const key of groupKeys)
+        if (data[key] != null)
+          return new Date(data[key] as TimeData).getFullYear();
+
+      return 0;
+    }));
   }
 }

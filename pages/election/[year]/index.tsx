@@ -5,7 +5,7 @@ import { FC } from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { isEmpty } from 'web-utility';
 
-import { ElectionCard } from '../../../components/Election/ElectorCard';
+import { ElectorCard } from '../../../components/Election/ElectorCard';
 import PageHead from '../../../components/PageHead';
 import { ElectionTarget, PersonnelModel } from '../../../models/Personnel';
 import { i18n } from '../../../models/Translation';
@@ -17,7 +17,11 @@ export const getServerSideProps = withRoute<
 >(
   withErrorLog(
     withTranslation(async ({ params }) => {
-      const group = await new PersonnelModel().getGroup(+params!.year);
+      const group = await new PersonnelModel().getGroup(
+        {},
+        ['position', 'award'],
+        +params!.year,
+      );
 
       return {
         notFound: isEmpty(group),
@@ -87,7 +91,7 @@ const ElectionPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
                 )
                 .map(({ id, ...item }, index) => (
                   <Col as="li" key={id + ''}>
-                    <ElectionCard
+                    <ElectorCard
                       className="h-100"
                       {...item}
                       order={index + 1}

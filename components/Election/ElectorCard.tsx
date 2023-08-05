@@ -12,7 +12,7 @@ export interface ElectorCardProps extends CardProps, Omit<Personnel, 'id'> {
   order: number;
 }
 
-export const ElectionCard: FC<ElectorCardProps> = ({
+export const ElectorCard: FC<ElectorCardProps> = ({
   createdAt,
   recipient,
   recipientAvatar,
@@ -44,7 +44,7 @@ export const ElectionCard: FC<ElectorCardProps> = ({
       <Card.Title as="h3">
         <a
           className="stretched-link text-decoration-none"
-          href={`/person/${recipient}`}
+          href={`/member/${recipient}`}
         >
           {recipient}
         </a>

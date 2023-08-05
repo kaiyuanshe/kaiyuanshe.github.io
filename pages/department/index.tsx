@@ -13,26 +13,24 @@ const DepartmentTree = dynamic(() => import('../../components/Group/Tree'), {
 
 export const getServerSideProps = withTranslation();
 
-const DepartmentPage: FC = observer(() => {
-  const { t } = i18n;
+const { t } = i18n;
 
-  return (
-    <Container className="py-5 text-center">
-      <PageHead title={t('community_structure')} />
+const DepartmentPage: FC = observer(() => (
+  <Container className="py-5 text-center">
+    <PageHead title={t('community_structure')} />
 
-      <h1>{t('organization_of_open_source_society')}</h1>
+    <h1>{t('organization_of_open_source_society')}</h1>
 
-      <DepartmentTree />
+    <DepartmentTree />
 
-      <Button
-        size="lg"
-        target="_blank"
-        href="https://kaiyuanshe.feishu.cn/share/base/shrcnfO89tYlYIjZpS5PXJBaK2f"
-      >
-        {t('become_volunteer')}
-      </Button>
-    </Container>
-  );
-});
+    <Button
+      size="lg"
+      target="_blank"
+      href="https://kaiyuanshe.feishu.cn/share/base/shrcnfO89tYlYIjZpS5PXJBaK2f"
+    >
+      {t('become_volunteer')}
+    </Button>
+  </Container>
+));
 
 export default DepartmentPage;
