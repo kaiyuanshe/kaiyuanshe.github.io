@@ -52,7 +52,7 @@ export default class PersonDetailPage extends PureComponent<
           <Badge bg={text2color(gender as string, ['light'])}>{gender}</Badge>
         </li>
         <li>
-          {(skills as string[]).map(skill => (
+          {(skills as string[])?.map(skill => (
             <Badge
               key={skill}
               className="me-2"
