@@ -61,16 +61,21 @@ export function withCache<
 >(origin: F, interval = 30 * Second) {
   return (async context => {
     const { resolvedUrl } = context;
-    var { data, expiredAt } = serverRenderCache[resolvedUrl] || {};
+
+    const { data, expiredAt } = serverRenderCache[resolvedUrl] || {};
 
     if (data && Date.now() < expiredAt) return data;
 
-    data = await origin(context);
-    expiredAt = Date.now() + interval;
+    const promise = origin(context);
 
-    serverRenderCache[resolvedUrl] = { expiredAt, data };
-
-    return data;
+    promise.then(
+      data =>
+        (serverRenderCache[resolvedUrl] = {
+          data,
+          expiredAt: Date.now() + interval,
+        }),
+    );
+    return data || promise;
   }) as F;
 }
 
