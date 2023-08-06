@@ -49,10 +49,13 @@ export function safeAPI(handler: NextAPI): NextAPI {
   };
 }
 
-const serverRenderCache: Record<
-  string,
-  { expiredAt: number; data: GetServerSidePropsResult<DataObject> }
-> = {};
+interface AsyncCache {
+  expiredAt?: number;
+  data?: GetServerSidePropsResult<DataObject>;
+  buffer?: Promise<GetServerSidePropsResult<DataObject>>;
+}
+
+const serverRenderCache: Record<string, AsyncCache> = {};
 
 export function withCache<
   I extends DataObject,
@@ -61,21 +64,25 @@ export function withCache<
 >(origin: F, interval = 30 * Second) {
   return (async context => {
     const { resolvedUrl } = context;
+    const cache = (serverRenderCache[resolvedUrl] ||= {}),
+      title = `[SSR cache] ${resolvedUrl}`;
+    const { data, expiredAt = 0 } = cache;
 
-    const { data, expiredAt } = serverRenderCache[resolvedUrl] || {};
+    if ((!data || expiredAt < Date.now()) && !cache.buffer) {
+      console.time(title);
 
-    if (data && Date.now() < expiredAt) return data;
+      cache.buffer = origin(context).then(data => {
+        delete cache.buffer;
+        cache.data = data;
+        cache.expiredAt = Date.now() + interval;
 
-    const promise = origin(context);
+        console.timeEnd(title);
+        console.log(cache);
 
-    promise.then(
-      data =>
-        (serverRenderCache[resolvedUrl] = {
-          data,
-          expiredAt: Date.now() + interval,
-        }),
-    );
-    return data || promise;
+        return data;
+      });
+    }
+    return data || cache.buffer;
   }) as F;
 }
 
