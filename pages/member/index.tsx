@@ -68,22 +68,24 @@ export default class MemberPage extends PureComponent<
 
         <h1 className="text-center">{t('正式成员')}</h1>
 
-        {Object.entries(group).map(([department, list]) => {
-          list = list.uniqueBy(({ recipient }) => recipient + '');
+        {Object.entries(group)
+          .sort(([a], [b]) => (a ? -1 : b ? 1 : 0))
+          .map(([department, list]) => {
+            list = list.uniqueBy(({ recipient }) => recipient + '');
 
-          return (
-            <section key={department} id={department}>
-              <MemberTitle
-                className="my-5"
-                title={department as string}
-                count={list.length}
-              />
-              <ul className="list-unstyled d-flex flex-wrap justify-content-center gap-3">
-                {list.map(this.renderMember)}
-              </ul>
-            </section>
-          );
-        })}
+            return (
+              <section key={department} id={department}>
+                <MemberTitle
+                  className="my-5"
+                  title={department || t('unclassified')}
+                  count={list.length}
+                />
+                <ul className="list-unstyled d-flex flex-wrap gap-3">
+                  {list.map(this.renderMember)}
+                </ul>
+              </section>
+            );
+          })}
       </Container>
     );
   }

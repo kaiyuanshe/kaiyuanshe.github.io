@@ -64,7 +64,7 @@ export default class PersonDetailPage extends PureComponent<
         </li>
         <li>🗺 {city}</li>
         <li>
-          📬 <a href={email as string}>{(email as string).split(':')[1]}</a>
+          📬 <a href={email as string}>{(email as string)?.split(':')[1]}</a>
         </li>
         <li>
           🖥{' '}
