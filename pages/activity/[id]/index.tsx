@@ -21,11 +21,11 @@ import { AgendaModel } from '../../../models/Agenda';
 import { blobURLOf } from '../../../models/Base';
 import { Forum } from '../../../models/Forum';
 import { i18n } from '../../../models/Translation';
-import { withErrorLog } from '../../api/base';
+import { withCache, withErrorLog, withTranslation } from '../../api/base';
 import { TableFormViewItem } from '../../api/lark/core';
 import styles from './index.module.less';
 
-export const getServerSideProps = withErrorLog<
+export const getServerSideProps = withCache<
   { id: string },
   {
     activity: Activity;
@@ -33,23 +33,27 @@ export const getServerSideProps = withErrorLog<
     agendaGroup: AgendaModel['group'];
     forums: Forum[];
   }
->(async ({ params }) => {
-  const activityStore = new ActivityModel();
+>(
+  withErrorLog(
+    withTranslation(async ({ params }) => {
+      const activityStore = new ActivityModel();
 
-  const activity = await activityStore.getOne(params!.id);
+      const activity = await activityStore.getOne(params!.id);
 
-  const agendaGroup = await activityStore.currentAgenda!.getGroup();
+      const agendaGroup = await activityStore.currentAgenda!.getGroup();
 
-  const { currentMeta } = activityStore;
+      const { currentMeta } = activityStore;
 
-  const forums = await activityStore.currentForum!.getAll();
+      const forums = await activityStore.currentForum!.getAll();
 
-  return {
-    props: JSON.parse(
-      JSON.stringify({ activity, currentMeta, agendaGroup, forums }),
-    ),
-  };
-});
+      return {
+        props: JSON.parse(
+          JSON.stringify({ activity, currentMeta, agendaGroup, forums }),
+        ),
+      };
+    }),
+  ),
+);
 
 const { t } = i18n;
 

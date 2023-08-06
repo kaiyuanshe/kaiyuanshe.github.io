@@ -10,6 +10,7 @@ import {
   NextApiResponse,
 } from 'next';
 import { ParsedUrlQuery } from 'querystring';
+import { Second } from 'web-utility';
 
 import { i18n } from '../../models/Translation';
 
@@ -46,6 +47,31 @@ export function safeAPI(handler: NextAPI): NextAPI {
       res.send(body);
     }
   };
+}
+
+const serverRenderCache: Record<
+  string,
+  { expiredAt: number; data: GetServerSidePropsResult<DataObject> }
+> = {};
+
+export function withCache<
+  I extends DataObject,
+  O extends DataObject = {},
+  F extends GetServerSideProps<O, I> = GetServerSideProps<O, I>,
+>(origin: F, interval = 30 * Second) {
+  return (async context => {
+    const { resolvedUrl } = context;
+    var { data, expiredAt } = serverRenderCache[resolvedUrl] || {};
+
+    if (data && Date.now() < expiredAt) return data;
+
+    data = await origin(context);
+    expiredAt = Date.now() + interval;
+
+    serverRenderCache[resolvedUrl] = { expiredAt, data };
+
+    return data;
+  }) as F;
 }
 
 export function withErrorLog<
