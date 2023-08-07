@@ -2,6 +2,7 @@ import { text2color } from 'idea-react';
 import { TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
+import { compose, translator } from 'next-ssr-middleware';
 import { PureComponent } from 'react';
 import { Badge, Col, Container, Row } from 'react-bootstrap';
 
@@ -13,12 +14,11 @@ import { Activity, ActivityModel } from '../../../../../models/Activity';
 import { Agenda } from '../../../../../models/Agenda';
 import { blobURLOf } from '../../../../../models/Base';
 import { i18n } from '../../../../../models/Translation';
-import { withTranslation } from '../../../../api/base';
 
-export const getServerSideProps = withTranslation<
+export const getServerSideProps = compose<
   { id: string; agendaId: string },
   { activity: Activity; agenda: Agenda }
->(async ({ params }) => {
+>(translator(i18n), async ({ params }) => {
   const activityStore = new ActivityModel(),
     { id, agendaId } = params!;
   const activity = await activityStore.getOne(id + ''),

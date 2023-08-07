@@ -24,14 +24,21 @@ export type Agenda = Record<
   | 'mentorSummaries'
   | 'startTime'
   | 'endTime'
-  | 'files',
+  | 'files'
+  | 'approver',
   TableCellValue
 >;
 
 export class AgendaModel extends BiDataTable<Agenda>() {
   client = larkClient;
 
-  requiredKeys = ['title', 'mentors', 'startTime', 'endTime'] as const;
+  requiredKeys = [
+    'title',
+    'mentors',
+    'startTime',
+    'endTime',
+    'approver',
+  ] as const;
 
   sort = { startTime: 'ASC' } as const;
 

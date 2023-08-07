@@ -1,5 +1,6 @@
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
+import { compose, RouteProps, router, translator } from 'next-ssr-middleware';
 import { FC } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 
@@ -11,17 +12,18 @@ import { OrganizationListLayout } from '../../components/Organization/List';
 import PageHead from '../../components/PageHead';
 import { SystemModel } from '../../models/System';
 import { i18n } from '../../models/Translation';
-import { withRoute, withTranslation } from '../api/base';
 import { SearchQuery, SearchResult } from '../api/search';
 
-export const getServerSideProps = withTranslation(
-  withRoute<{}, SearchResult>(async ({ query }) => {
+export const getServerSideProps = compose<{}, SearchResult & RouteProps>(
+  router,
+  translator(i18n),
+  async ({ query }) => {
     const props = await new SystemModel().search(query);
 
     return {
       props: JSON.parse(JSON.stringify(props)),
     };
-  }),
+  },
 );
 
 const SearchPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
