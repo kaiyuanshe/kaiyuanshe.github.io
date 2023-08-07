@@ -71,6 +71,9 @@ dependencies:
   next-pwa:
     specifier: ^5.6.0
     version: 5.6.0(@babel/core@7.22.9)(next@12.3.4)(webpack@5.88.2)
+  next-ssr-middleware:
+    specifier: ^0.5.0
+    version: 0.5.0(mobx@5.15.7)(next@12.3.4)(typescript@5.1.6)
   next-with-less:
     specifier: ^2.0.5
     version: 2.0.5(less-loader@11.1.3)(less@4.2.0)(next@12.3.4)
@@ -4780,6 +4783,20 @@ packages:
       - supports-color
       - uglify-js
       - webpack
+    dev: false
+
+  /next-ssr-middleware@0.5.0(mobx@5.15.7)(next@12.3.4)(typescript@5.1.6):
+    resolution: {integrity: sha512-ZX3SGqnfOsQiEMjNjaoszgVl2wfAN+7FsTUIxSd3EX2gwOYbJzj6t/PDQTJMB6f2EXYOuelwy5XYZMD86XINRw==}
+    peerDependencies:
+      next: '>=9.3'
+    dependencies:
+      mobx-i18n: 0.3.15(mobx@5.15.7)
+      next: 12.3.4(@babel/core@7.22.9)(react-dom@17.0.2)(react@17.0.2)
+      tslib: 2.6.1
+      web-utility: 4.1.0(typescript@5.1.6)
+    transitivePeerDependencies:
+      - mobx
+      - typescript
     dev: false
 
   /next-with-less@2.0.5(less-loader@11.1.3)(less@4.2.0)(next@12.3.4):

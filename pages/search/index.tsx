@@ -1,5 +1,6 @@
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
+import { compose, RouteProps, router, translator } from 'next-ssr-middleware';
 import { FC } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 
@@ -11,12 +12,11 @@ import { OrganizationListLayout } from '../../components/Organization/List';
 import PageHead from '../../components/PageHead';
 import { SystemModel } from '../../models/System';
 import { i18n } from '../../models/Translation';
-import { compose, RouteProps, router, translator } from '../api/base';
 import { SearchQuery, SearchResult } from '../api/search';
 
 export const getServerSideProps = compose<{}, SearchResult & RouteProps>(
   router,
-  translator,
+  translator(i18n),
   async ({ query }) => {
     const props = await new SystemModel().search(query);
 

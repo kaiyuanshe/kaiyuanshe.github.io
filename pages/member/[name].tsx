@@ -1,6 +1,7 @@
 import { text2color } from 'idea-react';
 import { marked } from 'marked';
 import { InferGetServerSidePropsType } from 'next';
+import { compose, errorLogger, translator } from 'next-ssr-middleware';
 import { PureComponent } from 'react';
 import { Badge, Col, Container, Image, Row } from 'react-bootstrap';
 import { formatDate } from 'web-utility';
@@ -9,12 +10,12 @@ import { CommentBox } from '../../components/CommentBox';
 import PageHead from '../../components/PageHead';
 import { Person, PersonModel } from '../../models/Person';
 import { Personnel, PersonnelModel } from '../../models/Personnel';
-import { compose, errorLogger, translator } from '../api/base';
+import { i18n } from '../../models/Translation';
 
 export const getServerSideProps = compose<
   { name: string },
   { person: Person; personnels: Personnel[] }
->(errorLogger, translator, async ({ params: { name } = {} }) => {
+>(errorLogger, translator(i18n), async ({ params: { name } = {} }) => {
   const [person] = await new PersonModel().getList({ name });
 
   if (!person) return { notFound: true, props: {} };

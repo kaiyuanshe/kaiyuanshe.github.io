@@ -1,17 +1,17 @@
 import { observer } from 'mobx-react';
 import dynamic from 'next/dynamic';
+import { compose, translator } from 'next-ssr-middleware';
 import { FC } from 'react';
 import { Button, Container } from 'react-bootstrap';
 
 import PageHead from '../../components/PageHead';
 import { i18n } from '../../models/Translation';
-import { compose, translator } from '../api/base';
 
 const DepartmentTree = dynamic(() => import('../../components/Group/Tree'), {
   ssr: false,
 });
 
-export const getServerSideProps = compose(translator);
+export const getServerSideProps = compose(translator(i18n));
 
 const { t } = i18n;
 

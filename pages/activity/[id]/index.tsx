@@ -1,6 +1,7 @@
 import { TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
+import { cache, compose, errorLogger, translator } from 'next-ssr-middleware';
 import { PureComponent } from 'react';
 import {
   Button,
@@ -21,7 +22,6 @@ import { AgendaModel } from '../../../models/Agenda';
 import { blobURLOf } from '../../../models/Base';
 import { Forum } from '../../../models/Forum';
 import { i18n } from '../../../models/Translation';
-import { cache, compose, errorLogger, translator } from '../../api/base';
 import { TableFormViewItem } from '../../api/lark/core';
 import styles from './index.module.less';
 
@@ -33,7 +33,7 @@ export const getServerSideProps = compose<
     agendaGroup: AgendaModel['group'];
     forums: Forum[];
   }
->(cache(), errorLogger, translator, async ({ params }) => {
+>(cache(), errorLogger, translator(i18n), async ({ params }) => {
   const activityStore = new ActivityModel();
 
   const activity = await activityStore.getOne(params!.id);

@@ -1,6 +1,13 @@
 import { textJoin } from 'mobx-i18n';
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
+import {
+  compose,
+  errorLogger,
+  RouteProps,
+  router,
+  translator,
+} from 'next-ssr-middleware';
 import { FC } from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { isEmpty } from 'web-utility';
@@ -9,18 +16,11 @@ import { ElectorCard } from '../../../components/Election/ElectorCard';
 import PageHead from '../../../components/PageHead';
 import { ElectionTarget, PersonnelModel } from '../../../models/Personnel';
 import { i18n } from '../../../models/Translation';
-import {
-  compose,
-  errorLogger,
-  RouteProps,
-  router,
-  translator,
-} from '../../api/base';
 
 export const getServerSideProps = compose<
   { year: string },
   RouteProps<{ year: string }> & Pick<PersonnelModel, 'group'>
->(router, errorLogger, translator, async ({ params }) => {
+>(router, errorLogger, translator(i18n), async ({ params }) => {
   const group = await new PersonnelModel().getGroup(
     {},
     ['position', 'award'],

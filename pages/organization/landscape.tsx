@@ -1,18 +1,18 @@
 import { observer } from 'mobx-react';
 import dynamic from 'next/dynamic';
+import { compose, translator } from 'next-ssr-middleware';
 import { FC } from 'react';
 import { Container } from 'react-bootstrap';
 
 import PageHead from '../../components/PageHead';
 import { i18n } from '../../models/Translation';
-import { compose, translator } from '../api/base';
 
 const OrganizationLandscape = dynamic(
   () => import('../../components/Organization/LandScape'),
   { ssr: false },
 );
 
-export const getServerSideProps = compose(translator);
+export const getServerSideProps = compose(translator(i18n));
 
 const LandscapePage: FC = observer(() => {
   const { t } = i18n;

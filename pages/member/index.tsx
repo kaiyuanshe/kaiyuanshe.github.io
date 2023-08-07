@@ -2,6 +2,7 @@ import 'array-unique-proposal';
 
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
+import { cache, compose, errorLogger, translator } from 'next-ssr-middleware';
 import { PureComponent } from 'react';
 import { Container } from 'react-bootstrap';
 import { TimeData } from 'web-utility';
@@ -11,12 +12,12 @@ import { MemberTitle } from '../../components/Member/Title';
 import PageHead from '../../components/PageHead';
 import { Personnel, PersonnelModel } from '../../models/Personnel';
 import { i18n } from '../../models/Translation';
-import { compose, errorLogger, translator } from '../api/base';
 import { fileURLOf } from '../api/lark/file/[id]';
 
 export const getServerSideProps = compose<{}, Pick<PersonnelModel, 'group'>>(
+  cache(),
   errorLogger,
-  translator,
+  translator(i18n),
   async () => {
     const group = await new PersonnelModel().getGroup(
       {

@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
+import { compose, translator } from 'next-ssr-middleware';
 import { PureComponent } from 'react';
 import { Col, Container, Image, ListGroup, Row } from 'react-bootstrap';
 
@@ -8,7 +9,6 @@ import PageHead from '../../components/PageHead';
 import { blobURLOf } from '../../models/Base';
 import { Cooperation, CooperationModel } from '../../models/Cooperation';
 import { i18n } from '../../models/Translation';
-import { compose, translator } from '../api/base';
 import { fileURLOf } from '../api/lark/file/[id]';
 
 const Levels = [
@@ -39,7 +39,7 @@ const Levels = [
 export const getServerSideProps = compose<
   {},
   { yearGroup: CooperationModel['yearGroup'] }
->(translator, async () => {
+>(translator(i18n), async () => {
   const cooperationStore = new CooperationModel();
 
   await cooperationStore.getGroup();
