@@ -5,9 +5,9 @@ import { Button, Container } from 'react-bootstrap';
 import { OpenSourceMap } from '../../components/Organization';
 import PageHead from '../../components/PageHead';
 import { i18n } from '../../models/Translation';
-import { withTranslation } from '../api/base';
+import { compose, translator } from '../api/base';
 
-export const getServerSideProps = withTranslation();
+export const getServerSideProps = compose(translator);
 
 const OrganizationPage: FC = observer(() => {
   const { t } = i18n;

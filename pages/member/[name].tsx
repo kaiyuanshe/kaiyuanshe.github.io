@@ -9,27 +9,25 @@ import { CommentBox } from '../../components/CommentBox';
 import PageHead from '../../components/PageHead';
 import { Person, PersonModel } from '../../models/Person';
 import { Personnel, PersonnelModel } from '../../models/Personnel';
-import { withErrorLog, withTranslation } from '../api/base';
+import { compose, errorLogger, translator } from '../api/base';
 
-export const getServerSideProps = withErrorLog<
+export const getServerSideProps = compose<
   { name: string },
   { person: Person; personnels: Personnel[] }
->(
-  withTranslation(async ({ params: { name } = {} }) => {
-    const [person] = await new PersonModel().getList({ name });
+>(errorLogger, translator, async ({ params: { name } = {} }) => {
+  const [person] = await new PersonModel().getList({ name });
 
-    if (!person) return { notFound: true, props: {} };
+  if (!person) return { notFound: true, props: {} };
 
-    const personnels = await new PersonnelModel().getList({
-      passed: true,
-      recipient: name,
-    });
+  const personnels = await new PersonnelModel().getList({
+    passed: true,
+    recipient: name,
+  });
 
-    return {
-      props: JSON.parse(JSON.stringify({ person, personnels })),
-    };
-  }),
-);
+  return {
+    props: JSON.parse(JSON.stringify({ person, personnels })),
+  };
+});
 
 export default class PersonDetailPage extends PureComponent<
   InferGetServerSidePropsType<typeof getServerSideProps>

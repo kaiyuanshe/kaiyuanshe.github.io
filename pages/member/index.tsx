@@ -11,14 +11,13 @@ import { MemberTitle } from '../../components/Member/Title';
 import PageHead from '../../components/PageHead';
 import { Personnel, PersonnelModel } from '../../models/Personnel';
 import { i18n } from '../../models/Translation';
-import { withErrorLog, withTranslation } from '../api/base';
+import { compose, errorLogger, translator } from '../api/base';
 import { fileURLOf } from '../api/lark/file/[id]';
 
-export const getServerSideProps = withErrorLog<
-  {},
-  Pick<PersonnelModel, 'group'>
->(
-  withTranslation(async () => {
+export const getServerSideProps = compose<{}, Pick<PersonnelModel, 'group'>>(
+  errorLogger,
+  translator,
+  async () => {
     const group = await new PersonnelModel().getGroup(
       {
         position: ['正式成员', '组长', '副组长'],
@@ -27,7 +26,7 @@ export const getServerSideProps = withErrorLog<
       ['department'],
     );
     return { props: JSON.parse(JSON.stringify({ group })) };
-  }),
+  },
 );
 
 const { t } = i18n;

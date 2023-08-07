@@ -5,7 +5,6 @@ import {
   GetServerSideProps,
   GetServerSidePropsContext,
   GetServerSidePropsResult,
-  InferGetServerSidePropsType,
   NextApiRequest,
   NextApiResponse,
 } from 'next';
@@ -49,6 +48,27 @@ export function safeAPI(handler: NextAPI): NextAPI {
   };
 }
 
+export type Middleware<I extends DataObject, O extends DataObject = {}> = (
+  context: GetServerSidePropsContext<I>,
+  next: () => Promise<GetServerSidePropsResult<O>>,
+) => Promise<GetServerSidePropsResult<O>>;
+
+export function compose<
+  I extends DataObject,
+  O extends DataObject = {},
+  F extends GetServerSideProps<O, I> = GetServerSideProps<O, I>,
+>(...middlewares: Middleware<I, O>[]) {
+  return (context => {
+    const [first, ...rest] = middlewares;
+
+    const next = async () =>
+      (await rest.shift()?.(context, next)) ||
+      ({ props: {} } as GetServerSidePropsResult<O>);
+
+    return first(context, next);
+  }) as F;
+}
+
 interface AsyncCache {
   expiredAt?: number;
   data?: GetServerSidePropsResult<DataObject>;
@@ -57,12 +77,10 @@ interface AsyncCache {
 
 const serverRenderCache: Record<string, AsyncCache> = {};
 
-export function withCache<
-  I extends DataObject,
-  O extends DataObject = {},
-  F extends GetServerSideProps<O, I> = GetServerSideProps<O, I>,
->(origin: F, interval = 30 * Second) {
-  return (async context => {
+export function cache<I extends DataObject, O extends DataObject = {}>(
+  interval = 30 * Second,
+) {
+  return (async (context, next) => {
     const { resolvedUrl } = context;
     const cache = (serverRenderCache[resolvedUrl] ||= {}),
       title = `[SSR cache] ${resolvedUrl}`;
@@ -71,7 +89,7 @@ export function withCache<
     if ((!data || expiredAt < Date.now()) && !cache.buffer) {
       console.time(title);
 
-      cache.buffer = origin(context).then(data => {
+      cache.buffer = next().then(data => {
         delete cache.buffer;
         cache.data = data;
         cache.expiredAt = Date.now() + interval;
@@ -83,80 +101,68 @@ export function withCache<
       });
     }
     return data || cache.buffer;
-  }) as F;
+  }) as Middleware<I, O>;
 }
 
-export function withErrorLog<
+export async function errorLogger<
   I extends DataObject,
   O extends DataObject = {},
-  F extends GetServerSideProps<O, I> = GetServerSideProps<O, I>,
->(origin: F) {
-  return (async context => {
-    try {
-      return await origin(context);
-    } catch (error) {
-      console.error(error);
+>(
+  context: GetServerSidePropsContext<I>,
+  next: () => Promise<GetServerSidePropsResult<O>>,
+): Promise<GetServerSidePropsResult<O>> {
+  try {
+    return await next();
+  } catch (error) {
+    console.error(error);
 
-      const { status } = error as HTTPError;
+    const { status } = error as HTTPError;
 
-      if (status === 404) return { notFound: true, props: {} };
+    if (status === 404) return { notFound: true, props: {} as O };
 
-      throw error;
-    }
-  }) as F;
+    throw error;
+  }
 }
 
-interface RouteProps<T extends ParsedUrlQuery> {
+export interface RouteProps<T extends ParsedUrlQuery = {}> {
   route: Pick<
     GetServerSidePropsContext<T>,
     'resolvedUrl' | 'params' | 'query' | 'locales'
   >;
 }
 
-export function withRoute<
-  I extends DataObject,
-  O extends DataObject = {},
-  F extends GetServerSideProps<O, I> = GetServerSideProps<O, I>,
->(
-  origin?: F,
-): GetServerSideProps<RouteProps<I> & InferGetServerSidePropsType<F>, I> {
-  return async context => {
-    const options =
-        (await origin?.(context)) || ({} as GetServerSidePropsResult<{}>),
-      { resolvedUrl, params, query, locales } = context;
+export async function router<I extends DataObject, O extends DataObject = {}>(
+  context: GetServerSidePropsContext<I>,
+  next: () => Promise<GetServerSidePropsResult<O>>,
+) {
+  const options = (await next()) || ({} as GetServerSidePropsResult<{}>),
+    { resolvedUrl, params, query, locales } = context;
 
-    return {
-      ...options,
-      props: {
-        ...('props' in options ? options.props : {}),
-        route: JSON.parse(
-          JSON.stringify({ resolvedUrl, params, query, locales }),
-        ),
-      },
-    } as GetServerSidePropsResult<
-      RouteProps<I> & InferGetServerSidePropsType<F>
-    >;
-  };
+  return {
+    ...options,
+    props: {
+      ...('props' in options ? options.props : {}),
+      route: JSON.parse(
+        JSON.stringify({ resolvedUrl, params, query, locales }),
+      ),
+    },
+  } as GetServerSidePropsResult<RouteProps<I> & O>;
 }
 
-export function withTranslation<
+export async function translator<
   I extends DataObject,
   O extends DataObject = {},
-  F extends GetServerSideProps<O, I> = GetServerSideProps<O, I>,
 >(
-  origin?: F,
-): GetServerSideProps<RouteProps<I> & InferGetServerSidePropsType<F>, I> {
-  return async context => {
-    const { language = '' } = context.req.cookies,
-      languages = parseLanguageHeader(
-        context.req.headers['accept-language'] || '',
-      );
-    await i18n.loadLanguages([language, ...languages].filter(Boolean));
+  context: GetServerSidePropsContext<I>,
+  next: () => Promise<GetServerSidePropsResult<O>>,
+) {
+  const { language = '' } = context.req.cookies,
+    languages = parseLanguageHeader(
+      context.req.headers['accept-language'] || '',
+    );
+  await i18n.loadLanguages([language, ...languages].filter(Boolean));
 
-    return ((await origin?.(context)) || {
-      props: {},
-    }) as GetServerSidePropsResult<
-      RouteProps<I> & InferGetServerSidePropsType<F>
-    >;
-  };
+  return ((await next()) || {
+    props: {},
+  }) as GetServerSidePropsResult<O>;
 }

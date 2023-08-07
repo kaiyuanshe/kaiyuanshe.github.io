@@ -5,13 +5,13 @@ import { Button, Container } from 'react-bootstrap';
 
 import PageHead from '../../components/PageHead';
 import { i18n } from '../../models/Translation';
-import { withTranslation } from '../api/base';
+import { compose, translator } from '../api/base';
 
 const DepartmentTree = dynamic(() => import('../../components/Group/Tree'), {
   ssr: false,
 });
 
-export const getServerSideProps = withTranslation();
+export const getServerSideProps = compose(translator);
 
 const { t } = i18n;
 

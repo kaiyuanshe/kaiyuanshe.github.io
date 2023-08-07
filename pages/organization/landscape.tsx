@@ -5,14 +5,14 @@ import { Container } from 'react-bootstrap';
 
 import PageHead from '../../components/PageHead';
 import { i18n } from '../../models/Translation';
-import { withTranslation } from '../api/base';
+import { compose, translator } from '../api/base';
 
 const OrganizationLandscape = dynamic(
   () => import('../../components/Organization/LandScape'),
   { ssr: false },
 );
 
-export const getServerSideProps = withTranslation();
+export const getServerSideProps = compose(translator);
 
 const LandscapePage: FC = observer(() => {
   const { t } = i18n;

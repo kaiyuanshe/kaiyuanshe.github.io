@@ -6,15 +6,18 @@ import { Container } from 'react-bootstrap';
 
 import { ActivityListLayout } from '../../components/Activity/List';
 import PageHead from '../../components/PageHead';
-import activityStore, { ActivityModel } from '../../models/Activity';
+import activityStore, { Activity, ActivityModel } from '../../models/Activity';
 import { i18n } from '../../models/Translation';
-import { withTranslation } from '../api/base';
+import { compose, translator } from '../api/base';
 
-export const getServerSideProps = withTranslation(async () => {
-  const list = await new ActivityModel().getList();
+export const getServerSideProps = compose<{}, { list: Activity[] }>(
+  translator,
+  async () => {
+    const list = await new ActivityModel().getList();
 
-  return { props: { list: JSON.parse(JSON.stringify(list)) } };
-});
+    return { props: { list: JSON.parse(JSON.stringify(list)) } };
+  },
+);
 
 const { t } = i18n;
 

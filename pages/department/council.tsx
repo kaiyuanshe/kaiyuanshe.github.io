@@ -7,14 +7,13 @@ import { MemberCard } from '../../components/Member/Card';
 import PageHead from '../../components/PageHead';
 import { PersonnelModel } from '../../models/Personnel';
 import { i18n } from '../../models/Translation';
-import { withErrorLog, withTranslation } from '../api/base';
+import { compose, errorLogger, translator } from '../api/base';
 import { fileURLOf } from '../api/lark/file/[id]';
 
-export const getServerSideProps = withErrorLog<
-  {},
-  Pick<PersonnelModel, 'group'>
->(
-  withTranslation(async () => {
+export const getServerSideProps = compose<{}, Pick<PersonnelModel, 'group'>>(
+  errorLogger,
+  translator,
+  async () => {
     const group = await new PersonnelModel().getYearGroup(
       {
         position: ['理事', '理事长', '副理事长'],
@@ -24,7 +23,7 @@ export const getServerSideProps = withErrorLog<
     );
 
     return { props: JSON.parse(JSON.stringify({ group })) };
-  }),
+  },
 );
 
 const { t } = i18n;

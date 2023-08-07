@@ -13,12 +13,12 @@ import { Activity, ActivityModel } from '../../../../../models/Activity';
 import { Agenda } from '../../../../../models/Agenda';
 import { blobURLOf } from '../../../../../models/Base';
 import { i18n } from '../../../../../models/Translation';
-import { withTranslation } from '../../../../api/base';
+import { compose, translator } from '../../../../api/base';
 
-export const getServerSideProps = withTranslation<
+export const getServerSideProps = compose<
   { id: string; agendaId: string },
   { activity: Activity; agenda: Agenda }
->(async ({ params }) => {
+>(translator, async ({ params }) => {
   const activityStore = new ActivityModel(),
     { id, agendaId } = params!;
   const activity = await activityStore.getOne(id + ''),

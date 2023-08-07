@@ -8,7 +8,7 @@ import PageHead from '../../components/PageHead';
 import { blobURLOf } from '../../models/Base';
 import { Cooperation, CooperationModel } from '../../models/Cooperation';
 import { i18n } from '../../models/Translation';
-import { withTranslation } from '../api/base';
+import { compose, translator } from '../api/base';
 import { fileURLOf } from '../api/lark/file/[id]';
 
 const Levels = [
@@ -36,10 +36,10 @@ const Levels = [
   '社区伙伴',
 ] as const;
 
-export const getServerSideProps = withTranslation<
+export const getServerSideProps = compose<
   {},
   { yearGroup: CooperationModel['yearGroup'] }
->(async () => {
+>(translator, async () => {
   const cooperationStore = new CooperationModel();
 
   await cooperationStore.getGroup();

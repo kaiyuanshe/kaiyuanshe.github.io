@@ -12,12 +12,12 @@ import {
   SearchArticleModel,
 } from '../../../models/Article';
 import { i18n } from '../../../models/Translation';
-import { withErrorLog } from '../../api/base';
+import { compose, errorLogger } from '../../api/base';
 
-export const getServerSideProps = withErrorLog<
+export const getServerSideProps = compose<
   { id: string },
   { article: Article; recommends: Article[] }
->(async ({ params }) => {
+>(errorLogger, async ({ params }) => {
   const articleStore = new ArticleModel();
 
   const article = await articleStore.getOne(params!.id);

@@ -9,27 +9,29 @@ import { ElectorCard } from '../../../components/Election/ElectorCard';
 import PageHead from '../../../components/PageHead';
 import { ElectionTarget, PersonnelModel } from '../../../models/Personnel';
 import { i18n } from '../../../models/Translation';
-import { withErrorLog, withRoute, withTranslation } from '../../api/base';
+import {
+  compose,
+  errorLogger,
+  RouteProps,
+  router,
+  translator,
+} from '../../api/base';
 
-export const getServerSideProps = withRoute<
+export const getServerSideProps = compose<
   { year: string },
-  Pick<PersonnelModel, 'group'>
->(
-  withErrorLog(
-    withTranslation(async ({ params }) => {
-      const group = await new PersonnelModel().getGroup(
-        {},
-        ['position', 'award'],
-        +params!.year,
-      );
+  RouteProps<{ year: string }> & Pick<PersonnelModel, 'group'>
+>(router, errorLogger, translator, async ({ params }) => {
+  const group = await new PersonnelModel().getGroup(
+    {},
+    ['position', 'award'],
+    +params!.year,
+  );
 
-      return {
-        notFound: isEmpty(group),
-        props: JSON.parse(JSON.stringify({ group })),
-      };
-    }),
-  ),
-);
+  return {
+    notFound: isEmpty(group),
+    props: JSON.parse(JSON.stringify({ group })),
+  };
+});
 
 const { t } = i18n;
 
