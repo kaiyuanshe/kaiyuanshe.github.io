@@ -41,72 +41,25 @@ export type Bill = Record<
   TableCellValue
 >;
 
-export type BillStatistic = Record<'price', Record<string, number>>;
-
-export class BillViewModel extends BiTableView() {
-  client = larkClient;
-}
-
-export class BillTableModel extends BiTable() {
-  client = larkClient;
-
-  @observable
-  formMap = {} as Record<string, TableFormViewItem[]>;
-
-  async *loadFormStream() {
-    for (const { table_id, name } of this.allItems) {
-      const views = await new BillViewModel(this.id, table_id).getAll(),
-        forms: TableFormViewItem[] = [];
-
-      for (const { view_type, view_id } of views)
-        if (view_type === 'form') {
-          const { body } = await this.client.get<LarkFormData>(
-            `${this.baseURI}/${table_id}/forms/${view_id}`,
-          );
-          forms.push(body!.data.form);
-        }
-      yield [name, forms] as const;
-    }
-  }
-
-  @action
-  @toggle('downloading')
-  // @ts-ignore
-  async getAll(filter?: Filter<BiTableItem>, pageSize?: number) {
-    // @ts-ignore
-    const tables = await super.getAll(filter, pageSize);
-
-    const formList: (readonly [string, TableFormViewItem[]])[] = [];
-
-    for await (const item of this.loadFormStream()) formList.push(item);
-
-    this.formMap = Object.fromEntries(formList);
-
-    return tables;
-  }
-}
-
 export class BillModel extends BiDataTable<Bill>() {
   client = larkClient;
 
-  constructor(appId = MAIN_BASE_ID, tableId = BILL_TABLE_ID) {
-    super(appId, tableId);
-  }
+  requiredKeys = ['price'] as const;
 
-  requiredKeys = ['createAt', 'price', 'forum', 'agendas'] as const;
+  sort = { createAt: 'ASC' } as const;
 
-  sort = { createAt: 'DESC' } as const;
-
-  @observable
-  formMap = {} as BillTableModel['formMap'];
-
-  currentAgenda?: AgendaModel;
-  currentForum?: ForumModel;
-
-  normalize({ id, fields, ...meta }: TableRecord<Bill>): Bill {
+  normalize({
+    id,
+    fields: { createAt, location, createBy, type, price, ...data },
+  }: TableRecord<Bill>) {
     return {
-      ...fields,
+      ...data,
       id: id!,
+      createAt: createAt!,
+      location: location!,
+      createBy: createBy!,
+      type: type!,
+      price: price!,
     };
   }
 }
