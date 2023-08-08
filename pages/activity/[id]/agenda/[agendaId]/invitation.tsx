@@ -1,6 +1,6 @@
 import { Loading, text2color } from 'idea-react';
 import { observable } from 'mobx';
-import { TableCellValue } from 'mobx-lark';
+import { TableCellLocation, TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { QRCodeSVG } from 'qrcode.react';
@@ -97,7 +97,7 @@ export default class InvitationPage extends PureComponent<
 
           <ul className="list-unstyled d-flex flex-column align-items-center gap-4">
             <li>🏙{city}</li>
-            <li>🗺{location}</li>
+            <li>🗺{(location as TableCellLocation)?.full_address}</li>
           </ul>
         </header>
         <section className="d-flex flex-column align-items-center gap-4">

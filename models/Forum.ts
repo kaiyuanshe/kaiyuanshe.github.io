@@ -17,6 +17,7 @@ export type Forum = Record<
   | 'volunteers'
   | 'startTime'
   | 'endTime'
+  | 'location'
   | 'summary'
   | 'standard'
   | 'type'
