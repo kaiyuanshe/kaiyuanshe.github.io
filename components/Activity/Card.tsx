@@ -1,4 +1,5 @@
 import { text2color, TimeDistance } from 'idea-react';
+import { TableCellLocation } from 'mobx-lark';
 import type { FC } from 'react';
 import { Badge, Card, Col, Row } from 'react-bootstrap';
 
@@ -44,9 +45,12 @@ export const ActivityCard: FC<ActivityCardProps> = ({
 
       <Row className="mt-2 flex-fill">
         <Col className="text-start">
-          <Card.Text className="mt-1 text-truncate" title={location + ''}>
+          <Card.Text
+            className="mt-1 text-truncate"
+            title={(location as TableCellLocation)?.full_address}
+          >
             <span className="me-1">{city}</span>
-            {location}
+            {(location as TableCellLocation)?.full_address}
           </Card.Text>
         </Col>
       </Row>
