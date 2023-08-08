@@ -1,31 +1,56 @@
+import { computed } from 'mobx';
 import { observer } from 'mobx-react';
 import { Column, RestTable } from 'mobx-restful-table';
 import { InferGetServerSidePropsType } from 'next';
-import { compose } from 'next-ssr-middleware';
-import { FC, PureComponent } from 'react';
+import { compose, translator } from 'next-ssr-middleware';
+import { PureComponent } from 'react';
 import { Container } from 'react-bootstrap';
 
 import PageHead from '../../components/PageHead';
 import { Bill, BillModel } from '../../models/Bill';
 import { i18n } from '../../models/Translation';
 
-const { t } = i18n;
+const billStore = new BillModel();
 
-export const getServerSideProps = compose<{ id: string }>(
+export const getServerSideProps = compose<{ id: string }, { bill: Bill }>(
   async ({ params }) => {
-    const billStrore = new BillModel();
-    const bill = await billStrore.getOne(params!.id);
+    const bill = await billStore.getOne(params!.id);
 
     return {
       props: JSON.parse(JSON.stringify(bill)),
     };
   },
+
+  translator(i18n),
 );
 
 @observer
-export default class BillDetail extends PureComponent<
+export default class BillDetailPage extends PureComponent<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > {
+  @computed
+  get columns(): Column<Bill>[] {
+    const { t } = i18n;
+    return [
+      {
+        renderHead: t('bill_id'),
+        key: 'id',
+      },
+      {
+        renderHead: t('bill_createAt'),
+        key: 'createAt',
+      },
+      {
+        renderHead: t('bill_createBy'),
+        key: 'createBy',
+      },
+      {
+        renderHead: t('bill_type'),
+        key: 'type',
+      },
+    ];
+  }
+
   render() {
     const { bill } = this.props;
 
@@ -39,7 +64,9 @@ export default class BillDetail extends PureComponent<
           hover
           editable
           deletable
-          store={bill}
+          columns={this.columns}
+          store={billStore}
+          translator={i18n}
           onCheck={console.log}
         />
       </Container>

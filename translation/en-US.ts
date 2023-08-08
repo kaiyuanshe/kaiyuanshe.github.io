@@ -177,6 +177,12 @@ export default {
   range_file: 'file',
   range_module: 'module',
 
+  //finance Page
+  bill_id: 'bill_id',
+  bill_createAt: 'bill_createAt',
+  bill_createBy: 'bill_createBy',
+  bill_type: 'bill_type',
+
   // Election
   election: 'Election',
   candidate: 'candidate',

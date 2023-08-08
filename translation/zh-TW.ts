@@ -170,6 +170,12 @@ export default {
   range_file: '檔案',
   range_module: '模組',
 
+  //finance Page
+  bill_id: '單號',
+  bill_createAt: '記錄時間',
+  bill_createBy: '記錄者',
+  bill_type: '賬單類型',
+
   // Election
   election: '選舉',
   candidate: '候選人',
