@@ -1,5 +1,12 @@
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
+import {
+  compose,
+  errorLogger,
+  RouteProps,
+  router,
+  translator,
+} from 'next-ssr-middleware';
 import { FC } from 'react';
 import { Container } from 'react-bootstrap';
 
@@ -7,35 +14,32 @@ import { MemberCard } from '../../../components/Member/Card';
 import PageHead from '../../../components/PageHead';
 import { PersonnelModel } from '../../../models/Personnel';
 import { i18n } from '../../../models/Translation';
-import { withErrorLog, withRoute, withTranslation } from '../../api/base';
 import { fileURLOf } from '../../api/lark/file/[id]';
 
-type CommitteePageProps = Pick<PersonnelModel, 'allItems'>;
+type CommitteePageProps = RouteProps<{ name: string }> &
+  Pick<PersonnelModel, 'allItems'>;
 
 const nameMap = {
   consultant: '顾问委员会',
   'legal-advisory': '法律咨询委员会',
 };
 
-export const getServerSideProps = withRoute<
-  { name: string },
-  CommitteePageProps
->(
-  withErrorLog(
-    withTranslation(async ({ params }) => {
-      const department = nameMap[params!.name as keyof typeof nameMap];
+export const getServerSideProps = compose<{ name: string }, CommitteePageProps>(
+  router,
+  errorLogger,
+  translator(i18n),
+  async ({ params }) => {
+    const department = nameMap[params!.name as keyof typeof nameMap];
 
-      if (!department)
-        return { notFound: true, props: {} as CommitteePageProps };
+    if (!department) return { notFound: true, props: {} as CommitteePageProps };
 
-      const allItems = await new PersonnelModel().getAll({
-        department,
-        passed: true,
-      });
+    const allItems = await new PersonnelModel().getAll({
+      department,
+      passed: true,
+    });
 
-      return { props: JSON.parse(JSON.stringify({ allItems })) };
-    }),
-  ),
+    return { props: JSON.parse(JSON.stringify({ allItems })) };
+  },
 );
 
 const { t } = i18n;

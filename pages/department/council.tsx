@@ -1,5 +1,6 @@
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
+import { compose, errorLogger, translator } from 'next-ssr-middleware';
 import { FC } from 'react';
 import { Container } from 'react-bootstrap';
 
@@ -7,14 +8,12 @@ import { MemberCard } from '../../components/Member/Card';
 import PageHead from '../../components/PageHead';
 import { PersonnelModel } from '../../models/Personnel';
 import { i18n } from '../../models/Translation';
-import { withErrorLog, withTranslation } from '../api/base';
 import { fileURLOf } from '../api/lark/file/[id]';
 
-export const getServerSideProps = withErrorLog<
-  {},
-  Pick<PersonnelModel, 'group'>
->(
-  withTranslation(async () => {
+export const getServerSideProps = compose<{}, Pick<PersonnelModel, 'group'>>(
+  errorLogger,
+  translator(i18n),
+  async () => {
     const group = await new PersonnelModel().getYearGroup(
       {
         position: ['理事', '理事长', '副理事长'],
@@ -24,7 +23,7 @@ export const getServerSideProps = withErrorLog<
     );
 
     return { props: JSON.parse(JSON.stringify({ group })) };
-  }),
+  },
 );
 
 const { t } = i18n;

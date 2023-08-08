@@ -1,13 +1,20 @@
-import { Icon } from 'idea-react';
-import { observable } from 'mobx';
 import { TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
-import { MouseEvent, PureComponent } from 'react';
-import { Button, Col, Container, Nav, Offcanvas, Row } from 'react-bootstrap';
-import { scrollTo, sleep } from 'web-utility';
+import { cache, compose, errorLogger, translator } from 'next-ssr-middleware';
+import { PureComponent } from 'react';
+import {
+  Button,
+  Col,
+  Container,
+  Dropdown,
+  DropdownButton,
+  DropdownButtonProps,
+  Row,
+} from 'react-bootstrap';
 
 import { AgendaCard } from '../../../components/Activity/Agenda/Card';
+import { DrawerNav } from '../../../components/Activity/DrawerNav';
 import { ActivityPeople } from '../../../components/Activity/People';
 import PageHead from '../../../components/PageHead';
 import { Activity, ActivityModel } from '../../../models/Activity';
@@ -15,10 +22,10 @@ import { AgendaModel } from '../../../models/Agenda';
 import { blobURLOf } from '../../../models/Base';
 import { Forum } from '../../../models/Forum';
 import { i18n } from '../../../models/Translation';
-import { withErrorLog } from '../../api/base';
+import { TableFormViewItem } from '../../api/lark/core';
 import styles from './index.module.less';
 
-export const getServerSideProps = withErrorLog<
+export const getServerSideProps = compose<
   { id: string },
   {
     activity: Activity;
@@ -26,16 +33,16 @@ export const getServerSideProps = withErrorLog<
     agendaGroup: AgendaModel['group'];
     forums: Forum[];
   }
->(async ({ params }) => {
+>(cache(), errorLogger, translator(i18n), async ({ params }) => {
   const activityStore = new ActivityModel();
 
   const activity = await activityStore.getOne(params!.id);
 
-  const agendaGroup = await activityStore.currentAgenda!.getGroup();
-
+  const [agendaGroup, forums] = await Promise.all([
+    activityStore.currentAgenda!.getGroup(),
+    activityStore.currentForum!.getAll(),
+  ]);
   const { currentMeta } = activityStore;
-
-  const forums = await activityStore.currentForum!.getAll();
 
   return {
     props: JSON.parse(
@@ -50,81 +57,47 @@ const { t } = i18n;
 export default class ActivityDetailPage extends PureComponent<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > {
-  @observable
-  showDrawer = false;
-
-  closeDrawer = async () => {
-    var { scrollTop } = document.scrollingElement || {};
-
-    do {
-      await sleep(0.1);
-
-      if (scrollTop === document.scrollingElement?.scrollTop) {
-        this.showDrawer = false;
-        break;
-      }
-      scrollTop = document.scrollingElement?.scrollTop;
-    } while (true);
-  };
-
-  scrollTo = (event: MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
-
-    scrollTo(event.currentTarget.getAttribute('href')!);
-
-    this.closeDrawer();
-  };
+  renderFormMenu(
+    title: string,
+    forms: TableFormViewItem[],
+    variant: DropdownButtonProps['variant'] = 'primary',
+    disabled = false,
+  ) {
+    return (
+      <DropdownButton {...{ title, variant, disabled }}>
+        {forms.map(({ name, shared_url }) => (
+          <Dropdown.Item key={name} as="a" target="_blank" href={shared_url}>
+            {name}
+          </Dropdown.Item>
+        ))}
+      </DropdownButton>
+    );
+  }
 
   renderButtonBar() {
-    const { startTime, personForm, agendaForm, fileForm, billForm } =
+    const { endTime, personForms, agendaForms, fileForms, billForms } =
         this.props.currentMeta,
       { link } = this.props.activity;
-    const passed = +new Date(+startTime!) <= Date.now();
+    const passed = +new Date(+endTime!) <= Date.now();
 
     return (
       <div className="d-flex flex-wrap justify-content-center gap-3 my-3">
-        {personForm && (
-          <Button target="_blank" href={personForm} disabled={passed}>
-            {t('register_volunteer')}
-          </Button>
+        {this.renderFormMenu(
+          t('register_volunteer'),
+          personForms,
+          'primary',
+          passed,
         )}
-        {agendaForm && (
-          <Button
-            variant="success"
-            target="_blank"
-            href={agendaForm}
-            disabled={passed}
-          >
-            {t('submit_agenda')}
-          </Button>
+        {this.renderFormMenu(
+          t('submit_agenda'),
+          agendaForms,
+          'success',
+          passed,
         )}
-        {fileForm && (
-          <Button
-            variant="warning"
-            target="_blank"
-            href={fileForm}
-            disabled={passed}
-          >
-            {t('submit_agenda_file')}
-          </Button>
-        )}
-        {billForm && (
-          <Button
-            variant="info"
-            target="_blank"
-            href={billForm}
-            disabled={passed}
-          >
-            {t('reimbursement_application')}
-          </Button>
-        )}
+        {this.renderFormMenu(t('submit_agenda_file'), fileForms, 'warning')}
+        {this.renderFormMenu(t('reimbursement_application'), billForms, 'info')}
         {link && (
-          <Button
-            variant="danger"
-            target="_blank"
-            href={link as string}
-            disabled={passed}
-          >
+          <Button variant="danger" target="_blank" href={link as string}>
             {t('participant_registration')}
           </Button>
         )}
@@ -132,38 +105,23 @@ export default class ActivityDetailPage extends PureComponent<
     );
   }
 
-  renderDrawer() {
-    const { showDrawer } = this,
-      { forums } = this.props;
-
+  renderForumPeople(
+    title: string,
+    names: TableCellValue,
+    avatars: TableCellValue,
+    positions?: TableCellValue,
+  ) {
     return (
-      <>
-        <div className="fixed-bottom p-3">
-          <Button onClick={() => (this.showDrawer = true)}>
-            <Icon name="layout-text-sidebar" />
-          </Button>
-        </div>
-
-        <Offcanvas
-          style={{ width: 'max-content' }}
-          show={showDrawer}
-          onHide={this.closeDrawer}
-        >
-          <Offcanvas.Body>
-            <Nav className="flex-column">
-              {forums.map(({ name }) => (
-                <Nav.Link
-                  key={name + ''}
-                  href={`#${name}`}
-                  onClick={this.scrollTo}
-                >
-                  {name}
-                </Nav.Link>
-              ))}
-            </Nav>
-          </Offcanvas.Body>
-        </Offcanvas>
-      </>
+      <div className="d-flex align-items-center px-5">
+        <h3 className="h6">{title}</h3>
+        <ActivityPeople
+          names={names as string[]}
+          avatars={(avatars as TableCellValue[])?.map(file =>
+            blobURLOf([file] as TableCellValue),
+          )}
+          positions={positions as string[]}
+        />
+      </div>
     );
   }
 
@@ -186,12 +144,12 @@ export default class ActivityDetailPage extends PureComponent<
         </header>
 
         {this.renderButtonBar()}
-        {this.renderDrawer()}
 
         <Container>
           {forums.map(
             ({
               name,
+              summary,
               volunteers,
               volunteerAvatars,
               producers,
@@ -202,25 +160,22 @@ export default class ActivityDetailPage extends PureComponent<
                 <h2 className="my-5 text-center" id={name as string}>
                   {name}
                 </h2>
+                <p className="text-muted">{summary}</p>
+
                 <div className="d-flex justify-content-center">
                   <div className="d-flex align-items-center px-5">
-                    <h3 className="h6">{t('producer')}</h3>
-                    <ActivityPeople
-                      names={producers as string[]}
-                      avatars={(producerAvatars as TableCellValue[])?.map(
-                        file => blobURLOf([file] as TableCellValue),
+                    {this.renderForumPeople(
+                      t('producer'),
+                      producers,
+                      producerAvatars,
+                      producerPositions,
+                    )}
+                    {(volunteers as string[])?.[0] &&
+                      this.renderForumPeople(
+                        t('volunteer'),
+                        volunteers,
+                        volunteerAvatars,
                       )}
-                      positions={producerPositions as string[]}
-                    />
-                  </div>
-                  <div className="d-flex align-items-center px-5">
-                    <h3 className="h6">{t('volunteer')}</h3>
-                    <ActivityPeople
-                      names={volunteers as string[]}
-                      avatars={(volunteerAvatars as TableCellValue[])?.map(
-                        file => blobURLOf([file] as TableCellValue),
-                      )}
-                    />
                   </div>
                 </div>
 
@@ -238,6 +193,7 @@ export default class ActivityDetailPage extends PureComponent<
               </section>
             ),
           )}
+          <DrawerNav />
         </Container>
       </>
     );

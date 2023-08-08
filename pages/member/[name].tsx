@@ -1,6 +1,7 @@
 import { text2color } from 'idea-react';
 import { marked } from 'marked';
 import { InferGetServerSidePropsType } from 'next';
+import { compose, errorLogger, translator } from 'next-ssr-middleware';
 import { PureComponent } from 'react';
 import { Badge, Col, Container, Image, Row } from 'react-bootstrap';
 import { formatDate } from 'web-utility';
@@ -9,27 +10,25 @@ import { CommentBox } from '../../components/CommentBox';
 import PageHead from '../../components/PageHead';
 import { Person, PersonModel } from '../../models/Person';
 import { Personnel, PersonnelModel } from '../../models/Personnel';
-import { withErrorLog, withTranslation } from '../api/base';
+import { i18n } from '../../models/Translation';
 
-export const getServerSideProps = withErrorLog<
+export const getServerSideProps = compose<
   { name: string },
   { person: Person; personnels: Personnel[] }
->(
-  withTranslation(async ({ params: { name } = {} }) => {
-    const [person] = await new PersonModel().getList({ name });
+>(errorLogger, translator(i18n), async ({ params: { name } = {} }) => {
+  const [person] = await new PersonModel().getList({ name });
 
-    if (!person) return { notFound: true, props: {} };
+  if (!person) return { notFound: true, props: {} };
 
-    const personnels = await new PersonnelModel().getList({
-      passed: true,
-      recipient: name,
-    });
+  const personnels = await new PersonnelModel().getList({
+    passed: true,
+    recipient: name,
+  });
 
-    return {
-      props: JSON.parse(JSON.stringify({ person, personnels })),
-    };
-  }),
-);
+  return {
+    props: JSON.parse(JSON.stringify({ person, personnels })),
+  };
+});
 
 export default class PersonDetailPage extends PureComponent<
   InferGetServerSidePropsType<typeof getServerSideProps>
@@ -52,7 +51,7 @@ export default class PersonDetailPage extends PureComponent<
           <Badge bg={text2color(gender as string, ['light'])}>{gender}</Badge>
         </li>
         <li>
-          {(skills as string[]).map(skill => (
+          {(skills as string[])?.map(skill => (
             <Badge
               key={skill}
               className="me-2"
@@ -64,7 +63,7 @@ export default class PersonDetailPage extends PureComponent<
         </li>
         <li>🗺 {city}</li>
         <li>
-          📬 <a href={email as string}>{(email as string).split(':')[1]}</a>
+          📬 <a href={email as string}>{(email as string)?.split(':')[1]}</a>
         </li>
         <li>
           🖥{' '}

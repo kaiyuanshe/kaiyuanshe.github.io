@@ -24,7 +24,6 @@ export const MemberCard: FC<MemberCard> = observer(
       <h3 className="h4 my-3">
         <a
           className="fs-6 stretched-link"
-          target="_blank"
           href={`/member/${name}`}
           rel="noreferrer"
         >

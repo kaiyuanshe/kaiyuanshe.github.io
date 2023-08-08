@@ -1,5 +1,6 @@
 import { ScrollList } from 'mobx-restful-table';
 import { InferGetServerSidePropsType } from 'next';
+import { compose, errorLogger } from 'next-ssr-middleware';
 import { PureComponent } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 
@@ -12,12 +13,11 @@ import {
   SearchArticleModel,
 } from '../../../models/Article';
 import { i18n } from '../../../models/Translation';
-import { withErrorLog } from '../../api/base';
 
-export const getServerSideProps = withErrorLog<
+export const getServerSideProps = compose<
   { id: string },
   { article: Article; recommends: Article[] }
->(async ({ params }) => {
+>(errorLogger, async ({ params }) => {
   const articleStore = new ArticleModel();
 
   const article = await articleStore.getOne(params!.id);

@@ -1,6 +1,7 @@
 import { Icon } from 'idea-react';
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
+import { compose, errorLogger, translator } from 'next-ssr-middleware';
 import { Fragment, PureComponent } from 'react';
 import { Col, Container, Image, Row } from 'react-bootstrap';
 
@@ -12,25 +13,22 @@ import { Article, ArticleModel } from '../models/Article';
 import { blobURLOf } from '../models/Base';
 import { Department, DepartmentModel } from '../models/Group';
 import { i18n } from '../models/Translation';
-import { withErrorLog, withTranslation } from './api/base';
 import { slogan } from './api/home';
 import { DefaultImage } from './api/lark/file/[id]';
 
-export const getServerSideProps = withErrorLog<
+export const getServerSideProps = compose<
   {},
   { articles: Article[]; projects: Department[] }
->(
-  withTranslation(async () => {
-    const [articles, projects] = await Promise.all([
-      new ArticleModel().getList({}, 1, 3),
-      new DepartmentModel().getAll({ superior: '项目委员会' }),
-    ]);
+>(errorLogger, translator(i18n), async () => {
+  const [articles, projects] = await Promise.all([
+    new ArticleModel().getList({}, 1, 3),
+    new DepartmentModel().getAll({ superior: '项目委员会' }),
+  ]);
 
-    return {
-      props: JSON.parse(JSON.stringify({ articles, projects })),
-    };
-  }),
-);
+  return {
+    props: JSON.parse(JSON.stringify({ articles, projects })),
+  };
+});
 
 @observer
 export default class HomePage extends PureComponent<

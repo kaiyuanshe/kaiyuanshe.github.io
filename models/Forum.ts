@@ -17,7 +17,7 @@ export type Forum = Record<
   | 'volunteers'
   | 'startTime'
   | 'endTime'
-  | 'description'
+  | 'summary'
   | 'standard'
   | 'type'
   | 'producerAvatars'
@@ -29,7 +29,7 @@ export type Forum = Record<
 export class ForumModel extends BiDataTable<Forum>() {
   client = larkClient;
 
-  requiredKeys = ['name'] as const;
+  requiredKeys = ['name', 'summary', 'producers'] as const;
 
   sort = { startTime: 'ASC' } as const;
 

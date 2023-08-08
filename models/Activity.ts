@@ -118,10 +118,10 @@ export class ActivityModel extends BiDataTable<Activity>() {
     return {
       startTime,
       endTime,
-      personForm: Person[0]?.shared_url,
-      agendaForm: Agenda[0]?.shared_url,
-      fileForm: File[0]?.shared_url,
-      billForm: Bill[0]?.shared_url,
+      personForms: Person.filter(({ shared_url }) => shared_url),
+      agendaForms: Agenda.filter(({ shared_url }) => shared_url),
+      fileForms: File.filter(({ shared_url }) => shared_url),
+      billForms: Bill.filter(({ shared_url }) => shared_url),
     };
   }
 
