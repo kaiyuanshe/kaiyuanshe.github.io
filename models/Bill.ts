@@ -50,5 +50,5 @@ export class BillModel extends BiDataTable<Bill>() {
 
   requiredKeys = ['price'] as const;
 
-  sort = { createAt: 'ASC' } as const;
+  sort = { createdAt: 'ASC' } as const;
 }
