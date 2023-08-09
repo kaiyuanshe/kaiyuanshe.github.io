@@ -12,16 +12,16 @@ import { i18n } from '../../models/Translation';
 
 const billStore = new BillModel();
 
-export const getServerSideProps = compose<{ id: string }, { bill: Bill }>(
-  async ({ params }) => {
-    const bill = await billStore.getOne(params!.id);
+export const getServerSideProps = compose<{}, { list: Bill[] }>(
+  translator(i18n),
+
+  async ({}) => {
+    const list = await new BillModel().getList();
 
     return {
-      props: JSON.parse(JSON.stringify(bill)),
+      props: JSON.parse(JSON.stringify({ list })),
     };
   },
-
-  translator(i18n),
 );
 
 @observer
@@ -38,11 +38,11 @@ export default class BillDetailPage extends PureComponent<
       },
       {
         renderHead: t('bill_createAt'),
-        key: 'createAt',
+        key: 'createdAt',
       },
       {
         renderHead: t('bill_createBy'),
-        key: 'createBy',
+        key: 'createdBy',
       },
       {
         renderHead: t('bill_type'),
@@ -52,7 +52,7 @@ export default class BillDetailPage extends PureComponent<
   }
 
   render() {
-    const { bill } = this.props;
+    const { list } = this.props;
 
     return (
       <Container style={{ height: '91vh' }}>
@@ -62,12 +62,10 @@ export default class BillDetailPage extends PureComponent<
           className="h-100 text-center"
           striped
           hover
-          editable
-          deletable
-          columns={this.columns}
-          store={billStore}
           translator={i18n}
-          onCheck={console.log}
+          store={billStore}
+          columns={this.columns}
+          defaultData={list}
         />
       </Container>
     );
