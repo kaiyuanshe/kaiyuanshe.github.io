@@ -15,12 +15,14 @@ import {
 
 import { AgendaCard } from '../../../components/Activity/Agenda/Card';
 import { DrawerNav } from '../../../components/Activity/DrawerNav';
+import { ActivityMap } from '../../../components/Activity/Map';
 import { ActivityPeople } from '../../../components/Activity/People';
 import PageHead from '../../../components/PageHead';
 import { Activity, ActivityModel } from '../../../models/Activity';
 import { AgendaModel } from '../../../models/Agenda';
 import { blobURLOf } from '../../../models/Base';
 import { Forum } from '../../../models/Forum';
+import { Place } from '../../../models/Place';
 import { i18n } from '../../../models/Translation';
 import { TableFormViewItem } from '../../api/lark/core';
 import styles from './index.module.less';
@@ -30,23 +32,25 @@ export const getServerSideProps = compose<
   {
     activity: Activity;
     currentMeta: ActivityModel['currentMeta'];
-    agendaGroup: AgendaModel['group'];
     forums: Forum[];
+    agendaGroup: AgendaModel['group'];
+    places: Place[];
   }
 >(cache(), errorLogger, translator(i18n), async ({ params }) => {
   const activityStore = new ActivityModel();
 
   const activity = await activityStore.getOne(params!.id);
 
-  const [agendaGroup, forums] = await Promise.all([
+  const [agendaGroup, forums, places] = await Promise.all([
     activityStore.currentAgenda!.getGroup(),
     activityStore.currentForum!.getAll(),
+    activityStore.currentPlace!.getAll(),
   ]);
   const { currentMeta } = activityStore;
 
   return {
     props: JSON.parse(
-      JSON.stringify({ activity, currentMeta, agendaGroup, forums }),
+      JSON.stringify({ activity, currentMeta, forums, agendaGroup, places }),
     ),
   };
 });
@@ -64,13 +68,15 @@ export default class ActivityDetailPage extends PureComponent<
     disabled = false,
   ) {
     return (
-      <DropdownButton {...{ title, variant, disabled }}>
-        {forms.map(({ name, shared_url }) => (
-          <Dropdown.Item key={name} as="a" target="_blank" href={shared_url}>
-            {name}
-          </Dropdown.Item>
-        ))}
-      </DropdownButton>
+      forms[0] && (
+        <DropdownButton {...{ title, variant, disabled }}>
+          {forms.map(({ name, shared_url }) => (
+            <Dropdown.Item key={name} as="a" target="_blank" href={shared_url}>
+              {name}
+            </Dropdown.Item>
+          ))}
+        </DropdownButton>
+      )
     );
   }
 
@@ -114,6 +120,7 @@ export default class ActivityDetailPage extends PureComponent<
     return (
       <div className="d-flex align-items-center px-5">
         <h3 className="h6">{title}</h3>
+
         <ActivityPeople
           names={names as string[]}
           avatars={(avatars as TableCellValue[])?.map(file =>
@@ -126,7 +133,7 @@ export default class ActivityDetailPage extends PureComponent<
   }
 
   render() {
-    const { activity, agendaGroup, forums } = this.props;
+    const { activity, forums, agendaGroup, places } = this.props;
 
     return (
       <>
@@ -146,6 +153,15 @@ export default class ActivityDetailPage extends PureComponent<
         {this.renderButtonBar()}
 
         <Container>
+          {places[0] && (
+            <>
+              <h2 className="text-center pt-4 pb-3">{t('activity_map')}</h2>
+
+              <div style={{ height: 'calc(100vh - 10rem)' }}>
+                <ActivityMap {...activity} places={places} />
+              </div>
+            </>
+          )}
           {forums.map(
             ({
               name,
@@ -155,6 +171,7 @@ export default class ActivityDetailPage extends PureComponent<
               producers,
               producerAvatars,
               producerPositions,
+              location,
             }) => (
               <section key={name as string}>
                 <h2 className="my-5 text-center" id={name as string}>
@@ -184,7 +201,7 @@ export default class ActivityDetailPage extends PureComponent<
                     <Col as="li" key={agenda.id + ''}>
                       <AgendaCard
                         activityId={activity.id + ''}
-                        location={activity.location + ''}
+                        location={location + ''}
                         {...agenda}
                       />
                     </Col>
