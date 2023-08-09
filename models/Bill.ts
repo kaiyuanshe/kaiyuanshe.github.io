@@ -28,9 +28,9 @@ export const BILL_TABLE_ID = process.env.NEXT_PUBLIC_BILL_TABLE_ID!;
 
 export type Bill = Record<
   | 'id'
-  | 'createAt'
+  | 'createdAt'
   | 'location'
-  | 'createBy'
+  | 'createdBy'
   | 'type'
   | 'price'
   | 'invoice'
