@@ -172,8 +172,8 @@ export default {
 
   //finance Page
   bill_id: '單號',
-  bill_createAt: '記錄時間',
-  bill_createBy: '記錄者',
+  bill_createAt: '申報時間',
+  bill_createBy: '申報者',
   bill_type: '賬單類型',
 
   // Election
