@@ -127,9 +127,10 @@ export default class ActivityDetailPage extends PureComponent<
             markers={
               places
                 .map(
-                  ({ name, photos, location }) =>
+                  ({ name, photos, location, forum }) =>
                     location && {
-                      tooltip: name,
+                      title: name,
+                      summary: forum?.toString(),
                       image: photos && fileURLOf(photos),
                       position: coordinateOf(location),
                     },

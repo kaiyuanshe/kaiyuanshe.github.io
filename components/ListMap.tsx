@@ -1,15 +1,18 @@
 import { Icon, MarkerMeta, OpenMapProps } from 'idea-react';
 import { computed, observable } from 'mobx';
 import { observer } from 'mobx-react';
+import { ImagePreview } from 'mobx-restful-table';
 import dynamic from 'next/dynamic';
 import { PureComponent } from 'react';
-import { Button, Image, ListGroup } from 'react-bootstrap';
+import { Button, ListGroup } from 'react-bootstrap';
 
 import systemStore from '../models/System';
 
 const ChinaMap = dynamic(() => import('./ChinaMap'), { ssr: false });
 
 export interface ImageMarker extends MarkerMeta {
+  title: string;
+  summary?: string;
   image?: string;
 }
 
@@ -39,8 +42,10 @@ export class ListMap extends PureComponent<ListMapProps> {
   }
 
   selectOne = (marker: ImageMarker) => () => {
-    this.currentMarker = marker;
-
+    this.currentMarker = {
+      tooltip: [marker.title, marker.summary].filter(Boolean).join(' - '),
+      ...marker,
+    };
     if (systemStore.screenNarrow) this.drawerOpen = false;
   };
 
@@ -72,9 +77,10 @@ export class ListMap extends PureComponent<ListMapProps> {
                 style={{ cursor: 'pointer' }}
                 onClick={this.selectOne(marker)}
               >
-                <Image className="w-25" fluid src={marker.image} />
+                <ImagePreview className="w-25" fluid src={marker.image} />
                 <div>
-                  <h3 className="fs-6">{marker.tooltip}</h3>
+                  <h3 className="fs-5">{marker.title}</h3>
+                  <p>{marker.summary}</p>
                 </div>
               </ListGroup.Item>
             ))}
