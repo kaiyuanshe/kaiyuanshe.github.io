@@ -1,4 +1,11 @@
-import { LarkApp, LarkData, normalizeText, TableCellText } from 'mobx-lark';
+import {
+  LarkApp,
+  LarkData,
+  normalizeText,
+  TableCellLocation,
+  TableCellText,
+  TableCellValue,
+} from 'mobx-lark';
 
 import { safeAPI } from '../base';
 
@@ -28,6 +35,13 @@ export const normalizeTextArray = (list: TableCellText[]) =>
     },
     [''],
   );
+
+export function coordinateOf(location: TableCellValue): [number, number] {
+  const [longitude, latitude] = (location as TableCellLocation)?.location.split(
+    ',',
+  );
+  return [+latitude, +longitude];
+}
 
 export const proxyLark = <T extends LarkData>(
   dataFilter?: (path: string, data: T) => T,
