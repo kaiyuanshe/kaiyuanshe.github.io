@@ -44,10 +44,6 @@ export type Bill = Record<
 export class BillModel extends BiDataTable<Bill>() {
   client = larkClient;
 
-  constructor(appId = MAIN_BASE_ID, tableId = BILL_TABLE_ID) {
-    super(appId, tableId);
-  }
-
   requiredKeys = ['price'] as const;
 
   sort = { createdAt: 'ASC' } as const;
