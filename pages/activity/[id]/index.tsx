@@ -15,8 +15,8 @@ import {
 
 import { AgendaCard } from '../../../components/Activity/Agenda/Card';
 import { DrawerNav } from '../../../components/Activity/DrawerNav';
-import { ActivityMap } from '../../../components/Activity/Map';
 import { ActivityPeople } from '../../../components/Activity/People';
+import { ImageMarker, ListMap } from '../../../components/ListMap';
 import PageHead from '../../../components/PageHead';
 import { Activity, ActivityModel } from '../../../models/Activity';
 import { AgendaModel } from '../../../models/Agenda';
@@ -24,7 +24,8 @@ import { blobURLOf } from '../../../models/Base';
 import { Forum } from '../../../models/Forum';
 import { Place } from '../../../models/Place';
 import { i18n } from '../../../models/Translation';
-import { TableFormViewItem } from '../../api/lark/core';
+import { coordinateOf, TableFormViewItem } from '../../api/lark/core';
+import { fileURLOf } from '../../api/lark/file/[id]';
 import styles from './index.module.less';
 
 export const getServerSideProps = compose<
@@ -111,6 +112,36 @@ export default class ActivityDetailPage extends PureComponent<
     );
   }
 
+  renderMap() {
+    const { activity, places } = this.props;
+
+    return (
+      places[0] && (
+        <>
+          <h2 className="text-center pt-4 pb-3">{t('activity_map')}</h2>
+
+          <ListMap
+            style={{ height: 'calc(100vh - 10rem)' }}
+            zoom={18}
+            center={coordinateOf(activity.location)}
+            markers={
+              places
+                .map(
+                  ({ name, photos, location }) =>
+                    location && {
+                      tooltip: name,
+                      image: photos && fileURLOf(photos),
+                      position: coordinateOf(location),
+                    },
+                )
+                .filter(Boolean) as ImageMarker[]
+            }
+          />
+        </>
+      )
+    );
+  }
+
   renderForumPeople(
     title: string,
     names: TableCellValue,
@@ -132,8 +163,55 @@ export default class ActivityDetailPage extends PureComponent<
     );
   }
 
+  renderForum = ({
+    name,
+    summary,
+    volunteers,
+    volunteerAvatars,
+    producers,
+    producerAvatars,
+    producerPositions,
+    location,
+  }: Forum) => (
+    <section key={name as string}>
+      <h2 className="my-5 text-center" id={name as string}>
+        {name}
+      </h2>
+      <p className="text-muted">{summary}</p>
+
+      <div className="d-flex justify-content-center">
+        <div className="d-flex align-items-center px-5">
+          {this.renderForumPeople(
+            t('producer'),
+            producers,
+            producerAvatars,
+            producerPositions,
+          )}
+          {(volunteers as string[])?.[0] &&
+            this.renderForumPeople(
+              t('volunteer'),
+              volunteers,
+              volunteerAvatars,
+            )}
+        </div>
+      </div>
+
+      <Row as="ol" className="list-unstyled g-4" xs={1} sm={2} md={3}>
+        {this.props.agendaGroup[name as string]?.map(agenda => (
+          <Col as="li" key={agenda.id + ''}>
+            <AgendaCard
+              activityId={this.props.activity.id + ''}
+              location={location + ''}
+              {...agenda}
+            />
+          </Col>
+        ))}
+      </Row>
+    </section>
+  );
+
   render() {
-    const { activity, forums, agendaGroup, places } = this.props;
+    const { activity, forums } = this.props;
 
     return (
       <>
@@ -153,63 +231,10 @@ export default class ActivityDetailPage extends PureComponent<
         {this.renderButtonBar()}
 
         <Container>
-          {places[0] && (
-            <>
-              <h2 className="text-center pt-4 pb-3">{t('activity_map')}</h2>
+          {this.renderMap()}
 
-              <div style={{ height: 'calc(100vh - 10rem)' }}>
-                <ActivityMap {...activity} places={places} />
-              </div>
-            </>
-          )}
-          {forums.map(
-            ({
-              name,
-              summary,
-              volunteers,
-              volunteerAvatars,
-              producers,
-              producerAvatars,
-              producerPositions,
-              location,
-            }) => (
-              <section key={name as string}>
-                <h2 className="my-5 text-center" id={name as string}>
-                  {name}
-                </h2>
-                <p className="text-muted">{summary}</p>
+          {forums.map(this.renderForum)}
 
-                <div className="d-flex justify-content-center">
-                  <div className="d-flex align-items-center px-5">
-                    {this.renderForumPeople(
-                      t('producer'),
-                      producers,
-                      producerAvatars,
-                      producerPositions,
-                    )}
-                    {(volunteers as string[])?.[0] &&
-                      this.renderForumPeople(
-                        t('volunteer'),
-                        volunteers,
-                        volunteerAvatars,
-                      )}
-                  </div>
-                </div>
-
-                <Row as="ol" className="list-unstyled g-4" xs={1} sm={2} md={3}>
-                  {agendaGroup[name as string]?.map(agenda => (
-                    <Col as="li" key={agenda.id + ''}>
-                      <AgendaCard
-                        activityId={activity.id + ''}
-                        location={location + ''}
-                        {...agenda}
-                      />
-                    </Col>
-                  ))}
-                </Row>
-              </section>
-            ),
-          )}
           <DrawerNav />
         </Container>
       </>
