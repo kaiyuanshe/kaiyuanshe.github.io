@@ -9,20 +9,25 @@ import { Container } from 'react-bootstrap';
 import PageHead from '../../components/PageHead';
 import { Bill, BillModel } from '../../models/Bill';
 import { i18n } from '../../models/Translation';
+import { MAIN_BASE_ID } from '../api/lark/core';
 
-const billStore = new BillModel();
-
-export const getServerSideProps = compose<{}, { list: Bill[] }>(
+export const getServerSideProps = compose<
+  {},
+  { list: Bill[]; billStore: BillModel }
+>(
   translator(i18n),
 
-  async ({}) => {
-    const list = await new BillModel().getList();
+  async ({ params }) => {
+    const billStore = new BillModel(MAIN_BASE_ID, params!.id + '');
+    const list = await billStore.getList();
 
     return {
-      props: JSON.parse(JSON.stringify({ list })),
+      props: { list: structuredClone(list), billStore },
     };
   },
 );
+
+const { t } = i18n;
 
 @observer
 export default class BillDetailPage extends PureComponent<
@@ -30,7 +35,6 @@ export default class BillDetailPage extends PureComponent<
 > {
   @computed
   get columns(): Column<Bill>[] {
-    const { t } = i18n;
     return [
       {
         renderHead: t('bill_id'),
@@ -52,11 +56,12 @@ export default class BillDetailPage extends PureComponent<
   }
 
   render() {
-    const { list } = this.props;
+    const { list, billStore } = this.props;
 
     return (
       <Container style={{ height: '91vh' }}>
         <PageHead title="财务公开" />
+        <h1>财务公开</h1>
 
         <RestTable
           className="h-100 text-center"
