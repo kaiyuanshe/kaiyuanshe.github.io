@@ -20,7 +20,8 @@
 
 #### 开源协作
 
-申请加入**开源社志愿者**，填表后组长会联系你加入飞书组织：https://kaiyuanshe.feishu.cn/share/base/shrcnfO89tYlYIjZpS5PXJBaK2f
+- 申请加入**开源社志愿者**，填表后组长会联系你加入飞书组织：https://kaiyuanshe.feishu.cn/share/base/shrcnfO89tYlYIjZpS5PXJBaK2f
+- 参与代码贡献：⚠️ 由于官网项目需要调用飞书 API，需要预先配置才能在本地运行，所有**必须先申请加入 Kaiyuanshe Github 组织**后，再贡献代码，不能直接 fork 仓库贡献代码。⚠️
 
 ## Technology stack
 
