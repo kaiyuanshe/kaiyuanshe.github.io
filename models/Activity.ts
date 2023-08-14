@@ -21,6 +21,7 @@ import {
 } from '../pages/api/lark/core';
 import { AgendaModel } from './Agenda';
 import { larkClient } from './Base';
+import { BillModel } from './Bill';
 import { ForumModel } from './Forum';
 import { PlaceModel } from './Place';
 
@@ -103,6 +104,7 @@ export class ActivityModel extends BiDataTable<Activity>() {
   currentForum?: ForumModel;
   currentAgenda?: AgendaModel;
   currentPlace?: PlaceModel;
+  currentBill?: BillModel;
 
   @observable
   statistic: ActivityStatistic = {} as ActivityStatistic;
@@ -156,6 +158,9 @@ export class ActivityModel extends BiDataTable<Activity>() {
 
       await table.getOne('Place', PlaceModel);
       this.currentPlace = table.currentDataTable as PlaceModel;
+
+      await table.getOne('Bill', BillModel);
+      this.currentBill = table.currentDataTable as BillModel;
 
       this.formMap = table.formMap;
     }

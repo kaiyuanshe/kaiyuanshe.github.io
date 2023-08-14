@@ -5,8 +5,8 @@ import { larkClient } from './Base';
 export type Bill = Record<
   | 'id'
   | 'createdAt'
-  | 'location'
   | 'createdBy'
+  | 'location'
   | 'type'
   | 'price'
   | 'invoice'
