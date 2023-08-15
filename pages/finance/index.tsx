@@ -7,22 +7,28 @@ import { PureComponent } from 'react';
 import { Container } from 'react-bootstrap';
 
 import PageHead from '../../components/PageHead';
+import { Activity, ActivityModel } from '../../models/Activity';
 import { Bill, BillModel } from '../../models/Bill';
 import { i18n } from '../../models/Translation';
-import { MAIN_BASE_ID } from '../api/lark/core';
+
+const billStore = new BillModel();
 
 export const getServerSideProps = compose<
   {},
-  { list: Bill[]; billStore: BillModel }
+  {
+    currentMeta: ActivityModel['currentMeta'];
+    bills: Bill[];
+  }
 >(
   translator(i18n),
 
-  async ({ params }) => {
-    const billStore = new BillModel(MAIN_BASE_ID, params!.id + '');
-    const list = await billStore.getList();
+  async ({}) => {
+    const activityStore = new ActivityModel();
+
+    const [bills] = await Promise.all([activityStore.currentBill!.getList()]);
 
     return {
-      props: { list: structuredClone(list), billStore },
+      props: { list: structuredClone({ bills }) },
     };
   },
 );
@@ -38,25 +44,29 @@ export default class BillDetailPage extends PureComponent<
     return [
       {
         renderHead: t('bill_id'),
+        type: 'bill_id',
         key: 'id',
       },
       {
         renderHead: t('bill_createAt'),
+        type: 'bill_createAt',
         key: 'createdAt',
       },
       {
         renderHead: t('bill_createBy'),
+        type: 'bill_createBy',
         key: 'createdBy',
       },
       {
         renderHead: t('bill_type'),
+        type: 'bill_type',
         key: 'type',
       },
     ];
   }
 
   render() {
-    const { list, billStore } = this.props;
+    const { bills } = this.props;
 
     return (
       <Container style={{ height: '91vh' }}>
@@ -70,7 +80,7 @@ export default class BillDetailPage extends PureComponent<
           translator={i18n}
           store={billStore}
           columns={this.columns}
-          defaultData={list}
+          defaultData={bills}
         />
       </Container>
     );
