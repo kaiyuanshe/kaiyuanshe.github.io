@@ -11,8 +11,6 @@ import { Activity, ActivityModel } from '../../models/Activity';
 import { Bill, BillModel } from '../../models/Bill';
 import { i18n } from '../../models/Translation';
 
-const billStore = new BillModel();
-
 export const getServerSideProps = compose<
   {},
   {
@@ -22,13 +20,14 @@ export const getServerSideProps = compose<
 >(
   translator(i18n),
 
-  async ({}) => {
+  async params => {
     const activityStore = new ActivityModel();
+    const billStore = activityStore.currentBill;
 
     const [bills] = await Promise.all([activityStore.currentBill!.getList()]);
 
     return {
-      props: { list: structuredClone({ bills }) },
+      props: { bills, billStore },
     };
   },
 );
@@ -66,7 +65,7 @@ export default class BillDetailPage extends PureComponent<
   }
 
   render() {
-    const { bills } = this.props;
+    const { bills, billStore } = this.props;
 
     return (
       <Container style={{ height: '91vh' }}>
@@ -75,8 +74,10 @@ export default class BillDetailPage extends PureComponent<
 
         <RestTable
           className="h-100 text-center"
-          striped
-          hover
+          bill_id
+          bill_createAt
+          bill_createBy
+          bill_type
           translator={i18n}
           store={billStore}
           columns={this.columns}
