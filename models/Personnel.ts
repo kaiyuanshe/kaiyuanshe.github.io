@@ -84,7 +84,7 @@ export class PersonnelModel extends BiDataTable<Personnel>() {
       ...fields,
       id: id!,
       applicants: (applicants as TableCellRelation[])?.map(normalizeText),
-      recipient: (recipient as TableCellRelation[])?.map(normalizeText),
+      recipient: (recipient as TableCellRelation[])?.map(normalizeText)[0],
       recipientAvatar: (recipientAvatar as TableCellAttachment[])?.map(
         ({ attachmentToken, ...file }) =>
           ({
@@ -92,9 +92,9 @@ export class PersonnelModel extends BiDataTable<Personnel>() {
             file_token: attachmentToken,
           }) as unknown as TableCellMedia,
       ),
-      department: (department as TableCellRelation[])?.map(normalizeText),
-      position: (position as TableCellRelation[])?.map(normalizeText),
-      award: (award as TableCellRelation[])?.map(normalizeText),
+      department: (department as TableCellRelation[])?.map(normalizeText)[0],
+      position: (position as TableCellRelation[])?.map(normalizeText)[0],
+      award: (award as TableCellRelation[])?.map(normalizeText)[0],
       passed: JSON.parse(normalizeText((passed as TableCellText[])[0])),
     };
   }
