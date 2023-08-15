@@ -20,7 +20,7 @@ export const getServerSideProps = compose<
 >(
   translator(i18n),
 
-  async params => {
+  async () => {
     const activityStore = new ActivityModel();
     const billStore = activityStore.currentBill;
 
