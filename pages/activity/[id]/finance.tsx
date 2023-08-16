@@ -1,42 +1,28 @@
-import { computed } from 'mobx';
+import { Loading } from 'idea-react';
+import { computed, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { Column, RestTable } from 'mobx-restful-table';
 import { InferGetServerSidePropsType } from 'next';
-import { cache, compose, errorLogger, translator } from 'next-ssr-middleware';
+import {
+  cache,
+  compose,
+  errorLogger,
+  RouteProps,
+  router,
+  translator,
+} from 'next-ssr-middleware';
 import { PureComponent } from 'react';
 import { Container } from 'react-bootstrap';
 
 import PageHead from '../../../components/PageHead';
-import { Activity, ActivityModel } from '../../../models/Activity';
+import { ActivityModel } from '../../../models/Activity';
 import { Bill, BillModel } from '../../../models/Bill';
 import { i18n } from '../../../models/Translation';
 
 export const getServerSideProps = compose<
   { id: string },
-  {
-    activity: Activity;
-    currentMeta: ActivityModel['currentMeta'];
-    bills: Bill[];
-  }
->(
-  cache(),
-  errorLogger,
-  translator(i18n),
-
-  async ({ params }) => {
-    const activityStore = new ActivityModel();
-    const activity = await activityStore.getOne(params!.id);
-    const billStore = activityStore.currentBill;
-
-    const [bills] = await Promise.all([activityStore.currentBill!.getList()]);
-    const { currentMeta } = activityStore;
-    return {
-      props: JSON.parse(
-        JSON.stringify({ activity, bills, billStore, currentMeta }),
-      ),
-    };
-  },
-);
+  RouteProps<{ id: string }>
+>(cache(), router, errorLogger, translator(i18n));
 
 const { t } = i18n;
 
@@ -44,51 +30,64 @@ const { t } = i18n;
 export default class BillDetailPage extends PureComponent<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > {
+  @observable
+  activityStore?: ActivityModel;
+
+  @observable
+  billStore?: BillModel;
+
+  async componentDidMount() {
+    const { id } = this.props.route.params!;
+
+    this.activityStore = new ActivityModel();
+
+    await this.activityStore.getOne(id);
+
+    this.billStore = this.activityStore.currentBill;
+  }
+
   @computed
   get columns(): Column<Bill>[] {
     return [
       {
-        renderHead: t('bill_id'),
-        type: 'bill_id',
         key: 'id',
+        renderHead: t('bill_id'),
       },
       {
-        renderHead: t('bill_createAt'),
-        type: 'bill_createAt',
         key: 'createdAt',
+        renderHead: t('bill_createAt'),
       },
       {
-        renderHead: t('bill_createBy'),
-        type: 'bill_createBy',
         key: 'createdBy',
+        renderHead: t('bill_createBy'),
       },
       {
-        renderHead: t('bill_type'),
-        type: 'bill_type',
         key: 'type',
+        renderHead: t('bill_type'),
       },
     ];
   }
 
   render() {
-    const { bills, billStore } = this.props;
+    const { activityStore, billStore } = this;
+    const loading = activityStore?.downloading || billStore?.downloading || 0,
+      { name = '' } = activityStore?.currentOne || {};
 
     return (
       <Container style={{ height: '91vh' }}>
-        <PageHead title="财务公开" />
-        <h1>财务公开</h1>
+        <PageHead title={`财务公开 - ${name}`} />
+        <h1 className="mt-5 mb-4">{name} 财务公开</h1>
 
-        <RestTable
-          className="h-100 text-center"
-          bill_id
-          bill_createAt
-          bill_createBy
-          bill_type
-          translator={i18n}
-          store={billStore}
-          columns={this.columns}
-          defaultData={bills}
-        />
+        {loading > 0 && <Loading />}
+
+        {billStore && (
+          <RestTable
+            className="h-100 text-center"
+            translator={i18n}
+            store={billStore}
+            columns={this.columns}
+          />
+        )}
       </Container>
     );
   }
