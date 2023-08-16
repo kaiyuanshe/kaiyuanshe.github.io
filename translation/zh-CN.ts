@@ -1,3 +1,5 @@
+import { IDType } from 'mobx-restful';
+
 export default {
   KaiYuanShe: '开源社',
   our_vision: '我们的愿景',
@@ -175,6 +177,17 @@ export default {
   bill_createAt: '申报时间',
   bill_createBy: '申报者',
   bill_type: '账单类型',
+
+  //RestTable
+  create: '新增',
+  submit: '提交',
+  cancel: '取消',
+  edit: '编辑',
+  delete: '删除',
+  total_x_rows: ({ totalCount }: { totalCount: number }) =>
+    `共 ${totalCount} 行`,
+  sure_to_delete_x: ({ keys }: { keys: IDType[] }) =>
+    `您确定删除 ${keys.join('、')} 吗？`,
 
   // Election
   election: '选举',

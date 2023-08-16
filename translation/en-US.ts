@@ -1,3 +1,5 @@
+import { IDType } from 'mobx-restful';
+
 export default {
   KaiYuanShe: 'KaiYuanShe',
   our_vision: 'Our vision',
@@ -182,6 +184,17 @@ export default {
   bill_createAt: 'bill_createAt',
   bill_createBy: 'bill_createBy',
   bill_type: 'bill_type',
+
+  //RestTable
+  create: 'create',
+  submit: 'submit',
+  cancel: 'cancel',
+  edit: 'edit',
+  delete: 'delete',
+  total_x_rows: ({ totalCount }: { totalCount: number }) =>
+    `total ${totalCount} rows`,
+  sure_to_delete_x: ({ keys }: { keys: IDType[] }) =>
+    `Are you sure delete ${keys.join('、')} `,
 
   // Election
   election: 'Election',
