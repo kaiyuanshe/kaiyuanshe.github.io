@@ -31,7 +31,9 @@ export const getServerSideProps = compose<
     const [bills] = await Promise.all([activityStore.currentBill!.getList()]);
     const { currentMeta } = activityStore;
     return {
-      props: { activity, bills, billStore, currentMeta },
+      props: JSON.parse(
+        JSON.stringify({ activity, bills, billStore, currentMeta }),
+      ),
     };
   },
 );
