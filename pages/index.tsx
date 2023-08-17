@@ -1,7 +1,7 @@
 import { Icon } from 'idea-react';
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
-import { compose, errorLogger, translator } from 'next-ssr-middleware';
+import { cache, compose, errorLogger, translator } from 'next-ssr-middleware';
 import { Fragment, PureComponent } from 'react';
 import { Col, Container, Image, Row } from 'react-bootstrap';
 
@@ -19,7 +19,7 @@ import { DefaultImage } from './api/lark/file/[id]';
 export const getServerSideProps = compose<
   {},
   { articles: Article[]; projects: Department[] }
->(errorLogger, translator(i18n), async () => {
+>(cache(), errorLogger, translator(i18n), async () => {
   const [articles, projects] = await Promise.all([
     new ArticleModel().getList({}, 1, 3),
     new DepartmentModel().getAll({ superior: '项目委员会' }),
