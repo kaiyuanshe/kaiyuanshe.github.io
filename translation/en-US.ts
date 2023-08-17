@@ -180,10 +180,17 @@ export default {
   range_module: 'module',
 
   //finance Page
-  bill_id: 'bill_id',
-  bill_createAt: 'bill_createAt',
-  bill_createBy: 'bill_createBy',
-  bill_type: 'bill_type',
+  bill_id: 'bill id',
+  bill_createAt: 'createAt',
+  bill_location: 'location',
+  bill_createBy: 'createBy',
+  bill_type: 'type',
+  bill_price: 'price',
+  bill_invoice: 'invoice',
+  bill_remark: 'remark',
+  bill_travelFundTask: 'travelFundTask',
+  bill_forum: 'forum',
+  bill_agendas: 'agendas',
 
   //RestTable
   create: 'create',

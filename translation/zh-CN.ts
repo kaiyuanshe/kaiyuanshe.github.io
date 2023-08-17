@@ -175,8 +175,15 @@ export default {
   //finance Page
   bill_id: '单号',
   bill_createAt: '申报时间',
+  bill_location: '地点',
   bill_createBy: '申报者',
   bill_type: '账单类型',
+  bill_price: '单价',
+  bill_invoice: '发票',
+  bill_remark: '备注',
+  bill_travelFundTask: '会议任务',
+  bill_forum: '论坛分区',
+  bill_agendas: '议题',
 
   //RestTable
   create: '新增',

@@ -175,8 +175,15 @@ export default {
   //finance Page
   bill_id: '單號',
   bill_createAt: '申報時間',
+  bill_location: '地點',
   bill_createBy: '申報者',
   bill_type: '賬單類型',
+  bill_price: '單價',
+  bill_invoice: '發票',
+  bill_remark: '備註',
+  bill_travelFundTask: '會議任務',
+  bill_forum: '論壇分區',
+  bill_agendas: '議題',
 
   //RestTable
   create: '新增',
