@@ -174,16 +174,16 @@ export default {
 
   //finance Page
   bill_id: '单号',
-  bill_createAt: '申报时间',
-  bill_location: '地点',
-  bill_createBy: '申报者',
-  bill_type: '账单类型',
-  bill_price: '单价',
-  bill_invoice: '发票',
+  bill_createAt: '支付时间',
+  bill_location: '支付地点',
+  bill_createBy: '支付人',
+  bill_type: '支付类型',
+  bill_price: '支付金额',
+  bill_invoice: '支付凭证',
   bill_remark: '备注',
-  bill_travelFundTask: '会议任务',
-  bill_forum: '论坛分区',
-  bill_agendas: '议题',
+  bill_travelFundTask: '差旅志愿任务',
+  bill_forum: '出品/志愿论坛',
+  bill_agendas: '申报议程',
 
   //RestTable
   create: '新增',

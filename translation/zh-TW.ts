@@ -174,16 +174,16 @@ export default {
 
   //finance Page
   bill_id: '單號',
-  bill_createAt: '申報時間',
-  bill_location: '地點',
-  bill_createBy: '申報者',
-  bill_type: '賬單類型',
-  bill_price: '單價',
-  bill_invoice: '發票',
+  bill_createAt: '支付時間',
+  bill_location: '支付地點',
+  bill_createBy: '支付人',
+  bill_type: '支付類型',
+  bill_price: '支付金額',
+  bill_invoice: '支付憑證',
   bill_remark: '備註',
-  bill_travelFundTask: '會議任務',
-  bill_forum: '論壇分區',
-  bill_agendas: '議題',
+  bill_travelFundTask: '差旅志願任務',
+  bill_forum: '出品/志願論壇',
+  bill_agendas: '申報議程',
 
   //RestTable
   create: '新增',
