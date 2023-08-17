@@ -174,7 +174,7 @@ export default {
 
   //finance Page
   bill_id: '單號',
-  bill_createAt: '支付時間',
+  bill_createAt: '支付日期',
   bill_location: '支付地點',
   bill_createBy: '支付人',
   bill_type: '支付類型',
