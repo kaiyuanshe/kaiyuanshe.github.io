@@ -58,12 +58,40 @@ export default class BillDetailPage extends PureComponent<
         renderHead: t('bill_createAt'),
       },
       {
+        key: 'location',
+        renderHead: t('bill_location'),
+      },
+      {
         key: 'createdBy',
         renderHead: t('bill_createBy'),
       },
       {
         key: 'type',
         renderHead: t('bill_type'),
+      },
+      {
+        key: 'price',
+        renderHead: t('bill_price'),
+      },
+      {
+        key: 'invoice',
+        renderHead: t('bill_invoice'),
+      },
+      {
+        key: 'remark',
+        renderHead: t('bill_remark'),
+      },
+      {
+        key: 'travelFundTask',
+        renderHead: t('bill_travelFundTask'),
+      },
+      {
+        key: 'forum',
+        renderHead: t('bill_forum'),
+      },
+      {
+        key: 'agendas',
+        renderHead: t('bill_agendas'),
       },
     ];
   }
