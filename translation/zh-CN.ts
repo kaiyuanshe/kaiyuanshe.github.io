@@ -194,7 +194,7 @@ export default {
   total_x_rows: ({ totalCount }: { totalCount: number }) =>
     `共 ${totalCount} 行`,
   sure_to_delete_x: ({ keys }: { keys: IDType[] }) =>
-    `您确定删除 ${keys.join('、')} 吗？`,
+    `您确定删除 ${keys.join(',')} 吗？`,
 
   // Election
   election: '选举',

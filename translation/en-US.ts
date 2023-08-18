@@ -201,7 +201,7 @@ export default {
   total_x_rows: ({ totalCount }: { totalCount: number }) =>
     `total ${totalCount} rows`,
   sure_to_delete_x: ({ keys }: { keys: IDType[] }) =>
-    `Are you sure delete ${keys.join('、')} `,
+    `Are you sure to delete ${keys.join(',')} `,
 
   // Election
   election: 'Election',
