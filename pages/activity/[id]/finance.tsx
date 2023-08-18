@@ -50,59 +50,72 @@ export default class BillDetailPage extends PureComponent<
   get columns(): Column<Bill>[] {
     return [
       {
-        key: 'id',
-        renderHead: t('bill_id'),
-        renderBody: ({ id }) => <a>{id}</a>,
-      },
-      {
         key: 'createdAt',
         renderHead: t('bill_createAt'),
-        renderBody: ({ createdAt }) => <a>{createdAt}</a>,
+        renderBody: ({ createdAt }) => {
+          createdAt;
+        },
       },
       {
         key: 'location',
         renderHead: t('bill_location'),
-        renderBody: ({ location }) => <a>{location}</a>,
+        renderBody: ({ location }) => {
+          location;
+        },
       },
       {
         key: 'createdBy',
         renderHead: t('bill_createBy'),
-        renderBody: ({ createdBy }) => <a>{createdBy}</a>,
+        renderBody: ({ createdBy }) => {
+          createdBy;
+        },
       },
       {
         key: 'type',
         renderHead: t('bill_type'),
-        renderBody: ({ type }) => <a>{type}</a>,
+        renderBody: ({ type }) => {
+          type;
+        },
       },
       {
         key: 'price',
         renderHead: t('bill_price'),
-        renderBody: ({ price }) => <a>{price}</a>,
+        renderBody: ({ price }) => {
+          price;
+        },
       },
       {
         key: 'invoice',
         renderHead: t('bill_invoice'),
-        renderBody: ({ invoice }) => <a>{invoice}</a>,
+        renderBody: ({ invoice }) => {
+          invoice;
+        },
       },
       {
         key: 'remark',
         renderHead: t('bill_remark'),
-        renderBody: ({ remark }) => <a>{remark}</a>,
+        renderBody: ({ remark }) => {
+          remark;
+        },
       },
       {
         key: 'travelFundTask',
         renderHead: t('bill_travelFundTask'),
-        renderBody: ({ remark }) => <a>{remark}</a>,
+        renderBody: ({ remark }) => {
+          remark;
+        },
       },
       {
         key: 'forum',
         renderHead: t('bill_forum'),
-        renderBody: ({ forum }) => <a>{forum}</a>,
+        renderBody: ({ forum }) => {
+          forum;
+        },
       },
       {
         key: 'agendas',
         renderHead: t('bill_agendas'),
-        renderBody: (bill: Bill) => bill.agendas,
+        renderBody: ({ agendas }) => agendas,
       },
     ];
   }
@@ -116,8 +129,7 @@ export default class BillDetailPage extends PureComponent<
       <Container style={{ height: '91vh' }}>
         <PageHead title={`财务公开 - ${name}`} />
         <h1 className="mt-5 mb-4">{name} 财务公开</h1>
-        {console.log('activityStore', activityStore)}
-        {console.log('billStore', billStore)}
+
         {loading > 0 && <Loading />}
 
         {billStore && (
@@ -128,6 +140,8 @@ export default class BillDetailPage extends PureComponent<
             columns={this.columns}
           />
         )}
+        {console.log('activityStore', activityStore)}
+        {console.log('billStore', billStore)}
       </Container>
     );
   }
