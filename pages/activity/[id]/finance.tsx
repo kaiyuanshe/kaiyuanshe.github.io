@@ -52,65 +52,47 @@ export default class BillDetailPage extends PureComponent<
       {
         key: 'createdAt',
         renderHead: t('bill_createAt'),
-        renderBody: ({ createdAt }) => {
-          createdAt;
-        },
+        renderBody: ({ createdAt }) => createdAt,
       },
       {
         key: 'location',
         renderHead: t('bill_location'),
-        renderBody: ({ location }) => {
-          location;
-        },
+        renderBody: ({ location }) => location,
       },
       {
         key: 'createdBy',
         renderHead: t('bill_createBy'),
-        renderBody: ({ createdBy }) => {
-          createdBy;
-        },
+        renderBody: ({ createdBy }) => createdBy,
       },
       {
         key: 'type',
         renderHead: t('bill_type'),
-        renderBody: ({ type }) => {
-          type;
-        },
+        renderBody: ({ type }) => type,
       },
       {
         key: 'price',
         renderHead: t('bill_price'),
-        renderBody: ({ price }) => {
-          price;
-        },
+        renderBody: ({ price }) => price,
       },
       {
         key: 'invoice',
         renderHead: t('bill_invoice'),
-        renderBody: ({ invoice }) => {
-          invoice;
-        },
+        renderBody: ({ invoice }) => invoice,
       },
       {
         key: 'remark',
         renderHead: t('bill_remark'),
-        renderBody: ({ remark }) => {
-          remark;
-        },
+        renderBody: ({ remark }) => remark,
       },
       {
         key: 'travelFundTask',
         renderHead: t('bill_travelFundTask'),
-        renderBody: ({ remark }) => {
-          remark;
-        },
+        renderBody: ({ remark }) => remark,
       },
       {
         key: 'forum',
         renderHead: t('bill_forum'),
-        renderBody: ({ forum }) => {
-          forum;
-        },
+        renderBody: ({ forum }) => forum,
       },
       {
         key: 'agendas',
@@ -140,8 +122,6 @@ export default class BillDetailPage extends PureComponent<
             columns={this.columns}
           />
         )}
-        {console.log('activityStore', activityStore)}
-        {console.log('billStore', billStore)}
       </Container>
     );
   }
