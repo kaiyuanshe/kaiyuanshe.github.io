@@ -181,14 +181,14 @@ export default {
 
   //finance Page
   bill_id: 'bill id',
-  bill_createAt: 'createAt',
+  bill_createAt: 'created at',
   bill_location: 'location',
   bill_createBy: 'createBy',
   bill_type: 'type',
   bill_price: 'price',
   bill_invoice: 'invoice',
-  bill_remark: 'remark',
-  bill_travelFundTask: 'travelFundTask',
+  bill_remark: 'note',
+  bill_travelFundTask: 'Volunteer Tasks Assigned',
   bill_forum: 'forum',
   bill_agendas: 'agendas',
 
