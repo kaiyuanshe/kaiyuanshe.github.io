@@ -1,3 +1,4 @@
+import { create } from 'domain';
 import { Loading } from 'idea-react';
 import { computed, observable } from 'mobx';
 import { observer } from 'mobx-react';
@@ -13,6 +14,7 @@ import {
 } from 'next-ssr-middleware';
 import { PureComponent } from 'react';
 import { Container } from 'react-bootstrap';
+import { formatDate } from 'web-utility';
 
 import PageHead from '../../../components/PageHead';
 import { ActivityModel } from '../../../models/Activity';
@@ -52,18 +54,17 @@ export default class BillDetailPage extends PureComponent<
       {
         key: 'createdAt',
         renderHead: t('bill_createAt'),
-        renderBody: ({ createdAt }) => createdAt,
+        renderBody: ({ createdAt }) =>
+          formatDate(createdAt as number, 'YYYY-MM-DD'),
       },
-      {
-        key: 'location',
-        renderHead: t('bill_location'),
-        renderBody: ({ location }) => location,
-      },
+
       {
         key: 'createdBy',
         renderHead: t('bill_createBy'),
-        renderBody: ({ createdBy }) => createdBy,
+        renderBody: ({ createdBy = [] }) =>
+          (createdBy as any[]).map(item => item.text).join(', '),
       },
+
       {
         key: 'type',
         renderHead: t('bill_type'),
@@ -77,7 +78,8 @@ export default class BillDetailPage extends PureComponent<
       {
         key: 'invoice',
         renderHead: t('bill_invoice'),
-        renderBody: ({ invoice }) => invoice,
+        renderBody: ({ invoice = [] }) =>
+          (invoice as any[]).map(item => item.name).join(', '),
       },
       {
         key: 'remark',
@@ -87,17 +89,18 @@ export default class BillDetailPage extends PureComponent<
       {
         key: 'travelFundTask',
         renderHead: t('bill_travelFundTask'),
-        renderBody: ({ remark }) => remark,
+        renderBody: ({ travelFundTask }) => travelFundTask,
       },
       {
         key: 'forum',
         renderHead: t('bill_forum'),
-        renderBody: ({ forum }) => forum,
+        renderBody: ({ forum }) => JSON.stringify(forum),
       },
       {
         key: 'agendas',
         renderHead: t('bill_agendas'),
-        renderBody: ({ agendas }) => agendas,
+        renderBody: ({ agendas = [] }) =>
+          (agendas as any[]).map(item => item.text).join(', '),
       },
     ];
   }
