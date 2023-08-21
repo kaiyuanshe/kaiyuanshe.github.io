@@ -75,12 +75,7 @@ export default class BillDetailPage extends PureComponent<
         renderHead: t('bill_price'),
         renderBody: ({ price }) => price,
       },
-      {
-        key: 'invoice',
-        renderHead: t('bill_invoice'),
-        renderBody: ({ invoice = [] }) =>
-          (invoice as any[]).map(item => item.name).join(', '),
-      },
+
       {
         key: 'remark',
         renderHead: t('bill_remark'),
