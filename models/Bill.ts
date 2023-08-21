@@ -40,11 +40,11 @@ export class BillModel extends BiDataTable<Bill>() {
     return {
       ...data,
       id: id!,
-      createdBy: (createdBy as TableCellRelation[])?.map(item =>
-        normalizeText(item).split(', '),
+      createdBy: ((createdBy as TableCellRelation[]) || [])?.map(item =>
+        normalizeText(item),
       ),
-      agendas: (agendas as TableCellRelation[]).map(agenda =>
-        normalizeText(agenda).split(', '),
+      agendas: ((agendas as TableCellRelation[]) || []).map(agenda =>
+        normalizeText(agenda),
       ),
     };
   }
