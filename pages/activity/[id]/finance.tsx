@@ -1,4 +1,3 @@
-import { create } from 'domain';
 import { Loading } from 'idea-react';
 import { computed, observable } from 'mobx';
 import { observer } from 'mobx-react';
@@ -13,7 +12,7 @@ import {
   translator,
 } from 'next-ssr-middleware';
 import { PureComponent } from 'react';
-import { Container } from 'react-bootstrap';
+import { Badge,Container } from 'react-bootstrap';
 import { formatDate } from 'web-utility';
 
 import PageHead from '../../../components/PageHead';
@@ -68,11 +67,12 @@ export default class BillDetailPage extends PureComponent<
       {
         key: 'type',
         renderHead: t('bill_type'),
-        renderBody: ({ type }) => type,
+        renderBody: ({ type }) => <Badge>{type}</Badge>,
       },
       {
         key: 'price',
         renderHead: t('bill_price'),
+        renderBody: ({ price }) => price + ' RMB￥',
       },
 
       {
