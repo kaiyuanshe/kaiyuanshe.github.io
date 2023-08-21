@@ -3,6 +3,7 @@ import {
   BiDataTable,
   normalizeText,
   TableCellRelation,
+  TableCellText,
   TableCellValue,
   TableRecord,
 } from 'mobx-lark';
@@ -39,8 +40,10 @@ export class BillModel extends BiDataTable<Bill>() {
     return {
       ...data,
       id: id!,
-      createdBy: (createdBy as TableCellRelation[])?.map(normalizeText),
-      agendas: (agendas as TableCellRelation[])?.map(agenda =>
+      createdBy: (createdBy as TableCellRelation[])?.map(item =>
+        normalizeText(item).split(', '),
+      ),
+      agendas: (agendas as TableCellRelation[]).map(agenda =>
         normalizeText(agenda).split(', '),
       ),
     };
