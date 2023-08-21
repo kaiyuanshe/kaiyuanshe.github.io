@@ -12,7 +12,7 @@ import {
   translator,
 } from 'next-ssr-middleware';
 import { PureComponent } from 'react';
-import { Badge,Container } from 'react-bootstrap';
+import { Badge, Container } from 'react-bootstrap';
 import { formatDate } from 'web-utility';
 
 import PageHead from '../../../components/PageHead';
@@ -60,8 +60,6 @@ export default class BillDetailPage extends PureComponent<
       {
         key: 'createdBy',
         renderHead: t('bill_createBy'),
-        renderBody: ({ createdBy = [] }) =>
-          (createdBy as any[]).map(item => item.text).join(', '),
       },
 
       {
@@ -78,8 +76,6 @@ export default class BillDetailPage extends PureComponent<
       {
         key: 'agendas',
         renderHead: t('bill_agendas'),
-        renderBody: ({ agendas = [] }) =>
-          (agendas as any[]).map(agenda => agenda.text).join(', '),
       },
     ];
   }
