@@ -73,24 +73,8 @@ export default class BillDetailPage extends PureComponent<
       {
         key: 'price',
         renderHead: t('bill_price'),
-        renderBody: ({ price }) => price,
       },
 
-      {
-        key: 'remark',
-        renderHead: t('bill_remark'),
-        renderBody: ({ remark }) => remark,
-      },
-      {
-        key: 'travelFundTask',
-        renderHead: t('bill_travelFundTask'),
-        renderBody: ({ travelFundTask }) => travelFundTask,
-      },
-      {
-        key: 'forum',
-        renderHead: t('bill_forum'),
-        renderBody: ({ forum }) => JSON.stringify(forum),
-      },
       {
         key: 'agendas',
         renderHead: t('bill_agendas'),
