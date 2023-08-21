@@ -79,7 +79,7 @@ export default class BillDetailPage extends PureComponent<
         key: 'agendas',
         renderHead: t('bill_agendas'),
         renderBody: ({ agendas = [] }) =>
-          (agendas as any[]).map(item => item.text).join(', '),
+          (agendas as any[]).map(agenda => agenda.text).join(', '),
       },
     ];
   }
