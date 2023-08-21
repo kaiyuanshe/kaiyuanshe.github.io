@@ -56,12 +56,10 @@ export default class BillDetailPage extends PureComponent<
         renderBody: ({ createdAt }) =>
           formatDate(createdAt as number, 'YYYY-MM-DD'),
       },
-
       {
         key: 'createdBy',
         renderHead: t('bill_createBy'),
       },
-
       {
         key: 'type',
         renderHead: t('bill_type'),
@@ -72,7 +70,6 @@ export default class BillDetailPage extends PureComponent<
         renderHead: t('bill_price'),
         renderBody: ({ price }) => price + ' RMB￥',
       },
-
       {
         key: 'agendas',
         renderHead: t('bill_agendas'),
