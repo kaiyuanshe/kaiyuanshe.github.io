@@ -68,7 +68,7 @@ export default class BillDetailPage extends PureComponent<
       {
         key: 'price',
         renderHead: t('bill_price'),
-        renderBody: ({ price }) => price + ' RMB￥',
+        renderBody: ({ price }) => `￥${price}`,
       },
       {
         key: 'agendas',
@@ -84,8 +84,8 @@ export default class BillDetailPage extends PureComponent<
 
     return (
       <Container style={{ height: '91vh' }}>
-        <PageHead title={`财务公开 - ${name}`} />
-        <h1 className="mt-5 mb-4">{name} 财务公开</h1>
+        <PageHead title={t('financial_disclosure') + '-' + name} />
+        <h1 className="mt-5 mb-4">{name + ' ' + t('financial_disclosure')}</h1>
 
         {loading > 0 && <Loading />}
 
