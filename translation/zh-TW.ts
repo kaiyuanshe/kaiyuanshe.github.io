@@ -184,6 +184,7 @@ export default {
   bill_travelFundTask: '差旅志願任務',
   bill_forum: '出品/志願論壇',
   bill_agendas: '申報議程',
+  financial_disclosure: '財務公開',
 
   //RestTable
   create: '新增',

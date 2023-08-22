@@ -191,6 +191,7 @@ export default {
   bill_travelFundTask: 'Volunteer Tasks Assigned',
   bill_forum: 'forum',
   bill_agendas: 'agendas',
+  financial_disclosure: 'financial disclosure',
 
   //RestTable
   create: 'create',
