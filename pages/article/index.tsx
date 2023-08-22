@@ -1,35 +1,53 @@
 import { observer } from 'mobx-react';
 import { ScrollList } from 'mobx-restful-table';
 import { InferGetServerSidePropsType } from 'next';
-import { compose, translator } from 'next-ssr-middleware';
+import {
+  compose,
+  errorLogger,
+  RouteProps,
+  router,
+  translator,
+} from 'next-ssr-middleware';
 import { FC } from 'react';
 import { Container } from 'react-bootstrap';
 
 import { ArticleListLayout } from '../../components/Article/List';
 import PageHead from '../../components/PageHead';
-import articleStore, { ArticleModel } from '../../models/Article';
+import articleStore, { Article, ArticleModel } from '../../models/Article';
 import { i18n } from '../../models/Translation';
 
-export const getServerSideProps = compose(translator(i18n), async () => {
-  const list = await new ArticleModel().getList({}, 1);
+interface ArticleListPageProps extends RouteProps {
+  list: Article[];
+}
 
-  return { props: { list } };
-});
+export const getServerSideProps = compose<{}, ArticleListPageProps>(
+  router,
+  errorLogger,
+  translator(i18n),
+  async ({ query }) => {
+    const list = await new ArticleModel().getList({ type: query.type }, 1);
+
+    return { props: { list } as ArticleListPageProps };
+  },
+);
+
+const { t } = i18n;
 
 const ArticleListPage: FC<
   InferGetServerSidePropsType<typeof getServerSideProps>
-> = observer(({ list }) => {
-  const { t } = i18n;
+> = observer(({ route: { query }, list }) => {
+  const title = [query.type, t('our_articles')].filter(Boolean);
 
   return (
     <Container className="py-5">
-      <PageHead title={t('our_articles')} />
+      <PageHead title={title.join(' - ')} />
 
-      <h1 className="mb-5 text-center">{t('our_articles')}</h1>
+      <h1 className="mb-5 text-center">{[...title].reverse().join(' - ')}</h1>
 
       <ScrollList
         translator={i18n}
         store={articleStore}
+        filter={query}
         renderList={allItems => <ArticleListLayout defaultData={allItems} />}
         defaultData={list}
       />

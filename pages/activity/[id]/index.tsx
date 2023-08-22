@@ -181,8 +181,11 @@ export default class ActivityDetailPage extends PureComponent<
       <h2 className="my-5 text-center" id={name as string}>
         {name}
       </h2>
-      <p className="text-muted">{summary}</p>
-
+      <Row>
+        <Col xl={{ offset: 2, span: 6 }} as="p" className="text-muted">
+          {summary}
+        </Col>
+      </Row>
       <div className="d-flex justify-content-center">
         <div className="d-flex align-items-center px-5">
           {this.renderForumPeople(
