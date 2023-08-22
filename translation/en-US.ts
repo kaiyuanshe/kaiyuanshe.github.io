@@ -183,7 +183,7 @@ export default {
   bill_id: 'bill id',
   bill_createAt: 'created at',
   bill_location: 'location',
-  bill_createBy: 'created By',
+  bill_createBy: 'created by',
   bill_type: 'type',
   bill_price: 'price',
   bill_invoice: 'invoice',
