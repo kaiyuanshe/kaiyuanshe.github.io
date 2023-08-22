@@ -1,3 +1,5 @@
+import { IDType } from 'mobx-restful';
+
 export default {
   KaiYuanShe: '開源社',
   our_vision: '我們的願景',
@@ -169,6 +171,31 @@ export default {
   range_library: '庫',
   range_file: '檔案',
   range_module: '模組',
+
+  //finance Page
+  bill_id: '單號',
+  bill_createAt: '支付日期',
+  bill_location: '支付地點',
+  bill_createBy: '支付人',
+  bill_type: '支付類型',
+  bill_price: '支付金額',
+  bill_invoice: '支付憑證',
+  bill_remark: '備註',
+  bill_travelFundTask: '差旅志願任務',
+  bill_forum: '出品/志願論壇',
+  bill_agendas: '申報議程',
+  financial_disclosure: '財務公開',
+
+  //RestTable
+  create: '新增',
+  submit: '提交',
+  cancel: '取消',
+  edit: '編輯',
+  delete: '刪除',
+  total_x_rows: ({ totalCount }: { totalCount: number }) =>
+    `共 ${totalCount} 行`,
+  sure_to_delete_x: ({ keys }: { keys: IDType[] }) =>
+    `您確定刪除 ${keys.join('、')} 嗎？`,
 
   // Election
   election: '選舉',

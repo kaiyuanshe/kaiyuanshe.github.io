@@ -1,3 +1,5 @@
+import { IDType } from 'mobx-restful';
+
 export default {
   KaiYuanShe: 'KaiYuanShe',
   our_vision: 'Our vision',
@@ -176,6 +178,31 @@ export default {
   range_library: 'library',
   range_file: 'file',
   range_module: 'module',
+
+  //finance Page
+  bill_id: 'bill id',
+  bill_createAt: 'created at',
+  bill_location: 'location',
+  bill_createBy: 'created by',
+  bill_type: 'type',
+  bill_price: 'price',
+  bill_invoice: 'invoice',
+  bill_remark: 'note',
+  bill_travelFundTask: 'Volunteer Tasks Assigned',
+  bill_forum: 'forum',
+  bill_agendas: 'agendas',
+  financial_disclosure: 'financial disclosure',
+
+  //RestTable
+  create: 'create',
+  submit: 'submit',
+  cancel: 'cancel',
+  edit: 'edit',
+  delete: 'delete',
+  total_x_rows: ({ totalCount }: { totalCount: number }) =>
+    `total ${totalCount} rows`,
+  sure_to_delete_x: ({ keys }: { keys: IDType[] }) =>
+    `Are you sure to delete ${keys.join(', ')} `,
 
   // Election
   election: 'Election',

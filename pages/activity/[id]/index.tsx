@@ -84,7 +84,7 @@ export default class ActivityDetailPage extends PureComponent<
   renderButtonBar() {
     const { endTime, personForms, agendaForms, fileForms, billForms } =
         this.props.currentMeta,
-      { link } = this.props.activity;
+      { id, link } = this.props.activity;
     const passed = +new Date(+endTime!) <= Date.now();
 
     return (
@@ -108,6 +108,9 @@ export default class ActivityDetailPage extends PureComponent<
             {t('participant_registration')}
           </Button>
         )}
+        <Button target="_blank" href={`/activity/${id}/finance`}>
+          {t('financial_disclosure')}
+        </Button>
       </div>
     );
   }

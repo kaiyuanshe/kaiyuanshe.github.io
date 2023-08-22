@@ -1,3 +1,5 @@
+import { IDType } from 'mobx-restful';
+
 export default {
   KaiYuanShe: '开源社',
   our_vision: '我们的愿景',
@@ -169,6 +171,31 @@ export default {
   range_library: '库',
   range_file: '文件',
   range_module: '模块',
+
+  //finance Page
+  bill_id: '单号',
+  bill_createAt: '支付日期',
+  bill_location: '支付地点',
+  bill_createBy: '支付人',
+  bill_type: '支付类型',
+  bill_price: '支付金额',
+  bill_invoice: '支付凭证',
+  bill_remark: '备注',
+  bill_travelFundTask: '差旅志愿任务',
+  bill_forum: '出品/志愿论坛',
+  bill_agendas: '申报议程',
+  financial_disclosure: '财务公开',
+
+  //RestTable
+  create: '新增',
+  submit: '提交',
+  cancel: '取消',
+  edit: '编辑',
+  delete: '删除',
+  total_x_rows: ({ totalCount }: { totalCount: number }) =>
+    `共 ${totalCount} 行`,
+  sure_to_delete_x: ({ keys }: { keys: IDType[] }) =>
+    `您确定删除 ${keys.join('、')} 吗？`,
 
   // Election
   election: '选举',
