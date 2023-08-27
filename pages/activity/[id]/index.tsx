@@ -108,7 +108,7 @@ export default class ActivityDetailPage extends PureComponent<
             {t('participant_registration')}
           </Button>
         )}
-        <Button target="_blank" href={`/activity/${id}/finance`}>
+        <Button variant="secondary" href={`/activity/${id}/finance`}>
           {t('financial_disclosure')}
         </Button>
       </div>
