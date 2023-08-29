@@ -55,11 +55,11 @@ export const MainRoutes = (): Link[] => [
       },
       {
         title: t('original_articles'),
-        path: '',
+        path: '/article?type=原创',
       },
       {
         title: t('translated_articles'),
-        path: '',
+        path: '/article?type=翻译',
       },
       { title: t('all_articles'), path: '/article' },
     ],
