@@ -25,7 +25,7 @@ export const getServerSideProps = compose<
     agenda = await activityStore.currentAgenda!.getOne(agendaId + '');
 
   return {
-    props: { activity, agenda },
+    props: JSON.parse(JSON.stringify({ activity, agenda })),
   };
 });
 

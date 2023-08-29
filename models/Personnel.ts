@@ -1,4 +1,4 @@
-import { observable } from 'mobx';
+import { makeObservable, observable } from 'mobx';
 import {
   BiDataTable,
   makeSimpleFilter,
@@ -42,6 +42,8 @@ export class PersonnelModel extends BiDataTable<Personnel>() {
 
   constructor(appId = HR_BASE_ID, tableId = PERSONNEL_TABLE_ID) {
     super(appId, tableId);
+
+    makeObservable(this);
   }
 
   requiredKeys = ['recipient'] as const;

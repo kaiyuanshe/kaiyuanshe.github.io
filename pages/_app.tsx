@@ -1,7 +1,8 @@
 import '../styles/globals.less';
 
 import { Icon } from 'idea-react';
-import { observer } from 'mobx-react';
+import { configure } from 'mobx';
+import { enableStaticRendering, observer } from 'mobx-react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { FC } from 'react';
@@ -9,9 +10,14 @@ import { Col, Container, Row } from 'react-bootstrap';
 
 import { MainRoutes } from '../components/data';
 import MainNav from '../components/MainNav';
+import { isServer } from '../models/Base';
 import { i18n } from '../models/Translation';
 import { social } from './api/home';
 import { DefaultImage } from './api/lark/file/[id]';
+
+configure({ enforceActions: 'never' });
+
+enableStaticRendering(isServer());
 
 const { t } = i18n;
 

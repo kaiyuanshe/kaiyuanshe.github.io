@@ -1,4 +1,4 @@
-import { observable } from 'mobx';
+import { makeObservable, observable } from 'mobx';
 import {
   BiDataTable,
   normalizeText,
@@ -30,6 +30,12 @@ export type Agenda = Record<
 >;
 
 export class AgendaModel extends BiDataTable<Agenda>() {
+  constructor(appId: string, tableId: string) {
+    super(appId, tableId);
+
+    makeObservable(this);
+  }
+
   client = larkClient;
 
   requiredKeys = [

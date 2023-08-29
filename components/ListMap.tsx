@@ -1,5 +1,5 @@
 import { Icon } from 'idea-react';
-import { computed, observable } from 'mobx';
+import { computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { ImagePreview } from 'mobx-restful-table';
 import dynamic from 'next/dynamic';
@@ -23,6 +23,11 @@ export interface ListMapProps extends OpenReactMapProps {
 
 @observer
 export class ListMap extends PureComponent<ListMapProps> {
+  constructor(props: ListMapProps) {
+    super(props);
+    makeObservable(this);
+  }
+
   @observable
   drawerOpen = false;
 
@@ -36,7 +41,7 @@ export class ListMap extends PureComponent<ListMapProps> {
   }
 
   @observable
-  currentMarker?: ImageMarker;
+  currentMarker?: ImageMarker = undefined;
 
   componentDidMount() {
     this.drawerOpen = !systemStore.screenNarrow;

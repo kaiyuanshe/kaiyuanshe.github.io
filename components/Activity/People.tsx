@@ -13,7 +13,7 @@ export const ActivityPeople: FC<ActivityPeopleProps> = ({
   positions,
   summaries,
 }) => (
-  <ul className="list-unstyled d-flex align-items-center justify-content-around">
+  <ul className="list-unstyled d-flex align-items-center justify-content-around gap-3">
     {names?.map((name, index) => (
       <li key={name} className="text-center">
         <span
