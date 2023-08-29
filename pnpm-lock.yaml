@@ -27,8 +27,8 @@ dependencies:
     specifier: ^1.4.1
     version: 1.4.1
   idea-react:
-    specifier: ^1.0.0-rc.20
-    version: 1.0.0-rc.20(@types/react@17.0.65)(jsdom@22.1.0)(react-dom@17.0.2)(react@17.0.2)(typescript@5.2.2)
+    specifier: ^1.0.0-rc.22
+    version: 1.0.0-rc.22(@types/react@17.0.65)(react-dom@17.0.2)(react@17.0.2)(typescript@5.2.2)
   koajax:
     specifier: ^0.8.6
     version: 0.8.6(jsdom@22.1.0)(typescript@5.2.2)
@@ -51,23 +51,26 @@ dependencies:
     specifier: ^7.0.5
     version: 7.0.5
   mobx:
-    specifier: ^5.15.7
-    version: 5.15.7
+    specifier: ^6.10.0
+    version: 6.10.0
   mobx-i18n:
-    specifier: ^0.4.0
-    version: 0.4.0(mobx@5.15.7)
+    specifier: ^0.4.1
+    version: 0.4.1(mobx@6.10.0)
   mobx-lark:
-    specifier: ^1.0.0-rc.6
-    version: 1.0.0-rc.6(jsdom@22.1.0)(mobx@5.15.7)(typescript@5.2.2)
+    specifier: ^1.0.0-rc.7
+    version: 1.0.0-rc.7(jsdom@22.1.0)(mobx@6.10.0)(typescript@5.2.2)
   mobx-react:
-    specifier: ^6.3.1
-    version: 6.3.1(mobx@5.15.7)(react-dom@17.0.2)(react@17.0.2)
+    specifier: ^9.0.0
+    version: 9.0.0(mobx@6.10.0)(react-dom@17.0.2)(react@17.0.2)
+  mobx-react-helper:
+    specifier: ^0.2.5
+    version: 0.2.5(mobx@6.10.0)(react@17.0.2)
   mobx-restful:
-    specifier: ^0.6.10
-    version: 0.6.10(jsdom@22.1.0)(mobx@5.15.7)(typescript@5.2.2)
+    specifier: ^0.6.11
+    version: 0.6.11(jsdom@22.1.0)(mobx@6.10.0)(typescript@5.2.2)
   mobx-restful-table:
-    specifier: ^1.1.1
-    version: 1.1.1(@types/react@17.0.65)(mobx-i18n@0.4.0)(mobx-react@6.3.1)(mobx-restful@0.6.10)(mobx@5.15.7)(react-dom@17.0.2)(react@17.0.2)(typescript@5.2.2)
+    specifier: ^1.1.2
+    version: 1.1.2(@types/react@17.0.65)(mobx-i18n@0.4.1)(mobx-react@9.0.0)(mobx-restful@0.6.11)(mobx@6.10.0)(react-dom@17.0.2)(react@17.0.2)(typescript@5.2.2)
   next:
     specifier: ^12.3.4
     version: 12.3.4(@babel/core@7.22.11)(react-dom@17.0.2)(react@17.0.2)
@@ -76,10 +79,13 @@ dependencies:
     version: 5.6.0(@babel/core@7.22.11)(next@12.3.4)(webpack@5.88.2)
   next-ssr-middleware:
     specifier: ^0.5.1
-    version: 0.5.1(mobx@5.15.7)(next@12.3.4)(typescript@5.2.2)
+    version: 0.5.1(mobx@6.10.0)(next@12.3.4)(typescript@5.2.2)
   next-with-less:
     specifier: ^2.0.5
     version: 2.0.5(less-loader@11.1.3)(less@4.2.0)(next@12.3.4)
+  open-react-map:
+    specifier: ^0.6.1
+    version: 0.6.1(jsdom@22.1.0)(mobx-react@9.0.0)(mobx@6.10.0)(react-dom@17.0.2)(react@17.0.2)(typescript@5.2.2)
   qrcode.react:
     specifier: ^3.1.0
     version: 3.1.0(react@17.0.2)
@@ -110,8 +116,8 @@ devDependencies:
     specifier: ^1.9.3
     version: 1.9.3
   '@types/node':
-    specifier: ^18.17.11
-    version: 18.17.11
+    specifier: ^18.17.12
+    version: 18.17.12
   '@types/qs':
     specifier: ^6.9.7
     version: 6.9.7
@@ -132,7 +138,7 @@ devDependencies:
     version: 10.0.0(eslint@8.48.0)
   get-git-folder:
     specifier: ^0.1.2
-    version: 0.1.2(@babel/plugin-transform-modules-commonjs@7.22.11)(@babel/preset-env@7.22.10)(@types/node@18.17.11)
+    version: 0.1.2(@babel/plugin-transform-modules-commonjs@7.22.11)(@babel/preset-env@7.22.10)(@types/node@18.17.12)
   husky:
     specifier: ^8.0.3
     version: 8.0.3
@@ -140,8 +146,8 @@ devDependencies:
     specifier: ^14.0.1
     version: 14.0.1
   prettier:
-    specifier: ^3.0.2
-    version: 3.0.2
+    specifier: ^3.0.3
+    version: 3.0.3
   typescript:
     specifier: ~5.2.2
     version: 5.2.2
@@ -1312,7 +1318,7 @@ packages:
     dependencies:
       '@jest/fake-timers': 27.5.1
       '@jest/types': 27.5.1
-      '@types/node': 18.17.11
+      '@types/node': 18.17.12
       jest-mock: 27.5.1
     dev: false
 
@@ -1322,7 +1328,7 @@ packages:
     dependencies:
       '@jest/types': 27.5.1
       '@sinonjs/fake-timers': 8.1.0
-      '@types/node': 18.17.11
+      '@types/node': 18.17.12
       jest-message-util: 27.5.1
       jest-mock: 27.5.1
       jest-util: 27.5.1
@@ -1343,7 +1349,7 @@ packages:
     dependencies:
       '@types/istanbul-lib-coverage': 2.0.4
       '@types/istanbul-reports': 3.0.1
-      '@types/node': 18.17.11
+      '@types/node': 18.17.12
       '@types/yargs': 16.0.5
       chalk: 4.1.2
     dev: false
@@ -1723,7 +1729,7 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /@tech_query/node-toolkit@1.2.1(@babel/plugin-transform-modules-commonjs@7.22.11)(@babel/preset-env@7.22.10)(@types/node@18.17.11):
+  /@tech_query/node-toolkit@1.2.1(@babel/plugin-transform-modules-commonjs@7.22.11)(@babel/preset-env@7.22.10)(@types/node@18.17.12):
     resolution: {integrity: sha512-XFw0EVc8LCcC+CNo+lCxi+5iiPzQyubz41rP4iNuMueN+kjn/KMliaHKLZ5kAnCi+HxmuJPmzrSi6vZtuP07Hg==}
     peerDependencies:
       '@babel/plugin-transform-modules-commonjs': ^7.0.0
@@ -1733,7 +1739,7 @@ packages:
       '@babel/core': 7.22.11
       '@babel/plugin-transform-modules-commonjs': 7.22.11(@babel/core@7.22.11)
       '@babel/preset-env': 7.22.10(@babel/core@7.22.11)
-      '@types/node': 18.17.11
+      '@types/node': 18.17.12
       cross-spawn: 7.0.3
       file-type: 16.5.4
       fs-extra: 11.1.1
@@ -1781,7 +1787,7 @@ packages:
     resolution: {integrity: sha512-MxObHvNl4A69ofaTRU8DFqvgzzv8s9yRtaPPm5gud9HDNvpB3GPQFvNuTWAI59B9huVGV5jXYJwbCsmBsOGYWA==}
     dependencies:
       '@types/jsonfile': 6.1.1
-      '@types/node': 18.17.11
+      '@types/node': 18.17.12
     dev: true
 
   /@types/geojson@7946.0.10:
@@ -1791,7 +1797,7 @@ packages:
     resolution: {integrity: sha512-ZUxbzKl0IfJILTS6t7ip5fQQM/J3TJYubDm3nMbgubNNYS62eXeUpoLUC8/7fJNiFYHTrGPQn7hspDUzIHX3UA==}
     dependencies:
       '@types/minimatch': 5.1.2
-      '@types/node': 18.17.11
+      '@types/node': 18.17.12
     dev: false
 
   /@types/istanbul-lib-coverage@2.0.4:
@@ -1821,7 +1827,7 @@ packages:
   /@types/jsonfile@6.1.1:
     resolution: {integrity: sha512-GSgiRCVeapDN+3pqA35IkQwasaCh/0YFH5dEF6S88iDvEn901DjOeH3/QPY+XYP1DFzDZPvIvfeEgk+7br5png==}
     dependencies:
-      '@types/node': 18.17.11
+      '@types/node': 18.17.12
     dev: true
 
   /@types/leaflet@1.9.3:
@@ -1837,8 +1843,8 @@ packages:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
     dev: true
 
-  /@types/node@18.17.11:
-    resolution: {integrity: sha512-r3hjHPBu+3LzbGBa8DHnr/KAeTEEOrahkcL+cZc4MaBMTM+mk8LtXR+zw+nqfjuDZZzYTYgTcpHuP+BEQk069g==}
+  /@types/node@18.17.12:
+    resolution: {integrity: sha512-d6xjC9fJ/nSnfDeU0AMDsaJyb1iHsqCSOdi84w4u+SlN/UgQdY5tRhpMzaFYsI4mnpvgTivEaQd0yOUhAtOnEQ==}
 
   /@types/prop-types@15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
@@ -1873,7 +1879,7 @@ packages:
   /@types/resolve@1.17.1:
     resolution: {integrity: sha512-yy7HuzQhj0dhGpD8RLXSZWEkLsV9ibvxvi6EiJ3bkqLAO1RGo0WbkWQiwpRlSFymTJRz0d3k5LM3kkx8ArDbLw==}
     dependencies:
-      '@types/node': 18.17.11
+      '@types/node': 18.17.12
     dev: false
 
   /@types/scheduler@0.16.3:
@@ -2534,10 +2540,10 @@ packages:
       delayed-stream: 1.0.0
     dev: false
 
-  /commander-jsx@0.6.9(@babel/plugin-transform-modules-commonjs@7.22.11)(@babel/preset-env@7.22.10)(@types/node@18.17.11):
+  /commander-jsx@0.6.9(@babel/plugin-transform-modules-commonjs@7.22.11)(@babel/preset-env@7.22.10)(@types/node@18.17.12):
     resolution: {integrity: sha512-E/wSYQhT7kgqd98WW8sdRiM+3i+J9Z30NOBTCdfD88p2k/po4+JEzikqOECKA1OouTqnAuIgdg5aKGbjq5B0jg==}
     dependencies:
-      '@tech_query/node-toolkit': 1.2.1(@babel/plugin-transform-modules-commonjs@7.22.11)(@babel/preset-env@7.22.10)(@types/node@18.17.11)
+      '@tech_query/node-toolkit': 1.2.1(@babel/plugin-transform-modules-commonjs@7.22.11)(@babel/preset-env@7.22.10)(@types/node@18.17.12)
       tslib: 2.6.2
     transitivePeerDependencies:
       - '@babel/plugin-transform-modules-commonjs'
@@ -3440,11 +3446,11 @@ packages:
     resolution: {integrity: sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==}
     engines: {node: '>=6.9.0'}
 
-  /get-git-folder@0.1.2(@babel/plugin-transform-modules-commonjs@7.22.11)(@babel/preset-env@7.22.10)(@types/node@18.17.11):
+  /get-git-folder@0.1.2(@babel/plugin-transform-modules-commonjs@7.22.11)(@babel/preset-env@7.22.10)(@types/node@18.17.12):
     resolution: {integrity: sha512-LYf1bS5g3PH71uGLVe3jR2jZm2DbJjoQk7w99WAR7fsdzqEuzGUGqFiVszTHTUXGp+N0gT+kLKhy9isUhM5a2Q==}
     hasBin: true
     dependencies:
-      commander-jsx: 0.6.9(@babel/plugin-transform-modules-commonjs@7.22.11)(@babel/preset-env@7.22.10)(@types/node@18.17.11)
+      commander-jsx: 0.6.9(@babel/plugin-transform-modules-commonjs@7.22.11)(@babel/preset-env@7.22.10)(@types/node@18.17.12)
       zx: 7.2.3
     transitivePeerDependencies:
       - '@babel/plugin-transform-modules-commonjs'
@@ -3677,8 +3683,8 @@ packages:
     resolution: {integrity: sha512-gchesWBzyvGHRO9W8tzUWFDycow5gwjvFKfyV9FF32Y7F50yZMp7mP+T2mJIWFx49zicqyC4uefHM17o6xKIVQ==}
     dev: false
 
-  /idea-react@1.0.0-rc.20(@types/react@17.0.65)(jsdom@22.1.0)(react-dom@17.0.2)(react@17.0.2)(typescript@5.2.2):
-    resolution: {integrity: sha512-NvRhfYNtQYKF6Bb7lX25pNk8r1dCJVWxTjs08LXsaclmGfHYj22kpGGhNZ+E3oYGhPQUkmIJzN99Le03q0fKoA==}
+  /idea-react@1.0.0-rc.22(@types/react@17.0.65)(react-dom@17.0.2)(react@17.0.2)(typescript@5.2.2):
+    resolution: {integrity: sha512-f65Ef3MlV0hWOd5dUwtJQrToCbM72Sp0qw1t1At9IRWxLVNsKX/p3CR2DaPUJ2CFRRo1yAfY6bGTAEnM//6/ew==}
     peerDependencies:
       react: '>=16'
       react-dom: '>=16'
@@ -3687,28 +3693,21 @@ packages:
       '@editorjs/paragraph': 2.10.0
       '@react-editor-js/core': 2.1.0(@editorjs/editorjs@2.28.0)(react@17.0.2)
       '@swc/helpers': 0.5.1
-      '@types/leaflet': 1.9.3
       classnames: 2.3.2
       editorjs-html: 3.4.3
       iterable-observer: 1.0.0
-      koajax: 0.8.6(jsdom@22.1.0)(typescript@5.2.2)
-      leaflet: 1.9.4
       lodash: 4.17.21
-      mobx: 5.15.7
-      mobx-react: 6.3.1(mobx@5.15.7)(react-dom@17.0.2)(react@17.0.2)
-      mobx-react-helper: 0.2.3(mobx@5.15.7)(react@17.0.2)
+      mobx: 6.10.0
+      mobx-react: 9.0.0(mobx@6.10.0)(react-dom@17.0.2)(react@17.0.2)
       prismjs: 1.29.0
       react: 17.0.2
       react-bootstrap: 2.8.0(@types/react@17.0.65)(react-dom@17.0.2)(react@17.0.2)
       react-dom: 17.0.2(react@17.0.2)
       react-editor-js: 2.1.0(@editorjs/editorjs@2.28.0)(@editorjs/paragraph@2.10.0)(react@17.0.2)
       react-element-to-jsx-string: 15.0.0(react-dom@17.0.2)(react@17.0.2)
-      react-leaflet: 3.2.5(leaflet@1.9.4)(react-dom@17.0.2)(react@17.0.2)
-      regenerator-runtime: 0.14.0
       web-utility: 4.1.0(typescript@5.2.2)
     transitivePeerDependencies:
       - '@types/react'
-      - jsdom
       - react-native
       - typescript
     dev: false
@@ -4053,7 +4052,7 @@ packages:
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     dependencies:
       '@jest/types': 27.5.1
-      '@types/node': 18.17.11
+      '@types/node': 18.17.12
     dev: false
 
   /jest-util@27.5.1:
@@ -4061,7 +4060,7 @@ packages:
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     dependencies:
       '@jest/types': 27.5.1
-      '@types/node': 18.17.11
+      '@types/node': 18.17.12
       chalk: 4.1.2
       ci-info: 3.8.0
       graceful-fs: 4.2.11
@@ -4072,7 +4071,7 @@ packages:
     resolution: {integrity: sha512-KWYVV1c4i+jbMpaBC+U++4Va0cp8OisU185o73T1vo99hqi7w8tSJfUXYswwqqrjzwxa6KpRK54WhPvwf5w6PQ==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 18.17.11
+      '@types/node': 18.17.12
       merge-stream: 2.0.0
       supports-color: 7.2.0
     dev: false
@@ -4081,7 +4080,7 @@ packages:
     resolution: {integrity: sha512-7vuh85V5cdDofPyxn58nrPjBktZo0u9x1g8WtjQol+jZDaE+fhN+cIvTj11GndBnMnyfrUOG1sZQxCdjKh+DKg==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 18.17.11
+      '@types/node': 18.17.12
       merge-stream: 2.0.0
       supports-color: 8.1.1
     dev: false
@@ -4542,25 +4541,25 @@ packages:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
     dev: true
 
-  /mobx-i18n@0.4.0(mobx@5.15.7):
-    resolution: {integrity: sha512-RBC0zWEWkbVlvpmDA7voWSf8Lwk5t7smHwZs/F5frkJdz6ydDibmvcccwHntkY0H+8PFR/1rYpcv6PeR0JuRRw==}
+  /mobx-i18n@0.4.1(mobx@6.10.0):
+    resolution: {integrity: sha512-4nHFPlWb6cUqchg9U50oS3aJ2EJ0RS2qhkh1+s4++GLobtnglMWnbbOMh55C4p6yrgZmr5f1U1nqk6yAbLAU3g==}
     peerDependencies:
       mobx: '>=4'
     dependencies:
       '@swc/helpers': 0.5.1
-      mobx: 5.15.7
+      mobx: 6.10.0
       regenerator-runtime: 0.14.0
     dev: false
 
-  /mobx-lark@1.0.0-rc.6(jsdom@22.1.0)(mobx@5.15.7)(typescript@5.2.2):
-    resolution: {integrity: sha512-rF1/1aUlSxtMwJq9lAVt515IUeCAmxdgpJCjmu9X0CKFKbEIe69dUBWhbMXj7xtiJspM39pMjtl4Fi0rWusruw==}
+  /mobx-lark@1.0.0-rc.7(jsdom@22.1.0)(mobx@6.10.0)(typescript@5.2.2):
+    resolution: {integrity: sha512-uxLYzKvGioDuFeGtvbrgkNk/36pFrnx9DYfRpfyXdvioZ5tSrab85B5y2XXUCqHtV7oun3LA2hwkf/2LI3bGLA==}
     peerDependencies:
       mobx: '>=4'
     dependencies:
       '@swc/helpers': 0.5.1
       koajax: 0.8.6(jsdom@22.1.0)(typescript@5.2.2)
-      mobx: 5.15.7
-      mobx-restful: 0.6.10(jsdom@22.1.0)(mobx@5.15.7)(typescript@5.2.2)
+      mobx: 6.10.0
+      mobx-restful: 0.6.11(jsdom@22.1.0)(mobx@6.10.0)(typescript@5.2.2)
       node-fetch: 2.7.0
       regenerator-runtime: 0.14.0
       web-utility: 4.1.0(typescript@5.2.2)
@@ -4570,23 +4569,23 @@ packages:
       - typescript
     dev: false
 
-  /mobx-react-helper@0.2.3(mobx@5.15.7)(react@17.0.2):
-    resolution: {integrity: sha512-Mvpktt7aLVkvPplRiM4FrEzTx/JCMpHLj/YuWtmLcEL5PHginu6gQwThxtC8K8tagximiAvzuu6fbS3wBRHjLQ==}
+  /mobx-react-helper@0.2.5(mobx@6.10.0)(react@17.0.2):
+    resolution: {integrity: sha512-RUvXhIXD3Qz7NJVNU8HzBpPZYDcGxjnFPFlzCDvc4WI5mT9UjloaJuBc4CSi3ErCSF5pV72fHYOVl7lOTW/KOQ==}
     peerDependencies:
       mobx: '>=4'
       react: '>=16'
     dependencies:
       '@swc/helpers': 0.5.1
       lodash.eq: 4.0.0
-      mobx: 5.15.7
+      mobx: 6.10.0
       react: 17.0.2
     dev: false
 
-  /mobx-react-lite@2.2.2(mobx@5.15.7)(react-dom@17.0.2)(react@17.0.2):
-    resolution: {integrity: sha512-2SlXALHIkyUPDsV4VTKVR9DW7K3Ksh1aaIv3NrNJygTbhXe2A9GrcKHZ2ovIiOp/BXilOcTYemfHHZubP431dg==}
+  /mobx-react-lite@4.0.4(mobx@6.10.0)(react-dom@17.0.2)(react@17.0.2):
+    resolution: {integrity: sha512-68uNYvQC/5Dazs3sIBv+bnpzRwcWde8y4ujHiLizhq8yeQtJ2tlNUGSh4r40gyE5M0utACIofBDsAj2hplcovQ==}
     peerDependencies:
-      mobx: ^4.0.0 || ^5.0.0
-      react: ^16.8.0
+      mobx: ^6.9.0
+      react: ^16.8.0 || ^17 || ^18
       react-dom: '*'
       react-native: '*'
     peerDependenciesMeta:
@@ -4595,27 +4594,33 @@ packages:
       react-native:
         optional: true
     dependencies:
-      mobx: 5.15.7
+      mobx: 6.10.0
+      react: 17.0.2
+      react-dom: 17.0.2(react@17.0.2)
+      use-sync-external-store: 1.2.0(react@17.0.2)
+    dev: false
+
+  /mobx-react@9.0.0(mobx@6.10.0)(react-dom@17.0.2)(react@17.0.2):
+    resolution: {integrity: sha512-rhUBWXK/k4H/jMXZqbL0uTPncRSvJR23tpmJemoAEjJjm0Fkv6tTLG3Cze9MIgvf882Kradx6msizuQxLAiQwA==}
+    peerDependencies:
+      mobx: ^6.9.0
+      react: ^16.8.0 || ^17 || ^18
+      react-dom: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      mobx: 6.10.0
+      mobx-react-lite: 4.0.4(mobx@6.10.0)(react-dom@17.0.2)(react@17.0.2)
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
     dev: false
 
-  /mobx-react@6.3.1(mobx@5.15.7)(react-dom@17.0.2)(react@17.0.2):
-    resolution: {integrity: sha512-IOxdJGnRSNSJrL2uGpWO5w9JH5q5HoxEqwOF4gye1gmZYdjoYkkMzSGMDnRCUpN/BNzZcFoMdHXrjvkwO7KgaQ==}
-    peerDependencies:
-      mobx: ^5.15.4 || ^4.15.4
-      react: ^16.8.0 || 16.9.0-alpha.0
-    dependencies:
-      mobx: 5.15.7
-      mobx-react-lite: 2.2.2(mobx@5.15.7)(react-dom@17.0.2)(react@17.0.2)
-      react: 17.0.2
-    transitivePeerDependencies:
-      - react-dom
-      - react-native
-    dev: false
-
-  /mobx-restful-table@1.1.1(@types/react@17.0.65)(mobx-i18n@0.4.0)(mobx-react@6.3.1)(mobx-restful@0.6.10)(mobx@5.15.7)(react-dom@17.0.2)(react@17.0.2)(typescript@5.2.2):
-    resolution: {integrity: sha512-LtIpeWq3WJpYFFk1BLpOHxK9VLZWCCvVf2okV9VATmeXKyfwVIsnGKxcAqRa3JE1uiVwwen3tq8Oid0PabVPdQ==}
+  /mobx-restful-table@1.1.2(@types/react@17.0.65)(mobx-i18n@0.4.1)(mobx-react@9.0.0)(mobx-restful@0.6.11)(mobx@6.10.0)(react-dom@17.0.2)(react@17.0.2)(typescript@5.2.2):
+    resolution: {integrity: sha512-fxAzdsbeNzbnjDHLdDOtAMOJ33b1i98jP7Rpst1WXhxLW6MyCgJ4Pl7HhKHWcvacSnKQ5nnDK5iUXYokmKYvag==}
     peerDependencies:
       mobx: '>=4'
       mobx-i18n: ^0.4
@@ -4626,11 +4631,11 @@ packages:
       '@swc/helpers': 0.5.1
       classnames: 2.3.2
       lodash: 4.17.21
-      mobx: 5.15.7
-      mobx-i18n: 0.4.0(mobx@5.15.7)
-      mobx-react: 6.3.1(mobx@5.15.7)(react-dom@17.0.2)(react@17.0.2)
-      mobx-react-helper: 0.2.3(mobx@5.15.7)(react@17.0.2)
-      mobx-restful: 0.6.10(jsdom@22.1.0)(mobx@5.15.7)(typescript@5.2.2)
+      mobx: 6.10.0
+      mobx-i18n: 0.4.1(mobx@6.10.0)
+      mobx-react: 9.0.0(mobx@6.10.0)(react-dom@17.0.2)(react@17.0.2)
+      mobx-react-helper: 0.2.5(mobx@6.10.0)(react@17.0.2)
+      mobx-restful: 0.6.11(jsdom@22.1.0)(mobx@6.10.0)(typescript@5.2.2)
       react: 17.0.2
       react-bootstrap: 2.8.0(@types/react@17.0.65)(react-dom@17.0.2)(react@17.0.2)
       regenerator-runtime: 0.14.0
@@ -4641,15 +4646,15 @@ packages:
       - typescript
     dev: false
 
-  /mobx-restful@0.6.10(jsdom@22.1.0)(mobx@5.15.7)(typescript@5.2.2):
-    resolution: {integrity: sha512-MZWhkdP5RBTGB0O/Y/D7nIy246Pz0AXDVkdRrKr9+AnpTB4x/g53xwsno5yWR2FasyJygpCtOYPJ59CE+Tb9Pw==}
+  /mobx-restful@0.6.11(jsdom@22.1.0)(mobx@6.10.0)(typescript@5.2.2):
+    resolution: {integrity: sha512-93hwtSSc50A7r+rLim3dRXlAJPx+kUR1qYWxM6L9kuIag8R5oTFNCte8FlsgOegGcX2p66U1Tkn6T26lomIoxg==}
     peerDependencies:
       mobx: '>=4'
     dependencies:
       '@swc/helpers': 0.5.1
       class-validator: 0.14.0
       koajax: 0.8.6(jsdom@22.1.0)(typescript@5.2.2)
-      mobx: 5.15.7
+      mobx: 6.10.0
       reflect-metadata: 0.1.13
       regenerator-runtime: 0.14.0
       web-utility: 4.1.0(typescript@5.2.2)
@@ -4658,8 +4663,8 @@ packages:
       - typescript
     dev: false
 
-  /mobx@5.15.7:
-    resolution: {integrity: sha512-wyM3FghTkhmC+hQjyPGGFdpehrcX1KOXsDuERhfK2YbJemkUhEB+6wzEN639T21onxlfYBmriA1PFnvxTUhcKw==}
+  /mobx@6.10.0:
+    resolution: {integrity: sha512-WMbVpCMFtolbB8swQ5E2YRrU+Yu8iLozCVx3CdGjbBKlP7dFiCSuiG06uea3JCFN5DnvtAX7+G5Bp82e2xu0ww==}
     dev: false
 
   /ms@2.1.2:
@@ -4718,12 +4723,12 @@ packages:
       - webpack
     dev: false
 
-  /next-ssr-middleware@0.5.1(mobx@5.15.7)(next@12.3.4)(typescript@5.2.2):
+  /next-ssr-middleware@0.5.1(mobx@6.10.0)(next@12.3.4)(typescript@5.2.2):
     resolution: {integrity: sha512-DqIM6t60Gj6t3T4hkZ9vvpVyNdYlGv/pcmKN/7Q/xeuCW764s4UzAmiSlAX+rGzWXc439myRQw0hzDLtOnHe6A==}
     peerDependencies:
       next: '>=9.3'
     dependencies:
-      mobx-i18n: 0.4.0(mobx@5.15.7)
+      mobx-i18n: 0.4.1(mobx@6.10.0)
       next: 12.3.4(@babel/core@7.22.11)(react-dom@17.0.2)(react@17.0.2)
       tslib: 2.6.2
       web-utility: 4.1.0(typescript@5.2.2)
@@ -4912,6 +4917,30 @@ packages:
       mimic-fn: 4.0.0
     dev: true
 
+  /open-react-map@0.6.1(jsdom@22.1.0)(mobx-react@9.0.0)(mobx@6.10.0)(react-dom@17.0.2)(react@17.0.2)(typescript@5.2.2):
+    resolution: {integrity: sha512-sVzu45boPlBjVQaHwFoQNpoFi51IOht/luHPRwWe2j6/fWhVD98BZCnVYrWTVPB/kvPivXAVwDsoJ4kt8zdYbw==}
+    peerDependencies:
+      mobx: '>=4'
+      mobx-react: '>=6'
+      react: '>=16 <18'
+      react-dom: '>=16 <18'
+    dependencies:
+      '@swc/helpers': 0.5.1
+      '@types/leaflet': 1.9.3
+      koajax: 0.8.6(jsdom@22.1.0)(typescript@5.2.2)
+      leaflet: 1.9.4
+      mobx: 6.10.0
+      mobx-react: 9.0.0(mobx@6.10.0)(react-dom@17.0.2)(react@17.0.2)
+      mobx-react-helper: 0.2.5(mobx@6.10.0)(react@17.0.2)
+      react: 17.0.2
+      react-dom: 17.0.2(react@17.0.2)
+      react-leaflet: 3.2.5(leaflet@1.9.4)(react-dom@17.0.2)(react@17.0.2)
+      web-utility: 4.1.0(typescript@5.2.2)
+    transitivePeerDependencies:
+      - jsdom
+      - typescript
+    dev: false
+
   /optionator@0.9.3:
     resolution: {integrity: sha512-JjCoypp+jKn1ttEFExxhetCKeJt9zhAgAve5FXHixTvFDW/5aEktX9bufBKLRRMdU7bNtpLfcGu94B3cdEJgjg==}
     engines: {node: '>= 0.8.0'}
@@ -5087,8 +5116,8 @@ packages:
     hasBin: true
     dev: true
 
-  /prettier@3.0.2:
-    resolution: {integrity: sha512-o2YR9qtniXvwEZlOKbveKfDQVyqxbEIWn48Z8m3ZJjBjcCmUy3xZGIv+7AkaeuaTr6yPXJjwv07ZWlsWbEy1rQ==}
+  /prettier@3.0.3:
+    resolution: {integrity: sha512-L/4pUDMxcNa8R/EthV08Zt42WBO4h1rarVtK0K+QJG0X187OLo7l699jWw0GKuwzkPQ//jMFA/8Xm6Fh3J/DAg==}
     engines: {node: '>=14'}
     hasBin: true
     dev: true
@@ -6577,7 +6606,7 @@ packages:
     dependencies:
       '@types/fs-extra': 11.0.1
       '@types/minimist': 1.2.2
-      '@types/node': 18.17.11
+      '@types/node': 18.17.12
       '@types/ps-tree': 1.1.2
       '@types/which': 3.0.0
       chalk: 5.3.0

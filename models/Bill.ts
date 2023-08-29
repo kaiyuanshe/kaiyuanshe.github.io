@@ -1,9 +1,8 @@
-import { observable } from 'mobx';
+import { makeObservable, observable } from 'mobx';
 import {
   BiDataTable,
   normalizeText,
   TableCellRelation,
-  TableCellText,
   TableCellValue,
   TableRecord,
 } from 'mobx-lark';
@@ -26,6 +25,12 @@ export type Bill = Record<
 >;
 
 export class BillModel extends BiDataTable<Bill>() {
+  constructor(appId: string, tableId: string) {
+    super(appId, tableId);
+
+    makeObservable(this);
+  }
+
   client = larkClient;
 
   requiredKeys = ['price'] as const;

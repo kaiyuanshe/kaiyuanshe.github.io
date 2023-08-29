@@ -1,5 +1,5 @@
 import { Icon, text2color } from 'idea-react';
-import { observable } from 'mobx';
+import { makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { HTMLAttributes, PureComponent } from 'react';
 import { Badge, Button, Card, CardProps, Image } from 'react-bootstrap';
@@ -19,6 +19,11 @@ export interface OrganizationCardProps
 
 @observer
 export class OrganizationCard extends PureComponent<OrganizationCardProps> {
+  constructor(props: OrganizationCardProps) {
+    super(props);
+    makeObservable(this);
+  }
+
   @observable
   showQRC = false;
 

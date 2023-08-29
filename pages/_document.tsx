@@ -1,12 +1,7 @@
-import { useStaticRendering } from 'mobx-react';
 import { Head, Html, Main, NextScript } from 'next/document';
 import Script from 'next/script';
 
-import { isServer } from '../models/Base';
 import { DefaultImage } from './api/lark/file/[id]';
-
-// eslint-disable-next-line react-hooks/rules-of-hooks
-useStaticRendering(isServer());
 
 export default function Document() {
   return (

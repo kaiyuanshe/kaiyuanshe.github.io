@@ -1,5 +1,5 @@
 import html2canvas from 'html2canvas';
-import { observable } from 'mobx';
+import { makeObservable, observable } from 'mobx';
 import { normalizeText, TableCellLink, TableCellText } from 'mobx-lark';
 import { BaseModel, toggle } from 'mobx-restful';
 import { buildURLData } from 'web-utility';
@@ -18,6 +18,7 @@ export class SystemModel extends BaseModel {
 
   constructor() {
     super();
+    makeObservable(this);
 
     this.updateScreen();
 

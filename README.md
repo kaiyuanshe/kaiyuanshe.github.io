@@ -28,7 +28,7 @@
 - Language: [TypeScript v5][2]
 - Component engine: [Nextjs v12][3]
 - Component suite: [Bootstrap v5][4]
-- State management: [MobX][8]
+- State management: [MobX v6][8]
 - CI / CD: GitHub [Actions][10] + [Vercel][11]
 
 ## Getting Started
@@ -74,7 +74,7 @@ pnpm pack-image
 pnpm container
 ```
 
-[1]: https://reactjs.org/
+[1]: https://react.dev/
 [2]: https://www.typescriptlang.org/
 [3]: https://nextjs.org/
 [4]: https://getbootstrap.com/

@@ -1,10 +1,8 @@
 import { Loading } from 'idea-react';
-import { computed, observable } from 'mobx';
+import { computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { Column, RestTable } from 'mobx-restful-table';
-import { InferGetServerSidePropsType } from 'next';
 import {
-  cache,
   compose,
   errorLogger,
   RouteProps,
@@ -20,22 +18,28 @@ import { ActivityModel } from '../../../models/Activity';
 import { Bill, BillModel } from '../../../models/Bill';
 import { i18n } from '../../../models/Translation';
 
-export const getServerSideProps = compose<
-  { id: string },
-  RouteProps<{ id: string }>
->(cache(), router, errorLogger, translator(i18n));
+type BillDetailPageProps = RouteProps<{ id: string }>;
+
+export const getServerSideProps = compose<{ id: string }, BillDetailPageProps>(
+  router,
+  errorLogger,
+  translator(i18n),
+);
 
 const { t } = i18n;
 
 @observer
-export default class BillDetailPage extends PureComponent<
-  InferGetServerSidePropsType<typeof getServerSideProps>
-> {
-  @observable
-  activityStore?: ActivityModel;
+export default class BillDetailPage extends PureComponent<BillDetailPageProps> {
+  constructor(props: BillDetailPageProps) {
+    super(props);
+    makeObservable(this);
+  }
 
   @observable
-  billStore?: BillModel;
+  activityStore?: ActivityModel = undefined;
+
+  @observable
+  billStore?: BillModel = undefined;
 
   async componentDidMount() {
     const { id } = this.props.route.params!;

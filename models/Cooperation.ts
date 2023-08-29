@@ -1,4 +1,4 @@
-import { computed, observable } from 'mobx';
+import { computed, makeObservable, observable } from 'mobx';
 import {
   BiDataTable,
   normalizeText,
@@ -27,6 +27,8 @@ export class CooperationModel extends BiDataTable<Cooperation>() {
 
   constructor(appId = MAIN_BASE_ID, tableId = COOPERATION_TABLE_ID) {
     super(appId, tableId);
+
+    makeObservable(this);
   }
 
   requiredKeys = ['organization', 'year', 'level', 'logos'] as const;
