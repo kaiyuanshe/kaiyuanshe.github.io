@@ -1,22 +1,10 @@
-// eslint-disable-next-line simple-import-sort/imports
-import { FC, useEffect } from 'react';
-import { tileLayer } from 'leaflet';
-import 'leaflet.chinatmsproviders';
-import { useMap } from 'react-leaflet';
-import { OpenMap, OpenMapProps } from 'idea-react';
+import { OpenReactMap, OpenReactMapProps, TileLayer } from 'open-react-map';
+import { FC } from 'react';
 
-function ChinaTileLayer() {
-  const map = useMap();
-
-  useEffect(() => {
-    // @ts-ignore
-    tileLayer.chinaProvider('GaoDe.Normal.Map').addTo(map);
-  }, [map]);
-
-  return <></>;
-}
-
-const ChinaMap: FC<OpenMapProps> = props => (
-  <OpenMap {...props} renderTileLayer={() => <ChinaTileLayer />} />
+const ChinaMap: FC<OpenReactMapProps> = props => (
+  <OpenReactMap
+    {...props}
+    renderTileLayer={() => <TileLayer vendor="GaoDe" />}
+  />
 );
 export default ChinaMap;

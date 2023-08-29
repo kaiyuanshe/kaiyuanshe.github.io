@@ -1,7 +1,7 @@
-import { MarkerMeta, OpenMapProps } from 'idea-react';
 import { computed } from 'mobx';
 import { observer } from 'mobx-react';
 import dynamic from 'next/dynamic';
+import { MarkerMeta, OpenReactMapProps } from 'open-react-map';
 import { PureComponent } from 'react';
 
 import metaStore from '../models/System';
@@ -43,7 +43,9 @@ export class CityStatisticMap extends PureComponent<CityStatisticMapProps> {
       .filter(Boolean) as MarkerMeta[];
   }
 
-  handleChange: OpenMapProps['onMarkerClick'] = ({ latlng: { lat, lng } }) => {
+  handleChange: OpenReactMapProps['onMarkerClick'] = ({
+    latlng: { lat, lng },
+  }) => {
     const { markers } = this;
     const { tooltip } =
       markers.find(

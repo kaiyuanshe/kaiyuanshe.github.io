@@ -1,8 +1,9 @@
-import { Icon, MarkerMeta, OpenMapProps } from 'idea-react';
+import { Icon } from 'idea-react';
 import { computed, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { ImagePreview } from 'mobx-restful-table';
 import dynamic from 'next/dynamic';
+import { MarkerMeta, OpenReactMapProps } from 'open-react-map';
 import { PureComponent } from 'react';
 import { Button, ListGroup } from 'react-bootstrap';
 
@@ -16,7 +17,7 @@ export interface ImageMarker extends MarkerMeta {
   image?: string;
 }
 
-export interface ListMapProps extends OpenMapProps {
+export interface ListMapProps extends OpenReactMapProps {
   markers: ImageMarker[];
 }
 
