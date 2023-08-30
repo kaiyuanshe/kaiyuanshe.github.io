@@ -23,6 +23,7 @@ import { AgendaModel } from './Agenda';
 import { larkClient } from './Base';
 import { BillModel } from './Bill';
 import { ForumModel } from './Forum';
+import { PersonModel } from './Person';
 import { PlaceModel } from './Place';
 
 export const ACTIVITY_TABLE_ID = process.env.NEXT_PUBLIC_ACTIVITY_TABLE_ID!;
@@ -105,6 +106,7 @@ export class ActivityModel extends BiDataTable<Activity>() {
   currentAgenda?: AgendaModel;
   currentPlace?: PlaceModel;
   currentBill?: BillModel;
+  currentPerson?: PersonModel;
 
   @observable
   statistic: ActivityStatistic = {} as ActivityStatistic;
@@ -161,6 +163,9 @@ export class ActivityModel extends BiDataTable<Activity>() {
 
       await table.getOne('Bill', BillModel);
       this.currentBill = table.currentDataTable as BillModel;
+
+      await table.getOne('Person', PersonModel);
+      this.currentPerson = table.currentDataTable as PersonModel;
 
       this.formMap = table.formMap;
     }
