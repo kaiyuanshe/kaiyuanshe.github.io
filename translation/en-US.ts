@@ -88,9 +88,9 @@ export default {
 
   // Activity pages
   wonderful_activity: 'Wonderful activity',
-  register_volunteer: 'Register Volunteer',
-  submit_agenda: 'Submit Agenda',
-  submit_agenda_file: 'Submit Agenda File',
+  register_volunteer: 'Volunteer/Speaker Registration',
+  submit_agenda: 'CFP material submission',
+  submit_agenda_file: 'Submit Agenda File', "COSCon'23 CFP material submission",
   reimbursement_application: 'Reimbursement application',
   participant_registration: 'Participant registration',
 
