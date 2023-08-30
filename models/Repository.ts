@@ -8,22 +8,23 @@ import { githubClient } from './Base';
 type Repository = components['schemas']['minimal-repository'];
 
 export interface GitRepository extends Repository {
-  languages?: string[];
+  issues?: any;
 }
 export type Organization = components['schemas']['organization-full'];
 
 const getGitIssues = memoize(async (URI: string) => {
-  const { body: languageCount } = await githubClient.get<
-    Record<string, number>
-  >(`repos/${URI}/issues`);
+  const { body: issuesList } = await githubClient.get<Record<string, number>>(
+    `repos/${URI}/issues`,
+  );
+  console.log('issueCount====', issuesList);
+  //   const issueAverage = averageOf(...Object.values(issueCount!));
 
-  const languageAverage = averageOf(...Object.values(languageCount!));
+  //   const issuesList = Object.entries(issueCount!)
+  //     .filter(([_, score]) => score >= issueAverage)
+  //     .sort(([_, a], [__, b]) => b - a);
 
-  const languageList = Object.entries(languageCount!)
-    .filter(([_, score]) => score >= languageAverage)
-    .sort(([_, a], [__, b]) => b - a);
-
-  return languageList.map(([name]) => name);
+  //   return issuesList.map(([name]) => name);
+  return issuesList;
 });
 
 export class RepositoryModel extends ListModel<GitRepository> {
@@ -34,10 +35,10 @@ export class RepositoryModel extends ListModel<GitRepository> {
   @toggle('downloading')
   async getOne(URI: string) {
     const { body } = await this.client.get<Repository>(`repos/${URI}`);
-
+    console.log('body ===', body);
     return (this.currentOne = {
       ...body!,
-      languages: await getGitIssues(URI),
+      issues: await getGitIssues(URI),
     });
   }
 
@@ -51,17 +52,22 @@ export class RepositoryModel extends ListModel<GitRepository> {
       })}`,
     );
     const pageData = await Promise.all(
-      list!.map(async ({ full_name, ...item }) => ({
-        ...item,
-        full_name,
-        languages: await getGitIssues(full_name),
-      })),
+      list!.map(async ({ full_name, ...item }) => {
+        const issues = await getGitIssues(full_name);
+        console.log('issues===', full_name, issues);
+        return {
+          ...item,
+          full_name,
+          issues,
+        };
+      }),
     );
     const [_, organization] = this.baseURI.split('/');
 
     const { body } = await this.client.get<Organization>(
       `orgs/${organization}`,
     );
+    console.log('body===', pageData);
     return { pageData, totalCount: body!.public_repos };
   }
 }
