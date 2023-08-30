@@ -46,6 +46,7 @@ export const getServerSideProps = compose<
     activityStore.currentAgenda!.getGroup(),
     activityStore.currentForum!.getAll(),
     activityStore.currentPlace!.getAll(),
+    activityStore.currentPerson!.getAll(),
   ]);
   const { currentMeta } = activityStore;
 
