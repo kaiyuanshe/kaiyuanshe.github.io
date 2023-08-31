@@ -1,3 +1,5 @@
+import { faMapMarked } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Icon } from 'idea-react';
 import { computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
@@ -43,8 +45,30 @@ export class ListMap extends PureComponent<ListMapProps> {
   @observable
   currentMarker?: ImageMarker = undefined;
 
+  @observable
+  latitude = '';
+
+  @observable
+  longitude = '';
+
+  @observable
+  adaptGeolocation = false;
+
   componentDidMount() {
     this.drawerOpen = !systemStore.screenNarrow;
+    if ('geolocation' in navigator) {
+      this.adaptGeolocation = true;
+      const self = this;
+      navigator.geolocation.getCurrentPosition(
+        function (position) {
+          self.latitude = position.coords.latitude.toFixed(6);
+          self.longitude = position.coords.longitude.toFixed(6);
+        },
+        function (error) {
+          console.error('Error getting local location:', error);
+        },
+      );
+    }
   }
 
   selectOne = (marker: ImageMarker) => () => {
@@ -57,7 +81,14 @@ export class ListMap extends PureComponent<ListMapProps> {
 
   render() {
     const { className = '', style, markers, ...props } = this.props,
-      { drawerOpen, drawerWidth, currentMarker } = this;
+      {
+        drawerOpen,
+        drawerWidth,
+        currentMarker,
+        latitude,
+        longitude,
+        adaptGeolocation,
+      } = this;
 
     return (
       <div className={`position-relative ${className}`} style={style}>
@@ -79,7 +110,7 @@ export class ListMap extends PureComponent<ListMapProps> {
             {markers.map(marker => (
               <ListGroup.Item
                 key={marker.tooltip}
-                className="d-flex gap-2"
+                className="d-flex gap-2 justify-content-between"
                 style={{ cursor: 'pointer' }}
                 onClick={this.selectOne(marker)}
               >
@@ -88,6 +119,17 @@ export class ListMap extends PureComponent<ListMapProps> {
                   <h3 className="fs-5">{marker.title}</h3>
                   <p>{marker.summary}</p>
                 </div>
+                <a
+                  href={
+                    adaptGeolocation
+                      ? `https://ditu.amap.com/dir?type=car&from[lnglat]=${longitude},${latitude}&from[name]=起点&to[lnglat]=${marker.position[1]},${marker.position[0]}&to[name]=${marker.title}&src=uriapi&callnative=0&innersrc=uriapi&policy=1`
+                      : `https://ditu.amap.com/regeo?lng=${marker.position[1]}&lat=${marker.position[0]}&name=${marker.title}&callnative=0&innersrc=uriapimarker.position`
+                  }
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <FontAwesomeIcon className="flex-fill" icon={faMapMarked} />
+                </a>
               </ListGroup.Item>
             ))}
           </ListGroup>
