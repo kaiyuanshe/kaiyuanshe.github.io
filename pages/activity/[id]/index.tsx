@@ -122,7 +122,9 @@ export default class ActivityDetailPage extends PureComponent<
     return (
       places[0] && (
         <>
-          <h2 className="text-center pt-4 pb-3">{t('activity_map')}</h2>
+          <h2 className="text-center pt-4 pb-3" id="map">
+            {t('activity_map')}
+          </h2>
 
           <ListMap
             style={{ height: 'calc(100vh - 10rem)' }}
@@ -233,7 +235,9 @@ export default class ActivityDetailPage extends PureComponent<
             )})`,
           }}
         >
-          <h1 className="visually-hidden">{activity.name}</h1>
+          <h1 className="visually-hidden" id="top">
+            {activity.name}
+          </h1>
         </header>
 
         {this.renderButtonBar()}

@@ -86,7 +86,7 @@ export default {
 
   // Activity pages
   wonderful_activity: '精彩活動',
-  register_volunteer: '義工報名',
+  register_volunteer: '義工/講師報名註冊',
   submit_agenda: '議題征集',
   submit_agenda_file: '議題文檔提交',
   reimbursement_application: '報銷申請',

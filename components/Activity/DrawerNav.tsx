@@ -1,5 +1,5 @@
 import { Icon, PageNav } from 'idea-react';
-import { observable } from 'mobx';
+import { makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
 import { Button, Offcanvas } from 'react-bootstrap';
@@ -7,6 +7,11 @@ import { sleep } from 'web-utility';
 
 @observer
 export class DrawerNav extends PureComponent {
+  constructor(props: {}) {
+    super(props);
+    makeObservable(this);
+  }
+
   @observable
   drawerShown = false;
 

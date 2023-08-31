@@ -1,4 +1,4 @@
-import { action, computed, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import {
   BiDataTable,
   BiTable,
@@ -50,6 +50,11 @@ export class ActivityViewModel extends BiTableView() {
 }
 
 export class ActivityTableModel extends BiTable() {
+  constructor(id = '') {
+    super(id);
+    makeObservable(this);
+  }
+
   client = larkClient;
 
   @observable
@@ -93,6 +98,8 @@ export class ActivityModel extends BiDataTable<Activity>() {
 
   constructor(appId = MAIN_BASE_ID, tableId = ACTIVITY_TABLE_ID) {
     super(appId, tableId);
+
+    makeObservable(this);
   }
 
   requiredKeys = ['name', 'startTime', 'image'] as const;
@@ -108,8 +115,7 @@ export class ActivityModel extends BiDataTable<Activity>() {
   currentBill?: BillModel;
   currentPerson?: PersonModel;
 
-  @observable
-  statistic: ActivityStatistic = {} as ActivityStatistic;
+  declare statistic: ActivityStatistic;
 
   @computed
   get currentMeta() {
@@ -180,6 +186,8 @@ export class ActivityModel extends BiDataTable<Activity>() {
     return (this.statistic = { city: countBy(list, 'city') });
   }, 'Activity Statistic');
 }
+
+export type StatisticTrait = Pick<ActivityModel, 'statistic' | 'getStatistic'>;
 
 export class SearchActivityModel extends ActivityModel {
   makeFilter(filter: NewData<Activity>) {
