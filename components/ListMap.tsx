@@ -1,4 +1,5 @@
 import { Icon } from 'idea-react';
+import { LatLngTuple } from 'leaflet';
 import { computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { ImagePreview } from 'mobx-restful-table';
@@ -55,6 +56,11 @@ export class ListMap extends PureComponent<ListMapProps> {
     if (systemStore.screenNarrow) this.drawerOpen = false;
   };
 
+  parseJumpGaoDeLink = (marker: ImageMarker) => {
+    const latLngTuple = marker.position as LatLngTuple;
+    return `https://uri.amap.com/navigation?to=${latLngTuple[1]},${latLngTuple[0]},${marker.title}&mode=car&policy=1&src=mypage&coordinate=gaode&callnative=0`;
+  };
+
   render() {
     const { className = '', style, markers, ...props } = this.props,
       { drawerOpen, drawerWidth, currentMarker } = this;
@@ -89,7 +95,7 @@ export class ListMap extends PureComponent<ListMapProps> {
                   <p>{marker.summary}</p>
                 </div>
                 <a
-                  href={`https://uri.amap.com/navigation?to=${marker.position[1]},${marker.position[0]},${marker.title}&mode=car&policy=1&src=mypage&coordinate=gaode&callnative=0`}
+                  href={this.parseJumpGaoDeLink(marker)}
                   target="_blank"
                   rel="noreferrer"
                 >
