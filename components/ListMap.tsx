@@ -106,7 +106,7 @@ export class ListMap extends PureComponent<ListMapProps> {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <Icon name="geo-alt-fill" />
+                  <Icon name="geo-alt-fill" className="fs-3" />
                 </a>
               </ListGroup.Item>
             ))}
