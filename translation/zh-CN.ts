@@ -39,7 +39,6 @@ export default {
   open_source_mirror: '开源镜像站',
   license_tool: '开源许可证选择器',
   about_us: '关于我们',
-  issues: 'issues',
 
   no_more: '没有更多',
   load_more: '加载更多……',

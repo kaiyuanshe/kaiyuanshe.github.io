@@ -93,7 +93,7 @@ export const MainRoutes = (): Link[] => [
     path: 'https://kaiyuanshe.feishu.cn/wiki/wikcn749HAOCD2dwaNq4dOC67db',
   },
   {
-    title: t('issues'),
+    title: 'issues',
     path: '/issues',
   },
 ];

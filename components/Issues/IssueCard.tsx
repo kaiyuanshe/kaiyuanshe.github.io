@@ -1,5 +1,6 @@
+import { OverlayBox } from 'idea-react';
 import { FC } from 'react';
-import { Card, OverlayTrigger,Popover, Row } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 
 import styles from './IssueCard.module.less';
 interface IssueCardProps {
@@ -7,31 +8,24 @@ interface IssueCardProps {
 }
 
 const IssueCard: FC<IssueCardProps> = ({ issue }) => {
-  const popover = () => {
-    if (issue.body) {
-      return (
-        <Popover id={issue.id}>
-          <Popover.Header as="h3">
-            <a className={styles.my_a} href={issue.html_number} target="_blank" rel="noreferrer">
-              {issue.title}
-            </a>
-          </Popover.Header>
-          <Popover.Body>{issue.body}</Popover.Body>
-        </Popover>
-      );
-    } else {
-      return <></>;
-    }
+  const args = {
+    title: issue.title,
+    detail: issue.body,
   };
 
   return (
     <div>
-      <Card.Title>
-        <OverlayTrigger placement="top" overlay={popover()}>
-          <a className={styles.my_a} href={issue.html_url} target="_blank" rel="noreferrer">
+      <Card.Title className={styles.margin0}>
+        <OverlayBox {...args} placement="top">
+          <a
+            className={styles.link}
+            href={issue.html_url}
+            target="_blank"
+            rel="noreferrer"
+          >
             {issue.title}
           </a>
-        </OverlayTrigger>
+        </OverlayBox>
       </Card.Title>
     </div>
   );
