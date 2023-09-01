@@ -184,7 +184,7 @@ export default class ActivityDetailPage extends PureComponent<
         {name}
       </h2>
       <Row>
-        <Col xl={{ offset: 2, span: 6 }} as="p" className="text-muted">
+        <Col xl={{ offset: 2, span: 8 }} as="p" className="text-muted">
           {summary}
         </Col>
       </Row>

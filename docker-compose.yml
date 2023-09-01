@@ -13,6 +13,7 @@ services:
       - 3000:3000
     networks:
       - kaiyuanshe
+    restart: on-failure
   caddy:
     depends_on:
       - kys-ows
@@ -23,3 +24,4 @@ services:
     networks:
       - kaiyuanshe
     command: caddy reverse-proxy --from kaiyuanshe.cn --to kys-ows:3000
+    restart: on-failure
