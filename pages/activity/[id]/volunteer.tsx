@@ -1,4 +1,4 @@
-import { makeObservable,observable } from 'mobx';
+import { makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
 import {
@@ -22,16 +22,16 @@ interface PersonListPageProps extends RouteProps {
 
 type VolunteerDetailPageProps = RouteProps<{ id: string }>;
 
-export const getServerSideProps = compose<{ id: string }, PersonListPageProps>(
+export const getServerSideProps = compose<{ id: string }, { list: Person[] }>(
   router,
   errorLogger,
   translator(i18n),
 
-  // async () => {
-  //   const list = await new PersonModel().getList({}, 1);
-
-  //   return { props: { list } as PersonListPageProps };
-  // },
+  async query => {
+    const list = await new PersonModel().getList({}, 1);
+    console.log('list', list);
+    return { props: JSON.stringify(list) };
+  },
 );
 
 const { t } = i18n;
@@ -47,17 +47,20 @@ export default class VolunteerPage extends PureComponent<VolunteerDetailPageProp
   activityStore?: ActivityModel = undefined;
 
   @observable
-  PersonStore?: PersonModel = undefined;
+  personStore?: PersonModel = undefined;
 
   async componentDidMount() {
     const { id } = this.props.route.params!;
     this.activityStore = new ActivityModel();
     await this.activityStore.getOne(id);
-    this.PersonStore = this.activityStore.currentPerson;
+    this.personStore = this.activityStore.currentPerson;
+    console.log('this.personstroe', this.personStore);
   }
 
   render() {
-    console.log('this.activityStore', this.PersonStore);
+    const { activityStore, personStore } = this;
+    console.log('personStore', personStore);
+
     return (
       <Container style={{ height: '91vh' }}>
         <PageHead />
