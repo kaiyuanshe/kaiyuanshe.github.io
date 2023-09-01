@@ -84,7 +84,7 @@ export class ListMap extends PureComponent<ListMapProps> {
           <ListGroup hidden={!drawerOpen}>
             {markers.map(marker => (
               <ListGroup.Item
-                key={marker.tooltip}
+                key={marker.title}
                 className="d-flex gap-2 justify-content-between"
                 style={{ cursor: 'pointer' }}
                 onClick={this.selectOne(marker)}
