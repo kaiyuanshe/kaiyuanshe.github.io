@@ -5,7 +5,7 @@ import { HTMLAttributes, PureComponent } from 'react';
 import { Badge, Button, Card, CardProps, Image } from 'react-bootstrap';
 
 import { blobURLOf } from '../../models/Base';
-import { Organization } from '../../models/Organization';
+import { Organization } from '../../models/Community/Organization';
 import { fileURLOf } from '../../pages/api/lark/file/[id]';
 
 export interface OrganizationCardProps

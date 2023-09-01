@@ -2,8 +2,8 @@ import { text2color, TimeDistance } from 'idea-react';
 import type { FC } from 'react';
 import { Badge, Card, Col, Row } from 'react-bootstrap';
 
-import type { BaseArticle } from '../../models/Article';
 import { blobURLOf } from '../../models/Base';
+import type { BaseArticle } from '../../models/Product/Article';
 import { TimeOption } from '../data';
 
 export interface ArticleCardProps extends BaseArticle {

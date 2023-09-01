@@ -8,9 +8,9 @@ import { formatDate } from 'web-utility';
 
 import { CommentBox } from '../../components/CommentBox';
 import PageHead from '../../components/PageHead';
-import { Person, PersonModel } from '../../models/Person';
+import { i18n } from '../../models/Base/Translation';
 import { Personnel, PersonnelModel } from '../../models/Personnel';
-import { i18n } from '../../models/Translation';
+import { Person, PersonModel } from '../../models/Personnel/Person';
 
 export const getServerSideProps = compose<
   { name: string },

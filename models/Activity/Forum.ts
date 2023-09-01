@@ -7,8 +7,8 @@ import {
   TableRecord,
 } from 'mobx-lark';
 
-import { normalizeTextArray } from '../pages/api/lark/core';
-import { larkClient } from './Base';
+import { normalizeTextArray } from '../../pages/api/lark/core';
+import { larkClient } from '../Base';
 
 export type Forum = Record<
   | 'id'

@@ -4,9 +4,9 @@ import { Button } from 'react-bootstrap';
 import ICalendarLink from 'react-icalendar-link';
 import { TimeData } from 'web-utility';
 
-import { Agenda } from '../../../models/Agenda';
+import { Agenda } from '../../../models/Activity/Agenda';
 import { isServer } from '../../../models/Base';
-import { i18n } from '../../../models/Translation';
+import { i18n } from '../../../models/Base/Translation';
 
 const { t } = i18n;
 

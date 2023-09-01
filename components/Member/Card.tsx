@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react';
 import { FC } from 'react';
 
-import { i18n } from '../../models/Translation';
+import { i18n } from '../../models/Base/Translation';
 import { LazyImage } from '../LazyImage';
 import styles from './Card.module.less';
 

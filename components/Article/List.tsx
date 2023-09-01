@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Col, Row, RowProps } from 'react-bootstrap';
 
-import { BaseArticle } from '../../models/Article';
+import { BaseArticle } from '../../models/Product/Article';
 import { ArticleCard } from './Card';
 
 export interface ArticleListLayoutProps {

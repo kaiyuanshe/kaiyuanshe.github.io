@@ -15,8 +15,8 @@ import { formatDate } from 'web-utility';
 
 import PageHead from '../../../components/PageHead';
 import { ActivityModel } from '../../../models/Activity';
-import { Bill, BillModel } from '../../../models/Bill';
-import { i18n } from '../../../models/Translation';
+import { Bill, BillModel } from '../../../models/Activity/Bill';
+import { i18n } from '../../../models/Base/Translation';
 
 type BillDetailPageProps = RouteProps<{ id: string }>;
 

@@ -1,7 +1,6 @@
 import { TimeDistanceProps } from 'idea-react';
 
-import { isServer } from '../models/Base';
-import { i18n } from '../models/Translation';
+import { i18n } from '../models/Base/Translation';
 import { Link } from './MainNav';
 
 const { t } = i18n;

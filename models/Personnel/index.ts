@@ -13,7 +13,7 @@ import {
 import { NewData } from 'mobx-restful';
 import { groupBy, isEmpty, TimeData } from 'web-utility';
 
-import { larkClient } from './Base';
+import { larkClient } from '../Base';
 import { HR_BASE_ID } from './Person';
 
 export type Personnel = Record<
