@@ -7,7 +7,7 @@ import {
   TableRecord,
 } from 'mobx-lark';
 
-import { larkClient } from './Base';
+import { larkClient } from '../Base';
 
 export type Bill = Record<
   | 'id'

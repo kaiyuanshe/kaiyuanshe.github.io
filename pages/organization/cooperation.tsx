@@ -7,8 +7,11 @@ import { Col, Container, Image, ListGroup, Row } from 'react-bootstrap';
 
 import PageHead from '../../components/PageHead';
 import { blobURLOf } from '../../models/Base';
-import { Cooperation, CooperationModel } from '../../models/Cooperation';
-import { i18n } from '../../models/Translation';
+import { i18n } from '../../models/Base/Translation';
+import {
+  Cooperation,
+  CooperationModel,
+} from '../../models/Community/Cooperation';
 import { fileURLOf } from '../api/lark/file/[id]';
 
 const Levels = [

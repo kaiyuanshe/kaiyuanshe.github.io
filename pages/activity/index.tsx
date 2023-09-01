@@ -8,7 +8,7 @@ import { Container } from 'react-bootstrap';
 import { ActivityListLayout } from '../../components/Activity/List';
 import PageHead from '../../components/PageHead';
 import activityStore, { Activity, ActivityModel } from '../../models/Activity';
-import { i18n } from '../../models/Translation';
+import { i18n } from '../../models/Base/Translation';
 
 export const getServerSideProps = compose<{}, { list: Activity[] }>(
   translator(i18n),

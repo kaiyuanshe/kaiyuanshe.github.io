@@ -5,7 +5,7 @@ import { PureComponent } from 'react';
 import { Container, Image, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 
 import { API_Host } from '../models/Base';
-import { i18n, LanguageName } from '../models/Translation';
+import { i18n, LanguageName } from '../models/Base/Translation';
 import styles from '../styles/MainNav.module.less';
 import { SearchBar } from './SearchBar';
 

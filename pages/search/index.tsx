@@ -6,12 +6,12 @@ import { Col, Container, Row } from 'react-bootstrap';
 
 import { ActivityListLayout } from '../../components/Activity/List';
 import { ArticleListLayout } from '../../components/Article/List';
-import { GroupCard } from '../../components/Group/Card';
+import { GroupCard } from '../../components/Department/Card';
 import { MemberCard } from '../../components/Member/Card';
 import { OrganizationListLayout } from '../../components/Organization/List';
 import PageHead from '../../components/PageHead';
-import { SystemModel } from '../../models/System';
-import { i18n } from '../../models/Translation';
+import { SystemModel } from '../../models/Base/System';
+import { i18n } from '../../models/Base/Translation';
 import { SearchQuery, SearchResult } from '../api/search';
 
 export const getServerSideProps = compose<{}, SearchResult & RouteProps>(

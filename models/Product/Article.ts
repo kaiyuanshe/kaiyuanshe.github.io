@@ -8,7 +8,7 @@ import {
 import { NewData, toggle } from 'mobx-restful';
 import { buildURLData, isEmpty } from 'web-utility';
 
-import { blobClient, larkClient } from './Base';
+import { blobClient, larkClient } from '../Base';
 
 export type BaseArticle = Record<
   | 'id'

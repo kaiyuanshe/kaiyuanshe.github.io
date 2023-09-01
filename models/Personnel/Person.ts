@@ -8,7 +8,7 @@ import {
 import { NewData } from 'mobx-restful';
 import { isEmpty } from 'web-utility';
 
-import { larkClient } from './Base';
+import { larkClient } from '../Base';
 
 export type Person = Record<
   | 'id'

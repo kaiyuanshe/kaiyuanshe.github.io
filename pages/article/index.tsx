@@ -13,8 +13,11 @@ import { Container } from 'react-bootstrap';
 
 import { ArticleListLayout } from '../../components/Article/List';
 import PageHead from '../../components/PageHead';
-import articleStore, { Article, ArticleModel } from '../../models/Article';
-import { i18n } from '../../models/Translation';
+import { i18n } from '../../models/Base/Translation';
+import articleStore, {
+  Article,
+  ArticleModel,
+} from '../../models/Product/Article';
 
 interface ArticleListPageProps extends RouteProps {
   list: Article[];

@@ -2,13 +2,16 @@ import { NextApiResponse } from 'next';
 import { parseURLData } from 'web-utility';
 
 import { Activity, SearchActivityModel } from '../../models/Activity';
-import { BaseArticle, SearchArticleModel } from '../../models/Article';
-import { Department, SearchDepartmentModel } from '../../models/Group';
 import {
   Organization,
   SearchOrganizationModel,
-} from '../../models/Organization';
-import { Person, SearchPersonModel } from '../../models/Person';
+} from '../../models/Community/Organization';
+import {
+  Department,
+  SearchDepartmentModel,
+} from '../../models/Personnel/Department';
+import { Person, SearchPersonModel } from '../../models/Personnel/Person';
+import { BaseArticle, SearchArticleModel } from '../../models/Product/Article';
 import { safeAPI } from './base';
 
 export type SearchQuery = Partial<Record<'keywords' | 'tag', string>>;

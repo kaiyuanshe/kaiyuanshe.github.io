@@ -1,7 +1,7 @@
 import { FC, HTMLAttributes } from 'react';
 import { Badge } from 'react-bootstrap';
 
-import { i18n } from '../../models/Translation';
+import { i18n } from '../../models/Base/Translation';
 import styles from './Title.module.less';
 
 export interface MemberTitleProps extends HTMLAttributes<HTMLHeadingElement> {

@@ -18,9 +18,9 @@ import {
   LarkFormData,
   MAIN_BASE_ID,
   TableFormViewItem,
-} from '../pages/api/lark/core';
+} from '../../pages/api/lark/core';
+import { larkClient } from '../Base';
 import { AgendaModel } from './Agenda';
-import { larkClient } from './Base';
 import { BillModel } from './Bill';
 import { ForumModel } from './Forum';
 import { PlaceModel } from './Place';

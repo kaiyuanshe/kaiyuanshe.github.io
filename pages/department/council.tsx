@@ -6,8 +6,8 @@ import { Container } from 'react-bootstrap';
 
 import { MemberCard } from '../../components/Member/Card';
 import PageHead from '../../components/PageHead';
+import { i18n } from '../../models/Base/Translation';
 import { PersonnelModel } from '../../models/Personnel';
-import { i18n } from '../../models/Translation';
 import { fileURLOf } from '../api/lark/file/[id]';
 
 export const getServerSideProps = compose<{}, Pick<PersonnelModel, 'group'>>(

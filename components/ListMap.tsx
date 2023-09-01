@@ -8,7 +8,7 @@ import { MarkerMeta, OpenReactMapProps } from 'open-react-map';
 import { PureComponent } from 'react';
 import { Button, ListGroup } from 'react-bootstrap';
 
-import systemStore from '../models/System';
+import systemStore from '../models/Base/System';
 
 const ChinaMap = dynamic(() => import('./ChinaMap'), { ssr: false });
 

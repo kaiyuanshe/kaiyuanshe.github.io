@@ -11,7 +11,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import { MainRoutes } from '../components/data';
 import MainNav from '../components/MainNav';
 import { isServer } from '../models/Base';
-import { i18n } from '../models/Translation';
+import { i18n } from '../models/Base/Translation';
 import { social } from './api/home';
 import { DefaultImage } from './api/lark/file/[id]';
 

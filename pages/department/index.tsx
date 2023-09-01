@@ -5,11 +5,12 @@ import { FC } from 'react';
 import { Button, Container } from 'react-bootstrap';
 
 import PageHead from '../../components/PageHead';
-import { i18n } from '../../models/Translation';
+import { i18n } from '../../models/Base/Translation';
 
-const DepartmentTree = dynamic(() => import('../../components/Group/Tree'), {
-  ssr: false,
-});
+const DepartmentTree = dynamic(
+  () => import('../../components/Department/Tree'),
+  { ssr: false },
+);
 
 export const getServerSideProps = compose(translator(i18n));
 
