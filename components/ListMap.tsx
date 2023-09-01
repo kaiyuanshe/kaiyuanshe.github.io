@@ -1,5 +1,3 @@
-import { faMapMarked } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Icon } from 'idea-react';
 import { computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
@@ -45,30 +43,8 @@ export class ListMap extends PureComponent<ListMapProps> {
   @observable
   currentMarker?: ImageMarker = undefined;
 
-  @observable
-  latitude = '';
-
-  @observable
-  longitude = '';
-
-  @observable
-  adaptGeolocation = false;
-
   componentDidMount() {
     this.drawerOpen = !systemStore.screenNarrow;
-    if ('geolocation' in navigator) {
-      this.adaptGeolocation = true;
-      const self = this;
-      navigator.geolocation.getCurrentPosition(
-        function (position) {
-          self.latitude = position.coords.latitude.toFixed(6);
-          self.longitude = position.coords.longitude.toFixed(6);
-        },
-        function (error) {
-          console.error('Error getting local location:', error);
-        },
-      );
-    }
   }
 
   selectOne = (marker: ImageMarker) => () => {
@@ -81,14 +57,7 @@ export class ListMap extends PureComponent<ListMapProps> {
 
   render() {
     const { className = '', style, markers, ...props } = this.props,
-      {
-        drawerOpen,
-        drawerWidth,
-        currentMarker,
-        latitude,
-        longitude,
-        adaptGeolocation,
-      } = this;
+      { drawerOpen, drawerWidth, currentMarker } = this;
 
     return (
       <div className={`position-relative ${className}`} style={style}>
@@ -120,15 +89,20 @@ export class ListMap extends PureComponent<ListMapProps> {
                   <p>{marker.summary}</p>
                 </div>
                 <a
-                  href={
-                    adaptGeolocation
-                      ? `https://ditu.amap.com/dir?type=car&from[lnglat]=${longitude},${latitude}&from[name]=起点&to[lnglat]=${marker.position[1]},${marker.position[0]}&to[name]=${marker.title}&src=uriapi&callnative=0&innersrc=uriapi&policy=1`
-                      : `https://ditu.amap.com/regeo?lng=${marker.position[1]}&lat=${marker.position[0]}&name=${marker.title}&callnative=0&innersrc=uriapimarker.position`
-                  }
+                  href={`https://uri.amap.com/navigation?to=${marker.position[1]},${marker.position[0]},${marker.title}&mode=car&policy=1&src=mypage&coordinate=gaode&callnative=0`}
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <FontAwesomeIcon className="flex-fill" icon={faMapMarked} />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="green"
+                    className="bi bi-geo-alt-fill"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
+                  </svg>
                 </a>
               </ListGroup.Item>
             ))}
