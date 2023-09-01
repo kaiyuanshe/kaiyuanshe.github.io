@@ -1,4 +1,5 @@
 import { Icon } from 'idea-react';
+import { LatLngTuple } from 'leaflet';
 import { computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { ImagePreview } from 'mobx-restful-table';
@@ -55,6 +56,19 @@ export class ListMap extends PureComponent<ListMapProps> {
     if (systemStore.screenNarrow) this.drawerOpen = false;
   };
 
+  makeGaoDeLink({ position, title }: ImageMarker) {
+    const [latitude, longitude] = position as LatLngTuple;
+
+    return `https://uri.amap.com/navigation?${new URLSearchParams({
+      to: [longitude, latitude, title] + '',
+      mode: 'car',
+      policy: '1',
+      src: 'KaiYuanShe',
+      coordinate: 'gaode',
+      callnative: '0',
+    })}`;
+  }
+
   render() {
     const { className = '', style, markers, ...props } = this.props,
       { drawerOpen, drawerWidth, currentMarker } = this;
@@ -78,8 +92,8 @@ export class ListMap extends PureComponent<ListMapProps> {
           <ListGroup hidden={!drawerOpen}>
             {markers.map(marker => (
               <ListGroup.Item
-                key={marker.tooltip}
-                className="d-flex gap-2"
+                key={marker.title}
+                className="d-flex gap-2 justify-content-between"
                 style={{ cursor: 'pointer' }}
                 onClick={this.selectOne(marker)}
               >
@@ -88,6 +102,13 @@ export class ListMap extends PureComponent<ListMapProps> {
                   <h3 className="fs-5">{marker.title}</h3>
                   <p>{marker.summary}</p>
                 </div>
+                <a
+                  href={this.makeGaoDeLink(marker)}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <Icon name="geo-alt-fill" className="fs-3" />
+                </a>
               </ListGroup.Item>
             ))}
           </ListGroup>
