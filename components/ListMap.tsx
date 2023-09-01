@@ -56,15 +56,17 @@ export class ListMap extends PureComponent<ListMapProps> {
     if (systemStore.screenNarrow) this.drawerOpen = false;
   };
 
-  makeGaoDeLink = ({ position: [latitude, longitude], title }: ImageMarker) =>
-    `https://uri.amap.com/navigation?${new URLSearchParams({
-      to: [longitude, latitude, title] + '',
+  makeGaoDeLink = ({ position, title }: ImageMarker) => {
+    const latLngTuple = position as LatLngTuple;
+    return `https://uri.amap.com/navigation?${new URLSearchParams({
+      to: [latLngTuple[1], latLngTuple[0], title] + '',
       mode: 'car',
       policy: '1',
       src: 'KaiYuanShe',
       coordinate: 'gaode',
       callnative: '0',
     })}`;
+  };
 
   render() {
     const { className = '', style, markers, ...props } = this.props,
@@ -104,16 +106,7 @@ export class ListMap extends PureComponent<ListMapProps> {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <svg
-                    className="bi bi-geo-alt-fill"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    fill="green"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
-                  </svg>
+                  <Icon name="geo-alt-fill" />
                 </a>
               </ListGroup.Item>
             ))}
