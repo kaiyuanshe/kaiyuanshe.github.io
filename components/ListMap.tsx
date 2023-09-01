@@ -56,17 +56,18 @@ export class ListMap extends PureComponent<ListMapProps> {
     if (systemStore.screenNarrow) this.drawerOpen = false;
   };
 
-  makeGaoDeLink = ({ position, title }: ImageMarker) => {
-    const latLngTuple = position as LatLngTuple;
+  makeGaoDeLink({ position, title }: ImageMarker) {
+    const [latitude, longitude] = position as LatLngTuple;
+
     return `https://uri.amap.com/navigation?${new URLSearchParams({
-      to: [latLngTuple[1], latLngTuple[0], title] + '',
+      to: [longitude, latitude, title] + '',
       mode: 'car',
       policy: '1',
       src: 'KaiYuanShe',
       coordinate: 'gaode',
       callnative: '0',
     })}`;
-  };
+  }
 
   render() {
     const { className = '', style, markers, ...props } = this.props,
