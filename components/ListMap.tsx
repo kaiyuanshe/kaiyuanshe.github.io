@@ -56,10 +56,15 @@ export class ListMap extends PureComponent<ListMapProps> {
     if (systemStore.screenNarrow) this.drawerOpen = false;
   };
 
-  parseJumpGaoDeLink = (marker: ImageMarker) => {
-    const latLngTuple = marker.position as LatLngTuple;
-    return `https://uri.amap.com/navigation?to=${latLngTuple[1]},${latLngTuple[0]},${marker.title}&mode=car&policy=1&src=mypage&coordinate=gaode&callnative=0`;
-  };
+  makeGaoDeLink = ({ position: [latitude, longitude], title }: ImageMarker) =>
+    `https://uri.amap.com/navigation?${new URLSearchParams({
+      to: [longitude, latitude, title] + '',
+      mode: 'car',
+      policy: '1',
+      src: 'KaiYuanShe',
+      coordinate: 'gaode',
+      callnative: '0',
+    })}`;
 
   render() {
     const { className = '', style, markers, ...props } = this.props,
@@ -95,7 +100,7 @@ export class ListMap extends PureComponent<ListMapProps> {
                   <p>{marker.summary}</p>
                 </div>
                 <a
-                  href={this.parseJumpGaoDeLink(marker)}
+                  href={this.makeGaoDeLink(marker)}
                   target="_blank"
                   rel="noreferrer"
                 >
