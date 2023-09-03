@@ -6,7 +6,7 @@ import { enableStaticRendering, observer } from 'mobx-react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { FC } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Row, SSRProvider } from 'react-bootstrap';
 
 import { MainRoutes } from '../components/data';
 import MainNav from '../components/MainNav';
@@ -22,7 +22,7 @@ enableStaticRendering(isServer());
 const { t } = i18n;
 
 const AppShell: FC<AppProps> = observer(({ Component, pageProps }) => (
-  <>
+  <SSRProvider>
     <Head>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
     </Head>
@@ -59,7 +59,7 @@ const AppShell: FC<AppProps> = observer(({ Component, pageProps }) => (
         </Row>
       </Container>
     </footer>
-  </>
+  </SSRProvider>
 ));
 
 export default AppShell;
