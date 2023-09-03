@@ -6,7 +6,7 @@ import { MarkerMeta, OpenReactMapProps } from 'open-react-map';
 import { Component } from 'react';
 
 import { StatisticTrait } from '../models/Activity';
-import metaStore from '../models/System';
+import metaStore from '../models/Base/System';
 
 const ChinaMap = dynamic(() => import('./ChinaMap'), { ssr: false });
 

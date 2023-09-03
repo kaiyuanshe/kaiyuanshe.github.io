@@ -1,6 +1,7 @@
 import { TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
+import dynamic from 'next/dynamic';
 import { cache, compose, errorLogger, translator } from 'next-ssr-middleware';
 import { PureComponent } from 'react';
 import {
@@ -16,17 +17,22 @@ import {
 import { AgendaCard } from '../../../components/Activity/Agenda/Card';
 import { DrawerNav } from '../../../components/Activity/DrawerNav';
 import { ActivityPeople } from '../../../components/Activity/People';
-import { ImageMarker, ListMap } from '../../../components/ListMap';
+import type { ImageMarker } from '../../../components/ListMap';
 import PageHead from '../../../components/PageHead';
 import { Activity, ActivityModel } from '../../../models/Activity';
-import { AgendaModel } from '../../../models/Agenda';
+import { AgendaModel } from '../../../models/Activity/Agenda';
+import { Forum } from '../../../models/Activity/Forum';
+import { Place } from '../../../models/Activity/Place';
 import { blobURLOf } from '../../../models/Base';
-import { Forum } from '../../../models/Forum';
-import { Place } from '../../../models/Place';
-import { i18n } from '../../../models/Translation';
-import { coordinateOf, TableFormViewItem } from '../../api/lark/core';
+import { i18n } from '../../../models/Base/Translation';
+import { coordinateOf,TableFormViewItem } from '../../api/lark/core';
 import { fileURLOf } from '../../api/lark/file/[id]';
 import styles from './index.module.less';
+
+const ListMap = dynamic(() => import('../../../components/ListMap'), {
+    ssr: false,
+  }),
+  { t } = i18n;
 
 export const getServerSideProps = compose<
   { id: string },
@@ -55,8 +61,6 @@ export const getServerSideProps = compose<
     ),
   };
 });
-
-const { t } = i18n;
 
 @observer
 export default class ActivityDetailPage extends PureComponent<
@@ -184,7 +188,7 @@ export default class ActivityDetailPage extends PureComponent<
         {name}
       </h2>
       <Row>
-        <Col xl={{ offset: 2, span: 6 }} as="p" className="text-muted">
+        <Col xl={{ offset: 2, span: 8 }} as="p" className="text-muted">
           {summary}
         </Col>
       </Row>

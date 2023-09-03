@@ -9,8 +9,8 @@ import {
 } from 'mobx-lark';
 import { groupBy } from 'web-utility';
 
-import { normalizeTextArray } from '../pages/api/lark/core';
-import { larkClient } from './Base';
+import { normalizeTextArray } from '../../pages/api/lark/core';
+import { larkClient } from '../Base';
 
 export type Agenda = Record<
   | 'id'

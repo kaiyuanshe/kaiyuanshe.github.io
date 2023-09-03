@@ -4,8 +4,8 @@ import { normalizeText, TableCellLink, TableCellText } from 'mobx-lark';
 import { BaseModel, toggle } from 'mobx-restful';
 import { buildURLData } from 'web-utility';
 
-import { SearchQuery, SearchResult } from '../pages/api/search';
-import { client } from './Base';
+import { SearchQuery, SearchResult } from '../../pages/api/search';
+import { client } from './index';
 
 export type CityCoordinateMap = Record<string, [number, number]>;
 

@@ -11,8 +11,8 @@ import {
 } from 'mobx-lark';
 import { groupBy } from 'web-utility';
 
-import { MAIN_BASE_ID } from '../pages/api/lark/core';
-import { larkClient } from './Base';
+import { MAIN_BASE_ID } from '../../pages/api/lark/core';
+import { larkClient } from '../Base';
 
 export type Cooperation = Record<
   'id' | 'organization' | 'year' | 'level' | 'link' | 'logos',

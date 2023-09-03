@@ -7,12 +7,12 @@ import { Col, Container, Row } from 'react-bootstrap';
 import { ArticleListLayout } from '../../../components/Article/List';
 import { CommentBox } from '../../../components/CommentBox';
 import PageHead from '../../../components/PageHead';
+import { i18n } from '../../../models/Base/Translation';
 import {
   Article,
   ArticleModel,
   SearchArticleModel,
-} from '../../../models/Article';
-import { i18n } from '../../../models/Translation';
+} from '../../../models/Product/Article';
 
 export const getServerSideProps = compose<
   { id: string },

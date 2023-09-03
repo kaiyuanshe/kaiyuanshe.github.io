@@ -9,8 +9,8 @@ import {
 import { NewData } from 'mobx-restful';
 import { cache, countBy, groupBy, Hour, isEmpty } from 'web-utility';
 
-import { MAIN_BASE_ID } from '../pages/api/lark/core';
-import { larkClient } from './Base';
+import { MAIN_BASE_ID } from '../../pages/api/lark/core';
+import { larkClient } from '../Base';
 
 export type Organization = Record<
   | 'id'

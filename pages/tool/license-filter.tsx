@@ -16,7 +16,7 @@ import {
 
 import { licenseTips, optionValue } from '../../components/License/helper';
 import PageHead from '../../components/PageHead';
-import { i18n } from '../../models/Translation';
+import { i18n } from '../../models/Base/Translation';
 
 interface List {
   license: License;
@@ -69,8 +69,9 @@ const LicenseTool: FC = observer(() => {
 
   return (
     <Container className="py-5">
-      <PageHead title="Open-source License selector" />
+      <PageHead title={t('license_tool_headline')} />
       <h1>{t('license_tool_headline')}</h1>
+
       <p>{t('license_tool_description')}</p>
       <p className="text-warning">{t('warn_info')}</p>
 

@@ -4,16 +4,16 @@ import { TableCellLocation, TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
 import { compose, errorLogger } from 'next-ssr-middleware';
 import { QRCodeSVG } from 'qrcode.react';
-import { createRef,MouseEvent, PureComponent } from 'react';
+import { createRef, MouseEvent, PureComponent } from 'react';
 import { Badge, Container, Image } from 'react-bootstrap';
 
 import { ActivityPeople } from '../../../../../components/Activity/People';
 import PageHead from '../../../../../components/PageHead';
 import { Activity, ActivityModel } from '../../../../../models/Activity';
-import { Agenda } from '../../../../../models/Agenda';
+import { Agenda } from '../../../../../models/Activity/Agenda';
 import { API_Host, blobURLOf, isServer } from '../../../../../models/Base';
-import systemStore from '../../../../../models/System';
-import { i18n } from '../../../../../models/Translation';
+import systemStore from '../../../../../models/Base/System';
+import { i18n } from '../../../../../models/Base/Translation';
 import { fileURLOf } from '../../../../api/lark/file/[id]';
 import styles from './invitation.module.less';
 

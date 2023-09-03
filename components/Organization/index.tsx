@@ -7,10 +7,10 @@ import { PureComponent } from 'react';
 import { Badge, Button, Nav } from 'react-bootstrap';
 import { isEmpty } from 'web-utility';
 
+import { i18n } from '../../models/Base/Translation';
 import organizationStore, {
   OrganizationModel,
-} from '../../models/Organization';
-import { i18n } from '../../models/Translation';
+} from '../../models/Community/Organization';
 import { CityStatisticMap } from '../CityStatisticMap';
 import { OrganizationCardProps } from './Card';
 import { OrganizationListLayout } from './List';

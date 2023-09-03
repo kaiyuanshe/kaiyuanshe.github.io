@@ -1,15 +1,15 @@
 import { Icon } from 'idea-react';
+import { LatLngTuple } from 'leaflet';
 import { computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { ImagePreview } from 'mobx-restful-table';
-import dynamic from 'next/dynamic';
 import { MarkerMeta, OpenReactMapProps } from 'open-react-map';
 import { PureComponent } from 'react';
 import { Button, ListGroup } from 'react-bootstrap';
+import { buildURLData } from 'web-utility';
 
-import systemStore from '../models/System';
-
-const ChinaMap = dynamic(() => import('./ChinaMap'), { ssr: false });
+import systemStore from '../models/Base/System';
+import ChinaMap from './ChinaMap';
 
 export interface ImageMarker extends MarkerMeta {
   title: string;
@@ -22,7 +22,7 @@ export interface ListMapProps extends OpenReactMapProps {
 }
 
 @observer
-export class ListMap extends PureComponent<ListMapProps> {
+export default class ListMap extends PureComponent<ListMapProps> {
   constructor(props: ListMapProps) {
     super(props);
     makeObservable(this);
@@ -55,6 +55,36 @@ export class ListMap extends PureComponent<ListMapProps> {
     if (systemStore.screenNarrow) this.drawerOpen = false;
   };
 
+  makeGaoDeLink({ position, title }: ImageMarker) {
+    const [latitude, longitude] = position as LatLngTuple;
+
+    return `https://uri.amap.com/marker?${buildURLData({
+      position: [longitude, latitude],
+      name: title,
+      src: 'KaiYuanShe',
+      coordinate: 'gaode',
+      callnative: 1,
+    })}`;
+  }
+
+  renderItem = (marker: ImageMarker) => (
+    <ListGroup.Item
+      key={marker.title}
+      className="d-flex gap-2 justify-content-between"
+      style={{ cursor: 'pointer' }}
+      onClick={this.selectOne(marker)}
+    >
+      <ImagePreview className="w-25" fluid src={marker.image} />
+      <div>
+        <h3 className="fs-5">{marker.title}</h3>
+        <p>{marker.summary}</p>
+      </div>
+      <a href={this.makeGaoDeLink(marker)} target="_blank" rel="noreferrer">
+        <Icon name="geo-alt-fill" className="fs-3" />
+      </a>
+    </ListGroup.Item>
+  );
+
   render() {
     const { className = '', style, markers, ...props } = this.props,
       { drawerOpen, drawerWidth, currentMarker } = this;
@@ -76,20 +106,7 @@ export class ListMap extends PureComponent<ListMapProps> {
           </Button>
 
           <ListGroup hidden={!drawerOpen}>
-            {markers.map(marker => (
-              <ListGroup.Item
-                key={marker.tooltip}
-                className="d-flex gap-2"
-                style={{ cursor: 'pointer' }}
-                onClick={this.selectOne(marker)}
-              >
-                <ImagePreview className="w-25" fluid src={marker.image} />
-                <div>
-                  <h3 className="fs-5">{marker.title}</h3>
-                  <p>{marker.summary}</p>
-                </div>
-              </ListGroup.Item>
-            ))}
+            {markers.map(this.renderItem)}
           </ListGroup>
         </div>
       </div>
