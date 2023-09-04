@@ -20,10 +20,10 @@ import {
   TableFormViewItem,
 } from '../../pages/api/lark/core';
 import { larkClient } from '../Base';
+import { PersonModel } from '../Personnel/Person';
 import { AgendaModel } from './Agenda';
 import { BillModel } from './Bill';
 import { ForumModel } from './Forum';
-import { PersonModel } from './Person';
 import { PlaceModel } from './Place';
 
 export const ACTIVITY_TABLE_ID = process.env.NEXT_PUBLIC_ACTIVITY_TABLE_ID!;

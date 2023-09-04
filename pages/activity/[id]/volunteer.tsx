@@ -1,6 +1,5 @@
 import { makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
-import { InferGetServerSidePropsType } from 'next';
 import {
   compose,
   errorLogger,
@@ -12,9 +11,9 @@ import { PureComponent } from 'react';
 import { Container } from 'react-bootstrap';
 
 import PageHead from '../../../components/PageHead';
+import { i18n } from '../../../models//Base/Translation';
 import { ActivityModel } from '../../../models/Activity';
-import { Person, PersonModel } from '../../../models/Person';
-import { i18n } from '../../../models/Translation';
+import { Person, PersonModel } from '../../../models/Personnel/Person';
 
 interface PersonListPageProps extends RouteProps {
   list: Person[];
@@ -27,11 +26,11 @@ export const getServerSideProps = compose<{ id: string }, { list: Person[] }>(
   errorLogger,
   translator(i18n),
 
-  async query => {
-    const list = await new PersonModel().getList({}, 1);
-    console.log('list', list);
-    return { props: JSON.stringify(list) };
-  },
+  // async query => {
+  //   const list = await new PersonModel().getList({}, 1);
+  //   console.log('list', list);
+  //   return { props: JSON.stringify(list) };
+  // },
 );
 
 const { t } = i18n;
