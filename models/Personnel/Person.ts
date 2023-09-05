@@ -15,7 +15,6 @@ export type Person = Record<
   | 'name'
   | 'gender'
   | 'avatar'
-  | 'role'
   | 'city'
   | 'mobilePhone'
   | 'email'
