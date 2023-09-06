@@ -20,7 +20,6 @@ import {
   TableFormViewItem,
 } from '../../pages/api/lark/core';
 import { larkClient } from '../Base';
-import { PersonModel } from '../Personnel/Person';
 import { AgendaModel } from './Agenda';
 import { BillModel } from './Bill';
 import { ForumModel } from './Forum';
@@ -114,7 +113,6 @@ export class ActivityModel extends BiDataTable<Activity>() {
   currentAgenda?: AgendaModel;
   currentPlace?: PlaceModel;
   currentBill?: BillModel;
-  currentPerson?: PersonModel;
   currentStaff?: StaffModel;
 
   declare statistic: ActivityStatistic;
@@ -171,9 +169,6 @@ export class ActivityModel extends BiDataTable<Activity>() {
 
       await table.getOne('Bill', BillModel);
       this.currentBill = table.currentDataTable as BillModel;
-
-      await table.getOne('Person', PersonModel);
-      this.currentPerson = table.currentDataTable as PersonModel;
 
       await table.getOne('Staff', StaffModel);
       this.currentStaff = table.currentDataTable as StaffModel;
