@@ -25,6 +25,7 @@ import { AgendaModel } from './Agenda';
 import { BillModel } from './Bill';
 import { ForumModel } from './Forum';
 import { PlaceModel } from './Place';
+import { StaffModel } from './Staff';
 
 export const ACTIVITY_TABLE_ID = process.env.NEXT_PUBLIC_ACTIVITY_TABLE_ID!;
 
@@ -114,6 +115,7 @@ export class ActivityModel extends BiDataTable<Activity>() {
   currentPlace?: PlaceModel;
   currentBill?: BillModel;
   currentPerson?: PersonModel;
+  currentStaff?: StaffModel;
 
   declare statistic: ActivityStatistic;
 
@@ -172,6 +174,9 @@ export class ActivityModel extends BiDataTable<Activity>() {
 
       await table.getOne('Person', PersonModel);
       this.currentPerson = table.currentDataTable as PersonModel;
+
+      await table.getOne('Staff', StaffModel);
+      this.currentStaff = table.currentDataTable as StaffModel;
 
       this.formMap = table.formMap;
     }
