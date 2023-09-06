@@ -13,25 +13,14 @@ import { Container } from 'react-bootstrap';
 import PageHead from '../../../components/PageHead';
 import { i18n } from '../../../models//Base/Translation';
 import { ActivityModel } from '../../../models/Activity';
-import { Person, PersonModel } from '../../../models/Personnel/Person';
-
-interface PersonListPageProps extends RouteProps {
-  list: Person[];
-}
+import { Staff, StaffModel } from '../../../models/Activity/Staff';
 
 type VolunteerDetailPageProps = RouteProps<{ id: string }>;
 
-export const getServerSideProps = compose<{ id: string }, { list: Person[] }>(
-  router,
-  errorLogger,
-  translator(i18n),
-
-  // async query => {
-  //   const list = await new PersonModel().getList({}, 1);
-  //   console.log('list', list);
-  //   return { props: JSON.stringify(list) };
-  // },
-);
+export const getServerSideProps = compose<
+  { id: string },
+  VolunteerDetailPageProps
+>(router, errorLogger, translator(i18n));
 
 const { t } = i18n;
 
@@ -46,19 +35,19 @@ export default class VolunteerPage extends PureComponent<VolunteerDetailPageProp
   activityStore?: ActivityModel = undefined;
 
   @observable
-  personStore?: PersonModel = undefined;
+  staffStore?: StaffModel = undefined;
 
   async componentDidMount() {
     const { id } = this.props.route.params!;
     this.activityStore = new ActivityModel();
     await this.activityStore.getOne(id);
-    this.personStore = this.activityStore.currentPerson;
-    console.log('this.personstroe', this.personStore);
+    this.staffStore = this.activityStore.currentStaff;
+    console.log('this.personStroe', this.staffStore);
   }
 
   render() {
-    const { activityStore, personStore } = this;
-    console.log('personStore', personStore);
+    const { activityStore, staffStore } = this;
+    console.log('personStore', staffStore);
 
     return (
       <Container style={{ height: '91vh' }}>
