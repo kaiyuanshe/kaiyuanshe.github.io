@@ -4,7 +4,7 @@ import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 
-import organizationStore from '../../models/Organization';
+import organizationStore from '../../models/Community/Organization';
 import { OrganizationCard } from './Card';
 
 @observer

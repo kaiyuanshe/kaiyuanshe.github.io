@@ -1,4 +1,4 @@
-import { action, computed, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import {
   BiDataTable,
   BiTable,
@@ -18,9 +18,10 @@ import {
   LarkFormData,
   MAIN_BASE_ID,
   TableFormViewItem,
-} from '../pages/api/lark/core';
+} from '../../pages/api/lark/core';
+import { larkClient } from '../Base';
 import { AgendaModel } from './Agenda';
-import { larkClient } from './Base';
+import { BillModel } from './Bill';
 import { ForumModel } from './Forum';
 import { PlaceModel } from './Place';
 
@@ -48,6 +49,11 @@ export class ActivityViewModel extends BiTableView() {
 }
 
 export class ActivityTableModel extends BiTable() {
+  constructor(id = '') {
+    super(id);
+    makeObservable(this);
+  }
+
   client = larkClient;
 
   @observable
@@ -91,6 +97,8 @@ export class ActivityModel extends BiDataTable<Activity>() {
 
   constructor(appId = MAIN_BASE_ID, tableId = ACTIVITY_TABLE_ID) {
     super(appId, tableId);
+
+    makeObservable(this);
   }
 
   requiredKeys = ['name', 'startTime', 'image'] as const;
@@ -103,9 +111,9 @@ export class ActivityModel extends BiDataTable<Activity>() {
   currentForum?: ForumModel;
   currentAgenda?: AgendaModel;
   currentPlace?: PlaceModel;
+  currentBill?: BillModel;
 
-  @observable
-  statistic: ActivityStatistic = {} as ActivityStatistic;
+  declare statistic: ActivityStatistic;
 
   @computed
   get currentMeta() {
@@ -157,6 +165,9 @@ export class ActivityModel extends BiDataTable<Activity>() {
       await table.getOne('Place', PlaceModel);
       this.currentPlace = table.currentDataTable as PlaceModel;
 
+      await table.getOne('Bill', BillModel);
+      this.currentBill = table.currentDataTable as BillModel;
+
       this.formMap = table.formMap;
     }
     return this.currentOne;
@@ -170,6 +181,8 @@ export class ActivityModel extends BiDataTable<Activity>() {
     return (this.statistic = { city: countBy(list, 'city') });
   }, 'Activity Statistic');
 }
+
+export type StatisticTrait = Pick<ActivityModel, 'statistic' | 'getStatistic'>;
 
 export class SearchActivityModel extends ActivityModel {
   makeFilter(filter: NewData<Activity>) {

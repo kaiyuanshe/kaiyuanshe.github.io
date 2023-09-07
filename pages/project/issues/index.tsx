@@ -7,12 +7,12 @@ import { compose, translator } from 'next-ssr-middleware';
 import { FC } from 'react';
 import { Container, Row } from 'react-bootstrap';
 
-import PageHead from '../../components/PageHead';
-import repositoryStore, { RepositoryModel } from '../../models/Repository';
-import { i18n } from '../../models/Translation';
+import PageHead from '../../../components/PageHead';
+import { i18n } from '../../../models/Base/Translation';
+import repositoryStore, { RepositoryModel } from '../../../models/Repository';
 
 const IssueModule = dynamic(
-  () => import('../../components/Issues/IssueModule'),
+  () => import('../../../components/Issues/IssueModule'),
   { ssr: false },
 );
 
@@ -35,11 +35,11 @@ const IssuesPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
           defaultData={list}
           renderList={allItems => (
             <Row as="ul" className="list-unstyled g-4">
-              {allItems.map(item => (
+              {allItems.map(({ name, issues }) => (
                 <IssueModule
-                  key={item.name}
-                  title={item.name}
-                  issues={item.issues}
+                  key={name}
+                  title={name}
+                  issues={issues}
                 ></IssueModule>
               ))}
             </Row>

@@ -11,7 +11,7 @@ import {
 import { NewData } from 'mobx-restful';
 import { isEmpty } from 'web-utility';
 
-import { larkClient } from './Base';
+import { larkClient } from '../Base';
 import { HR_BASE_ID } from './Person';
 
 export const DEPARTMENT_TABLE_ID = process.env.NEXT_PUBLIC_DEPARTMENT_TABLE_ID!;

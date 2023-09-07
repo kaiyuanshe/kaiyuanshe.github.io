@@ -1,6 +1,7 @@
 import { TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
+import dynamic from 'next/dynamic';
 import { cache, compose, errorLogger, translator } from 'next-ssr-middleware';
 import { PureComponent } from 'react';
 import {
@@ -16,17 +17,22 @@ import {
 import { AgendaCard } from '../../../components/Activity/Agenda/Card';
 import { DrawerNav } from '../../../components/Activity/DrawerNav';
 import { ActivityPeople } from '../../../components/Activity/People';
-import { ImageMarker, ListMap } from '../../../components/ListMap';
+import type { ImageMarker } from '../../../components/ListMap';
 import PageHead from '../../../components/PageHead';
 import { Activity, ActivityModel } from '../../../models/Activity';
-import { AgendaModel } from '../../../models/Agenda';
+import { AgendaModel } from '../../../models/Activity/Agenda';
+import { Forum } from '../../../models/Activity/Forum';
+import { Place } from '../../../models/Activity/Place';
 import { blobURLOf } from '../../../models/Base';
-import { Forum } from '../../../models/Forum';
-import { Place } from '../../../models/Place';
-import { i18n } from '../../../models/Translation';
+import { i18n } from '../../../models/Base/Translation';
 import { coordinateOf, TableFormViewItem } from '../../api/lark/core';
 import { fileURLOf } from '../../api/lark/file/[id]';
 import styles from './index.module.less';
+
+const ListMap = dynamic(() => import('../../../components/ListMap'), {
+    ssr: false,
+  }),
+  { t } = i18n;
 
 export const getServerSideProps = compose<
   { id: string },
@@ -56,8 +62,6 @@ export const getServerSideProps = compose<
   };
 });
 
-const { t } = i18n;
-
 @observer
 export default class ActivityDetailPage extends PureComponent<
   InferGetServerSidePropsType<typeof getServerSideProps>
@@ -84,7 +88,7 @@ export default class ActivityDetailPage extends PureComponent<
   renderButtonBar() {
     const { endTime, personForms, agendaForms, fileForms, billForms } =
         this.props.currentMeta,
-      { link } = this.props.activity;
+      { id, link } = this.props.activity;
     const passed = +new Date(+endTime!) <= Date.now();
 
     return (
@@ -108,6 +112,9 @@ export default class ActivityDetailPage extends PureComponent<
             {t('participant_registration')}
           </Button>
         )}
+        <Button variant="secondary" href={`/activity/${id}/finance`}>
+          {t('financial_disclosure')}
+        </Button>
       </div>
     );
   }
@@ -118,7 +125,9 @@ export default class ActivityDetailPage extends PureComponent<
     return (
       places[0] && (
         <>
-          <h2 className="text-center pt-4 pb-3">{t('activity_map')}</h2>
+          <h2 className="text-center pt-4 pb-3" id="map">
+            {t('activity_map')}
+          </h2>
 
           <ListMap
             style={{ height: 'calc(100vh - 10rem)' }}
@@ -178,8 +187,11 @@ export default class ActivityDetailPage extends PureComponent<
       <h2 className="my-5 text-center" id={name as string}>
         {name}
       </h2>
-      <p className="text-muted">{summary}</p>
-
+      <Row>
+        <Col xl={{ offset: 2, span: 8 }} as="p" className="text-muted">
+          {summary}
+        </Col>
+      </Row>
       <div className="d-flex justify-content-center">
         <div className="d-flex align-items-center px-5">
           {this.renderForumPeople(
@@ -226,7 +238,9 @@ export default class ActivityDetailPage extends PureComponent<
             )})`,
           }}
         >
-          <h1 className="visually-hidden">{activity.name}</h1>
+          <h1 className="visually-hidden" id="top">
+            {activity.name}
+          </h1>
         </header>
 
         {this.renderButtonBar()}

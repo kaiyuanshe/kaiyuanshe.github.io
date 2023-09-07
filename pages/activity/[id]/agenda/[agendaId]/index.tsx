@@ -11,9 +11,9 @@ import { ActivityPeople } from '../../../../../components/Activity/People';
 import { CommentBox } from '../../../../../components/CommentBox';
 import PageHead from '../../../../../components/PageHead';
 import { Activity, ActivityModel } from '../../../../../models/Activity';
-import { Agenda } from '../../../../../models/Agenda';
+import { Agenda } from '../../../../../models/Activity/Agenda';
 import { blobURLOf } from '../../../../../models/Base';
-import { i18n } from '../../../../../models/Translation';
+import { i18n } from '../../../../../models/Base/Translation';
 
 export const getServerSideProps = compose<
   { id: string; agendaId: string },
@@ -25,7 +25,7 @@ export const getServerSideProps = compose<
     agenda = await activityStore.currentAgenda!.getOne(agendaId + '');
 
   return {
-    props: { activity, agenda },
+    props: JSON.parse(JSON.stringify({ activity, agenda })),
   };
 });
 

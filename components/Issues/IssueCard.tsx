@@ -2,32 +2,28 @@ import { OverlayBox } from 'idea-react';
 import { FC } from 'react';
 import { Card } from 'react-bootstrap';
 
+import type { Issue } from '../../models/Repository';
 import styles from './IssueCard.module.less';
 interface IssueCardProps {
-  issue: any;
+  issue: Issue;
 }
 
-const IssueCard: FC<IssueCardProps> = ({ issue }) => {
-  const args = {
-    title: issue.title,
-    detail: issue.body,
-  };
-
+const IssueCard: FC<IssueCardProps> = ({
+  issue: { title, body, html_url },
+}) => {
   return (
-    <div>
-      <Card.Title className={styles.margin0}>
-        <OverlayBox {...args} placement="top">
-          <a
-            className={styles.link}
-            href={issue.html_url}
-            target="_blank"
-            rel="noreferrer"
-          >
-            {issue.title}
-          </a>
-        </OverlayBox>
-      </Card.Title>
-    </div>
+    <Card.Title className="m-0">
+      <OverlayBox title={title} detail={body} placement="bottom">
+        <a
+          className={styles.link}
+          href={html_url}
+          target="_blank"
+          rel="noreferrer"
+        >
+          {title}
+        </a>
+      </OverlayBox>
+    </Card.Title>
   );
 };
 

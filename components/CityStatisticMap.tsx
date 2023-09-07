@@ -1,34 +1,35 @@
-import { MarkerMeta, OpenMapProps } from 'idea-react';
 import { computed } from 'mobx';
 import { observer } from 'mobx-react';
+import { observePropsState } from 'mobx-react-helper';
 import dynamic from 'next/dynamic';
-import { PureComponent } from 'react';
+import { MarkerMeta, OpenReactMapProps } from 'open-react-map';
+import { Component } from 'react';
 
-import metaStore from '../models/System';
+import { StatisticTrait } from '../models/Activity';
+import metaStore from '../models/Base/System';
 
 const ChinaMap = dynamic(() => import('./ChinaMap'), { ssr: false });
 
-type CityStatistic = Record<'city', Record<string, number>>;
-
 export interface CityStatisticMapProps {
-  store: {
-    statistic: CityStatistic;
-    getStatistic: () => Promise<CityStatistic>;
-  };
+  store: StatisticTrait;
   onChange?: (city: string) => any;
 }
 
 @observer
-export class CityStatisticMap extends PureComponent<CityStatisticMapProps> {
+@observePropsState
+export class CityStatisticMap extends Component<CityStatisticMapProps> {
+  declare observedProps: CityStatisticMapProps;
+
   componentDidMount() {
     metaStore.getCityCoordinate();
+
     this.props.store.getStatistic();
   }
 
   @computed
   get markers() {
     const { cityCoordinate } = metaStore,
-      { city = {} } = this.props.store.statistic;
+      { city = {} } = this.observedProps.store.statistic;
 
     return Object.entries(city)
       .map(([city, count]) => {
@@ -43,7 +44,9 @@ export class CityStatisticMap extends PureComponent<CityStatisticMapProps> {
       .filter(Boolean) as MarkerMeta[];
   }
 
-  handleChange: OpenMapProps['onMarkerClick'] = ({ latlng: { lat, lng } }) => {
+  handleChange: OpenReactMapProps['onMarkerClick'] = ({
+    latlng: { lat, lng },
+  }) => {
     const { markers } = this;
     const { tooltip } =
       markers.find(

@@ -1,4 +1,4 @@
-import { observable } from 'mobx';
+import { makeObservable, observable } from 'mobx';
 import {
   BiDataTable,
   makeSimpleFilter,
@@ -9,8 +9,8 @@ import {
 import { NewData } from 'mobx-restful';
 import { cache, countBy, groupBy, Hour, isEmpty } from 'web-utility';
 
-import { MAIN_BASE_ID } from '../pages/api/lark/core';
-import { larkClient } from './Base';
+import { MAIN_BASE_ID } from '../../pages/api/lark/core';
+import { larkClient } from '../Base';
 
 export type Organization = Record<
   | 'id'
@@ -47,12 +47,13 @@ export class OrganizationModel extends BiDataTable<Organization>() {
 
   constructor(appId = MAIN_BASE_ID, tableId = ORGANIZATION_TABLE_ID) {
     super(appId, tableId);
+
+    makeObservable(this);
   }
 
   requiredKeys = ['name', 'type', 'tags', 'city', 'logos', 'summary'] as const;
 
-  @observable
-  statistic: OrganizationStatistic = {} as OrganizationStatistic;
+  declare statistic: OrganizationStatistic;
 
   @observable
   tagMap: Record<string, Organization[]> = {};

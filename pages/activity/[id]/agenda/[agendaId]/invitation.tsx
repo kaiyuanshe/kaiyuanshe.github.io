@@ -1,8 +1,8 @@
 import { Loading, text2color } from 'idea-react';
-import { observable } from 'mobx';
+import { makeObservable, observable } from 'mobx';
 import { TableCellLocation, TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import { compose, errorLogger } from 'next-ssr-middleware';
 import { QRCodeSVG } from 'qrcode.react';
 import { createRef, MouseEvent, PureComponent } from 'react';
 import { Badge, Container, Image } from 'react-bootstrap';
@@ -10,19 +10,24 @@ import { Badge, Container, Image } from 'react-bootstrap';
 import { ActivityPeople } from '../../../../../components/Activity/People';
 import PageHead from '../../../../../components/PageHead';
 import { Activity, ActivityModel } from '../../../../../models/Activity';
-import { Agenda } from '../../../../../models/Agenda';
+import { Agenda } from '../../../../../models/Activity/Agenda';
 import { API_Host, blobURLOf, isServer } from '../../../../../models/Base';
-import systemStore from '../../../../../models/System';
-import { i18n } from '../../../../../models/Translation';
+import systemStore from '../../../../../models/Base/System';
+import { i18n } from '../../../../../models/Base/Translation';
 import { fileURLOf } from '../../../../api/lark/file/[id]';
 import styles from './invitation.module.less';
 
 const { t } = i18n;
 
-export const getServerSideProps: GetServerSideProps<
-  { activity: Activity; agenda: Agenda },
-  { id: string; agendaId: string }
-> = async ({ params }) => {
+interface InvitationPageProps {
+  activity: Activity;
+  agenda: Agenda;
+}
+
+export const getServerSideProps = compose<
+  Record<'id' | 'agendaId', string>,
+  InvitationPageProps
+>(errorLogger, async ({ params }) => {
   const activityStore = new ActivityModel(),
     { id, agendaId } = params!;
   const activity = await activityStore.getOne(id + ''),
@@ -31,12 +36,15 @@ export const getServerSideProps: GetServerSideProps<
   return {
     props: JSON.parse(JSON.stringify({ activity, agenda })),
   };
-};
+});
 
 @observer
-export default class InvitationPage extends PureComponent<
-  InferGetServerSidePropsType<typeof getServerSideProps>
-> {
+export default class InvitationPage extends PureComponent<InvitationPageProps> {
+  constructor(props: InvitationPageProps) {
+    super(props);
+    makeObservable(this);
+  }
+
   elementRef = createRef<HTMLDivElement>();
 
   sharedURL = `${API_Host}/activity/${this.props.activity.id}/agenda/${this.props.agenda.id}`;

@@ -1,4 +1,4 @@
-import { computed, observable } from 'mobx';
+import { computed, makeObservable, observable } from 'mobx';
 import {
   BiDataTable,
   normalizeText,
@@ -11,8 +11,8 @@ import {
 } from 'mobx-lark';
 import { groupBy } from 'web-utility';
 
-import { MAIN_BASE_ID } from '../pages/api/lark/core';
-import { larkClient } from './Base';
+import { MAIN_BASE_ID } from '../../pages/api/lark/core';
+import { larkClient } from '../Base';
 
 export type Cooperation = Record<
   'id' | 'organization' | 'year' | 'level' | 'link' | 'logos',
@@ -27,6 +27,8 @@ export class CooperationModel extends BiDataTable<Cooperation>() {
 
   constructor(appId = MAIN_BASE_ID, tableId = COOPERATION_TABLE_ID) {
     super(appId, tableId);
+
+    makeObservable(this);
   }
 
   requiredKeys = ['organization', 'year', 'level', 'logos'] as const;

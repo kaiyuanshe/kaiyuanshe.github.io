@@ -1,3 +1,5 @@
+import { IDType } from 'mobx-restful';
+
 export default {
   KaiYuanShe: '開源社',
   our_vision: '我們的願景',
@@ -33,6 +35,7 @@ export default {
   china_open_source_annual_report: '中國開源年度報告',
   kaiyuanshe_annual_report: '開源社年度報告',
   china_open_source_landscape: '開源地圖',
+  open_source_projects: '開源項目',
   our_partners: '合作夥伴',
   open_source_treasure_box: '開源百寶箱',
   Web_polyfill_CDN: 'Web 標準補丁 CDN',
@@ -84,7 +87,7 @@ export default {
 
   // Activity pages
   wonderful_activity: '精彩活動',
-  register_volunteer: '義工報名',
+  register_volunteer: '義工/講師報名註冊',
   submit_agenda: '議題征集',
   submit_agenda_file: '議題文檔提交',
   reimbursement_application: '報銷申請',
@@ -169,6 +172,31 @@ export default {
   range_library: '庫',
   range_file: '檔案',
   range_module: '模組',
+
+  //finance Page
+  bill_id: '單號',
+  bill_createAt: '支付日期',
+  bill_location: '支付地點',
+  bill_createBy: '支付人',
+  bill_type: '支付類型',
+  bill_price: '支付金額',
+  bill_invoice: '支付憑證',
+  bill_remark: '備註',
+  bill_travelFundTask: '差旅志願任務',
+  bill_forum: '出品/志願論壇',
+  bill_agendas: '申報議程',
+  financial_disclosure: '財務公開',
+
+  //RestTable
+  create: '新增',
+  submit: '提交',
+  cancel: '取消',
+  edit: '編輯',
+  delete: '刪除',
+  total_x_rows: ({ totalCount }: { totalCount: number }) =>
+    `共 ${totalCount} 行`,
+  sure_to_delete_x: ({ keys }: { keys: IDType[] }) =>
+    `您確定刪除 ${keys.join('、')} 嗎？`,
 
   // Election
   election: '選舉',

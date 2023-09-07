@@ -9,10 +9,10 @@ import { ArticleListLayout } from '../components/Article/List';
 import { CityStatisticMap } from '../components/CityStatisticMap';
 import PageHead from '../components/PageHead';
 import activityStore from '../models/Activity';
-import { Article, ArticleModel } from '../models/Article';
 import { blobURLOf } from '../models/Base';
-import { Department, DepartmentModel } from '../models/Group';
-import { i18n } from '../models/Translation';
+import { i18n } from '../models/Base/Translation';
+import { Department, DepartmentModel } from '../models/Personnel/Department';
+import { Article, ArticleModel } from '../models/Product/Article';
 import { slogan } from './api/home';
 import { DefaultImage } from './api/lark/file/[id]';
 

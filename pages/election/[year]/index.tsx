@@ -14,8 +14,8 @@ import { isEmpty } from 'web-utility';
 
 import { ElectorCard } from '../../../components/Election/ElectorCard';
 import PageHead from '../../../components/PageHead';
+import { i18n } from '../../../models/Base/Translation';
 import { ElectionTarget, PersonnelModel } from '../../../models/Personnel';
-import { i18n } from '../../../models/Translation';
 
 export const getServerSideProps = compose<
   { year: string },

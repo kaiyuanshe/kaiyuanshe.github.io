@@ -11,11 +11,11 @@ import { observer } from 'mobx-react';
 import { FC } from 'react';
 import { Row } from 'react-bootstrap';
 
+import { i18n } from '../../models/Base/Translation';
 import {
   OrganizationStatistic,
   sortStatistic,
-} from '../../models/Organization';
-import { i18n } from '../../models/Translation';
+} from '../../models/Community/Organization';
 
 const OrganizationCharts: FC<OrganizationStatistic> = observer(
   ({ type, tag, year, city }) => {

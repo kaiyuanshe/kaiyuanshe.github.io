@@ -5,7 +5,7 @@ import { FC } from 'react';
 import { Container } from 'react-bootstrap';
 
 import PageHead from '../../components/PageHead';
-import { i18n } from '../../models/Translation';
+import { i18n } from '../../models/Base/Translation';
 
 const OrganizationLandscape = dynamic(
   () => import('../../components/Organization/LandScape'),

@@ -1,22 +1,23 @@
 import { components } from '@octokit/openapi-types';
 import { memoize } from 'lodash';
 import { ListModel, toggle } from 'mobx-restful';
-import { averageOf, buildURLData } from 'web-utility';
+import { buildURLData } from 'web-utility';
 
 import { githubClient } from './Base';
 
 type Repository = components['schemas']['minimal-repository'];
+export type Organization = components['schemas']['organization-full'];
+export type Issue = components['schemas']['issue'];
 
 export interface GitRepository extends Repository {
-  issues?: any;
+  issues: Issue[];
 }
-export type Organization = components['schemas']['organization-full'];
 
 const getGitIssues = memoize(async (URI: string) => {
-  const { body: issuesList } = await githubClient.get<Record<string, any>>(
+  const { body: issuesList } = await githubClient.get<Issue[]>(
     `repos/${URI}/issues`,
   );
-  return issuesList!.filter((issue: any) => !issue.pull_request);
+  return issuesList!.filter(({ pull_request }) => !pull_request);
 });
 
 export class RepositoryModel extends ListModel<GitRepository> {

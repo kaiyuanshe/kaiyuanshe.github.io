@@ -1,4 +1,4 @@
-import { observable } from 'mobx';
+import { makeObservable, observable } from 'mobx';
 import {
   BiDataTable,
   makeSimpleFilter,
@@ -13,7 +13,7 @@ import {
 import { NewData } from 'mobx-restful';
 import { groupBy, isEmpty, TimeData } from 'web-utility';
 
-import { larkClient } from './Base';
+import { larkClient } from '../Base';
 import { HR_BASE_ID } from './Person';
 
 export type Personnel = Record<
@@ -42,6 +42,8 @@ export class PersonnelModel extends BiDataTable<Personnel>() {
 
   constructor(appId = HR_BASE_ID, tableId = PERSONNEL_TABLE_ID) {
     super(appId, tableId);
+
+    makeObservable(this);
   }
 
   requiredKeys = ['recipient'] as const;
@@ -84,7 +86,7 @@ export class PersonnelModel extends BiDataTable<Personnel>() {
       ...fields,
       id: id!,
       applicants: (applicants as TableCellRelation[])?.map(normalizeText),
-      recipient: (recipient as TableCellRelation[])?.map(normalizeText),
+      recipient: (recipient as TableCellRelation[])?.map(normalizeText)[0],
       recipientAvatar: (recipientAvatar as TableCellAttachment[])?.map(
         ({ attachmentToken, ...file }) =>
           ({
@@ -92,9 +94,9 @@ export class PersonnelModel extends BiDataTable<Personnel>() {
             file_token: attachmentToken,
           }) as unknown as TableCellMedia,
       ),
-      department: (department as TableCellRelation[])?.map(normalizeText),
-      position: (position as TableCellRelation[])?.map(normalizeText),
-      award: (award as TableCellRelation[])?.map(normalizeText),
+      department: (department as TableCellRelation[])?.map(normalizeText)[0],
+      position: (position as TableCellRelation[])?.map(normalizeText)[0],
+      award: (award as TableCellRelation[])?.map(normalizeText)[0],
       passed: JSON.parse(normalizeText((passed as TableCellText[])[0])),
     };
   }

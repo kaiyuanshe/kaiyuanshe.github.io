@@ -1,7 +1,6 @@
 import { TimeDistanceProps } from 'idea-react';
 
-import { isServer } from '../models/Base';
-import { i18n } from '../models/Translation';
+import { i18n } from '../models/Base/Translation';
 import { Link } from './MainNav';
 
 const { t } = i18n;
@@ -55,11 +54,11 @@ export const MainRoutes = (): Link[] => [
       },
       {
         title: t('original_articles'),
-        path: '',
+        path: '/article?type=原创',
       },
       {
         title: t('translated_articles'),
-        path: '',
+        path: '/article?type=翻译',
       },
       { title: t('all_articles'), path: '/article' },
     ],
@@ -78,6 +77,15 @@ export const MainRoutes = (): Link[] => [
     ],
   },
   { title: t('wonderful_activity'), path: '/activity' },
+  {
+    title: t('open_source_projects'),
+    subs: [
+      {
+        title: 'issues',
+        path: 'project/issues',
+      },
+    ],
+  },
   { title: t('our_partners'), path: '/organization/cooperation' },
   {
     title: t('open_source_treasure_box'),
@@ -91,9 +99,5 @@ export const MainRoutes = (): Link[] => [
   {
     title: t('about_us'),
     path: 'https://kaiyuanshe.feishu.cn/wiki/wikcn749HAOCD2dwaNq4dOC67db',
-  },
-  {
-    title: 'issues',
-    path: '/issues',
   },
 ];

@@ -2,8 +2,8 @@ import { FC } from 'react';
 import { Badge, Card, CardProps } from 'react-bootstrap';
 import { formatDate } from 'web-utility';
 
+import { i18n } from '../../models/Base/Translation';
 import { Personnel } from '../../models/Personnel';
-import { i18n } from '../../models/Translation';
 import { fileURLOf } from '../../pages/api/lark/file/[id]';
 
 const { t } = i18n;

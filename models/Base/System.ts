@@ -1,11 +1,11 @@
 import html2canvas from 'html2canvas';
-import { observable } from 'mobx';
+import { makeObservable, observable } from 'mobx';
 import { normalizeText, TableCellLink, TableCellText } from 'mobx-lark';
 import { BaseModel, toggle } from 'mobx-restful';
 import { buildURLData } from 'web-utility';
 
-import { SearchQuery, SearchResult } from '../pages/api/search';
-import { client } from './Base';
+import { SearchQuery, SearchResult } from '../../pages/api/search';
+import { client } from './index';
 
 export type CityCoordinateMap = Record<string, [number, number]>;
 
@@ -18,6 +18,7 @@ export class SystemModel extends BaseModel {
 
   constructor() {
     super();
+    makeObservable(this);
 
     this.updateScreen();
 

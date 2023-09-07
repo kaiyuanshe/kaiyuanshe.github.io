@@ -1,71 +1,93 @@
 # 开源社官网
 
-[React][1] project scaffold based on [TypeScript][2], [Next.js][3] & [Bootstrap][4]. And this project bootstrapped with [`create-next-app`][5].
+该项目是使用 [`create-next-app`][6] 脚手架引导安装，基于 [TypeScript][2]、[Next.js][3]、[Bootstrap][4] 和 [Workbox][5] 的 [React][1] 项目。
 
-[![NPM Dependency](https://david-dm.org/kaiyuanshe/kaiyuanshe.github.io.svg)][6]
-[![CI & CD](https://github.com/kaiyuanshe/kaiyuanshe.github.io/workflows/CI%20&%20CD/badge.svg)][7]
+<!-- [![NPM Dependency](https://david-dm.org/kaiyuanshe/kaiyuanshe.github.io.svg)][7] -->
+
+[![CI & CD](https://github.com/kaiyuanshe/kaiyuanshe.github.io/workflows/CI%20&%20CD/badge.svg)][8]
 
 ## 主要功能
 
-### 开源社博客
+本站不仅承担传统官网的职能，还是一个**同时具备 SSR 和 PWA 能力的 Web 前端基座**，与开源社其它应用项目的前端模块组成一个矩阵。
 
-- 测试入口：https://kaiyuanshe.vercel.app/
-- 后端服务：https://github.com/kaiyuanshe/service
+### 开源社文库
+
+- [前端主页](https://kaiyuanshe.cn/article)
+- [前端代码](pages/article/)
+- [后端服务](https://kaiyuanshe.feishu.cn/base/bascnClkwE6JnHTYK1p3ln1Crjl)
+- [后端代码](models/Product/Article.ts)
+
+### 组织管理系统
+
+- [项目简介](https://kaiyuanshe.feishu.cn/wiki/VpY9wRitDiiObVkNsXycWP3Gnmf)
+- [前端主页](https://kaiyuanshe.cn/department)
+- [前端代码](pages/department/)
+- [后端服务](https://kaiyuanshe.feishu.cn/base/UaJ6b4MtcaywOwsaT7ecyiQuntc)
+- [后端代码](models/Personnel/)
+
+### 开放会务系统
+
+- [项目简介](https://kaiyuanshe.feishu.cn/wiki/wikcnuUsRHqJF0qhShySwECmWlx)
+- [前端主页](https://kaiyuanshe.cn/activity)
+- [前端代码](pages/activity/)
+- [后端服务](https://kaiyuanshe.feishu.cn/base/IiihbadUsaCjYSsv9N4cR3XVnWh)
+- [后端代码](models/Activity/)
+
+### 开源许可证选择器
+
+- [项目简介](https://kaiyuanshe.feishu.cn/wiki/wikcnRn5pkE3BSvqFUMkJPymaG3)
+- [前端主页](https://kaiyuanshe.cn/tool/license-filter)
+- [前端代码](pages/tool/license-filter.tsx)
 
 ### 中国开源地图
 
-- 访问入口：https://kaiyuanshe.vercel.app/organization
-- 数据录入：https://kaiyuanshe.feishu.cn/share/base/shrcnPgQoUZzkpWB2W4dp2QQvbd
-- 数据存储：https://kaiyuanshe.feishu.cn/base/bascnUAyhKLADcw3HyNW5OefrMd?table=tblXlmfjCsoq0sHf&view=vewdl3c59K
+- [项目简介](https://kaiyuanshe.feishu.cn/wiki/wikcnZPJ7YvMU2Qkkxu2GT7TGoh)
+- [前端主页](https://kaiyuanshe.cn/organization)
+- [前端代码](pages/organization/)
+- [后端服务](https://kaiyuanshe.feishu.cn/base/bascnUAyhKLADcw3HyNW5OefrMd?table=tblXlmfjCsoq0sHf&view=vewdl3c59K)
+- [后端代码](models/Community/Organization.ts)
 
-#### 开源协作
+## 开源协作
 
 - 申请加入**开源社志愿者**，填表后组长会联系你加入飞书组织：https://kaiyuanshe.feishu.cn/share/base/shrcnfO89tYlYIjZpS5PXJBaK2f
-- 参与代码贡献：⚠️ 由于官网项目需要调用飞书 API，需要预先配置才能在本地运行，所有**必须先申请加入 Kaiyuanshe Github 组织**后，再贡献代码，不能直接 fork 仓库贡献代码。⚠️
+- 参与代码贡献：⚠️ 由于官网项目需要调用飞书 API，需要预先配置才能在本地运行，所有**必须先申请加入 KaiYuanShe GitHub 组织**后，再贡献代码，不能直接 fork 仓库贡献代码。⚠️
 
-## Technology stack
+## 项目技术栈
 
-- Language: [TypeScript v5][2]
-- Component engine: [Nextjs v12][3]
-- Component suite: [Bootstrap v5][4]
-- State management: [MobX][8]
-- CI / CD: GitHub [Actions][10] + [Vercel][11]
+- 编程语言: [TypeScript v5][2]
+- 组件引擎: [Nextjs v12][3]
+- 组件套件: [Bootstrap v5][4]
+- PWA 框架: [Workbox v6][5]
+- 状态管理: [MobX v6][9]
+- CI / CD: [GitHub Actions][11] + [Vercel][12]
 
-## Getting Started
+## 启动
 
-First, run the development server:
+第一步, 运行开发服务器:
 
 ```bash
-npm run dev
-# or
 npm i pnpm -g
 pnpm dev
 ```
 
-Open http://localhost:3000 with your browser to see the result.
+在浏览器中打开 http://localhost:3000 查看结果。
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+[API routes][13] 可以通过 http://localhost:3000/api/hello 访问，对应端点可以在 `pages/api/hello.ts` 中进行修改。
 
-[API routes][12] can be accessed on http://localhost:3000/api/hello. This endpoint can be edited in `pages/api/hello.ts`.
+`pages/api` 目录映射为 `/api/*`。此目录中的文件被视为 [API routes][13] 而不是 React 页面。
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes][12] instead of React pages.
+- [Next.js 文档][14] - 了解 Next.js 功能和 API
+- [学习 Next.js][15] - 一个交互式 Next.js 教程
 
-## Learn More
+你可以查看 Next.js 的 [GitHub 仓库][16] - 欢迎提供反馈和贡献！
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation][13] - learn about Next.js features and API.
-- [Learn Next.js][14] - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository][15] - your feedback and contributions are welcome!
-
-## Deployment
+## 部署
 
 ### Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform][11] from the creators of Next.js.
+- 部署 Next.js 应用程序的最简单方法是使用 Next.js 创建者 Vercel 提供的 [Vercel 平台][12]。
 
-Check out our [Next.js deployment documentation][16] for more details.
+- 查看 [Next.js 部署文档][17] 了解更多详细信息。
 
 ### Docker
 
@@ -74,18 +96,19 @@ pnpm pack-image
 pnpm container
 ```
 
-[1]: https://reactjs.org/
+[1]: https://react.dev/
 [2]: https://www.typescriptlang.org/
 [3]: https://nextjs.org/
 [4]: https://getbootstrap.com/
-[5]: https://github.com/vercel/next.js/tree/canary/packages/create-next-app
-[6]: https://david-dm.org/kaiyuanshe/kaiyuanshe.github.io
-[7]: https://github.com/kaiyuanshe/kaiyuanshe.github.io/actions
-[8]: https://github.com/mobxjs/mobx/tree/mobx4and5/docs
-[10]: https://github.com/features/actions
-[11]: https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme
-[12]: https://nextjs.org/docs/api-routes/introduction
-[13]: https://nextjs.org/docs
-[14]: https://nextjs.org/learn
-[15]: https://github.com/vercel/next.js/
-[16]: https://nextjs.org/docs/deployment
+[5]: https://developers.google.com/web/tools/workbox
+[6]: https://github.com/vercel/next.js/tree/canary/packages/create-next-app
+[7]: https://david-dm.org/idea2app/next-bootstrap-ts
+[8]: https://github.com/idea2app/Next-Bootstrap-ts/actions/workflows/main.yml
+[9]: https://zh.mobx.js.org/
+[11]: https://github.com/features/actions
+[12]: https://vercel.com/new?filter=next.js
+[13]: https://nextjs.org/docs/api-routes/introduction
+[14]: https://nextjs.org/docs
+[15]: https://nextjs.org/learn
+[16]: https://github.com/vercel/next.js/
+[17]: https://nextjs.org/docs/deployment

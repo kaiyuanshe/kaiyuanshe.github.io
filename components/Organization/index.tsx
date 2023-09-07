@@ -1,5 +1,5 @@
 import { text2color } from 'idea-react';
-import { observable } from 'mobx';
+import { makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { ScrollList } from 'mobx-restful-table';
 import dynamic from 'next/dynamic';
@@ -7,16 +7,26 @@ import { PureComponent } from 'react';
 import { Badge, Button, Nav } from 'react-bootstrap';
 import { isEmpty } from 'web-utility';
 
-import organizationStore from '../../models/Organization';
-import { i18n } from '../../models/Translation';
+import { i18n } from '../../models/Base/Translation';
+import organizationStore, {
+  OrganizationModel,
+} from '../../models/Community/Organization';
 import { CityStatisticMap } from '../CityStatisticMap';
 import { OrganizationCardProps } from './Card';
 import { OrganizationListLayout } from './List';
 
-const OrganizationCharts = dynamic(() => import('./Charts'), { ssr: false });
+const OrganizationCharts = dynamic(() => import('./Charts'), { ssr: false }),
+  { t } = i18n;
 
 @observer
 export class OpenSourceMap extends PureComponent {
+  constructor(props: {}) {
+    super(props);
+    makeObservable(this);
+  }
+
+  listStore = new OrganizationModel();
+
   @observable
   tabKey: 'map' | 'chart' = 'map';
 
@@ -25,11 +35,11 @@ export class OpenSourceMap extends PureComponent {
     tags,
     city,
   }) => {
-    const { filter } = organizationStore;
+    const { filter } = this.listStore;
 
-    organizationStore.clear();
+    this.listStore.clear();
 
-    return organizationStore.getList(
+    return this.listStore.getList(
       type
         ? { ...filter, type }
         : tags
@@ -41,8 +51,7 @@ export class OpenSourceMap extends PureComponent {
   };
 
   renderFilter() {
-    const { t } = i18n,
-      { filter, totalCount } = organizationStore;
+    const { filter, totalCount } = this.listStore;
 
     return (
       !isEmpty(filter) && (
@@ -77,7 +86,6 @@ export class OpenSourceMap extends PureComponent {
 
   renderTab() {
     const { tabKey } = this,
-      { t } = i18n,
       { statistic } = organizationStore;
 
     return (
@@ -119,7 +127,7 @@ export class OpenSourceMap extends PureComponent {
 
         <ScrollList
           translator={i18n}
-          store={organizationStore}
+          store={this.listStore}
           renderList={allItems => (
             <OrganizationListLayout
               defaultData={allItems}

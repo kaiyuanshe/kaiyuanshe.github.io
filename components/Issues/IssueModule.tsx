@@ -1,28 +1,30 @@
-import { FC, useEffect } from 'react';
-import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
+import { FC, useState } from 'react';
+import { Card, ListGroup } from 'react-bootstrap';
 
+import type { Issue } from '../../models/Repository';
 import IssueCard from './IssueCard';
 
 interface IssueModuleProps {
   title: string;
-  issues: any;
+  issues: Issue[];
 }
 
 const IssueModule: FC<IssueModuleProps> = ({ title, issues }) => {
-  useEffect(() => {
-    console.log('here==!!', title, issues);
-  });
+  const [isExpand, setIsExpand] = useState(false);
+
   return (
     <Card bg="light" text="dark" style={{ padding: 0 }}>
-      <Card.Header>{title}</Card.Header>
-      <ListGroup variant="flush">
-        {issues.map((issue: any) => (
-          <ListGroup.Item key={issue.title} variant="secondary">
-            <IssueCard issue={issue}></IssueCard>
-          </ListGroup.Item>
-        ))}
-      </ListGroup>
+      <Card.Header onClick={() => setIsExpand(!isExpand)}>{title}</Card.Header>
+
+      {isExpand ? (
+        <ListGroup variant="flush">
+          {issues.map(issue => (
+            <ListGroup.Item key={issue.title} variant="secondary">
+              <IssueCard issue={issue}></IssueCard>
+            </ListGroup.Item>
+          ))}
+        </ListGroup>
+      ) : null}
     </Card>
   );
 };
