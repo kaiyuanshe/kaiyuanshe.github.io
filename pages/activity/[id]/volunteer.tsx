@@ -1,3 +1,4 @@
+import { Loading } from 'idea-react';
 import { makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import {
@@ -8,7 +9,7 @@ import {
   translator,
 } from 'next-ssr-middleware';
 import { PureComponent } from 'react';
-import { Container } from 'react-bootstrap';
+import { Container, Table } from 'react-bootstrap';
 
 import PageHead from '../../../components/PageHead';
 import { i18n } from '../../../models//Base/Translation';
@@ -48,10 +49,26 @@ export default class VolunteerPage extends PureComponent<VolunteerDetailPageProp
   render() {
     const { activityStore, staffStore } = this;
     console.log('personStore', staffStore);
+    const loading = activityStore?.downloading || staffStore?.downloading || 0;
+    const { name = '' } = activityStore?.currentOne || {};
 
     return (
       <Container style={{ height: '91vh' }}>
-        <PageHead />
+        <PageHead title={'志愿者' + '-' + name} />
+        <h1 className="mt-4 mb-4">{name + ' ' + '志愿者'}</h1>
+        {loading > 0 && <Loading />}
+
+        {staffStore && (
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>姓名</th>
+                <th>志愿者类型</th>
+              </tr>
+            </thead>
+          </Table>
+        )}
       </Container>
     );
   }
