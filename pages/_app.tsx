@@ -35,7 +35,9 @@ const AppShell: FC<AppProps> = observer(({ Component, pageProps, router }) => (
         <Component {...pageProps} />
       </MDXLayout>
     ) : (
-      <div className="mt-5 pt-4 mainContent"></div>
+      <div className="mt-5 pt-4 mainContent">
+        <Component {...pageProps} />
+      </div>
     )}
 
     <footer className="border-top bg-light text-secondary py-5">

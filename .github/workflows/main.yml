@@ -13,6 +13,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         if: ${{ env.VERCEL_TOKEN && env.VERCEL_ORG_ID && env.VERCEL_PROJECT_ID }}
+        with:
+          submodules: recursive
+          lfs: true
 
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v25
