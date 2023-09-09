@@ -13,7 +13,7 @@ import { PureComponent } from 'react';
 import { Badge, Container } from 'react-bootstrap';
 import { formatDate } from 'web-utility';
 
-import PageHead from '../../../components/PageHead';
+import PageHead from '../../../components/Layout/PageHead';
 import { ActivityModel } from '../../../models/Activity';
 import { Bill, BillModel } from '../../../models/Activity/Bill';
 import { i18n } from '../../../models/Base/Translation';

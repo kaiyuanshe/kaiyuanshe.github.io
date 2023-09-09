@@ -8,7 +8,7 @@ import { PureComponent } from 'react';
 import { Button, ListGroup } from 'react-bootstrap';
 import { buildURLData } from 'web-utility';
 
-import systemStore from '../models/Base/System';
+import systemStore from '../../models/Base/System';
 import ChinaMap from './ChinaMap';
 
 export interface ImageMarker extends MarkerMeta {

@@ -6,7 +6,7 @@ import { FC } from 'react';
 import { Container } from 'react-bootstrap';
 
 import { ActivityListLayout } from '../../components/Activity/List';
-import PageHead from '../../components/PageHead';
+import PageHead from '../../components/Layout/PageHead';
 import activityStore, { Activity, ActivityModel } from '../../models/Activity';
 import { i18n } from '../../models/Base/Translation';
 

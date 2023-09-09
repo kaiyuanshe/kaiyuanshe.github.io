@@ -7,7 +7,7 @@ import { Badge, Col, Container, Image, Row } from 'react-bootstrap';
 import { formatDate } from 'web-utility';
 
 import { CommentBox } from '../../components/CommentBox';
-import PageHead from '../../components/PageHead';
+import PageHead from '../../components/Layout/PageHead';
 import { i18n } from '../../models/Base/Translation';
 import { Personnel, PersonnelModel } from '../../models/Personnel';
 import { Person, PersonModel } from '../../models/Personnel/Person';

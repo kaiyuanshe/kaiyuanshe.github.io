@@ -5,6 +5,7 @@ import RemarkFrontMatter from 'remark-frontmatter';
 import RemarkGfm from 'remark-gfm';
 import RemarkMdxFrontMatter from 'remark-mdx-frontmatter';
 import webpack from 'webpack';
+import CopyPlugin from 'copy-webpack-plugin';
 
 const { NODE_ENV } = process.env;
 
@@ -33,11 +34,27 @@ export default withPWA(
           new webpack.NormalModuleReplacementPlugin(/^node:/, resource => {
             resource.request = resource.request.replace(/^node:/, '');
           }),
+          new CopyPlugin({
+            patterns: [
+              { from: 'pages/article/original', to: 'static/article/original' },
+            ],
+          }),
         );
         return config;
       },
       rewrites: async () => ({
         fallback: [
+          {
+            source: '/article/original/:path*',
+            destination: `/_next/static/article/original/:path*`,
+            has: [
+              {
+                type: 'header',
+                key: 'Accept',
+                value: '.*(image|audio|video|application)/.*',
+              },
+            ],
+          },
           {
             source: '/:path*',
             destination: `https://kaiyuanshe.github.io/:path*`,

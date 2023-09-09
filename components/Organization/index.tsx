@@ -11,7 +11,7 @@ import { i18n } from '../../models/Base/Translation';
 import organizationStore, {
   OrganizationModel,
 } from '../../models/Community/Organization';
-import { CityStatisticMap } from '../CityStatisticMap';
+import { CityStatisticMap } from '../Map/CityStatisticMap';
 import { OrganizationCardProps } from './Card';
 import { OrganizationListLayout } from './List';
 
