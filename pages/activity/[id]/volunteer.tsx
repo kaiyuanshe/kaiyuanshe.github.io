@@ -9,7 +9,7 @@ import {
   translator,
 } from 'next-ssr-middleware';
 import { PureComponent } from 'react';
-import { Container, Table} from 'react-bootstrap';
+import { Container, Table } from 'react-bootstrap';
 
 import PageHead from '../../../components/PageHead';
 import { i18n } from '../../../models//Base/Translation';
@@ -42,14 +42,13 @@ export default class VolunteerPage extends PureComponent<VolunteerDetailPageProp
     const { id } = this.props.route.params!;
     this.activityStore = new ActivityModel();
     await this.activityStore.getOne(id);
-    this.list = this.activityStore.currentStaff?.getList({});
-    console.log('this.personStroe', this.staffStore);
+    this.activityStore.currentStaff?.getAll();
   }
 
   render() {
-    const { activityStore, list } = this;
-    console.log('personStore', list);
-    const loading = activityStore?.downloading || list?.downloading || 0;
+    const { activityStore } = this;
+    const list = activityStore?.currentStaff?.allItems;
+    const loading = activityStore?.downloading || 0;
     const { name = '' } = activityStore?.currentOne || {};
 
     return (
@@ -60,19 +59,14 @@ export default class VolunteerPage extends PureComponent<VolunteerDetailPageProp
 
         {list && (
           <Table striped bordered hover>
-             <thead>
-             <tr>
+            <thead>
+              <tr>
                 <th></th>
                 <th>姓名</th>
                 <th>志愿者类型</th>
               </tr>
-              </thead>  
-              <tbody>
-                {
-
-                }
-              </tbody>
-
+            </thead>
+            <tbody>{}</tbody>
           </Table>
         )}
       </Container>
