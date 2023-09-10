@@ -9,12 +9,15 @@ import {
   translator,
 } from 'next-ssr-middleware';
 import { PureComponent } from 'react';
-import { Container, Table } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 
+import { MemberCard } from '../../../components/Member/Card';
+import { MemberTitle } from '../../../components/Member/Title';
 import PageHead from '../../../components/PageHead';
 import { i18n } from '../../../models//Base/Translation';
 import { ActivityModel } from '../../../models/Activity';
 import { Staff, StaffModel } from '../../../models/Activity/Staff';
+import { fileURLOf } from '../../api/lark/file/[id]';
 
 type VolunteerDetailPageProps = RouteProps<{ id: string }>;
 
@@ -44,31 +47,35 @@ export default class VolunteerPage extends PureComponent<VolunteerDetailPageProp
     await this.activityStore.getOne(id);
     this.activityStore.currentStaff?.getAll();
   }
+  renderVolunteers = ({ id, name }: Staff) => (
+    <li
+      key={id as string}
+      className="d-flex flex-column align-items-center gap-2 position-relative"
+    >
+      <MemberCard name={name + ''} nickname={''} avatar={fileURLOf('')} />
+    </li>
+  );
 
   render() {
     const { activityStore } = this;
-    const list = activityStore?.currentStaff?.allItems;
+    const list = activityStore?.currentStaff?.allItems.filter(
+      item => item.role?.includes('志愿者'),
+    );
     const loading = activityStore?.downloading || 0;
     const { name = '' } = activityStore?.currentOne || {};
 
     return (
-      <Container style={{ height: '91vh' }}>
+      <Container className="py-5">
         <PageHead title={'志愿者' + '-' + name} />
-        <h1 className="mt-4 mb-4">{name + ' ' + '志愿者'}</h1>
+        <h1 className="text-center">{name + ' ' + '志愿者'}</h1>
         {loading > 0 && <Loading />}
 
-        {list && (
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th></th>
-                <th>姓名</th>
-                <th>志愿者类型</th>
-              </tr>
-            </thead>
-            <tbody>{}</tbody>
-          </Table>
-        )}
+        <section>
+          <MemberTitle className="my-5" title="志愿者" count={list?.length} />
+          <ul className="list-unstyled d-flex flex-wrap grap-3">
+            {list?.map(this.renderVolunteers)}
+          </ul>
+        </section>
       </Container>
     );
   }

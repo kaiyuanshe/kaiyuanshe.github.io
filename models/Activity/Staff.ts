@@ -3,7 +3,11 @@ import { BiDataTable, TableCellValue } from 'mobx-lark';
 
 import { larkClient } from '../Base';
 
-export type Staff = Record<'id' | 'name' | 'role', TableCellValue>;
+export type Staff = {
+  id: TableCellValue;
+  name: TableCellValue;
+  role: TableCellValue[];
+};
 
 export class StaffModel extends BiDataTable<Staff>() {
   constructor(appId: string, tableId: string) {
