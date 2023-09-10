@@ -7,9 +7,9 @@ import { PureComponent } from 'react';
 import { Container } from 'react-bootstrap';
 import { TimeData } from 'web-utility';
 
+import PageHead from '../../components/Layout/PageHead';
 import { MemberCard } from '../../components/Member/Card';
 import { MemberTitle } from '../../components/Member/Title';
-import PageHead from '../../components/PageHead';
 import { i18n } from '../../models/Base/Translation';
 import { Personnel, PersonnelModel } from '../../models/Personnel';
 import { fileURLOf } from '../api/lark/file/[id]';

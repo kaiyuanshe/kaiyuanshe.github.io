@@ -8,7 +8,7 @@ import { createRef, MouseEvent, PureComponent } from 'react';
 import { Badge, Container, Image } from 'react-bootstrap';
 
 import { ActivityPeople } from '../../../../../components/Activity/People';
-import PageHead from '../../../../../components/PageHead';
+import PageHead from '../../../../../components/Layout/PageHead';
 import { Activity, ActivityModel } from '../../../../../models/Activity';
 import { Agenda } from '../../../../../models/Activity/Agenda';
 import { API_Host, blobURLOf, isServer } from '../../../../../models/Base';

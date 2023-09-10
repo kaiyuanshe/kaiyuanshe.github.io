@@ -12,7 +12,7 @@ import { FC } from 'react';
 import { Container } from 'react-bootstrap';
 
 import { ArticleListLayout } from '../../components/Article/List';
-import PageHead from '../../components/PageHead';
+import PageHead from '../../components/Layout/PageHead';
 import { i18n } from '../../models/Base/Translation';
 import articleStore, {
   Article,
