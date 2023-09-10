@@ -21,6 +21,10 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+          lfs: true
+      - run: git submodule update --remote
 
       - name: Inject Environment variables
         run: |
