@@ -16,6 +16,7 @@ jobs:
         with:
           submodules: recursive
           lfs: true
+      - run: git submodule update --remote
 
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v25
