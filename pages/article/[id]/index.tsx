@@ -1,4 +1,3 @@
-import { ScrollList } from 'mobx-restful-table';
 import { InferGetServerSidePropsType } from 'next';
 import { compose, errorLogger } from 'next-ssr-middleware';
 import { PureComponent } from 'react';
@@ -7,12 +6,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import { ArticleListLayout } from '../../../components/Article/List';
 import { CommentBox } from '../../../components/CommentBox';
 import PageHead from '../../../components/PageHead';
-import { i18n } from '../../../models/Base/Translation';
-import {
-  Article,
-  ArticleModel,
-  SearchArticleModel,
-} from '../../../models/Product/Article';
+import { Article, ArticleModel } from '../../../models/Product/Article';
 
 export const getServerSideProps = compose<
   { id: string },
