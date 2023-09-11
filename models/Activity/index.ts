@@ -171,7 +171,7 @@ export class ActivityModel extends BiDataTable<Activity>() {
       this.currentBill = table.currentDataTable as BillModel;
 
       await table.getOne('Person', StaffModel);
-      this.currentStaff = table.currentDataTable as unknown as StaffModel;
+      this.currentStaff = table.currentDataTable as StaffModel;
 
       this.formMap = table.formMap;
     }

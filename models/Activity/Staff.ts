@@ -6,6 +6,8 @@ import { larkClient } from '../Base';
 export type Staff = {
   id: TableCellValue;
   name: TableCellValue;
+  volunteerType: TableCellValue;
+  avatar: TableCellValue;
   role: TableCellValue[];
 };
 
