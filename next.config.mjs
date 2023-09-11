@@ -1,11 +1,12 @@
 import NextMDX from '@next/mdx';
+import CopyPlugin from 'copy-webpack-plugin';
+import { statSync } from 'fs';
 import setPWA from 'next-pwa';
 import withLess from 'next-with-less';
 import RemarkFrontMatter from 'remark-frontmatter';
 import RemarkGfm from 'remark-gfm';
 import RemarkMdxFrontMatter from 'remark-mdx-frontmatter';
 import webpack from 'webpack';
-import CopyPlugin from 'copy-webpack-plugin';
 
 const { NODE_ENV } = process.env;
 
@@ -34,12 +35,23 @@ export default withPWA(
           new webpack.NormalModuleReplacementPlugin(/^node:/, resource => {
             resource.request = resource.request.replace(/^node:/, '');
           }),
-          new CopyPlugin({
-            patterns: [
-              { from: 'pages/article/original', to: 'static/article/original' },
-            ],
-          }),
         );
+
+        if (
+          statSync('pages/article/original', {
+            throwIfNoEntry: false,
+          })?.isDirectory()
+        )
+          config.plugins.push(
+            new CopyPlugin({
+              patterns: [
+                {
+                  from: 'pages/article/original',
+                  to: 'static/article/original',
+                },
+              ],
+            }),
+          );
         return config;
       },
       rewrites: async () => ({
