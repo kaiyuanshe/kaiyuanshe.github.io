@@ -4,10 +4,10 @@ import { NextRouter, withRouter } from 'next/router';
 import { PureComponent } from 'react';
 import { Container, Image, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 
-import { API_Host } from '../models/Base';
-import { i18n, LanguageName } from '../models/Base/Translation';
-import styles from '../styles/MainNav.module.less';
-import { SearchBar } from './SearchBar';
+import { API_Host } from '../../models/Base';
+import { i18n, LanguageName } from '../../models/Base/Translation';
+import { SearchBar } from '../SearchBar';
+import styles from './MainNav.module.less';
 
 export interface Link {
   title: string;

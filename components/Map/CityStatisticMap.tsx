@@ -5,8 +5,8 @@ import dynamic from 'next/dynamic';
 import { MarkerMeta, OpenReactMapProps } from 'open-react-map';
 import { Component } from 'react';
 
-import { StatisticTrait } from '../models/Activity';
-import metaStore from '../models/Base/System';
+import { StatisticTrait } from '../../models/Activity';
+import metaStore from '../../models/Base/System';
 
 const ChinaMap = dynamic(() => import('./ChinaMap'), { ssr: false });
 

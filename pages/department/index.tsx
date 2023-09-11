@@ -4,7 +4,7 @@ import { compose, translator } from 'next-ssr-middleware';
 import { FC } from 'react';
 import { Button, Container } from 'react-bootstrap';
 
-import PageHead from '../../components/PageHead';
+import PageHead from '../../components/Layout/PageHead';
 import { i18n } from '../../models/Base/Translation';
 
 const DepartmentTree = dynamic(

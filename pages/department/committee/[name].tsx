@@ -10,8 +10,8 @@ import {
 import { FC } from 'react';
 import { Container } from 'react-bootstrap';
 
+import PageHead from '../../../components/Layout/PageHead';
 import { MemberCard } from '../../../components/Member/Card';
-import PageHead from '../../../components/PageHead';
 import { i18n } from '../../../models/Base/Translation';
 import { PersonnelModel } from '../../../models/Personnel';
 import { fileURLOf } from '../../api/lark/file/[id]';

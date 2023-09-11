@@ -5,7 +5,7 @@ import { compose, translator } from 'next-ssr-middleware';
 import { PureComponent } from 'react';
 import { Col, Container, Image, ListGroup, Row } from 'react-bootstrap';
 
-import PageHead from '../../components/PageHead';
+import PageHead from '../../components/Layout/PageHead';
 import { blobURLOf } from '../../models/Base';
 import { i18n } from '../../models/Base/Translation';
 import {

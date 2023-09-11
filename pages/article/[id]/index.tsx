@@ -5,7 +5,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 
 import { ArticleListLayout } from '../../../components/Article/List';
 import { CommentBox } from '../../../components/CommentBox';
-import PageHead from '../../../components/PageHead';
+import PageHead from '../../../components/Layout/PageHead';
 import { Article, ArticleModel } from '../../../models/Product/Article';
 
 export const getServerSideProps = compose<

@@ -9,7 +9,7 @@ import { Badge, Col, Container, Row } from 'react-bootstrap';
 import { AgendaToolbar } from '../../../../../components/Activity/Agenda/Toolbar';
 import { ActivityPeople } from '../../../../../components/Activity/People';
 import { CommentBox } from '../../../../../components/CommentBox';
-import PageHead from '../../../../../components/PageHead';
+import PageHead from '../../../../../components/Layout/PageHead';
 import { Activity, ActivityModel } from '../../../../../models/Activity';
 import { Agenda } from '../../../../../models/Activity/Agenda';
 import { blobURLOf } from '../../../../../models/Base';

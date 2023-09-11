@@ -6,8 +6,8 @@ import { Fragment, PureComponent } from 'react';
 import { Col, Container, Image, Row } from 'react-bootstrap';
 
 import { ArticleListLayout } from '../components/Article/List';
-import { CityStatisticMap } from '../components/CityStatisticMap';
-import PageHead from '../components/PageHead';
+import PageHead from '../components/Layout/PageHead';
+import { CityStatisticMap } from '../components/Map/CityStatisticMap';
 import activityStore from '../models/Activity';
 import { blobURLOf } from '../models/Base';
 import { i18n } from '../models/Base/Translation';
