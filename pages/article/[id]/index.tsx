@@ -61,15 +61,7 @@ export default class ArticleDetailPage extends PureComponent<
           <Col xs={12} sm={3}>
             {this.renderAuthorization()}
 
-            <ScrollList
-              translator={i18n}
-              store={new SearchArticleModel()}
-              filter={{ tags: (tags + '').split(/\s+/) }}
-              renderList={allItems => (
-                <ArticleListLayout defaultData={allItems} rowCols={{ xs: 1 }} />
-              )}
-              defaultData={recommends}
-            />
+            <ArticleListLayout defaultData={recommends} rowCols={{ xs: 1 }} />
           </Col>
         </Row>
 
