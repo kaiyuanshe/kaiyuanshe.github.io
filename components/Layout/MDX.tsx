@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { Container, ContainerProps } from 'react-bootstrap';
 
+import { CommentBox } from '../CommentBox';
 import PageHead from './PageHead';
 
 export const MDXLayout: FC<ContainerProps> = ({
@@ -14,5 +15,7 @@ export const MDXLayout: FC<ContainerProps> = ({
     <h1 className="my-4">{title}</h1>
 
     {children}
+
+    <CommentBox category="General" categoryId="DIC_kwDOB88JLM4COLSV" />
   </Container>
 );
