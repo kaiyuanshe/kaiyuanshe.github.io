@@ -13,7 +13,7 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 import { isEmpty } from 'web-utility';
 
 import { ElectorCard } from '../../../components/Election/ElectorCard';
-import PageHead from '../../../components/PageHead';
+import PageHead from '../../../components/Layout/PageHead';
 import { i18n } from '../../../models/Base/Translation';
 import { ElectionTarget, PersonnelModel } from '../../../models/Personnel';
 

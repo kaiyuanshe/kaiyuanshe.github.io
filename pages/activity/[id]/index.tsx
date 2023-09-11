@@ -17,8 +17,8 @@ import {
 import { AgendaCard } from '../../../components/Activity/Agenda/Card';
 import { DrawerNav } from '../../../components/Activity/DrawerNav';
 import { ActivityPeople } from '../../../components/Activity/People';
-import type { ImageMarker } from '../../../components/ListMap';
-import PageHead from '../../../components/PageHead';
+import PageHead from '../../../components/Layout/PageHead';
+import type { ImageMarker } from '../../../components/Map/ListMap';
 import { Activity, ActivityModel } from '../../../models/Activity';
 import { AgendaModel } from '../../../models/Activity/Agenda';
 import { Forum } from '../../../models/Activity/Forum';
@@ -29,7 +29,7 @@ import { coordinateOf, TableFormViewItem } from '../../api/lark/core';
 import { fileURLOf } from '../../api/lark/file/[id]';
 import styles from './index.module.less';
 
-const ListMap = dynamic(() => import('../../../components/ListMap'), {
+const ListMap = dynamic(() => import('../../../components/Map/ListMap'), {
     ssr: false,
   }),
   { t } = i18n;

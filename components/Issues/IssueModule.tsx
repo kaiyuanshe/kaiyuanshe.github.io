@@ -1,8 +1,8 @@
+import { marked } from 'marked';
 import { FC, useState } from 'react';
-import { Card, ListGroup } from 'react-bootstrap';
+import { Card, Collapse, ListGroup, Row } from 'react-bootstrap';
 
 import type { Issue } from '../../models/Repository';
-import IssueCard from './IssueCard';
 
 interface IssueModuleProps {
   title: string;
@@ -13,18 +13,40 @@ const IssueModule: FC<IssueModuleProps> = ({ title, issues }) => {
   const [isExpand, setIsExpand] = useState(false);
 
   return (
-    <Card bg="light" text="dark" style={{ padding: 0 }}>
-      <Card.Header onClick={() => setIsExpand(!isExpand)}>{title}</Card.Header>
+    <Card className="p-0" bg="light" text="dark">
+      <Card.Header as="h3" onClick={() => setIsExpand(!isExpand)}>
+        {title}
+      </Card.Header>
 
-      {isExpand ? (
-        <ListGroup variant="flush">
-          {issues.map(issue => (
-            <ListGroup.Item key={issue.title} variant="secondary">
-              <IssueCard issue={issue}></IssueCard>
-            </ListGroup.Item>
-          ))}
-        </ListGroup>
-      ) : null}
+      <Collapse in={isExpand}>
+        <Card.Body>
+          <Row xs={1} sm={2} xl={2}>
+            {issues.map(({ title: issue_title, body, html_url }) => (
+              <div key={issue_title} style={{ padding: '10px' }}>
+                <Card className="p-0 h-100" bg="light" text="dark">
+                  <Card.Header>
+                    <a
+                      href={html_url}
+                      className="text-decoration-none text-secondary text-truncation-lines"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {issue_title}
+                    </a>
+                  </Card.Header>
+                  <Card.Body>
+                    <article
+                      dangerouslySetInnerHTML={{
+                        __html: marked((body as string) || ''),
+                      }}
+                    />
+                  </Card.Body>
+                </Card>
+              </div>
+            ))}
+          </Row>
+        </Card.Body>
+      </Collapse>
     </Card>
   );
 };

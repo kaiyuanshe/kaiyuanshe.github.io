@@ -7,7 +7,7 @@ import { compose, translator } from 'next-ssr-middleware';
 import { FC } from 'react';
 import { Container, Row } from 'react-bootstrap';
 
-import PageHead from '../../../components/PageHead';
+import PageHead from '../../../components/Layout/PageHead';
 import { i18n } from '../../../models/Base/Translation';
 import repositoryStore, { RepositoryModel } from '../../../models/Repository';
 
@@ -22,31 +22,25 @@ export const getServerSideProps = compose(translator(i18n), async () => {
 });
 
 const IssuesPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
-  observer(({ list }) => {
-    return (
-      <Container className="py-5">
-        <PageHead title="issues" />
+  observer(({ list }) => (
+    <Container className="py-5">
+      <PageHead title="issues" />
 
-        {repositoryStore.downloading > 0 && <Loading />}
+      {repositoryStore.downloading > 0 && <Loading />}
 
-        <ScrollList
-          translator={i18n}
-          store={repositoryStore}
-          defaultData={list}
-          renderList={allItems => (
-            <Row as="ul" className="list-unstyled g-4">
-              {allItems.map(({ name, issues }) => (
-                <IssueModule
-                  key={name}
-                  title={name}
-                  issues={issues}
-                ></IssueModule>
-              ))}
-            </Row>
-          )}
-        />
-      </Container>
-    );
-  });
+      <ScrollList
+        translator={i18n}
+        store={repositoryStore}
+        defaultData={list}
+        renderList={allItems => (
+          <Row as="ul" className="list-unstyled g-4">
+            {allItems.map(({ name, issues }) => (
+              <IssueModule key={name} title={name} issues={issues} />
+            ))}
+          </Row>
+        )}
+      />
+    </Container>
+  ));
 
 export default IssuesPage;
