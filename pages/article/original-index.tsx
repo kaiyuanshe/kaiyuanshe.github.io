@@ -38,9 +38,13 @@ export const getStaticProps: GetStaticProps<{
       })
       .filter(Boolean) as ArticleMeta[];
 
-  const list = pageListOf('/article/original');
+  try {
+    const list = pageListOf('/article/original');
 
-  return { props: { list } };
+    return { props: { list } };
+  } catch {
+    return { props: { list: [] } };
+  }
 };
 
 const renderTree = (list: ArticleMeta[]) => (
