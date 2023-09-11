@@ -15,6 +15,7 @@ export const MDXLayout: FC<ContainerProps> = ({
     <h1 className="my-4">{title}</h1>
 
     {children}
+
     <CommentBox category="General" categoryId="DIC_kwDOB88JLM4COLSV" />
   </Container>
 );
