@@ -1,5 +1,6 @@
 import { makeObservable, observable } from 'mobx';
-import { BiDataTable, NewData,TableCellValue, TableRecord } from 'mobx-lark';
+import { BiDataTable, TableCellValue, TableRecord } from 'mobx-lark';
+import { NewData } from 'mobx-restful';
 import { groupBy } from 'web-utility';
 
 import { larkClient } from '../Base';
