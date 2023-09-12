@@ -9,6 +9,10 @@ export type Staff = Record<
   TableCellValue
 > & { role: TableCellValue[] };
 
+type StaffFilter = {
+  [k in keyof Staff]?: string | number;
+};
+
 export class StaffModel extends BiDataTable<Staff>() {
   constructor(appId: string, tableId: string) {
     super(appId, tableId);
@@ -23,9 +27,9 @@ export class StaffModel extends BiDataTable<Staff>() {
   @observable
   group: Record<string, Staff[]> = {};
 
-  async getGroup() {
+  async getGroup(filter: StaffFilter) {
     return (this.group = groupBy(
-      await this.getAll(),
+      await this.getAll(filter),
       ({ volunteerType }) => volunteerType + '',
     ));
   }

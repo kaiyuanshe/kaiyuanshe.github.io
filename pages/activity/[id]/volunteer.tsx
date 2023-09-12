@@ -2,25 +2,22 @@ import { Loading } from 'idea-react';
 import { makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import {
-  RouteProps,
   compose,
   errorLogger,
+  RouteProps,
   router,
   translator,
 } from 'next-ssr-middleware';
 import { PureComponent } from 'react';
 import { Container } from 'react-bootstrap';
 
-import { groupBy } from 'web-utility';
-
-import { blobURLOf } from '../../../models/Base';
 import { MemberCard } from '../../../components/Member/Card';
 import { MemberTitle } from '../../../components/Member/Title';
 import PageHead from '../../../components/PageHead';
 import { i18n } from '../../../models//Base/Translation';
 import { ActivityModel } from '../../../models/Activity';
 import { Staff, StaffModel } from '../../../models/Activity/Staff';
-import { fileURLOf } from '../../api/lark/file/[id]';
+import { blobURLOf } from '../../../models/Base';
 
 type VolunteerDetailPageProps = RouteProps<{ id: string }>;
 
@@ -62,7 +59,7 @@ export default class VolunteerPage extends PureComponent<VolunteerDetailPageProp
   render() {
     const { activityStore } = this;
     const list = activityStore?.currentStaff?.allItems;
-    const grouped = groupBy(list , 'volunteerType');
+
     const loading = activityStore?.downloading || 0;
     const { name = '' } = activityStore?.currentOne || {};
 
@@ -72,17 +69,16 @@ export default class VolunteerPage extends PureComponent<VolunteerDetailPageProp
         <h1 className="text-center">{name + ' ' + t('volunteer')}</h1>
         {loading > 0 && <Loading />}
 
-        {grouped.map((item: Staff[]) => (
-          <section>
-            <MemberTitle className="my-5" title={t('volunteer')} count={list?.length} />
-            <ul className="list-unstyled d-flex flex-wrap grap-3">
-              {item?.map(this.renderVolunteers)}
-            </ul>
-          </section>
-
-        )}
-
-
+        <section>
+          <MemberTitle
+            className="my-5"
+            title={t('volunteer')}
+            count={list?.length}
+          />
+          <ul className="list-unstyled d-flex flex-wrap grap-3">
+            {list?.map(this.renderVolunteers)}
+          </ul>
+        </section>
       </Container>
     );
   }
