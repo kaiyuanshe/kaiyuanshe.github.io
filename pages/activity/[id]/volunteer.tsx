@@ -45,7 +45,7 @@ export default class VolunteerPage extends PureComponent<VolunteerDetailPageProp
     const { id } = this.props.route.params!;
     this.activityStore = new ActivityModel();
     await this.activityStore.getOne(id);
-    this.activityStore.currentStaff?.getAll({ role: '志愿者' });
+    this.activityStore.currentStaff?.getGroup({ role: '志愿者' });
   }
   renderVolunteers = ({ id, name, avatar }: Staff) => (
     <li
