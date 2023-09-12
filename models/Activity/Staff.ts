@@ -1,13 +1,17 @@
 import { makeObservable, observable } from 'mobx';
-import { BiDataTable, TableCellValue } from 'mobx-lark';
+import { BiDataTable, TableCellValue, TableRecord } from 'mobx-lark';
 import { groupBy } from 'web-utility';
 
 import { larkClient } from '../Base';
 
-export type Staff = Record<
-  'id' | 'name' | 'volunteerType' | 'avatar',
-  TableCellValue
-> & { role: TableCellValue[] };
+export type Staff = {
+  id: TableCellValue;
+  name: TableCellValue;
+  volunteerType: TableCellValue;
+  avatar: TableCellValue;
+  
+  role: TableCellValue[]; 
+}
 
 type StaffFilter = {
   [k in keyof Staff]?: string | number;
