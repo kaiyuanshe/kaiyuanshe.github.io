@@ -1,5 +1,5 @@
 import { makeObservable, observable } from 'mobx';
-import { BiDataTable, TableCellValue, TableRecord } from 'mobx-lark';
+import { BiDataTable, NewData,TableCellValue, TableRecord } from 'mobx-lark';
 import { groupBy } from 'web-utility';
 
 import { larkClient } from '../Base';
@@ -9,13 +9,10 @@ export type Staff = {
   name: TableCellValue;
   volunteerType: TableCellValue;
   avatar: TableCellValue;
-  
-  role: TableCellValue[]; 
-}
-
-type StaffFilter = {
-  [k in keyof Staff]?: string | number;
+  role: TableCellValue;
 };
+
+export type StaffFilter = Partial<NewData<Staff>>;
 
 export class StaffModel extends BiDataTable<Staff>() {
   constructor(appId: string, tableId: string) {
