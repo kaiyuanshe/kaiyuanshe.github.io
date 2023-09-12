@@ -61,7 +61,6 @@ export default class MemberPage extends PureComponent<
 
   render() {
     const { group } = this.props;
-
     return (
       <Container className="py-5">
         <PageHead title={t('正式成员')} />
