@@ -1,15 +1,13 @@
 import { makeObservable, observable } from 'mobx';
 import { BiDataTable, TableCellValue } from 'mobx-lark';
+import { groupBy } from 'web-utility';
 
 import { larkClient } from '../Base';
 
-export type Staff = {
-  id: TableCellValue;
-  name: TableCellValue;
-  volunteerType: TableCellValue;
-  avatar: TableCellValue;
-  role: TableCellValue[];
-};
+export type Staff = Record<
+  'id' | 'name' | 'volunteerType' | 'avatar',
+  TableCellValue
+> & { role: TableCellValue[] };
 
 export class StaffModel extends BiDataTable<Staff>() {
   constructor(appId: string, tableId: string) {
@@ -24,4 +22,11 @@ export class StaffModel extends BiDataTable<Staff>() {
 
   @observable
   group: Record<string, Staff[]> = {};
+
+  async getGroup() {
+    return (this.group = groupBy(
+      await this.getAll(),
+      ({ volunteerType }) => volunteerType + '',
+    ));
+  }
 }
