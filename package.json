@@ -28,7 +28,7 @@
     "marked": "^9.0.0",
     "mobx": "^6.10.2",
     "mobx-i18n": "^0.4.1",
-    "mobx-lark": "^1.0.0-rc.7",
+    "mobx-lark": "^1.0.0-rc.8",
     "mobx-react": "^9.0.1",
     "mobx-react-helper": "^0.2.7",
     "mobx-restful": "^0.6.11",
@@ -51,7 +51,9 @@
     "webpack": "^5.88.2"
   },
   "devDependencies": {
+    "@octokit/openapi-types": "^18.0.0",
     "@types/leaflet": "^1.9.4",
+    "@types/lodash": "^4.14.198",
     "@types/mdx": "^2.0.7",
     "@types/node": "^18.17.15",
     "@types/react": "^17.0.65",
@@ -61,8 +63,6 @@
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "get-git-folder": "^0.1.2",
     "husky": "^8.0.3",
-    "@octokit/openapi-types": "^18.0.0",
-    "@types/lodash": "^4.14.197",
     "lint-staged": "^14.0.1",
     "prettier": "^3.0.3",
     "typescript": "~5.1.6"

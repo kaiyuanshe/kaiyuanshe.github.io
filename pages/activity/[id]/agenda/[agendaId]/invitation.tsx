@@ -2,7 +2,7 @@ import { Loading, text2color } from 'idea-react';
 import { makeObservable, observable } from 'mobx';
 import { TableCellLocation, TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
-import { compose, errorLogger } from 'next-ssr-middleware';
+import { compose, errorLogger, router } from 'next-ssr-middleware';
 import { QRCodeSVG } from 'qrcode.react';
 import { createRef, MouseEvent, PureComponent } from 'react';
 import { Badge, Container, Image } from 'react-bootstrap';
@@ -27,7 +27,7 @@ interface InvitationPageProps {
 export const getServerSideProps = compose<
   Record<'id' | 'agendaId', string>,
   InvitationPageProps
->(errorLogger, async ({ params }) => {
+>(router, errorLogger, async ({ params }) => {
   const activityStore = new ActivityModel(),
     { id, agendaId } = params!;
   const activity = await activityStore.getOne(id + ''),

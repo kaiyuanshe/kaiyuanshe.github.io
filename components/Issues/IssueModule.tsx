@@ -1,43 +1,46 @@
-import { marked } from 'marked';
+import { Icon, text2color } from 'idea-react';
 import { FC, useState } from 'react';
-import { Card, Col, Collapse, Row } from 'react-bootstrap';
+import { Badge, Card, Col, Collapse, Row, Stack } from 'react-bootstrap';
 
-import type { Issue } from '../../models/Repository';
-import styles from './IssueModule.module.less';
+import type { GitRepository } from '../../models/Repository';
+import { IssueCard } from './Card';
 
-interface IssueModuleProps {
-  title: string;
-  issues: Issue[];
-}
-
-const IssueModule: FC<IssueModuleProps> = ({ title, issues }) => {
+export const IssueModule: FC<GitRepository> = ({ name, language, issues }) => {
   const [isExpand, setIsExpand] = useState(false);
 
   return (
     <Card className="p-0" bg="light" text="dark">
-      <Card.Header as="h3" onClick={() => setIsExpand(!isExpand)}>
-        {title}
+      <Card.Header
+        as="h3"
+        className="d-flex justify-content-between align-items-center"
+        style={{ cursor: 'pointer' }}
+        onClick={() => setIsExpand(!isExpand)}
+      >
+        <Stack direction="horizontal" gap={2}>
+          {language && (
+            <Badge className="fs-6" bg={text2color(language, ['light'])}>
+              {language}
+            </Badge>
+          )}
+          {name}
+        </Stack>
+
+        <Stack direction="horizontal" gap={2}>
+          <Badge className="fs-6" pill bg="info">
+            {issues.length}
+          </Badge>
+          <Icon
+            size={1.5}
+            name={isExpand ? 'arrows-collapse' : 'arrows-expand'}
+          />
+        </Stack>
       </Card.Header>
 
       <Collapse in={isExpand}>
-        <Card.Body as={Row} xs={1} sm={2} xl={2} className="g-2">
-          {issues.map(({ title, body, html_url }) => (
-            <Col key={title}>
-              <Card className="h-100" bg="light" text="dark">
-                <Card.Header
-                  as="a"
-                  className="text-decoration-none text-secondary text-truncation-lines"
-                  href={html_url}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {title}
-                </Card.Header>
-                <Card.Body
-                  className={styles.fixImg}
-                  dangerouslySetInnerHTML={{ __html: marked(body || '') }}
-                />
-              </Card>
+        <Card.Body as={Row} xs={1} sm={2} xl={2} className="g-3">
+          {issues.map(issue => (
+            <Col key={issue.title}>
+              <IssueCard className="h-100" {...issue} />
             </Col>
           ))}
         </Card.Body>
@@ -45,5 +48,3 @@ const IssueModule: FC<IssueModuleProps> = ({ title, issues }) => {
     </Card>
   );
 };
-
-export default IssueModule;
