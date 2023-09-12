@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Col, Row } from 'react-bootstrap';
 
-import { Organization } from '../../models/Community/Organization';
+import { Organization } from '../../models/Organization/Organization';
 import { OrganizationCard, OrganizationCardProps } from './Card';
 
 export interface OrganizationListLayoutProps

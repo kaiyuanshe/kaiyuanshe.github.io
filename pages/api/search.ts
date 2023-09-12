@@ -5,7 +5,7 @@ import { Activity, SearchActivityModel } from '../../models/Activity';
 import {
   Organization,
   SearchOrganizationModel,
-} from '../../models/Community/Organization';
+} from '../../models/Organization/Organization';
 import {
   Department,
   SearchDepartmentModel,
