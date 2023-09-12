@@ -82,7 +82,7 @@ export const MainRoutes = (): Link[] => [
     subs: [
       {
         title: 'issues',
-        path: 'project/issues',
+        path: '/project/issues',
       },
     ],
   },
