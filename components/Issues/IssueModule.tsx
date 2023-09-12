@@ -26,8 +26,8 @@ const IssueModule: FC<IssueModuleProps> = ({ title, issues }) => {
               <Card className="h-100" bg="light" text="dark">
                 <Card.Header
                   as="a"
-                  href={html_url}
                   className="text-decoration-none text-secondary text-truncation-lines"
+                  href={html_url}
                   target="_blank"
                   rel="noreferrer"
                 >
