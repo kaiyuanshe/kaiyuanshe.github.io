@@ -3,6 +3,7 @@ import { FC, useState } from 'react';
 import { Card, Col, Collapse, Row } from 'react-bootstrap';
 
 import type { Issue } from '../../models/Repository';
+import styles from './IssueModule.module.less';
 
 interface IssueModuleProps {
   title: string;
@@ -33,6 +34,7 @@ const IssueModule: FC<IssueModuleProps> = ({ title, issues }) => {
                   {title}
                 </Card.Header>
                 <Card.Body
+                  className={styles.fixImg}
                   dangerouslySetInnerHTML={{ __html: marked(body || '') }}
                 />
               </Card>
