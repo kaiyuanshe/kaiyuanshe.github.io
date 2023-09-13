@@ -23,7 +23,6 @@ const CommunityListPage: FC<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = observer(({ list }) => (
   <Container className="py-5">
-    {console.log(list)}
     <PageHead title={t('community_list')} />
 
     <h1 className="mb-5 text-center">{t('community_list')}</h1>

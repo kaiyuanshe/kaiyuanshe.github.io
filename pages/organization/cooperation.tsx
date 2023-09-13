@@ -11,7 +11,7 @@ import { i18n } from '../../models/Base/Translation';
 import {
   Cooperation,
   CooperationModel,
-} from '../../models/Organization/Cooperation';
+} from '../../models/Community/Cooperation';
 import { fileURLOf } from '../api/lark/file/[id]';
 
 const Levels = [

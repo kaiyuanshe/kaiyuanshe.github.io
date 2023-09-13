@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import { Card } from 'react-bootstrap';
 
-import { Community } from '../../models/Community';
+import { Community } from '../../models/Community22';
 import { fileURLOf } from '../../pages/api/lark/file/[id]';
 
 export const CommunityCard: FC<Community> = ({ name, logo }: Community) => (
