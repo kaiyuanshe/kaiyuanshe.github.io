@@ -217,4 +217,7 @@ export default {
   expert_committee: 'Expert Committee',
   producer: 'Producer: ',
   volunteer: 'Volunteer: ',
+
+  //community list and community detail page
+  community_list: 'Community List',
 } as const;

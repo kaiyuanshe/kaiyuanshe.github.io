@@ -210,4 +210,7 @@ export default {
   expert_committee: '專家委員會',
   producer: '出品人：',
   volunteer: '志願者：',
+
+  //community list and community detail page
+  community_list: '社區列表',
 } as const;
