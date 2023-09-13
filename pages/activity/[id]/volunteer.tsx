@@ -11,9 +11,9 @@ import {
 import { PureComponent } from 'react';
 import { Container } from 'react-bootstrap';
 
+import PageHead from '../../../components/Layout/PageHead';
 import { MemberCard } from '../../../components/Member/Card';
 import { MemberTitle } from '../../../components/Member/Title';
-import PageHead from '../../../components/PageHead';
 import { i18n } from '../../../models//Base/Translation';
 import { Activity, ActivityModel } from '../../../models/Activity';
 import { Staff, StaffModel } from '../../../models/Activity/Staff';
