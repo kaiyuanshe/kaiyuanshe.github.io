@@ -2,11 +2,14 @@ import { makeObservable, observable } from 'mobx';
 import {
   BiDataTable,
   normalizeText,
+  TableCellLink,
   TableCellRelation,
+  TableCellText,
   TableCellValue,
   TableRecord,
 } from 'mobx-lark';
 
+import { normalizeTextArray } from '../../pages/api/lark/core';
 import { larkClient } from '../Base';
 
 export type Person = Record<
@@ -16,7 +19,6 @@ export type Person = Record<
   | 'gender'
   | 'avatar'
   | 'community'
-  | 'role'
   | 'email'
   | 'summary',
   TableCellValue
@@ -42,11 +44,15 @@ export class PersonModel extends BiDataTable<Person>() {
   @observable
   group: Record<string, Person[]> = {};
 
-  normalize({ id, fields: { community, ...fields } }: TableRecord<Person>) {
+  normalize({
+    id,
+    fields: { community, email, ...fields },
+  }: TableRecord<Person>) {
     return {
       ...fields,
       id: id!,
-      community: (community as TableCellRelation[])?.map(normalizeText),
+      community: normalizeTextArray(community as TableCellText[])[0],
+      email: (email as TableCellLink)?.link,
     };
   }
 }

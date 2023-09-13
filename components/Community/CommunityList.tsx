@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Col, Row } from 'react-bootstrap';
 
 import { Community } from '../../models/Community';
-import { CommunityCard } from './Card';
+import { CommunityCard } from './CommunityCard';
 
 export const CommunityListLayout: FC<{ defaultData: Community[] }> = ({
   defaultData,

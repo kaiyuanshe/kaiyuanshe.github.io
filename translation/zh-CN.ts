@@ -211,4 +211,7 @@ export default {
   expert_committee: '专家委员会',
   producer: '出品人：',
   volunteer: '志愿者：',
+
+  //community detail page
+  community_member: '社区成员',
 } as const;
