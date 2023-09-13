@@ -7,10 +7,7 @@ import { Container } from 'react-bootstrap';
 import { CommunityListLayout } from '../../components/Community/List';
 import PageHead from '../../components/Layout/PageHead';
 import { i18n } from '../../models/Base/Translation';
-import communityStore, {
-  Community,
-  CommunityModel,
-} from '../../models/Community';
+import { Community, CommunityModel } from '../../models/Community';
 
 export const getServerSideProps = compose<{}, { list: Community[] }>(
   translator(i18n),
