@@ -9,7 +9,7 @@ import { MemberTitle } from '../../../components/Member/Title';
 import { i18n } from '../../../models//Base/Translation';
 import { Activity, ActivityModel } from '../../../models/Activity';
 import { Staff } from '../../../models/Activity/Staff';
-import { blobURLOf } from '../../../models/Base';
+import { fileURLOf } from '../../../pages/api/lark/file/[id]';
 
 interface StaffGroup {
   [key: string]: Staff[];
@@ -43,16 +43,12 @@ export const getServerSideProps = compose<{ id: string }, VolunteerPageProps>(
 
 @observer
 export default class VolunteerPage extends PureComponent<VolunteerPageProps> {
-  constructor(props: VolunteerPageProps) {
-    super(props);
-  }
-
   renderVolunteers = ({ id, name, avatar }: Staff) => (
     <li
       key={id as string}
       className="d-flex flex-column align-items-center gap-2 position-relative"
     >
-      <MemberCard name={name + ''} nickname={''} avatar={blobURLOf(avatar)} />
+      <MemberCard name={name + ''} nickname={''} avatar={fileURLOf(avatar)} />
     </li>
   );
 
@@ -66,20 +62,18 @@ export default class VolunteerPage extends PureComponent<VolunteerPageProps> {
         <PageHead title={t('volunteer') + '-' + name} />
         <h1 className="text-center">{name + ' ' + t('volunteer')}</h1>
 
-        {Object.keys(staffGroup).map(key => {
-          return (
-            <section key={key} id={key}>
-              <MemberTitle
-                className="my-5"
-                title={key === 'undefined' ? '未分类志愿者' : key}
-                count={staffGroup[key].length}
-              />
-              <ul className="list-unstyled d-flex flex-wrap gap-4">
-                {staffGroup[key].map(this.renderVolunteers)}
-              </ul>
-            </section>
-          );
-        })}
+        {Object.entries(staffGroup).map(([key, list]) => (
+          <section key={key} id={key}>
+            <MemberTitle
+              className="my-5"
+              title={key === 'undefined' ? '未分类志愿者' : key}
+              count={list.length}
+            />
+            <ul className="list-unstyled d-flex flex-wrap gap-4">
+              {list.map(this.renderVolunteers)}
+            </ul>
+          </section>
+        ))}
       </Container>
     );
   }
