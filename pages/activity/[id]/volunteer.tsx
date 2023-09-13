@@ -19,9 +19,13 @@ import { Activity, ActivityModel } from '../../../models/Activity';
 import { Staff, StaffModel } from '../../../models/Activity/Staff';
 import { blobURLOf } from '../../../models/Base';
 
+interface staffGroup {
+  [key: string]: Staff[];
+}
+
 interface VolunteerPageProps {
   activity: Activity;
-  staff: Staff;
+  staff: staffGroup;
 }
 
 const { t } = i18n;
@@ -49,7 +53,6 @@ export const getServerSideProps = compose<{ id: string }, VolunteerPageProps>(
 export default class VolunteerPage extends PureComponent<VolunteerPageProps> {
   constructor(props: VolunteerPageProps) {
     super(props);
-    makeObservable(this);
   }
 
   renderVolunteers = ({ id, name, avatar }: Staff) => (
@@ -64,25 +67,27 @@ export default class VolunteerPage extends PureComponent<VolunteerPageProps> {
   render() {
     const { activity, staff } = this.props;
 
-    // const loading =  staff.length || 0;
     const { name = '' } = activity;
 
     return (
       <Container className="py-5">
         <PageHead title={t('volunteer') + '-' + name} />
         <h1 className="text-center">{name + ' ' + t('volunteer')}</h1>
-        {/* {loading > 0 && <Loading />} */}
-        <h4>{JSON.stringify(staff)}</h4>
-        {/* <section>
-          <MemberTitle
-            className="my-5"
-            title={t('volunteer')}
-            count={staff?.length}
-          />
-          <ul className="list-unstyled d-flex flex-wrap grap-3">
-            {staff?.map(this.renderVolunteers)}
-          </ul>
-        </section> */}
+
+        {Object.keys(staff).map(key => {
+          return (
+            <section key={key} id={key}>
+              <MemberTitle
+                className="my-5"
+                title={key === 'undefined' ? '未分类志愿者' : key}
+                count={staff[key].length}
+              />
+              <ul className="list-unstyled d-flex flex-wrap gap-4">
+                {staff[key].map(this.renderVolunteers)}
+              </ul>
+            </section>
+          );
+        })}
       </Container>
     );
   }
