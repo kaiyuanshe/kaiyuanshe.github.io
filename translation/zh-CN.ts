@@ -35,6 +35,7 @@ export default {
   china_open_source_annual_report: '中国开源年度报告',
   kaiyuanshe_annual_report: '开源社年度报告',
   china_open_source_landscape: '开源地图',
+  community_list: '开源社城市社区（KCC）',
   our_partners: '合作伙伴',
   open_source_treasure_box: '开源百宝箱',
   Web_polyfill_CDN: 'Web 标准补丁 CDN',
@@ -210,7 +211,4 @@ export default {
   expert_committee: '专家委员会',
   producer: '出品人：',
   volunteer: '志愿者：',
-
-  //community list and community detail page
-  community_list: '社区列表',
 } as const;

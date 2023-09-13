@@ -36,6 +36,7 @@ export default {
   china_open_source_annual_report: 'China Open Source Annual Report',
   kaiyuanshe_annual_report: 'KaiYuanShe Annual Report',
   china_open_source_landscape: 'China Open Source Landscape',
+  community_list: 'Kaiyuanshe City Community',
   our_partners: 'Our Partners',
   open_source_treasure_box: 'Treasure-box',
   Web_polyfill_CDN: 'Web Polyfill CDN',
@@ -217,7 +218,4 @@ export default {
   expert_committee: 'Expert Committee',
   producer: 'Producer: ',
   volunteer: 'Volunteer: ',
-
-  //community list and community detail page
-  community_list: 'Community List',
 } as const;
