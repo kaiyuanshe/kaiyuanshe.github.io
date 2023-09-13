@@ -1,10 +1,13 @@
 import type { FC } from 'react';
 import { Card } from 'react-bootstrap';
 
-import { Person } from '../../models/Community/Person';
+import { CommunityMember } from '../../models/Community/CommunityMember';
 import { fileURLOf } from '../../pages/api/lark/file/[id]';
 
-export const CommunityMemberCard: FC<Person> = ({ name, avatar }: Person) => (
+export const CommunityMemberCard: FC<CommunityMember> = ({
+  name,
+  avatar,
+}: CommunityMember) => (
   <Card className="border-0 align-items-center position-relative">
     <Card.Img
       style={{ width: '8rem' }}

@@ -1,9 +1,7 @@
 import { makeObservable, observable } from 'mobx';
 import {
   BiDataTable,
-  normalizeText,
   TableCellLink,
-  TableCellRelation,
   TableCellText,
   TableCellValue,
   TableRecord,
@@ -12,7 +10,7 @@ import {
 import { normalizeTextArray } from '../../pages/api/lark/core';
 import { larkClient } from '../Base';
 
-export type Person = Record<
+export type CommunityMember = Record<
   | 'id'
   | 'name'
   | 'nickname'
@@ -28,7 +26,7 @@ export const KCC_BASE_ID = process.env.NEXT_PUBLIC_KCC_BASE_ID!;
 export const PERSON_TABLE_ID =
   process.env.NEXT_PUBLIC_COMMUNITY_PERSON_TABLE_ID!;
 
-export class PersonModel extends BiDataTable<Person>() {
+export class CommunityMemberModel extends BiDataTable<CommunityMember>() {
   client = larkClient;
 
   constructor(appId = KCC_BASE_ID, tableId = PERSON_TABLE_ID) {
@@ -42,12 +40,12 @@ export class PersonModel extends BiDataTable<Person>() {
   sort = { name: 'ASC' } as const;
 
   @observable
-  group: Record<string, Person[]> = {};
+  group: Record<string, CommunityMember[]> = {};
 
   normalize({
     id,
     fields: { community, email, ...fields },
-  }: TableRecord<Person>) {
+  }: TableRecord<CommunityMember>) {
     return {
       ...fields,
       id: id!,

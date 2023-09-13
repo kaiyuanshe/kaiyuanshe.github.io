@@ -7,14 +7,17 @@ import { Container } from 'react-bootstrap';
 import { CommunityMemberList } from '../../components/Community/MemberList';
 import PageHead from '../../components/Layout/PageHead';
 import { i18n } from '../../models/Base/Translation';
-import { Person, PersonModel } from '../../models/Community/Person';
+import {
+  CommunityMember,
+  CommunityMemberModel,
+} from '../../models/Community/CommunityMember';
 
 const { t } = i18n;
 
 export const getServerSideProps = compose<
   { community: string },
   {
-    list: Person[];
+    list: CommunityMember[];
     community: string;
   }
 >(
@@ -22,7 +25,7 @@ export const getServerSideProps = compose<
   errorLogger,
   translator(i18n),
   async ({ params: { community } = {} }) => {
-    const list = await new PersonModel().getList({ community });
+    const list = await new CommunityMemberModel().getList({ community });
 
     if (!list) return { notFound: true, props: {} };
 
