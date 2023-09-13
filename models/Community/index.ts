@@ -2,12 +2,14 @@ import { makeObservable, observable } from 'mobx';
 import {
   BiDataTable,
   makeSimpleFilter,
+  normalizeText,
   TableCellLink,
+  TableCellRelation,
   TableCellValue,
   TableRecord,
 } from 'mobx-lark';
 import { NewData } from 'mobx-restful';
-import { groupBy, isEmpty, TimeData } from 'web-utility';
+import { isEmpty } from 'web-utility';
 
 import { larkClient } from '../Base';
 
@@ -27,8 +29,6 @@ export type Community = Record<
 export const KCC_BASE_ID = process.env.NEXT_PUBLIC_KCC_BASE_ID!;
 export const COMMUNITY_TABLE_ID = process.env.NEXT_PUBLIC_COMMUNITY_TABLE_ID!;
 
-export type ElectionTarget = '理事' | '正式成员';
-
 export class CommunityModel extends BiDataTable<Community>() {
   client = larkClient;
 
@@ -45,25 +45,17 @@ export class CommunityModel extends BiDataTable<Community>() {
   @observable
   group: Record<string, Community[]> = {};
 
-  currentYear?: number;
-
-  makeFilter({ ...filter }: NewData<Community>) {
-    const { currentYear } = this;
-
-    return [
-      currentYear && `CurrentValue.[createdAt]>=TODATE("${currentYear}-01-01")`,
-      currentYear && `CurrentValue.[createdAt]<=TODATE("${currentYear}-12-31")`,
-      !isEmpty(filter) && makeSimpleFilter(filter),
-    ]
-      .filter(Boolean)
-      .join('&&');
-  }
-
-  normalize({ id, fields: { link, ...fields } }: TableRecord<Community>) {
+  normalize({
+    id,
+    fields: { link, director, Person, Activity, ...fields },
+  }: TableRecord<Community>) {
     return {
       ...fields,
       id: id!,
       link: (link as TableCellLink)?.link,
+      director: (director as TableCellRelation[])?.map(normalizeText)[0],
+      Person: (Person as TableCellRelation[])?.map(normalizeText)[0],
+      Activity: (Activity as TableCellRelation[])?.map(normalizeText)[0],
     };
   }
 }
