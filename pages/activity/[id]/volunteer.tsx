@@ -11,13 +11,13 @@ import { Activity, ActivityModel } from '../../../models/Activity';
 import { Staff } from '../../../models/Activity/Staff';
 import { blobURLOf } from '../../../models/Base';
 
-interface staffGroup {
+interface StaffGroup {
   [key: string]: Staff[];
 }
 
 interface VolunteerPageProps {
   activity: Activity;
-  staff: staffGroup;
+  staffGroup: StaffGroup;
 }
 
 const { t } = i18n;
@@ -31,12 +31,12 @@ export const getServerSideProps = compose<{ id: string }, VolunteerPageProps>(
     const activityStore = new ActivityModel();
     const { id } = params!;
     const activity = await activityStore.getOne(id);
-    const staff = await activityStore.currentStaff?.getGroup({
+    const staffGroup = await activityStore.currentStaff?.getGroup({
       role: '志愿者',
     });
 
     return {
-      props: JSON.parse(JSON.stringify({ activity, staff })),
+      props: JSON.parse(JSON.stringify({ activity, staffGroup })),
     };
   },
 );
@@ -57,7 +57,7 @@ export default class VolunteerPage extends PureComponent<VolunteerPageProps> {
   );
 
   render() {
-    const { activity, staff } = this.props;
+    const { activity, staffGroup } = this.props;
 
     const { name = '' } = activity;
 
@@ -66,16 +66,16 @@ export default class VolunteerPage extends PureComponent<VolunteerPageProps> {
         <PageHead title={t('volunteer') + '-' + name} />
         <h1 className="text-center">{name + ' ' + t('volunteer')}</h1>
 
-        {Object.keys(staff).map(key => {
+        {Object.keys(staffGroup).map(key => {
           return (
             <section key={key} id={key}>
               <MemberTitle
                 className="my-5"
                 title={key === 'undefined' ? '未分类志愿者' : key}
-                count={staff[key].length}
+                count={staffGroup[key].length}
               />
               <ul className="list-unstyled d-flex flex-wrap gap-4">
-                {staff[key].map(this.renderVolunteers)}
+                {staffGroup[key].map(this.renderVolunteers)}
               </ul>
             </section>
           );
