@@ -1,6 +1,5 @@
 import {
   BiDataTable,
-  normalizeText,
   TableCellRelation,
   TableCellText,
   TableCellValue,
@@ -41,8 +40,12 @@ export class ForumModel extends BiDataTable<Forum>() {
     return {
       ...data,
       id: id!,
-      producers: (producers as TableCellRelation[])?.map(normalizeText),
-      volunteers: (volunteers as TableCellRelation[])?.map(normalizeText),
+      producers: (producers as TableCellRelation[])?.flatMap(
+        ({ text_arr }) => text_arr,
+      ),
+      volunteers: (volunteers as TableCellRelation[])?.flatMap(
+        ({ text_arr }) => text_arr,
+      ),
       producerPositions:
         producerPositions &&
         normalizeTextArray(producerPositions as TableCellText[]),

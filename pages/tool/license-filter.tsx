@@ -14,8 +14,8 @@ import {
   ProgressBar,
 } from 'react-bootstrap';
 
+import PageHead from '../../components/Layout/PageHead';
 import { licenseTips, optionValue } from '../../components/License/helper';
-import PageHead from '../../components/PageHead';
 import { i18n } from '../../models/Base/Translation';
 
 interface List {

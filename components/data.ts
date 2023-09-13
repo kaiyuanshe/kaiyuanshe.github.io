@@ -1,7 +1,7 @@
 import { TimeDistanceProps } from 'idea-react';
 
 import { i18n } from '../models/Base/Translation';
-import { Link } from './MainNav';
+import { Link } from './Layout/MainNav';
 
 const { t } = i18n;
 
@@ -77,6 +77,15 @@ export const MainRoutes = (): Link[] => [
     ],
   },
   { title: t('wonderful_activity'), path: '/activity' },
+  {
+    title: t('open_source_projects'),
+    subs: [
+      {
+        title: 'issues',
+        path: '/project/issues',
+      },
+    ],
+  },
   { title: t('our_partners'), path: '/organization/cooperation' },
   {
     title: t('open_source_treasure_box'),

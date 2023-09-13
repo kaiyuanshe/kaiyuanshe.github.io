@@ -35,6 +35,7 @@ export default {
   china_open_source_annual_report: '中國開源年度報告',
   kaiyuanshe_annual_report: '開源社年度報告',
   china_open_source_landscape: '開源地圖',
+  open_source_projects: '開源項目',
   our_partners: '合作夥伴',
   open_source_treasure_box: '開源百寶箱',
   Web_polyfill_CDN: 'Web 標準補丁 CDN',

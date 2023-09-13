@@ -6,10 +6,11 @@ import { enableStaticRendering, observer } from 'mobx-react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { FC } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Row, SSRProvider } from 'react-bootstrap';
 
 import { MainRoutes } from '../components/data';
-import MainNav from '../components/MainNav';
+import MainNav from '../components/Layout/MainNav';
+import { MDXLayout } from '../components/Layout/MDX';
 import { isServer } from '../models/Base';
 import { i18n } from '../models/Base/Translation';
 import { social } from './api/home';
@@ -21,17 +22,23 @@ enableStaticRendering(isServer());
 
 const { t } = i18n;
 
-const AppShell: FC<AppProps> = observer(({ Component, pageProps }) => (
-  <>
+const AppShell: FC<AppProps> = observer(({ Component, pageProps, router }) => (
+  <SSRProvider>
     <Head>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
     </Head>
 
     <MainNav title={t('KaiYuanShe')} logo={DefaultImage} links={MainRoutes()} />
 
-    <div className="mt-5 pt-4 mainContent">
-      <Component {...pageProps} />
-    </div>
+    {router.route.startsWith('/article/original/') ? (
+      <MDXLayout title={router.route.split('/').at(-1)}>
+        <Component {...pageProps} />
+      </MDXLayout>
+    ) : (
+      <div className="mt-5 pt-4 mainContent">
+        <Component {...pageProps} />
+      </div>
+    )}
 
     <footer className="border-top bg-light text-secondary py-5">
       <Container>
@@ -59,7 +66,7 @@ const AppShell: FC<AppProps> = observer(({ Component, pageProps }) => (
         </Row>
       </Container>
     </footer>
-  </>
+  </SSRProvider>
 ));
 
 export default AppShell;
