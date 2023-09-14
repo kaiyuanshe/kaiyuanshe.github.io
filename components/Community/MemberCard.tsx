@@ -18,8 +18,14 @@ export const CommunityMemberCard: FC<CommunityMember> = ({
       alt={name + ''}
     />
     <Card.Body>
-      <Card.Title className="fs-6 stretched-link">{name}</Card.Title>
-      <Card.Subtitle className="fw-light mt-2">{summary}</Card.Subtitle>
+      <Card.Title
+        as="a"
+        className="fs-6 stretched-link"
+        href={`/member/${name}`}
+      >
+        {name}
+      </Card.Title>
+      <Card.Text className="fw-light mt-2">{summary}</Card.Text>
     </Card.Body>
   </Card>
 );

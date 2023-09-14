@@ -4,7 +4,7 @@ import { Card } from 'react-bootstrap';
 import { Community } from '../../models/Community';
 import { fileURLOf } from '../../pages/api/lark/file/[id]';
 
-export const CommunityCard: FC<Community> = ({ name, logo }: Community) => (
+export const CommunityCard: FC<Community> = ({ name, logo }) => (
   <Card className="border-0 align-items-center position-relative">
     <Card.Img
       style={{ width: '8rem' }}
@@ -16,7 +16,7 @@ export const CommunityCard: FC<Community> = ({ name, logo }: Community) => (
       <Card.Title
         as="a"
         className="fs-6 stretched-link"
-        href={`community/${name}`}
+        href={`/community/${name}`}
       >
         {name}
       </Card.Title>

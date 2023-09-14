@@ -1,25 +1,20 @@
 import { makeObservable, observable } from 'mobx';
 import {
   BiDataTable,
+  makeSimpleFilter,
   normalizeText,
   TableCellLink,
   TableCellRelation,
   TableCellValue,
   TableRecord,
 } from 'mobx-lark';
+import { NewData } from 'mobx-restful';
+import { cache, countBy, groupBy, Hour, isEmpty } from 'web-utility';
 
 import { larkClient } from '../Base';
 
 export type Community = Record<
-  | 'id'
-  | 'name'
-  | 'Person'
-  | 'logo'
-  | 'director'
-  | 'startDate'
-  | 'summary'
-  | 'link'
-  | 'Activity',
+  'id' | 'name' | 'logo' | 'director' | 'startDate' | 'summary' | 'link',
   TableCellValue
 >;
 
@@ -44,15 +39,19 @@ export class CommunityModel extends BiDataTable<Community>() {
 
   normalize({
     id,
-    fields: { link, director, Person, Activity, ...fields },
+    fields: { link, director, ...fields },
   }: TableRecord<Community>) {
     return {
       ...fields,
       id: id!,
       link: (link as TableCellLink)?.link,
       director: (director as TableCellRelation[])?.map(normalizeText)[0],
-      Person: (Person as TableCellRelation[])?.map(normalizeText)[0],
-      Activity: (Activity as TableCellRelation[])?.map(normalizeText)[0],
     };
+  }
+}
+
+export class SearchCommunityModel extends CommunityModel {
+  makeFilter(filter: NewData<Community>) {
+    return isEmpty(filter) ? '' : makeSimpleFilter(filter, 'contains', 'OR');
   }
 }

@@ -6,6 +6,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 
 import { ActivityListLayout } from '../../components/Activity/List';
 import { ArticleListLayout } from '../../components/Article/List';
+import { CommunityListLayout } from '../../components/Community/List';
 import { GroupCard } from '../../components/Department/Card';
 import PageHead from '../../components/Layout/PageHead';
 import { MemberCard } from '../../components/Member/Card';
@@ -35,6 +36,7 @@ const SearchPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
       people = [],
       departments = [],
       organizations = [],
+      communities = [],
     }) => {
       const { t } = i18n,
         { tag, keywords } = route.query as SearchQuery;
@@ -55,6 +57,10 @@ const SearchPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
           <h2>{t('activity')}</h2>
 
           <ActivityListLayout defaultData={activities} />
+
+          <h2>{t('community')}</h2>
+
+          <CommunityListLayout defaultData={communities} />
 
           <h2>{t('member')}</h2>
 

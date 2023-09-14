@@ -216,4 +216,8 @@ export default {
   //community detail page
   community_member: '社区成员',
   add_member: '数据整理中，敬请期待',
+  community: '社区',
+  member_register: 'KCC 成员信息登记',
+  activity_register: 'KCC 活动信息登记',
+  community_register: '社区信息登记',
 } as const;

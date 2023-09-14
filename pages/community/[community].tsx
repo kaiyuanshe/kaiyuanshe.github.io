@@ -25,7 +25,7 @@ export const getServerSideProps = compose<
   errorLogger,
   translator(i18n),
   async ({ params: { community } = {} }) => {
-    const list = await new CommunityMemberModel().getList({ community });
+    const list = await new CommunityMemberModel().getAll({ community });
     return { props: JSON.parse(JSON.stringify({ list, community })) };
   },
 );
@@ -34,14 +34,27 @@ const CommunityMemberListPage: FC<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = observer(({ list, community }) => (
   <Container className="py-5">
-    <PageHead title={`${community}社区`} />
+    <PageHead title={`${community}${t('community')}`} />
     {list[0] ? (
-      <>
-        <h1 className="mb-5 text-center">{t('community_member')}</h1>
+      <section className="my-5 text-center">
+        <h2 className="mb-5 text-center">{t('community_member')}</h2>
         <CommunityMemberList list={list} />
-      </>
+      </section>
     ) : (
-      <h3 className="my-5 text-center">{t('add_member')}</h3>
+      <section className="text-center">
+        <h3 className="my-5">{t('add_member')}</h3>
+        <a href="https://kaiyuanshe.feishu.cn/share/base/form/shrcnogj5LPzlaiUkFaKpVbxNXe">
+          {t('member_register')}
+        </a>
+        <br />
+        <a href="https://kaiyuanshe.feishu.cn/share/base/form/shrcnAyfE76AHnwtJ8P1fO7avaf">
+          {t('community_register')}
+        </a>
+        <br />
+        <a href="https://kaiyuanshe.feishu.cn/share/base/form/shrcnaAyjtchedloWwloeSQxNZe">
+          {t('activity_register')}
+        </a>
+      </section>
     )}
   </Container>
 ));

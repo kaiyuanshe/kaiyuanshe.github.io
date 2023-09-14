@@ -4,7 +4,7 @@ import { compose, translator } from 'next-ssr-middleware';
 import { FC } from 'react';
 import { Container } from 'react-bootstrap';
 
-import { CommunityListLayout } from '../../components/Community/CommunityList';
+import { CommunityListLayout } from '../../components/Community/List';
 import PageHead from '../../components/Layout/PageHead';
 import { i18n } from '../../models/Base/Translation';
 import { Community, CommunityModel } from '../../models/Community';
@@ -12,7 +12,7 @@ import { Community, CommunityModel } from '../../models/Community';
 export const getServerSideProps = compose<{}, { list: Community[] }>(
   translator(i18n),
   async () => {
-    const list = await new CommunityModel().getList();
+    const list = await new CommunityModel().getAll();
     return { props: { list: JSON.parse(JSON.stringify(list)) } };
   },
 );
@@ -25,7 +25,7 @@ const CommunityListPage: FC<
   <Container className="py-5">
     <PageHead title={t('community_list')} />
     <h1 className="mb-5 text-center">{t('community_list')}</h1>
-    <CommunityListLayout list={list} />
+    <CommunityListLayout defaultData={list} />
   </Container>
 ));
 

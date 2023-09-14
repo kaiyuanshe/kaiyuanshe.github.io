@@ -2,6 +2,7 @@ import { NextApiResponse } from 'next';
 import { parseURLData } from 'web-utility';
 
 import { Activity, SearchActivityModel } from '../../models/Activity';
+import { Community, SearchCommunityModel } from '../../models/Community';
 import {
   Organization,
   SearchOrganizationModel,
@@ -22,6 +23,7 @@ export interface SearchResult {
   people?: Person[];
   departments?: Department[];
   organizations?: Organization[];
+  communities?: Community[];
 }
 
 export default safeAPI(
@@ -30,10 +32,10 @@ export default safeAPI(
       case 'GET': {
         const { keywords, tag } = parseURLData(url) as SearchQuery;
         const keywordList = keywords?.split(/\s+/);
-
+        debug();
         if (keywordList || tag)
-          var [articles, activities, groups, organizations] = await Promise.all(
-            [
+          var [articles, activities, groups, organizations, communities] =
+            await Promise.all([
               new SearchArticleModel().getList({
                 title: keywordList,
                 author: keywordList,
@@ -62,8 +64,11 @@ export default safeAPI(
                 codeLink: keywordList,
                 wechatName: keywordList,
               }),
-            ],
-          );
+              new SearchCommunityModel().getList({
+                name: keywordList,
+                summary: keywordList,
+              }),
+            ]);
         if (keywordList)
           var people = await new SearchPersonModel().getList({
             name: keywordList,
@@ -73,10 +78,20 @@ export default safeAPI(
         //@ts-ignore
         const membersData = { people };
         //@ts-ignore
-        const articlesData = { articles, activities, groups, organizations };
+        const articlesData = {
+          articles,
+          activities,
+          groups,
+          organizations,
+          communities,
+        };
         //@ts-ignore
         response.json({ ...articlesData, ...membersData });
       }
     }
   },
 );
+
+function debug() {
+  debugger;
+}
