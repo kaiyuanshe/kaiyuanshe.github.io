@@ -91,7 +91,3 @@ export default safeAPI(
     }
   },
 );
-
-function debug() {
-  debugger;
-}
