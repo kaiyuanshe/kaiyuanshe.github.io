@@ -210,8 +210,8 @@ export default {
   last_project_group: '上屆任職專案組',
   next_term_plan: '下屆規劃',
   expert_committee: '專家委員會',
-  producer: '出品人：',
-  volunteer: '志願者：',
+  producer: '出品人',
+  volunteer: '志願者',
 
   //community list & community detail page
   community_member: '社區成員',

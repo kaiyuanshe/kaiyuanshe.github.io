@@ -31,9 +31,12 @@ const IssuesPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
         defaultData={list}
         renderList={allItems => (
           <Row as="ul" className="list-unstyled g-4">
-            {allItems.map(repository => (
-              <IssueModule key={repository.name} {...repository} />
-            ))}
+            {allItems.map(
+              repository =>
+                repository.issues[0] && (
+                  <IssueModule key={repository.name} {...repository} />
+                ),
+            )}
           </Row>
         )}
       />

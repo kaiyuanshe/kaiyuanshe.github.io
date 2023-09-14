@@ -12,6 +12,7 @@ import {
   DropdownButton,
   DropdownButtonProps,
   Row,
+  Stack,
 } from 'react-bootstrap';
 
 import { AgendaCard } from '../../../components/Activity/Agenda/Card';
@@ -112,9 +113,6 @@ export default class ActivityDetailPage extends PureComponent<
             {t('participant_registration')}
           </Button>
         )}
-        <Button variant="secondary" href={`/activity/${id}/finance`}>
-          {t('financial_disclosure')}
-        </Button>
       </div>
     );
   }
@@ -159,7 +157,7 @@ export default class ActivityDetailPage extends PureComponent<
     positions?: TableCellValue,
   ) {
     return (
-      <div className="d-flex align-items-center px-5">
+      <div className="d-flex align-items-center gap-3 px-5">
         <h3 className="h6">{title}</h3>
 
         <ActivityPeople
@@ -244,6 +242,19 @@ export default class ActivityDetailPage extends PureComponent<
         </header>
 
         {this.renderButtonBar()}
+
+        <Stack
+          className="justify-content-center"
+          direction="horizontal"
+          gap={3}
+        >
+          <Button variant="info" href={`/activity/${activity.id}/volunteer`}>
+            {t('volunteer')}
+          </Button>
+          <Button variant="secondary" href={`/activity/${activity.id}/finance`}>
+            {t('financial_disclosure')}
+          </Button>
+        </Stack>
 
         <Container>
           {this.renderMap()}
