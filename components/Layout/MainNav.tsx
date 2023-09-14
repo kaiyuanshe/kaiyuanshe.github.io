@@ -1,13 +1,16 @@
-import { Option, Select } from 'idea-react';
+import { computed } from 'mobx';
 import { observer } from 'mobx-react';
+import dynamic from 'next/dynamic';
 import { NextRouter, withRouter } from 'next/router';
 import { PureComponent } from 'react';
-import { Container, Image, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Container, Image, Nav, Navbar,NavDropdown } from 'react-bootstrap';
 
 import { API_Host } from '../../models/Base';
-import { i18n, LanguageName } from '../../models/Base/Translation';
+import { i18n } from '../../models/Base/Translation';
 import { SearchBar } from '../SearchBar';
 import styles from './MainNav.module.less';
+
+const LanguageMenu = dynamic(() => import('../LanguageMenu'), { ssr: false });
 
 export interface Link {
   title: string;
@@ -24,8 +27,13 @@ export interface MainNavProps {
 
 @observer
 class MainNav extends PureComponent<MainNavProps> {
+  @computed
+  get expandable() {
+    return i18n.currentLanguage.startsWith('zh');
+  }
+
   renderRight() {
-    const { currentLanguage } = i18n,
+    const { expandable } = this,
       { links } = this.props,
       { pathname } = this.props.router;
 
@@ -56,28 +64,21 @@ class MainNav extends PureComponent<MainNavProps> {
             ),
           )}
         </Nav>
-        <div className="flex-fill d-flex flex-column flex-xxl-row justify-content-around gap-3">
+        <div
+          className={`flex-fill d-flex flex-column ${
+            expandable ? 'flex-xxl-row' : ''
+          } justify-content-around gap-3`}
+        >
           <SearchBar />
-
-          <Select
-            value={currentLanguage}
-            onChange={code =>
-              i18n.changeLanguage(code as typeof currentLanguage)
-            }
-          >
-            {Object.entries(LanguageName).map(([code, name]) => (
-              <Option key={code} value={code}>
-                {name}
-              </Option>
-            ))}
-          </Select>
+          <LanguageMenu />
         </div>
       </div>
     );
   }
 
   render() {
-    const { title, logo } = this.props;
+    const { title, logo } = this.props,
+      { expandable } = this;
 
     return (
       <Navbar
@@ -85,12 +86,13 @@ class MainNav extends PureComponent<MainNavProps> {
         bg="primary"
         variant="dark"
         fixed="top"
-        expand="xxl"
+        expand={expandable ? 'xxl' : false}
         collapseOnSelect
       >
         <Container>
           <Navbar.Brand href="/">
             <Image className="me-3" width={40} src={logo} alt="logo" />
+
             <svg className={styles.logoTitle} viewBox="0 0 96 32">
               <text x="0" y="68%">
                 {title}

@@ -6,10 +6,10 @@ import { Container } from 'react-bootstrap';
 import PageHead from '../../../components/Layout/PageHead';
 import { MemberCard } from '../../../components/Member/Card';
 import { MemberTitle } from '../../../components/Member/Title';
-import { i18n } from '../../../models//Base/Translation';
 import { Activity, ActivityModel } from '../../../models/Activity';
 import { Staff, StaffModel } from '../../../models/Activity/Staff';
 import { blobURLOf } from '../../../models/Base';
+import { i18n } from '../../../models/Base/Translation';
 
 interface VolunteerPageProps {
   activity: Activity;
