@@ -50,17 +50,19 @@ export default class PersonDetailPage extends PureComponent<
         <li>
           <Badge bg={text2color(gender as string, ['light'])}>{gender}</Badge>
         </li>
-        <li>
-          {(skills as string[])?.map(skill => (
-            <Badge
-              key={skill}
-              className="me-2"
-              bg={text2color(skill, ['light'])}
-            >
-              {skill}
-            </Badge>
-          ))}
-        </li>
+        {skills && (
+          <li>
+            {(skills as string[]).map(skill => (
+              <Badge
+                key={skill}
+                className="me-2"
+                bg={text2color(skill, ['light'])}
+              >
+                {skill}
+              </Badge>
+            ))}
+          </li>
+        )}
         <li>🗺 {city}</li>
         <li>
           📬 <a href={email as string}>{(email as string)?.split(':')[1]}</a>
