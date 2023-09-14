@@ -36,6 +36,7 @@ export default {
   china_open_source_annual_report: 'China Open Source Annual Report',
   kaiyuanshe_annual_report: 'KaiYuanShe Annual Report',
   china_open_source_landscape: 'China Open Source Landscape',
+  open_source_projects: 'Open Source Projects',
   community_list: 'Kaiyuanshe City Community',
   our_partners: 'Our Partners',
   open_source_treasure_box: 'Treasure-box',

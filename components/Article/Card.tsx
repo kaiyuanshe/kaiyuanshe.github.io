@@ -28,7 +28,7 @@ export const ArticleCard: FC<ArticleCardProps> = ({
     <Card.Body className="d-flex flex-column">
       <Card.Title as="h3" className="h5 flex-fill">
         <a
-          className="text-decoration-none text-secondary text-truncation-lines"
+          className="text-decoration-none text-secondary text-truncate-lines"
           href={`/article/${alias}`}
         >
           {title}

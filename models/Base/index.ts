@@ -3,7 +3,8 @@ import { TableCellValue } from 'mobx-lark';
 
 export const isServer = () => typeof window === 'undefined';
 
-const VercelHost = process.env.VERCEL_URL;
+const VercelHost = process.env.VERCEL_URL,
+  GithubToken = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
 
 export const API_Host = isServer()
   ? VercelHost
@@ -35,3 +36,15 @@ export const blobURLOf = (value: TableCellValue) =>
       ? `${fileBaseURI}/${value[0].name}`
       : ''
     : '';
+
+export const githubClient = new HTTPClient({
+  baseURI: 'https://api.github.com/',
+  responseType: 'json',
+}).use(({ request }, next) => {
+  if (GithubToken)
+    request.headers = {
+      ...request.headers,
+      Authorization: `Bearer ${GithubToken}`,
+    };
+  return next();
+});

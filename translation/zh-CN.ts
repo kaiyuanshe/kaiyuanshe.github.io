@@ -35,6 +35,7 @@ export default {
   china_open_source_annual_report: '中国开源年度报告',
   kaiyuanshe_annual_report: '开源社年度报告',
   china_open_source_landscape: '开源地图',
+  open_source_projects: '开源项目',
   community_list: '开源社城市社区（KCC）',
   our_partners: '合作伙伴',
   open_source_treasure_box: '开源百宝箱',
