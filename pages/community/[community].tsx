@@ -1,8 +1,9 @@
+import { textJoin } from 'mobx-i18n';
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
 import { cache, compose, errorLogger, translator } from 'next-ssr-middleware';
 import { FC } from 'react';
-import { Container } from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
 
 import { CommunityMemberList } from '../../components/Community/MemberList';
 import PageHead from '../../components/Layout/PageHead';
@@ -34,28 +35,26 @@ const CommunityMemberListPage: FC<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = observer(({ list, community }) => (
   <Container className="py-5">
-    <PageHead title={`${community}${t('community')}`} />
-    {list[0] ? (
-      <section className="my-5 text-center">
-        <h2 className="mb-5 text-center">{t('community_member')}</h2>
-        <CommunityMemberList list={list} />
-      </section>
-    ) : (
-      <section className="text-center">
-        <h3 className="my-5">{t('add_member')}</h3>
-        <a href="https://kaiyuanshe.feishu.cn/share/base/form/shrcnogj5LPzlaiUkFaKpVbxNXe">
-          {t('member_register')}
-        </a>
-        <br />
-        <a href="https://kaiyuanshe.feishu.cn/share/base/form/shrcnAyfE76AHnwtJ8P1fO7avaf">
-          {t('community_register')}
-        </a>
-        <br />
-        <a href="https://kaiyuanshe.feishu.cn/share/base/form/shrcnaAyjtchedloWwloeSQxNZe">
-          {t('activity_register')}
-        </a>
-      </section>
-    )}
+    <PageHead title={textJoin(community, t('community'))} />
+    <h1 className="text-center">{textJoin(community, t('community'))}</h1>
+
+    <section className="my-5 text-center">
+      {list[0] ? (
+        <>
+          <h2 className="mb-5">{t('community_member')}</h2>
+          <CommunityMemberList list={list} />
+        </>
+      ) : (
+        <h2>{t('add_member')}</h2>
+      )}
+      <Button
+        className="my-3"
+        size="lg"
+        href="https://kaiyuanshe.feishu.cn/share/base/form/shrcnogj5LPzlaiUkFaKpVbxNXe"
+      >
+        {t('member_register')}
+      </Button>
+    </section>
   </Container>
 ));
 

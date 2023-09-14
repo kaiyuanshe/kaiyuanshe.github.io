@@ -32,7 +32,6 @@ export default safeAPI(
       case 'GET': {
         const { keywords, tag } = parseURLData(url) as SearchQuery;
         const keywordList = keywords?.split(/\s+/);
-        debug();
         if (keywordList || tag)
           var [articles, activities, groups, organizations, communities] =
             await Promise.all([
