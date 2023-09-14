@@ -19,20 +19,22 @@ export type Place = Record<
   | 'capacity'
   | 'devices'
   | 'photos'
-  | 'forum',
+  | 'forum'
+  | 'bill',
   TableCellValue
 >;
 
 export class PlaceModel extends BiDataTable<Place>() {
   client = larkClient;
 
-  requiredKeys = ['name', 'type'] as const;
+  requiredKeys = ['name', 'type', 'bill'] as const;
 
-  normalize({ id, fields: { forum, ...fields } }: TableRecord<Place>) {
+  normalize({ id, fields: { forum, bill, ...fields } }: TableRecord<Place>) {
     return {
       ...fields,
       id,
       forum: (forum as TableCellRelation[])?.map(normalizeText),
+      bill: (bill as TableCellRelation[])?.map(normalizeText),
     };
   }
 }
