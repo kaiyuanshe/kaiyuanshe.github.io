@@ -8,16 +8,12 @@ import { MemberCard } from '../../../components/Member/Card';
 import { MemberTitle } from '../../../components/Member/Title';
 import { i18n } from '../../../models//Base/Translation';
 import { Activity, ActivityModel } from '../../../models/Activity';
-import { Staff } from '../../../models/Activity/Staff';
+import { Staff, StaffModel } from '../../../models/Activity/Staff';
 import { fileURLOf } from '../../../pages/api/lark/file/[id]';
-
-interface StaffGroup {
-  [key: string]: Staff[];
-}
 
 interface VolunteerPageProps {
   activity: Activity;
-  staffGroup: StaffGroup;
+  staffGroup: StaffModel['group'];
 }
 
 const { t } = i18n;
