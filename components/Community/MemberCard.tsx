@@ -20,7 +20,7 @@ export const CommunityMemberCard: FC<CommunityMember> = ({
     <Card.Body>
       <Card.Title
         as="a"
-        className="fs-6 stretched-link"
+        className="fs-6 text-decoration-none stretched-link"
         href={`/member/${name}`}
       >
         {name}
