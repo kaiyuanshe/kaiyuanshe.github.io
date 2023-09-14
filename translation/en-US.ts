@@ -221,4 +221,5 @@ export default {
 
   //community detail page
   community_member: 'Community Members',
+  add_member: 'Community member data is being compiled,, please stay tuned',
 } as const;

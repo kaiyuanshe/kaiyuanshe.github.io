@@ -26,9 +26,6 @@ export const getServerSideProps = compose<
   translator(i18n),
   async ({ params: { community } = {} }) => {
     const list = await new CommunityMemberModel().getList({ community });
-
-    if (!list) return { notFound: true, props: {} };
-
     return { props: JSON.parse(JSON.stringify({ list, community })) };
   },
 );
@@ -42,11 +39,15 @@ export default class CommunityMemberListPage extends PureComponent<
 
     return (
       <Container className="py-5">
-        <PageHead title={community} />
-
-        <h1 className="mb-5 text-center">{t('community_member')}</h1>
-
-        <CommunityMemberList defaultData={list} />
+        <PageHead title={`${community}社区`} />
+        {list[0] ? (
+          <>
+            <h1 className="mb-5 text-center">{t('community_member')}</h1>
+            <CommunityMemberList list={list} />
+          </>
+        ) : (
+          <h2 className="my-5 text-center">{t('add_member')}</h2>
+        )}
       </Container>
     );
   }

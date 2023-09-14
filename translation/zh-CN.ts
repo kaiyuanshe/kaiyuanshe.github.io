@@ -214,4 +214,5 @@ export default {
 
   //community detail page
   community_member: '社区成员',
+  add_member: '數據整理中，敬請期待',
 } as const;

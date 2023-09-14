@@ -24,10 +24,8 @@ const CommunityListPage: FC<
 > = observer(({ list }) => (
   <Container className="py-5">
     <PageHead title={t('community_list')} />
-
     <h1 className="mb-5 text-center">{t('community_list')}</h1>
-
-    <CommunityListLayout defaultData={list} />
+    <CommunityListLayout list={list} />
   </Container>
 ));
 

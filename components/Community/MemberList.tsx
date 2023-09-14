@@ -1,25 +1,24 @@
 import { FC } from 'react';
 import { Col, Row } from 'react-bootstrap';
 
+import { i18n } from '../../models/Base/Translation';
 import { CommunityMember } from '../../models/Community/CommunityMember';
 import { CommunityMemberCard } from './MemberCard';
 
-export const CommunityMemberList: FC<{ defaultData: CommunityMember[] }> = ({
-  defaultData,
+const { t } = i18n;
+
+export const CommunityMemberList: FC<{ list: CommunityMember[] }> = ({
+  list,
 }) => (
-  <Row as="section" xs={1} sm={2} xl={5} className="g-3 my-4">
-    {defaultData.map(item => (
-      <Col key={item.name + ''}>
-        <CommunityMemberCard {...item} />
-      </Col>
-    ))}
-    {defaultData.map(item => (
-      <Col key={item.name + ''}>
-        <CommunityMemberCard {...item} />
-      </Col>
-    ))}
-    {defaultData.map(item => (
-      <Col key={item.name + ''}>
+  <Row
+    as="section"
+    className="justify-content-center text-center"
+    xs={1}
+    sm={3}
+    xl={5}
+  >
+    {list.map(item => (
+      <Col key={item.name + ''} className="my-3">
         <CommunityMemberCard {...item} />
       </Col>
     ))}
