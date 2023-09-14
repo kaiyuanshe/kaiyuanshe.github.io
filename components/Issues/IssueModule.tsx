@@ -11,29 +11,32 @@ export const IssueModule: FC<GitRepository> = ({ name, language, issues }) => {
   return (
     <Card className="p-0" bg="light" text="dark">
       <Card.Header
-        as="h3"
-        className="d-flex justify-content-between align-items-center"
         style={{ cursor: 'pointer' }}
         onClick={() => setIsExpand(!isExpand)}
       >
-        <Stack direction="horizontal" gap={2}>
-          {language && (
-            <Badge className="fs-6" bg={text2color(language, ['light'])}>
-              {language}
+        <Row className="align-items-center gx-3">
+          <Col xs={4}>
+            {language && (
+              <Badge className="fs-6" bg={text2color(language, ['light'])}>
+                {language}
+              </Badge>
+            )}
+          </Col>
+          <Col xs={6} as="h3" className="m-0 text-truncate">
+            {name}
+          </Col>
+          <Col xs={1}>
+            <Badge className="fs-6" pill bg="info">
+              {issues.length}
             </Badge>
-          )}
-          {name}
-        </Stack>
-
-        <Stack direction="horizontal" gap={2}>
-          <Badge className="fs-6" pill bg="info">
-            {issues.length}
-          </Badge>
-          <Icon
-            size={1.5}
-            name={isExpand ? 'arrows-collapse' : 'arrows-expand'}
-          />
-        </Stack>
+          </Col>
+          <Col xs={1}>
+            <Icon
+              size={1.5}
+              name={isExpand ? 'arrows-collapse' : 'arrows-expand'}
+            />
+          </Col>
+        </Row>
       </Card.Header>
 
       <Collapse in={isExpand}>

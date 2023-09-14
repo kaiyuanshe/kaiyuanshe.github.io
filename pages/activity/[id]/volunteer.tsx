@@ -21,14 +21,13 @@ const { t } = i18n;
 export const getServerSideProps = compose<{ id: string }, VolunteerPageProps>(
   cache(),
   errorLogger,
-
   translator(i18n),
   async ({ params }) => {
     const activityStore = new ActivityModel();
     const { id } = params!;
     const activity = await activityStore.getOne(id);
     const staffGroup = await activityStore.currentStaff?.getGroup({
-      role: '志愿者',
+      role: '志愿者 (Volunteer)',
     });
 
     return {
@@ -50,7 +49,6 @@ export default class VolunteerPage extends PureComponent<VolunteerPageProps> {
 
   render() {
     const { activity, staffGroup } = this.props;
-
     const { name = '' } = activity;
 
     return (
@@ -58,18 +56,22 @@ export default class VolunteerPage extends PureComponent<VolunteerPageProps> {
         <PageHead title={t('volunteer') + '-' + name} />
         <h1 className="text-center">{name + ' ' + t('volunteer')}</h1>
 
-        {Object.entries(staffGroup).map(([key, list]) => (
-          <section key={key} id={key}>
-            <MemberTitle
-              className="my-5"
-              title={key === 'undefined' ? '未分类志愿者' : key}
-              count={list.length}
-            />
-            <ul className="list-unstyled d-flex flex-wrap gap-4">
-              {list.map(this.renderVolunteers)}
-            </ul>
-          </section>
-        ))}
+        {Object.entries(staffGroup)
+          .sort(([a], [b]) =>
+            a === 'undefined' ? 1 : b === 'undefined' ? -1 : 0,
+          )
+          .map(([key, list]) => (
+            <section key={key} id={key}>
+              <MemberTitle
+                className="my-5"
+                title={key === 'undefined' ? '未分类志愿者' : key}
+                count={list.length}
+              />
+              <ul className="list-unstyled d-flex flex-wrap gap-4">
+                {list.map(this.renderVolunteers)}
+              </ul>
+            </section>
+          ))}
       </Container>
     );
   }

@@ -1,17 +1,19 @@
 import { makeObservable, observable } from 'mobx';
-import { BiDataTable, TableCellValue, TableRecord } from 'mobx-lark';
+import { BiDataTable, TableCellValue } from 'mobx-lark';
 import { NewData } from 'mobx-restful';
 import { groupBy } from 'web-utility';
 
 import { larkClient } from '../Base';
 
-export type Staff = {
-  id: TableCellValue;
-  name: TableCellValue;
-  volunteerType: TableCellValue;
-  avatar: TableCellValue;
-  role: TableCellValue;
-};
+export type Staff = Record<
+  | 'id'
+  | 'name'
+  | 'avatar'
+  | 'role'
+  | 'onlineParticipation'
+  | 'offlineParticipation',
+  TableCellValue
+>;
 
 export type StaffFilter = Partial<NewData<Staff>>;
 
@@ -32,7 +34,8 @@ export class StaffModel extends BiDataTable<Staff>() {
   async getGroup(filter: StaffFilter) {
     return (this.group = groupBy(
       await this.getAll(filter),
-      ({ volunteerType }) => volunteerType + '',
+      ({ onlineParticipation, offlineParticipation }) =>
+        (onlineParticipation || offlineParticipation) + '',
     ));
   }
 }
