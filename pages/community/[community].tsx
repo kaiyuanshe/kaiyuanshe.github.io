@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
 import { cache, compose, errorLogger, translator } from 'next-ssr-middleware';
-import { PureComponent } from 'react';
+import { FC } from 'react';
 import { Container } from 'react-bootstrap';
 
 import { CommunityMemberList } from '../../components/Community/MemberList';
@@ -30,25 +30,20 @@ export const getServerSideProps = compose<
   },
 );
 
-@observer
-export default class CommunityMemberListPage extends PureComponent<
+const CommunityMemberListPage: FC<
   InferGetServerSidePropsType<typeof getServerSideProps>
-> {
-  render() {
-    const { list, community } = this.props;
+> = observer(({ list, community }) => (
+  <Container className="py-5">
+    <PageHead title={`${community}社区`} />
+    {list[0] ? (
+      <>
+        <h1 className="mb-5 text-center">{t('community_member')}</h1>
+        <CommunityMemberList list={list} />
+      </>
+    ) : (
+      <h3 className="my-5 text-center">{t('add_member')}</h3>
+    )}
+  </Container>
+));
 
-    return (
-      <Container className="py-5">
-        <PageHead title={`${community}社区`} />
-        {list[0] ? (
-          <>
-            <h1 className="mb-5 text-center">{t('community_member')}</h1>
-            <CommunityMemberList list={list} />
-          </>
-        ) : (
-          <h2 className="my-5 text-center">{t('add_member')}</h2>
-        )}
-      </Container>
-    );
-  }
-}
+export default CommunityMemberListPage;
