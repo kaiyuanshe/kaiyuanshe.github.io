@@ -75,15 +75,9 @@ export default safeAPI(
             summary: keywordList,
           });
         //@ts-ignore
-        const membersData = { people };
+        const membersData = { people, communities };
         //@ts-ignore
-        const articlesData = {
-          articles,
-          activities,
-          groups,
-          organizations,
-          communities,
-        };
+        const articlesData = { articles, activities, groups, organizations };
         //@ts-ignore
         response.json({ ...articlesData, ...membersData });
       }
