@@ -3,16 +3,15 @@ import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
 import { compose, translator } from 'next-ssr-middleware';
 import { PureComponent } from 'react';
-import { Col, Container, Image, ListGroup, Row } from 'react-bootstrap';
+import { Col, Container, ListGroup, Row } from 'react-bootstrap';
 
+import { LarkImage } from '../../components/LarkImage';
 import PageHead from '../../components/Layout/PageHead';
-import { blobURLOf } from '../../models/Base';
 import { i18n } from '../../models/Base/Translation';
 import {
   Cooperation,
   CooperationModel,
 } from '../../models/Community/Cooperation';
-import { fileURLOf } from '../api/lark/file/[id]';
 
 const Levels = [
   '主办单位',
@@ -73,17 +72,10 @@ export default class CooperationPage extends PureComponent<
           {list.map(({ organization, link, logos }) => (
             <Col as="li" key={organization + ''}>
               <a target="_blank" href={link ? link + '' : ''} rel="noreferrer">
-                <Image
-                  fluid
+                <LarkImage
                   title={organization + ''}
                   alt={organization + ''}
-                  loading="lazy"
-                  src={blobURLOf(logos)}
-                  onError={({ currentTarget: image }) => {
-                    const logo = fileURLOf(logos);
-
-                    if (logo && !image.src.endsWith(logo)) image.src = logo;
-                  }}
+                  src={logos}
                 />
               </a>
             </Col>

@@ -1,10 +1,10 @@
 import classNames from 'classnames';
 import { text2color } from 'idea-react';
 import { FC } from 'react';
-import { Badge, Image } from 'react-bootstrap';
+import { Badge } from 'react-bootstrap';
 
 import { Department } from '../../models/Personnel/Department';
-import { fileURLOf } from '../../pages/api/lark/file/[id]';
+import { LarkImage } from '../LarkImage';
 
 export interface GroupCardProps
   extends Pick<Department, 'name' | 'logo' | 'tags' | 'summary'> {
@@ -23,10 +23,10 @@ export const GroupCard: FC<GroupCardProps> = ({
   >
     <h3 className="h5 mb-3 flex-fill">{name}</h3>
     {logo && (
-      <Image
+      <LarkImage
         className="mb-3 flex-fill object-fit-contain"
         style={{ maxWidth: '10rem' }}
-        src={fileURLOf(logo)}
+        src={logo}
         alt={name as string}
       />
     )}
