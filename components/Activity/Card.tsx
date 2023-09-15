@@ -4,8 +4,8 @@ import type { FC } from 'react';
 import { Badge, Card, Col, Row } from 'react-bootstrap';
 
 import type { Activity } from '../../models/Activity';
-import { blobURLOf } from '../../models/Base';
 import { TimeOption } from '../data';
+import { LarkImage } from '../LarkImage';
 
 export interface ActivityCardProps extends Activity {
   className?: string;
@@ -26,10 +26,10 @@ export const ActivityCard: FC<ActivityCardProps> = ({
   <Card className={`shadow-sm ${className}`}>
     <div className="position-relative w-100" style={{ paddingBottom: '56%' }}>
       <div className="position-absolute top-0 left-0 w-100 h-100">
-        <Card.Img
-          className="h-100 object-fit-cover"
+        <LarkImage
+          className="card-img-top h-100 object-fit-cover"
           style={{ objectPosition: 'top left' }}
-          src={blobURLOf(image)}
+          src={image}
         />
       </div>
     </div>

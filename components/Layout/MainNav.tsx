@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import dynamic from 'next/dynamic';
 import { NextRouter, withRouter } from 'next/router';
 import { PureComponent } from 'react';
-import { Container, Image, Nav, Navbar,NavDropdown } from 'react-bootstrap';
+import { Container, Image, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 
 import { API_Host } from '../../models/Base';
 import { i18n } from '../../models/Base/Translation';
@@ -91,7 +91,7 @@ class MainNav extends PureComponent<MainNavProps> {
       >
         <Container>
           <Navbar.Brand href="/">
-            <Image className="me-3" width={40} src={logo} alt="logo" />
+            <Image className="me-3" width={40} src={logo} alt={title} />
 
             <svg className={styles.logoTitle} viewBox="0 0 96 32">
               <text x="0" y="68%">

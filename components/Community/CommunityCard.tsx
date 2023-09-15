@@ -2,14 +2,14 @@ import type { FC } from 'react';
 import { Card } from 'react-bootstrap';
 
 import { Community } from '../../models/Community';
-import { fileURLOf } from '../../pages/api/lark/file/[id]';
+import { LarkImage } from '../LarkImage';
 
 export const CommunityCard: FC<Community> = ({ name, logo }) => (
   <Card className="border-0 align-items-center position-relative">
-    <Card.Img
+    <LarkImage
+      className="card-img-top"
       style={{ width: '8rem' }}
-      variant="top"
-      src={fileURLOf(logo)}
+      src={logo}
       alt={name + ''}
     />
     <Card.Body>

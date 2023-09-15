@@ -6,10 +6,10 @@ import { Fragment, PureComponent } from 'react';
 import { Col, Container, Image, Row } from 'react-bootstrap';
 
 import { ArticleListLayout } from '../components/Article/List';
+import { LarkImage } from '../components/LarkImage';
 import PageHead from '../components/Layout/PageHead';
 import { CityStatisticMap } from '../components/Map/CityStatisticMap';
 import activityStore from '../models/Activity';
-import { blobURLOf } from '../models/Base';
 import { i18n } from '../models/Base/Translation';
 import { Department, DepartmentModel } from '../models/Personnel/Department';
 import { Article, ArticleModel } from '../models/Product/Article';
@@ -36,12 +36,7 @@ export default class HomePage extends PureComponent<
 > {
   renderProject = ({ id, name, logo = DefaultImage, link }: Department) => (
     <Col as="li" key={id + ''} className="position-relative">
-      <Image
-        style={{ height: '8rem' }}
-        loading="lazy"
-        alt="logo"
-        src={blobURLOf(logo)}
-      />
+      <LarkImage style={{ height: '8rem' }} alt={name as string} src={logo} />
       <a
         className="d-block text-decoration-none text-dark h5 stretched-link mt-3"
         target="_blank"

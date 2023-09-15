@@ -4,18 +4,17 @@ import { observer } from 'mobx-react';
 import { Component } from 'react';
 import { Badge, Card, Carousel } from 'react-bootstrap';
 
-import { blobURLOf } from '../../../models/Base';
+import { LarkImage } from '../../LarkImage';
 import { AgendaToolbar, AgendaToolbarProps } from './Toolbar';
 
 @observer
 export class AgendaCard extends Component<AgendaToolbarProps> {
   renderCardImage = (file: TableCellAttachment) => (
-    <Card.Img
+    <LarkImage
       key={file.attachmentToken}
-      className="m-auto object-fit-cover"
+      className="card-img-top m-auto object-fit-cover"
       style={{ height: '25rem' }}
-      loading="lazy"
-      src={blobURLOf([file])}
+      src={[file]}
     />
   );
 
