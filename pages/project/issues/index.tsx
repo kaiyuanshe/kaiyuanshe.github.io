@@ -20,8 +20,8 @@ export const getServerSideProps = compose(translator(i18n), async () => {
 const IssuesPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
   observer(({ list }) => (
     <Container className="py-5">
-      <PageHead title="issues" />
-      <h1>Issues</h1>
+      <PageHead title="GitHub issues" />
+      <h1>GitHub issues</h1>
 
       {repositoryStore.downloading > 0 && <Loading />}
 

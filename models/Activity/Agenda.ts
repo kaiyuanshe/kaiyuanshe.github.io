@@ -7,6 +7,7 @@ import {
   TableCellValue,
   TableRecord,
 } from 'mobx-lark';
+import { Filter } from 'mobx-restful';
 import { groupBy } from 'web-utility';
 
 import { normalizeTextArray } from '../../pages/api/lark/core';
@@ -25,11 +26,16 @@ export type Agenda = Record<
   | 'startTime'
   | 'endTime'
   | 'files'
-  | 'approver',
+  | 'approver'
+  | '负责手机号',
   TableCellValue
 >;
 
-export class AgendaModel extends BiDataTable<Agenda>() {
+interface AgendaFilter extends Filter<Agenda> {
+  负责人手机号: TableCellValue;
+}
+
+export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
   constructor(appId: string, tableId: string) {
     super(appId, tableId);
 
@@ -50,6 +56,9 @@ export class AgendaModel extends BiDataTable<Agenda>() {
 
   @observable
   group: Record<string, Agenda[]> = {};
+
+  @observable
+  currentAuthorized = false;
 
   normalize({
     id,
@@ -76,5 +85,11 @@ export class AgendaModel extends BiDataTable<Agenda>() {
       await this.getAll(),
       ({ forum }) => forum + '',
     ));
+  }
+
+  async checkAuthorization(title: string, mobilePhone: string) {
+    const [matched] = await this.getList({ title, 负责人手机号: mobilePhone });
+
+    return console.log((this.currentAuthorized = !!matched));
   }
 }

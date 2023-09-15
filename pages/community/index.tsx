@@ -25,10 +25,12 @@ const CommunityListPage: FC<
   <Container className="py-5 text-center">
     <PageHead title={t('community_list')} />
     <h1 className="mb-5 text-center">{t('community_list')}</h1>
+
     <CommunityListLayout defaultData={list} />
     <Button
       className="my-3"
       size="lg"
+      target="_blank"
       href="https://kaiyuanshe.feishu.cn/share/base/form/shrcnAyfE76AHnwtJ8P1fO7avaf"
     >
       {t('community_register')}

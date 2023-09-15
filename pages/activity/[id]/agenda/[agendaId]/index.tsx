@@ -1,10 +1,16 @@
 import { text2color } from 'idea-react';
+import { makeObservable, observable } from 'mobx';
 import { TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
-import { InferGetServerSidePropsType } from 'next';
-import { compose, errorLogger, router, translator } from 'next-ssr-middleware';
+import {
+  cache,
+  compose,
+  errorLogger,
+  router,
+  translator,
+} from 'next-ssr-middleware';
 import { PureComponent } from 'react';
-import { Badge, Col, Container, Row } from 'react-bootstrap';
+import { Badge, Button, Col, Container, Row } from 'react-bootstrap';
 
 import { AgendaToolbar } from '../../../../../components/Activity/Agenda/Toolbar';
 import { ActivityPeople } from '../../../../../components/Activity/People';
@@ -15,10 +21,15 @@ import { Agenda } from '../../../../../models/Activity/Agenda';
 import { blobURLOf } from '../../../../../models/Base';
 import { i18n } from '../../../../../models/Base/Translation';
 
+interface AgendaDetailPageProps {
+  activity: Activity;
+  agenda: Agenda;
+}
+
 export const getServerSideProps = compose<
   { id: string; agendaId: string },
-  { activity: Activity; agenda: Agenda }
->(router, errorLogger, translator(i18n), async ({ params }) => {
+  AgendaDetailPageProps
+>(cache(), router, errorLogger, translator(i18n), async ({ params }) => {
   const activityStore = new ActivityModel(),
     { id, agendaId } = params!;
   const activity = await activityStore.getOne(id + ''),
@@ -32,25 +43,51 @@ export const getServerSideProps = compose<
 const { t } = i18n;
 
 @observer
-export default class AgendaDetailPage extends PureComponent<
-  InferGetServerSidePropsType<typeof getServerSideProps>
-> {
+export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProps> {
+  constructor(props: AgendaDetailPageProps) {
+    super(props);
+    makeObservable(this);
+  }
+
+  @observable
+  activityStore?: ActivityModel = undefined;
+
+  async componentDidMount() {
+    const { activity, agenda } = this.props;
+
+    this.activityStore = new ActivityModel();
+
+    await this.activityStore.getOne(activity.id as string);
+
+    this.activityStore.currentAgenda!.checkAuthorization(
+      agenda.title as string,
+      '13800000000',
+    );
+  }
+
   renderHeader() {
     const { id, location } = this.props.activity;
     const { type, forum, title, startTime, endTime } = this.props.agenda;
 
     return (
       <header>
-        <div className="d-flex align-items-center justify-content-between">
+        <div className="d-flex flex-column flex-lg-row align-items-center justify-content-between">
           <h1>{title}</h1>
 
           <AgendaToolbar
+            className="my-3 text-nowrap"
             activityId={id + ''}
             location={location + ''}
             {...this.props.agenda}
-          />
+          >
+            {this.activityStore?.currentAgenda?.currentAuthorized && (
+              <Button size="sm" variant="danger">
+                确认打卡
+              </Button>
+            )}
+          </AgendaToolbar>
         </div>
-        <div className="d-flex align-items-center gap-3">
+        <div className="d-flex flex-wrap align-items-center gap-3">
           <Badge bg={text2color(type as string, ['light'])}>{type}</Badge>
 
           <div className="text-success">{forum}</div>
