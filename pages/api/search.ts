@@ -33,8 +33,8 @@ export default safeAPI(
         const { keywords, tag } = parseURLData(url) as SearchQuery;
         const keywordList = keywords?.split(/\s+/);
         if (keywordList || tag)
-          var [articles, activities, groups, organizations, communities] =
-            await Promise.all([
+          var [articles, activities, groups, organizations] = await Promise.all(
+            [
               new SearchArticleModel().getList({
                 title: keywordList,
                 author: keywordList,
@@ -63,17 +63,21 @@ export default safeAPI(
                 codeLink: keywordList,
                 wechatName: keywordList,
               }),
-              new SearchCommunityModel().getList({
-                name: keywordList,
-                summary: keywordList,
-              }),
-            ]);
+            ],
+          );
         if (keywordList)
-          var people = await new SearchPersonModel().getList({
-            name: keywordList,
-            email: keywordList,
-            summary: keywordList,
-          });
+          var [people, communities] = await Promise.all([
+            new SearchPersonModel().getList({
+              name: keywordList,
+              email: keywordList,
+              summary: keywordList,
+            }),
+            new SearchCommunityModel().getList({
+              name: keywordList,
+              summary: keywordList,
+            }),
+          ]);
+
         //@ts-ignore
         const membersData = { people, communities };
         //@ts-ignore
