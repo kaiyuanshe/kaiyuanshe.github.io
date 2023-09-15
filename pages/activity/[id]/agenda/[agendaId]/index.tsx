@@ -3,6 +3,7 @@ import { TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
 import { compose, translator } from 'next-ssr-middleware';
+import { QRCodeSVG } from 'qrcode.react';
 import { PureComponent } from 'react';
 import { Badge, Col, Container, Row } from 'react-bootstrap';
 
@@ -13,6 +14,7 @@ import PageHead from '../../../../../components/Layout/PageHead';
 import { Activity, ActivityModel } from '../../../../../models/Activity';
 import { Agenda } from '../../../../../models/Activity/Agenda';
 import { blobURLOf } from '../../../../../models/Base';
+import { API_Host, isServer } from '../../../../../models/Base';
 import { i18n } from '../../../../../models/Base/Translation';
 
 export const getServerSideProps = compose<
@@ -94,6 +96,13 @@ export default class AgendaDetailPage extends PureComponent<
               summaries={mentorSummaries as string[]}
             />
           </Col>
+        </Row>
+        <Row className="py-5">
+          {!isServer() && (
+            <QRCodeSVG
+              value={`${API_Host}/activity/${this.props.activity.id}/agenda/${this.props.agenda.id}?13800000000`}
+            />
+          )}
         </Row>
 
         <CommentBox category="General" categoryId="DIC_kwDOB88JLM4COLSV" />

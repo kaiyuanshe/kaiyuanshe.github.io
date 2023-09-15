@@ -8,6 +8,9 @@ overrides:
   '@swc/helpers@~0.4': 0.4.36
 
 dependencies:
+  '@authing/guard':
+    specifier: ^5.3.0
+    version: 5.3.0(authing-js-sdk@4.23.48)
   '@giscus/react':
     specifier: ^2.3.0
     version: 2.3.0(react-dom@17.0.2)(react@17.0.2)
@@ -197,6 +200,46 @@ packages:
       json-schema: 0.4.0
       jsonpointer: 5.0.1
       leven: 3.1.0
+    dev: false
+
+  /@authing/guard-shim-react@4.5.0-alpha.3(authing-js-sdk@4.23.48):
+    resolution: {integrity: sha512-ICSdRCCRP4aI2SxlA9fqVwlCqtV7Zag7X/QLMwZu+lvm3HHjBshqLhEFHFT8g+sar6lt9vEIKuc8sJjpXhTDrw==}
+    peerDependencies:
+      authing-js-sdk: ^4.23.44
+    dependencies:
+      authing-js-sdk: 4.23.48
+    dev: false
+
+  /@authing/guard@5.3.0(authing-js-sdk@4.23.48):
+    resolution: {integrity: sha512-dTDvSfwusNunuwJcNjN+1hTJS2sBqtvFXc07chP/YIAfxggu/ivszTEgsK6XptS4CurEkBmMVVtYClLSuU3HRw==}
+    dependencies:
+      '@authing/react-ui-components': 4.5.0-alpha.3(authing-js-sdk@4.23.48)
+      axios: 0.27.2
+      react: 16.14.0
+      react-dom: 16.14.0(react@16.14.0)
+    transitivePeerDependencies:
+      - authing-js-sdk
+      - debug
+    dev: false
+
+  /@authing/native-js-ui-components@4.5.0-alpha.3(authing-js-sdk@4.23.48):
+    resolution: {integrity: sha512-YpeNPjrqLpWqtgfsVWJz2R4sdcYIoxLFqrpRgDhGzu6ye7U3gi9zhUpb5M61XZmq/pQfihZcgF/Fq6r+vD7WoQ==}
+    dependencies:
+      '@authing/guard-shim-react': 4.5.0-alpha.3(authing-js-sdk@4.23.48)
+      react: 16.14.0
+      react-dom: 16.14.0(react@16.14.0)
+    transitivePeerDependencies:
+      - authing-js-sdk
+    dev: false
+
+  /@authing/react-ui-components@4.5.0-alpha.3(authing-js-sdk@4.23.48):
+    resolution: {integrity: sha512-1xMKGbVM7Og9i0wMWqeXU++8Hz2HsdBOKyx0QLnqLirXQrEt4CKMvlInX8ubaORJb4mHFPGomLI0Nq1NLkc03w==}
+    dependencies:
+      '@authing/guard-shim-react': 4.5.0-alpha.3(authing-js-sdk@4.23.48)
+      '@authing/native-js-ui-components': 4.5.0-alpha.3(authing-js-sdk@4.23.48)
+      react: 16.14.0
+    transitivePeerDependencies:
+      - authing-js-sdk
     dev: false
 
   /@babel/code-frame@7.22.13:
@@ -1301,6 +1344,12 @@ packages:
     resolution: {integrity: sha512-1S8uAY/MTJqVx0SC4epBq+N2yhuwtNwLbJYNZyhL2pO1ZVKn5HFXav5T41Ryzy9K9V7ZId2JB2oy/W4aCd9/2w==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
+
+  /@fingerprintjs/fingerprintjs@3.4.2:
+    resolution: {integrity: sha512-3Ncze6JsJpB7BpYhqIgvBpfvEX1jsEKrad5hQBpyRQxtoAp6hx3+R46zqfsuQG4D9egQZ+xftQ0u4LPFMB7Wmg==}
+    dependencies:
+      tslib: 2.6.2
+    dev: false
 
   /@giscus/react@2.3.0(react-dom@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-tj79B+NNBfidhPdXJqWoqRm5Jhoc6CBhXMYwBR9nwTwsrdaB/spcQXmHpKcUuOdXZtlYSwMfCFcBogMNbD+gKQ==}
@@ -2449,6 +2498,21 @@ packages:
     engines: {node: '>= 4.0.0'}
     dev: false
 
+  /authing-js-sdk@4.23.48:
+    resolution: {integrity: sha512-6uRk4Ii27mno5YjfVdjRrKTkL33Tb11IaxOMp8y2UnKJwALEa8S2vGE3FQzFohFEJrhKL7ozf8zEl7nMgr2q2w==}
+    engines: {node: '>=8.9'}
+    dependencies:
+      '@fingerprintjs/fingerprintjs': 3.4.2
+      axios: 0.26.1
+      crypto: 1.0.1
+      crypto-js: 4.1.1
+      jsencrypt: 3.3.2
+      jwt-decode: 2.2.0
+      sm-crypto: 0.3.12
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
   /available-typed-arrays@1.0.5:
     resolution: {integrity: sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==}
     engines: {node: '>= 0.4'}
@@ -2457,6 +2521,23 @@ packages:
     resolution: {integrity: sha512-9l850jDDPnKq48nbad8SiEelCv4OrUWrKab/cPj0GScVg6cb6NbCCt/Ulk26QEq5jP9NnGr04Bit1BHyV6r5CQ==}
     engines: {node: '>=4'}
     dev: true
+
+  /axios@0.26.1:
+    resolution: {integrity: sha512-fPwcX4EvnSHuInCMItEhAGnaSEXRBjtzh9fOtsE6E1G6p7vl7edEeZe11QHf18+6+9gR5PbKV/sGKNaD8YaMeA==}
+    dependencies:
+      follow-redirects: 1.15.2
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
+  /axios@0.27.2:
+    resolution: {integrity: sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==}
+    dependencies:
+      follow-redirects: 1.15.2
+      form-data: 4.0.0
+    transitivePeerDependencies:
+      - debug
+    dev: false
 
   /axobject-query@3.2.1:
     resolution: {integrity: sha512-jsyHu61e6N4Vbz/v18DHwWYKK0bSWLqn47eeDSKPB7m8tqMHF9YJ+mhIk2lVteyZrY8tnSj/jHOv4YiTCuCJgg==}
@@ -2778,9 +2859,18 @@ packages:
       which: 2.0.2
     dev: true
 
+  /crypto-js@4.1.1:
+    resolution: {integrity: sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw==}
+    dev: false
+
   /crypto-random-string@2.0.0:
     resolution: {integrity: sha512-v1plID3y9r/lPhviJ1wrXpLeyUIGAZ2SHNYTEapm7/8A9nLPoyvVp3RK/EPFqn5kEznyWgYZNsRtYYIWbuG8KA==}
     engines: {node: '>=8'}
+    dev: false
+
+  /crypto@1.0.1:
+    resolution: {integrity: sha512-VxBKmeNcqQdiUQUW2Tzq0t377b54N2bMtXO/qiLa+6eRRmmC4qT3D4OnTGoT/U6O9aklQ/jTwbOtRMTTY8G0Ig==}
+    deprecated: This package is no longer supported. It's now a built-in Node module. If you've depended on crypto, you should switch to the one that's built-in.
     dev: false
 
   /css-line-break@2.1.0:
@@ -3622,6 +3712,16 @@ packages:
     resolution: {integrity: sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==}
     dev: true
 
+  /follow-redirects@1.15.2:
+    resolution: {integrity: sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    dev: false
+
   /for-each@0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}
     dependencies:
@@ -4417,6 +4517,10 @@ packages:
       argparse: 2.0.1
     dev: true
 
+  /jsbn@1.1.0:
+    resolution: {integrity: sha512-4bYVV3aAMtDTTu4+xsDYa6sy9GyJ69/amsu9sYF2zqjiEoZA5xJi3BrfX3uY+/IekIu7MwdObdbDWpoZdBv3/A==}
+    dev: false
+
   /jsdom@22.1.0:
     resolution: {integrity: sha512-/9AVW7xNbsBv6GfWho4TTNjEo9fe6Zhf9O7s0Fhhr3u+awPwAJMKwAMXnkk5vBxflqLW9hTHX/0cs+P3gW+cQw==}
     engines: {node: '>=16'}
@@ -4453,6 +4557,10 @@ packages:
       - bufferutil
       - supports-color
       - utf-8-validate
+    dev: false
+
+  /jsencrypt@3.3.2:
+    resolution: {integrity: sha512-arQR1R1ESGdAxY7ZheWr12wCaF2yF47v5qpB76TtV64H1pyGudk9Hvw8Y9tb/FiTIaaTRUyaSnm5T/Y53Ghm/A==}
     dev: false
 
   /jsesc@0.5.0:
@@ -4520,6 +4628,10 @@ packages:
       object.assign: 4.1.4
       object.values: 1.1.7
     dev: true
+
+  /jwt-decode@2.2.0:
+    resolution: {integrity: sha512-86GgN2vzfUu7m9Wcj63iUkuDzFNYFVmjeDm2GzWpUk+opB0pEpMsw6ePCMrhYkumz2C1ihqtZzOMAg7FiXcNoQ==}
+    dev: false
 
   /keyv@4.5.3:
     resolution: {integrity: sha512-QCiSav9WaX1PgETJ+SpNnx2PRRapJ/oRSXM4VO5OGYGSjrxbKPVFVhB3l2OCbLCk329N8qyAtsJjSjvVBWzEug==}
@@ -6153,6 +6265,18 @@ packages:
       warning: 4.0.3
     dev: false
 
+  /react-dom@16.14.0(react@16.14.0):
+    resolution: {integrity: sha512-1gCeQXDLoIqMgqD3IO2Ah9bnf0w9kzhwN5q4FGnHZ67hBm9yePzB5JJAIQCc8x3pFnNlwFq4RidZggNAAkzWWw==}
+    peerDependencies:
+      react: ^16.14.0
+    dependencies:
+      loose-envify: 1.4.0
+      object-assign: 4.1.1
+      prop-types: 15.8.1
+      react: 16.14.0
+      scheduler: 0.19.1
+    dev: false
+
   /react-dom@17.0.2(react@17.0.2):
     resolution: {integrity: sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==}
     peerDependencies:
@@ -6243,6 +6367,15 @@ packages:
       prop-types: 15.8.1
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
+    dev: false
+
+  /react@16.14.0:
+    resolution: {integrity: sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g==}
+    engines: {node: '>=0.10.0'}
+    dependencies:
+      loose-envify: 1.4.0
+      object-assign: 4.1.1
+      prop-types: 15.8.1
     dev: false
 
   /react@17.0.2:
@@ -6524,6 +6657,13 @@ packages:
       xmlchars: 2.2.0
     dev: false
 
+  /scheduler@0.19.1:
+    resolution: {integrity: sha512-n/zwRWRYSUj0/3g/otKDRPMh6qv2SYMWNq85IEa8iZyAv8od9zDYpGSnpBEjNgcMNq6Scbu5KfIPxNF72R/2EA==}
+    dependencies:
+      loose-envify: 1.4.0
+      object-assign: 4.1.1
+    dev: false
+
   /scheduler@0.20.2:
     resolution: {integrity: sha512-2eWfGgAqqWFGqtdMmcL5zCMK1U8KlXv8SQFGglL3CEtd0aDVDWgeF/YoCmvln55m5zSk3J/20hTaSBeSObsQDQ==}
     dependencies:
@@ -6635,6 +6775,12 @@ packages:
       ansi-styles: 6.2.1
       is-fullwidth-code-point: 4.0.0
     dev: true
+
+  /sm-crypto@0.3.12:
+    resolution: {integrity: sha512-272PBzB4PYaBdeGa41TH9ZlMGLPVRmS36Gs4FjmHwXIdihQypAbhhFWZTaa/3de69q2KfMme1M5O2W5+spAdrg==}
+    dependencies:
+      jsbn: 1.1.0
+    dev: false
 
   /source-list-map@2.0.1:
     resolution: {integrity: sha512-qnQ7gVMxGNxsiL4lEuJwe/To8UnK7fAnmbGEEH8RpLouuKbeEm0lhbQVFIrNSuB+G7tVrAlVsZgETT5nljf+Iw==}
