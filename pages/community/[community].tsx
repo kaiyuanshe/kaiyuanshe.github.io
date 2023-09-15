@@ -51,6 +51,7 @@ const CommunityMemberListPage: FC<
       <Button
         className="my-3"
         size="lg"
+        target="_blank"
         href="https://kaiyuanshe.feishu.cn/share/base/form/shrcnogj5LPzlaiUkFaKpVbxNXe"
       >
         {t('member_register')}

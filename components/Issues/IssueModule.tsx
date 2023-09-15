@@ -15,22 +15,22 @@ export const IssueModule: FC<GitRepository> = ({ name, language, issues }) => {
         onClick={() => setIsExpand(!isExpand)}
       >
         <Row className="align-items-center gx-3">
-          <Col xs={4}>
+          <Col xs={4} sm={2}>
             {language && (
               <Badge className="fs-6" bg={text2color(language, ['light'])}>
                 {language}
               </Badge>
             )}
           </Col>
-          <Col xs={6} as="h3" className="m-0 text-truncate">
+          <Col xs={6} sm={8} as="h3" className="m-0 text-truncate">
             {name}
           </Col>
-          <Col xs={1}>
+          <Col xs={1} className="text-end">
             <Badge className="fs-6" pill bg="info">
               {issues.length}
             </Badge>
           </Col>
-          <Col xs={1}>
+          <Col xs={1} className="text-end">
             <Icon
               size={1.5}
               name={isExpand ? 'arrows-collapse' : 'arrows-expand'}

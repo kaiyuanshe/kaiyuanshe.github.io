@@ -15,7 +15,7 @@ export const CommunityCard: FC<Community> = ({ name, logo }) => (
     <Card.Body>
       <Card.Title
         as="a"
-        className="fs-6 stretched-link"
+        className="fs-6 text-decoration-none stretched-link"
         href={`/community/${name}`}
       >
         {name}

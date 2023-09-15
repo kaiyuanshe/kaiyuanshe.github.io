@@ -110,7 +110,10 @@ export class ActivityModel extends BiDataTable<Activity>() {
   formMap = {} as ActivityTableModel['formMap'];
 
   currentForum?: ForumModel;
-  currentAgenda?: AgendaModel;
+
+  @observable
+  currentAgenda?: AgendaModel = undefined;
+
   currentPlace?: PlaceModel;
   currentBill?: BillModel;
   currentStaff?: StaffModel;
@@ -162,7 +165,7 @@ export class ActivityModel extends BiDataTable<Activity>() {
       this.currentForum = table.currentDataTable as ForumModel;
 
       await table.getOne('Agenda', AgendaModel);
-      this.currentAgenda = table.currentDataTable as AgendaModel;
+      this.currentAgenda = table.currentDataTable as unknown as AgendaModel;
 
       await table.getOne('Place', PlaceModel);
       this.currentPlace = table.currentDataTable as PlaceModel;
