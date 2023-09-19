@@ -21,16 +21,11 @@ export const getServerSideProps = compose<
     list: CommunityMember[];
     community: string;
   }
->(
-  cache(),
-  errorLogger,
-  translator(i18n),
-  async ({ params: { community } = {} }) => {
-    const list = await new CommunityMemberModel().getAll({ community });
+>(errorLogger, translator(i18n), async ({ params: { community } = {} }) => {
+  const list = await new CommunityMemberModel().getAll({ community });
 
-    return { props: JSON.parse(JSON.stringify({ list, community })) };
-  },
-);
+  return { props: JSON.parse(JSON.stringify({ list, community })) };
+});
 
 const CommunityMemberListPage: FC<
   InferGetServerSidePropsType<typeof getServerSideProps>

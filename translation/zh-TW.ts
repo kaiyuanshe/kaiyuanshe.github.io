@@ -217,7 +217,7 @@ export default {
   community_member: '社區成員',
   add_member: '數據整理中，敬請期待',
   community: '社區',
-  member_register: 'KCC 成員信息登記',
+  member_register: '申請成為 KCC 成員',
   activity_register: 'KCC 活動信息登記',
-  community_register: '社區信息登記',
+  community_register: 'KCC 社區創建申請',
 } as const;

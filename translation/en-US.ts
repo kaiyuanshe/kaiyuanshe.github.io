@@ -222,9 +222,9 @@ export default {
 
   //community detail page
   community_member: 'Community Members',
-  add_member: 'Community member data is being compiled, please stay tuned',
+  add_member: 'Community Member Data is being Compiled, Please Stay Tuned',
   community: ' Community',
-  member_register: 'KCC Member Information Registration',
+  member_register: 'Apply to Become a KCC Member',
   activity_register: 'KCC Activity Information Registration',
-  community_register: 'Community Information Registration',
+  community_register: 'KCC Community Establishment Application',
 } as const;

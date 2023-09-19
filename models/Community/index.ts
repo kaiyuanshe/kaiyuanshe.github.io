@@ -14,7 +14,14 @@ import { cache, countBy, groupBy, Hour, isEmpty } from 'web-utility';
 import { larkClient } from '../Base';
 
 export type Community = Record<
-  'id' | 'name' | 'logo' | 'director' | 'startDate' | 'summary' | 'link',
+  | 'id'
+  | 'name'
+  | 'logo'
+  | 'director'
+  | 'startDate'
+  | 'summary'
+  | 'link'
+  | 'approver',
   TableCellValue
 >;
 
@@ -30,7 +37,7 @@ export class CommunityModel extends BiDataTable<Community>() {
     makeObservable(this);
   }
 
-  requiredKeys = ['name'] as const;
+  requiredKeys = ['name', 'approver'] as const;
 
   sort = { name: 'ASC' } as const;
 
@@ -39,13 +46,14 @@ export class CommunityModel extends BiDataTable<Community>() {
 
   normalize({
     id,
-    fields: { link, director, ...fields },
+    fields: { link, director, approver, ...fields },
   }: TableRecord<Community>) {
     return {
       ...fields,
       id: id!,
       link: (link as TableCellLink)?.link,
       director: (director as TableCellRelation[])?.map(normalizeText)[0],
+      approver: (approver as TableCellRelation[])?.map(normalizeText)[0],
     };
   }
 }
