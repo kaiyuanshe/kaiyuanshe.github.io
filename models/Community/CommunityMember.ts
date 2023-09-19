@@ -18,7 +18,8 @@ export type CommunityMember = Record<
   | 'avatar'
   | 'community'
   | 'email'
-  | 'summary',
+  | 'summary'
+  | 'approver',
   TableCellValue
 >;
 
@@ -44,13 +45,14 @@ export class CommunityMemberModel extends BiDataTable<CommunityMember>() {
 
   normalize({
     id,
-    fields: { community, email, ...fields },
+    fields: { community, email, approver, ...fields },
   }: TableRecord<CommunityMember>) {
     return {
       ...fields,
       id: id!,
       community: normalizeTextArray(community as TableCellText[])[0],
       email: (email as TableCellLink)?.link,
+      approver: normalizeTextArray(approver as TableCellText[])[0],
     };
   }
 }
