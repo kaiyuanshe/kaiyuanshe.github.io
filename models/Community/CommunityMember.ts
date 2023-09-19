@@ -36,7 +36,7 @@ export class CommunityMemberModel extends BiDataTable<CommunityMember>() {
     makeObservable(this);
   }
 
-  requiredKeys = ['name'] as const;
+  requiredKeys = ['name', 'approver'] as const;
 
   sort = { name: 'ASC' } as const;
 
