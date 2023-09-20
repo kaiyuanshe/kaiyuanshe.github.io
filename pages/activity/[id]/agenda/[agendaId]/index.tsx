@@ -18,25 +18,32 @@ import { CommentBox } from '../../../../../components/CommentBox';
 import PageHead from '../../../../../components/Layout/PageHead';
 import { Activity, ActivityModel } from '../../../../../models/Activity';
 import { Agenda } from '../../../../../models/Activity/Agenda';
+import {
+  AgendaFile,
+  AgendaFileModel,
+} from '../../../../../models/Activity/AgendaFile';
 import { blobURLOf } from '../../../../../models/Base';
 import { i18n } from '../../../../../models/Base/Translation';
 
 interface AgendaDetailPageProps {
   activity: Activity;
   agenda: Agenda;
+  fileList: AgendaFile[];
 }
 
 export const getServerSideProps = compose<
   { id: string; agendaId: string },
   AgendaDetailPageProps
->(cache(), router, errorLogger, translator(i18n), async ({ params }) => {
+>(router, errorLogger, translator(i18n), async ({ params }) => {
   const activityStore = new ActivityModel(),
     { id, agendaId } = params!;
   const activity = await activityStore.getOne(id + ''),
     agenda = await activityStore.currentAgenda!.getOne(agendaId + '');
 
+  const fileList = await new AgendaFileModel().getAll();
+
   return {
-    props: JSON.parse(JSON.stringify({ activity, agenda })),
+    props: JSON.parse(JSON.stringify({ activity, agenda, fileList })),
   };
 });
 
@@ -109,7 +116,11 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
       mentorPositions,
       mentorSummaries,
       summary = t('no_data'),
+      files,
     } = this.props.agenda;
+    if (1 == 1) {
+      debugger;
+    }
 
     return (
       <Container className="pt-5">
@@ -132,7 +143,6 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
             />
           </Col>
         </Row>
-
         <CommentBox category="General" categoryId="DIC_kwDOB88JLM4COLSV" />
       </Container>
     );
