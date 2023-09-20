@@ -23,8 +23,6 @@ const FileListPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
   observer(({ list }) => (
     <Container className="py-5 text-center">
       <PageHead title={t('community_list')} />
-      <h1 className="mb-5 text-center">{t('community_list')}</h1>
-      {console.log(JSON.stringify(list))}
       <AgenDaFileList list={list} />
     </Container>
   ));

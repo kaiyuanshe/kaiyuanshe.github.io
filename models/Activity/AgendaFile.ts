@@ -1,22 +1,21 @@
 import { makeObservable, observable } from 'mobx';
 import {
   BiDataTable,
-  makeSimpleFilter,
   normalizeText,
-  TableCellLink,
+  TableCellMedia,
   TableCellRelation,
   TableCellValue,
   TableRecord,
 } from 'mobx-lark';
-import { Filter, NewData } from 'mobx-restful';
-import { cache, countBy, groupBy, Hour, isEmpty } from 'web-utility';
 
 import { larkClient } from '../Base';
 
 export type AgendaFile = Record<
-  'id' | 'summary' | 'agenda' | 'type' | 'file' | 'url' | 'remark' | 'approver',
+  'id' | 'summary' | 'agenda' | 'type' | 'url' | 'remark' | 'approver',
   TableCellValue
->;
+> & {
+  file: TableCellMedia[];
+};
 
 export const KCC_BASE_ID = 'A24bb4YskaQmF4sRyAOcJacUnbb';
 export const COMMUNITY_TABLE_ID = 'tblUOAb6Q1r0WR8s';
