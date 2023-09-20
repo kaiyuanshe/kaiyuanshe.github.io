@@ -12,6 +12,7 @@ import {
 import { PureComponent } from 'react';
 import { Badge, Button, Col, Container, Row } from 'react-bootstrap';
 
+import { AgenDaFileList } from '../../../../../components/Activity/Agenda/FileList';
 import { AgendaToolbar } from '../../../../../components/Activity/Agenda/Toolbar';
 import { ActivityPeople } from '../../../../../components/Activity/People';
 import { CommentBox } from '../../../../../components/CommentBox';
@@ -40,6 +41,7 @@ export const getServerSideProps = compose<
   const activity = await activityStore.getOne(id + ''),
     agenda = await activityStore.currentAgenda!.getOne(agendaId + '');
 
+  // const recordIdsList: string[] = agenda.files.flatMap((file) => file.record_ids);
   const fileList = await new AgendaFileModel().getAll();
 
   return {
@@ -118,9 +120,6 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
       summary = t('no_data'),
       files,
     } = this.props.agenda;
-    if (1 == 1) {
-      debugger;
-    }
 
     return (
       <Container className="pt-5">
@@ -143,6 +142,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
             />
           </Col>
         </Row>
+        <AgenDaFileList list={this.props.fileList} />
         <CommentBox category="General" categoryId="DIC_kwDOB88JLM4COLSV" />
       </Container>
     );

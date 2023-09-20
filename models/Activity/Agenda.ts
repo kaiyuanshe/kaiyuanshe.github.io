@@ -12,6 +12,7 @@ import { groupBy } from 'web-utility';
 
 import { normalizeTextArray } from '../../pages/api/lark/core';
 import { larkClient } from '../Base';
+import { AgendaFile } from './AgendaFile';
 
 export type Agenda = Record<
   | 'id'
@@ -29,7 +30,9 @@ export type Agenda = Record<
   | 'approver'
   | '负责手机号',
   TableCellValue
->;
+> & {
+  files: AgendaFile[];
+};
 
 interface AgendaFilter extends Filter<Agenda> {
   负责人手机号: TableCellValue;

@@ -21,6 +21,7 @@ export const KCC_BASE_ID = 'A24bb4YskaQmF4sRyAOcJacUnbb';
 export const COMMUNITY_TABLE_ID = 'tblUOAb6Q1r0WR8s';
 
 export class AgendaFileModel extends BiDataTable<AgendaFile>() {
+  [x: string]: any;
   client = larkClient;
 
   constructor(appId = KCC_BASE_ID, tableId = COMMUNITY_TABLE_ID) {
