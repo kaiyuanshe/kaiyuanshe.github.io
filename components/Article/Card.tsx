@@ -2,9 +2,9 @@ import { text2color, TimeDistance } from 'idea-react';
 import type { FC } from 'react';
 import { Badge, Card, Col, Row } from 'react-bootstrap';
 
-import { blobURLOf } from '../../models/Base';
 import type { BaseArticle } from '../../models/Product/Article';
 import { TimeOption } from '../data';
+import { LarkImage } from '../LarkImage';
 
 export interface ArticleCardProps extends BaseArticle {
   className?: string;
@@ -20,15 +20,15 @@ export const ArticleCard: FC<ArticleCardProps> = ({
   publishedAt,
 }: ArticleCardProps) => (
   <Card className={`shadow-sm ${className}`}>
-    <Card.Img
-      className="object-fit-cover"
+    <LarkImage
+      className="card-img-top object-fit-cover"
       style={{ aspectRatio: '2.35 / 1' }}
-      src={blobURLOf(image)}
+      src={image}
     />
     <Card.Body className="d-flex flex-column">
       <Card.Title as="h3" className="h5 flex-fill">
         <a
-          className="text-decoration-none text-secondary text-truncation-lines"
+          className="text-decoration-none text-secondary text-truncate-lines"
           href={`/article/${alias}`}
         >
           {title}
@@ -46,7 +46,7 @@ export const ArticleCard: FC<ArticleCardProps> = ({
       </Row>
       <Row as="footer" className="flex-fill small mt-1">
         <Col xs={8}>
-          {(tags + '').split(/\s+/).map(name => (
+          {(tags as string[])?.map(name => (
             <Badge
               as="a"
               key={name}

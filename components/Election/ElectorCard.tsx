@@ -4,7 +4,7 @@ import { formatDate } from 'web-utility';
 
 import { i18n } from '../../models/Base/Translation';
 import { Personnel } from '../../models/Personnel';
-import { fileURLOf } from '../../pages/api/lark/file/[id]';
+import { LarkImage } from '../LarkImage';
 
 const { t } = i18n;
 
@@ -35,11 +35,8 @@ export const ElectorCard: FC<ElectorCardProps> = ({
       <span>{(applicants as string[])?.join('、')} 提名</span>
     </Card.Header>
 
-    <Card.Img
-      className="rounded-0"
-      loading="lazy"
-      src={fileURLOf(recipientAvatar)}
-    />
+    <LarkImage className="card-img-top rounded-0" src={recipientAvatar} />
+
     <Card.Body>
       <Card.Title as="h3">
         <a

@@ -4,9 +4,8 @@ import { observer } from 'mobx-react';
 import { HTMLAttributes, PureComponent } from 'react';
 import { Badge, Button, Card, CardProps, Image } from 'react-bootstrap';
 
-import { blobURLOf } from '../../models/Base';
 import { Organization } from '../../models/Community/Organization';
-import { fileURLOf } from '../../pages/api/lark/file/[id]';
+import { LarkImage } from '../LarkImage';
 
 export interface OrganizationCardProps
   extends Pick<HTMLAttributes<HTMLDivElement>, 'className' | 'style'>,
@@ -76,18 +75,12 @@ export class OrganizationCard extends PureComponent<OrganizationCardProps> {
     const { name, logos, type, tags, summary, wechatName, onSwitch, ...props } =
       this.props;
 
-    const logo = fileURLOf(logos);
-
     return (
       <Card {...props}>
-        <Card.Img
-          variant="top"
-          style={{ height: '30vh', objectFit: 'contain' }}
-          loading="lazy"
-          src={blobURLOf(logos)}
-          onError={({ currentTarget: image }) =>
-            logo && !image.src.endsWith(logo) && (image.src = logo || '')
-          }
+        <LarkImage
+          className="card-img-top object-fit-contain"
+          style={{ height: '30vh' }}
+          src={logos}
         />
         <Card.Body>
           <Card.Title>

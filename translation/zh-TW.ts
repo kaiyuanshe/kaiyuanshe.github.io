@@ -35,7 +35,9 @@ export default {
   china_open_source_annual_report: '中國開源年度報告',
   kaiyuanshe_annual_report: '開源社年度報告',
   china_open_source_landscape: '開源地圖',
+  open_source_projects: '開源項目',
   our_partners: '合作夥伴',
+  community_list: '開源社城市社區（KCC）',
   open_source_treasure_box: '開源百寶箱',
   Web_polyfill_CDN: 'Web 標準補丁 CDN',
   open_source_mirror: '開源鏡像站',
@@ -208,6 +210,14 @@ export default {
   last_project_group: '上屆任職專案組',
   next_term_plan: '下屆規劃',
   expert_committee: '專家委員會',
-  producer: '出品人：',
-  volunteer: '志願者：',
+  producer: '出品人',
+  volunteer: '志願者',
+
+  //community list & community detail page
+  community_member: '社區成員',
+  add_member: '數據整理中，敬請期待',
+  community: '社區',
+  member_register: '申請成為 KCC 成員',
+  activity_register: 'KCC 活動信息登記',
+  community_register: 'KCC 社區創建申請',
 } as const;

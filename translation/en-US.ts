@@ -36,6 +36,8 @@ export default {
   china_open_source_annual_report: 'China Open Source Annual Report',
   kaiyuanshe_annual_report: 'KaiYuanShe Annual Report',
   china_open_source_landscape: 'China Open Source Landscape',
+  open_source_projects: 'Open Source Projects',
+  community_list: 'Kaiyuanshe City Community',
   our_partners: 'Our Partners',
   open_source_treasure_box: 'Treasure-box',
   Web_polyfill_CDN: 'Web Polyfill CDN',
@@ -215,6 +217,14 @@ export default {
   last_project_group: 'Last Project Group',
   next_term_plan: 'Next Term Plan',
   expert_committee: 'Expert Committee',
-  producer: 'Producer: ',
-  volunteer: 'Volunteer: ',
+  producer: 'Producer',
+  volunteer: 'Volunteer',
+
+  //community detail page
+  community_member: 'Community Members',
+  add_member: 'Community Member Data is being Compiled, Please Stay Tuned',
+  community: ' Community',
+  member_register: 'Apply to Become a KCC Member',
+  activity_register: 'KCC Activity Information Registration',
+  community_register: 'KCC Community Establishment Application',
 } as const;

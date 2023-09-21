@@ -24,6 +24,7 @@ import { AgendaModel } from './Agenda';
 import { BillModel } from './Bill';
 import { ForumModel } from './Forum';
 import { PlaceModel } from './Place';
+import { StaffModel } from './Staff';
 
 export const ACTIVITY_TABLE_ID = process.env.NEXT_PUBLIC_ACTIVITY_TABLE_ID!;
 
@@ -109,9 +110,13 @@ export class ActivityModel extends BiDataTable<Activity>() {
   formMap = {} as ActivityTableModel['formMap'];
 
   currentForum?: ForumModel;
-  currentAgenda?: AgendaModel;
+
+  @observable
+  currentAgenda?: AgendaModel = undefined;
+
   currentPlace?: PlaceModel;
   currentBill?: BillModel;
+  currentStaff?: StaffModel;
 
   declare statistic: ActivityStatistic;
 
@@ -160,13 +165,16 @@ export class ActivityModel extends BiDataTable<Activity>() {
       this.currentForum = table.currentDataTable as ForumModel;
 
       await table.getOne('Agenda', AgendaModel);
-      this.currentAgenda = table.currentDataTable as AgendaModel;
+      this.currentAgenda = table.currentDataTable as unknown as AgendaModel;
 
       await table.getOne('Place', PlaceModel);
       this.currentPlace = table.currentDataTable as PlaceModel;
 
       await table.getOne('Bill', BillModel);
       this.currentBill = table.currentDataTable as BillModel;
+
+      await table.getOne('Person', StaffModel);
+      this.currentStaff = table.currentDataTable as StaffModel;
 
       this.formMap = table.formMap;
     }

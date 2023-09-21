@@ -2,6 +2,7 @@ import { NextApiResponse } from 'next';
 import { parseURLData } from 'web-utility';
 
 import { Activity, SearchActivityModel } from '../../models/Activity';
+import { Community, SearchCommunityModel } from '../../models/Community';
 import {
   Organization,
   SearchOrganizationModel,
@@ -22,6 +23,7 @@ export interface SearchResult {
   people?: Person[];
   departments?: Department[];
   organizations?: Organization[];
+  communities?: Community[];
 }
 
 export default safeAPI(
@@ -30,7 +32,6 @@ export default safeAPI(
       case 'GET': {
         const { keywords, tag } = parseURLData(url) as SearchQuery;
         const keywordList = keywords?.split(/\s+/);
-
         if (keywordList || tag)
           var [articles, activities, groups, organizations] = await Promise.all(
             [
@@ -65,13 +66,20 @@ export default safeAPI(
             ],
           );
         if (keywordList)
-          var people = await new SearchPersonModel().getList({
-            name: keywordList,
-            email: keywordList,
-            summary: keywordList,
-          });
+          var [people, communities] = await Promise.all([
+            new SearchPersonModel().getList({
+              name: keywordList,
+              email: keywordList,
+              summary: keywordList,
+            }),
+            new SearchCommunityModel().getList({
+              name: keywordList,
+              summary: keywordList,
+            }),
+          ]);
+
         //@ts-ignore
-        const membersData = { people };
+        const membersData = { people, communities };
         //@ts-ignore
         const articlesData = { articles, activities, groups, organizations };
         //@ts-ignore

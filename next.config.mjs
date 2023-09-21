@@ -1,6 +1,6 @@
 import NextMDX from '@next/mdx';
 import CopyPlugin from 'copy-webpack-plugin';
-import { statSync } from 'fs';
+import { readdirSync, statSync } from 'fs';
 import setPWA from 'next-pwa';
 import withLess from 'next-with-less';
 import RemarkFrontMatter from 'remark-frontmatter';
@@ -40,7 +40,8 @@ export default withPWA(
         if (
           statSync('pages/article/original', {
             throwIfNoEntry: false,
-          })?.isDirectory()
+          })?.isDirectory() &&
+          readdirSync('pages/article')[0]
         )
           config.plugins.push(
             new CopyPlugin({

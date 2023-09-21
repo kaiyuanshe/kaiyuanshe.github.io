@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react';
 import { FC } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Stack, StackProps } from 'react-bootstrap';
 import ICalendarLink from 'react-icalendar-link';
 import { TimeData } from 'web-utility';
 
@@ -10,7 +10,9 @@ import { i18n } from '../../../models/Base/Translation';
 
 const { t } = i18n;
 
-export interface AgendaToolbarProps extends Agenda {
+export interface AgendaToolbarProps
+  extends Omit<StackProps, 'id' | 'title'>,
+    Agenda {
   activityId: string;
   location: string;
 }
@@ -25,8 +27,10 @@ export const AgendaToolbar: FC<AgendaToolbarProps> = observer(
     startTime,
     endTime,
     mentors,
+    children,
+    ...props
   }) => (
-    <div className="d-flex gap-3">
+    <Stack direction="horizontal" gap={3} {...props}>
       <Button
         size="sm"
         variant="warning"
@@ -51,6 +55,8 @@ export const AgendaToolbar: FC<AgendaToolbarProps> = observer(
           {t('calendar')}
         </ICalendarLink>
       )}
-    </div>
+
+      {children}
+    </Stack>
   ),
 );
