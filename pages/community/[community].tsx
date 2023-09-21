@@ -23,6 +23,7 @@ export const getServerSideProps = compose<
   }
 >(errorLogger, translator(i18n), async ({ params: { community } = {} }) => {
   const list = await new CommunityMemberModel().getAll({ community });
+
   return { props: JSON.parse(JSON.stringify({ list, community })) };
 });
 
