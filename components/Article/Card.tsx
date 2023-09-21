@@ -46,7 +46,7 @@ export const ArticleCard: FC<ArticleCardProps> = ({
       </Row>
       <Row as="footer" className="flex-fill small mt-1">
         <Col xs={8}>
-          {(tags + '').split(/\s+/).map(name => (
+          {(tags as string[])?.map(name => (
             <Badge
               as="a"
               key={name}

@@ -44,13 +44,7 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
 
   client = larkClient;
 
-  requiredKeys = [
-    'title',
-    'mentors',
-    'startTime',
-    'endTime',
-    'approver',
-  ] as const;
+  requiredKeys = ['title', 'mentors', 'approver'] as const;
 
   sort = { startTime: 'ASC' } as const;
 
