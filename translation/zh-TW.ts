@@ -219,5 +219,5 @@ export default {
   community: '社區',
   member_register: '申請成為 KCC 成員',
   activity_register: 'KCC 活動信息登記',
-  community_register: 'KCC社區創建申請',
+  community_register: 'KCC 社區創建申請',
 } as const;
