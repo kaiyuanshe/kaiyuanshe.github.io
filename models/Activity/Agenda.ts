@@ -13,6 +13,7 @@ import { groupBy } from 'web-utility';
 
 import { normalizeTextArray } from '../../pages/api/lark/core';
 import { larkClient } from '../Base';
+import { AgendaFile } from './AgendaFile';
 
 export type Agenda = Record<
   | 'id'

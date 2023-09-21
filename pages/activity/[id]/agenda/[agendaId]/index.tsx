@@ -6,6 +6,7 @@ import { compose, errorLogger, router, translator } from 'next-ssr-middleware';
 import { PureComponent } from 'react';
 import { Badge, Button, Col, Container, Row } from 'react-bootstrap';
 
+import { AgenDaFileList } from '../../../../../components/Activity/Agenda/FileList';
 import { AgendaToolbar } from '../../../../../components/Activity/Agenda/Toolbar';
 import { ActivityPeople } from '../../../../../components/Activity/People';
 import { CommentBox } from '../../../../../components/CommentBox';
