@@ -2,13 +2,7 @@ import { text2color } from 'idea-react';
 import { makeObservable, observable } from 'mobx';
 import { TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
-import {
-  cache,
-  compose,
-  errorLogger,
-  router,
-  translator,
-} from 'next-ssr-middleware';
+import { compose, errorLogger, router, translator } from 'next-ssr-middleware';
 import { PureComponent } from 'react';
 import { Badge, Button, Col, Container, Row } from 'react-bootstrap';
 
@@ -18,17 +12,12 @@ import { CommentBox } from '../../../../../components/CommentBox';
 import PageHead from '../../../../../components/Layout/PageHead';
 import { Activity, ActivityModel } from '../../../../../models/Activity';
 import { Agenda } from '../../../../../models/Activity/Agenda';
-import {
-  AgendaFile,
-  AgendaFileModel,
-} from '../../../../../models/Activity/AgendaFile';
 import { blobURLOf } from '../../../../../models/Base';
 import { i18n } from '../../../../../models/Base/Translation';
 
 interface AgendaDetailPageProps {
   activity: Activity;
   agenda: Agenda;
-  fileList: AgendaFile[];
 }
 
 export const getServerSideProps = compose<
@@ -40,10 +29,8 @@ export const getServerSideProps = compose<
   const activity = await activityStore.getOne(id + ''),
     agenda = await activityStore.currentAgenda!.getOne(agendaId + '');
 
-  const fileList = await new AgendaFileModel().getAll();
-
   return {
-    props: JSON.parse(JSON.stringify({ activity, agenda, fileList })),
+    props: JSON.parse(JSON.stringify({ activity, agenda })),
   };
 });
 
@@ -111,16 +98,13 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
     const { name } = this.props.activity;
     const {
       title,
+      fileURL,
       mentors,
       mentorAvatars,
       mentorPositions,
       mentorSummaries,
       summary = t('no_data'),
-      files,
     } = this.props.agenda;
-    if (1 == 1) {
-      debugger;
-    }
 
     return (
       <Container className="pt-5">
@@ -142,6 +126,16 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
               summaries={mentorSummaries as string[]}
             />
           </Col>
+        </Row>
+        <Row as="section" className="justify-content-center text-center" xs={1}>
+          {console.log(fileURL)}
+          {fileURL.map(({ id, name, attachmentToken }) => (
+            <Col key={id + ''}>
+              <a href={`/api/lark/file/${attachmentToken}`} download={name}>
+                <Badge bg="success">{name}</Badge>
+              </a>
+            </Col>
+          ))}
         </Row>
         <CommentBox category="General" categoryId="DIC_kwDOB88JLM4COLSV" />
       </Container>
