@@ -6,7 +6,7 @@ import { compose, errorLogger, router, translator } from 'next-ssr-middleware';
 import { PureComponent } from 'react';
 import { Badge, Button, Col, Container, Row } from 'react-bootstrap';
 
-import { AgenDaFileList } from '../../../../../components/Activity/Agenda/FileList';
+import { FileList } from '../../../../../components/Activity/Agenda/FileList';
 import { AgendaToolbar } from '../../../../../components/Activity/Agenda/Toolbar';
 import { ActivityPeople } from '../../../../../components/Activity/People';
 import { CommentBox } from '../../../../../components/CommentBox';
@@ -99,7 +99,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
     const { name } = this.props.activity;
     const {
       title,
-      fileURL,
+      fileInfo,
       mentors,
       mentorAvatars,
       mentorPositions,
@@ -128,16 +128,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
             />
           </Col>
         </Row>
-        <Row as="section" className="justify-content-center text-center" xs={1}>
-          {console.log(fileURL)}
-          {fileURL.map(({ id, name, attachmentToken }) => (
-            <Col key={id + ''}>
-              <a href={`/api/lark/file/${attachmentToken}`} download={name}>
-                <Badge bg="success">{name}</Badge>
-              </a>
-            </Col>
-          ))}
-        </Row>
+        <FileList fileInfo={fileInfo} />
         <CommentBox category="General" categoryId="DIC_kwDOB88JLM4COLSV" />
       </Container>
     );

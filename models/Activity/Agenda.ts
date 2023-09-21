@@ -31,7 +31,7 @@ export type Agenda = Record<
   | '负责手机号',
   TableCellValue
 > & {
-  fileURL: TableCellAttachment[];
+  fileInfo: TableCellAttachment[];
 };
 
 interface AgendaFilter extends Filter<Agenda> {
