@@ -3,6 +3,7 @@ import {
   makeSimpleFilter,
   TableCellLink,
   TableCellValue,
+  TableRecord,
   TableRecordList,
 } from 'mobx-lark';
 import { NewData, toggle } from 'mobx-restful';
@@ -45,6 +46,17 @@ export class ArticleModel extends BiDataTable<Article>() {
 
   currentRecommend?: ArticleModel;
 
+  normalize({
+    id,
+    fields: { tags, ...fields },
+  }: TableRecord<Omit<Article, 'content'>>): Article {
+    return {
+      ...fields,
+      id,
+      tags: (tags as string)?.trim().split(/\s+/),
+    };
+  }
+
   @toggle('downloading')
   async getOne(alias: string) {
     const { body } = await this.client.get<TableRecordList<BaseArticle>>(
@@ -62,7 +74,7 @@ export class ArticleModel extends BiDataTable<Article>() {
 
     const content = new TextDecoder().decode(raw);
 
-    this.currentRecommend = new ArticleModel();
+    this.currentRecommend = new SearchArticleModel();
 
     await this.currentRecommend.getList({ tags: item.tags });
 
