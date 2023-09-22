@@ -2,7 +2,13 @@ import { text2color } from 'idea-react';
 import { makeObservable, observable } from 'mobx';
 import { TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
-import { compose, errorLogger, router, translator } from 'next-ssr-middleware';
+import {
+  cache,
+  compose,
+  errorLogger,
+  router,
+  translator,
+} from 'next-ssr-middleware';
 import { PureComponent } from 'react';
 import { Badge, Button, Col, Container, Row } from 'react-bootstrap';
 
@@ -24,7 +30,7 @@ interface AgendaDetailPageProps {
 export const getServerSideProps = compose<
   { id: string; agendaId: string },
   AgendaDetailPageProps
->(router, errorLogger, translator(i18n), async ({ params }) => {
+>(cache(), router, errorLogger, translator(i18n), async ({ params }) => {
   const activityStore = new ActivityModel(),
     { id, agendaId } = params!;
   const activity = await activityStore.getOne(id + ''),
