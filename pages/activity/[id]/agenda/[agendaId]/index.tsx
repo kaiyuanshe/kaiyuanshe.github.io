@@ -134,7 +134,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
             />
           </Col>
         </Row>
-        <FileList fileInfo={fileInfo} />
+        <FileList data={fileInfo} />
         <CommentBox category="General" categoryId="DIC_kwDOB88JLM4COLSV" />
       </Container>
     );

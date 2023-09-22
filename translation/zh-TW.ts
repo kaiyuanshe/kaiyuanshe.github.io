@@ -97,7 +97,7 @@ export default {
   member_x: '成員X',
   calendar: '日曆',
   share: '分享',
-  data_download: '檔案下載',
+  file_download: '檔案下載',
 
   //invitation pages
   press_to_share: '長按圖片分享',
