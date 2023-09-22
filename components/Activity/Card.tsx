@@ -18,6 +18,7 @@ export const ActivityCard: FC<ActivityCardProps> = ({
   name,
   startTime,
   database,
+  alias,
   link,
   city,
   location,
@@ -37,7 +38,13 @@ export const ActivityCard: FC<ActivityCardProps> = ({
       <Card.Title as="h3" className="h5 flex-fill">
         <a
           className="text-decoration-none text-secondary text-truncate-lines"
-          href={database ? `/activity/${id}` : link + ''}
+          href={
+            database
+              ? alias
+                ? `/activity/${alias}`
+                : `/activity/${id}`
+              : link + ''
+          }
         >
           {name}
         </a>

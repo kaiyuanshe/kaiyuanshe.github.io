@@ -10,9 +10,10 @@ import {
   TableCellRelation,
   TableCellValue,
   TableRecord,
+  TableRecordList,
 } from 'mobx-lark';
 import { Filter, NewData, toggle } from 'mobx-restful';
-import { cache, countBy, Hour, isEmpty } from 'web-utility';
+import { buildURLData, cache, countBy, Hour, isEmpty } from 'web-utility';
 
 import {
   LarkFormData,
@@ -39,7 +40,8 @@ export type Activity = Record<
   | 'link'
   | 'image'
   | 'cardImage'
-  | 'database',
+  | 'database'
+  | 'alias',
   TableCellValue
 >;
 
@@ -154,8 +156,15 @@ export class ActivityModel extends BiDataTable<Activity>() {
   }
 
   @toggle('downloading')
-  async getOne(id: string) {
-    const { database } = await super.getOne(id);
+  async getOne(alias: string) {
+    const { body } = await this.client.get<TableRecordList<Activity>>(
+      `${this.baseURI}?${buildURLData({
+        filter: makeSimpleFilter({ alias }, '='),
+      })}`,
+    );
+    const [item] = body!.data?.items;
+    const currentOne = item ? this.normalize(item) : await super.getOne(alias);
+    const { database } = currentOne;
 
     if (database) {
       const dbName = (database + '').split('/').at(-1)!;
@@ -178,7 +187,7 @@ export class ActivityModel extends BiDataTable<Activity>() {
 
       this.formMap = table.formMap;
     }
-    return this.currentOne;
+    return (this.currentOne = currentOne);
   }
 
   getStatistic = cache(async clean => {
