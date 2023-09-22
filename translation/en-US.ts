@@ -227,4 +227,6 @@ export default {
   member_register: 'Apply to Become a KCC Member',
   activity_register: 'KCC Activity Information Registration',
   community_register: 'KCC Community Establishment Application',
+
+  activity_articles_calendar: 'Activity Calendar',
 } as const;
