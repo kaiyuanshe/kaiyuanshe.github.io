@@ -1,4 +1,4 @@
-import { MonthCalendar } from 'idea-react';
+import { DateData, MonthCalendar } from 'idea-react';
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
 import { compose, translator } from 'next-ssr-middleware';
@@ -9,12 +9,7 @@ import PageHead from '../../components/Layout/PageHead';
 import { i18n } from '../../models/Base/Translation';
 import { SearchArticleModel } from '../../models/Product/Article';
 
-interface MonthCalendarData {
-  date: Date;
-  content: string;
-}
-
-export const getServerSideProps = compose<{}, { list: MonthCalendarData[] }>(
+export const getServerSideProps = compose<{}, { list: DateData[] }>(
   translator(i18n),
   async () => {
     const articles = await new SearchArticleModel().getList({
@@ -23,16 +18,15 @@ export const getServerSideProps = compose<{}, { list: MonthCalendarData[] }>(
 
     const mergedList = articles.reduce(
       (accumulator, { title, publishedAt }) => {
-        const date = new Date(Number(publishedAt!.valueOf()));
+        const date = new Date(publishedAt as number);
         const index = accumulator.findIndex(
-          entry => entry.date.getDay() === date.getDay(),
+          entry => (entry.date as Date).getDay() === date.getDay(),
         );
-        index !== -1
-          ? (accumulator[index].content += `\n${title}`)
-          : accumulator.push({ date, content: title + '' });
+        if (index > -1) accumulator[index].content += `\n${title}`;
+        else accumulator.push({ date, content: title + '' });
         return accumulator;
       },
-      [] as MonthCalendarData[],
+      [] as DateData[],
     );
     return { props: { list: JSON.parse(JSON.stringify(mergedList)) } };
   },
