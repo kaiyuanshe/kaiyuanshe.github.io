@@ -15,6 +15,7 @@ export default {
   project_incubation: '项目孵化',
   our_mission: '我们的使命',
   latest_news: '最新动态',
+  latest_activity: '最新活动',
   slogan: '开源社-开源人的家',
   our_projects: '我们的项目',
   activity_map: '活动地图',

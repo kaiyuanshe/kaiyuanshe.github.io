@@ -16,6 +16,7 @@ export default {
   project_incubation: 'Project Incubation',
   our_mission: 'Our Mission',
   latest_news: 'Latest News',
+  latest_activity: 'Latest Activity',
   slogan: 'KaiYuanShe - The Home of Open-source Believer',
   our_projects: 'Our Projects',
   activity_map: 'Activity Map',

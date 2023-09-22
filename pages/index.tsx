@@ -5,11 +5,12 @@ import { cache, compose, errorLogger, translator } from 'next-ssr-middleware';
 import { Fragment, PureComponent } from 'react';
 import { Col, Container, Image, Row } from 'react-bootstrap';
 
+import { ActivityCard } from '../components/Activity/Card';
 import { ArticleListLayout } from '../components/Article/List';
 import { LarkImage } from '../components/LarkImage';
 import PageHead from '../components/Layout/PageHead';
 import { CityStatisticMap } from '../components/Map/CityStatisticMap';
-import activityStore from '../models/Activity';
+import activityStore, { Activity, ActivityModel } from '../models/Activity';
 import { i18n } from '../models/Base/Translation';
 import { Department, DepartmentModel } from '../models/Personnel/Department';
 import { Article, ArticleModel } from '../models/Product/Article';
@@ -18,15 +19,16 @@ import { DefaultImage } from './api/lark/file/[id]';
 
 export const getServerSideProps = compose<
   {},
-  { articles: Article[]; projects: Department[] }
+  { articles: Article[]; activity: Activity[]; projects: Department[] }
 >(cache(), errorLogger, translator(i18n), async () => {
-  const [articles, projects] = await Promise.all([
+  const [articles, activity, projects] = await Promise.all([
     new ArticleModel().getList({}, 1, 3),
+    new ActivityModel().getList({}, 1),
     new DepartmentModel().getAll({ superior: '项目委员会' }),
   ]);
 
   return {
-    props: JSON.parse(JSON.stringify({ articles, projects })),
+    props: JSON.parse(JSON.stringify({ articles, activity, projects })),
   };
 });
 
@@ -49,7 +51,7 @@ export default class HomePage extends PureComponent<
   );
 
   render() {
-    const { articles, projects } = this.props,
+    const { articles, activity, projects } = this.props,
       { t } = i18n;
 
     return (
@@ -109,6 +111,11 @@ export default class HomePage extends PureComponent<
             >
               {projects.map(this.renderProject)}
             </Row>
+          </section>
+
+          <section>
+            <h2 className="my-5 text-center text-primary">最新活动</h2>
+            <ActivityCard {...activity[0]} />
           </section>
 
           <section>
