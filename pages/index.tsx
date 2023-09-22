@@ -3,9 +3,9 @@ import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
 import { cache, compose, errorLogger, translator } from 'next-ssr-middleware';
 import { Fragment, PureComponent } from 'react';
-import { Col, Container, Image, Row } from 'react-bootstrap';
+import { Carousel, Col, Container, Image, Row } from 'react-bootstrap';
 
-import { ActivityCard } from '../components/Activity/Card';
+import { ActivityListLayout } from '../components/Activity/List';
 import { ArticleListLayout } from '../components/Article/List';
 import { LarkImage } from '../components/LarkImage';
 import PageHead from '../components/Layout/PageHead';
@@ -23,7 +23,7 @@ export const getServerSideProps = compose<
 >(cache(), errorLogger, translator(i18n), async () => {
   const [articles, activity, projects] = await Promise.all([
     new ArticleModel().getList({}, 1, 3),
-    new ActivityModel().getList({}, 1),
+    new ActivityModel().getList({}, 1, 3),
     new DepartmentModel().getAll({ superior: '项目委员会' }),
   ]);
 
@@ -58,8 +58,50 @@ export default class HomePage extends PureComponent<
       <>
         <PageHead />
 
-        <section className="py-5 text-center bg-primary">
-          <Image fluid src="/image/Heart_of_Community.png" alt="Head Image" />
+        <section className="text-center bg-primary">
+          <Carousel>
+            <Carousel.Item className="py-5">
+              <Image
+                fluid
+                src="/image/Heart_of_Community.png"
+                alt="Head Image"
+              />
+            </Carousel.Item>
+
+            {activity.map(({ id, image, name, database, link }) => (
+              <Carousel.Item key={id + ''} className="position-relative">
+                <LarkImage fluid src={image} />
+
+                <Carousel.Caption>
+                  <h3>
+                    <a
+                      className="stretched-link text-decoration-none text-dark"
+                      href={database ? `/activity/${id}` : link + ''}
+                    >
+                      {name}
+                    </a>
+                  </h3>
+                </Carousel.Caption>
+              </Carousel.Item>
+            ))}
+
+            {articles.map(({ id, image, title, link }) => (
+              <Carousel.Item key={id + ''} className="position-relative">
+                <LarkImage fluid src={image} />
+
+                <Carousel.Caption>
+                  <h3>
+                    <a
+                      className="stretched-link text-decoration-none text-dark"
+                      href={link + ''}
+                    >
+                      {title}
+                    </a>
+                  </h3>
+                </Carousel.Caption>
+              </Carousel.Item>
+            ))}
+          </Carousel>
         </section>
 
         <Container>
@@ -115,7 +157,7 @@ export default class HomePage extends PureComponent<
 
           <section>
             <h2 className="my-5 text-center text-primary">最新活动</h2>
-            <ActivityCard {...activity[0]} />
+            <ActivityListLayout defaultData={activity} />
           </section>
 
           <section>
