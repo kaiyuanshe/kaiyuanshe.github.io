@@ -1,6 +1,6 @@
 import NextMDX from '@next/mdx';
 import CopyPlugin from 'copy-webpack-plugin';
-import { readdirSync,statSync } from 'fs';
+import { readdirSync, statSync } from 'fs';
 import setPWA from 'next-pwa';
 import withLess from 'next-with-less';
 import RemarkFrontMatter from 'remark-frontmatter';
