@@ -66,6 +66,7 @@ export const AgendaToolbar: FC<AgendaToolbarProps> = observer(
       <SessionBox>
         <OverlayBox
           trigger="click"
+          placement="bottom"
           title="请该打卡点工作人员扫码"
           detail={
             <QRCodeCanvas

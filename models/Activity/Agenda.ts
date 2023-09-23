@@ -82,8 +82,10 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
   }
 
   async checkAuthorization(title: string, mobilePhone: string) {
+    mobilePhone = mobilePhone.replace(/^\+86-?/, '');
+
     const [matched] = await this.getList({ title, 负责人手机号: mobilePhone });
 
-    return console.log((this.currentAuthorized = !!matched));
+    return (this.currentAuthorized = !!matched);
   }
 }

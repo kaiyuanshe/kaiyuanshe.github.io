@@ -1,5 +1,4 @@
 import { observer } from 'mobx-react';
-import { observePropsState } from 'mobx-react-helper';
 import Head from 'next/head';
 import { Component, MouseEvent, PropsWithChildren } from 'react';
 
@@ -11,10 +10,7 @@ export type SessionBoxProps = PropsWithChildren<{
 }>;
 
 @observer
-@observePropsState
 export default class SessionBox extends Component<SessionBoxProps> {
-  declare observedProps: SessionBoxProps;
-
   componentDidMount() {
     const { autoCover } = this.props;
 
