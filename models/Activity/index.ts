@@ -153,6 +153,14 @@ export class ActivityModel extends BiDataTable<Activity>() {
     };
   }
 
+  static getLink({
+    id,
+    link,
+    database,
+  }: Pick<Activity, 'id' | 'link' | 'database'>) {
+    return database ? `/activity/${id}` : link + '';
+  }
+
   @toggle('downloading')
   async getOne(id: string) {
     const { database } = await super.getOne(id);
