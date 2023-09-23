@@ -130,7 +130,7 @@ export default class ActivityDetailPage extends PureComponent<
           <ListMap
             style={{ height: 'calc(100vh - 10rem)' }}
             zoom={18}
-            center={coordinateOf(activity?.location)}
+            center={coordinateOf(activity.location)}
             markers={
               places
                 .map(

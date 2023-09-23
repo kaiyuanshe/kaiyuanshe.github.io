@@ -155,16 +155,25 @@ export class ActivityModel extends BiDataTable<Activity>() {
     };
   }
 
-  @toggle('downloading')
-  async getOne(alias: string) {
+  async getOneByAlias(alias: string) {
     const { body } = await this.client.get<TableRecordList<Activity>>(
       `${this.baseURI}?${buildURLData({
         filter: makeSimpleFilter({ alias }, '='),
       })}`,
     );
-    const [item] = body!.data?.items;
-    const currentOne = item ? this.normalize(item) : await super.getOne(alias);
-    const { database } = currentOne;
+    const [item] = body!.data!.items;
+    return (this.currentOne = this.normalize(item));
+  }
+
+  @toggle('downloading')
+  async getOne(id: string) {
+    try {
+      await super.getOne(id);
+    } catch (error) {
+      await this.getOneByAlias(id);
+    }
+
+    const { database } = this.currentOne;
 
     if (database) {
       const dbName = (database + '').split('/').at(-1)!;
@@ -187,7 +196,7 @@ export class ActivityModel extends BiDataTable<Activity>() {
 
       this.formMap = table.formMap;
     }
-    return (this.currentOne = currentOne);
+    return this.currentOne;
   }
 
   getStatistic = cache(async clean => {
