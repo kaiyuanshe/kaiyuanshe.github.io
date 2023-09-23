@@ -1,9 +1,9 @@
-import { computed } from 'mobx';
 import { observer } from 'mobx-react';
 import { observePropsState } from 'mobx-react-helper';
+import Head from 'next/head';
 import { Component, MouseEvent, PropsWithChildren } from 'react';
 
-import { guard } from '../../models/Base/User';
+import userStore, { guard } from '../../models/Base/User';
 
 export type SessionBoxProps = PropsWithChildren<{
   className?: string;
@@ -17,6 +17,7 @@ export default class SessionBox extends Component<SessionBoxProps> {
 
   componentDidMount() {
     const { autoCover } = this.props;
+
     if (autoCover) this.openModal();
   }
 
@@ -34,9 +35,11 @@ export default class SessionBox extends Component<SessionBoxProps> {
     guard.on('close', this.closeModal);
     guard.on('login-error', this.closeModal);
 
-    const { token, tokenExpiredAt } = await guard.start('#authing-modal');
+    const { token, tokenExpiredAt } = await guard.start();
 
     localStorage.tokenExpiredAt = tokenExpiredAt;
+
+    await userStore.signInAuthing(token!);
 
     this.closeModal();
   }
@@ -49,21 +52,22 @@ export default class SessionBox extends Component<SessionBoxProps> {
   };
 
   render() {
-    const { className, autoCover, children } = this.props;
+    const { className, autoCover, children } = this.props,
+      { session } = userStore;
 
     return (
       <>
-        <head>
+        <Head>
           <link
             rel="stylesheet"
-            href="https://cdn.authing.co/packages/guard/5.2.0/guard.min.css"
+            href="https://cdn.authing.co/packages/guard/5.3.0/guard.min.css"
           />
-        </head>
+        </Head>
         <div
           className={className}
-          onClickCapture={autoCover ? undefined : this.captureInput}
+          onClickCapture={autoCover || session ? undefined : this.captureInput}
         >
-          {!autoCover && children}
+          {(!autoCover || session) && children}
         </div>
       </>
     );
