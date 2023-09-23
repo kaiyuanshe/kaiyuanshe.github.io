@@ -20,16 +20,16 @@ import { DefaultImage } from './api/lark/file/[id]';
 
 export const getServerSideProps = compose<
   {},
-  { articles: Article[]; activity: Activity[]; projects: Department[] }
+  { articles: Article[]; activities: Activity[]; projects: Department[] }
 >(cache(), errorLogger, translator(i18n), async () => {
-  const [articles, activity, projects] = await Promise.all([
+  const [articles, activities, projects] = await Promise.all([
     new ArticleModel().getList({}, 1, 3),
     new ActivityModel().getList({}, 1, 3),
     new DepartmentModel().getAll({ superior: '项目委员会' }),
   ]);
 
   return {
-    props: JSON.parse(JSON.stringify({ articles, activity, projects })),
+    props: JSON.parse(JSON.stringify({ articles, activities, projects })),
   };
 });
 
@@ -56,12 +56,7 @@ export default class HomePage extends PureComponent<
     image,
     link,
     linkText,
-  }: {
-    id: TableCellValue;
-    image: TableCellValue;
-    link: TableCellValue;
-    linkText: TableCellValue;
-  }) => (
+  }: Record<'id' | 'image' | 'link' | 'linkText', TableCellValue>) => (
     <Carousel.Item key={id + ''} className="position-relative">
       <LarkImage fluid src={image} />
 
@@ -79,7 +74,7 @@ export default class HomePage extends PureComponent<
   );
 
   render() {
-    const { articles, activity, projects } = this.props,
+    const { articles, activities, projects } = this.props,
       { t } = i18n;
 
     return (
@@ -96,7 +91,7 @@ export default class HomePage extends PureComponent<
               />
             </Carousel.Item>
 
-            {activity.map(({ name: linkText, ...activity }) =>
+            {activities.map(({ name: linkText, ...activity }) =>
               this.renderCarousel({
                 ...activity,
                 link: ActivityModel.getLink(activity),
@@ -169,7 +164,7 @@ export default class HomePage extends PureComponent<
             <h2 className="my-5 text-center text-primary">
               {t('latest_activity')}
             </h2>
-            <ActivityListLayout defaultData={activity} />
+            <ActivityListLayout defaultData={activities} />
           </section>
 
           <section>
