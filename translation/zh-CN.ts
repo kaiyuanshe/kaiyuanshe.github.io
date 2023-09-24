@@ -98,6 +98,7 @@ export default {
   member_x: '成员X',
   calendar: '日历',
   share: '分享',
+  file_download: '资料下载',
 
   //invitation pages
   press_to_share: '长按图片分享',

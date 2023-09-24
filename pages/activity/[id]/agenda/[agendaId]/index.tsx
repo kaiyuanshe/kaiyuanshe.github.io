@@ -20,6 +20,7 @@ import {
 import { PureComponent } from 'react';
 import { Badge, Col, Container, Row } from 'react-bootstrap';
 
+import { FileList } from '../../../../../components/Activity/Agenda/FileList';
 import { AgendaToolbar } from '../../../../../components/Activity/Agenda/Toolbar';
 import { ActivityPeople } from '../../../../../components/Activity/People';
 import { CommentBox } from '../../../../../components/CommentBox';
@@ -179,6 +180,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
     const { name } = this.props.activity;
     const {
       title,
+      fileInfo,
       mentors,
       mentorAvatars,
       mentorPositions,
@@ -207,7 +209,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
             />
           </Col>
         </Row>
-
+        <FileList data={fileInfo} />
         <CommentBox category="General" categoryId="DIC_kwDOB88JLM4COLSV" />
       </Container>
     );
