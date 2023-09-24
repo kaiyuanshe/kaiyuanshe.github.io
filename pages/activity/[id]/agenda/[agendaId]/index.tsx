@@ -1,44 +1,65 @@
-import { text2color } from 'idea-react';
-import { makeObservable, observable } from 'mobx';
+import { SpinnerButton, text2color } from 'idea-react';
+import {
+  computed,
+  IReactionDisposer,
+  makeObservable,
+  observable,
+  reaction,
+} from 'mobx';
 import { TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
+import dynamic from 'next/dynamic';
 import {
   cache,
   compose,
   errorLogger,
+  RouteProps,
   router,
   translator,
 } from 'next-ssr-middleware';
 import { PureComponent } from 'react';
-import { Badge, Button, Col, Container, Row } from 'react-bootstrap';
+import { Badge, Col, Container, Row } from 'react-bootstrap';
 
+import { FileList } from '../../../../../components/Activity/Agenda/FileList';
 import { AgendaToolbar } from '../../../../../components/Activity/Agenda/Toolbar';
 import { ActivityPeople } from '../../../../../components/Activity/People';
 import { CommentBox } from '../../../../../components/CommentBox';
 import PageHead from '../../../../../components/Layout/PageHead';
 import { Activity, ActivityModel } from '../../../../../models/Activity';
 import { Agenda } from '../../../../../models/Activity/Agenda';
+import { CheckEventModel } from '../../../../../models/Activity/CheckEvent';
 import { blobURLOf } from '../../../../../models/Base';
 import { i18n } from '../../../../../models/Base/Translation';
+import userStore from '../../../../../models/Base/User';
 
-interface AgendaDetailPageProps {
+const SessionBox = dynamic(
+  () => import('../../../../../components/Layout/SessionBox'),
+  { ssr: false },
+);
+
+type PageParameter = Record<'id' | 'agendaId', string>;
+
+interface AgendaDetailPageProps extends RouteProps<PageParameter> {
   activity: Activity;
   agenda: Agenda;
 }
 
-export const getServerSideProps = compose<
-  { id: string; agendaId: string },
-  AgendaDetailPageProps
->(cache(), router, errorLogger, translator(i18n), async ({ params }) => {
-  const activityStore = new ActivityModel(),
-    { id, agendaId } = params!;
-  const activity = await activityStore.getOne(id + ''),
-    agenda = await activityStore.currentAgenda!.getOne(agendaId + '');
+export const getServerSideProps = compose<PageParameter, AgendaDetailPageProps>(
+  cache(),
+  router,
+  errorLogger,
+  translator(i18n),
+  async ({ params }) => {
+    const activityStore = new ActivityModel(),
+      { id, agendaId } = params!;
+    const activity = await activityStore.getOne(id + ''),
+      agenda = await activityStore.currentAgenda!.getOne(agendaId + '');
 
-  return {
-    props: JSON.parse(JSON.stringify({ activity, agenda })),
-  };
-});
+    return {
+      props: JSON.parse(JSON.stringify({ activity, agenda })),
+    };
+  },
+);
 
 const { t } = i18n;
 
@@ -52,22 +73,81 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
   @observable
   activityStore?: ActivityModel = undefined;
 
-  async componentDidMount() {
-    const { activity, agenda } = this.props;
+  @observable
+  checkEventStore?: CheckEventModel = undefined;
 
-    this.activityStore = new ActivityModel();
+  @computed
+  get loading() {
+    const { downloading = 0, currentAgenda } = this.activityStore || {},
+      { uploading = 0 } = this.checkEventStore || {};
+    const { downloading: aDownloading = 0 } = currentAgenda || {};
+
+    return downloading > 0 || aDownloading > 0 || uploading > 0;
+  }
+
+  private disposer?: IReactionDisposer;
+
+  componentDidMount() {
+    this.checkEventStore = new CheckEventModel();
+
+    if (this.props.route.query.mobilePhone) this.checkAuthorization();
+
+    this.disposer = reaction(() => userStore.session, this.checkAuthorization);
+  }
+
+  componentWillUnmount() {
+    this.disposer?.();
+  }
+
+  checkAuthorization = async () => {
+    const { session } = userStore,
+      { activity, agenda } = this.props;
+
+    if (!session) return;
+
+    this.activityStore ||= new ActivityModel();
 
     await this.activityStore.getOne(activity.id as string);
 
-    this.activityStore.currentAgenda!.checkAuthorization(
+    return this.activityStore.currentAgenda!.checkAuthorization(
       agenda.title as string,
-      '13800000000',
+      session.mobilePhone,
+    );
+  };
+
+  renderConfirmButton() {
+    const { props, loading } = this;
+    const { mobilePhone } = props.route.query,
+      { activity, agenda } = props,
+      { currentAuthorized } = this.activityStore?.currentAgenda || {};
+
+    return (
+      mobilePhone && (
+        <SessionBox>
+          <SpinnerButton
+            size="sm"
+            variant="danger"
+            loading={loading}
+            disabled={!currentAuthorized}
+            onClick={() =>
+              this.checkEventStore?.updateOne({
+                activityId: activity.id as string,
+                activityName: activity.name as string,
+                agendaId: agenda.id as string,
+                agendaTitle: agenda.title as string,
+              })
+            }
+          >
+            确认打卡
+          </SpinnerButton>
+        </SessionBox>
+      )
     );
   }
 
   renderHeader() {
-    const { id, location } = this.props.activity;
-    const { type, forum, title, startTime, endTime } = this.props.agenda;
+    const { id, location } = this.props.activity,
+      { type, forum, title, startTime, endTime } = this.props.agenda;
 
     return (
       <header>
@@ -80,11 +160,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
             location={location + ''}
             {...this.props.agenda}
           >
-            {this.activityStore?.currentAgenda?.currentAuthorized && (
-              <Button size="sm" variant="danger">
-                确认打卡
-              </Button>
-            )}
+            {this.renderConfirmButton()}
           </AgendaToolbar>
         </div>
         <div className="d-flex flex-wrap align-items-center gap-3">
@@ -104,6 +180,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
     const { name } = this.props.activity;
     const {
       title,
+      fileInfo,
       mentors,
       mentorAvatars,
       mentorPositions,
@@ -132,7 +209,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
             />
           </Col>
         </Row>
-
+        <FileList data={fileInfo} />
         <CommentBox category="General" categoryId="DIC_kwDOB88JLM4COLSV" />
       </Container>
     );

@@ -2,6 +2,7 @@ import { makeObservable, observable } from 'mobx';
 import {
   BiDataTable,
   normalizeText,
+  TableCellAttachment,
   TableCellRelation,
   TableCellText,
   TableCellValue,
@@ -25,11 +26,12 @@ export type Agenda = Record<
   | 'mentorSummaries'
   | 'startTime'
   | 'endTime'
-  | 'files'
   | 'approver'
   | '负责手机号',
   TableCellValue
->;
+> & {
+  fileInfo: TableCellAttachment[];
+};
 
 interface AgendaFilter extends Filter<Agenda> {
   负责人手机号: TableCellValue;
@@ -82,8 +84,10 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
   }
 
   async checkAuthorization(title: string, mobilePhone: string) {
+    mobilePhone = mobilePhone.replace(/^\+86-?/, '');
+
     const [matched] = await this.getList({ title, 负责人手机号: mobilePhone });
 
-    return console.log((this.currentAuthorized = !!matched));
+    return (this.currentAuthorized = !!matched);
   }
 }
