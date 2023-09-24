@@ -15,6 +15,7 @@ import activityStore, { Activity, ActivityModel } from '../models/Activity';
 import { i18n } from '../models/Base/Translation';
 import { Department, DepartmentModel } from '../models/Personnel/Department';
 import { Article, ArticleModel } from '../models/Product/Article';
+import styles from '../styles/Home.module.less';
 import { slogan } from './api/home';
 import { DefaultImage } from './api/lark/file/[id]';
 
@@ -64,12 +65,7 @@ export default class HomePage extends PureComponent<
         target={(link + '').startsWith('http') ? '_blank' : '_self'}
         rel="noreferrer"
       >
-        <LarkImage
-          className="object-fit-contain"
-          style={{ height: '90vh' }}
-          src={image}
-          fluid
-        />
+        <LarkImage className="object-fit-contain" fluid src={image} />
       </a>
 
       <Carousel.Caption as="h3" className="bg-primary">
@@ -86,15 +82,14 @@ export default class HomePage extends PureComponent<
       <>
         <PageHead />
 
-        <header className="text-center bg-primary">
+        <header className={`text-center bg-primary ${styles.banner}`}>
           <Carousel>
             <Carousel.Item>
               <Image
                 className="object-fit-contain py-5"
-                style={{ height: '90vh' }}
+                fluid
                 src="/image/Heart_of_Community.png"
                 alt="Head Image"
-                fluid
               />
             </Carousel.Item>
 
