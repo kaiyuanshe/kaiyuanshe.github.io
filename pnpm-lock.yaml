@@ -39,8 +39,8 @@ dependencies:
     specifier: ^1.4.1
     version: 1.4.1
   idea-react:
-    specifier: ^1.0.0-rc.25
-    version: registry.npmjs.org/idea-react@1.0.0-rc.25(@types/react@17.0.65)(react-dom@17.0.2)(react@17.0.2)(typescript@5.1.6)
+    specifier: ^1.0.0-rc.27
+    version: registry.npmjs.org/idea-react@1.0.0-rc.27(@types/react@17.0.65)(react-dom@17.0.2)(react@17.0.2)(typescript@5.1.6)
   koajax:
     specifier: ^0.9.4
     version: 0.9.4(jsdom@22.1.0)(typescript@5.1.6)
@@ -6921,10 +6921,6 @@ packages:
       strip-bom: 3.0.0
     dev: true
 
-  /tslib@1.14.1:
-    resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
-    dev: true
-
   /tslib@2.3.0:
     resolution: {integrity: sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==}
     dev: false
@@ -6938,7 +6934,7 @@ packages:
     peerDependencies:
       typescript: '>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta'
     dependencies:
-      tslib: 1.14.1
+      tslib: registry.npmjs.org/tslib@1.14.1
       typescript: 5.1.6
     dev: true
 
@@ -9840,11 +9836,11 @@ packages:
       safer-buffer: registry.npmjs.org/safer-buffer@2.1.2
     dev: false
 
-  registry.npmjs.org/idea-react@1.0.0-rc.25(@types/react@17.0.65)(react-dom@17.0.2)(react@17.0.2)(typescript@5.1.6):
-    resolution: {integrity: sha512-BasWs7IKV89RyBgy4BqM0oiHwO4XES8xDu9eIvh23k9K/ck/PVTzyVc3N54jVI9Dp4V+RmxuggQU3gnVxOkxKg==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/idea-react/-/idea-react-1.0.0-rc.25.tgz}
-    id: registry.npmjs.org/idea-react/1.0.0-rc.25
+  registry.npmjs.org/idea-react@1.0.0-rc.27(@types/react@17.0.65)(react-dom@17.0.2)(react@17.0.2)(typescript@5.1.6):
+    resolution: {integrity: sha512-+uY3jW/NRVnbOq7NS/v/4b/tFzCsJlkc2FXPPKKvJEnGidXh0zBDI3ycHlHdPDSqRajF4/gJ+8cuDTwM9geq1A==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/idea-react/-/idea-react-1.0.0-rc.27.tgz}
+    id: registry.npmjs.org/idea-react/1.0.0-rc.27
     name: idea-react
-    version: 1.0.0-rc.25
+    version: 1.0.0-rc.27
     peerDependencies:
       react: '>=16'
       react-dom: '>=16'
@@ -10477,6 +10473,12 @@ packages:
     dependencies:
       punycode: registry.npmjs.org/punycode@2.3.0
     dev: false
+
+  registry.npmjs.org/tslib@1.14.1:
+    resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/tslib/-/tslib-1.14.1.tgz}
+    name: tslib
+    version: 1.14.1
+    dev: true
 
   registry.npmjs.org/tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/tslib/-/tslib-2.6.2.tgz}

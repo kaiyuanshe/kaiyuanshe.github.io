@@ -48,12 +48,13 @@ export class ArticleModel extends BiDataTable<Article>() {
 
   normalize({
     id,
-    fields: { tags, ...fields },
+    fields: { tags, link, ...fields },
   }: TableRecord<Omit<Article, 'content'>>): Article {
     return {
       ...fields,
       id,
       tags: (tags as string)?.trim().split(/\s+/),
+      link: (link as TableCellLink)?.link,
     };
   }
 
@@ -83,8 +84,27 @@ export class ArticleModel extends BiDataTable<Article>() {
 }
 
 export class SearchArticleModel extends ArticleModel {
+  currentDate: Date = new Date();
+
+  async getMonthList({ tag }, date: Date) {
+    this.currentDate = date;
+    const updatedList = await this.getAll({ tags: tag });
+    console.log(updatedList);
+    console.log(this.currentDate.getMonth());
+    return updatedList;
+  }
+
   makeFilter(filter: NewData<Article>) {
-    return isEmpty(filter) ? '' : makeSimpleFilter(filter, 'contains', 'OR');
+    const { currentDate } = this;
+    console.log(currentDate.getFullYear());
+    console.log(currentDate.getMonth());
+    return [
+      currentDate &&
+        `CurrentValue.[publishedAt]>=TODATE("${currentDate.getFullYear()}-${currentDate.getMonth()}-01")`,
+      isEmpty(filter) ? '' : makeSimpleFilter(filter, 'contains', 'OR'),
+    ]
+      .filter(Boolean)
+      .join('&&');
   }
 }
 
