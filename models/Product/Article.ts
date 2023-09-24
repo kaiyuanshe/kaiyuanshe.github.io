@@ -48,13 +48,12 @@ export class ArticleModel extends BiDataTable<Article>() {
 
   normalize({
     id,
-    fields: { tags, link, ...fields },
+    fields: { tags, ...fields },
   }: TableRecord<Omit<Article, 'content'>>): Article {
     return {
       ...fields,
       id,
       tags: (tags as string)?.trim().split(/\s+/),
-      link: (link as TableCellLink)?.link,
     };
   }
 

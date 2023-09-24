@@ -4,6 +4,7 @@ import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
 import { Container } from 'react-bootstrap';
 
+import { ArticleListLayout } from '../../components/Article/List';
 import PageHead from '../../components/Layout/PageHead';
 import { i18n } from '../../models/Base/Translation';
 import {
@@ -43,13 +44,13 @@ export default class CalendarPage extends PureComponent {
         <PageHead title={t('activity_articles_calendar')} />
         <h1 className="mb-5 text-center">{t('activity_articles_calendar')}</h1>
         <MonthCalendar
-          value={currentMonthList.map(({ id, title, publishedAt, link }) => ({
+          value={currentMonthList.map(({ id, title, publishedAt, alias }) => ({
             date: new Date(publishedAt as number),
             content: (
               <OverlayBox key={id + ''} title={title}>
                 <a
                   className="container d-inline-block text-truncate"
-                  href={link + ''}
+                  href={`/article/${alias}`}
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -60,6 +61,12 @@ export default class CalendarPage extends PureComponent {
           }))}
           onChange={date => this.loadData(date)}
         />
+        {currentMonthList ? (
+          <section>
+            <h2>{t('article')}</h2>
+            <ArticleListLayout defaultData={currentMonthList} />
+          </section>
+        ) : null}
       </Container>
     );
   }
