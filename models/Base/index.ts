@@ -12,6 +12,8 @@ export const API_Host = isServer()
     : 'http://localhost:3000'
   : globalThis.location.origin;
 
+export const KYS_SERVICE_HOST = process.env.NEXT_PUBLIC_KYS_SERVICE_HOST;
+
 export const client = new HTTPClient({
   baseURI: `${API_Host}/api/`,
   responseType: 'json',

@@ -3,7 +3,7 @@ import { TableCellLocation } from 'mobx-lark';
 import type { FC } from 'react';
 import { Badge, Card, Col, Row } from 'react-bootstrap';
 
-import type { Activity } from '../../models/Activity';
+import { type Activity, ActivityModel } from '../../models/Activity';
 import { TimeOption } from '../data';
 import { LarkImage } from '../LarkImage';
 
@@ -17,11 +17,10 @@ export const ActivityCard: FC<ActivityCardProps> = ({
   organizers,
   name,
   startTime,
-  database,
-  link,
   city,
   location,
   image,
+  ...activity
 }: ActivityCardProps) => (
   <Card className={`shadow-sm ${className}`}>
     <div className="position-relative w-100" style={{ paddingBottom: '56%' }}>
@@ -37,7 +36,7 @@ export const ActivityCard: FC<ActivityCardProps> = ({
       <Card.Title as="h3" className="h5 flex-fill">
         <a
           className="text-decoration-none text-secondary text-truncate-lines"
-          href={database ? `/activity/${id}` : link + ''}
+          href={ActivityModel.getLink({ id, ...activity })}
         >
           {name}
         </a>

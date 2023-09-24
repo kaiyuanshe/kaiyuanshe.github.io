@@ -63,10 +63,13 @@
 
 ## 启动
 
-第一步, 运行开发服务器:
+第一步，[在 NPM 中登录 GitHub 账号][10]；
+
+第二步，安装依赖并运行开发服务器:
 
 ```bash
 npm i pnpm -g
+pnpm i
 pnpm dev
 ```
 
@@ -105,6 +108,7 @@ pnpm container
 [7]: https://david-dm.org/idea2app/next-bootstrap-ts
 [8]: https://github.com/idea2app/Next-Bootstrap-ts/actions/workflows/main.yml
 [9]: https://zh.mobx.js.org/
+[10]: https://github.com/kaiyuanshe/KYS-service#sign-in-github-packages-with-npm
 [11]: https://github.com/features/actions
 [12]: https://vercel.com/new?filter=next.js
 [13]: https://nextjs.org/docs/api-routes/introduction
