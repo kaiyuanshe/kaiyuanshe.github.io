@@ -92,24 +92,28 @@ export class SearchArticleModel extends ArticleModel {
 export default new ArticleModel();
 
 export class CalendarSearchArticleModel extends ArticleModel {
-  currentDate: Date = new Date();
+  currentDate?: Date;
 
-  async getMonthList({ tag }, date: Date) {
+  async getMonthList({ tag }: { tag: string }, date: Date) {
     this.currentDate = date;
-    const updatedList = await this.getAll({ tags: tag });
-    console.log(updatedList);
-    console.log(this.currentDate.getMonth());
-    return updatedList;
+
+    try {
+      const updatedList = await this.getAll({ tags: tag });
+      console.log(updatedList);
+      console.log(this.currentDate.getFullYear());
+      console.log(this.currentDate.getMonth());
+      return updatedList;
+    } finally {
+      this.currentDate = undefined;
+    }
   }
 
-  makeFilter(filter: NewData<Article>) {
+  makeFilter({ ...filter }: NewData<Article>) {
     const { currentDate } = this;
-    console.log(currentDate.getFullYear());
-    console.log(currentDate.getMonth());
     return [
       currentDate &&
-        `CurrentValue.[publishedAt]>=TODATE("${currentDate.getFullYear()}-${currentDate.getMonth()}-01")`,
-      isEmpty(filter) ? '' : makeSimpleFilter(filter, 'contains', 'OR'),
+        `CurrentValue.[publishedAt]>=TODATE("2022-${currentDate.getMonth()}-01")`,
+      !isEmpty(filter) && makeSimpleFilter(filter),
     ]
       .filter(Boolean)
       .join('&&');

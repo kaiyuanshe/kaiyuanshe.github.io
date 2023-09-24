@@ -1,8 +1,8 @@
-import { DateData, MonthCalendar, OverlayBox } from 'idea-react';
+import { MonthCalendar, OverlayBox } from 'idea-react';
 import { makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
-import { Badge, Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 
 import PageHead from '../../components/Layout/PageHead';
 import { i18n } from '../../models/Base/Translation';
@@ -10,7 +10,6 @@ import {
   Article,
   CalendarSearchArticleModel,
 } from '../../models/Product/Article';
-import styles from './index.module.less';
 
 const { t } = i18n;
 
@@ -20,10 +19,11 @@ export default class CalendarPage extends PureComponent {
     super(props);
     makeObservable(this);
   }
-  store = new CalendarSearchArticleModel();
 
   @observable
   currentMonthList: Article[] = [];
+
+  store = new CalendarSearchArticleModel();
 
   componentDidMount() {
     this.loadData(new Date());
