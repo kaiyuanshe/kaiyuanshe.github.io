@@ -155,6 +155,15 @@ export class ActivityModel extends BiDataTable<Activity>() {
     };
   }
 
+  static getLink({
+    id,
+    alias,
+    link,
+    database,
+  }: Pick<Activity, 'id' | 'alias' | 'link' | 'database'>) {
+    return database ? `/activity/${alias || id}` : link + '';
+  }
+
   async getOneByAlias(alias: string) {
     const { body } = await this.client.get<TableRecordList<Activity>>(
       `${this.baseURI}?${buildURLData({
