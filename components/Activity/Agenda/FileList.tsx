@@ -10,7 +10,7 @@ import { i18n } from '../../../models/Base/Translation';
 const { t } = i18n;
 
 export const FileList: FC<{ data: TableCellAttachment[] }> = observer(
-  ({ data }) => (
+  observer(({ data }) => (
     <section>
       <h2>{t('file_download')}</h2>
       <ol>
@@ -20,10 +20,11 @@ export const FileList: FC<{ data: TableCellAttachment[] }> = observer(
               type={mimeType}
               path={`/api/lark/file/${attachmentToken}`}
             />
+
             <Badge bg={text2color(name, ['light'])}>{name}</Badge>
           </li>
         ))}
       </ol>
     </section>
-  ),
+  )),
 );
