@@ -6,7 +6,7 @@ import {
   TableRecord,
   TableRecordList,
 } from 'mobx-lark';
-import { NewData, toggle } from 'mobx-restful';
+import { Filter, NewData, toggle } from 'mobx-restful';
 import { buildURLData, isEmpty } from 'web-utility';
 
 import { blobClient, larkClient } from '../Base';
@@ -93,25 +93,24 @@ export default new ArticleModel();
 export class CalendarSearchArticleModel extends ArticleModel {
   currentDate?: Date;
 
-  async getMonthList({ tag }: { tag: string }, date: Date) {
+  async getMonthList(filter: Filter<Article>, date = new Date()) {
     this.currentDate = date;
 
     try {
-      const updatedList = await this.getAll({ tags: tag });
-      console.log(updatedList);
-      console.log(this.currentDate.getFullYear());
-      console.log(this.currentDate.getMonth());
-      return updatedList;
+      this.clearList();
+      return await this.getAll(filter);
     } finally {
       this.currentDate = undefined;
     }
   }
 
   makeFilter({ ...filter }: NewData<Article>) {
-    const { currentDate } = this;
+    const [year, month] =
+      this.currentDate?.toJSON().split('T')[0].split('-') || [];
+    const nextMonth = (+month + 1 + '').padStart(2, '0');
     return [
-      currentDate &&
-        `CurrentValue.[publishedAt]>=TODATE("2022-${currentDate.getMonth()}-01")`,
+      year && `CurrentValue.[publishedAt]>=TODATE("${year}-${month}-01")`,
+      year && `CurrentValue.[publishedAt]<TODATE("${year}-${nextMonth}-01")`,
       !isEmpty(filter) && makeSimpleFilter(filter),
     ]
       .filter(Boolean)
