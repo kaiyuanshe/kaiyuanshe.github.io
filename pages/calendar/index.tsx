@@ -39,27 +39,22 @@ export default class CalendarPage extends PureComponent {
       <Container className="py-5 text-center">
         <PageHead title={t('activity_articles_calendar')} />
         <h1 className="mb-5 text-center">{t('activity_articles_calendar')}</h1>
-        {[1].map(() => {})}
         <MonthCalendar
-          value={currentMonthList.map(({ id, title, publishedAt, link }) => {
-            const date = new Date(publishedAt as number);
-
-            return {
-              date,
-              content: (
-                <OverlayBox key={id + ''} title={title}>
-                  <a
-                    className={`${styles.truncate}  text-decoration-none text-secondary`}
-                    href={link + ''}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    {title}
-                  </a>
-                </OverlayBox>
-              ),
-            };
-          })}
+          value={currentMonthList.map(({ id, title, publishedAt, link }) => ({
+            date: new Date(publishedAt as number),
+            content: (
+              <OverlayBox key={id + ''} title={title}>
+                <a
+                  className="container d-inline-block text-truncate"
+                  href={link + ''}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {title}
+                </a>
+              </OverlayBox>
+            ),
+          }))}
           onChange={date => this.loadData(date)}
         />
       </Container>
