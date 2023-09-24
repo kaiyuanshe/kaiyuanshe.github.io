@@ -10,7 +10,7 @@ import { i18n } from '../../../models/Base/Translation';
 const { t } = i18n;
 
 export const FileList: FC<{ data: TableCellAttachment[] }> = observer(
-  observer(({ data }) => (
+  ({ data }) => (
     <section>
       <h2>{t('file_download')}</h2>
       <ol>
@@ -26,5 +26,5 @@ export const FileList: FC<{ data: TableCellAttachment[] }> = observer(
         ))}
       </ol>
     </section>
-  )),
+  ),
 );
