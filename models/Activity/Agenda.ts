@@ -2,6 +2,7 @@ import { makeObservable, observable } from 'mobx';
 import {
   BiDataTable,
   normalizeText,
+  TableCellAttachment,
   TableCellRelation,
   TableCellText,
   TableCellValue,
@@ -25,11 +26,12 @@ export type Agenda = Record<
   | 'mentorSummaries'
   | 'startTime'
   | 'endTime'
-  | 'files'
   | 'approver'
   | '负责手机号',
   TableCellValue
->;
+> & {
+  fileInfo: TableCellAttachment[];
+};
 
 interface AgendaFilter extends Filter<Agenda> {
   负责人手机号: TableCellValue;

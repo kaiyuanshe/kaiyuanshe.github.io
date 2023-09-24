@@ -99,6 +99,7 @@ export default {
   member_x: 'member X',
   calendar: 'Calendar',
   share: 'share',
+  file_download: 'File Download',
 
   //invitation pages
   press_to_share: 'press image to share',
