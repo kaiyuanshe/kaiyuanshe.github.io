@@ -58,17 +58,22 @@ export default class HomePage extends PureComponent<
     linkText,
   }: Record<'id' | 'image' | 'link' | 'linkText', TableCellValue>) => (
     <Carousel.Item key={id + ''} className="position-relative">
-      <LarkImage fluid src={image} />
+      <a
+        className="stretched-link text-decoration-none text-dark"
+        href={link + ''}
+        target={(link + '').startsWith('http') ? '_blank' : '_self'}
+        rel="noreferrer"
+      >
+        <LarkImage
+          className="object-fit-contain"
+          style={{ height: '90vh' }}
+          src={image}
+          fluid
+        />
+      </a>
 
-      <Carousel.Caption as="h3">
-        <a
-          className="stretched-link text-decoration-none text-dark"
-          href={link + ''}
-          target={(link + '').startsWith('http') ? '_blank' : '_self'}
-          rel="noreferrer"
-        >
-          {linkText + ''}
-        </a>
+      <Carousel.Caption as="h3" className="bg-primary">
+        {linkText}
       </Carousel.Caption>
     </Carousel.Item>
   );
@@ -83,11 +88,13 @@ export default class HomePage extends PureComponent<
 
         <header className="text-center bg-primary">
           <Carousel>
-            <Carousel.Item className="py-5">
+            <Carousel.Item>
               <Image
-                fluid
+                className="object-fit-contain py-5"
+                style={{ height: '90vh' }}
                 src="/image/Heart_of_Community.png"
                 alt="Head Image"
+                fluid
               />
             </Carousel.Item>
 
