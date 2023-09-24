@@ -248,6 +248,9 @@ export default class ActivityDetailPage extends PureComponent<
           direction="horizontal"
           gap={3}
         >
+          <Button variant="danger" href={`/activity/${activity.id}/gift`}>
+            礼品墙
+          </Button>
           <Button variant="info" href={`/activity/${activity.id}/volunteer`}>
             {t('volunteer')}
           </Button>

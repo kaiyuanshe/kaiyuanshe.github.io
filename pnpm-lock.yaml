@@ -45,8 +45,8 @@ dependencies:
     specifier: ^1.4.1
     version: 1.4.1
   idea-react:
-    specifier: ^1.0.0-rc.27
-    version: 1.0.0-rc.27(@types/react@17.0.65)(react-dom@17.0.2)(react@17.0.2)(typescript@5.1.6)
+    specifier: ^1.0.0-rc.28
+    version: 1.0.0-rc.28(@types/react@17.0.65)(react-dom@17.0.2)(react@17.0.2)(typescript@5.1.6)
   koajax:
     specifier: ^0.9.4
     version: 0.9.4(typescript@5.1.6)
@@ -4211,8 +4211,8 @@ packages:
     resolution: {integrity: sha512-gchesWBzyvGHRO9W8tzUWFDycow5gwjvFKfyV9FF32Y7F50yZMp7mP+T2mJIWFx49zicqyC4uefHM17o6xKIVQ==}
     dev: false
 
-  /idea-react@1.0.0-rc.27(@types/react@17.0.65)(react-dom@17.0.2)(react@17.0.2)(typescript@5.1.6):
-    resolution: {integrity: sha512-+uY3jW/NRVnbOq7NS/v/4b/tFzCsJlkc2FXPPKKvJEnGidXh0zBDI3ycHlHdPDSqRajF4/gJ+8cuDTwM9geq1A==}
+  /idea-react@1.0.0-rc.28(@types/react@17.0.65)(react-dom@17.0.2)(react@17.0.2)(typescript@5.1.6):
+    resolution: {integrity: sha512-4VH9hbefy1dZvrwNzbAxMU6TQ5WmFfht1IqKe2oIBi/OshdvCz36q3rZvjIOqVuQPE4z01ahAO/MQJxGqh76Ew==}
     peerDependencies:
       react: '>=16'
       react-dom: '>=16'

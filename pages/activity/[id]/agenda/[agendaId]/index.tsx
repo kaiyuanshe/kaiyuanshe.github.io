@@ -49,11 +49,12 @@ export const getServerSideProps = compose<PageParameter, AgendaDetailPageProps>(
   router,
   errorLogger,
   translator(i18n),
-  async ({ params }) => {
-    const activityStore = new ActivityModel(),
-      { id, agendaId } = params!;
-    const activity = await activityStore.getOne(id + ''),
-      agenda = await activityStore.currentAgenda!.getOne(agendaId + '');
+  async ({ params: { id, agendaId } = {} }) => {
+    const activityStore = new ActivityModel();
+
+    const activity = await activityStore.getOne(id!);
+
+    const agenda = await activityStore.currentAgenda!.getOne(agendaId!);
 
     return {
       props: JSON.parse(JSON.stringify({ activity, agenda })),
@@ -209,7 +210,8 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
             />
           </Col>
         </Row>
-        <FileList data={fileInfo} />
+        {fileInfo && <FileList data={fileInfo} />}
+
         <CommentBox category="General" categoryId="DIC_kwDOB88JLM4COLSV" />
       </Container>
     );

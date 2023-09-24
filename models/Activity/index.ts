@@ -24,6 +24,7 @@ import { larkClient } from '../Base';
 import { AgendaModel } from './Agenda';
 import { BillModel } from './Bill';
 import { ForumModel } from './Forum';
+import { GiftModel } from './Gift';
 import { PlaceModel } from './Place';
 import { StaffModel } from './Staff';
 
@@ -111,14 +112,24 @@ export class ActivityModel extends BiDataTable<Activity>() {
   @observable
   formMap = {} as ActivityTableModel['formMap'];
 
+  static SubModel = {
+    Person: StaffModel,
+    Forum: ForumModel,
+    Agenda: AgendaModel,
+    Place: PlaceModel,
+    Gift: GiftModel,
+    Bill: BillModel,
+  };
+
+  currentPerson?: StaffModel;
   currentForum?: ForumModel;
 
   @observable
   currentAgenda?: AgendaModel = undefined;
 
   currentPlace?: PlaceModel;
+  currentGift?: GiftModel;
   currentBill?: BillModel;
-  currentStaff?: StaffModel;
 
   declare statistic: ActivityStatistic;
 
@@ -188,20 +199,12 @@ export class ActivityModel extends BiDataTable<Activity>() {
       const dbName = (database + '').split('/').at(-1)!;
       const table = new ActivityTableModel(dbName);
 
-      await table.getOne('Forum', ForumModel);
-      this.currentForum = table.currentDataTable as ForumModel;
+      for (const [name, Class] of Object.entries(ActivityModel.SubModel)) {
+        // @ts-ignore
+        await table.getOne(name, Class);
 
-      await table.getOne('Agenda', AgendaModel);
-      this.currentAgenda = table.currentDataTable as unknown as AgendaModel;
-
-      await table.getOne('Place', PlaceModel);
-      this.currentPlace = table.currentDataTable as PlaceModel;
-
-      await table.getOne('Bill', BillModel);
-      this.currentBill = table.currentDataTable as BillModel;
-
-      await table.getOne('Person', StaffModel);
-      this.currentStaff = table.currentDataTable as StaffModel;
+        Reflect.set(this, `current${name}`, table.currentDataTable);
+      }
 
       this.formMap = table.formMap;
     }
