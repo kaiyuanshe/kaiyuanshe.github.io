@@ -6,7 +6,10 @@ import { Badge, Container } from 'react-bootstrap';
 
 import PageHead from '../../components/Layout/PageHead';
 import { i18n } from '../../models/Base/Translation';
-import { Article, SearchArticleModel } from '../../models/Product/Article';
+import {
+  Article,
+  CalendarSearchArticleModel,
+} from '../../models/Product/Article';
 import styles from './index.module.less';
 
 const { t } = i18n;
@@ -17,7 +20,7 @@ export default class CalendarPage extends PureComponent {
     super(props);
     makeObservable(this);
   }
-  store = new SearchArticleModel();
+  store = new CalendarSearchArticleModel();
 
   @observable
   currentMonthList: Article[] = [];

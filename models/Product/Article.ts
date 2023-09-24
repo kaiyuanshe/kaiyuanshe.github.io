@@ -84,6 +84,14 @@ export class ArticleModel extends BiDataTable<Article>() {
 }
 
 export class SearchArticleModel extends ArticleModel {
+  makeFilter(filter: NewData<Article>) {
+    return isEmpty(filter) ? '' : makeSimpleFilter(filter, 'contains', 'OR');
+  }
+}
+
+export default new ArticleModel();
+
+export class CalendarSearchArticleModel extends ArticleModel {
   currentDate: Date = new Date();
 
   async getMonthList({ tag }, date: Date) {
@@ -107,5 +115,3 @@ export class SearchArticleModel extends ArticleModel {
       .join('&&');
   }
 }
-
-export default new ArticleModel();
