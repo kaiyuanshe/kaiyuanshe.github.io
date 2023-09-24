@@ -19,7 +19,12 @@ export const FileList: FC<{ data: TableCellAttachment[] }> = observer(
               type={mimeType}
               path={`/api/lark/file/${attachmentToken}`}
             />
-            <Badge>{name}</Badge>
+            
+            <Badge
+              bg={text2color(name,['light'])}
+            >
+             {name}
+            </Badge>
           </li>
         ))}
       </ol>
