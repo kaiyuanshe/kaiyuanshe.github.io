@@ -98,7 +98,7 @@ export class CalendarSearchArticleModel extends ArticleModel {
 
     try {
       this.clearList();
-      return await this.getAll(filter);
+      await this.getAll(filter);
     } finally {
       this.currentDate = undefined;
     }
@@ -108,6 +108,7 @@ export class CalendarSearchArticleModel extends ArticleModel {
     const [year, month] =
       this.currentDate?.toJSON().split('T')[0].split('-') || [];
     const nextMonth = (+month + 1 + '').padStart(2, '0');
+
     return [
       year && `CurrentValue.[publishedAt]>=TODATE("${year}-${month}-01")`,
       year && `CurrentValue.[publishedAt]<TODATE("${year}-${nextMonth}-01")`,
