@@ -222,4 +222,7 @@ export default {
   member_register: '申请成为 KCC 成员',
   activity_register: 'KCC 活动信息登记',
   community_register: 'KCC 社区创建申请',
+
+  activity_articles_calendar: '活动日历',
+  host_activity: '主办活动',
 } as const;

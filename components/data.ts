@@ -76,7 +76,13 @@ export const MainRoutes = (): Link[] => [
       },
     ],
   },
-  { title: t('wonderful_activity'), path: '/activity' },
+  {
+    title: t('wonderful_activity'),
+    subs: [
+      { title: t('host_activity'), path: '/activity' },
+      { title: t('activity_articles_calendar'), path: '/activity/calendar' },
+    ],
+  },
   {
     title: t('open_source_projects'),
     subs: [
