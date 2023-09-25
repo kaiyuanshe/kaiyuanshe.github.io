@@ -98,7 +98,7 @@ export class CalendarSearchArticleModel extends ArticleModel {
 
     try {
       this.clearList();
-      await this.getAll(filter);
+      return await this.getAll(filter);
     } finally {
       this.currentDate = undefined;
     }
