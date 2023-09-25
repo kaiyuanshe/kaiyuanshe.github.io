@@ -1,5 +1,4 @@
 import { Loading, MonthCalendar, OverlayBox, text2color } from 'idea-react';
-import { makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
 import { Badge, Container } from 'react-bootstrap';
@@ -7,10 +6,7 @@ import { Badge, Container } from 'react-bootstrap';
 import { ArticleListLayout } from '../../../components/Article/List';
 import PageHead from '../../../components/Layout/PageHead';
 import { i18n } from '../../../models/Base/Translation';
-import {
-  Article,
-  CalendarSearchArticleModel,
-} from '../../../models/Product/Article';
+import { CalendarSearchArticleModel } from '../../../models/Product/Article';
 
 const { t } = i18n;
 
@@ -26,6 +22,7 @@ export default class CalendarPage extends PureComponent {
 
   render() {
     const { downloading, allItems } = this.store;
+
     return (
       <Container className="py-5 text-center">
         <PageHead title={t('activity_articles_calendar')} />
