@@ -76,7 +76,16 @@ export const MainRoutes = (): Link[] => [
       },
     ],
   },
-  { title: t('wonderful_activity'), path: '/activity' },
+  {
+    title: t('wonderful_activity'),
+    subs: [
+      {
+        title: t('host_activity'),
+        path: '/activity',
+      },
+      { title: t('activity_articles_calendar'), path: '/activity/calendar' },
+    ],
+  },
   {
     title: t('open_source_projects'),
     subs: [
@@ -95,7 +104,6 @@ export const MainRoutes = (): Link[] => [
       { title: t('Web_polyfill_CDN'), path: 'https://polyfill.kaiyuanshe.cn/' },
       { title: t('open_source_mirror'), path: 'http://mirror.kaiyuanshe.cn/' },
       { title: t('license_tool'), path: '/tool/license-filter' },
-      { title: t('activity_articles_calendar'), path: '/activity/calendar' },
     ],
   },
   {

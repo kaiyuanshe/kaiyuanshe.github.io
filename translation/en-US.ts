@@ -230,4 +230,5 @@ export default {
   community_register: 'KCC Community Establishment Application',
 
   activity_articles_calendar: 'Activity Calendar',
+  host_activity: 'Host Activity',
 } as const;

@@ -223,4 +223,5 @@ export default {
   community_register: 'KCC 社区创建申请',
 
   activity_articles_calendar: '活动日历',
+  host_activity: '主办活动',
 } as const;
