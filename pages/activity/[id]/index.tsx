@@ -157,7 +157,7 @@ export default class ActivityDetailPage extends PureComponent<
     positions?: TableCellValue,
   ) {
     return (
-      <div className="d-flex align-items-center gap-3 px-5">
+      <div className="d-flex align-items-center gap-3 px-3">
         <h3 className="h6">{title}</h3>
 
         <ActivityPeople
@@ -191,7 +191,7 @@ export default class ActivityDetailPage extends PureComponent<
         </Col>
       </Row>
       <div className="d-flex justify-content-center">
-        <div className="d-flex align-items-center px-5">
+        <div className="d-flex flex-column flex-sm-row align-items-center ">
           {this.renderForumPeople(
             t('producer'),
             producers,
