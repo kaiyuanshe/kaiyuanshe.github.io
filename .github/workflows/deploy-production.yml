@@ -28,6 +28,11 @@ jobs:
 
       - name: Inject Environment variables
         run: |
+          cat >> .npmrc <<EOF
+          //npm.pkg.github.com/:_authToken=${{ secrets.NPM_TOKEN }}
+          @kaiyuanshe:registry=https://npm.pkg.github.com
+          always-auth=true
+          EOF
           cat > .env.local <<EOF
           ${{ secrets.ENV_FILE }}
           EOF
