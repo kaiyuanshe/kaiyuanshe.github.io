@@ -47,7 +47,7 @@ export const getServerSideProps = compose<
 >(cache(), errorLogger, translator(i18n), async ({ params }) => {
   const activityStore = new ActivityModel();
 
-  const activity = await activityStore.getOne(params!.id);
+  const activity = await activityStore.getOne(params!.id, true);
 
   const [agendaGroup, forums, places] = await Promise.all([
     activityStore.currentAgenda!.getGroup(),

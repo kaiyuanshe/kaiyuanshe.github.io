@@ -19,7 +19,11 @@ export class CheckEventModel extends ListModel<CheckEvent> {
     return { pageData: body!.list, totalCount: body!.count };
   }
 
-  getList(filter: Filter<CheckEvent>, pageIndex: number, pageSize: number) {
+  getList(
+    filter = this.filter,
+    pageIndex = this.pageIndex + 1,
+    pageSize = this.pageSize,
+  ) {
     this.baseURI = 'event/check/session';
 
     return super.getList(filter, pageIndex, pageSize);

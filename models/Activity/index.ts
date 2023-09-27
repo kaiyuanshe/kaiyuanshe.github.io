@@ -53,7 +53,10 @@ export class ActivityViewModel extends BiTableView() {
 }
 
 export class ActivityTableModel extends BiTable() {
-  constructor(id = '') {
+  constructor(
+    id = '',
+    public loadForm = false,
+  ) {
     super(id);
     makeObservable(this);
   }
@@ -86,12 +89,13 @@ export class ActivityTableModel extends BiTable() {
     // @ts-ignore
     const tables = await super.getAll(filter, pageSize);
 
-    const formList: (readonly [string, TableFormViewItem[]])[] = [];
+    if (this.loadForm) {
+      const formList: (readonly [string, TableFormViewItem[]])[] = [];
 
-    for await (const item of this.loadFormStream()) formList.push(item);
+      for await (const item of this.loadFormStream()) formList.push(item);
 
-    this.formMap = Object.fromEntries(formList);
-
+      this.formMap = Object.fromEntries(formList);
+    }
     return tables;
   }
 }
@@ -186,7 +190,7 @@ export class ActivityModel extends BiDataTable<Activity>() {
   }
 
   @toggle('downloading')
-  async getOne(id: string) {
+  async getOne(id: string, loadForm = false) {
     try {
       await super.getOne(id);
     } catch (error) {
@@ -197,7 +201,8 @@ export class ActivityModel extends BiDataTable<Activity>() {
 
     if (database) {
       const dbName = (database + '').split('/').at(-1)!;
-      const table = new ActivityTableModel(dbName);
+
+      const table = new ActivityTableModel(dbName, loadForm);
 
       for (const [name, Class] of Object.entries(ActivityModel.SubModel)) {
         // @ts-ignore

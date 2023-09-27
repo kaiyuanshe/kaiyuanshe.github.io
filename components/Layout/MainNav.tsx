@@ -29,7 +29,9 @@ export interface MainNavProps {
 class MainNav extends PureComponent<MainNavProps> {
   @computed
   get expandable() {
-    return i18n.currentLanguage.startsWith('zh');
+    const language = i18n.currentLanguage;
+
+    return !language || language.startsWith('zh');
   }
 
   renderRight() {
