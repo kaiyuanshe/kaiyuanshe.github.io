@@ -4,7 +4,7 @@ import { observer } from 'mobx-react';
 import { Component } from 'react';
 import { Badge, Card, Carousel } from 'react-bootstrap';
 
-import { LarkImage } from '../../LarkImage';
+import { LarkImage } from '../../Base/LarkImage';
 import { AgendaToolbar, AgendaToolbarProps } from './Toolbar';
 
 @observer

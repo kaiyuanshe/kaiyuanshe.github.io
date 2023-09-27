@@ -9,7 +9,7 @@ import { Agenda } from '../../../models/Activity/Agenda';
 import { API_Host, isServer } from '../../../models/Base';
 import { i18n } from '../../../models/Base/Translation';
 import userStore from '../../../models/Base/User';
-import { QRCodeButton } from '../../QRCodeButton';
+import { QRCodeButton } from '../../Base/QRCodeButton';
 
 const SessionBox = dynamic(() => import('../../Layout/SessionBox'), {
     ssr: false,
@@ -21,6 +21,7 @@ export interface AgendaToolbarProps
     Agenda {
   activityId: string;
   location: string;
+  checked?: boolean;
 }
 
 export const AgendaToolbar: FC<AgendaToolbarProps> = observer(
@@ -33,6 +34,7 @@ export const AgendaToolbar: FC<AgendaToolbarProps> = observer(
     startTime,
     endTime,
     mentors,
+    checked,
     children,
     ...props
   }) => (
@@ -66,6 +68,7 @@ export const AgendaToolbar: FC<AgendaToolbarProps> = observer(
         <QRCodeButton
           title="请该打卡点工作人员扫码"
           value={`${API_Host}/activity/${activityId}/agenda/${id}?mobilePhone=${userStore.session?.mobilePhone}`}
+          disabled={checked}
         >
           打卡
         </QRCodeButton>

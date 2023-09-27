@@ -6,9 +6,9 @@ import { PureComponent } from 'react';
 import { Container, Stack } from 'react-bootstrap';
 
 import { GiftCard } from '../../../components/Activity/GiftCard';
+import { QRCodeButton } from '../../../components/Base/QRCodeButton';
 import PageHead from '../../../components/Layout/PageHead';
 import { MemberTitle } from '../../../components/Member/Title';
-import { QRCodeButton } from '../../../components/QRCodeButton';
 import { Activity, ActivityModel } from '../../../models/Activity';
 import { CheckEventModel } from '../../../models/Activity/CheckEvent';
 import { GiftModel } from '../../../models/Activity/Gift';
@@ -43,7 +43,9 @@ export default class GiftListPage extends PureComponent<GiftListPageProps> {
   checkEventStore = new CheckEventModel();
 
   componentDidMount() {
-    this.checkEventStore.getAll();
+    this.checkEventStore.getAll({
+      activityId: this.props.activity.id as string,
+    });
   }
 
   renderSessionBar() {

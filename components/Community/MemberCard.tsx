@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import { Card } from 'react-bootstrap';
 
 import { CommunityMember } from '../../models/Community/CommunityMember';
-import { LarkImage } from '../LarkImage';
+import { LarkImage } from '../Base/LarkImage';
 
 export const CommunityMemberCard: FC<CommunityMember> = ({
   avatar,

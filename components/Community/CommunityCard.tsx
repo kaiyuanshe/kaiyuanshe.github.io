@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import { Card } from 'react-bootstrap';
 
 import { Community } from '../../models/Community';
-import { LarkImage } from '../LarkImage';
+import { LarkImage } from '../Base/LarkImage';
 
 export const CommunityCard: FC<Community> = ({ name, logo }) => (
   <Card className="border-0 align-items-center position-relative">

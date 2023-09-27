@@ -4,7 +4,7 @@ import { PureComponent } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 
 import { ArticleListLayout } from '../../../components/Article/List';
-import { CommentBox } from '../../../components/CommentBox';
+import { CommentBox } from '../../../components/Base/CommentBox';
 import PageHead from '../../../components/Layout/PageHead';
 import { Article, ArticleModel } from '../../../models/Product/Article';
 

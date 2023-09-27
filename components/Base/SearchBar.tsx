@@ -2,7 +2,7 @@ import { Icon } from 'idea-react';
 import { FC } from 'react';
 import { Form, FormProps, InputGroup } from 'react-bootstrap';
 
-import styles from '../styles/SearchBar.module.less';
+import styles from './SearchBar.module.less';
 
 export const SearchBar: FC<FormProps> = props => (
   <Form action="/search" {...props}>

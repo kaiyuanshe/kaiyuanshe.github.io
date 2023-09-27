@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Container, ContainerProps } from 'react-bootstrap';
 
-import { CommentBox } from '../CommentBox';
+import { CommentBox } from '../Base/CommentBox';
 import PageHead from './PageHead';
 
 export const MDXLayout: FC<ContainerProps> = ({

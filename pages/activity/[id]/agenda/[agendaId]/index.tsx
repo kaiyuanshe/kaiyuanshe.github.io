@@ -1,14 +1,6 @@
-import { SpinnerButton, text2color } from 'idea-react';
-import {
-  computed,
-  IReactionDisposer,
-  makeObservable,
-  observable,
-  reaction,
-} from 'mobx';
+import { text2color } from 'idea-react';
 import { TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
-import dynamic from 'next/dynamic';
 import {
   cache,
   compose,
@@ -22,20 +14,15 @@ import { Badge, Col, Container, Row } from 'react-bootstrap';
 
 import { FileList } from '../../../../../components/Activity/Agenda/FileList';
 import { AgendaToolbar } from '../../../../../components/Activity/Agenda/Toolbar';
+import { CheckConfirm } from '../../../../../components/Activity/CheckConfirm';
 import { ActivityPeople } from '../../../../../components/Activity/People';
-import { CommentBox } from '../../../../../components/CommentBox';
+import { CommentBox } from '../../../../../components/Base/CommentBox';
 import PageHead from '../../../../../components/Layout/PageHead';
 import { Activity, ActivityModel } from '../../../../../models/Activity';
 import { Agenda } from '../../../../../models/Activity/Agenda';
 import { CheckEventModel } from '../../../../../models/Activity/CheckEvent';
 import { blobURLOf } from '../../../../../models/Base';
 import { i18n } from '../../../../../models/Base/Translation';
-import userStore from '../../../../../models/Base/User';
-
-const SessionBox = dynamic(
-  () => import('../../../../../components/Layout/SessionBox'),
-  { ssr: false },
-);
 
 type PageParameter = Record<'id' | 'agendaId', string>;
 
@@ -66,89 +53,29 @@ const { t } = i18n;
 
 @observer
 export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProps> {
-  constructor(props: AgendaDetailPageProps) {
-    super(props);
-    makeObservable(this);
-  }
-
-  @observable
-  activityStore?: ActivityModel = undefined;
-
-  @observable
-  checkEventStore?: CheckEventModel = undefined;
-
-  @computed
-  get loading() {
-    const { downloading = 0, currentAgenda } = this.activityStore || {},
-      { uploading = 0 } = this.checkEventStore || {};
-    const { downloading: aDownloading = 0 } = currentAgenda || {};
-
-    return downloading > 0 || aDownloading > 0 || uploading > 0;
-  }
-
-  private disposer?: IReactionDisposer;
+  checkEventStore = new CheckEventModel();
 
   componentDidMount() {
-    this.checkEventStore = new CheckEventModel();
+    const { activity, agenda } = this.props;
 
-    if (this.props.route.query.mobilePhone) this.checkAuthorization();
-
-    this.disposer = reaction(() => userStore.session, this.checkAuthorization);
-  }
-
-  componentWillUnmount() {
-    this.disposer?.();
-  }
-
-  checkAuthorization = async () => {
-    const { session } = userStore,
-      { activity, agenda } = this.props;
-
-    if (!session) return;
-
-    this.activityStore ||= new ActivityModel();
-
-    await this.activityStore.getOne(activity.id as string);
-
-    return this.activityStore.currentAgenda!.checkAuthorization(
-      agenda.title as string,
-      session.mobilePhone,
-    );
-  };
-
-  renderConfirmButton() {
-    const { props, loading } = this;
-    const { mobilePhone } = props.route.query,
-      { activity, agenda } = props,
-      { currentAuthorized } = this.activityStore?.currentAgenda || {};
-
-    return (
-      mobilePhone && (
-        <SessionBox>
-          <SpinnerButton
-            size="sm"
-            variant="danger"
-            loading={loading}
-            disabled={!currentAuthorized}
-            onClick={() =>
-              this.checkEventStore?.updateOne({
-                activityId: activity.id as string,
-                activityName: activity.name as string,
-                agendaId: agenda.id as string,
-                agendaTitle: agenda.title as string,
-              })
-            }
-          >
-            确认打卡
-          </SpinnerButton>
-        </SessionBox>
-      )
-    );
+    this.checkEventStore.getAll({
+      activityId: activity.id as string,
+      agendaId: agenda.id as string,
+    });
   }
 
   renderHeader() {
-    const { id, location } = this.props.activity,
-      { type, forum, title, startTime, endTime } = this.props.agenda;
+    const { mobilePhone } = this.props.route.query,
+      { id, name, location } = this.props.activity,
+      {
+        id: agendaId,
+        type,
+        forum,
+        title,
+        startTime,
+        endTime,
+      } = this.props.agenda,
+      [checkEvent] = this.checkEventStore.allItems;
 
     return (
       <header>
@@ -160,8 +87,18 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
             activityId={id + ''}
             location={location + ''}
             {...this.props.agenda}
+            checked={!!checkEvent}
           >
-            {this.renderConfirmButton()}
+            {mobilePhone && (
+              <CheckConfirm
+                store={this.checkEventStore}
+                mobilePhone={mobilePhone as string}
+                activityId={id as string}
+                activityName={name as string}
+                agendaId={agendaId as string}
+                agendaTitle={title as string}
+              />
+            )}
           </AgendaToolbar>
         </div>
         <div className="d-flex flex-wrap align-items-center gap-3">

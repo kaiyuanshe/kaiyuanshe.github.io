@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Badge } from 'react-bootstrap';
 
 import { Gift } from '../../models/Activity/Gift';
-import { LarkImage } from '../LarkImage';
+import { LarkImage } from '../Base/LarkImage';
 import style from './GiftCard.module.less';
 
 export interface GiftCardProps extends Gift {

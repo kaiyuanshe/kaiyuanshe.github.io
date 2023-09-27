@@ -3,8 +3,8 @@ import type { FC } from 'react';
 import { Badge, Card, Col, Row } from 'react-bootstrap';
 
 import type { BaseArticle } from '../../models/Product/Article';
+import { LarkImage } from '../Base/LarkImage';
 import { TimeOption } from '../data';
-import { LarkImage } from '../LarkImage';
 
 export interface ArticleCardProps extends BaseArticle {
   className?: string;
