@@ -20,7 +20,7 @@ export default {
   slogan: 'KaiYuanShe - The Home of Open-source Believer',
   our_projects: 'Our Projects',
   activity_map: 'Activity Map',
-  previous_activity: 'Previous Activity',
+  previous_activity: 'Previous Activities',
 
   // Main Navigator
   community_structure: 'Community Structure',
