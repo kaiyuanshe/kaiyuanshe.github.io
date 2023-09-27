@@ -50,9 +50,13 @@ const SearchPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
 
           <h1 className="text-center">{title}</h1>
 
-          <h2>{t('article')}</h2>
+          {articles[0] && (
+            <section id="article">
+              <h2>{t('article')}</h2>
 
-          <ArticleListLayout defaultData={articles} />
+              <ArticleListLayout defaultData={articles} />
+            </section>
+          )}
 
           <h2>{t('activity')}</h2>
 

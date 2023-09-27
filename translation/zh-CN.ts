@@ -19,6 +19,7 @@ export default {
   slogan: '开源社-开源人的家',
   our_projects: '我们的项目',
   activity_map: '活动地图',
+  previous_activities: '往届活动',
 
   // Main Navigator
   community_structure: '组织架构',

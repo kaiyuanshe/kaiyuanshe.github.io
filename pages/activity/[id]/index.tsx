@@ -254,6 +254,9 @@ export default class ActivityDetailPage extends PureComponent<
           <Button variant="secondary" href={`/activity/${activity.id}/finance`}>
             {t('financial_disclosure')}
           </Button>
+          <Button variant="success" href="/search?keywords=收官">
+            {t('previous_activities')}
+          </Button>
         </Stack>
 
         <Container>
