@@ -1,7 +1,7 @@
 import { PureComponent } from 'react';
 import { Image, ImageProps } from 'react-bootstrap';
 
-import { DefaultImage } from '../pages/api/lark/file/[id]';
+import { DefaultImage } from '../../pages/api/lark/file/[id]';
 
 export interface LazyImageProps extends ImageProps {
   preLazySrc?: string; //👈 懒加载前的占位图src
@@ -11,6 +11,7 @@ export interface LazyImageProps extends ImageProps {
 export class LazyImage extends PureComponent<LazyImageProps> {
   watch = (image: HTMLImageElement | null) => {
     if (!image) return;
+
     const observer = new IntersectionObserver(([{ isIntersecting }]) => {
       if (!isIntersecting) return;
       image.src = this.props.src as string;

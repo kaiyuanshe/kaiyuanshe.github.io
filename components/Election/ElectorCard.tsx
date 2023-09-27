@@ -4,7 +4,7 @@ import { formatDate } from 'web-utility';
 
 import { i18n } from '../../models/Base/Translation';
 import { Personnel } from '../../models/Personnel';
-import { LarkImage } from '../LarkImage';
+import { LarkImage } from '../Base/LarkImage';
 
 const { t } = i18n;
 

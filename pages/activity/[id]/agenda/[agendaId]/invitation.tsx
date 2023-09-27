@@ -27,11 +27,12 @@ interface InvitationPageProps {
 export const getServerSideProps = compose<
   Record<'id' | 'agendaId', string>,
   InvitationPageProps
->(router, errorLogger, async ({ params }) => {
-  const activityStore = new ActivityModel(),
-    { id, agendaId } = params!;
-  const activity = await activityStore.getOne(id + ''),
-    agenda = await activityStore.currentAgenda!.getOne(agendaId + '');
+>(router, errorLogger, async ({ params: { id, agendaId } = {} }) => {
+  const activityStore = new ActivityModel();
+
+  const activity = await activityStore.getOne(id!);
+
+  const agenda = await activityStore.currentAgenda!.getOne(agendaId!);
 
   return {
     props: JSON.parse(JSON.stringify({ activity, agenda })),

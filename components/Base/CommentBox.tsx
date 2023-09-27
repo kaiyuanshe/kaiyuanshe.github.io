@@ -2,7 +2,7 @@ import Giscus, { GiscusProps } from '@giscus/react';
 import { observer } from 'mobx-react';
 import { FC } from 'react';
 
-import { i18n } from '../models/Base/Translation';
+import { i18n } from '../../models/Base/Translation';
 
 export const CommentBox: FC<Partial<GiscusProps>> = observer(props => {
   const { currentLanguage } = i18n;

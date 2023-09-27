@@ -33,6 +33,7 @@ const IssuesPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
           <Row as="ul" className="list-unstyled g-4">
             {allItems.map(
               repository =>
+                !repository.archived &&
                 repository.issues[0] && (
                   <IssueModule key={repository.name} {...repository} />
                 ),

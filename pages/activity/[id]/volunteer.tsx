@@ -22,11 +22,12 @@ export const getServerSideProps = compose<{ id: string }, VolunteerPageProps>(
   cache(),
   errorLogger,
   translator(i18n),
-  async ({ params }) => {
+  async ({ params: { id } = {} }) => {
     const activityStore = new ActivityModel();
-    const { id } = params!;
-    const activity = await activityStore.getOne(id);
-    const staffGroup = await activityStore.currentStaff?.getGroup({
+
+    const activity = await activityStore.getOne(id!);
+
+    const staffGroup = await activityStore.currentPerson?.getGroup({
       role: '志愿者 (Volunteer)',
     });
 

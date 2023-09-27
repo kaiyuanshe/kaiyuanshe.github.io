@@ -4,8 +4,8 @@ import type { FC } from 'react';
 import { Badge, Card, Col, Row } from 'react-bootstrap';
 
 import { type Activity, ActivityModel } from '../../models/Activity';
+import { LarkImage } from '../Base/LarkImage';
 import { TimeOption } from '../data';
-import { LarkImage } from '../LarkImage';
 
 export interface ActivityCardProps extends Activity {
   className?: string;

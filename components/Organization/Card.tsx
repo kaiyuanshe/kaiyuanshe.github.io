@@ -5,7 +5,7 @@ import { HTMLAttributes, PureComponent } from 'react';
 import { Badge, Button, Card, CardProps, Image } from 'react-bootstrap';
 
 import { Organization } from '../../models/Community/Organization';
-import { LarkImage } from '../LarkImage';
+import { LarkImage } from '../Base/LarkImage';
 
 export interface OrganizationCardProps
   extends Pick<HTMLAttributes<HTMLDivElement>, 'className' | 'style'>,

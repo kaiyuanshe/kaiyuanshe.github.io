@@ -15,7 +15,7 @@ export interface GitRepository extends Repository {
 
 const getGitIssues = memoize(async (URI: string) => {
   const { body: issuesList } = await githubClient.get<Issue[]>(
-    `repos/${URI}/issues`,
+    `repos/${URI}/issues?per_page=100`,
   );
   return issuesList!.filter(({ pull_request }) => !pull_request);
 });
@@ -47,11 +47,8 @@ export class RepositoryModel extends ListModel<GitRepository> {
     const pageData = await Promise.all(
       list!.map(async ({ full_name, ...item }) => {
         const issues = await getGitIssues(full_name);
-        return {
-          ...item,
-          full_name,
-          issues,
-        };
+
+        return { ...item, full_name, issues };
       }),
     );
     const [_, organization] = this.baseURI.split('/');

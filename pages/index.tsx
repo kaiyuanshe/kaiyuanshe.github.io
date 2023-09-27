@@ -8,7 +8,7 @@ import { Carousel, Col, Container, Image, Row } from 'react-bootstrap';
 
 import { ActivityListLayout } from '../components/Activity/List';
 import { ArticleListLayout } from '../components/Article/List';
-import { LarkImage } from '../components/LarkImage';
+import { LarkImage } from '../components/Base/LarkImage';
 import PageHead from '../components/Layout/PageHead';
 import { CityStatisticMap } from '../components/Map/CityStatisticMap';
 import activityStore, { Activity, ActivityModel } from '../models/Activity';

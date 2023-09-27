@@ -5,7 +5,7 @@ import { compose, translator } from 'next-ssr-middleware';
 import { PureComponent } from 'react';
 import { Col, Container, ListGroup, Row } from 'react-bootstrap';
 
-import { LarkImage } from '../../components/LarkImage';
+import { LarkImage } from '../../components/Base/LarkImage';
 import PageHead from '../../components/Layout/PageHead';
 import { i18n } from '../../models/Base/Translation';
 import {

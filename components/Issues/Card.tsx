@@ -11,6 +11,7 @@ export const IssueCard: FC<IssueCardProps> = ({
   bg = 'light',
   text = 'dark',
   id,
+  number,
   title,
   labels,
   body,
@@ -32,7 +33,7 @@ export const IssueCard: FC<IssueCardProps> = ({
         target="_blank"
         rel="noreferrer"
       >
-        {title}
+        #{number} {title}
       </a>
       <Stack direction="horizontal" gap={2}>
         {labels.map(

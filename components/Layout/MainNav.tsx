@@ -7,10 +7,12 @@ import { Container, Image, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 
 import { API_Host } from '../../models/Base';
 import { i18n } from '../../models/Base/Translation';
-import { SearchBar } from '../SearchBar';
+import { SearchBar } from '../Base/SearchBar';
 import styles from './MainNav.module.less';
 
-const LanguageMenu = dynamic(() => import('../LanguageMenu'), { ssr: false });
+const LanguageMenu = dynamic(() => import('../Base/LanguageMenu'), {
+  ssr: false,
+});
 
 export interface Link {
   title: string;
@@ -29,7 +31,9 @@ export interface MainNavProps {
 class MainNav extends PureComponent<MainNavProps> {
   @computed
   get expandable() {
-    return i18n.currentLanguage.startsWith('zh');
+    const language = i18n.currentLanguage;
+
+    return !language || language.startsWith('zh');
   }
 
   renderRight() {

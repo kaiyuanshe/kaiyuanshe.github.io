@@ -1,7 +1,5 @@
-import { OverlayBox } from 'idea-react';
 import { observer } from 'mobx-react';
 import dynamic from 'next/dynamic';
-import { QRCodeCanvas } from 'qrcode.react';
 import { FC } from 'react';
 import { Button, Stack, StackProps } from 'react-bootstrap';
 import ICalendarLink from 'react-icalendar-link';
@@ -11,6 +9,7 @@ import { Agenda } from '../../../models/Activity/Agenda';
 import { API_Host, isServer } from '../../../models/Base';
 import { i18n } from '../../../models/Base/Translation';
 import userStore from '../../../models/Base/User';
+import { QRCodeButton } from '../../Base/QRCodeButton';
 
 const SessionBox = dynamic(() => import('../../Layout/SessionBox'), {
     ssr: false,
@@ -22,6 +21,7 @@ export interface AgendaToolbarProps
     Agenda {
   activityId: string;
   location: string;
+  checked?: boolean;
 }
 
 export const AgendaToolbar: FC<AgendaToolbarProps> = observer(
@@ -34,6 +34,7 @@ export const AgendaToolbar: FC<AgendaToolbarProps> = observer(
     startTime,
     endTime,
     mentors,
+    checked,
     children,
     ...props
   }) => (
@@ -64,21 +65,13 @@ export const AgendaToolbar: FC<AgendaToolbarProps> = observer(
       )}
 
       <SessionBox>
-        <OverlayBox
-          trigger="click"
-          placement="bottom"
+        <QRCodeButton
           title="请该打卡点工作人员扫码"
-          detail={
-            <QRCodeCanvas
-              className="d-block m-auto"
-              value={`${API_Host}/activity/${activityId}/agenda/${id}?mobilePhone=${userStore.session?.mobilePhone}`}
-            />
-          }
+          value={`${API_Host}/activity/${activityId}/agenda/${id}?mobilePhone=${userStore.session?.mobilePhone}`}
+          disabled={checked}
         >
-          <Button size="sm" variant="warning">
-            打卡
-          </Button>
-        </OverlayBox>
+          打卡
+        </QRCodeButton>
       </SessionBox>
 
       {children}

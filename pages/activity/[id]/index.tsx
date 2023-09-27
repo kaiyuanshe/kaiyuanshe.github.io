@@ -22,6 +22,7 @@ import PageHead from '../../../components/Layout/PageHead';
 import type { ImageMarker } from '../../../components/Map/ListMap';
 import { Activity, ActivityModel } from '../../../models/Activity';
 import { AgendaModel } from '../../../models/Activity/Agenda';
+import { CheckEventModel } from '../../../models/Activity/CheckEvent';
 import { Forum } from '../../../models/Activity/Forum';
 import { Place } from '../../../models/Activity/Place';
 import { blobURLOf } from '../../../models/Base';
@@ -47,7 +48,7 @@ export const getServerSideProps = compose<
 >(cache(), errorLogger, translator(i18n), async ({ params }) => {
   const activityStore = new ActivityModel();
 
-  const activity = await activityStore.getOne(params!.id);
+  const activity = await activityStore.getOne(params!.id, true);
 
   const [agendaGroup, forums, places] = await Promise.all([
     activityStore.currentAgenda!.getGroup(),
@@ -67,6 +68,14 @@ export const getServerSideProps = compose<
 export default class ActivityDetailPage extends PureComponent<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > {
+  checkEventStore = new CheckEventModel();
+
+  componentDidMount() {
+    this.checkEventStore.getAll({
+      activityId: this.props.activity.id as string,
+    });
+  }
+
   renderFormMenu(
     title: string,
     forms: TableFormViewItem[],
@@ -180,46 +189,54 @@ export default class ActivityDetailPage extends PureComponent<
     producerAvatars,
     producerPositions,
     location,
-  }: Forum) => (
-    <section key={name as string}>
-      <h2 className="my-5 text-center" id={name as string}>
-        {name}
-      </h2>
-      <Row>
-        <Col xl={{ offset: 2, span: 8 }} as="p" className="text-muted">
-          {summary}
-        </Col>
-      </Row>
-      <div className="d-flex justify-content-center">
-        <div className="d-flex flex-column flex-sm-row align-items-center ">
-          {this.renderForumPeople(
-            t('producer'),
-            producers,
-            producerAvatars,
-            producerPositions,
-          )}
-          {(volunteers as string[])?.[0] &&
-            this.renderForumPeople(
-              t('volunteer'),
-              volunteers,
-              volunteerAvatars,
-            )}
-        </div>
-      </div>
+  }: Forum) => {
+    const { activity, agendaGroup } = this.props,
+      { allItems } = this.checkEventStore;
 
-      <Row as="ol" className="list-unstyled g-4" xs={1} sm={2} md={3}>
-        {this.props.agendaGroup[name as string]?.map(agenda => (
-          <Col as="li" key={agenda.id + ''}>
-            <AgendaCard
-              activityId={this.props.activity.id + ''}
-              location={location + ''}
-              {...agenda}
-            />
+    return (
+      <section key={name as string}>
+        <h2 className="my-5 text-center" id={name as string}>
+          {name}
+        </h2>
+        <Row>
+          <Col xl={{ offset: 2, span: 8 }} as="p" className="text-muted">
+            {summary}
           </Col>
-        ))}
-      </Row>
-    </section>
-  );
+        </Row>
+        <div className="d-flex justify-content-center">
+          <div className="d-flex flex-column flex-sm-row align-items-center">
+            {this.renderForumPeople(
+              t('producer'),
+              producers,
+              producerAvatars,
+              producerPositions,
+            )}
+            {(volunteers as string[])?.[0] &&
+              this.renderForumPeople(
+                t('volunteer'),
+                volunteers,
+                volunteerAvatars,
+              )}
+          </div>
+        </div>
+
+        <Row as="ol" className="list-unstyled g-4" xs={1} sm={2} lg={3}>
+          {agendaGroup[name as string]?.map(agenda => (
+            <Col as="li" key={agenda.id + ''}>
+              <AgendaCard
+                activityId={activity.id + ''}
+                location={location + ''}
+                {...agenda}
+                checked={allItems.some(
+                  ({ agendaId }) => agendaId === agenda.id,
+                )}
+              />
+            </Col>
+          ))}
+        </Row>
+      </section>
+    );
+  };
 
   render() {
     const { activity, forums } = this.props;
@@ -248,6 +265,9 @@ export default class ActivityDetailPage extends PureComponent<
           direction="horizontal"
           gap={3}
         >
+          <Button variant="danger" href={`/activity/${activity.id}/gift`}>
+            礼品墙
+          </Button>
           <Button variant="info" href={`/activity/${activity.id}/volunteer`}>
             {t('volunteer')}
           </Button>

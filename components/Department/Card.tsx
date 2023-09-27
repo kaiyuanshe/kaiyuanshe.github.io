@@ -4,7 +4,7 @@ import { FC } from 'react';
 import { Badge } from 'react-bootstrap';
 
 import { Department } from '../../models/Personnel/Department';
-import { LarkImage } from '../LarkImage';
+import { LarkImage } from '../Base/LarkImage';
 
 export interface GroupCardProps
   extends Pick<Department, 'name' | 'logo' | 'tags' | 'summary'> {

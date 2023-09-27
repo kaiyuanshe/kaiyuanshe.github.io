@@ -2,8 +2,8 @@ import { TableCellValue } from 'mobx-lark';
 import { FC } from 'react';
 import { Image, ImageProps } from 'react-bootstrap';
 
-import { blobURLOf } from '../models/Base';
-import { fileURLOf } from '../pages/api/lark/file/[id]';
+import { blobURLOf } from '../../models/Base';
+import { fileURLOf } from '../../pages/api/lark/file/[id]';
 
 export interface LarkImageProps extends Omit<ImageProps, 'src'> {
   src: TableCellValue;

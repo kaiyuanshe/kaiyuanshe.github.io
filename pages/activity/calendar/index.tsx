@@ -1,7 +1,7 @@
-import { Loading, MonthCalendar, OverlayBox, text2color } from 'idea-react';
+import { Loading, MonthCalendar } from 'idea-react';
 import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
-import { Badge, Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 
 import { ArticleListLayout } from '../../../components/Article/List';
 import PageHead from '../../../components/Layout/PageHead';
@@ -24,33 +24,26 @@ export default class CalendarPage extends PureComponent {
     const { downloading, allItems } = this.store;
 
     return (
-      <Container className="py-5 text-center">
+      <Container className="py-5">
         <PageHead title={t('activity_articles_calendar')} />
+
         <h1 className="mb-5 text-center">{t('activity_articles_calendar')}</h1>
+
         {downloading > 0 && <Loading />}
+
         <MonthCalendar
+          className="text-center"
           value={allItems.map(({ title, publishedAt, alias }) => ({
             date: new Date(publishedAt as number),
-            content: (
-              <OverlayBox title={title}>
-                <Badge
-                  className="d-inline-block text-truncate w-100"
-                  bg={text2color(title + '', ['light'])}
-                  as="a"
-                  href={`/article/${alias}`}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {title}
-                </Badge>
-              </OverlayBox>
-            ),
+            content: title,
+            link: `/article/${alias}`,
           }))}
           onChange={this.loadData}
         />
         {allItems[0] && (
           <section>
-            <h2>{t('article')}</h2>
+            <h2 className="text-center">{t('article')}</h2>
+
             <ArticleListLayout defaultData={allItems} />
           </section>
         )}
