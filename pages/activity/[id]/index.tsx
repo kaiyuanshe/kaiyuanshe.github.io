@@ -255,7 +255,7 @@ export default class ActivityDetailPage extends PureComponent<
             {t('financial_disclosure')}
           </Button>
           <Button variant="success" href="/search?keywords=收官">
-            {t('previous_activity')}
+            {t('previous_activities')}
           </Button>
         </Stack>
 
