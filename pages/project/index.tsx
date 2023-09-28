@@ -7,8 +7,8 @@ import { FC } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 
 import PageHead from '../../components/Layout/PageHead';
-import repositoryStore, { RepositoryModel } from '../models/Repository';
-import { i18n } from '../models/Translation';
+import repositoryStore, { RepositoryModel } from '../../models/Repository';
+import { i18n } from '../../models/Translation';
 
 export const getServerSideProps = compose(
   errorLogger,
