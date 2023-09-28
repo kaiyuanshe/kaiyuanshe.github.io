@@ -7,7 +7,7 @@ import { FC } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 
 import PageHead from '../../components/Layout/PageHead';
-import { i18n } from '../../models/base/Translation';
+import { i18n } from '../../models/Base/Translation';
 import repositoryStore, { RepositoryModel } from '../../models/Repository';
 
 export const getServerSideProps = compose(
