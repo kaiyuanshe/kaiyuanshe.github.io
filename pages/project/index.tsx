@@ -22,7 +22,7 @@ export const getServerSideProps = compose(
   },
 );
 
-const ScrollListPage: FC<
+const ProjectListPage: FC<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = observer(({ list }) => (
   <Container>
@@ -48,4 +48,4 @@ const ScrollListPage: FC<
   </Container>
 ));
 
-export default ScrollListPage;
+export default ProjectListPage;
