@@ -11,6 +11,7 @@ export type Issue = components['schemas']['issue'];
 
 export interface GitRepository extends Repository {
   issues: Issue[];
+  languages?: string[];
 }
 
 const getGitIssues = memoize(async (URI: string) => {

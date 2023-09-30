@@ -7,8 +7,11 @@ import { FC } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 
 import PageHead from '../../components/Layout/PageHead';
+import { GitCard } from '../../components/Project/GitCard';
 import { i18n } from '../../models/Base/Translation';
 import repositoryStore, { RepositoryModel } from '../../models/Repository';
+
+const { t } = i18n;
 
 export const getServerSideProps = compose(
   errorLogger,
@@ -23,8 +26,8 @@ const ScrollListPage: FC<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = observer(({ list }) => (
   <Container>
-    <PageHead title="开源社项目" />
-    <h1 className="my-4">开源社项目</h1>
+    <PageHead title={t('preject_title')} />
+    <h1 className="my-4">{t('preject_title')}</h1>
 
     {repositoryStore.downloading > 0 && <Loading />}
 
@@ -34,7 +37,9 @@ const ScrollListPage: FC<
       renderList={allItems => (
         <Row as="ul" className="list-unstyled g-4" xs={1} sm={2}>
           {allItems.map(item => (
-            <Col as="li" key={item.id}></Col>
+            <Col as="li" key={item.id}>
+              <GitCard className="h-100 shadow-sm" {...item} />
+            </Col>
           ))}
         </Row>
       )}
