@@ -58,7 +58,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
   componentDidMount() {
     const { activity, agenda } = this.props;
 
-    this.checkEventStore.getAll({
+    this.checkEventStore.getUserScore({
       activityId: activity.id as string,
       agendaId: agenda.id as string,
     });
