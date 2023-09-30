@@ -1,4 +1,4 @@
-import * as Mobx from 'mobx';
+import * as MobX from 'mobx';
 import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
 import { Image } from 'react-bootstrap';
@@ -11,13 +11,13 @@ export interface GitLogoProps {
 export class GitLogo extends PureComponent<GitLogoProps> {
   constructor(props: GitLogoProps) {
     super(props);
-    Mobx.makeObservable?.(this);
+    MobX.makeObservable?.(this);
   }
 
-  @Mobx.observable
+  @MobX.observable
   path = '';
 
-  async compentDidMount() {
+  async componentDidMount() {
     const { name } = this.props;
     const topic = name.toLowerCase();
 
@@ -26,7 +26,7 @@ export class GitLogo extends PureComponent<GitLogoProps> {
         `https://raw.githubusercontent.com/github/explore/master/topics/${topic}/${topic}.png`,
       );
       this.path = src;
-    } catch (e) {
+    } catch {
       const { src } = await this.loadImage(`https://github.com/${name}.png`);
       this.path = src;
     }
