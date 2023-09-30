@@ -1,6 +1,7 @@
 import '../styles/globals.less';
 
 import { Icon } from 'idea-react';
+import { HTTPError } from 'koajax';
 import { configure } from 'mobx';
 import { enableStaticRendering, observer } from 'mobx-react';
 import type { AppProps } from 'next/app';
@@ -19,6 +20,14 @@ import { DefaultImage } from './api/lark/file/[id]';
 configure({ enforceActions: 'never' });
 
 enableStaticRendering(isServer());
+
+globalThis.addEventListener?.('unhandledrejection', ({ reason }) => {
+  var { message, statusText, body } = reason as HTTPError;
+
+  message = body?.message || statusText || message;
+
+  if (message) alert(message);
+});
 
 const { t } = i18n;
 

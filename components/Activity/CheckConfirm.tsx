@@ -1,12 +1,6 @@
 import { CheckEventInput } from '@kaiyuanshe/kys-service';
 import { SpinnerButton } from 'idea-react';
-import {
-  computed,
-  IReactionDisposer,
-  makeObservable,
-  observable,
-  reaction,
-} from 'mobx';
+import { computed, IReactionDisposer, reaction } from 'mobx';
 import { observer } from 'mobx-react';
 import dynamic from 'next/dynamic';
 import { PureComponent } from 'react';
@@ -64,10 +58,17 @@ export class CheckConfirm extends PureComponent<CheckConfirmProps> {
     );
   };
 
+  handleCheck = async () => {
+    const { store, ...meta } = this.props;
+
+    await this.checkEventStore.updateOne(meta);
+
+    alert('打卡成功！');
+  };
+
   render() {
-    const { props, loading } = this;
-    const { mobilePhone, ...meta } = props,
-      { currentAuthorized } = this.activityStore.currentAgenda || {};
+    const { loading } = this;
+    const { currentAuthorized } = this.activityStore.currentAgenda || {};
 
     return (
       <SessionBox>
@@ -76,7 +77,7 @@ export class CheckConfirm extends PureComponent<CheckConfirmProps> {
           variant="danger"
           loading={loading}
           disabled={!currentAuthorized}
-          onClick={() => this.checkEventStore.updateOne(meta)}
+          onClick={this.handleCheck}
         >
           确认打卡
         </SpinnerButton>
