@@ -226,4 +226,8 @@ export default {
 
   activity_articles_calendar: '活動日曆',
   host_activity: '主辦活動',
+
+  //github preject list page
+  preject_title: '開源社項目',
+  home_page: '專案首頁',
 } as const;
