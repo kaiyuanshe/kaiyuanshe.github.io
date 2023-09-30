@@ -1,7 +1,7 @@
 import { components } from '@octokit/openapi-types';
 import { memoize } from 'lodash';
 import { ListModel, toggle } from 'mobx-restful';
-import { buildURLData } from 'web-utility';
+import { averageOf,buildURLData } from 'web-utility';
 
 import { githubClient } from './Base';
 
@@ -21,6 +21,20 @@ const getGitIssues = memoize(async (URI: string) => {
   return issuesList!.filter(({ pull_request }) => !pull_request);
 });
 
+const getGitLanges = memoize(async (URI: string) => {
+  const { body: languageCount } = await githubClient.get<
+    Record<string, number>
+  >(`repos/${URI}/languages`);
+
+  const languageAverage = averageOf(...Object.values(languageCount!));
+
+  const languageList = Object.entries(languageCount!)
+    .filter(([_, score]) => score >= languageAverage)
+    .sort(([_, a], [__, b]) => b - a);
+
+  return languageList.map(([name]) => name);
+});
+
 export class RepositoryModel extends ListModel<GitRepository> {
   client = githubClient;
   baseURI = 'orgs/kaiyuanshe/repos';
@@ -33,6 +47,7 @@ export class RepositoryModel extends ListModel<GitRepository> {
     return (this.currentOne = {
       ...body!,
       issues: await getGitIssues(URI),
+      languages: await getGitLanges(URI),
     });
   }
 
@@ -48,8 +63,8 @@ export class RepositoryModel extends ListModel<GitRepository> {
     const pageData = await Promise.all(
       list!.map(async ({ full_name, ...item }) => {
         const issues = await getGitIssues(full_name);
-
-        return { ...item, full_name, issues };
+        const languages = await getGitLanges(full_name);
+        return { ...item, full_name, issues, languages };
       }),
     );
     const [_, organization] = this.baseURI.split('/');
