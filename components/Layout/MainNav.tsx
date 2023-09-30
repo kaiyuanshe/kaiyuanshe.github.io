@@ -11,8 +11,9 @@ import { SearchBar } from '../Base/SearchBar';
 import styles from './MainNav.module.less';
 
 const LanguageMenu = dynamic(() => import('../Base/LanguageMenu'), {
-  ssr: false,
-});
+    ssr: false,
+  }),
+  UserMenu = dynamic(() => import('../Base/UserMenu'), { ssr: false });
 
 export interface Link {
   title: string;
@@ -75,6 +76,7 @@ class MainNav extends PureComponent<MainNavProps> {
         >
           <SearchBar />
           <LanguageMenu />
+          <UserMenu />
         </div>
       </div>
     );

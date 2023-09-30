@@ -43,7 +43,7 @@ export default class GiftListPage extends PureComponent<GiftListPageProps> {
   checkEventStore = new CheckEventModel();
 
   componentDidMount() {
-    this.checkEventStore.getAll({
+    this.checkEventStore.getUserScore({
       activityId: this.props.activity.id as string,
     });
   }
@@ -78,6 +78,7 @@ export default class GiftListPage extends PureComponent<GiftListPageProps> {
 
   render() {
     const { activity, group } = this.props,
+      { session } = userStore,
       { downloading, allItems } = this.checkEventStore;
 
     return (
@@ -100,7 +101,9 @@ export default class GiftListPage extends PureComponent<GiftListPageProps> {
                   <li key={gift.name as string}>
                     <GiftCard
                       {...gift}
-                      disabled={allItems.length < +score || !gift.stock}
+                      disabled={
+                        !gift.stock || (session && allItems.length < +score)
+                      }
                     />
                   </li>
                 ))}
