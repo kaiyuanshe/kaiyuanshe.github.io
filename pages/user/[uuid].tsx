@@ -36,7 +36,8 @@ export default class UserProfilePage extends PureComponent<
           <a
             className="text-decoration-none"
             target="_blank"
-            href={`/activity/${activityId}`} rel="noreferrer"
+            href={`/activity/${activityId}`}
+            rel="noreferrer"
           >
             {list[0].activityName}
           </a>
@@ -48,7 +49,8 @@ export default class UserProfilePage extends PureComponent<
                 <a
                   className="text-decoration-none"
                   target="_blank"
-                  href={`/activity/${activityId}/agenda/${agendaId}`} rel="noreferrer"
+                  href={`/activity/${activityId}/agenda/${agendaId}`}
+                  rel="noreferrer"
                 >
                   {agendaTitle}
                 </a>

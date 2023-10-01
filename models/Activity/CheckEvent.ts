@@ -25,7 +25,7 @@ export class CheckEventModel extends ListModel<CheckEvent> {
     return { pageData: body!.list, totalCount: body!.count };
   }
 
-  async getUserScore({ activityId, agendaId }: Filter<CheckEvent>) {
+  async getUserCount({ activityId, agendaId }: Filter<CheckEvent>) {
     try {
       const { length } = await this.getAll({
         user: userStore.session?.id,

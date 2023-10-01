@@ -27,6 +27,7 @@ export type Agenda = Record<
   | 'startTime'
   | 'endTime'
   | 'approver'
+  | 'score'
   | '负责手机号',
   TableCellValue
 > & {
@@ -56,10 +57,10 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
   @observable
   currentAuthorized = false;
 
-  normalize({
-    id,
-    fields: { forum, mentors, mentorPositions, mentorSummaries, ...data },
-  }: TableRecord<Agenda>) {
+  normalize({ id, fields }: TableRecord<Agenda>) {
+    const { forum, mentors, mentorPositions, mentorSummaries, score, ...data } =
+      fields;
+
     return {
       ...data,
       id: id!,
@@ -73,6 +74,7 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
       mentorSummaries:
         mentorSummaries &&
         normalizeTextArray(mentorSummaries as TableCellText[]),
+      score: typeof score === 'number' ? score : null,
     };
   }
 
