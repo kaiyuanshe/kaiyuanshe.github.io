@@ -65,7 +65,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
   }
 
   renderHeader() {
-    const { mobilePhone } = this.props.route.query,
+    const { user } = this.props.route.query,
       { id, name, location } = this.props.activity,
       {
         id: agendaId,
@@ -89,10 +89,10 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
             {...this.props.agenda}
             checked={!!checkEvent}
           >
-            {mobilePhone && (
+            {user && (
               <CheckConfirm
                 store={this.checkEventStore}
-                mobilePhone={mobilePhone as string}
+                user={+user}
                 activityId={id as string}
                 activityName={name as string}
                 agendaId={agendaId as string}
