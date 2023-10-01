@@ -236,6 +236,6 @@ export default {
 
   //github project list page
   project_title: 'Kaiyuanshe project',
-  project_home_page: 'home page',
-  project_list: 'more project',
+  project_home_page: 'Home page',
+  project_list: 'More project',
 } as const;
