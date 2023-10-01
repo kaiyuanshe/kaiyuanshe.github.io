@@ -1,7 +1,7 @@
 import { components } from '@octokit/openapi-types';
 import { memoize } from 'lodash';
 import { ListModel, toggle } from 'mobx-restful';
-import { averageOf,buildURLData } from 'web-utility';
+import { averageOf, buildURLData } from 'web-utility';
 
 import { githubClient } from './Base';
 
@@ -21,7 +21,7 @@ const getGitIssues = memoize(async (URI: string) => {
   return issuesList!.filter(({ pull_request }) => !pull_request);
 });
 
-const getGitLanges = memoize(async (URI: string) => {
+const getGitLanguages = memoize(async (URI: string) => {
   const { body: languageCount } = await githubClient.get<
     Record<string, number>
   >(`repos/${URI}/languages`);
@@ -47,7 +47,7 @@ export class RepositoryModel extends ListModel<GitRepository> {
     return (this.currentOne = {
       ...body!,
       issues: await getGitIssues(URI),
-      languages: await getGitLanges(URI),
+      languages: await getGitLanguages(URI),
     });
   }
 
@@ -63,7 +63,7 @@ export class RepositoryModel extends ListModel<GitRepository> {
     const pageData = await Promise.all(
       list!.map(async ({ full_name, ...item }) => {
         const issues = await getGitIssues(full_name);
-        const languages = await getGitLanges(full_name);
+        const languages = await getGitLanguages(full_name);
         return { ...item, full_name, issues, languages };
       }),
     );
