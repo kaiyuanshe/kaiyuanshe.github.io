@@ -86,7 +86,7 @@ export const MainRoutes = (): Link[] => [
   {
     title: t('open_source_projects'),
     subs: [
-      { title: t('project_list'), path: '/project' },
+      { title: t('more_projects'), path: '/project' },
       {
         title: 'GitHub issues',
         path: '/project/issues',

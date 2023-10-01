@@ -26,8 +26,8 @@ const ProjectListPage: FC<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = observer(({ list }) => (
   <Container>
-    <PageHead title={t('project_title')} />
-    <h1 className="my-4">{t('project_title')}</h1>
+    <PageHead title={t('kaiyuanshe_projects')} />
+    <h1 className="my-4">{t('kaiyuanshe_projects')}</h1>
 
     {repositoryStore.downloading > 0 && <Loading />}
 

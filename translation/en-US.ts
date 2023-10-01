@@ -235,7 +235,7 @@ export default {
   host_activity: 'Host Activity',
 
   //github project list page
-  project_title: 'Kaiyuanshe projects',
-  project_home_page: 'Home page',
-  project_list: 'More projects',
+  kaiyuanshe_projects: 'Kaiyuanshe projects',
+  home_page: 'Home page',
+  more_projects: 'More projects',
 } as const;

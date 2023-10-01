@@ -228,7 +228,7 @@ export default {
   host_activity: '主办活动',
 
   //github project list page
-  project_title: '开源社项目',
-  project_home_page: '项目主页',
-  project_list: '更多项目',
+  kaiyuanshe_projects: '开源社项目',
+  home_page: '项目主页',
+  more_projects: '更多项目',
 } as const;
