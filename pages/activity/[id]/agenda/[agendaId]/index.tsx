@@ -25,6 +25,7 @@ import { AgendaToolbar } from '../../../../../components/Activity/Agenda/Toolbar
 import { CheckConfirm } from '../../../../../components/Activity/CheckConfirm';
 import { ActivityPeople } from '../../../../../components/Activity/People';
 import { CommentBox } from '../../../../../components/Base/CommentBox';
+import { ScoreBar } from '../../../../../components/Base/ScoreBar';
 import PageHead from '../../../../../components/Layout/PageHead';
 import { Activity, ActivityModel } from '../../../../../models/Activity';
 import { Agenda } from '../../../../../models/Activity/Agenda';
@@ -77,7 +78,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
   componentDidMount() {
     const { activity, agenda } = this.props;
 
-    this.checkEventStore.getUserScore({
+    this.checkEventStore.getUserCount({
       activityId: activity.id as string,
       agendaId: agenda.id as string,
     });
@@ -187,7 +188,8 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
               summaries={mentorSummaries as string[]}
             />
             <h2>观众评分</h2>
-            {score}
+
+            <ScoreBar value={score} />
           </Col>
         </Row>
         {fileInfo && <FileList data={fileInfo} />}

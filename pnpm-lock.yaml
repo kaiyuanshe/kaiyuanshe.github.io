@@ -90,8 +90,8 @@ dependencies:
     specifier: ^0.6.12
     version: 0.6.12(mobx@6.10.2)(typescript@5.1.6)
   mobx-restful-table:
-    specifier: ^1.1.4
-    version: 1.1.4(@types/react@17.0.67)(mobx-i18n@0.4.1)(mobx-react@9.0.1)(mobx-restful@0.6.12)(mobx@6.10.2)(react-dom@17.0.2)(react@17.0.2)(typescript@5.1.6)
+    specifier: ^1.2.0
+    version: 1.2.0(@types/react@17.0.67)(mobx-i18n@0.4.1)(mobx-react@9.0.1)(mobx-restful@0.6.12)(mobx@6.10.2)(react-dom@17.0.2)(react@17.0.2)(typescript@5.1.6)
   next:
     specifier: ^12.3.4
     version: 12.3.4(react-dom@17.0.2)(react@17.0.2)
@@ -5937,8 +5937,8 @@ packages:
       react-dom: 17.0.2(react@17.0.2)
     dev: false
 
-  /mobx-restful-table@1.1.4(@types/react@17.0.67)(mobx-i18n@0.4.1)(mobx-react@9.0.1)(mobx-restful@0.6.12)(mobx@6.10.2)(react-dom@17.0.2)(react@17.0.2)(typescript@5.1.6):
-    resolution: {integrity: sha512-scf/3JKAPTVY86KSXq4dbNkyBTvPqzFIXDy3uL2dDbgVKgPV1fHbPUtiP71dPd7vEj+dt8eVbHbVOS+DyeOjZg==}
+  /mobx-restful-table@1.2.0(@types/react@17.0.67)(mobx-i18n@0.4.1)(mobx-react@9.0.1)(mobx-restful@0.6.12)(mobx@6.10.2)(react-dom@17.0.2)(react@17.0.2)(typescript@5.1.6):
+    resolution: {integrity: sha512-F96BRL6pf3X7DUJSQ4J0MH3aiIZyx3b5HAQf9XrNlpHQPn/Vcwh2Q00kQWPrsSYKvHgfaA8LQ1K5p3BOuN6l9g==}
     peerDependencies:
       mobx: '>=4'
       mobx-i18n: ^0.4

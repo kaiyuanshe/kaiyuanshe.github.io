@@ -132,7 +132,9 @@ export class ActivityModel extends BiDataTable<Activity>() {
 
   @observable
   currentAgenda?: AgendaModel = undefined;
-  currentEvaluation?: EvaluationModel;
+
+  @observable
+  currentEvaluation?: EvaluationModel = undefined;
 
   currentPlace?: PlaceModel;
   currentGift?: GiftModel;

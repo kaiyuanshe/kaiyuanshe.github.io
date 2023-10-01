@@ -1,4 +1,5 @@
 import { Loading } from 'idea-react';
+import { computed } from 'mobx';
 import { observer } from 'mobx-react';
 import dynamic from 'next/dynamic';
 import { cache, compose, RouteProps, router } from 'next-ssr-middleware';
@@ -40,17 +41,37 @@ export const getServerSideProps = compose<{ id: string }, GiftListPageProps>(
 
 @observer
 export default class GiftListPage extends PureComponent<GiftListPageProps> {
+  activityStore = new ActivityModel();
   checkEventStore = new CheckEventModel();
 
-  componentDidMount() {
-    this.checkEventStore.getUserScore({
+  @computed
+  get loading() {
+    return (
+      this.checkEventStore.downloading > 0 ||
+      (this.activityStore.currentEvaluation?.downloading || 0) > 0
+    );
+  }
+
+  @computed
+  get sumScore() {
+    return (
+      this.checkEventStore.allItems.length +
+      (this.activityStore.currentEvaluation?.allItems.length || 0)
+    );
+  }
+
+  async componentDidMount() {
+    this.checkEventStore.getUserCount({
       activityId: this.props.activity.id as string,
     });
+    await this.activityStore.getOne(this.props.activity.id as string);
+
+    this.activityStore.currentEvaluation!.getUserCount();
   }
 
   renderSessionBar() {
     const { mobilePhone } = userStore.session || {},
-      { length } = this.checkEventStore.allItems;
+      { sumScore } = this;
 
     return (
       mobilePhone && (
@@ -60,13 +81,13 @@ export default class GiftListPage extends PureComponent<GiftListPageProps> {
           gap={3}
         >
           <div>
-            可用积分：<strong className="text-danger">{length}</strong>
+            可用积分：<strong className="text-danger">{sumScore}</strong>
           </div>
 
           <SessionBox>
             <QRCodeButton
               title="请礼品墙工作人员扫码"
-              value={[mobilePhone, length] + ''}
+              value={[mobilePhone, sumScore] + ''}
             >
               兑换
             </QRCodeButton>
@@ -79,14 +100,14 @@ export default class GiftListPage extends PureComponent<GiftListPageProps> {
   render() {
     const { activity, group } = this.props,
       { session } = userStore,
-      { downloading, allItems } = this.checkEventStore;
+      { loading, sumScore } = this;
 
     return (
       <Container>
         <PageHead title={`礼品墙 - ${activity.name}`} />
         <h1 className="mt-5 mb-4 text-center">{activity.name} 礼品墙</h1>
 
-        {downloading > 0 && <Loading />}
+        {loading && <Loading />}
 
         {this.renderSessionBar()}
 
@@ -101,9 +122,7 @@ export default class GiftListPage extends PureComponent<GiftListPageProps> {
                   <li key={gift.name as string}>
                     <GiftCard
                       {...gift}
-                      disabled={
-                        !gift.stock || (session && allItems.length < +score)
-                      }
+                      disabled={!gift.stock || (session && sumScore < +score)}
                     />
                   </li>
                 ))}
