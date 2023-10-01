@@ -90,6 +90,7 @@ export const MainRoutes = (): Link[] => [
         title: 'GitHub issues',
         path: '/project/issues',
       },
+      { title: t('project_list'), path: '/project' },
     ],
   },
   { title: t('our_partners'), path: '/organization/cooperation' },

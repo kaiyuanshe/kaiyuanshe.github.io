@@ -234,7 +234,8 @@ export default {
   activity_articles_calendar: 'Activity Calendar',
   host_activity: 'Host Activity',
 
-  //github preject list page
-  preject_title: 'Kaiyuanshe project',
-  preject_home_page: 'home page',
+  //github project list page
+  project_title: 'Kaiyuanshe project',
+  project_home_page: 'home page',
+  project_list: 'more project',
 } as const;
