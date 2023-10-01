@@ -5,11 +5,11 @@ import { Dropdown, DropdownButton } from 'react-bootstrap';
 import userStore from '../../models/Base/User';
 
 const UserMenu: FC = observer(() => {
-  const { id, mobilePhone, nickName } = userStore.session || {};
+  const { uuid, mobilePhone, nickName } = userStore.session || {};
 
-  return id ? (
+  return uuid ? (
     <DropdownButton title={nickName || mobilePhone}>
-      <Dropdown.Item href={`/user/${id}`}>开源护照</Dropdown.Item>
+      <Dropdown.Item href={`/user/${uuid}`}>开源护照</Dropdown.Item>
       <Dropdown.Divider />
       <Dropdown.Item onClick={() => userStore.signOut()}>退出</Dropdown.Item>
     </DropdownButton>

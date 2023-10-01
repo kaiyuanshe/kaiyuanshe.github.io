@@ -2,6 +2,7 @@ import { CheckEventInput } from '@kaiyuanshe/kys-service';
 import { SpinnerButton } from 'idea-react';
 import { computed, IReactionDisposer, reaction } from 'mobx';
 import { observer } from 'mobx-react';
+import { NewData } from 'mobx-restful';
 import dynamic from 'next/dynamic';
 import { PureComponent } from 'react';
 
@@ -13,8 +14,8 @@ const SessionBox = dynamic(() => import('../Layout/SessionBox'), {
   ssr: false,
 });
 
-export interface CheckConfirmProps extends CheckEventInput {
-  mobilePhone: string;
+export interface CheckConfirmProps extends NewData<CheckEventInput> {
+  user: number;
   store: CheckEventModel;
 }
 
@@ -37,7 +38,7 @@ export class CheckConfirm extends PureComponent<CheckConfirmProps> {
   componentDidMount() {
     this.disposer = reaction(() => userStore.session, this.checkAuthorization);
 
-    if (this.props.mobilePhone) this.checkAuthorization();
+    if (this.props.user) this.checkAuthorization();
   }
 
   componentWillUnmount() {
