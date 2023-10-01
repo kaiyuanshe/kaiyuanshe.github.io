@@ -59,7 +59,7 @@ export const GitCard: FC<GitCardProps> = observer(
       <Card.Footer className="d-flex justify-content-between align-items-center">
         {homepage && (
           <Button variant="success" target="_blank" href={homepage}>
-            {t('preject_home_page')}
+            {t('project_home_page')}
           </Button>
         )}
       </Card.Footer>
