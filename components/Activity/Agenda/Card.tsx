@@ -41,7 +41,7 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
   }
 
   render() {
-    const { activityId, id, type, title, mentors, startTime, endTime } =
+    const { activityId, id, type, title, mentors, startTime, endTime, score } =
       this.props;
 
     return (
@@ -68,7 +68,8 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
             </li>
           </ul>
         </Card.Body>
-        <Card.Footer className="d-flex justify-content-end">
+        <Card.Footer className="d-flex justify-content-between align-items-center">
+          <strong>{score}</strong>
           <AgendaToolbar {...{ ...this.props, activityId }} />
         </Card.Footer>
       </Card>

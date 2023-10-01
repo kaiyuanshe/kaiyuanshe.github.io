@@ -23,6 +23,7 @@ import {
 import { larkClient } from '../Base';
 import { AgendaModel } from './Agenda';
 import { BillModel } from './Bill';
+import { EvaluationModel } from './Evaluation';
 import { ForumModel } from './Forum';
 import { GiftModel } from './Gift';
 import { PlaceModel } from './Place';
@@ -120,6 +121,7 @@ export class ActivityModel extends BiDataTable<Activity>() {
     Person: StaffModel,
     Forum: ForumModel,
     Agenda: AgendaModel,
+    Evaluation: EvaluationModel,
     Place: PlaceModel,
     Gift: GiftModel,
     Bill: BillModel,
@@ -130,6 +132,7 @@ export class ActivityModel extends BiDataTable<Activity>() {
 
   @observable
   currentAgenda?: AgendaModel = undefined;
+  currentEvaluation?: EvaluationModel;
 
   currentPlace?: PlaceModel;
   currentGift?: GiftModel;
@@ -145,15 +148,16 @@ export class ActivityModel extends BiDataTable<Activity>() {
       ) || [];
     const { startTime } = list[0] || {},
       { endTime } = list.slice(-1)[0] || {};
-    const { Person, Agenda, File, Bill } = this.formMap;
+    const { Person, Agenda, Evaluation, File, Bill } = this.formMap;
 
     return {
       startTime,
       endTime,
-      personForms: Person.filter(({ shared_url }) => shared_url),
-      agendaForms: Agenda.filter(({ shared_url }) => shared_url),
-      fileForms: File.filter(({ shared_url }) => shared_url),
-      billForms: Bill.filter(({ shared_url }) => shared_url),
+      personForms: Person?.filter(({ shared_url }) => shared_url),
+      agendaForms: Agenda?.filter(({ shared_url }) => shared_url),
+      evaluationForms: Evaluation?.filter(({ shared_url }) => shared_url),
+      fileForms: File?.filter(({ shared_url }) => shared_url),
+      billForms: Bill?.filter(({ shared_url }) => shared_url),
     };
   }
 
