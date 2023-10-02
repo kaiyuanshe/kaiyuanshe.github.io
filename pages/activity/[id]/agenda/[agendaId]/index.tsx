@@ -10,25 +10,36 @@ import {
   translator,
 } from 'next-ssr-middleware';
 import { PureComponent } from 'react';
-import { Badge, Col, Container, Row } from 'react-bootstrap';
+import {
+  Badge,
+  Col,
+  Container,
+  Dropdown,
+  DropdownButton,
+  Row,
+} from 'react-bootstrap';
+import { buildURLData } from 'web-utility';
 
 import { FileList } from '../../../../../components/Activity/Agenda/FileList';
 import { AgendaToolbar } from '../../../../../components/Activity/Agenda/Toolbar';
 import { CheckConfirm } from '../../../../../components/Activity/CheckConfirm';
 import { ActivityPeople } from '../../../../../components/Activity/People';
 import { CommentBox } from '../../../../../components/Base/CommentBox';
+import { ScoreBar } from '../../../../../components/Base/ScoreBar';
 import PageHead from '../../../../../components/Layout/PageHead';
 import { Activity, ActivityModel } from '../../../../../models/Activity';
 import { Agenda } from '../../../../../models/Activity/Agenda';
 import { CheckEventModel } from '../../../../../models/Activity/CheckEvent';
 import { blobURLOf } from '../../../../../models/Base';
 import { i18n } from '../../../../../models/Base/Translation';
+import userStore from '../../../../../models/Base/User';
 
 type PageParameter = Record<'id' | 'agendaId', string>;
 
 interface AgendaDetailPageProps extends RouteProps<PageParameter> {
   activity: Activity;
   agenda: Agenda;
+  score: number;
 }
 
 export const getServerSideProps = compose<PageParameter, AgendaDetailPageProps>(
@@ -40,11 +51,19 @@ export const getServerSideProps = compose<PageParameter, AgendaDetailPageProps>(
     const activityStore = new ActivityModel();
 
     const activity = await activityStore.getOne(id!);
+    const { currentAgenda, currentEvaluation } = activityStore;
 
-    const agenda = await activityStore.currentAgenda!.getOne(agendaId!);
+    const agenda = await currentAgenda!.getOne(agendaId!);
+    await currentEvaluation!.getAll({ agenda: agenda.title });
 
     return {
-      props: JSON.parse(JSON.stringify({ activity, agenda })),
+      props: JSON.parse(
+        JSON.stringify({
+          activity,
+          agenda,
+          score: currentEvaluation!.currentScore,
+        }),
+      ),
     };
   },
 );
@@ -53,19 +72,22 @@ const { t } = i18n;
 
 @observer
 export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProps> {
+  activityStore = new ActivityModel();
   checkEventStore = new CheckEventModel();
 
   componentDidMount() {
     const { activity, agenda } = this.props;
 
-    this.checkEventStore.getUserScore({
+    this.checkEventStore.getUserCount({
       activityId: activity.id as string,
       agendaId: agenda.id as string,
     });
+
+    this.activityStore.getOne(activity.id as string, true);
   }
 
   renderHeader() {
-    const { mobilePhone } = this.props.route.query,
+    const { user } = this.props.route.query,
       { id, name, location } = this.props.activity,
       {
         id: agendaId,
@@ -75,7 +97,9 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
         startTime,
         endTime,
       } = this.props.agenda,
-      [checkEvent] = this.checkEventStore.allItems;
+      { evaluationForms } = this.activityStore.currentMeta,
+      [checkEvent] = this.checkEventStore.allItems,
+      { mobilePhone } = userStore.session || {};
 
     return (
       <header>
@@ -89,10 +113,27 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
             {...this.props.agenda}
             checked={!!checkEvent}
           >
-            {mobilePhone && (
+            {evaluationForms && (
+              <DropdownButton variant="warning" size="sm" title="评价问卷">
+                {evaluationForms.map(({ name, shared_url }) => (
+                  <Dropdown.Item
+                    key={name}
+                    as="a"
+                    target="_blank"
+                    href={`${shared_url}?${buildURLData({
+                      prefill_phone: mobilePhone,
+                      prefill_agenda: title,
+                    })}`}
+                  >
+                    {name}
+                  </Dropdown.Item>
+                ))}
+              </DropdownButton>
+            )}
+            {user && (
               <CheckConfirm
                 store={this.checkEventStore}
-                mobilePhone={mobilePhone as string}
+                user={+user}
                 activityId={id as string}
                 activityName={name as string}
                 agendaId={agendaId as string}
@@ -115,7 +156,8 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
   }
 
   render() {
-    const { name } = this.props.activity;
+    const { name } = this.props.activity,
+      { score } = this.props;
     const {
       title,
       fileInfo,
@@ -145,6 +187,9 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
               positions={mentorPositions as string[]}
               summaries={mentorSummaries as string[]}
             />
+            <h2>观众评分</h2>
+
+            <ScoreBar value={score} />
           </Col>
         </Row>
         {fileInfo && <FileList data={fileInfo} />}

@@ -1,16 +1,18 @@
-import {
-  CheckEvent,
-  CheckEventFilter,
-  ListChunk,
-} from '@kaiyuanshe/kys-service';
+import { CheckEvent, ListChunk } from '@kaiyuanshe/kys-service';
+import { computed } from 'mobx';
 import { Filter, ListModel } from 'mobx-restful';
-import { buildURLData } from 'web-utility';
+import { buildURLData, groupBy } from 'web-utility';
 
 import userStore from '../Base/User';
 
-export class CheckEventModel extends ListModel<CheckEvent, CheckEventFilter> {
+export class CheckEventModel extends ListModel<CheckEvent> {
   baseURI = 'event/check';
   client = userStore.client;
+
+  @computed
+  get group() {
+    return groupBy(this.allItems, 'activityId');
+  }
 
   async loadPage(
     pageIndex: number,
@@ -23,10 +25,10 @@ export class CheckEventModel extends ListModel<CheckEvent, CheckEventFilter> {
     return { pageData: body!.list, totalCount: body!.count };
   }
 
-  async getUserScore({ activityId, agendaId }: Filter<CheckEvent>) {
+  async getUserCount({ activityId, agendaId }: Filter<CheckEvent>) {
     try {
       const { length } = await this.getAll({
-        mobilePhone: userStore.session?.mobilePhone,
+        user: userStore.session?.id,
         activityId,
         agendaId,
       });
