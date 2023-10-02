@@ -233,4 +233,9 @@ export default {
 
   activity_articles_calendar: 'Activity Calendar',
   host_activity: 'Host Activity',
+
+  //github project list page
+  kaiyuanshe_projects: 'Kaiyuanshe projects',
+  home_page: 'Home page',
+  more_projects: 'More projects',
 } as const;
