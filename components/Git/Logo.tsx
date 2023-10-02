@@ -1,4 +1,4 @@
-import * as Mobx from 'mobx';
+import { makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
 import { Image } from 'react-bootstrap';
@@ -11,10 +11,10 @@ export interface GitLogoProps {
 export class GitLogo extends PureComponent<GitLogoProps> {
   constructor(props: GitLogoProps) {
     super(props);
-    Mobx.makeObservable?.(this);
+    makeObservable?.(this);
   }
 
-  @Mobx.observable
+  @observable
   path = '';
 
   async componentDidMount() {

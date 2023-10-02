@@ -62,8 +62,9 @@ export class RepositoryModel extends ListModel<GitRepository> {
     );
     const pageData = await Promise.all(
       list!.map(async ({ full_name, ...item }) => {
-        const issues = await getGitIssues(full_name);
-        const languages = await getGitLanguages(full_name);
+        const issues = await getGitIssues(full_name),
+          languages = await getGitLanguages(full_name);
+
         return { ...item, full_name, issues, languages };
       }),
     );
