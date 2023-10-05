@@ -179,7 +179,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
       <Container className="pt-5">
         <PageHead title={`${title} - ${name}`} />
         <Row>
-          <Col as="agenda" xs={12} sm={9}>
+          <Col xs={12} sm={9}>
             <Row>
               <Col xs={12} sm={9}>
                 {this.renderHeader()}

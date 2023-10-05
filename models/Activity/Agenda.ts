@@ -39,19 +39,17 @@ interface AgendaFilter extends Filter<Agenda> {
   负责人手机号: TableCellValue;
 }
 
+export const COSCon_2023 = process.env.NEXT_PUBLIC_COSCon_2023_ID!;
+export const COSCon_2023_AGENDA_ID =
+  process.env.NEXT_PUBLIC_COSCon_2023_AGENDA_ID!;
+
 export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
-  constructor(appId: string, tableId: string) {
+  constructor(appId = COSCon_2023, tableId = COSCon_2023_AGENDA_ID) {
     super(appId, tableId);
-    this.appId = appId;
-    this.tableId = tableId;
     makeObservable(this);
   }
 
   client = larkClient;
-
-  appId;
-
-  tableId;
 
   currentRecommend?: AgendaModel;
 
@@ -91,7 +89,7 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
 
     const { mentors, title, forum, 负责人手机号 } = this.currentOne;
 
-    this.currentRecommend = new SearchAgendaModel(this.appId, this.tableId);
+    this.currentRecommend = new SearchAgendaModel();
 
     await this.currentRecommend!.getList({
       负责人手机号,
@@ -120,10 +118,6 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
 }
 
 export class SearchAgendaModel extends AgendaModel {
-  constructor(appId: string, tableId: string) {
-    super(appId, tableId);
-  }
-
   makeFilter(filter: AgendaFilter) {
     return isEmpty(filter) ? '' : makeSimpleFilter(filter, 'contains', 'OR');
   }
