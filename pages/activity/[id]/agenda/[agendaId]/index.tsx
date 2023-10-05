@@ -163,7 +163,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
 
   render() {
     const { id, name, location } = this.props.activity,
-      { score } = this.props;
+      { score,recommends } = this.props;
     const {
       title,
       fileInfo,
@@ -173,7 +173,6 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
       mentorSummaries,
       summary = t('no_data'),
     } = this.props.agenda;
-    const { recommends } = this.props;
 
     return (
       <Container className="pt-5">
