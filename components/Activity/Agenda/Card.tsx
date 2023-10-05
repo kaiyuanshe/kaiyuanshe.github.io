@@ -5,6 +5,7 @@ import { Component } from 'react';
 import { Badge, Card, Carousel } from 'react-bootstrap';
 
 import { LarkImage } from '../../Base/LarkImage';
+import { ScoreBar } from '../../Base/ScoreBar';
 import { AgendaToolbar, AgendaToolbarProps } from './Toolbar';
 
 @observer
@@ -41,7 +42,7 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
   }
 
   render() {
-    const { activityId, id, type, title, mentors, startTime, endTime } =
+    const { activityId, id, type, title, mentors, startTime, endTime, score } =
       this.props;
 
     return (
@@ -68,7 +69,9 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
             </li>
           </ul>
         </Card.Body>
-        <Card.Footer className="d-flex justify-content-end">
+        <Card.Footer className="d-flex justify-content-between align-items-center">
+          {score ? <ScoreBar value={score + ''} /> : <div />}
+
           <AgendaToolbar {...{ ...this.props, activityId }} />
         </Card.Footer>
       </Card>

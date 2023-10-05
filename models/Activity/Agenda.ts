@@ -28,6 +28,7 @@ export type Agenda = Record<
   | 'startTime'
   | 'endTime'
   | 'approver'
+  | 'score'
   | '负责人手机号',
   TableCellValue
 > & {
@@ -64,10 +65,10 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
   @observable
   currentAuthorized = false;
 
-  normalize({
-    id,
-    fields: { forum, mentors, mentorPositions, mentorSummaries, ...data },
-  }: TableRecord<Agenda>) {
+  normalize({ id, fields }: TableRecord<Agenda>) {
+    const { forum, mentors, mentorPositions, mentorSummaries, score, ...data } =
+      fields;
+
     return {
       ...data,
       id: id!,
@@ -81,20 +82,22 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
       mentorSummaries:
         mentorSummaries &&
         normalizeTextArray(mentorSummaries as TableCellText[]),
+      score: typeof score === 'number' ? score : null,
     };
   }
 
   async getOne(id: string) {
     await super.getOne(id);
 
-    const { mentors, title, 负责人手机号 } = this.currentOne;
+    const { mentors, title, forum, 负责人手机号 } = this.currentOne;
 
     this.currentRecommend = new SearchAgendaModel(this.appId, this.tableId);
 
     await this.currentRecommend!.getList({
+      负责人手机号,
       mentors,
       summary: title,
-      负责人手机号,
+      forum,
     });
 
     return this.currentOne;

@@ -67,7 +67,7 @@ export const AgendaToolbar: FC<AgendaToolbarProps> = observer(
       <SessionBox>
         <QRCodeButton
           title="请该打卡点工作人员扫码"
-          value={`${API_Host}/activity/${activityId}/agenda/${id}?mobilePhone=${userStore.session?.mobilePhone}`}
+          value={`${API_Host}/activity/${activityId}/agenda/${id}?user=${userStore.session?.id}`}
           disabled={checked}
         >
           打卡

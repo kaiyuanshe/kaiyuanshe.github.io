@@ -226,4 +226,9 @@ export default {
 
   activity_articles_calendar: '活動日曆',
   host_activity: '主辦活動',
+
+  // GitHub project list page
+  kaiyuanshe_projects: '開源社專案',
+  home_page: '專案首頁',
+  more_projects: '更多專案',
 } as const;

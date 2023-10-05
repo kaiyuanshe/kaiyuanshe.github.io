@@ -71,7 +71,7 @@ export default class ActivityDetailPage extends PureComponent<
   checkEventStore = new CheckEventModel();
 
   componentDidMount() {
-    this.checkEventStore.getAll({
+    this.checkEventStore.getUserCount({
       activityId: this.props.activity.id as string,
     });
   }

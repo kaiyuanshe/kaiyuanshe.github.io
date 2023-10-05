@@ -2,7 +2,7 @@ import { Guard } from '@authing/guard';
 import { User } from '@kaiyuanshe/kys-service';
 import { HTTPClient } from 'koajax';
 import { makeObservable, observable } from 'mobx';
-import { BaseModel, toggle } from 'mobx-restful';
+import { BaseListModel, toggle } from 'mobx-restful';
 
 import { KYS_SERVICE_HOST } from './index';
 
@@ -13,7 +13,7 @@ export const guard = new Guard({
   appId: process.env.NEXT_PUBLIC_AUTHING_APP_ID!,
 });
 
-export class UserModel extends BaseModel {
+export class UserModel extends BaseListModel<User> {
   constructor() {
     super();
     makeObservable(this);
