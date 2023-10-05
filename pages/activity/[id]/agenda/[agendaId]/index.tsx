@@ -177,7 +177,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
     return (
       <Container className="pt-5">
         <PageHead title={`${title} - ${name}`} />
-        <Row>
+        <Row className="my-3">
           <Col xs={12} sm={9}>
             <Row>
               <Col xs={12} sm={9}>
@@ -194,31 +194,38 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
                   positions={mentorPositions as string[]}
                   summaries={mentorSummaries as string[]}
                 />
-                <h2>观众评分</h2>
+                <h2>{t('attendee_ratings')}</h2>
 
                 <ScoreBar value={score} />
               </Col>
             </Row>
 
             {fileInfo && <FileList data={fileInfo} />}
-
-            <CommentBox category="General" categoryId="DIC_kwDOB88JLM4COLSV" />
+            <div className="my-5">
+              <CommentBox
+                category="General"
+                categoryId="DIC_kwDOB88JLM4COLSV"
+              />
+            </div>
           </Col>
           <Col xs={12} sm={3}>
             {recommends[0] && (
-              <Row as="ol" className="list-unstyled g-4" xs={1}>
-                {recommends
-                  .filter(agenda => agenda.title !== title)
-                  .map(agenda => (
-                    <Col as="li" key={agenda.id + ''}>
-                      <AgendaCard
-                        activityId={id + ''}
-                        location={location + ''}
-                        {...agenda}
-                      />
-                    </Col>
-                  ))}
-              </Row>
+              <section id="related_agenda">
+                <h2 className="my-3">{t('related_agenda')}</h2>
+                <Row as="ol" className="list-unstyled g-4" xs={1}>
+                  {recommends
+                    .filter(agenda => agenda.title !== title)
+                    .map(agenda => (
+                      <Col as="li" key={agenda.id + ''}>
+                        <AgendaCard
+                          activityId={id + ''}
+                          location={location + ''}
+                          {...agenda}
+                        />
+                      </Col>
+                    ))}
+                </Row>
+              </section>
             )}
           </Col>
         </Row>

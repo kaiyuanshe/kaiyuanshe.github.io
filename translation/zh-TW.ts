@@ -100,6 +100,8 @@ export default {
   calendar: '日曆',
   share: '分享',
   file_download: '檔案下載',
+  attendee_ratings: '觀眾評分',
+  related_agenda: '相關議程',
 
   //invitation pages
   press_to_share: '長按圖片分享',

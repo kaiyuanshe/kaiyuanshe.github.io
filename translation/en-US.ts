@@ -102,6 +102,8 @@ export default {
   calendar: 'Calendar',
   share: 'share',
   file_download: 'File Download',
+  attendee_ratings: 'Attendee Ratings',
+  related_agenda: 'Related Agenda',
 
   //invitation pages
   press_to_share: 'press image to share',
