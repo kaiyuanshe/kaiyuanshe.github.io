@@ -103,8 +103,6 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
       words.push(segment.segment);
     }
 
-    console.log(words);
-
     await this.currentRecommend!.getList({
       负责人手机号,
       mentors,
