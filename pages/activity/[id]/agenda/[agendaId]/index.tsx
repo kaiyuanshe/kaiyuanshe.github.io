@@ -12,6 +12,7 @@ import {
 import { PureComponent } from 'react';
 import { Badge, Col, Container, Row } from 'react-bootstrap';
 
+import { AgendaCard } from '../../../../../components/Activity/Agenda/Card';
 import { FileList } from '../../../../../components/Activity/Agenda/FileList';
 import { AgendaToolbar } from '../../../../../components/Activity/Agenda/Toolbar';
 import { CheckConfirm } from '../../../../../components/Activity/CheckConfirm';
@@ -29,6 +30,7 @@ type PageParameter = Record<'id' | 'agendaId', string>;
 interface AgendaDetailPageProps extends RouteProps<PageParameter> {
   activity: Activity;
   agenda: Agenda;
+  recommends: Agenda[];
 }
 
 export const getServerSideProps = compose<PageParameter, AgendaDetailPageProps>(
@@ -43,8 +45,11 @@ export const getServerSideProps = compose<PageParameter, AgendaDetailPageProps>(
 
     const agenda = await activityStore.currentAgenda!.getOne(agendaId!);
 
+    const recommends =
+      activityStore.currentAgenda!.currentRecommend!.currentPage;
+
     return {
-      props: JSON.parse(JSON.stringify({ activity, agenda })),
+      props: JSON.parse(JSON.stringify({ activity, agenda, recommends })),
     };
   },
 );
@@ -115,7 +120,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
   }
 
   render() {
-    const { name } = this.props.activity;
+    const { id, name, location } = this.props.activity;
     const {
       title,
       fileInfo,
@@ -125,31 +130,51 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
       mentorSummaries,
       summary = t('no_data'),
     } = this.props.agenda;
+    const { recommends } = this.props;
 
     return (
       <Container className="pt-5">
         <PageHead title={`${title} - ${name}`} />
-
         <Row>
-          <Col xs={12} sm={9}>
-            {this.renderHeader()}
+          <Col as="agenda" xs={12} sm={9}>
+            <Row>
+              <Col xs={12} sm={9}>
+                {this.renderHeader()}
 
-            <main className="my-2">{summary}</main>
+                <main className="my-2">{summary + ''}</main>
+              </Col>
+              <Col xs={12} sm={3}>
+                <ActivityPeople
+                  names={mentors as string[]}
+                  avatars={(mentorAvatars as TableCellValue[]).map(file =>
+                    blobURLOf([file] as TableCellValue),
+                  )}
+                  positions={mentorPositions as string[]}
+                  summaries={mentorSummaries as string[]}
+                />
+              </Col>
+            </Row>
+
+            {fileInfo && <FileList data={fileInfo} />}
+
+            <CommentBox category="General" categoryId="DIC_kwDOB88JLM4COLSV" />
           </Col>
           <Col xs={12} sm={3}>
-            <ActivityPeople
-              names={mentors as string[]}
-              avatars={(mentorAvatars as TableCellValue[]).map(file =>
-                blobURLOf([file] as TableCellValue),
-              )}
-              positions={mentorPositions as string[]}
-              summaries={mentorSummaries as string[]}
-            />
+            {recommends[0] && (
+              <Row as="ol" className="list-unstyled g-4" xs={1}>
+                {recommends.map(agenda => (
+                  <Col as="li" key={agenda.id + ''}>
+                    <AgendaCard
+                      activityId={id + ''}
+                      location={location + ''}
+                      {...agenda}
+                    />
+                  </Col>
+                ))}
+              </Row>
+            )}
           </Col>
         </Row>
-        {fileInfo && <FileList data={fileInfo} />}
-
-        <CommentBox category="General" categoryId="DIC_kwDOB88JLM4COLSV" />
       </Container>
     );
   }

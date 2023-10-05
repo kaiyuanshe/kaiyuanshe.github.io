@@ -1,6 +1,7 @@
 import { makeObservable, observable } from 'mobx';
 import {
   BiDataTable,
+  makeSimpleFilter,
   normalizeText,
   TableCellAttachment,
   TableCellRelation,
@@ -9,7 +10,7 @@ import {
   TableRecord,
 } from 'mobx-lark';
 import { Filter } from 'mobx-restful';
-import { groupBy } from 'web-utility';
+import { groupBy, isEmpty } from 'web-utility';
 
 import { normalizeTextArray } from '../../pages/api/lark/core';
 import { larkClient } from '../Base';
@@ -27,7 +28,7 @@ export type Agenda = Record<
   | 'startTime'
   | 'endTime'
   | 'approver'
-  | '负责手机号',
+  | '负责人手机号',
   TableCellValue
 > & {
   fileInfo: TableCellAttachment[];
@@ -40,11 +41,18 @@ interface AgendaFilter extends Filter<Agenda> {
 export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
   constructor(appId: string, tableId: string) {
     super(appId, tableId);
-
+    this.appId = appId;
+    this.tableId = tableId;
     makeObservable(this);
   }
 
   client = larkClient;
+
+  appId;
+
+  tableId;
+
+  currentRecommend?: AgendaModel;
 
   requiredKeys = ['title', 'mentors', 'approver'] as const;
 
@@ -76,6 +84,22 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
     };
   }
 
+  async getOne(id: string) {
+    await super.getOne(id);
+
+    const { mentors, title, 负责人手机号 } = this.currentOne;
+
+    this.currentRecommend = new SearchAgendaModel(this.appId, this.tableId);
+
+    await this.currentRecommend!.getList({
+      mentors,
+      summary: title,
+      负责人手机号,
+    });
+
+    return this.currentOne;
+  }
+
   async getGroup() {
     return (this.group = groupBy(
       await this.getAll(),
@@ -89,5 +113,15 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
     const [matched] = await this.getList({ title, 负责人手机号: mobilePhone });
 
     return (this.currentAuthorized = !!matched);
+  }
+}
+
+export class SearchAgendaModel extends AgendaModel {
+  constructor(appId: string, tableId: string) {
+    super(appId, tableId);
+  }
+
+  makeFilter(filter: AgendaFilter) {
+    return isEmpty(filter) ? '' : makeSimpleFilter(filter, 'contains', 'OR');
   }
 }
