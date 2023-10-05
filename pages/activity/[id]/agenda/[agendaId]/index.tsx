@@ -163,7 +163,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
 
   render() {
     const { id, name, location } = this.props.activity,
-      { score,recommends } = this.props;
+      { score, recommends } = this.props;
     const {
       title,
       fileInfo,
@@ -207,15 +207,17 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
           <Col xs={12} sm={3}>
             {recommends[0] && (
               <Row as="ol" className="list-unstyled g-4" xs={1}>
-                {recommends.map(agenda => (
-                  <Col as="li" key={agenda.id + ''}>
-                    <AgendaCard
-                      activityId={id + ''}
-                      location={location + ''}
-                      {...agenda}
-                    />
-                  </Col>
-                ))}
+                {recommends
+                  .filter(agenda => agenda.title !== title)
+                  .map(agenda => (
+                    <Col as="li" key={agenda.id + ''}>
+                      <AgendaCard
+                        activityId={id + ''}
+                        location={location + ''}
+                        {...agenda}
+                      />
+                    </Col>
+                  ))}
               </Row>
             )}
           </Col>

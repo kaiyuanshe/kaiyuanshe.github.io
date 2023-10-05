@@ -39,13 +39,13 @@ interface AgendaFilter extends Filter<Agenda> {
   负责人手机号: TableCellValue;
 }
 
-export const COSCon_2023 = process.env.NEXT_PUBLIC_COSCon_2023_ID!;
-export const COSCon_2023_AGENDA_ID =
-  process.env.NEXT_PUBLIC_COSCon_2023_AGENDA_ID!;
-
 export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
-  constructor(appId = COSCon_2023, tableId = COSCon_2023_AGENDA_ID) {
+  constructor(
+    public appId: string,
+    public tableId: string,
+  ) {
     super(appId, tableId);
+
     makeObservable(this);
   }
 
@@ -87,15 +87,29 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
   async getOne(id: string) {
     await super.getOne(id);
 
-    const { mentors, title, forum, 负责人手机号 } = this.currentOne;
+    const { title, mentors, 负责人手机号 } = this.currentOne;
 
-    this.currentRecommend = new SearchAgendaModel();
+    this.currentRecommend = new SearchAgendaModel(this.appId, this.tableId);
+
+    const segmenter = new Intl.Segmenter('zh', {
+      type: 'word',
+    } as SegmenterOptions);
+
+    const segments = segmenter.segment(title + '');
+
+    const words: string[] = [];
+
+    for (const segment of segments) {
+      words.push(segment.segment);
+    }
+
+    console.log(words);
 
     await this.currentRecommend!.getList({
       负责人手机号,
       mentors,
-      summary: title,
-      forum,
+      title: words,
+      summary: words,
     });
 
     return this.currentOne;
