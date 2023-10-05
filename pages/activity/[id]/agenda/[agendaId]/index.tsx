@@ -148,7 +148,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
             )}
           </AgendaToolbar>
         </div>
-        <div className="d-flex flex-wrap align-items-center gap-3">
+        <div className="d-flex flex-wrap align-items-center gap-3 my-3">
           <Badge bg={text2color(type as string, ['light'])}>{type}</Badge>
 
           <div className="text-success">{forum}</div>
@@ -183,7 +183,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
               <Col xs={12} sm={9}>
                 {this.renderHeader()}
 
-                <main className="my-2">{summary + ''}</main>
+                <main className="my-4">{summary + ''}</main>
               </Col>
               <Col xs={12} sm={3}>
                 <ActivityPeople

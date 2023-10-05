@@ -91,17 +91,11 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
 
     this.currentRecommend = new SearchAgendaModel(this.appId, this.tableId);
 
-    const segmenter = new Intl.Segmenter('zh', {
-      type: 'word',
-    } as SegmenterOptions);
+    const segmenter = new Intl.Segmenter('zh', { granularity: 'word' });
 
     const segments = segmenter.segment(title + '');
 
-    const words: string[] = [];
-
-    for (const segment of segments) {
-      words.push(segment.segment);
-    }
+    const words = Array.from(segments, ({ segment }) => segment);
 
     await this.currentRecommend!.getList({
       负责人手机号,
