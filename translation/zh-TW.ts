@@ -29,6 +29,7 @@ export default {
   our_articles: '開源文庫',
   coscon: '中國開源年會 (COSCon)',
   kcc: '開源社城市社區 (KCC)',
+  kcc_forum: '開源社論壇',
   open_source_book_club: '開源讀書會',
   original_articles: '原創文章',
   translated_articles: '翻譯文章',

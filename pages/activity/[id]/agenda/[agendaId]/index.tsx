@@ -213,17 +213,18 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
               <section id="related_agenda">
                 <h2 className="my-3">{t('related_agenda')}</h2>
                 <Row as="ol" className="list-unstyled g-4" xs={1}>
-                  {recommends
-                    .filter(agenda => agenda.title !== title)
-                    .map(agenda => (
-                      <Col as="li" key={agenda.id + ''}>
-                        <AgendaCard
-                          activityId={id + ''}
-                          location={location + ''}
-                          {...agenda}
-                        />
-                      </Col>
-                    ))}
+                  {recommends.map(
+                    agenda =>
+                      agenda.title !== title && (
+                        <Col as="li" key={agenda.id + ''}>
+                          <AgendaCard
+                            activityId={id + ''}
+                            location={location + ''}
+                            {...agenda}
+                          />
+                        </Col>
+                      ),
+                  )}
                 </Row>
               </section>
             )}

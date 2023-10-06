@@ -30,6 +30,7 @@ export default {
   our_articles: 'Our Articles',
   coscon: 'China Open Source Conference',
   kcc: 'KaiYuanShe City Community',
+  kcc_forum: 'KaiYuanShe City Community Forum',
   open_source_book_club: 'Open Source Book Club',
   original_articles: 'Original Articles',
   translated_articles: 'Translated Articles',
