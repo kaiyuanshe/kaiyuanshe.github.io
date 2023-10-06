@@ -20,6 +20,7 @@ import {
 } from 'react-bootstrap';
 import { buildURLData } from 'web-utility';
 
+import { AgendaCard } from '../../../../../components/Activity/Agenda/Card';
 import { FileList } from '../../../../../components/Activity/Agenda/FileList';
 import { AgendaToolbar } from '../../../../../components/Activity/Agenda/Toolbar';
 import { CheckConfirm } from '../../../../../components/Activity/CheckConfirm';
@@ -39,6 +40,7 @@ type PageParameter = Record<'id' | 'agendaId', string>;
 interface AgendaDetailPageProps extends RouteProps<PageParameter> {
   activity: Activity;
   agenda: Agenda;
+  recommends: Agenda[];
   score: number;
 }
 
@@ -56,11 +58,15 @@ export const getServerSideProps = compose<PageParameter, AgendaDetailPageProps>(
     const agenda = await currentAgenda!.getOne(agendaId!);
     await currentEvaluation!.getAll({ agenda: agenda.title });
 
+    const recommends =
+      activityStore.currentAgenda!.currentRecommend!.currentPage;
+
     return {
       props: JSON.parse(
         JSON.stringify({
           activity,
           agenda,
+          recommends,
           score: currentEvaluation!.currentScore,
         }),
       ),
@@ -142,7 +148,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
             )}
           </AgendaToolbar>
         </div>
-        <div className="d-flex flex-wrap align-items-center gap-3">
+        <div className="d-flex flex-wrap align-items-center gap-3 my-3">
           <Badge bg={text2color(type as string, ['light'])}>{type}</Badge>
 
           <div className="text-success">{forum}</div>
@@ -156,8 +162,8 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
   }
 
   render() {
-    const { name } = this.props.activity,
-      { score } = this.props;
+    const { id, name, location } = this.props.activity,
+      { score, recommends } = this.props;
     const {
       title,
       fileInfo,
@@ -171,15 +177,13 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
     return (
       <Container className="pt-5">
         <PageHead title={`${title} - ${name}`} />
-
-        <Row>
+        <Row className="my-3">
           <Col xs={12} sm={9}>
             {this.renderHeader()}
-
-            <main className="my-2">{summary}</main>
           </Col>
           <Col xs={12} sm={3}>
             <ActivityPeople
+              size={6}
               names={mentors as string[]}
               avatars={(mentorAvatars as TableCellValue[]).map(file =>
                 blobURLOf([file] as TableCellValue),
@@ -187,14 +191,44 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
               positions={mentorPositions as string[]}
               summaries={mentorSummaries as string[]}
             />
-            <h2>观众评分</h2>
-
-            <ScoreBar value={score} />
+            <section id="score">
+              <h2>{t('attendee_ratings')}</h2>
+              <ScoreBar value={score} />
+            </section>
           </Col>
-        </Row>
-        {fileInfo && <FileList data={fileInfo} />}
+          <Col xs={12} sm={9}>
+            <main className="my-4">{summary + ''}</main>
 
-        <CommentBox category="General" categoryId="DIC_kwDOB88JLM4COLSV" />
+            {fileInfo && <FileList data={fileInfo} />}
+
+            <div className="my-5">
+              <CommentBox
+                category="General"
+                categoryId="DIC_kwDOB88JLM4COLSV"
+              />
+            </div>
+          </Col>
+          {recommends[0] && (
+            <Col xs={12} sm={3} as="section" id="related_agenda">
+              <h2 className="my-3">{t('related_agenda')}</h2>
+
+              <ol className="list-unstyled d-flex flex-column gap-4">
+                {recommends.map(
+                  agenda =>
+                    agenda.title !== title && (
+                      <li key={agenda.id + ''}>
+                        <AgendaCard
+                          activityId={id + ''}
+                          location={location + ''}
+                          {...agenda}
+                        />
+                      </li>
+                    ),
+                  )}
+              </ol>
+            </Col>
+          )}
+        </Row>
       </Container>
     );
   }

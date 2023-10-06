@@ -13,7 +13,7 @@ export const FileList: FC<{ data: TableCellAttachment[] }> = observer(
   ({ data }) => (
     <section>
       <h2>{t('file_download')}</h2>
-      <ol>
+      <ol className="mt-3 mb-5">
         {data.map(({ id, name, mimeType, attachmentToken }) => (
           <li key={id + ''}>
             <FilePreview

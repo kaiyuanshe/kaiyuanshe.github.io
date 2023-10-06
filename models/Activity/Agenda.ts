@@ -1,6 +1,7 @@
 import { makeObservable, observable } from 'mobx';
 import {
   BiDataTable,
+  makeSimpleFilter,
   normalizeText,
   TableCellAttachment,
   TableCellRelation,
@@ -9,7 +10,7 @@ import {
   TableRecord,
 } from 'mobx-lark';
 import { Filter } from 'mobx-restful';
-import { groupBy } from 'web-utility';
+import { groupBy, isEmpty } from 'web-utility';
 
 import { normalizeTextArray } from '../../pages/api/lark/core';
 import { larkClient } from '../Base';
@@ -28,24 +29,29 @@ export type Agenda = Record<
   | 'endTime'
   | 'approver'
   | 'score'
-  | '负责手机号',
+  | '负责人手机号',
   TableCellValue
 > & {
   fileInfo: TableCellAttachment[];
 };
 
 interface AgendaFilter extends Filter<Agenda> {
-  负责人手机号: TableCellValue;
+  负责人手机号?: TableCellValue;
 }
 
 export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
-  constructor(appId: string, tableId: string) {
+  constructor(
+    public appId: string,
+    public tableId: string,
+  ) {
     super(appId, tableId);
 
     makeObservable(this);
   }
 
   client = larkClient;
+
+  currentRecommend?: AgendaModel;
 
   requiredKeys = ['title', 'mentors', 'approver'] as const;
 
@@ -78,6 +84,32 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
     };
   }
 
+  async getOne(id: string) {
+    await super.getOne(id);
+
+    const { title, mentors } = this.currentOne;
+
+    const segmenter = new Intl.Segmenter('zh', { granularity: 'word' });
+
+    const segments = segmenter.segment(title + '');
+
+    const words = Array.from(segments)
+      .filter(({ isWordLike }) => isWordLike)
+      .map(({ segment }) => segment);
+
+    const uniqueWords = [...new Set(words)];
+
+    this.currentRecommend = new SearchAgendaModel(this.appId, this.tableId);
+
+    await this.currentRecommend!.getList({
+      mentors,
+      title: uniqueWords,
+      summary: uniqueWords,
+    });
+
+    return this.currentOne;
+  }
+
   async getGroup() {
     return (this.group = groupBy(
       await this.getAll(),
@@ -91,5 +123,11 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
     const [matched] = await this.getList({ title, 负责人手机号: mobilePhone });
 
     return (this.currentAuthorized = !!matched);
+  }
+}
+
+export class SearchAgendaModel extends AgendaModel {
+  makeFilter(filter: AgendaFilter) {
+    return isEmpty(filter) ? '' : makeSimpleFilter(filter, 'contains', 'OR');
   }
 }

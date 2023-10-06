@@ -30,6 +30,7 @@ export default {
   our_articles: 'Our Articles',
   coscon: 'China Open Source Conference',
   kcc: 'KaiYuanShe City Community',
+  kcc_forum: 'KaiYuanShe City Community Forum',
   open_source_book_club: 'Open Source Book Club',
   original_articles: 'Original Articles',
   translated_articles: 'Translated Articles',
@@ -102,6 +103,8 @@ export default {
   calendar: 'Calendar',
   share: 'share',
   file_download: 'File Download',
+  attendee_ratings: 'Attendee Ratings',
+  related_agenda: 'Related Agenda',
 
   //invitation pages
   press_to_share: 'press image to share',

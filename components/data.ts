@@ -97,6 +97,10 @@ export const MainRoutes = (): Link[] => [
   {
     title: t('open_source_treasure_box'),
     subs: [
+      {
+        title: t('kcc_forum'),
+        path: 'https://github.com/orgs/kaiyuanshe/discussions',
+      },
       { title: t('china_open_source_landscape'), path: '/organization' },
       { title: t('community_list'), path: '/community' },
       { title: t('Web_polyfill_CDN'), path: 'https://polyfill.kaiyuanshe.cn/' },
