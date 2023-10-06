@@ -36,7 +36,7 @@ export type Agenda = Record<
 };
 
 interface AgendaFilter extends Filter<Agenda> {
-  负责人手机号: TableCellValue;
+  负责人手机号?: TableCellValue;
 }
 
 export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
@@ -87,21 +87,24 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
   async getOne(id: string) {
     await super.getOne(id);
 
-    const { title, mentors, 负责人手机号 } = this.currentOne;
+    const { title, mentors } = this.currentOne;
 
     const segmenter = new Intl.Segmenter('zh', { granularity: 'word' });
 
     const segments = segmenter.segment(title + '');
 
-    const words = Array.from(segments, ({ segment }) => segment);
+    const words = Array.from(segments)
+      .filter(({ isWordLike }) => isWordLike)
+      .map(({ segment }) => segment);
+
+    const uniqueWords = [...new Set(words)];
 
     this.currentRecommend = new SearchAgendaModel(this.appId, this.tableId);
 
     await this.currentRecommend!.getList({
-      负责人手机号,
       mentors,
-      title: words,
-      summary: words,
+      title: uniqueWords,
+      summary: uniqueWords,
     });
 
     return this.currentOne;

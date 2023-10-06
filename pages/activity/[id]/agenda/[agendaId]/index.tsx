@@ -179,27 +179,27 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
         <PageHead title={`${title} - ${name}`} />
         <Row className="my-3">
           <Col xs={12} sm={9}>
-            <Row>
-              <Col xs={12} sm={9}>
-                {this.renderHeader()}
-
-                <main className="my-4">{summary + ''}</main>
-              </Col>
-              <Col xs={12} sm={3}>
-                <ActivityPeople
-                  names={mentors as string[]}
-                  avatars={(mentorAvatars as TableCellValue[]).map(file =>
-                    blobURLOf([file] as TableCellValue),
-                  )}
-                  positions={mentorPositions as string[]}
-                  summaries={mentorSummaries as string[]}
-                />
-                <h2>{t('attendee_ratings')}</h2>
-
-                <ScoreBar value={score} />
-              </Col>
-            </Row>
-
+            {this.renderHeader()}
+          </Col>
+          <Col xs={12} sm={3}>
+            <ActivityPeople
+              size={6}
+              names={mentors as string[]}
+              avatars={(mentorAvatars as TableCellValue[]).map(file =>
+                blobURLOf([file] as TableCellValue),
+              )}
+              positions={mentorPositions as string[]}
+              summaries={mentorSummaries as string[]}
+            />
+            <section id="score">
+              <h2>{t('attendee_ratings')}</h2>
+              <ScoreBar value={score} />
+            </section>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={12} sm={9}>
+            <main className="my-4">{summary + ''}</main>
             {fileInfo && <FileList data={fileInfo} />}
             <div className="my-5">
               <CommentBox
