@@ -196,11 +196,11 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
               <ScoreBar value={score} />
             </section>
           </Col>
-        </Row>
-        <Row>
           <Col xs={12} sm={9}>
             <main className="my-4">{summary + ''}</main>
+
             {fileInfo && <FileList data={fileInfo} />}
+
             <div className="my-5">
               <CommentBox
                 category="General"
@@ -208,27 +208,26 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
               />
             </div>
           </Col>
-          <Col xs={12} sm={3}>
-            {recommends[0] && (
-              <section id="related_agenda">
-                <h2 className="my-3">{t('related_agenda')}</h2>
-                <Row as="ol" className="list-unstyled g-4" xs={1}>
-                  {recommends.map(
-                    agenda =>
-                      agenda.title !== title && (
-                        <Col as="li" key={agenda.id + ''}>
-                          <AgendaCard
-                            activityId={id + ''}
-                            location={location + ''}
-                            {...agenda}
-                          />
-                        </Col>
-                      ),
+          {recommends[0] && (
+            <Col xs={12} sm={3} as="section" id="related_agenda">
+              <h2 className="my-3">{t('related_agenda')}</h2>
+
+              <ol className="list-unstyled d-flex flex-column gap-4">
+                {recommends.map(
+                  agenda =>
+                    agenda.title !== title && (
+                      <li key={agenda.id + ''}>
+                        <AgendaCard
+                          activityId={id + ''}
+                          location={location + ''}
+                          {...agenda}
+                        />
+                      </li>
+                    ),
                   )}
-                </Row>
-              </section>
-            )}
-          </Col>
+              </ol>
+            </Col>
+          )}
         </Row>
       </Container>
     );
