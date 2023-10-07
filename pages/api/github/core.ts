@@ -11,15 +11,22 @@ export interface GitRepository extends Repository {
 }
 
 export const proxyGithub = <T extends GitRepository>(
-  dataFilter?: (path: string ,data:T) => T,
+  dataFilter?: (path: string, data: T) => T,
 ) =>
-  safeAPI(async ({  url, headers }, response) => {
+  safeAPI(async ({ method, url, headers, body }, response) => {
     delete headers.host;
 
     const path = url!.slice(`/api/github/`.length);
 
-    const { status, body:data} = await githubClient.get(path);
-    
+    const { status, body: data } = await githubClient.request<T>({
+      // @ts-ignore
+      method,
+      path,
+      // @ts-ignore
+      headers,
+      body: body || undefined,
+    });
+
     response.status(status);
     response.send(dataFilter?.(path, data as T) || data);
   });
