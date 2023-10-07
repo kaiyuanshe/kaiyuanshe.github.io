@@ -17,7 +17,7 @@ export const proxyGithub = <T extends GitRepository>(
     delete headers.host;
 
     const path = url!.slice(`/api/github/`.length);
-
+    console.log('proxyGithub path: ', path);
     const { status, body: data } = await githubClient.request<T>({
       // @ts-ignore
       method,
