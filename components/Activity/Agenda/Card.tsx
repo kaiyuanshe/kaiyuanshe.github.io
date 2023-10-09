@@ -49,14 +49,14 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
       <Card className="h-100">
         {this.renderAvatarImages()}
 
-        <Card.Body className="d-flex flex-column justify-content-end">
-          <Card.Title as="h3" className="h5 d-flex align-items-center gap-2">
-            <Badge bg={text2color(type as string, ['light'])}>{type}</Badge>
+        <Card.Body className="d-flex flex-column justify-content-start">
+          <Card.Title as="h3" className="h5 d-flex align-items-center">
             <a
-              className="text-decoration-none text-secondary text-truncate"
+              className="text-decoration-none text-secondary"
               href={`/activity/${activityId}/agenda/${id}`}
               title={title as string}
             >
+              <Badge bg={text2color(type as string, ['light'])}>{type}</Badge>
               {title}
             </a>
           </Card.Title>
