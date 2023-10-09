@@ -111,43 +111,8 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
       <header>
         <div className="d-flex flex-column flex-lg-row align-items-center justify-content-between">
           <h1>{title}</h1>
-
-          <AgendaToolbar
-            className="my-3 text-nowrap"
-            activityId={id + ''}
-            location={location + ''}
-            {...this.props.agenda}
-            checked={!!checkEvent}
-          >
-            {evaluationForms && (
-              <DropdownButton variant="warning" size="sm" title="评价问卷">
-                {evaluationForms.map(({ name, shared_url }) => (
-                  <Dropdown.Item
-                    key={name}
-                    as="a"
-                    target="_blank"
-                    href={`${shared_url}?${buildURLData({
-                      prefill_phone: mobilePhone,
-                      prefill_agenda: title,
-                    })}`}
-                  >
-                    {name}
-                  </Dropdown.Item>
-                ))}
-              </DropdownButton>
-            )}
-            {user && (
-              <CheckConfirm
-                store={this.checkEventStore}
-                user={+user}
-                activityId={id as string}
-                activityName={name as string}
-                agendaId={agendaId as string}
-                agendaTitle={title as string}
-              />
-            )}
-          </AgendaToolbar>
         </div>
+
         <div className="d-flex flex-wrap align-items-center gap-3 my-3">
           <Badge bg={text2color(type as string, ['light'])}>{type}</Badge>
 
@@ -157,6 +122,42 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
             {new Date(+endTime!).toLocaleString()}
           </div>
         </div>
+
+        <AgendaToolbar
+          className="my-3 text-nowrap"
+          activityId={id + ''}
+          location={location + ''}
+          {...this.props.agenda}
+          checked={!!checkEvent}
+        >
+          {evaluationForms && (
+            <DropdownButton variant="warning" size="sm" title="评价问卷">
+              {evaluationForms.map(({ name, shared_url }) => (
+                <Dropdown.Item
+                  key={name}
+                  as="a"
+                  target="_blank"
+                  href={`${shared_url}?${buildURLData({
+                    prefill_phone: mobilePhone,
+                    prefill_agenda: title,
+                  })}`}
+                >
+                  {name}
+                </Dropdown.Item>
+              ))}
+            </DropdownButton>
+          )}
+          {user && (
+            <CheckConfirm
+              store={this.checkEventStore}
+              user={+user}
+              activityId={id as string}
+              activityName={name as string}
+              agendaId={agendaId as string}
+              agendaTitle={title as string}
+            />
+          )}
+        </AgendaToolbar>
       </header>
     );
   }
@@ -183,7 +184,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
           </Col>
           <Col xs={12} sm={3}>
             <ActivityPeople
-              size={6}
+              size={4}
               names={mentors as string[]}
               avatars={(mentorAvatars as TableCellValue[]).map(file =>
                 blobURLOf([file] as TableCellValue),
@@ -224,7 +225,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
                         />
                       </li>
                     ),
-                  )}
+                )}
               </ol>
             </Col>
           )}

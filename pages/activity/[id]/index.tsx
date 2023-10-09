@@ -204,7 +204,6 @@ export default class ActivityDetailPage extends PureComponent<
         </h2>
         {location && (
           <h4 className="mb-5 text-center">
-            {' '}
             {normalizeTextArray(location as TableCellText[]).shift()}
           </h4>
         )}
