@@ -49,7 +49,7 @@ export const getServerSideProps = compose<
     agendaGroup: AgendaModel['group'];
     places: Place[];
   }
->(errorLogger, translator(i18n), async ({ params }) => {
+>(cache(), errorLogger, translator(i18n), async ({ params }) => {
   const activityStore = new ActivityModel();
 
   const activity = await activityStore.getOne(params!.id, true);

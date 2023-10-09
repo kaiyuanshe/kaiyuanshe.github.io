@@ -96,16 +96,19 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
   async getOne(id: string) {
     await super.getOne(id);
 
-    const { mentors, tags } = this.currentOne;
+    const { mentors, tags, forum } = this.currentOne;
 
     this.currentRecommend = new SearchAgendaModel(this.appId, this.tableId);
 
-    await this.currentRecommend!.getList({
-      mentors,
-      tags: tags,
-      title: tags,
-      summary: tags,
-    });
+    (
+      await this.currentRecommend!.getList({
+        mentors,
+        tags: tags,
+      })
+    )
+      .map(item => ({ item, priority: item.forum === forum ? 0 : 1 }))
+      .sort((a, b) => a.priority - b.priority)
+      .map(entry => entry.item);
 
     return this.currentOne;
   }
@@ -127,6 +130,8 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
 }
 
 export class SearchAgendaModel extends AgendaModel {
+  sort = { forum: 'ASC', startTime: 'ASC' } as const;
+
   makeFilter(filter: AgendaFilter) {
     return isEmpty(filter) ? '' : makeSimpleFilter(filter, 'contains', 'OR');
   }
