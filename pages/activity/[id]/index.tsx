@@ -289,6 +289,8 @@ export default class ActivityDetailPage extends PureComponent<
         </Stack>
 
         <Container>
+          {this.renderMap()}
+
           {forums.map(this.renderForum)}
 
           <DrawerNav />
