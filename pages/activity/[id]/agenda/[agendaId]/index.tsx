@@ -1,4 +1,5 @@
 import { text2color } from 'idea-react';
+import { marked } from 'marked';
 import { TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
 import {
@@ -12,6 +13,7 @@ import {
 import { PureComponent } from 'react';
 import {
   Badge,
+  Breadcrumb,
   Col,
   Container,
   Dropdown,
@@ -177,6 +179,13 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
     return (
       <Container className="pt-5">
         <PageHead title={`${title} - ${name}`} />
+        <Breadcrumb>
+          <Breadcrumb.Item href="/">{t('KaiYuanShe')}</Breadcrumb.Item>
+          <Breadcrumb.Item href="/activity">{t('activity')}</Breadcrumb.Item>
+          <Breadcrumb.Item href={`/activity/${id}`}>{name}</Breadcrumb.Item>
+          <Breadcrumb.Item active>{title}</Breadcrumb.Item>
+        </Breadcrumb>
+
         <Row className="my-3">
           <Col xs={12} sm={9}>
             {this.renderHeader()}
@@ -197,8 +206,10 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
             </section>
           </Col>
           <Col xs={12} sm={9}>
-            <main className="my-4">{summary + ''}</main>
-
+            <main
+              className="my-4"
+              dangerouslySetInnerHTML={{ __html: marked(summary + '') }}
+            />
             {fileInfo && <FileList data={fileInfo} />}
 
             <div className="my-5">
@@ -224,7 +235,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
                         />
                       </li>
                     ),
-                  )}
+                )}
               </ol>
             </Col>
           )}

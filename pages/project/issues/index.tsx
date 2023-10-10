@@ -4,7 +4,7 @@ import { ScrollList } from 'mobx-restful-table';
 import { InferGetServerSidePropsType } from 'next';
 import { compose, translator } from 'next-ssr-middleware';
 import { FC } from 'react';
-import { Container, Row } from 'react-bootstrap';
+import { Breadcrumb, Container, Row } from 'react-bootstrap';
 
 import { IssueModule } from '../../../components/Issues/IssueModule';
 import PageHead from '../../../components/Layout/PageHead';
@@ -17,10 +17,17 @@ export const getServerSideProps = compose(translator(i18n), async () => {
   return { props: { list } };
 });
 
+const { t } = i18n;
+
 const IssuesPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
   observer(({ list }) => (
     <Container className="py-5">
       <PageHead title="GitHub issues" />
+      <Breadcrumb>
+        <Breadcrumb.Item href="/">{t('KaiYuanShe')}</Breadcrumb.Item>
+        <Breadcrumb.Item href="/project">{t('our_projects')}</Breadcrumb.Item>
+        <Breadcrumb.Item active>GitHub issues</Breadcrumb.Item>
+      </Breadcrumb>
       <h1>GitHub issues</h1>
 
       {repositoryStore.downloading > 0 && <Loading />}

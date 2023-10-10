@@ -1,17 +1,18 @@
 import { InferGetServerSidePropsType } from 'next';
-import { compose, errorLogger } from 'next-ssr-middleware';
+import { compose, errorLogger, translator } from 'next-ssr-middleware';
 import { PureComponent } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Breadcrumb, Col, Container, Row } from 'react-bootstrap';
 
 import { ArticleListLayout } from '../../../components/Article/List';
 import { CommentBox } from '../../../components/Base/CommentBox';
 import PageHead from '../../../components/Layout/PageHead';
+import { i18n } from '../../../models/Base/Translation';
 import { Article, ArticleModel } from '../../../models/Product/Article';
 
 export const getServerSideProps = compose<
   { id: string },
   { article: Article; recommends: Article[] }
->(errorLogger, async ({ params }) => {
+>(errorLogger, translator(i18n), async ({ params }) => {
   const articleStore = new ArticleModel();
 
   const article = await articleStore.getOne(params!.id);
@@ -23,6 +24,8 @@ export const getServerSideProps = compose<
     },
   };
 });
+
+const { t } = i18n;
 
 export default class ArticleDetailPage extends PureComponent<
   InferGetServerSidePropsType<typeof getServerSideProps>
@@ -38,12 +41,18 @@ export default class ArticleDetailPage extends PureComponent<
   }
 
   render() {
-    const { title, content, tags } = this.props.article,
+    const { title, content } = this.props.article,
       { recommends } = this.props;
 
     return (
       <Container className="py-5">
         <PageHead title={title + ''} />
+
+        <Breadcrumb>
+          <Breadcrumb.Item href="/">{t('KaiYuanShe')}</Breadcrumb.Item>
+          <Breadcrumb.Item href="/article">{t('article')}</Breadcrumb.Item>
+          <Breadcrumb.Item active>{title}</Breadcrumb.Item>
+        </Breadcrumb>
 
         <Row>
           <Col
