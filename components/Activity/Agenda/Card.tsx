@@ -42,8 +42,17 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
   }
 
   render() {
-    const { activityId, id, type, title, mentors, startTime, endTime, score } =
-      this.props;
+    const {
+      activityId,
+      id,
+      type,
+      title,
+      mentors,
+      mentorOrganizations,
+      startTime,
+      endTime,
+      score,
+    } = this.props;
 
     return (
       <Card className="h-100">
@@ -63,6 +72,7 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
 
           <ul className="list-unstyled">
             <li>👨‍🎓 {(mentors as string[]).join(' ')}</li>
+            <li>🏙 {(mentorOrganizations as string[]).join(' ')}</li>
             <li>
               🕒 {new Date(+startTime!).toLocaleString()} ~{' '}
               {new Date(+endTime!).toLocaleString()}

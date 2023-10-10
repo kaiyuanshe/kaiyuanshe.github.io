@@ -110,7 +110,7 @@ pnpm container
 [9]: https://zh.mobx.js.org/
 [10]: https://github.com/kaiyuanshe/KYS-service#sign-in-github-packages-with-npm
 [11]: https://github.com/features/actions
-[12]: https://vercel.com/new?filter=next.js
+[12]: https://vercel.com/
 [13]: https://nextjs.org/docs/api-routes/introduction
 [14]: https://nextjs.org/docs
 [15]: https://nextjs.org/learn
