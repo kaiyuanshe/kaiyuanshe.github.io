@@ -58,14 +58,13 @@ export const getServerSideProps = compose<PageParameter, AgendaDetailPageProps>(
     const agenda = await currentAgenda!.getOne(agendaId!);
     await currentEvaluation!.getAll({ agenda: agenda.title });
 
-    const recommends = activityStore.currentAgenda!.recommendList;
-
+    const { recommendList } = activityStore.currentAgenda!;
     return {
       props: JSON.parse(
         JSON.stringify({
           activity,
           agenda,
-          recommends,
+          recommends: recommendList,
           score: currentEvaluation!.currentScore,
         }),
       ),

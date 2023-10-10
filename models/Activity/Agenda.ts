@@ -52,7 +52,7 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
 
   client = larkClient;
 
-  recommendList!: Agenda[];
+  recommendList: Agenda[] = [];
 
   currentRecommend?: AgendaModel;
 
