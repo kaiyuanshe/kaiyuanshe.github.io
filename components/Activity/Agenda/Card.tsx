@@ -72,7 +72,7 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
 
           <ul className="list-unstyled">
             <li>👨‍🎓 {(mentors as string[]).join(' ')}</li>
-            <li>🏙 {(mentorOrganizations as string[]).join(' ')}</li>
+            <li>🏙 {(mentorOrganizations as string[])?.join(' ')}</li>
             <li>
               🕒 {new Date(+startTime!).toLocaleString()} ~{' '}
               {new Date(+endTime!).toLocaleString()}
