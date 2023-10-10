@@ -52,6 +52,8 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
 
   client = larkClient;
 
+  recommendList!: Agenda[];
+
   currentRecommend?: AgendaModel;
 
   requiredKeys = ['title', 'mentors', 'approver'] as const;
@@ -100,15 +102,11 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
 
     this.currentRecommend = new SearchAgendaModel(this.appId, this.tableId);
 
-    (
-      await this.currentRecommend!.getList({
-        mentors,
-        tags: tags,
-      })
-    )
-      .map(item => ({ item, priority: item.forum === forum ? 0 : 1 }))
-      .sort((a, b) => a.priority - b.priority)
-      .map(entry => entry.item);
+    const list = await this.currentRecommend!.getList({ mentors, tags });
+
+    this.recommendList = list.sort(({ forum: a }, { forum: b }) =>
+      a === forum ? -1 : b === forum ? 1 : 0,
+    );
 
     return this.currentOne;
   }

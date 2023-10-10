@@ -58,8 +58,7 @@ export const getServerSideProps = compose<PageParameter, AgendaDetailPageProps>(
     const agenda = await currentAgenda!.getOne(agendaId!);
     await currentEvaluation!.getAll({ agenda: agenda.title });
 
-    const recommends =
-      activityStore.currentAgenda!.currentRecommend!.currentPage;
+    const recommends = activityStore.currentAgenda!.recommendList;
 
     return {
       props: JSON.parse(
@@ -174,7 +173,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
       mentorSummaries,
       summary = t('no_data'),
     } = this.props.agenda;
-    
+
     return (
       <Container className="pt-5">
         <PageHead title={`${title} - ${name}`} />
