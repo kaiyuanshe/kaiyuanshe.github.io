@@ -40,7 +40,7 @@ type PageParameter = Record<'id' | 'agendaId', string>;
 interface AgendaDetailPageProps extends RouteProps<PageParameter> {
   activity: Activity;
   agenda: Agenda;
-  recommends: Agenda[];
+  recommendList: Agenda[];
   score: number;
 }
 
@@ -59,12 +59,13 @@ export const getServerSideProps = compose<PageParameter, AgendaDetailPageProps>(
     await currentEvaluation!.getAll({ agenda: agenda.title });
 
     const { recommendList } = activityStore.currentAgenda!;
+
     return {
       props: JSON.parse(
         JSON.stringify({
           activity,
           agenda,
-          recommends: recommendList,
+          recommendList,
           score: currentEvaluation!.currentScore,
         }),
       ),
@@ -162,7 +163,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
 
   render() {
     const { id, name, location } = this.props.activity,
-      { score, recommends } = this.props;
+      { score, recommendList } = this.props;
     const {
       title,
       fileInfo,
@@ -172,7 +173,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
       mentorSummaries,
       summary = t('no_data'),
     } = this.props.agenda;
-
+    debugger;
     return (
       <Container className="pt-5">
         <PageHead title={`${title} - ${name}`} />
@@ -207,12 +208,12 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
               />
             </div>
           </Col>
-          {recommends[0] && (
+          {recommendList[0] && (
             <Col xs={12} sm={3} as="section" id="related_agenda">
               <h2 className="my-3">{t('related_agenda')}</h2>
 
               <ol className="list-unstyled d-flex flex-column gap-4">
-                {recommends.map(
+                {recommendList.map(
                   agenda =>
                     agenda.title !== title && (
                       <li key={agenda.id + ''}>
