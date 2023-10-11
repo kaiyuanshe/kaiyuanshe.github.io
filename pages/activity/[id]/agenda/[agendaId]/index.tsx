@@ -173,7 +173,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
       mentorSummaries,
       summary = t('no_data'),
     } = this.props.agenda;
-    debugger;
+
     return (
       <Container className="pt-5">
         <PageHead title={`${title} - ${name}`} />
