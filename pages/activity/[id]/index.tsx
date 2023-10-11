@@ -1,4 +1,4 @@
-import { TableCellValue } from 'mobx-lark';
+import { TableCellText, TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
 import dynamic from 'next/dynamic';
@@ -27,7 +27,11 @@ import { Forum } from '../../../models/Activity/Forum';
 import { Place } from '../../../models/Activity/Place';
 import { blobURLOf } from '../../../models/Base';
 import { i18n } from '../../../models/Base/Translation';
-import { coordinateOf, TableFormViewItem } from '../../api/lark/core';
+import {
+  coordinateOf,
+  normalizeTextArray,
+  TableFormViewItem,
+} from '../../api/lark/core';
 import { fileURLOf } from '../../api/lark/file/[id]';
 import styles from './index.module.less';
 
@@ -195,9 +199,14 @@ export default class ActivityDetailPage extends PureComponent<
 
     return (
       <section key={name as string}>
-        <h2 className="my-5 text-center" id={name as string}>
+        <h2 className="mt-5 mb-3 text-center" id={name as string}>
           {name}
         </h2>
+        {location && (
+          <h4 className="mb-5 text-center">
+            {normalizeTextArray(location as TableCellText[])[0]}
+          </h4>
+        )}
         <Row>
           <Col xl={{ offset: 2, span: 8 }} as="p" className="text-muted">
             {summary}

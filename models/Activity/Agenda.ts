@@ -20,6 +20,7 @@ export type Agenda = Record<
   | 'type'
   | 'title'
   | 'summary'
+  | 'tags'
   | 'forum'
   | 'mentors'
   | 'mentorAvatars'
@@ -52,6 +53,8 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
 
   client = larkClient;
 
+  recommendList: Agenda[] = [];
+
   currentRecommend?: AgendaModel;
 
   requiredKeys = ['title', 'mentors', 'approver'] as const;
@@ -72,6 +75,7 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
       mentorPositions,
       mentorSummaries,
       score,
+      tags,
       ...data
     } = fields;
 
@@ -92,31 +96,22 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
         mentorSummaries &&
         normalizeTextArray(mentorSummaries as TableCellText[]),
       score: typeof score === 'number' ? score : null,
+      tags: (tags as string)?.trim().split(/\s+/),
     };
   }
 
   async getOne(id: string) {
     await super.getOne(id);
 
-    const { title, mentors } = this.currentOne;
-
-    const segmenter = new Intl.Segmenter('zh', { granularity: 'word' });
-
-    const segments = segmenter.segment(title + '');
-
-    const words = Array.from(segments)
-      .filter(({ isWordLike }) => isWordLike)
-      .map(({ segment }) => segment);
-
-    const uniqueWords = [...new Set(words)];
+    const { mentors, tags, forum } = this.currentOne;
 
     this.currentRecommend = new SearchAgendaModel(this.appId, this.tableId);
 
-    await this.currentRecommend!.getList({
-      mentors,
-      title: uniqueWords,
-      summary: uniqueWords,
-    });
+    const list = await this.currentRecommend!.getList({ mentors, tags });
+
+    this.recommendList = list.sort(({ forum: a }, { forum: b }) =>
+      a === forum ? -1 : b === forum ? 1 : 0,
+    );
 
     return this.currentOne;
   }
@@ -138,6 +133,8 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
 }
 
 export class SearchAgendaModel extends AgendaModel {
+  sort = { forum: 'ASC', startTime: 'ASC' } as const;
+
   makeFilter(filter: AgendaFilter) {
     return isEmpty(filter) ? '' : makeSimpleFilter(filter, 'contains', 'OR');
   }
