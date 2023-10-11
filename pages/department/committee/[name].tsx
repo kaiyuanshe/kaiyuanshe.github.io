@@ -8,7 +8,7 @@ import {
   translator,
 } from 'next-ssr-middleware';
 import { FC } from 'react';
-import { Container } from 'react-bootstrap';
+import { Breadcrumb, Container } from 'react-bootstrap';
 
 import PageHead from '../../../components/Layout/PageHead';
 import { MemberCard } from '../../../components/Member/Card';
@@ -57,7 +57,11 @@ const CommitteePage: FC<
   return (
     <Container className="py-5">
       <PageHead title={title} />
-
+      <Breadcrumb>
+        <Breadcrumb.Item href="/">{t('KaiYuanShe')}</Breadcrumb.Item>
+        <Breadcrumb.Item href="/department">{t('department')}</Breadcrumb.Item>
+        <Breadcrumb.Item active>{title}</Breadcrumb.Item>
+      </Breadcrumb>
       <h1 className="mb-5 text-center">{title}</h1>
 
       <ul className="list-unstyled d-flex flex-wrap justify-content-center gap-3">

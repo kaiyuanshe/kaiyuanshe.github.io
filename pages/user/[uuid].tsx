@@ -5,7 +5,7 @@ import { ScrollList } from 'mobx-restful-table';
 import { InferGetServerSidePropsType } from 'next';
 import { cache, compose } from 'next-ssr-middleware';
 import { PureComponent } from 'react';
-import { Button, Col, Container, Row } from 'react-bootstrap';
+import { Breadcrumb, Button, Col, Container, Row } from 'react-bootstrap';
 
 import PageHead from '../../components/Layout/PageHead';
 import { CheckEventModel } from '../../models/Activity/CheckEvent';
@@ -22,6 +22,8 @@ export const getServerSideProps = compose<
 
   return { props: { user, checkEvents } };
 });
+
+const { t } = i18n;
 
 @observer
 export default class UserProfilePage extends PureComponent<
@@ -71,6 +73,12 @@ export default class UserProfilePage extends PureComponent<
     return (
       <Container className="mt-5">
         <PageHead title={title} />
+
+        <Breadcrumb>
+          <Breadcrumb.Item href="/">{t('KaiYuanShe')}</Breadcrumb.Item>
+          <Breadcrumb.Item active>{title}</Breadcrumb.Item>
+        </Breadcrumb>
+
         <Row>
           <Col>
             <h1 className="my-4">{title}</h1>

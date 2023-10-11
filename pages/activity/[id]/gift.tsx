@@ -2,9 +2,15 @@ import { Loading } from 'idea-react';
 import { computed } from 'mobx';
 import { observer } from 'mobx-react';
 import dynamic from 'next/dynamic';
-import { cache, compose, RouteProps, router } from 'next-ssr-middleware';
+import {
+  cache,
+  compose,
+  RouteProps,
+  router,
+  translator,
+} from 'next-ssr-middleware';
 import { PureComponent } from 'react';
-import { Container, Stack } from 'react-bootstrap';
+import { Breadcrumb, Container, Stack } from 'react-bootstrap';
 
 import { GiftCard } from '../../../components/Activity/GiftCard';
 import { QRCodeButton } from '../../../components/Base/QRCodeButton';
@@ -13,6 +19,7 @@ import { MemberTitle } from '../../../components/Member/Title';
 import { Activity, ActivityModel } from '../../../models/Activity';
 import { CheckEventModel } from '../../../models/Activity/CheckEvent';
 import { GiftModel } from '../../../models/Activity/Gift';
+import { i18n } from '../../../models/Base/Translation';
 import userStore from '../../../models/Base/User';
 
 const SessionBox = dynamic(
@@ -28,6 +35,7 @@ interface GiftListPageProps extends RouteProps<{ id: string }> {
 export const getServerSideProps = compose<{ id: string }, GiftListPageProps>(
   cache(),
   router,
+  translator(i18n),
   async ({ params: { id } = {} }) => {
     const activityStore = new ActivityModel();
 
@@ -38,6 +46,8 @@ export const getServerSideProps = compose<{ id: string }, GiftListPageProps>(
     return { props: { activity, group } as GiftListPageProps };
   },
 );
+
+const { t } = i18n;
 
 @observer
 export default class GiftListPage extends PureComponent<GiftListPageProps> {
@@ -105,6 +115,14 @@ export default class GiftListPage extends PureComponent<GiftListPageProps> {
     return (
       <Container>
         <PageHead title={`礼品墙 - ${activity.name}`} />
+        <Breadcrumb>
+          <Breadcrumb.Item href="/">{t('KaiYuanShe')}</Breadcrumb.Item>
+          <Breadcrumb.Item href="/activity">{t('activity')}</Breadcrumb.Item>
+          <Breadcrumb.Item href={`/activity/${activity.id}`}>
+            {activity.name}
+          </Breadcrumb.Item>
+          <Breadcrumb.Item active>礼品墙</Breadcrumb.Item>
+        </Breadcrumb>
         <h1 className="mt-5 mb-4 text-center">{activity.name} 礼品墙</h1>
 
         {loading && <Loading />}

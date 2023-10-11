@@ -24,6 +24,7 @@ export type Agenda = Record<
   | 'forum'
   | 'mentors'
   | 'mentorAvatars'
+  | 'mentorOrganizations'
   | 'mentorPositions'
   | 'mentorSummaries'
   | 'startTime'
@@ -70,6 +71,7 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
     const {
       forum,
       mentors,
+      mentorOrganizations,
       mentorPositions,
       mentorSummaries,
       score,
@@ -84,6 +86,9 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
       mentors: (mentors as TableCellRelation[])
         ?.map(mentor => normalizeText(mentor).split(','))
         .flat(),
+      mentorOrganizations:
+        mentorOrganizations &&
+        normalizeTextArray(mentorOrganizations as TableCellText[]),
       mentorPositions:
         mentorPositions &&
         normalizeTextArray(mentorPositions as TableCellText[]),

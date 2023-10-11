@@ -1,9 +1,10 @@
 import { text2color } from 'idea-react';
 import { marked } from 'marked';
+import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
 import { compose, errorLogger, translator } from 'next-ssr-middleware';
 import { PureComponent } from 'react';
-import { Badge, Col, Container, Image, Row } from 'react-bootstrap';
+import { Badge, Breadcrumb, Col, Container, Image, Row } from 'react-bootstrap';
 import { formatDate } from 'web-utility';
 
 import { CommentBox } from '../../components/Base/CommentBox';
@@ -30,6 +31,9 @@ export const getServerSideProps = compose<
   };
 });
 
+const { t } = i18n;
+
+@observer
 export default class PersonDetailPage extends PureComponent<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > {
@@ -132,6 +136,12 @@ export default class PersonDetailPage extends PureComponent<
     return (
       <Container className="py-5">
         <PageHead title={person.name as string} />
+
+        <Breadcrumb>
+          <Breadcrumb.Item href="/">{t('KaiYuanShe')}</Breadcrumb.Item>
+          <Breadcrumb.Item href="/member">{t('member')}</Breadcrumb.Item>
+          <Breadcrumb.Item active>{person.name}</Breadcrumb.Item>
+        </Breadcrumb>
 
         <Row>
           <Col xs={12} sm={4}>
