@@ -12,7 +12,7 @@ import { i18n } from '../../../models/Base/Translation';
 import repositoryStore, { RepositoryModel } from '../../../models/Repository';
 
 export const getServerSideProps = compose(translator(i18n), async () => {
-  const list = await new RepositoryModel().getList();
+  const list = await new RepositoryModel().getList({ relation: ['issues'] });
 
   return { props: { list } };
 });
@@ -35,6 +35,9 @@ const IssuesPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
       <ScrollList
         translator={i18n}
         store={repositoryStore}
+        filter={{
+          relation: ['issues'],
+        }}
         defaultData={list}
         renderList={allItems => (
           <Row as="ul" className="list-unstyled g-4">

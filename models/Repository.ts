@@ -1,6 +1,6 @@
 import { components } from '@octokit/openapi-types';
 import { memoize } from 'lodash';
-import { ListModel, toggle } from 'mobx-restful';
+import { Filter, ListModel, toggle } from 'mobx-restful';
 import { averageOf, buildURLData } from 'web-utility';
 
 import { githubClient } from './Base';
@@ -14,44 +14,78 @@ export interface GitRepository extends Repository {
   languages?: string[];
 }
 
-const getGitIssues = memoize(async (URI: string) => {
-  const { body: issuesList } = await githubClient.get<Issue[]>(
-    `repos/${URI}/issues?per_page=100`,
-  );
-  return issuesList!.filter(({ pull_request }) => !pull_request);
-});
+export interface RepositoryFilter extends Filter<GitRepository> {
+  relation: (keyof RepositoryModel['relation'])[];
+}
 
-const getGitLanguages = memoize(async (URI: string) => {
-  const { body: languageCount } = await githubClient.get<
-    Record<string, number>
-  >(`repos/${URI}/languages`);
+type ReturnMap<T> = {
+  [K in keyof T]: T[K] extends (...data: any[]) => Promise<any>
+    ? Awaited<ReturnType<T[K]>>
+    : T[K] extends (...data: any[]) => any
+    ? ReturnType<T[K]>
+    : never;
+};
 
-  const languageAverage = averageOf(...Object.values(languageCount!));
-
-  const languageList = Object.entries(languageCount!)
-    .filter(([_, score]) => score >= languageAverage)
-    .sort(([_, a], [__, b]) => b - a);
-
-  return languageList.map(([name]) => name);
-});
-
-export class RepositoryModel extends ListModel<GitRepository> {
+export class RepositoryModel extends ListModel<
+  GitRepository,
+  RepositoryFilter
+> {
   client = githubClient;
   baseURI = 'orgs/kaiyuanshe/repos';
   indexKey = 'full_name' as const;
 
+  relation = {
+    issues: memoize(async (URI: string) => {
+      const { body: issuesList } = await this.client.get<Issue[]>(
+        `repos/${URI}/issues?per_page=100`,
+      );
+      return issuesList!.filter(({ pull_request }) => !pull_request);
+    }),
+    languages: memoize(async (URI: string) => {
+      const { body: languageCount } = await this.client.get<
+        Record<string, number>
+      >(`repos/${URI}/languages`);
+
+      const languageAverage = averageOf(...Object.values(languageCount!));
+
+      const languageList = Object.entries(languageCount!)
+        .filter(([_, score]) => score >= languageAverage)
+        .sort(([_, a], [__, b]) => b - a);
+
+      return languageList.map(([name]) => name);
+    }),
+  };
+
+  async getOneRelation(
+    URI: string,
+    relation: RepositoryFilter['relation'] = [],
+  ) {
+    const relationData = await Promise.all(
+      relation.map(async key => {
+        const value = await this.relation[key](URI);
+        return [key, value];
+      }),
+    );
+    return Object.fromEntries(relationData) as ReturnMap<
+      RepositoryModel['relation']
+    >;
+  }
+
   @toggle('downloading')
-  async getOne(URI: string) {
+  async getOne(URI: string, relation: RepositoryFilter['relation'] = []) {
     const { body } = await this.client.get<Repository>(`repos/${URI}`);
 
     return (this.currentOne = {
       ...body!,
-      issues: await getGitIssues(URI),
-      languages: await getGitLanguages(URI),
+      ...(await this.getOneRelation(URI, relation)),
     });
   }
 
-  async loadPage(page: number, per_page: number) {
+  async loadPage(
+    page: number,
+    per_page: number,
+    { relation }: RepositoryFilter,
+  ) {
     const { body: list } = await this.client.get<Repository[]>(
       `${this.baseURI}?${buildURLData({
         type: 'public',
@@ -61,12 +95,10 @@ export class RepositoryModel extends ListModel<GitRepository> {
       })}`,
     );
     const pageData = await Promise.all(
-      list!.map(async ({ full_name, ...item }) => {
-        const issues = await getGitIssues(full_name),
-          languages = await getGitLanguages(full_name);
-
-        return { ...item, full_name, issues, languages };
-      }),
+      list!.map(async item => ({
+        ...item,
+        ...(await this.getOneRelation(item.full_name, relation)),
+      })),
     );
     const [_, organization] = this.baseURI.split('/');
 
