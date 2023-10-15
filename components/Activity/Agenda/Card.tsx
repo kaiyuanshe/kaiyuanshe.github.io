@@ -34,9 +34,13 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
                 <ActivityPeople
                   size={6}
                   names={mentor.split(',')}
-                  avatars={(mentorAvatars as TableCellValue[])
-                    .filter((_, subIndex) => subIndex === index)
-                    .map(file => blobURLOf([file] as TableCellValue))}
+                  avatars={[
+                    blobURLOf(
+                      (mentorAvatars as TableCellValue[])[
+                        index
+                      ] as TableCellValue,
+                    ),
+                  ]}
                 />
               </Col>
             ))}
@@ -44,8 +48,8 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
         </Col>
 
         <Col as="li" className="w-75">
-          <Row as="ul" className="list-unstyled" xs={1}>
-            <Col as="li">
+          <Row as="ul" className="list-unstyled justify-content-center" xs={1}>
+            <Col as="li" className="text-center">
               🕒{' '}
               {new Date(+startTime!).toLocaleString('en-US', {
                 month: 'numeric',
