@@ -44,19 +44,19 @@ export const GroupCard: FC<GroupCardProps> = ({
         </Badge>
       ))}
     </nav>
+    {email && (
+      <dl className="mt-1 d-flex align-items-start">
+        <dt className="me-1">E-mail:</dt>
+        <dd>
+          <a href={email + ''}>{(email + '').split(':')[1]}</a>
+        </dd>
+      </dl>
+    )}
     <p
       className="mt-3 mb-0 text-wrap text-start overflow-auto"
       style={{ maxWidth: '50vw', maxHeight: '10rem' }}
     >
       {summary}
     </p>
-    {email && (
-      <dl className="mt-1 d-flex align-items-start">
-        <dt className="me-1">E-mail:</dt>
-        <dd>
-          <a href={email + ''}>{(email + '')?.split(':')[1]}</a>
-        </dd>
-      </dl>
-    )}
   </div>
 );
