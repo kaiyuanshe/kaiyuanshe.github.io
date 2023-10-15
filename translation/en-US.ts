@@ -121,6 +121,7 @@ export default {
   银牌赞助: 'Silver sponsorship',
   铜牌赞助: 'Bronze sponsorship',
   星牌赞助: 'Star sponsorship',
+  特别支持: 'Special support',
   亮点赞助: 'Highlight sponsorship',
   成员赞助: 'Member sponsorship',
   讲师赞助: 'Lecturer sponsorship',

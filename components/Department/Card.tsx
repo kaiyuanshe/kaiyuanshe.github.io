@@ -7,7 +7,7 @@ import { Department } from '../../models/Personnel/Department';
 import { LarkImage } from '../Base/LarkImage';
 
 export interface GroupCardProps
-  extends Pick<Department, 'name' | 'logo' | 'tags' | 'summary'> {
+  extends Pick<Department, 'name' | 'logo' | 'tags' | 'summary' | 'email'> {
   className?: string;
 }
 
@@ -17,6 +17,7 @@ export const GroupCard: FC<GroupCardProps> = ({
   logo,
   tags,
   summary,
+  email,
 }) => (
   <div
     className={classNames('d-flex flex-column align-items-center', className)}
@@ -43,8 +44,16 @@ export const GroupCard: FC<GroupCardProps> = ({
         </Badge>
       ))}
     </nav>
+    {email && (
+      <dl className="mt-1 d-flex align-items-start">
+        <dt className="me-1">E-mail:</dt>
+        <dd>
+          <a href={email + ''}>{(email + '').split(':')[1]}</a>
+        </dd>
+      </dl>
+    )}
     <p
-      className="mt-3 mb-0 text-wrap overflow-auto"
+      className="mt-3 mb-0 text-wrap text-start overflow-auto"
       style={{ maxWidth: '50vw', maxHeight: '10rem' }}
     >
       {summary}
