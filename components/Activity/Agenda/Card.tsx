@@ -2,7 +2,7 @@ import { text2color } from 'idea-react';
 import { TableCellAttachment, TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
 import { Component } from 'react';
-import { Badge, Carousel, Col, Row } from 'react-bootstrap';
+import { Badge, Carousel, Col, Container, Row } from 'react-bootstrap';
 
 import { blobURLOf } from '../../../models/Base';
 import { LarkImage } from '../../Base/LarkImage';
@@ -15,12 +15,34 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
   renderCardImage = (file: TableCellAttachment) => (
     <LarkImage
       key={file.attachmentToken}
-      className="m-auto object-fit-cover"
       roundedCircle
+      className="m-auto object-fit-cover"
       style={{ width: '6rem', height: '6rem' }}
       src={[file]}
     />
   );
+
+  renderAvatarImages() {
+    const { mentors, mentorAvatars } = this.props;
+
+    return (mentors as string[])?.[1] ? (
+      <Carousel indicators={false}>
+        {(mentorAvatars as TableCellAttachment[]).map(file => (
+          <Carousel.Item key={file.attachmentToken}>
+            {this.renderCardImage(file)}
+          </Carousel.Item>
+        ))}
+      </Carousel>
+    ) : (
+      <ActivityPeople
+        size={5}
+        names={mentors as string[]}
+        avatars={(mentorAvatars as TableCellValue[]).map(file =>
+          blobURLOf([file] as TableCellValue),
+        )}
+      />
+    );
+  }
 
   render() {
     const {
@@ -28,50 +50,26 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
       id,
       type,
       title,
-      mentors,
       mentorOrganizations,
       startTime,
       endTime,
       score,
-      mentorAvatars,
     } = this.props;
 
     return (
-      <Row
-        as="ul"
-        className="list-unstyled border border-light rounded m-2 h-100"
-      >
-        <Col as="li" className="col-4 d-flex justify-content-center">
-          {(mentors as string[])?.[1] ? (
-            <div className="d-flex justify-content-center align-items-center">
-              <Carousel>
-                {(mentorAvatars as TableCellAttachment[]).map(file => (
-                  <Carousel.Item key={file.attachmentToken}>
-                    {this.renderCardImage(file)}
-                  </Carousel.Item>
-                ))}
-              </Carousel>
-            </div>
-          ) : (
-            <ActivityPeople
-              className="flex-column"
-              size={5}
-              names={mentors as string[]}
-              avatars={(mentorAvatars as TableCellValue[]).map(file =>
-                blobURLOf([file] as TableCellValue),
-              )}
-            />
-          )}
-        </Col>
+      <Container className="h-100">
+        <Row className="border shadow-sm rounded h-100">
+          <Col
+            xs={4}
+            className="d-flex flex-column justify-content-around align-items-center"
+          >
+            <Badge bg={text2color(type as string, ['light'])}>{type}</Badge>
 
-        <Col as="li" className="col-8">
-          <ul className="list-unstyled d-flex flex-column justify-content-center h-100 gap-1">
-            <li>
-              🕒 {new Date(+startTime!).toLocaleString()} ~{' '}
-              {new Date(+endTime!).toLocaleString()}
-            </li>
+            {this.renderAvatarImages()}
+          </Col>
 
-            <li>
+          <Col xs={8} className="d-flex flex-column py-3">
+            <h3 className="fs-5">
               <a
                 className="text-decoration-none text-secondary"
                 href={`/activity/${activityId}/agenda/${id}`}
@@ -79,26 +77,28 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
               >
                 {title}
               </a>
-            </li>
-
-            <li>
-              <Badge bg={text2color(type as string, ['light'])}>{type}</Badge>
-            </li>
-
-            <li>{(mentorOrganizations as string[])?.join(' ')}</li>
-
-            {score && (
+            </h3>
+            <ul className="list-unstyled flex-fill d-flex flex-column justify-content-between gap-2">
               <li>
-                <ScoreBar value={score + ''} />
+                🕒 {new Date(+startTime!).toLocaleString()} ~{' '}
+                {new Date(+endTime!).toLocaleString()}
               </li>
-            )}
+              <li>{(mentorOrganizations as string[])?.join(' ')}</li>
 
-            <li>
-              <AgendaToolbar {...{ ...this.props, activityId }} />
-            </li>
-          </ul>
-        </Col>
-      </Row>
+              {score && (
+                <li>
+                  <ScoreBar value={score + ''} />
+                </li>
+              )}
+              <AgendaToolbar
+                as="li"
+                className="justify-content-end"
+                {...{ ...this.props, activityId }}
+              />
+            </ul>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }

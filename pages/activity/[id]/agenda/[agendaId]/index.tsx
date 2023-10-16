@@ -2,6 +2,7 @@ import { text2color } from 'idea-react';
 import { marked } from 'marked';
 import { TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
+import dynamic from 'next/dynamic';
 import {
   cache,
   compose,
@@ -22,20 +23,29 @@ import {
 } from 'react-bootstrap';
 import { buildURLData } from 'web-utility';
 
-import { AgendaCard } from '../../../../../components/Activity/Agenda/Card';
-import { FileList } from '../../../../../components/Activity/Agenda/FileList';
-import { AgendaToolbar } from '../../../../../components/Activity/Agenda/Toolbar';
-import { CheckConfirm } from '../../../../../components/Activity/CheckConfirm';
-import { ActivityPeople } from '../../../../../components/Activity/People';
+import {
+  ActivityPeople,
+  AgendaCard,
+  AgendaToolbar,
+  CheckConfirm,
+  FileList,
+} from '../../../../../components/Activity';
 import { CommentBox } from '../../../../../components/Base/CommentBox';
+import { QRCodeButton } from '../../../../../components/Base/QRCodeButton';
 import { ScoreBar } from '../../../../../components/Base/ScoreBar';
 import PageHead from '../../../../../components/Layout/PageHead';
 import { Activity, ActivityModel } from '../../../../../models/Activity';
 import { Agenda } from '../../../../../models/Activity/Agenda';
 import { CheckEventModel } from '../../../../../models/Activity/CheckEvent';
-import { blobURLOf } from '../../../../../models/Base';
+import { API_Host, blobURLOf } from '../../../../../models/Base';
 import { i18n } from '../../../../../models/Base/Translation';
 import userStore from '../../../../../models/Base/User';
+
+const SessionBox = dynamic(
+    () => import('../../../../../components/Layout/SessionBox'),
+    { ssr: false },
+  ),
+  { t } = i18n;
 
 type PageParameter = Record<'id' | 'agendaId', string>;
 
@@ -74,8 +84,6 @@ export const getServerSideProps = compose<PageParameter, AgendaDetailPageProps>(
     };
   },
 );
-
-const { t } = i18n;
 
 @observer
 export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProps> {
@@ -129,8 +137,17 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
           activityId={id + ''}
           location={location + ''}
           {...this.props.agenda}
-          checked={!!checkEvent}
         >
+          <SessionBox>
+            <QRCodeButton
+              title="请该打卡点工作人员扫码"
+              value={`${API_Host}/activity/${id}/agenda/${id}?user=${userStore.session?.id}`}
+              disabled={!!checkEvent}
+            >
+              打卡
+            </QRCodeButton>
+          </SessionBox>
+
           {evaluationForms && (
             <DropdownButton variant="warning" size="sm" title="评价问卷">
               {evaluationForms.map(({ name, shared_url }) => (
@@ -187,10 +204,10 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
         </Breadcrumb>
 
         <Row className="my-3">
-          <Col xs={12} sm={8}>
+          <Col xs={12} lg={8}>
             {this.renderHeader()}
           </Col>
-          <Col xs={12} sm={4}>
+          <Col xs={12} lg={4}>
             <ActivityPeople
               size={4}
               names={mentors as string[]}
@@ -205,7 +222,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
               <ScoreBar value={score} />
             </section>
           </Col>
-          <Col xs={12} sm={8}>
+          <Col xs={12} lg={8}>
             <main
               className="my-4"
               dangerouslySetInnerHTML={{ __html: marked(summary + '') }}
@@ -220,7 +237,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
             </div>
           </Col>
           {recommendList[0] && (
-            <Col xs={12} sm={4} as="section" id="related_agenda">
+            <Col xs={12} lg={4} as="section" id="related_agenda">
               <h2 className="my-3">{t('related_agenda')}</h2>
 
               <ol className="list-unstyled d-flex flex-column gap-4">
