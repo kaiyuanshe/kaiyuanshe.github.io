@@ -31,7 +31,7 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
         className="list-unstyled border border-success rounded m-2"
         style={{ height: '18rem' }}
       >
-        <Col className="col-4 d-flex justify-content-center">
+        <Col as="li" className="col-4 d-flex justify-content-center">
           <ActivityPeople
             className="flex-column"
             size={5}
@@ -42,7 +42,7 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
           />
         </Col>
 
-        <Col as="li" className="w-75">
+        <Col as="li" className="col-8">
           <ul className="list-unstyled d-flex flex-column justify-content-center h-100">
             <li className="m-1">
               🕒 {new Date(+startTime!).toLocaleString()} ~{' '}
