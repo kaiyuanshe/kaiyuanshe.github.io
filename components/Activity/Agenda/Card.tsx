@@ -15,8 +15,9 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
   renderCardImage = (file: TableCellAttachment) => (
     <LarkImage
       key={file.attachmentToken}
-      className="card-img-top m-auto object-fit-cover"
-      style={{ height: '25rem' }}
+      className="m-auto object-fit-cover"
+      roundedCircle
+      style={{ width: '6rem', height: '6rem' }}
       src={[file]}
     />
   );
@@ -46,18 +47,7 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
               <Carousel>
                 {(mentorAvatars as TableCellAttachment[]).map(file => (
                   <Carousel.Item key={file.attachmentToken}>
-                    <span
-                      role="img"
-                      className="d-inline-block rounded-circle"
-                      style={{
-                        width: '6rem',
-                        height: '6rem',
-                        background: `url(${blobURLOf([
-                          file,
-                        ] as TableCellValue)}) center no-repeat`,
-                        backgroundSize: 'cover',
-                      }}
-                    />
+                    {this.renderCardImage(file)}
                   </Carousel.Item>
                 ))}
               </Carousel>
