@@ -4,16 +4,21 @@ import { FC } from 'react';
 import { DefaultImage } from '../../pages/api/lark/file/[id]';
 
 export type ActivityPeopleProps = Pick<AvatarProps, 'size'> &
-  Partial<Record<'names' | 'avatars' | 'positions' | 'summaries', string[]>>;
+  Partial<Record<'names' | 'avatars' | 'positions' | 'summaries', string[]>> & {
+    className?: string;
+  };
 
 export const ActivityPeople: FC<ActivityPeopleProps> = ({
+  className = '',
   size = 3,
   names,
   avatars,
   positions,
   summaries,
 }) => (
-  <ul className="list-unstyled d-flex align-items-center justify-content-around gap-3">
+  <ul
+    className={`${className} list-unstyled d-flex align-items-center justify-content-around gap-3`}
+  >
     {names?.map((name, index) => (
       <li key={name} className="text-center">
         <span

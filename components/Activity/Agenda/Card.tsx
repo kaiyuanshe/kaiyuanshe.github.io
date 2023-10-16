@@ -26,43 +26,29 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
     } = this.props;
 
     return (
-      <Row as="ul" className="list-unstyled">
-        <Col as="li" className="w-25">
-          <Row as="ul" className="list-unstyled" xs={1}>
-            {(mentors as string[]).map((mentor, index) => (
-              <Col key={mentor}>
-                <ActivityPeople
-                  size={6}
-                  names={mentor.split(',')}
-                  avatars={(mentorAvatars as TableCellValue[])
-                    .filter((_, subIndex) => subIndex === index)
-                    .map(file => blobURLOf([file] as TableCellValue))}
-                />
-              </Col>
-            ))}
-          </Row>
+      <Row
+        as="ul"
+        className="list-unstyled border border-success rounded m-2"
+        style={{ height: '18rem' }}
+      >
+        <Col className="col-4 d-flex justify-content-center">
+          <ActivityPeople
+            className="flex-column"
+            size={5}
+            names={mentors as string[]}
+            avatars={(mentorAvatars as TableCellValue[]).map(file =>
+              blobURLOf([file] as TableCellValue),
+            )}
+          />
         </Col>
 
-        <Col as="li" className="w-75">
-          <Row as="ul" className="list-unstyled" xs={1}>
-            <Col as="li">
-              🕒{' '}
-              {new Date(+startTime!).toLocaleString('en-US', {
-                month: 'numeric',
-                day: 'numeric',
-                hour: 'numeric',
-                minute: 'numeric',
-              })}{' '}
-              ~{' '}
-              {new Date(+endTime!).toLocaleString('en-US', {
-                month: 'numeric',
-                day: 'numeric',
-                hour: 'numeric',
-                minute: 'numeric',
-              })}
-            </Col>
-
-            <Col as="li">
+        <Col as="li" className="col-8">
+          <ul className="list-unstyled mt-2 d-flex flex-column justify-content-center h-100">
+            <li>
+              🕒 {new Date(+startTime!).toLocaleString()} ~{' '}
+              {new Date(+endTime!).toLocaleString()}
+            </li>
+            <li>
               <a
                 className="text-decoration-none text-secondary"
                 href={`/activity/${activityId}/agenda/${id}`}
@@ -70,18 +56,20 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
               >
                 {title}
               </a>
-            </Col>
-            <Col as="li">
+            </li>
+            <li>
               <Badge bg={text2color(type as string, ['light'])}>{type}</Badge>
-            </Col>
-            <Col as="li">🏙 {(mentorOrganizations as string[])?.join(' ')}</Col>
-            <Col as="li">
-              {score ? <ScoreBar value={score + ''} /> : <div />}
-            </Col>
-            <Col as="li">
+            </li>
+            <li>🏙 {(mentorOrganizations as string[])?.join(' ')}</li>
+            {score && (
+              <li>
+                <ScoreBar value={score + ''} />
+              </li>
+            )}
+            <li>
               <AgendaToolbar {...{ ...this.props, activityId }} />
-            </Col>
-          </Row>
+            </li>
+          </ul>
         </Col>
       </Row>
     );

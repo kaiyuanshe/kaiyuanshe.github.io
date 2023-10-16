@@ -187,10 +187,10 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
         </Breadcrumb>
 
         <Row className="my-3">
-          <Col xs={12} sm={9}>
+          <Col xs={12} sm={8}>
             {this.renderHeader()}
           </Col>
-          <Col xs={12} sm={3}>
+          <Col xs={12} sm={4}>
             <ActivityPeople
               size={4}
               names={mentors as string[]}
@@ -205,7 +205,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
               <ScoreBar value={score} />
             </section>
           </Col>
-          <Col xs={12} sm={9}>
+          <Col xs={12} sm={8}>
             <main
               className="my-4"
               dangerouslySetInnerHTML={{ __html: marked(summary + '') }}
@@ -220,7 +220,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
             </div>
           </Col>
           {recommendList[0] && (
-            <Col xs={12} sm={3} as="section" id="related_agenda">
+            <Col xs={12} sm={4} as="section" id="related_agenda">
               <h2 className="my-3">{t('related_agenda')}</h2>
 
               <ol className="list-unstyled d-flex flex-column gap-4">
