@@ -31,7 +31,6 @@ import {
   normalizeTextArray,
   TableFormViewItem,
 } from '../../api/lark/core';
-import { fileURLOf } from '../../api/lark/file/[id]';
 import styles from './index.module.less';
 
 const ListMap = dynamic(() => import('../../../components/Map/ListMap'), {
@@ -142,7 +141,7 @@ export default class ActivityDetailPage extends PureComponent<
                     location && {
                       title: name,
                       summary: forum?.toString(),
-                      image: photos && fileURLOf(photos),
+                      image: photos && blobURLOf(photos),
                       position: coordinateOf(location),
                     },
                 )
