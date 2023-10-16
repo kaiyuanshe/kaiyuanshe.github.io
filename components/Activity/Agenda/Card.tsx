@@ -45,20 +45,8 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
         <Col as="li" className="w-75">
           <ul className="list-unstyled d-flex flex-column justify-content-center h-100">
             <li className="m-1">
-              🕒{' '}
-              {new Date(+startTime!).toLocaleString('en-US', {
-                month: 'numeric',
-                day: 'numeric',
-                hour: 'numeric',
-                minute: 'numeric',
-              })}{' '}
-              ~{' '}
-              {new Date(+endTime!).toLocaleString('en-US', {
-                month: 'numeric',
-                day: 'numeric',
-                hour: 'numeric',
-                minute: 'numeric',
-              })}
+              🕒 {new Date(+startTime!).toLocaleString()} ~{' '}
+              {new Date(+endTime!).toLocaleString()}
             </li>
 
             <li className="m-1">
