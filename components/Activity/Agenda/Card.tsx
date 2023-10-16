@@ -42,13 +42,26 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
           />
         </Col>
 
-        <Col as="li" className="col-8">
-          <ul className="list-unstyled mt-2 d-flex flex-column justify-content-center h-100">
-            <li>
-              🕒 {new Date(+startTime!).toLocaleString()} ~{' '}
-              {new Date(+endTime!).toLocaleString()}
+        <Col as="li" className="w-75">
+          <ul className="list-unstyled d-flex flex-column justify-content-center h-100">
+            <li className="m-1">
+              🕒{' '}
+              {new Date(+startTime!).toLocaleString('en-US', {
+                month: 'numeric',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+              })}{' '}
+              ~{' '}
+              {new Date(+endTime!).toLocaleString('en-US', {
+                month: 'numeric',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+              })}
             </li>
-            <li>
+
+            <li className="m-1">
               <a
                 className="text-decoration-none text-secondary"
                 href={`/activity/${activityId}/agenda/${id}`}
@@ -57,16 +70,22 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
                 {title}
               </a>
             </li>
-            <li>
+
+            <li className="m-1">
               <Badge bg={text2color(type as string, ['light'])}>{type}</Badge>
             </li>
-            <li>🏙 {(mentorOrganizations as string[])?.join(' ')}</li>
+
+            <li className="m-1">
+              🏙 {(mentorOrganizations as string[])?.join(' ')}
+            </li>
+
             {score && (
-              <li>
+              <li className="m-1">
                 <ScoreBar value={score + ''} />
               </li>
             )}
-            <li>
+
+            <li className="m-1">
               <AgendaToolbar {...{ ...this.props, activityId }} />
             </li>
           </ul>
