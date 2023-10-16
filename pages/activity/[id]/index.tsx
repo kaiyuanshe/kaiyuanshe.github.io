@@ -22,7 +22,6 @@ import PageHead from '../../../components/Layout/PageHead';
 import type { ImageMarker } from '../../../components/Map/ListMap';
 import { Activity, ActivityModel } from '../../../models/Activity';
 import { AgendaModel } from '../../../models/Activity/Agenda';
-import { CheckEventModel } from '../../../models/Activity/CheckEvent';
 import { Forum } from '../../../models/Activity/Forum';
 import { Place } from '../../../models/Activity/Place';
 import { blobURLOf } from '../../../models/Base';
@@ -72,14 +71,6 @@ export const getServerSideProps = compose<
 export default class ActivityDetailPage extends PureComponent<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > {
-  checkEventStore = new CheckEventModel();
-
-  componentDidMount() {
-    this.checkEventStore.getUserCount({
-      activityId: this.props.activity.id as string,
-    });
-  }
-
   renderFormMenu(
     title: string,
     forms: TableFormViewItem[],
@@ -194,8 +185,7 @@ export default class ActivityDetailPage extends PureComponent<
     producerPositions,
     location,
   }: Forum) => {
-    const { activity, agendaGroup } = this.props,
-      { allItems } = this.checkEventStore;
+    const { activity, agendaGroup } = this.props;
 
     return (
       <section key={name as string}>
@@ -229,16 +219,13 @@ export default class ActivityDetailPage extends PureComponent<
           </div>
         </div>
 
-        <Row as="ol" className="list-unstyled g-4" xs={1} sm={2} lg={3}>
+        <Row as="ol" className="list-unstyled g-4" xs={1} md={2}>
           {agendaGroup[name as string]?.map(agenda => (
             <Col as="li" key={agenda.id + ''}>
               <AgendaCard
                 activityId={activity.id + ''}
                 location={location + ''}
                 {...agenda}
-                checked={allItems.some(
-                  ({ agendaId }) => agendaId === agenda.id,
-                )}
               />
             </Col>
           ))}
