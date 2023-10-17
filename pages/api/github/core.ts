@@ -6,7 +6,7 @@ import { safeAPI } from '../base';
 type Repository = components['schemas']['minimal-repository'];
 export type Issue = components['schemas']['issue'];
 export interface GitRepository extends Repository {
-  issues: Issue[];
+  issues?: Issue[];
   languages?: string[];
 }
 
@@ -17,7 +17,7 @@ export const proxyGithub = <T extends GitRepository>(
     delete headers.host;
 
     const path = url!.slice(`/api/github/`.length);
-    console.log('proxyGithub path: ', path);
+
     const { status, body: data } = await githubClient.request<T>({
       // @ts-ignore
       method,
