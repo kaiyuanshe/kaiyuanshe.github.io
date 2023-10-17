@@ -12,9 +12,9 @@ import { Breadcrumb, Container } from 'react-bootstrap';
 
 import PageHead from '../../../components/Layout/PageHead';
 import { MemberCard } from '../../../components/Member/Card';
+import { blobURLOf } from '../../../models/Base';
 import { i18n } from '../../../models/Base/Translation';
 import { PersonnelModel } from '../../../models/Personnel';
-import { fileURLOf } from '../../api/lark/file/[id]';
 
 type CommitteePageProps = RouteProps<{ name: string }> &
   Pick<PersonnelModel, 'allItems'>;
@@ -73,7 +73,7 @@ const CommitteePage: FC<
             <MemberCard
               name={recipient + ''}
               nickname={position + ''}
-              avatar={fileURLOf(recipientAvatar)}
+              avatar={blobURLOf(recipientAvatar)}
             />
           </li>
         ))}
