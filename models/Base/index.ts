@@ -50,8 +50,3 @@ export const githubClient = new HTTPClient({
     };
   return next();
 });
-
-export const proxyGithubClient = new HTTPClient({
-  baseURI: `${API_Host}/api/github/`,
-  responseType: 'json',
-});

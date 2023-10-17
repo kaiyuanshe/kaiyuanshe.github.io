@@ -1,9 +1,10 @@
 import { components } from '@octokit/openapi-types';
+import { HTTPClient } from 'koajax';
 import { memoize } from 'lodash';
 import { Filter, ListModel, toggle } from 'mobx-restful';
 import { averageOf, buildURLData } from 'web-utility';
 
-import { proxyGithubClient } from './Base';
+import { API_Host } from './Base';
 
 type Repository = components['schemas']['minimal-repository'];
 export type Organization = components['schemas']['organization-full'];
@@ -30,7 +31,10 @@ export class RepositoryModel extends ListModel<
   GitRepository,
   RepositoryFilter
 > {
-  client = proxyGithubClient;
+  client = new HTTPClient({
+    baseURI: `${API_Host}/api/github/`,
+    responseType: 'json',
+  });
   baseURI = 'orgs/kaiyuanshe/repos';
   indexKey = 'full_name' as const;
 
