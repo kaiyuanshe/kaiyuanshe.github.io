@@ -37,7 +37,7 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
       <ActivityPeople
         size={5}
         names={mentors as string[]}
-        avatars={(mentorAvatars as TableCellValue[]).map(file =>
+        avatars={(mentorAvatars as TableCellValue[])?.map(file =>
           blobURLOf([file] as TableCellValue),
         )}
       />
