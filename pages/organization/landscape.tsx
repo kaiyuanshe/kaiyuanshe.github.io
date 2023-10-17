@@ -21,9 +21,9 @@ const LandscapePage: FC = observer(() => {
     <Container className="mb-5">
       <PageHead title={t('panorama_of_china_open_source_community')} />
 
-      <h2 className="mt-5 text-center">
+      <h1 className="mt-5 text-center">
         {t('panorama_of_china_open_source_community')}
-      </h2>
+      </h1>
       <OrganizationLandscape />
     </Container>
   );

@@ -8,13 +8,13 @@ import {
   translator,
 } from 'next-ssr-middleware';
 import { FC } from 'react';
-import { Container } from 'react-bootstrap';
+import { Breadcrumb, Container } from 'react-bootstrap';
 
 import PageHead from '../../../components/Layout/PageHead';
 import { MemberCard } from '../../../components/Member/Card';
+import { blobURLOf } from '../../../models/Base';
 import { i18n } from '../../../models/Base/Translation';
 import { PersonnelModel } from '../../../models/Personnel';
-import { fileURLOf } from '../../api/lark/file/[id]';
 
 type CommitteePageProps = RouteProps<{ name: string }> &
   Pick<PersonnelModel, 'allItems'>;
@@ -57,7 +57,11 @@ const CommitteePage: FC<
   return (
     <Container className="py-5">
       <PageHead title={title} />
-
+      <Breadcrumb>
+        <Breadcrumb.Item href="/">{t('KaiYuanShe')}</Breadcrumb.Item>
+        <Breadcrumb.Item href="/department">{t('department')}</Breadcrumb.Item>
+        <Breadcrumb.Item active>{title}</Breadcrumb.Item>
+      </Breadcrumb>
       <h1 className="mb-5 text-center">{title}</h1>
 
       <ul className="list-unstyled d-flex flex-wrap justify-content-center gap-3">
@@ -69,7 +73,7 @@ const CommitteePage: FC<
             <MemberCard
               name={recipient + ''}
               nickname={position + ''}
-              avatar={fileURLOf(recipientAvatar)}
+              avatar={blobURLOf(recipientAvatar)}
             />
           </li>
         ))}

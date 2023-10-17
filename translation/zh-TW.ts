@@ -29,6 +29,7 @@ export default {
   our_articles: '開源文庫',
   coscon: '中國開源年會 (COSCon)',
   kcc: '開源社城市社區 (KCC)',
+  kcc_forum: '開源社論壇',
   open_source_book_club: '開源讀書會',
   original_articles: '原創文章',
   translated_articles: '翻譯文章',
@@ -100,6 +101,8 @@ export default {
   calendar: '日曆',
   share: '分享',
   file_download: '檔案下載',
+  attendee_ratings: '觀眾評分',
+  related_agenda: '相關議程',
 
   //invitation pages
   press_to_share: '長按圖片分享',
@@ -116,6 +119,7 @@ export default {
   银牌赞助: '銀牌贊助',
   铜牌赞助: '銅牌贊助',
   星牌赞助: '星牌贊助',
+  特别支持: '特別支援',
   亮点赞助: '亮點贊助',
   成员赞助: '成員贊助',
   讲师赞助: '講師贊助',

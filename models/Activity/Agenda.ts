@@ -1,6 +1,7 @@
 import { makeObservable, observable } from 'mobx';
 import {
   BiDataTable,
+  makeSimpleFilter,
   normalizeText,
   TableCellAttachment,
   TableCellRelation,
@@ -9,7 +10,7 @@ import {
   TableRecord,
 } from 'mobx-lark';
 import { Filter } from 'mobx-restful';
-import { groupBy } from 'web-utility';
+import { groupBy, isEmpty } from 'web-utility';
 
 import { normalizeTextArray } from '../../pages/api/lark/core';
 import { larkClient } from '../Base';
@@ -19,33 +20,42 @@ export type Agenda = Record<
   | 'type'
   | 'title'
   | 'summary'
+  | 'tags'
   | 'forum'
   | 'mentors'
   | 'mentorAvatars'
+  | 'mentorOrganizations'
   | 'mentorPositions'
   | 'mentorSummaries'
   | 'startTime'
   | 'endTime'
   | 'approver'
   | 'score'
-  | '负责手机号',
+  | '负责人手机号',
   TableCellValue
 > & {
   fileInfo: TableCellAttachment[];
 };
 
 interface AgendaFilter extends Filter<Agenda> {
-  负责人手机号: TableCellValue;
+  负责人手机号?: TableCellValue;
 }
 
 export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
-  constructor(appId: string, tableId: string) {
+  constructor(
+    public appId: string,
+    public tableId: string,
+  ) {
     super(appId, tableId);
 
     makeObservable(this);
   }
 
   client = larkClient;
+
+  recommendList: Agenda[] = [];
+
+  currentRecommend?: AgendaModel;
 
   requiredKeys = ['title', 'mentors', 'approver'] as const;
 
@@ -58,8 +68,16 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
   currentAuthorized = false;
 
   normalize({ id, fields }: TableRecord<Agenda>) {
-    const { forum, mentors, mentorPositions, mentorSummaries, score, ...data } =
-      fields;
+    const {
+      forum,
+      mentors,
+      mentorOrganizations,
+      mentorPositions,
+      mentorSummaries,
+      score,
+      tags,
+      ...data
+    } = fields;
 
     return {
       ...data,
@@ -68,6 +86,9 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
       mentors: (mentors as TableCellRelation[])
         ?.map(mentor => normalizeText(mentor).split(','))
         .flat(),
+      mentorOrganizations:
+        mentorOrganizations &&
+        normalizeTextArray(mentorOrganizations as TableCellText[]),
       mentorPositions:
         mentorPositions &&
         normalizeTextArray(mentorPositions as TableCellText[]),
@@ -75,7 +96,24 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
         mentorSummaries &&
         normalizeTextArray(mentorSummaries as TableCellText[]),
       score: typeof score === 'number' ? score : null,
+      tags: (tags as string)?.trim().split(/\s+/),
     };
+  }
+
+  async getOne(id: string) {
+    await super.getOne(id);
+
+    const { mentors, tags, forum } = this.currentOne;
+
+    this.currentRecommend = new SearchAgendaModel(this.appId, this.tableId);
+
+    const list = await this.currentRecommend!.getList({ mentors, tags });
+
+    this.recommendList = list.sort(({ forum: a }, { forum: b }) =>
+      a === forum ? -1 : b === forum ? 1 : 0,
+    );
+
+    return this.currentOne;
   }
 
   async getGroup() {
@@ -91,5 +129,13 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
     const [matched] = await this.getList({ title, 负责人手机号: mobilePhone });
 
     return (this.currentAuthorized = !!matched);
+  }
+}
+
+export class SearchAgendaModel extends AgendaModel {
+  sort = { forum: 'ASC', startTime: 'ASC' } as const;
+
+  makeFilter(filter: AgendaFilter) {
+    return isEmpty(filter) ? '' : makeSimpleFilter(filter, 'contains', 'OR');
   }
 }

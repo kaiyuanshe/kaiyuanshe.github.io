@@ -2,13 +2,13 @@ import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
 import { compose, errorLogger, translator } from 'next-ssr-middleware';
 import { FC } from 'react';
-import { Container } from 'react-bootstrap';
+import { Breadcrumb, Container } from 'react-bootstrap';
 
 import PageHead from '../../components/Layout/PageHead';
 import { MemberCard } from '../../components/Member/Card';
+import { blobURLOf } from '../../models/Base';
 import { i18n } from '../../models/Base/Translation';
 import { PersonnelModel } from '../../models/Personnel';
-import { fileURLOf } from '../api/lark/file/[id]';
 
 export const getServerSideProps = compose<{}, Pick<PersonnelModel, 'group'>>(
   errorLogger,
@@ -32,7 +32,11 @@ const CouncilPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
   observer(({ group }) => (
     <Container className="py-5">
       <PageHead title={t('council')} />
-
+      <Breadcrumb>
+        <Breadcrumb.Item href="/">{t('KaiYuanShe')}</Breadcrumb.Item>
+        <Breadcrumb.Item href="/department">{t('department')}</Breadcrumb.Item>
+        <Breadcrumb.Item active>{t('council')}</Breadcrumb.Item>
+      </Breadcrumb>
       <h1 className="text-center">{t('council')}</h1>
 
       {Object.entries(group)
@@ -50,7 +54,7 @@ const CouncilPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
                   <MemberCard
                     name={recipient + ''}
                     nickname={position + ''}
-                    avatar={fileURLOf(recipientAvatar)}
+                    avatar={blobURLOf(recipientAvatar)}
                   />
                 </li>
               ))}

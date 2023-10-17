@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import { TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
 import { compose, translator } from 'next-ssr-middleware';
@@ -25,6 +26,7 @@ const Levels = [
   '银牌赞助',
   '铜牌赞助',
   '星牌赞助',
+  '特别支持',
   '亮点赞助',
   '成员赞助',
   '讲师赞助',
@@ -37,6 +39,8 @@ const Levels = [
   '媒体伙伴',
   '社区伙伴',
 ] as const;
+
+const singleLineBenefitsLevels: TableCellValue[] = ['白金赞助'];
 
 export const getServerSideProps = compose<
   {},
@@ -65,21 +69,34 @@ export default class CooperationPage extends PureComponent<
         <Row
           as="ul"
           className="list-unstyled align-items-center justify-content-center"
-          xs={1}
-          sm={2}
-          md={4}
         >
-          {list.map(({ organization, link, logos }) => (
-            <Col as="li" key={organization + ''}>
-              <a target="_blank" href={link ? link + '' : ''} rel="noreferrer">
-                <LarkImage
-                  title={organization + ''}
-                  alt={organization + ''}
-                  src={logos}
-                />
-              </a>
-            </Col>
-          ))}
+          {list.map(({ organization, link, logos, level }) => {
+            const isSingleLineBenefitsLevels =
+              singleLineBenefitsLevels.includes(level);
+
+            return (
+              <Col
+                as="li"
+                className={isSingleLineBenefitsLevels ? 'w-50 mx-5 my-2' : ''}
+                xs={12}
+                sm={isSingleLineBenefitsLevels ? 12 : 6}
+                md={isSingleLineBenefitsLevels ? 12 : 3}
+                key={organization + ''}
+              >
+                <a
+                  target="_blank"
+                  href={link ? link + '' : ''}
+                  rel="noreferrer"
+                >
+                  <LarkImage
+                    title={organization + ''}
+                    alt={organization + ''}
+                    src={logos}
+                  />
+                </a>
+              </Col>
+            );
+          })}
         </Row>
       </section>
     );

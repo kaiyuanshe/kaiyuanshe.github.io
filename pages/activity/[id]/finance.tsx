@@ -10,7 +10,7 @@ import {
   translator,
 } from 'next-ssr-middleware';
 import { PureComponent } from 'react';
-import { Badge, Container } from 'react-bootstrap';
+import { Badge, Breadcrumb, Container } from 'react-bootstrap';
 import { formatDate } from 'web-utility';
 
 import PageHead from '../../../components/Layout/PageHead';
@@ -84,11 +84,17 @@ export default class BillDetailPage extends PureComponent<BillDetailPageProps> {
   render() {
     const { activityStore, billStore } = this;
     const loading = activityStore?.downloading || billStore?.downloading || 0,
-      { name = '' } = activityStore?.currentOne || {};
+      { id, name = '' } = activityStore?.currentOne || {};
 
     return (
       <Container style={{ height: '91vh' }}>
         <PageHead title={t('financial_disclosure') + '-' + name} />
+        <Breadcrumb>
+          <Breadcrumb.Item href="/">{t('KaiYuanShe')}</Breadcrumb.Item>
+          <Breadcrumb.Item href="/activity">{t('activity')}</Breadcrumb.Item>
+          <Breadcrumb.Item href={`/activity/${id}`}>{name}</Breadcrumb.Item>
+          <Breadcrumb.Item active>{t('financial_disclosure')}</Breadcrumb.Item>
+        </Breadcrumb>
         <h1 className="mt-5 mb-4">{name + ' ' + t('financial_disclosure')}</h1>
 
         {loading > 0 && <Loading />}
