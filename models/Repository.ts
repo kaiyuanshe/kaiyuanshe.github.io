@@ -3,7 +3,7 @@ import { memoize } from 'lodash';
 import { Filter, ListModel, toggle } from 'mobx-restful';
 import { averageOf, buildURLData } from 'web-utility';
 
-import { githubClient } from './Base';
+import { proxyGithubClient } from './Base';
 
 type Repository = components['schemas']['minimal-repository'];
 export type Organization = components['schemas']['organization-full'];
@@ -30,7 +30,7 @@ export class RepositoryModel extends ListModel<
   GitRepository,
   RepositoryFilter
 > {
-  client = githubClient;
+  client = proxyGithubClient;
   baseURI = 'orgs/kaiyuanshe/repos';
   indexKey = 'full_name' as const;
 
