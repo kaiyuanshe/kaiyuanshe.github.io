@@ -27,7 +27,7 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
 
     return (mentors as string[])?.[1] ? (
       <Carousel indicators={false}>
-        {(mentorAvatars as TableCellAttachment[]).map(file => (
+        {(mentorAvatars as TableCellAttachment[])?.map(file => (
           <Carousel.Item key={file.attachmentToken}>
             {this.renderCardImage(file)}
           </Carousel.Item>
