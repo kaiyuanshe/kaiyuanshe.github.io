@@ -142,7 +142,7 @@ export default {
   infection_range_undefined: '不进行要求',
 
   tip_popularity_0:
-    '您是否希望将结果限制在开放源代码促进会 （Open Source Initiative, 缩写: OSI）所描述的 "流行、广泛使用或拥有强大社群” 的许可证上？',
+    '您是否希望将结果限制在开放源代码促进会（Open Source Initiative, 缩写: OSI）所描述的 "流行、广泛使用或拥有强大社群” 的许可证上？',
   tip_popularity_1:
     '为了确保许可协议为主流许可协议，将妥协放弃掉一些不那么主流但可能有用的特征。',
   tip_reuse_condition:

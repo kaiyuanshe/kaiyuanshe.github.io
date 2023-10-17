@@ -142,7 +142,7 @@ export default {
   infection_range_undefined: '不要求',
 
   tip_popularity_0:
-    '您是否希望將結果限制在開放原始碼促進會 （Open Source Initiative, 縮寫: OSI）所描述的 "流行、廣泛使用或擁有強大社群」 的授權上？',
+    '您是否希望將結果限制在開放原始碼促進會（Open Source Initiative, 縮寫: OSI）所描述的 "流行、廣泛使用或擁有強大社群」 的授權上？',
   tip_popularity_1:
     '這將以犧牲一些更冷僻但或許有用的特徵為代價來確保該許可協議成為“主流”協議。',
   tip_reuse_condition:
