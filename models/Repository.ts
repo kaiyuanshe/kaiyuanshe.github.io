@@ -1,5 +1,4 @@
 import { components } from '@octokit/openapi-types';
-import { HTTPClient } from 'koajax';
 import { memoize } from 'lodash';
 import { Filter, ListModel, toggle } from 'mobx-restful';
 import { averageOf, buildURLData } from 'web-utility';
