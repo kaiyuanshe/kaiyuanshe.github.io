@@ -40,10 +40,10 @@ export const blobURLOf = (value: TableCellValue) =>
     : '';
 
 export const githubClient = new HTTPClient({
-  baseURI: 'https://api.github.com/',
+  baseURI: isServer() ? 'https://api.github.com/' : `${API_Host}/api/github/`,
   responseType: 'json',
 }).use(({ request }, next) => {
-  if (GithubToken)
+  if (isServer() && GithubToken)
     request.headers = {
       ...request.headers,
       Authorization: `Bearer ${GithubToken}`,
