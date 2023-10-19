@@ -37,7 +37,7 @@ export const blobURLOf = (value: TableCellValue) =>
       ('file_token' in value[0] || 'attachmentToken' in value[0])
       ? `${fileBaseURI}/${value[0].name}`
       : ''
-    : '';
+    : value + '';
 
 export const githubClient = new HTTPClient({
   baseURI: isServer() ? 'https://api.github.com/' : `${API_Host}/api/github/`,
