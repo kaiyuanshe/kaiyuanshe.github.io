@@ -1,7 +1,7 @@
 import { AvatarProps } from 'idea-react';
 import { FC } from 'react';
 
-import { DefaultImage } from '../../pages/api/lark/file/[id]';
+import { LarkImage } from '../Base/LarkImage';
 
 export type ActivityPeopleProps = Pick<AvatarProps, 'size'> &
   Partial<Record<'names' | 'avatars' | 'positions' | 'summaries', string[]>>;
@@ -16,19 +16,13 @@ export const ActivityPeople: FC<ActivityPeopleProps> = ({
   <ul className="list-unstyled d-flex align-items-center justify-content-around gap-3">
     {names?.map((name, index) => (
       <li key={name} className="text-center">
-        <span
-          role="img"
-          className="d-inline-block rounded-circle"
-          style={{
-            width: `${size}rem`,
-            height: `${size}rem`,
-            background: `url(${
-              avatars?.[index] || DefaultImage
-            }) center no-repeat`,
-            backgroundSize: 'cover',
-          }}
+        <LarkImage
+          roundedCircle
+          className="object-fit-cover"
+          style={{ width: `${size}rem`, height: `${size}rem` }}
+          loading="lazy"
+          src={avatars?.[index]}
         />
-
         <ul className="list-unstyled">
           <li>{name}</li>
           <li>{positions?.[index]}</li>

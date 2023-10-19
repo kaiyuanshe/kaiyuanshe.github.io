@@ -74,7 +74,7 @@ export default class ListMap extends PureComponent<ListMapProps> {
       style={{ cursor: 'pointer' }}
       onClick={this.selectOne(marker)}
     >
-      <ImagePreview className="w-25" fluid src={marker.image} />
+      <ImagePreview className="w-25" fluid loading="lazy" src={marker.image} />
       <div>
         <h3 className="fs-5">{marker.title}</h3>
         <p>{marker.summary}</p>
