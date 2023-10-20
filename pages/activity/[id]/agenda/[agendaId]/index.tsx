@@ -189,6 +189,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
       mentors,
       mentorAvatars,
       mentorPositions,
+      mentorOrganizations,
       mentorSummaries,
       summary = t('no_data'),
     } = this.props.agenda;
@@ -209,12 +210,13 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
           </Col>
           <Col xs={12} lg={4}>
             <ActivityPeople
-              size={4}
+              size={5}
               names={mentors as string[]}
               avatars={(mentorAvatars as TableCellValue[]).map(file =>
                 blobURLOf([file] as TableCellValue),
               )}
               positions={mentorPositions as string[]}
+              organizations={mentorOrganizations as string[]}
               summaries={mentorSummaries as string[]}
             />
             <section id="score">

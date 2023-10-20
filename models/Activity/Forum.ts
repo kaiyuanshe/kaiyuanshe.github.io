@@ -22,7 +22,8 @@ export type Forum = Record<
   | 'type'
   | 'producerAvatars'
   | 'volunteerAvatars'
-  | 'producerPositions',
+  | 'producerPositions'
+  | 'producerOrganizations',
   TableCellValue
 >;
 
@@ -35,7 +36,13 @@ export class ForumModel extends BiDataTable<Forum>() {
 
   normalize({
     id,
-    fields: { producers, volunteers, producerPositions, ...data },
+    fields: {
+      producers,
+      volunteers,
+      producerPositions,
+      producerOrganizations,
+      ...data
+    },
   }: TableRecord<Forum>) {
     return {
       ...data,
@@ -49,6 +56,9 @@ export class ForumModel extends BiDataTable<Forum>() {
       producerPositions:
         producerPositions &&
         normalizeTextArray(producerPositions as TableCellText[]),
+      producerOrganizations:
+        producerOrganizations &&
+        normalizeTextArray(producerOrganizations as TableCellText[]),
     };
   }
 }

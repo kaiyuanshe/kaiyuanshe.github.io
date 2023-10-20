@@ -95,6 +95,7 @@ export default class InvitationPage extends PureComponent<InvitationPageProps> {
         mentors,
         mentorAvatars,
         mentorPositions,
+        mentorOrganizations,
       } = agenda;
 
     return (
@@ -124,6 +125,7 @@ export default class InvitationPage extends PureComponent<InvitationPageProps> {
                   blobURLOf([file] as TableCellValue),
                 )}
                 positions={mentorPositions as string[]}
+                organizations={mentorOrganizations as string[]}
               />
             </li>
             <li>
