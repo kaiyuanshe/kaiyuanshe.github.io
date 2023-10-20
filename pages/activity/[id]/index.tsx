@@ -158,6 +158,7 @@ export default class ActivityDetailPage extends PureComponent<
     names: TableCellValue,
     avatars: TableCellValue,
     positions?: TableCellValue,
+    organizations?: TableCellValue,
   ) {
     return (
       <div className="d-flex align-items-center gap-3 px-3">
@@ -169,6 +170,7 @@ export default class ActivityDetailPage extends PureComponent<
             blobURLOf([file] as TableCellValue),
           )}
           positions={positions as string[]}
+          organizations={organizations as string[]}
         />
       </div>
     );
@@ -182,6 +184,7 @@ export default class ActivityDetailPage extends PureComponent<
     producers,
     producerAvatars,
     producerPositions,
+    producerOrganizations,
     location,
   }: Forum) => {
     const { activity, agendaGroup } = this.props;
@@ -208,6 +211,7 @@ export default class ActivityDetailPage extends PureComponent<
               producers,
               producerAvatars,
               producerPositions,
+              producerOrganizations,
             )}
             {(volunteers as string[])?.[0] &&
               this.renderForumPeople(
