@@ -90,7 +90,7 @@ const AppShell: FC<AppProps> = observer(({ Component, pageProps, router }) => (
                     gtag('config', '${NextPublicGoogleAnalytics}', {
                     page_path: window.location.pathname,
                     });
-                `}
+      `}
     </Script>
   </SSRProvider>
 ));
