@@ -6,6 +6,7 @@ import { configure } from 'mobx';
 import { enableStaticRendering, observer } from 'mobx-react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+import Script from 'next/script';
 import { FC } from 'react';
 import { Col, Container, Row, SSRProvider } from 'react-bootstrap';
 
@@ -30,6 +31,7 @@ globalThis.addEventListener?.('unhandledrejection', ({ reason }) => {
 });
 
 const { t } = i18n;
+const NextPublicGoogleAnalytics = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS;
 
 const AppShell: FC<AppProps> = observer(({ Component, pageProps, router }) => (
   <SSRProvider>
@@ -75,6 +77,21 @@ const AppShell: FC<AppProps> = observer(({ Component, pageProps, router }) => (
         </Row>
       </Container>
     </footer>
+    <Script
+      strategy="lazyOnload"
+      src={`https://www.googletagmanager.com/gtag/js?id=${NextPublicGoogleAnalytics}`}
+    />
+
+    <Script id="gtag" strategy="lazyOnload">
+      {`
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                    gtag('config', '${NextPublicGoogleAnalytics}', {
+                    page_path: window.location.pathname,
+                    });
+                `}
+    </Script>
   </SSRProvider>
 ));
 
