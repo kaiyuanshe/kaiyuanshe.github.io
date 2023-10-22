@@ -1,8 +1,5 @@
 version: '3'
 
-networks:
-  kaiyuanshe:
-
 services:
   kys-ows:
     image: kaiyuanshe/kys-ows
@@ -11,17 +8,4 @@ services:
       - PORT=3000
     ports:
       - 3000:3000
-    networks:
-      - kaiyuanshe
-    restart: always
-  caddy:
-    depends_on:
-      - kys-ows
-    image: caddy
-    ports:
-      - 80:80
-      - 443:443
-    networks:
-      - kaiyuanshe
-    command: caddy reverse-proxy --from kaiyuanshe.cn --to kys-ows:3000
     restart: always
