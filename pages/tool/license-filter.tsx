@@ -75,7 +75,7 @@ const LicenseTool: FC = observer(() => {
       <p>{t('license_tool_description')}</p>
       <p className="text-warning">{t('warn_info')}</p>
 
-      <h2>{t('filter_option')}</h2>
+      <h2>{t('filter_option') + ': ' + t(chooseSteps[keyIndex])}</h2>
 
       {licenseTips()[chooseSteps[keyIndex]].map(({ text }) => (
         <p key={text}>{text}</p>
@@ -137,40 +137,36 @@ function renderInfo({ link, feature }: License) {
     <>
       <ul>
         <li>
-          {t('feature_popularity')}: {judge(feature.popularity)}
+          {t('popularity')}: {judge(feature.popularity)}
         </li>
         <li>
-          {t('feature_reuse_condition')}: {judge(feature.reuseCondition)}
+          {t('reuseCondition')}: {judge(feature.reuseCondition)}
         </li>
         <li>
-          {t('feature_infection_intensity')}:{' '}
-          {judge(feature.infectionIntensity)}
-        </li>
-
-        <li>
-          {t('feature_infection_range')}:
-          {judgeInfectionRange(feature.infectionRange)}
+          {t('infectionIntensity')}: {judge(feature.infectionIntensity)}
         </li>
 
         <li>
-          {t('feature_jurisdiction')}: {judge(feature.jurisdiction)}
+          {t('infectionRange')}:{judgeInfectionRange(feature.infectionRange)}
+        </li>
+
+        <li>
+          {t('jurisdiction')}: {judge(feature.jurisdiction)}
         </li>
         <li>
-          {t('feature_patent_statement')}: {judge(feature.patentStatement)}
+          {t('patentStatement')}: {judge(feature.patentStatement)}
         </li>
         <li>
-          {t('feature_patent_retaliation')}: {judge(feature.patentRetaliation)}
+          {t('patentRetaliation')}: {judge(feature.patentRetaliation)}
         </li>
         <li>
-          {t('feature_enhanced_attribution')}:{' '}
-          {judge(feature.enhancedAttribution)}
+          {t('enhancedAttribution')}: {judge(feature.enhancedAttribution)}
         </li>
         <li>
-          {t('feature_privacy_loophole')}: {judge(feature.privacyLoophole)}
+          {t('privacyLoophole')}: {judge(feature.privacyLoophole)}
         </li>
         <li>
-          {t('feature_marketing_endorsement')}:
-          {judge(feature.marketingEndorsement)}
+          {t('marketingEndorsement')}:{judge(feature.marketingEndorsement)}
         </li>
       </ul>
       <Button size="sm" target="_blank" href={link}>
