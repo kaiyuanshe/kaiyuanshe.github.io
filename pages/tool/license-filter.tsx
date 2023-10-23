@@ -109,8 +109,6 @@ const LicenseTool: FC = observer(() => {
         now={(keyIndex + 1) * now}
         label={t('step_x', { step: keyIndex + 1 })}
       />
-      <h4>{stepIndex}</h4>
-      <h4>{keyIndex}</h4>
       <Button className="mb-2" onClick={preChoose}>
         上一步
       </Button>
