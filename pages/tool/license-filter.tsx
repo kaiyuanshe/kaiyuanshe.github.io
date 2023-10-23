@@ -67,6 +67,22 @@ const LicenseTool: FC = observer(() => {
     setKeyIndex(keyIndex < chooseSteps.length - 1 ? keyIndex + 1 : keyIndex);
   };
 
+  const preChoose = () => {
+    const choice = 0;
+    const key = chooseSteps[keyIndex];
+
+    const newObject = { ...filterOption, [key]: choice };
+    const tempLists = filterLicenses(newObject);
+
+    setFilterOption(newObject);
+    setLists(tempLists);
+
+    setStepIndex(stepIndex > 0 ? stepIndex - 1 : stepIndex);
+    setKeyIndex(keyIndex > 0 ? keyIndex - 1 : keyIndex);
+
+    if (disableChoose) setDisableChoose(false);
+  };
+
   return (
     <Container className="py-5">
       <PageHead title={t('license_tool_headline')} />
@@ -86,6 +102,9 @@ const LicenseTool: FC = observer(() => {
         now={(keyIndex + 1) * now}
         label={t('step_x', { step: keyIndex + 1 })}
       />
+      <Button className="mb-2" onClick={preChoose}>
+        上一步
+      </Button>
       <ButtonGroup className="mb-2">
         {optionValue()[chooseSteps[keyIndex]].map(({ value, text }) => (
           <Button
