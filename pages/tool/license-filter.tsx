@@ -65,6 +65,7 @@ const LicenseTool: FC = observer(() => {
     setStepIndex(stepIndex < chooseSteps.length ? stepIndex + 1 : stepIndex);
 
     setKeyIndex(keyIndex < chooseSteps.length - 1 ? keyIndex + 1 : keyIndex);
+    console.log('stepindex keyIndex', stepIndex, keyIndex);
   };
 
   const preChoose = () => {
@@ -75,12 +76,18 @@ const LicenseTool: FC = observer(() => {
     const tempLists = filterLicenses(newObject);
 
     setFilterOption(newObject);
-    setLists(tempLists);
 
-    setStepIndex(stepIndex > 0 ? stepIndex - 1 : stepIndex);
+    setStepIndex(
+      stepIndex === 10
+        ? stepIndex - 2
+        : stepIndex > 0
+        ? stepIndex - 1
+        : stepIndex,
+    );
     setKeyIndex(keyIndex > 0 ? keyIndex - 1 : keyIndex);
 
     if (disableChoose) setDisableChoose(false);
+    setLists(tempLists);
   };
 
   return (
@@ -102,6 +109,8 @@ const LicenseTool: FC = observer(() => {
         now={(keyIndex + 1) * now}
         label={t('step_x', { step: keyIndex + 1 })}
       />
+      <h4>{stepIndex}</h4>
+      <h4>{keyIndex}</h4>
       <Button className="mb-2" onClick={preChoose}>
         上一步
       </Button>
