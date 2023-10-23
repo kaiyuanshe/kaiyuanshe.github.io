@@ -7,21 +7,8 @@ export default function Document() {
   return (
     <Html>
       <Head>
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-MS73CZKMM3" />
-        <Script id="google-analytics">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-  
-            gtag('config', 'G-MS73CZKMM3');
-          `}
-        </Script>
         <link rel="icon" href={DefaultImage} />
-
         <link rel="manifest" href="/manifest.json" />
-        <Script src="https://polyfill.kaiyuanshe.cn/feature/PWAManifest.js" />
-
         <link
           rel="stylesheet"
           href="https://unpkg.com/bootstrap@5.3.2/dist/css/bootstrap.min.css"
