@@ -25,7 +25,7 @@ interface List {
 
 const { t } = i18n;
 
-const chooseSteps: string[] = [
+const chooseSteps = [
   'popularity',
   'reuseCondition',
   'infectionIntensity',
@@ -36,7 +36,7 @@ const chooseSteps: string[] = [
   'enhancedAttribution',
   'privacyLoophole',
   'marketingEndorsement',
-];
+] as const;
 
 const LicenseTool: FC = observer(() => {
   const [stepIndex, setStepIndex] = useState(0);
