@@ -9,13 +9,14 @@ export default function Document() {
       <Head>
         <link rel="icon" href={DefaultImage} />
         <link rel="manifest" href="/manifest.json" />
+        <script src="https://polyfill.kaiyuanshe.cn/feature/PWAManifest.js" />
         <link
           rel="stylesheet"
           href="https://unpkg.com/bootstrap@5.3.2/dist/css/bootstrap.min.css"
         />
         <link
           rel="stylesheet"
-          href="https://unpkg.com/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+          href="https://unpkg.com/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
         />
         <link
           rel="stylesheet"
