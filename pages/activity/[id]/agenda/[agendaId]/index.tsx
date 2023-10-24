@@ -124,7 +124,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
         </div>
 
         <div className="d-flex flex-wrap align-items-center gap-3 my-3">
-          <Badge bg={text2color(type as string, ['light'])}>{type}</Badge>
+          <Badge bg={text2color(type + '', ['light'])}>{type}</Badge>
 
           <div className="text-success">{forum}</div>
           <div>

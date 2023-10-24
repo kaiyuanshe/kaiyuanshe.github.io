@@ -21,12 +21,15 @@ export const LarkImage: FC<LarkImageProps> = ({
     onError={({ currentTarget: image }) => {
       const path = fileURLOf(src);
 
-      if (path)
-        image.src = image.src.endsWith(path)
-          ? image.src.endsWith(DefaultImage)
-            ? ''
-            : DefaultImage
-          : path;
+      if (!path) return;
+
+      const errorURL = decodeURI(image.src);
+
+      image.src = errorURL.endsWith(path)
+        ? errorURL.endsWith(DefaultImage)
+          ? ''
+          : DefaultImage
+        : path;
     }}
   />
 );

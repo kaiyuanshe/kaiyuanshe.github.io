@@ -48,12 +48,13 @@ export class ArticleModel extends BiDataTable<Article>() {
 
   normalize({
     id,
-    fields: { tags, ...fields },
+    fields: { tags, link, ...fields },
   }: TableRecord<Omit<Article, 'content'>>): Article {
     return {
       ...fields,
       id,
       tags: (tags as string)?.trim().split(/\s+/),
+      link: (link as TableCellLink)?.link,
     };
   }
 
@@ -66,9 +67,9 @@ export class ArticleModel extends BiDataTable<Article>() {
     );
     const item = this.normalize(body!.data.items[0]);
 
-    const path = `article/${(item.link as TableCellLink)?.link
-      .split('/')
-      .slice(-1)[0]}.html`;
+    const path = `article/${
+      (item.link as string).split('/').slice(-1)[0]
+    }.html`;
 
     const { body: raw } = await blobClient.get<ArrayBuffer>(path);
 

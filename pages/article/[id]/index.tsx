@@ -31,12 +31,18 @@ export default class ArticleDetailPage extends PureComponent<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > {
   renderAuthorization() {
-    const { license = 'CC-4.0' } = this.props.article;
+    const { license = 'CC-4.0', link } = this.props.article;
 
     return (
-      <>
-        <p className="text-muted mt-3 small">版权声明：{license}</p>
-      </>
+      <ul className="list-unstyled small text-muted d-flex flex-column gap-3">
+        <li>版权声明：{license}</li>
+        <li>
+          原文链接：
+          <a target="_blank" href={link + ''} rel="noreferrer">
+            {link}
+          </a>
+        </li>
+      </ul>
     );
   }
 

@@ -112,7 +112,7 @@ export default class InvitationPage extends PureComponent<InvitationPageProps> {
         </header>
         <section className="d-flex flex-column align-items-center gap-4">
           <h2 className="d-flex align-items-center gap-2 text-start">
-            <Badge bg={text2color(type as string, ['light'])}>{type}</Badge>
+            <Badge bg={text2color(type + '', ['light'])}>{type}</Badge>
 
             {title}
           </h2>
