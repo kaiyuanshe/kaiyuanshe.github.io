@@ -187,6 +187,7 @@ export default {
   range_library: 'library',
   range_file: 'file',
   range_module: 'module',
+  last_step: 'back',
 
   //finance Page
   bill_id: 'bill id',
