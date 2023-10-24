@@ -25,7 +25,7 @@ interface List {
 
 const { t } = i18n;
 
-const chooseSteps = [
+const choiceSteps = [
   'popularity',
   'reuseCondition',
   'infectionIntensity',
@@ -45,15 +45,15 @@ const LicenseTool: FC = observer(() => {
   const [disableChoose, setDisableChoose] = useState(false);
   const [lists, setLists] = useState<List[]>([]);
 
-  const now = Math.ceil(100 / chooseSteps.length);
+  const now = Math.ceil(100 / choiceSteps.length);
 
   useEffect(() => {
-    if (stepIndex === chooseSteps.length) setDisableChoose(true);
+    if (stepIndex === choiceSteps.length) setDisableChoose(true);
   }, [stepIndex]);
 
   const handleChoose = (value: string | null) => {
     const choice = value ? +value : 0;
-    const key = chooseSteps[keyIndex];
+    const key = choiceSteps[keyIndex];
 
     const newObject = { ...filterOption, [key]: choice };
     const tempLists = filterLicenses(newObject);
@@ -62,14 +62,14 @@ const LicenseTool: FC = observer(() => {
 
     setLists(tempLists);
 
-    setStepIndex(stepIndex < chooseSteps.length ? stepIndex + 1 : stepIndex);
+    setStepIndex(stepIndex < choiceSteps.length ? stepIndex + 1 : stepIndex);
 
-    setKeyIndex(keyIndex < chooseSteps.length - 1 ? keyIndex + 1 : keyIndex);
+    setKeyIndex(keyIndex < choiceSteps.length - 1 ? keyIndex + 1 : keyIndex);
   };
 
   const backToLast = () => {
     const choice = 0;
-    const key = chooseSteps[keyIndex];
+    const key = choiceSteps[keyIndex];
 
     const newObject = { ...filterOption, [key]: choice };
     const tempLists = filterLicenses(newObject);
@@ -77,7 +77,7 @@ const LicenseTool: FC = observer(() => {
     setFilterOption(newObject);
 
     setStepIndex(
-      stepIndex === chooseSteps.length
+      stepIndex === choiceSteps.length
         ? stepIndex - 2
         : stepIndex > 0
         ? stepIndex - 1
@@ -98,10 +98,10 @@ const LicenseTool: FC = observer(() => {
       <p className="text-warning">{t('warn_info')}</p>
 
       <h2>
-        {t('filter_option')}: {t(chooseSteps[keyIndex])}
+        {t('filter_option')}: {t(choiceSteps[keyIndex])}
       </h2>
 
-      {licenseTips()[chooseSteps[keyIndex]].map(({ text }) => (
+      {licenseTips()[choiceSteps[keyIndex]].map(({ text }) => (
         <p key={text}>{text}</p>
       ))}
       <ProgressBar
@@ -114,7 +114,7 @@ const LicenseTool: FC = observer(() => {
         {t('last_step')}
       </Button>
       <ButtonGroup className="mb-2">
-        {optionValue()[chooseSteps[keyIndex]].map(({ value, text }) => (
+        {optionValue()[choiceSteps[keyIndex]].map(({ value, text }) => (
           <Button
             key={value}
             className="mx-1"
