@@ -174,7 +174,7 @@ function renderInfo({ link, feature }: License) {
         </li>
 
         <li>
-          {t('infectionRange')}:{judgeInfectionRange(feature.infectionRange)}
+          {t('infectionRange')}: {judgeInfectionRange(feature.infectionRange)}
         </li>
 
         <li>
@@ -193,7 +193,7 @@ function renderInfo({ link, feature }: License) {
           {t('privacyLoophole')}: {judge(feature.privacyLoophole)}
         </li>
         <li>
-          {t('marketingEndorsement')}:{judge(feature.marketingEndorsement)}
+          {t('marketingEndorsement')}: {judge(feature.marketingEndorsement)}
         </li>
       </ul>
       <Button size="sm" target="_blank" href={link}>
