@@ -13,6 +13,11 @@ services:
       - 3000:3000
     networks:
       - kaiyuanshe
+    healthcheck:
+      test: node healthcheck.js
+      interval: 3s
+      retries: 5
+      start_period: 30s
     restart: always
     logging:
       driver: 'json-file'
