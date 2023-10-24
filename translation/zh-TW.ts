@@ -172,7 +172,7 @@ export default {
   license_score: '評分',
   popularity: '流行程度',
   reuseCondition: '復用條件',
-  infectionIntensity: '互惠(傳染)需求',
+  infectionIntensity: '互惠（傳染）需求',
   infectionRange: '傳染範圍',
   jurisdiction: '法律管轄',
   patentStatement: '專利聲明',
