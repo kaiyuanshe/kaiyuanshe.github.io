@@ -65,10 +65,9 @@ const LicenseTool: FC = observer(() => {
     setStepIndex(stepIndex < chooseSteps.length ? stepIndex + 1 : stepIndex);
 
     setKeyIndex(keyIndex < chooseSteps.length - 1 ? keyIndex + 1 : keyIndex);
-    console.log('stepindex keyIndex', stepIndex, keyIndex);
   };
 
-  const preChoose = () => {
+  const backToLast = () => {
     const choice = 0;
     const key = chooseSteps[keyIndex];
 
@@ -78,7 +77,7 @@ const LicenseTool: FC = observer(() => {
     setFilterOption(newObject);
 
     setStepIndex(
-      stepIndex === 10
+      stepIndex === chooseSteps.length
         ? stepIndex - 2
         : stepIndex > 0
         ? stepIndex - 1
@@ -98,7 +97,9 @@ const LicenseTool: FC = observer(() => {
       <p>{t('license_tool_description')}</p>
       <p className="text-warning">{t('warn_info')}</p>
 
-      <h2>{t('filter_option') + ': ' + t(chooseSteps[keyIndex])}</h2>
+      <h2>
+        {t('filter_option')}: {t(chooseSteps[keyIndex])}
+      </h2>
 
       {licenseTips()[chooseSteps[keyIndex]].map(({ text }) => (
         <p key={text}>{text}</p>
@@ -109,7 +110,7 @@ const LicenseTool: FC = observer(() => {
         now={(keyIndex + 1) * now}
         label={t('step_x', { step: keyIndex + 1 })}
       />
-      <Button className="mb-2" onClick={preChoose}>
+      <Button className="mb-2" variant="warning" onClick={backToLast}>
         上一步
       </Button>
       <ButtonGroup className="mb-2">
