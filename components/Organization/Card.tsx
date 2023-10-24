@@ -87,7 +87,7 @@ export class OrganizationCard extends PureComponent<OrganizationCardProps> {
             {name}
             <Badge
               className="ms-2"
-              bg={text2color(type as string, ['light'])}
+              bg={text2color(type + '', ['light'])}
               style={{ cursor: 'pointer' }}
               onClick={
                 onSwitch &&

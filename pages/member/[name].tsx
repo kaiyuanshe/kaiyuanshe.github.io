@@ -52,7 +52,7 @@ export default class PersonDetailPage extends PureComponent<
       <h1>{name}</h1>
       <ul>
         <li>
-          <Badge bg={text2color(gender as string, ['light'])}>{gender}</Badge>
+          <Badge bg={text2color(gender + '', ['light'])}>{gender}</Badge>
         </li>
         {skills && (
           <li>
@@ -104,7 +104,7 @@ export default class PersonDetailPage extends PureComponent<
             <time dateTime={new Date(createdAt as number).toJSON()}>
               {formatDate(createdAt as number, 'YYYY-MM-DD')}
             </time>
-            <Badge bg={text2color(type as string, ['light'])}>{type}</Badge>
+            <Badge bg={text2color(type + '', ['light'])}>{type}</Badge>
             {award ? (
               <span>{award}</span>
             ) : (

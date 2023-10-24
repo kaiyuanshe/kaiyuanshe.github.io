@@ -63,7 +63,7 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
             xs={4}
             className="d-flex flex-column justify-content-around align-items-center"
           >
-            <Badge bg={text2color(type as string, ['light'])}>{type}</Badge>
+            <Badge bg={text2color(type + '', ['light'])}>{type}</Badge>
 
             {this.renderAvatarImages()}
           </Col>
