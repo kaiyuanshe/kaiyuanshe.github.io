@@ -111,7 +111,7 @@ const LicenseTool: FC = observer(() => {
         label={t('step_x', { step: keyIndex + 1 })}
       />
       <Button className="mb-2" variant="warning" onClick={backToLast}>
-        上一步
+        {t('last_step')}
       </Button>
       <ButtonGroup className="mb-2">
         {optionValue()[chooseSteps[keyIndex]].map(({ value, text }) => (
