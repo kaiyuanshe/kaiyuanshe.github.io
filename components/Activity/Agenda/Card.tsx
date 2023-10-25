@@ -8,6 +8,7 @@ import { Badge, Carousel, Col, Container, Row } from 'react-bootstrap';
 import { blobURLOf } from '../../../models/Base';
 import { LarkImage } from '../../Base/LarkImage';
 import { ScoreBar } from '../../Base/ScoreBar';
+import TextScrollableBox from '../../Base/TextScrollableBox';
 import { ActivityPeople } from '../People';
 import { AgendaToolbarProps } from './Toolbar';
 const AgendaToolbar = dynamic(() => import('./Toolbar'), { ssr: false });
@@ -66,14 +67,9 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
             xs={4}
             className="d-flex flex-column justify-content-around align-items-center"
           >
-            <div className={style.box}>
-              <Badge
-                className={style.scrollItem}
-                bg={text2color(type + '', ['light'])}
-              >
-                {type}
-              </Badge>
-            </div>
+            <TextScrollableBox>
+              <Badge bg={text2color(type + '', ['light'])}>{type}</Badge>
+            </TextScrollableBox>
 
             {this.renderAvatarImages()}
           </Col>
