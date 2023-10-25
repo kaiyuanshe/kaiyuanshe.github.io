@@ -1,0 +1,32 @@
+@keyframes scroll {
+  0% {
+    margin-left: 0;
+    transform: translateX(0);
+  }
+
+  10% {
+    margin-left: 0;
+    transform: translateX(0);
+  }
+
+  90% {
+    transform: translateX(calc(-100% + 100px));
+  }
+
+  100% {
+    transform: translateX(calc(-100% + 100px));
+  }
+}
+
+.box {
+  width: 100px;
+  vertical-align: top;
+  overflow: hidden;
+  white-space: nowrap;
+  & .scrollItem {
+    display: inline-block;
+    animation: scroll linear 4s alternate infinite;
+    width: fit-content;
+    min-width: 100%;
+  }
+}

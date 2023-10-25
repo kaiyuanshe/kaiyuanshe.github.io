@@ -10,8 +10,8 @@ import { LarkImage } from '../../Base/LarkImage';
 import { ScoreBar } from '../../Base/ScoreBar';
 import { ActivityPeople } from '../People';
 import { AgendaToolbarProps } from './Toolbar';
-
 const AgendaToolbar = dynamic(() => import('./Toolbar'), { ssr: false });
+import style from './Card.module.less';
 
 @observer
 export class AgendaCard extends Component<AgendaToolbarProps> {
@@ -66,7 +66,14 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
             xs={4}
             className="d-flex flex-column justify-content-around align-items-center"
           >
-            <Badge bg={text2color(type + '', ['light'])}>{type + ''}</Badge>
+            <div className={style.box}>
+              <Badge
+                className={style.scrollItem}
+                bg={text2color(type + '', ['light'])}
+              >
+                {type}
+              </Badge>
+            </div>
 
             {this.renderAvatarImages()}
           </Col>
