@@ -147,19 +147,21 @@ export default {
     'Do you want to limit the result to a license agreement that is "popular and widely used, or has a broad community" as described by the Open Source Initiative (OSI)?',
   tip_popularity_1:
     'This will sacrifice some less popular but perhaps useful features to ensure that the license becomes a mainstream license.',
-  tip_reuse_condition: 'Do you want to set license conditions for code reuse?',
+  tip_reuse_condition:
+    'Do you want to set license conditions for code reuse? If not, your license will be one of the so-called "permissive" licenses.',
   tip_infection_intensity:
-    'Do you want to choose a strongly infectious protocol?',
+    'Do you want to choose a strongly Copyleft licensing? When a software project contains some of your code, the project as a whole must be distributed under your license, if it is distributed at all. The effect of this will be that the source code for all additions made to the code will be available. If not,the parts of the project you originated from must be distributed under your license, if it is distributed at all. Other parts may be distributed under other licenses, even though they form part of a work with is - as a whole - a modified version of your code. The effect of this will be that the source code to some additions made to the code may not be available.',
   tip_jurisdiction: 'Do you want your region to be the jurisdiction?',
   tip_patent_statement:
     'Do you want to use a license agreement that explicitly grants patent rights (if any)?',
   tip_patent_retaliation:
-    'Do you want to use a license agreement that includes a patent retaliation clause?',
+    'Do you want to use a license agreement that includes a patent retaliation clause? who brings legal action alleging that the licensed software embodies one of their software patents will lose the license you have granted to copy, use, adapt, and distribute the code. It is intended to dissuade people from bringing this kind of legal action.',
   tip_enhanced_attribution:
-    'Do you want to use a license agreement that specifies "enhanced attribution"?',
+    'Do you want to use a license agreement that specifies "enhanced attribution"? It must take a particular form and appear in specific instances, for example on the user interface of softwares  every time it is run. ',
   tip_privacy_loophole:
-    'Do you want to use a license that addresses a "privacy loophole"',
-  tip_marketing_endorsement: 'Do you want to allow promotional licenses?',
+    'Do you want to use a license that addresses a "privacy loophole". Require that source code must also be released when services are provided over the Web or when code is deployed internally. The purpose of this is to ensure that all those who benefit from open source projects have a responsibility to give back to the community by sharing their improved and adapted versions.',
+  tip_marketing_endorsement:
+    "Do you want to allow promotional licenses? Avoid using the author's name to promote products or services based on the author's code. Such a restriction is intended to protect the authors reputation or prevent misleading publicity.",
   tip_infection_range:
     'Which parts of the modified version do you want to allow for other licenses, with four options: module-level, file-level, library interface-level, and no requirements ?',
   license_tool_headline: 'Open Source License Selector',
