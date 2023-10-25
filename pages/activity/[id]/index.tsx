@@ -248,12 +248,8 @@ export default class ActivityDetailPage extends PureComponent<
 
         <header
           className={`d-flex flex-column align-items-center justify-content-around ${styles.header}`}
-          style={{
-            backgroundImage: `url(${JSON.stringify(
-              blobURLOf(activity.image),
-            )})`,
-          }}
         >
+          <img className={styles.img} src={blobURLOf(activity.image)} />
           <h1 className="visually-hidden" id="top">
             {activity.name as string}
           </h1>

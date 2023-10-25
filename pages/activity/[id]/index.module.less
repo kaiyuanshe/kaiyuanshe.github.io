@@ -1,12 +1,44 @@
 .header {
-  background-repeat: no-repeat;
-  background-size: cover;
   height: calc(50vh - 5rem);
+  overflow: hidden;
 
   @media (min-width: 576px) {
     height: calc(70vh - 5rem);
   }
   @media (min-width: 768px) {
     height: calc(100vh - 5rem);
+  }
+
+  & .img {
+    animation: scroll linear 4s alternate infinite;
+  }
+}
+
+@media (min-width: 576px) {
+  @keyframes scroll {
+    0%,
+    10% {
+      margin-left: 0;
+      transform: translateY(0);
+    }
+
+    90%,
+    100% {
+      transform: translateY(calc(-100% + calc(70vh - 5rem)));
+    }
+  }
+}
+@media (min-width: 768px) {
+  @keyframes scroll {
+    0%,
+    10% {
+      margin-left: 0;
+      transform: translateY(0);
+    }
+
+    90%,
+    100% {
+      transform: translateY(calc(-100% + calc(100vh - 5rem)));
+    }
   }
 }
