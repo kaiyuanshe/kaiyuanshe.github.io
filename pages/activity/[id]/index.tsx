@@ -15,9 +15,11 @@ import {
   Stack,
 } from 'react-bootstrap';
 
-import { AgendaCard } from '../../../components/Activity/Agenda/Card';
-import { DrawerNav } from '../../../components/Activity/DrawerNav';
-import { ActivityPeople } from '../../../components/Activity/People';
+import {
+  ActivityPeople,
+  AgendaCard,
+  DrawerNav,
+} from '../../../components/Activity';
 import PageHead from '../../../components/Layout/PageHead';
 import type { ImageMarker } from '../../../components/Map/ListMap';
 import { Activity, ActivityModel } from '../../../models/Activity';

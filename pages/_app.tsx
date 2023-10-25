@@ -6,7 +6,6 @@ import { configure } from 'mobx';
 import { enableStaticRendering, observer } from 'mobx-react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import Script from 'next/script';
 import { GoogleAnalytics } from 'nextjs-google-analytics';
 import { FC } from 'react';
 import { Col, Container, Row, SSRProvider } from 'react-bootstrap';
@@ -38,7 +37,6 @@ const AppShell: FC<AppProps> = observer(({ Component, pageProps, router }) => (
     <Head>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
     </Head>
-    <Script src="https://polyfill.kaiyuanshe.cn/feature/PWAManifest.js" />
     <GoogleAnalytics strategy="lazyOnload" trackPageViews />
 
     <MainNav title={t('KaiYuanShe')} logo={DefaultImage} links={MainRoutes()} />

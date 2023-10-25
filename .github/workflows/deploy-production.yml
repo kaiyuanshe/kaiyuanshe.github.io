@@ -8,7 +8,7 @@ on:
     tags:
       - v*
 env:
-  ARTIFACT_PATH: /tmp/artifact.tar
+  ARTIFACT_PATH: artifact.tar
   BOX_NAME: kys-ows
   BOX_URL: kaiyuanshe/kys-ows
 
@@ -20,7 +20,7 @@ jobs:
       packages: write
       contents: read
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
           lfs: true
@@ -56,7 +56,7 @@ jobs:
         uses: garygrossgarten/github-action-scp@release
         with:
           local: ./build
-          remote: /tmp
+          remote: /tmp/${{ env.BOX_NAME }}
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
           password: ${{ secrets.SSH_KEY }}
@@ -68,6 +68,9 @@ jobs:
           username: ${{ secrets.USER }}
           password: ${{ secrets.SSH_KEY }}
           command: |
-            mv /tmp/docker-compose.yml /tmp/start.sh ~/
-            chmod +x ~/start.sh
-            echo '${{ secrets.SSH_KEY }}' | sudo -S ~/start.sh ${{ env.ARTIFACT_PATH }}
+            cd /tmp/${{ env.BOX_NAME }}
+            mkdir -p ~/${{ env.BOX_NAME }}
+            mv docker-compose.yml start.sh ~/${{ env.BOX_NAME }}
+            cd ~/${{ env.BOX_NAME }}
+            chmod +x start.sh
+            echo '${{ secrets.SSH_KEY }}' | sudo -S ./start.sh /tmp/${{ env.BOX_NAME }}/${{ env.ARTIFACT_PATH }}

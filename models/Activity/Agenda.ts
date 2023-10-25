@@ -67,6 +67,21 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
   @observable
   currentAuthorized = false;
 
+  get authorization(): Record<string, boolean> | undefined {
+    const { activityAgendaAuthorization } = globalThis.localStorage || {};
+
+    return (
+      activityAgendaAuthorization && JSON.parse(activityAgendaAuthorization)
+    );
+  }
+
+  set authorization(data: Record<string, boolean>) {
+    globalThis.localStorage?.setItem(
+      'activityAgendaAuthorization',
+      JSON.stringify(data),
+    );
+  }
+
   normalize({ id, fields }: TableRecord<Agenda>) {
     const {
       forum,
@@ -126,7 +141,14 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
   async checkAuthorization(title: string, mobilePhone: string) {
     mobilePhone = mobilePhone.replace(/^\+86-?/, '');
 
+    const { authorization } = this;
+
+    if (authorization?.[title] != null)
+      return (this.currentAuthorized = authorization[title]);
+
     const [matched] = await this.getList({ title, 负责人手机号: mobilePhone });
+
+    this.authorization = { ...authorization, [title]: !!matched };
 
     return (this.currentAuthorized = !!matched);
   }

@@ -38,6 +38,7 @@ import { Activity, ActivityModel } from '../../../../../models/Activity';
 import { Agenda } from '../../../../../models/Activity/Agenda';
 import { CheckEventModel } from '../../../../../models/Activity/CheckEvent';
 import { API_Host, blobURLOf } from '../../../../../models/Base';
+import systemStore from '../../../../../models/Base/System';
 import { i18n } from '../../../../../models/Base/Translation';
 import userStore from '../../../../../models/Base/User';
 
@@ -102,7 +103,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
   }
 
   renderHeader() {
-    const { user } = this.props.route.query,
+    const { user } = systemStore.hashQuery,
       { id, name, location } = this.props.activity,
       {
         id: agendaId,
@@ -123,7 +124,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
         </div>
 
         <div className="d-flex flex-wrap align-items-center gap-3 my-3">
-          <Badge bg={text2color(type as string, ['light'])}>{type}</Badge>
+          <Badge bg={text2color(type + '', ['light'])}>{type}</Badge>
 
           <div className="text-success">{forum}</div>
           <div>
@@ -141,7 +142,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
           <SessionBox>
             <QRCodeButton
               title="请该打卡点工作人员扫码"
-              value={`${API_Host}/activity/${id}/agenda/${id}?user=${userStore.session?.id}`}
+              value={`${API_Host}/activity/${id}/agenda/${id}#?user=${userStore.session?.id}`}
               disabled={!!checkEvent}
             >
               打卡
@@ -181,7 +182,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
   }
 
   render() {
-    const { id, name, location } = this.props.activity,
+    const { id, alias, name, location } = this.props.activity,
       { score, recommendList } = this.props;
     const {
       title,
@@ -200,7 +201,9 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
         <Breadcrumb>
           <Breadcrumb.Item href="/">{t('KaiYuanShe')}</Breadcrumb.Item>
           <Breadcrumb.Item href="/activity">{t('activity')}</Breadcrumb.Item>
-          <Breadcrumb.Item href={`/activity/${id}`}>{name}</Breadcrumb.Item>
+          <Breadcrumb.Item href={`/activity/${alias || id}`}>
+            {name}
+          </Breadcrumb.Item>
           <Breadcrumb.Item active>{title}</Breadcrumb.Item>
         </Breadcrumb>
 
