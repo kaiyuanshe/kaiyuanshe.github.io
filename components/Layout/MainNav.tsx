@@ -44,7 +44,7 @@ class MainNav extends PureComponent<MainNavProps> {
 
     return (
       <div className="d-flex flex-column flex-sm-row justify-content-between gap-3 ms-auto">
-        <Nav className="flex-fill ms-3 align-items-center">
+        <Nav className="flex-fill ms-3 align-items-center ">
           {links.map(({ title, path, subs }) =>
             path ? (
               <Nav.Link
@@ -59,7 +59,7 @@ class MainNav extends PureComponent<MainNavProps> {
                 {title}
               </Nav.Link>
             ) : (
-              <NavDropdown key={title} title={title}>
+              <NavDropdown key={title} title={title} className="text-center">
                 {subs?.map(({ title, path }) => (
                   <NavDropdown.Item key={title} href={path}>
                     {title}
