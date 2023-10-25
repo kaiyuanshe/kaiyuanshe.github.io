@@ -63,7 +63,9 @@
 
 第一步，[在 NPM 中登录 GitHub 账号][10]；
 
-第二步，安装依赖并运行开发服务器:
+第二步，在根目录下新建.env.local文件，复制[配置仓库](https://github.com/kaiyuanshe/service-configuration/blob/main/kaiyuanshe.github.io/.env.local)里的配置
+
+第三步，安装依赖并运行开发服务器:
 
 ```bash
 npm i pnpm -g
