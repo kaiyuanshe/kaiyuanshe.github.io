@@ -41,6 +41,7 @@ export class ForumModel extends BiDataTable<Forum>() {
       volunteers,
       producerPositions,
       producerOrganizations,
+      location,
       ...data
     },
   }: TableRecord<Forum>) {
@@ -59,6 +60,7 @@ export class ForumModel extends BiDataTable<Forum>() {
       producerOrganizations:
         producerOrganizations &&
         normalizeTextArray(producerOrganizations as TableCellText[]),
+      location: location && normalizeTextArray(location as TableCellText[]),
     };
   }
 }

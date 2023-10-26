@@ -14,7 +14,6 @@ export interface AgendaToolbarProps
   extends Omit<StackProps, 'id' | 'title'>,
     Agenda {
   activityId: string;
-  location: string;
 }
 
 const AgendaToolbar: FC<AgendaToolbarProps> = observer(
@@ -49,8 +48,9 @@ const AgendaToolbar: FC<AgendaToolbarProps> = observer(
             description: summary as string,
             startTime: new Date(startTime as TimeData).toJSON(),
             endTime: new Date(endTime as TimeData).toJSON(),
-            location,
+            location: location as string,
             attendees: mentors as string[],
+            url: `https://kaiyuanshe.cn/activity/${activityId}/agenda/${id}`,
           }}
         >
           {t('calendar')}
