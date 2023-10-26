@@ -136,7 +136,6 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
         <AgendaToolbar
           className="my-3 text-nowrap"
           activityId={id + ''}
-          location={location + ''}
           {...this.props.agenda}
         >
           <SessionBox>
@@ -250,11 +249,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
                   agenda =>
                     agenda.title !== title && (
                       <li key={agenda.id + ''}>
-                        <AgendaCard
-                          activityId={id + ''}
-                          location={location + ''}
-                          {...agenda}
-                        />
+                        <AgendaCard activityId={id + ''} {...agenda} />
                       </li>
                     ),
                 )}
