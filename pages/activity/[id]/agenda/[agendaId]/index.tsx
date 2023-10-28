@@ -142,7 +142,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
           <SessionBox>
             <QRCodeButton
               title="请该打卡点工作人员扫码"
-              value={`${API_Host}/activity/${id}/agenda/${id}#?user=${userStore.session?.id}`}
+              value={`${API_Host}/activity/${id}/agenda/${agendaId}#?user=${userStore.session?.id}`}
               disabled={!!checkEvent}
             >
               打卡
