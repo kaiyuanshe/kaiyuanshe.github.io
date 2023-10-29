@@ -1,15 +1,9 @@
-import { ReactNode } from 'react';
+import { FC } from 'react';
 
 import style from './style.module.less';
 
-export default function TextScrollableBox({
-  children,
-}: {
-  children: ReactNode;
-}) {
-  return (
+export const TextScrollableBox: FC = ({ children }) => (
     <div className={style.box}>
       <div className={style.scrollItem}>{children}</div>
     </div>
   );
-}
