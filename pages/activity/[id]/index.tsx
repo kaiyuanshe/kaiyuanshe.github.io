@@ -249,7 +249,12 @@ export default class ActivityDetailPage extends PureComponent<
         <header
           className={`d-flex flex-column align-items-center justify-content-around ${styles.header}`}
         >
-          <img className={styles.img} src={blobURLOf(activity.image)} />
+          <div className={styles.scrollWrap}>
+            <img
+              className={styles.scrollItem}
+              src={blobURLOf(activity.image)}
+            />
+          </div>
           <h1 className="visually-hidden" id="top">
             {activity.name as string}
           </h1>

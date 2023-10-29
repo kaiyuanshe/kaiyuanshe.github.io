@@ -10,23 +10,31 @@
   }
 
   90% {
-    transform: translateX(calc(-100% + 100px));
+    margin-left: 100%;
+    transform: translateX(-100%);
   }
 
   100% {
-    transform: translateX(calc(-100% + 100px));
+    margin-left: 100%;
+    transform: translateX(-100%);
   }
 }
 
 .box {
-  width: 100px;
-  vertical-align: top;
-  overflow: hidden;
-  white-space: nowrap;
-  & .scrollItem {
+  --duration: 4s;
+  .scrollWrap {
+    max-width: 100%;
     display: inline-block;
-    animation: scroll linear 4s alternate infinite;
-    width: fit-content;
-    min-width: 100%;
+    vertical-align: top;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .scrollItem {
+    display: inline-block;
+    animation: scroll linear var(--duration) alternate infinite;
+    float: left;
+    &:hover {
+      animation-play-state: paused;
+    }
   }
 }

@@ -1,16 +1,19 @@
 .header {
-  height: calc(50vh - 5rem);
   overflow: hidden;
-
   @media (min-width: 576px) {
     height: calc(70vh - 5rem);
   }
   @media (min-width: 768px) {
     height: calc(100vh - 5rem);
   }
-
-  & .img {
-    animation: scroll linear 4s alternate infinite;
+  .scrollWrap {
+    max-width: 100%;
+    display: inline-block;
+    vertical-align: top;
+    .scrollItem {
+      display: inline-block;
+      animation: scroll linear 4s alternate infinite;
+    }
   }
 }
 
@@ -18,27 +21,30 @@
   @keyframes scroll {
     0%,
     10% {
-      margin-left: 0;
+      margin-top: 0;
       transform: translateY(0);
     }
 
     90%,
     100% {
-      transform: translateY(calc(-100% + calc(70vh - 5rem)));
+      margin-top: 100%;
+      transform: translateY(-100%);
     }
   }
 }
+
 @media (min-width: 768px) {
   @keyframes scroll {
     0%,
     10% {
-      margin-left: 0;
+      margin-top: 0;
       transform: translateY(0);
     }
 
     90%,
     100% {
-      transform: translateY(calc(-100% + calc(100vh - 5rem)));
+      margin-top: 100%;
+      transform: translateY(-100%);
     }
   }
 }
