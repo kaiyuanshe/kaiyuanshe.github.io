@@ -251,6 +251,7 @@ export default class ActivityDetailPage extends PureComponent<
         >
           <div className={styles.scrollWrap}>
             <img
+              loading={'lazy'}
               className={styles.scrollItem}
               src={blobURLOf(activity.image)}
             />
