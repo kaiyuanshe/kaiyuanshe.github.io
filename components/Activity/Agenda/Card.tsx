@@ -8,10 +8,11 @@ import { Badge, Carousel, Col, Container, Row } from 'react-bootstrap';
 import { blobURLOf } from '../../../models/Base';
 import { LarkImage } from '../../Base/LarkImage';
 import { ScoreBar } from '../../Base/ScoreBar';
+import { TextScrollableBox } from '../../Base/TextScrollableBox';
 import { ActivityPeople } from '../People';
 const AgendaToolbar = dynamic(() => import('./Toolbar'), { ssr: false });
 import style from './Card.module.less';
-import { TextScrollableBox } from '../../Base/TextScrollableBox';
+import { AgendaToolbarProps } from './Toolbar';
 
 @observer
 export class AgendaCard extends Component<AgendaToolbarProps> {

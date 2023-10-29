@@ -11,6 +11,7 @@ import {
   Dropdown,
   DropdownButton,
   DropdownButtonProps,
+  Image,
   Row,
   Stack,
 } from 'react-bootstrap';
@@ -250,10 +251,10 @@ export default class ActivityDetailPage extends PureComponent<
           className={`d-flex flex-column align-items-center justify-content-around ${styles.header}`}
         >
           <div className={styles.scrollWrap}>
-            <img
-              loading={'lazy'}
+            <Image
               className={styles.scrollItem}
               src={blobURLOf(activity.image)}
+              loading={'lazy'}
             />
           </div>
           <h1 className="visually-hidden" id="top">
