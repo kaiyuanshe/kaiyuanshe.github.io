@@ -8,7 +8,7 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { GoogleAnalytics } from 'nextjs-google-analytics';
 import { FC } from 'react';
-import { Col, Container, Row, SSRProvider } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 
 import { MainRoutes } from '../components/data';
 import MainNav from '../components/Layout/MainNav';
@@ -33,7 +33,7 @@ globalThis.addEventListener?.('unhandledrejection', ({ reason }) => {
 const { t } = i18n;
 
 const AppShell: FC<AppProps> = observer(({ Component, pageProps, router }) => (
-  <SSRProvider>
+  <>
     <Head>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
     </Head>
@@ -77,7 +77,7 @@ const AppShell: FC<AppProps> = observer(({ Component, pageProps, router }) => (
         </Row>
       </Container>
     </footer>
-  </SSRProvider>
+  </>
 ));
 
 export default AppShell;

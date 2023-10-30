@@ -1,6 +1,7 @@
 import { text2color } from 'idea-react';
 import { TableCellAttachment, TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
+import dynamic from 'next/dynamic';
 import { Component } from 'react';
 import { Badge, Carousel, Col, Container, Row } from 'react-bootstrap';
 
@@ -8,7 +9,9 @@ import { blobURLOf } from '../../../models/Base';
 import { LarkImage } from '../../Base/LarkImage';
 import { ScoreBar } from '../../Base/ScoreBar';
 import { ActivityPeople } from '../People';
-import { AgendaToolbar, AgendaToolbarProps } from './Toolbar';
+import { AgendaToolbarProps } from './Toolbar';
+
+const AgendaToolbar = dynamic(() => import('./Toolbar'), { ssr: false });
 
 @observer
 export class AgendaCard extends Component<AgendaToolbarProps> {
@@ -63,7 +66,7 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
             xs={4}
             className="d-flex flex-column justify-content-around align-items-center"
           >
-            <Badge bg={text2color(type + '', ['light'])}>{type}</Badge>
+            <Badge bg={text2color(type + '', ['light'])}>{type + ''}</Badge>
 
             {this.renderAvatarImages()}
           </Col>
@@ -75,7 +78,7 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
                 href={`/activity/${activityId}/agenda/${id}`}
                 title={title as string}
               >
-                {title}
+                {title as string}
               </a>
             </h3>
             <ul className="list-unstyled flex-fill d-flex flex-column justify-content-between gap-2">

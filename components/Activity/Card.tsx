@@ -38,7 +38,7 @@ export const ActivityCard: FC<ActivityCardProps> = ({
           className="text-decoration-none text-secondary text-truncate-lines"
           href={ActivityModel.getLink({ id, ...activity })}
         >
-          {name}
+          {name as string}
         </a>
       </Card.Title>
 
@@ -48,7 +48,8 @@ export const ActivityCard: FC<ActivityCardProps> = ({
             className="mt-1 text-truncate"
             title={(location as TableCellLocation)?.full_address}
           >
-            <span className="me-1">{city}</span>
+            <span className="me-1">{city as string}</span>
+
             {(location as TableCellLocation)?.full_address}
           </Card.Text>
         </Col>

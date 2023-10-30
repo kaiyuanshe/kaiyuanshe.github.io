@@ -17,7 +17,7 @@ export interface AgendaToolbarProps
   location: string;
 }
 
-export const AgendaToolbar: FC<AgendaToolbarProps> = observer(
+const AgendaToolbar: FC<AgendaToolbarProps> = observer(
   ({
     activityId,
     location,
@@ -40,6 +40,7 @@ export const AgendaToolbar: FC<AgendaToolbarProps> = observer(
       </Button>
 
       {!isServer() && (
+        // @ts-ignore
         <ICalendarLink
           className="btn btn-primary btn-sm"
           filename={`${title}.ics`}
@@ -60,3 +61,4 @@ export const AgendaToolbar: FC<AgendaToolbarProps> = observer(
     </Stack>
   ),
 );
+export default AgendaToolbar;
