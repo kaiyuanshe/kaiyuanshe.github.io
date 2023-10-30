@@ -49,10 +49,10 @@ export default class PersonDetailPage extends PureComponent<
     <>
       <Image fluid src={`${github}.png`} alt="GitHub profile image" />
 
-      <h1>{name}</h1>
+      <h1>{name as string}</h1>
       <ul>
         <li>
-          <Badge bg={text2color(gender + '', ['light'])}>{gender}</Badge>
+          <Badge bg={text2color(gender + '', ['light'])}>{gender + ''}</Badge>
         </li>
         {skills && (
           <li>
@@ -67,20 +67,20 @@ export default class PersonDetailPage extends PureComponent<
             ))}
           </li>
         )}
-        <li>🗺 {city}</li>
+        <li>🗺 {city as string}</li>
         <li>
           📬 <a href={email as string}>{(email as string)?.split(':')[1]}</a>
         </li>
         <li>
           🖥{' '}
           <a target="_blank" href={website as string} rel="noreferrer">
-            {website}
+            {website as string}
           </a>
         </li>
         <li>
           ⌨{' '}
           <a target="_blank" href={github as string} rel="noreferrer">
-            {github}
+            {github as string}
           </a>
         </li>
       </ul>
@@ -104,13 +104,13 @@ export default class PersonDetailPage extends PureComponent<
             <time dateTime={new Date(createdAt as number).toJSON()}>
               {formatDate(createdAt as number, 'YYYY-MM-DD')}
             </time>
-            <Badge bg={text2color(type + '', ['light'])}>{type}</Badge>
+            <Badge bg={text2color(type + '', ['light'])}>{type + ''}</Badge>
             {award ? (
-              <span>{award}</span>
+              <span>{award as string}</span>
             ) : (
               <>
-                <span>{department}</span>
-                <span>{position}</span>
+                <span>{department as string}</span>
+                <span>{position as string}</span>
               </>
             )}
           </div>
@@ -118,7 +118,7 @@ export default class PersonDetailPage extends PureComponent<
 
         <figure className="mt-3 px-3">
           <blockquote className="blockquote">
-            <p>{reason}</p>
+            <p>{reason as string}</p>
           </blockquote>
           {applicants && (
             <figcaption className="blockquote-footer">
@@ -140,7 +140,7 @@ export default class PersonDetailPage extends PureComponent<
         <Breadcrumb>
           <Breadcrumb.Item href="/">{t('KaiYuanShe')}</Breadcrumb.Item>
           <Breadcrumb.Item href="/member">{t('member')}</Breadcrumb.Item>
-          <Breadcrumb.Item active>{person.name}</Breadcrumb.Item>
+          <Breadcrumb.Item active>{person.name as string}</Breadcrumb.Item>
         </Breadcrumb>
 
         <Row>

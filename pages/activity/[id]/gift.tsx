@@ -119,11 +119,13 @@ export default class GiftListPage extends PureComponent<GiftListPageProps> {
           <Breadcrumb.Item href="/">{t('KaiYuanShe')}</Breadcrumb.Item>
           <Breadcrumb.Item href="/activity">{t('activity')}</Breadcrumb.Item>
           <Breadcrumb.Item href={`/activity/${activity.id}`}>
-            {activity.name}
+            {activity.name as string}
           </Breadcrumb.Item>
           <Breadcrumb.Item active>礼品墙</Breadcrumb.Item>
         </Breadcrumb>
-        <h1 className="mt-5 mb-4 text-center">{activity.name} 礼品墙</h1>
+        <h1 className="mt-5 mb-4 text-center">
+          {activity.name as string} 礼品墙
+        </h1>
 
         {loading && <Loading />}
 

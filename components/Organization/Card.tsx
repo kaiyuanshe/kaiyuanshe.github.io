@@ -84,7 +84,7 @@ export class OrganizationCard extends PureComponent<OrganizationCardProps> {
         />
         <Card.Body>
           <Card.Title>
-            {name}
+            {name as string}
             <Badge
               className="ms-2"
               bg={text2color(type + '', ['light'])}
@@ -96,7 +96,7 @@ export class OrganizationCard extends PureComponent<OrganizationCardProps> {
                   onSwitch({ type: type as string }))
               }
             >
-              {type}
+              {type + ''}
             </Badge>
           </Card.Title>
 
@@ -122,7 +122,7 @@ export class OrganizationCard extends PureComponent<OrganizationCardProps> {
             className="d-none d-sm-block text-wrap overflow-auto"
             style={{ minHeight: '5rem', maxHeight: '10rem' }}
           >
-            {summary}
+            {summary as string}
           </Card.Text>
         </Card.Body>
 

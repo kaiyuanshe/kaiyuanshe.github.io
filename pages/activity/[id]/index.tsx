@@ -194,7 +194,7 @@ export default class ActivityDetailPage extends PureComponent<
     return (
       <section key={name as string}>
         <h2 className="mt-5 mb-3 text-center" id={name as string}>
-          {name}
+          {name as string}
         </h2>
         {location && (
           <h4 className="mb-5 text-center">
@@ -203,7 +203,7 @@ export default class ActivityDetailPage extends PureComponent<
         )}
         <Row>
           <Col xl={{ offset: 2, span: 8 }} as="p" className="text-muted">
-            {summary}
+            {summary as string}
           </Col>
         </Row>
         <div className="d-flex justify-content-center">
@@ -255,7 +255,7 @@ export default class ActivityDetailPage extends PureComponent<
           }}
         >
           <h1 className="visually-hidden" id="top">
-            {activity.name}
+            {activity.name as string}
           </h1>
         </header>
 

@@ -58,7 +58,9 @@ export default class VolunteerPage extends PureComponent<VolunteerPageProps> {
         <Breadcrumb>
           <Breadcrumb.Item href="/">{t('KaiYuanShe')}</Breadcrumb.Item>
           <Breadcrumb.Item href="/activity">{t('activity')}</Breadcrumb.Item>
-          <Breadcrumb.Item href={`/activity/${id}`}>{name}</Breadcrumb.Item>
+          <Breadcrumb.Item href={`/activity/${id}`}>
+            {name as string}
+          </Breadcrumb.Item>
           <Breadcrumb.Item active>{t('volunteer')}</Breadcrumb.Item>
         </Breadcrumb>
         <h1 className="text-center">{name + ' ' + t('volunteer')}</h1>

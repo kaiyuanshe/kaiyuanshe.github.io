@@ -5,6 +5,7 @@ import { Breadcrumb, Col, Container, Row } from 'react-bootstrap';
 
 import { ArticleListLayout } from '../../../components/Article/List';
 import { CommentBox } from '../../../components/Base/CommentBox';
+import { TagNav } from '../../../components/Base/TagNav';
 import PageHead from '../../../components/Layout/PageHead';
 import { i18n } from '../../../models/Base/Translation';
 import { Article, ArticleModel } from '../../../models/Product/Article';
@@ -30,19 +31,23 @@ const { t } = i18n;
 export default class ArticleDetailPage extends PureComponent<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > {
-  renderAuthorization() {
-    const { license = 'CC-4.0', link } = this.props.article;
+  renderMeta() {
+    const { license = 'CC-4.0', link, tags } = this.props.article;
 
     return (
-      <ul className="list-unstyled small text-muted d-flex flex-column gap-3">
-        <li>版权声明：{license}</li>
-        <li>
-          原文链接：
-          <a target="_blank" href={link + ''} rel="noreferrer">
-            {link}
-          </a>
-        </li>
-      </ul>
+      <>
+        <ul className="list-unstyled small text-muted d-flex flex-column gap-3">
+          <li>版权声明：{license as string}</li>
+          <li>
+            原文链接：
+            <a target="_blank" href={link + ''} rel="noreferrer">
+              {link as string}
+            </a>
+          </li>
+        </ul>
+
+        <TagNav list={tags as string[]} />
+      </>
     );
   }
 
@@ -52,12 +57,12 @@ export default class ArticleDetailPage extends PureComponent<
 
     return (
       <Container className="py-5">
-        <PageHead title={title + ''} />
+        <PageHead title={title as string} />
 
         <Breadcrumb>
           <Breadcrumb.Item href="/">{t('KaiYuanShe')}</Breadcrumb.Item>
           <Breadcrumb.Item href="/article">{t('article')}</Breadcrumb.Item>
-          <Breadcrumb.Item active>{title}</Breadcrumb.Item>
+          <Breadcrumb.Item active>{title as string}</Breadcrumb.Item>
         </Breadcrumb>
 
         <Row>
@@ -68,7 +73,7 @@ export default class ArticleDetailPage extends PureComponent<
             dangerouslySetInnerHTML={{ __html: content! }}
           />
           <Col xs={12} sm={3}>
-            {this.renderAuthorization()}
+            {this.renderMeta()}
 
             <ArticleListLayout defaultData={recommends} rowCols={{ xs: 1 }} />
           </Col>

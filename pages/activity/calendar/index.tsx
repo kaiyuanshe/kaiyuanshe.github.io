@@ -41,7 +41,7 @@ export default class CalendarPage extends PureComponent {
           className="text-center"
           value={allItems.map(({ title, publishedAt, alias }) => ({
             date: new Date(publishedAt as number),
-            content: title,
+            content: title as string,
             link: `/article/${alias}`,
           }))}
           onChange={this.loadData}

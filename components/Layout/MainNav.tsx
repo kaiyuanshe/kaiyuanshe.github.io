@@ -64,7 +64,7 @@ class MainNav extends PureComponent<MainNavProps> {
                   <NavDropdown.Item
                     key={title}
                     href={path}
-                    className="text-center text-md-start"
+                    className="text-center text-lg-start"
                   >
                     {title}
                   </NavDropdown.Item>

@@ -67,7 +67,7 @@ export class OpenSourceMap extends PureComponent {
                 className="mx-2"
                 bg={text2color(value + '', ['light'])}
               >
-                {value}
+                {value + ''}
               </Badge>
             ))}
           </div>

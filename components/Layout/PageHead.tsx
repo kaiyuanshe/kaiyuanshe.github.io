@@ -1,10 +1,12 @@
 import { observer } from 'mobx-react';
 import Head from 'next/head';
-import type { FC } from 'react';
+import type { FC, PropsWithChildren } from 'react';
 
 import { i18n } from '../../models/Base/Translation';
 
-export type PageHeadProps = Partial<Record<'title' | 'description', string>>;
+export type PageHeadProps = PropsWithChildren<
+  Partial<Record<'title' | 'description', string>>
+>;
 
 const { t } = i18n,
   Summary = process.env.NEXT_PUBLIC_SITE_SUMMARY;
