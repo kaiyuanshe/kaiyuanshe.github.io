@@ -7,6 +7,7 @@ type TextScrollableBoxProps = {
   width?: number;
   duration?: string;
 };
+
 export const TextScrollableBox: FC<TextScrollableBoxProps> = ({
   children,
   width,

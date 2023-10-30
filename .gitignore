@@ -48,4 +48,4 @@ yarn-error.log*
 
 # IDE
 .vscode/settings.json
-.idea
+.idea/
