@@ -2,15 +2,16 @@ import { FC, ReactNode } from 'react';
 
 import style from './style.module.less';
 
-export const TextScrollableBox: FC = ({
-  children,
-  width,
-  duration,
-}: {
+type TextScrollableBoxProps = {
   children: ReactNode;
   width?: number;
   duration?: string;
-}) => {
+};
+export const TextScrollableBox: FC<TextScrollableBoxProps> = ({
+  children,
+  width,
+  duration,
+}: TextScrollableBoxProps) => {
   let boxStyle = {};
   if (width) {
     boxStyle = Object.assign(boxStyle, { width });
