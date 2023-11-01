@@ -1,12 +1,11 @@
-import { FC, ReactNode } from 'react';
+import { FC, PropsWithChildren } from 'react';
 
 import style from './style.module.less';
 
-type TextScrollableBoxProps = {
-  children: ReactNode;
+export type TextScrollableBoxProps = PropsWithChildren<{
   width?: number;
   duration?: string;
-};
+}>;
 
 export const TextScrollableBox: FC<TextScrollableBoxProps> = ({
   children,
