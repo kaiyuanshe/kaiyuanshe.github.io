@@ -22,17 +22,8 @@
 
 .box {
   --duration: 4s;
-  .scrollWrap {
-    max-width: 100%;
-    display: inline-block;
-    vertical-align: top;
-    overflow: hidden;
-    white-space: nowrap;
-  }
   .scrollItem {
-    display: inline-block;
     animation: scroll linear var(--duration) alternate infinite;
-    float: left;
     &:hover {
       animation-play-state: paused;
     }

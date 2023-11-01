@@ -21,6 +21,7 @@ import {
   AgendaCard,
   DrawerNav,
 } from '../../../components/Activity';
+import { ImageScrollableBox } from '../../../components/Base/ImageScrollableBox';
 import PageHead from '../../../components/Layout/PageHead';
 import type { ImageMarker } from '../../../components/Map/ListMap';
 import { Activity, ActivityModel } from '../../../models/Activity';
@@ -250,13 +251,7 @@ export default class ActivityDetailPage extends PureComponent<
         <header
           className={`d-flex flex-column align-items-center justify-content-around ${styles.header}`}
         >
-          <div className={styles.scrollWrap}>
-            <Image
-              className={styles.scrollItem}
-              src={blobURLOf(activity.image)}
-              loading={'lazy'}
-            />
-          </div>
+          <ImageScrollableBox url={activity.image as string} />
           <h1 className="visually-hidden" id="top">
             {activity.name as string}
           </h1>
