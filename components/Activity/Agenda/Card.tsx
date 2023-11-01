@@ -81,7 +81,7 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
                 href={`/activity/${activityId}/agenda/${id}`}
                 title={title as string}
               >
-                <TextScrollableBox duration={'20s'}>{title}</TextScrollableBox>
+                <TextScrollableBox duration="20s">{title}</TextScrollableBox>
               </a>
             </h3>
             <ul className="list-unstyled flex-fill d-flex flex-column justify-content-between gap-2">
