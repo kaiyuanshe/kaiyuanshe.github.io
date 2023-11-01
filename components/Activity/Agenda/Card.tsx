@@ -11,7 +11,6 @@ import { ScoreBar } from '../../Base/ScoreBar';
 import { TextScrollableBox } from '../../Base/TextScrollableBox';
 import { ActivityPeople } from '../People';
 const AgendaToolbar = dynamic(() => import('./Toolbar'), { ssr: false });
-import style from './Card.module.less';
 import { AgendaToolbarProps } from './Toolbar';
 
 @observer
