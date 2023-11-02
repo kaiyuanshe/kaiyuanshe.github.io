@@ -120,13 +120,13 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
     return (
       <header>
         <div className="d-flex flex-column flex-lg-row align-items-center justify-content-between">
-          <h1>{title}</h1>
+          <h1>{title as string}</h1>
         </div>
 
         <div className="d-flex flex-wrap align-items-center gap-3 my-3">
-          <Badge bg={text2color(type + '', ['light'])}>{type}</Badge>
+          <Badge bg={text2color(type + '', ['light'])}>{type + ''}</Badge>
 
-          <div className="text-success">{forum}</div>
+          <div className="text-success">{forum as string}</div>
           <div>
             🕒 {new Date(+startTime!).toLocaleString()} ~{' '}
             {new Date(+endTime!).toLocaleString()}
@@ -142,7 +142,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
           <SessionBox>
             <QRCodeButton
               title="请该打卡点工作人员扫码"
-              value={`${API_Host}/activity/${id}/agenda/${id}#?user=${userStore.session?.id}`}
+              value={`${API_Host}/activity/${id}/agenda/${agendaId}#?user=${userStore.session?.id}`}
               disabled={!!checkEvent}
             >
               打卡
@@ -202,9 +202,9 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
           <Breadcrumb.Item href="/">{t('KaiYuanShe')}</Breadcrumb.Item>
           <Breadcrumb.Item href="/activity">{t('activity')}</Breadcrumb.Item>
           <Breadcrumb.Item href={`/activity/${alias || id}`}>
-            {name}
+            {name as string}
           </Breadcrumb.Item>
-          <Breadcrumb.Item active>{title}</Breadcrumb.Item>
+          <Breadcrumb.Item active>{title as string}</Breadcrumb.Item>
         </Breadcrumb>
 
         <Row className="my-3">

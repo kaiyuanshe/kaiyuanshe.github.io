@@ -43,27 +43,27 @@ export const ElectorCard: FC<ElectorCardProps> = ({
           className="stretched-link text-decoration-none"
           href={`/member/${recipient}`}
         >
-          {recipient}
+          {recipient as string}
         </a>
       </Card.Title>
       <Card.Subtitle>
         {award ? (
           <>
             授予
-            <span>{award}</span>
+            <span>{award as string}</span>
           </>
         ) : (
           <>
             担任
-            <span>{department}</span>
-            <span>{position}</span>
+            <span>{department as string}</span>
+            <span>{position as string}</span>
           </>
         )}
       </Card.Subtitle>
       <hr />
       <h4 className="fs-5">提名理由</h4>
 
-      <Card.Text>{reason}</Card.Text>
+      <Card.Text>{reason as string}</Card.Text>
     </Card.Body>
 
     <Card.Footer

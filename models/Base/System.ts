@@ -11,7 +11,7 @@ export type CityCoordinateMap = Record<string, [number, number]>;
 
 export class SystemModel extends BaseModel {
   @observable
-  hashQuery: URLData = {};
+  hashQuery: URLData<string> = {};
 
   @observable
   screenNarrow = false;
@@ -33,7 +33,7 @@ export class SystemModel extends BaseModel {
   updateHashQuery = () =>
     (this.hashQuery = parseURLData(
       globalThis.location?.hash.split('?')[1] || '',
-    ));
+    ) as URLData<string>);
 
   updateScreen = () =>
     (this.screenNarrow =

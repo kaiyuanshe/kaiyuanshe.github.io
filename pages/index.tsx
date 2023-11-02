@@ -69,7 +69,7 @@ export default class HomePage extends PureComponent<
       </a>
 
       <Carousel.Caption as="h3" className="bg-primary">
-        {linkText}
+        {linkText as string}
       </Carousel.Caption>
     </Carousel.Item>
   );

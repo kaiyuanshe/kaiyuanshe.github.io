@@ -1,4 +1,4 @@
-import { Loading } from 'idea-react';
+import { Loading, text2color } from 'idea-react';
 import { computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { Column, RestTable } from 'mobx-restful-table';
@@ -67,7 +67,9 @@ export default class BillDetailPage extends PureComponent<BillDetailPageProps> {
       {
         key: 'type',
         renderHead: t('bill_type'),
-        renderBody: ({ type }) => <Badge>{type}</Badge>,
+        renderBody: ({ type }) => (
+          <Badge bg={text2color(type + '', ['light'])}>{type + ''}</Badge>
+        ),
       },
       {
         key: 'price',
@@ -92,7 +94,9 @@ export default class BillDetailPage extends PureComponent<BillDetailPageProps> {
         <Breadcrumb>
           <Breadcrumb.Item href="/">{t('KaiYuanShe')}</Breadcrumb.Item>
           <Breadcrumb.Item href="/activity">{t('activity')}</Breadcrumb.Item>
-          <Breadcrumb.Item href={`/activity/${id}`}>{name}</Breadcrumb.Item>
+          <Breadcrumb.Item href={`/activity/${id}`}>
+            {name as string}
+          </Breadcrumb.Item>
           <Breadcrumb.Item active>{t('financial_disclosure')}</Breadcrumb.Item>
         </Breadcrumb>
         <h1 className="mt-5 mb-4">{name + ' ' + t('financial_disclosure')}</h1>
