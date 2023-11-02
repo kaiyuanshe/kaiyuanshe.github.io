@@ -6,12 +6,18 @@ import styles from './index.module.less';
 
 type ImageScrollableBoxProps = {
   url: string;
+  duration?: string;
 };
 export const ImageScrollableBox: FC<ImageScrollableBoxProps> = ({
   url,
+  duration,
 }: ImageScrollableBoxProps) => {
   return (
-    <div className={`d-inline-block mh-100 ${styles.scrollWrap}`}>
+    <div
+      className={`d-inline-block mh-100 ${styles.scrollWrap}`}
+      // @ts-ignore
+      style={{ '--duration': duration }}
+    >
       <Image
         className={`d-inline-block ${styles.scrollItem}`}
         src={blobURLOf(url)}

@@ -4,12 +4,12 @@
   font-size: 0;
   &:hover {
     animation-play-state: paused;
+    .scrollItem {
+      animation-play-state: paused;
+    }
   }
   .scrollItem {
     animation: scrollItem linear var(--duration) alternate infinite;
-    &:hover {
-      animation-play-state: paused;
-    }
   }
 }
 
