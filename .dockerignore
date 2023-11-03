@@ -7,3 +7,6 @@ start.sh
 .husky/
 .github/
 .vscode/
+.git/
+README.md
+Dockerfile
