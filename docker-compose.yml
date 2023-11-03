@@ -8,8 +8,21 @@ services:
       - PORT=3000
     ports:
       - 3000:3000
+    healthcheck:
+      test: ['CMD-SHELL', 'curl -f http://localhost:3000/ || exit 1']
+      interval: 3s
+      retries: 5
+      start_period: 30s
+    labels:
+      - 'autoheal=true'
     restart: always
     logging:
       driver: 'json-file'
       options:
         max-size: '10m'
+
+  autoheal:
+    image: willfarrell/autoheal:1.2.0
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: always
