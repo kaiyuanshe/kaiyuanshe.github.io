@@ -21,7 +21,7 @@ import {
   AgendaCard,
   DrawerNav,
 } from '../../../components/Activity';
-import { ImageScrollableBox } from '../../../components/Base/ImageScrollableBox';
+import { VerticalScrollableBox } from '../../../components/Base/VerticalScrollableBox';
 import PageHead from '../../../components/Layout/PageHead';
 import type { ImageMarker } from '../../../components/Map/ListMap';
 import { Activity, ActivityModel } from '../../../models/Activity';
@@ -243,7 +243,6 @@ export default class ActivityDetailPage extends PureComponent<
 
   render() {
     const { activity, forums } = this.props;
-
     return (
       <>
         <PageHead title={activity.name + ''} />
@@ -251,7 +250,13 @@ export default class ActivityDetailPage extends PureComponent<
         <header
           className={`d-flex flex-column align-items-center justify-content-around ${styles.header}`}
         >
-          <ImageScrollableBox url={activity.image as string} />
+          <VerticalScrollableBox>
+            <Image
+              className={`d-inline-block ${styles.scrollItem}`}
+              loading="lazy"
+              src={activity.image as string}
+            />
+          </VerticalScrollableBox>
           <h1 className="visually-hidden" id="top">
             {activity.name as string}
           </h1>
