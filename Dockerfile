@@ -15,6 +15,7 @@ RUN pnpm i --frozen-lockfile
 
 COPY . /home/node/app
 RUN pnpm build
+
 RUN pnpm prune --prod || true \
     pnpm store prune
 
