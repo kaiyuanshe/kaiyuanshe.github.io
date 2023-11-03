@@ -8,5 +8,5 @@ start.sh
 .github/
 .vscode/
 .git/
-README.md
 Dockerfile
+docker-compose.yml
