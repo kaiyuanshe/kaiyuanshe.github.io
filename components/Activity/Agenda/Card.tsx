@@ -10,8 +10,9 @@ import { LarkImage } from '../../Base/LarkImage';
 import { ScoreBar } from '../../Base/ScoreBar';
 import { TextScrollableBox } from '../../Base/TextScrollableBox';
 import { ActivityPeople } from '../People';
-const AgendaToolbar = dynamic(() => import('./Toolbar'), { ssr: false });
 import { AgendaToolbarProps } from './Toolbar';
+
+const AgendaToolbar = dynamic(() => import('./Toolbar'), { ssr: false });
 
 @observer
 export class AgendaCard extends Component<AgendaToolbarProps> {
@@ -67,7 +68,7 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
             className="d-flex flex-column justify-content-around align-items-center"
           >
             <Badge bg={text2color(type + '', ['light'])}>
-              <TextScrollableBox width={100}>{type}</TextScrollableBox>
+              <TextScrollableBox width={100}>{type + ''}</TextScrollableBox>
             </Badge>
 
             {this.renderAvatarImages()}
@@ -80,7 +81,9 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
                 href={`/activity/${activityId}/agenda/${id}`}
                 title={title as string}
               >
-                <TextScrollableBox duration="20s">{title}</TextScrollableBox>
+                <TextScrollableBox duration="20s">
+                  {title as string}
+                </TextScrollableBox>
               </a>
             </h3>
             <ul className="list-unstyled flex-fill d-flex flex-column justify-content-between gap-2">
