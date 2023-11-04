@@ -2,6 +2,8 @@ FROM node:18-slim
 
 USER root
 
+RUN apt-get update && \
+    apt-get install curl -y --no-install-recommends
 RUN npm rm yarn -g
 RUN npm i pnpm -g
 
