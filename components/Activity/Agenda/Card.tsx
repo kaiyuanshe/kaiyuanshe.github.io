@@ -8,10 +8,10 @@ import { Badge, Carousel, Col, Container, Row } from 'react-bootstrap';
 import { blobURLOf } from '../../../models/Base';
 import { LarkImage } from '../../Base/LarkImage';
 import { ScoreBar } from '../../Base/ScoreBar';
+import { TextScrollableBox } from '../../Base/TextScrollableBox';
 import { ActivityPeople } from '../People';
-import { AgendaToolbarProps } from './Toolbar';
-
 const AgendaToolbar = dynamic(() => import('./Toolbar'), { ssr: false });
+import { AgendaToolbarProps } from './Toolbar';
 
 @observer
 export class AgendaCard extends Component<AgendaToolbarProps> {
@@ -66,7 +66,9 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
             xs={4}
             className="d-flex flex-column justify-content-around align-items-center"
           >
-            <Badge bg={text2color(type + '', ['light'])}>{type + ''}</Badge>
+            <Badge bg={text2color(type + '', ['light'])}>
+              <TextScrollableBox width={100}>{type}</TextScrollableBox>
+            </Badge>
 
             {this.renderAvatarImages()}
           </Col>
@@ -78,7 +80,7 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
                 href={`/activity/${activityId}/agenda/${id}`}
                 title={title as string}
               >
-                {title as string}
+                <TextScrollableBox duration="20s">{title}</TextScrollableBox>
               </a>
             </h3>
             <ul className="list-unstyled flex-fill d-flex flex-column justify-content-between gap-2">

@@ -1,0 +1,23 @@
+@keyframes scroll {
+  0%,
+  10% {
+    margin-left: 0;
+    transform: translateX(0);
+  }
+
+  90%,
+  100% {
+    margin-left: 100%;
+    transform: translateX(-100%);
+  }
+}
+
+.box {
+  --duration: 4s;
+  .scrollItem {
+    animation: scroll linear var(--duration) alternate infinite;
+    &:hover {
+      animation-play-state: paused;
+    }
+  }
+}

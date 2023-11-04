@@ -1,0 +1,38 @@
+.scrollWrap {
+  --duration: 10s;
+  animation: scrollWrap linear var(--duration) alternate infinite;
+  font-size: 0;
+  &:hover {
+    animation-play-state: paused;
+    .scrollItem {
+      animation-play-state: paused;
+    }
+  }
+  .scrollItem {
+    animation: scrollItem linear var(--duration) alternate infinite;
+  }
+}
+
+@keyframes scrollItem {
+  0%,
+  10% {
+    transform: translateY(0);
+  }
+
+  90%,
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes scrollWrap {
+  0%,
+  10% {
+    transform: translateY(0);
+  }
+
+  90%,
+  100% {
+    transform: translateY(100%);
+  }
+}
