@@ -15,6 +15,6 @@ export const VerticalScrollableBox: FC<VerticalScrollableBoxProps> = ({
     // @ts-ignore
     style={{ '--duration': duration }}
   >
-    {children}
+    <div className={`d-inline-block ${styles.scrollItem}`}>{children}</div>
   </div>
 );

@@ -251,11 +251,7 @@ export default class ActivityDetailPage extends PureComponent<
           className={`d-flex flex-column align-items-center justify-content-around ${styles.header}`}
         >
           <VerticalScrollableBox>
-            <Image
-              className={`d-inline-block ${styles.scrollItem}`}
-              loading="lazy"
-              src={blobURLOf(activity.image)}
-            />
+            <Image loading="lazy" src={blobURLOf(activity.image)} />
           </VerticalScrollableBox>
           <h1 className="visually-hidden" id="top">
             {activity.name as string}
