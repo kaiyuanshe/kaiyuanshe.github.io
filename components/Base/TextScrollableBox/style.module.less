@@ -13,11 +13,21 @@
 }
 
 .box {
-  --duration: 4s;
-  .scrollItem {
-    animation: scroll linear var(--duration) alternate infinite;
-    &:hover {
-      animation-play-state: paused;
+  --width: 80px;
+  width: var(--width);
+  .scrollWrap {
+    --duration: 4s;
+    max-width: 100%;
+    display: inline-block;
+    vertical-align: top;
+    overflow: hidden;
+    white-space: nowrap;
+    .scrollItem {
+      animation: scroll linear var(--duration) alternate infinite;
+      float: left;
+      &:hover {
+        animation-play-state: paused;
+      }
     }
   }
 }

@@ -3,7 +3,7 @@ import { FC, PropsWithChildren } from 'react';
 import style from './style.module.less';
 
 export type TextScrollableBoxProps = PropsWithChildren<{
-  width?: number;
+  width?: string;
   duration?: string;
 }>;
 
@@ -12,14 +12,14 @@ export const TextScrollableBox: FC<TextScrollableBoxProps> = ({
   width,
   duration,
 }) => (
-    // @ts-ignore
-    <div className={style.box} style={{ width, '--duration': duration }}>
-      <div
-        className="d-inline-block align-top overflow-hidden text-nowrap mw-100"
-      >
-        <div className={`d-inline-block float-start ${style.scrollItem}`}>
-          {children}
-        </div>
-      </div>
+  // @ts-ignore
+  <div className={style.box} style={{ '--width': width }}>
+    <div
+      className={style.scrollWrap}
+      // @ts-ignore
+      style={{ '--duration': duration }}
+    >
+      <div className={style.scrollItem}>{children}</div>
     </div>
-  );
+  </div>
+);

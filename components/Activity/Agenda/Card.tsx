@@ -68,7 +68,7 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
             className="d-flex flex-column justify-content-around align-items-center"
           >
             <Badge bg={text2color(type + '', ['light'])}>
-              <TextScrollableBox width={100}>{type + ''}</TextScrollableBox>
+              <TextScrollableBox width="80px">{type + ''}</TextScrollableBox>
             </Badge>
 
             {this.renderAvatarImages()}
@@ -81,7 +81,7 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
                 href={`/activity/${activityId}/agenda/${id}`}
                 title={title as string}
               >
-                <TextScrollableBox duration="20s">
+                <TextScrollableBox duration="20s" width="330px">
                   {title as string}
                 </TextScrollableBox>
               </a>
