@@ -6,16 +6,18 @@ RUN apk add --no-cache libc6-compat curl
 RUN npm rm yarn -g
 RUN npm i pnpm -g
 
-RUN mkdir /home/node/app
-WORKDIR /home/node/app
+RUN mkdir /app
+WORKDIR /app
 
-COPY package.json pnpm-lock.yaml .npmrc /home/node/app/
+COPY package.json pnpm-lock.yaml .npmrc /app/
 RUN pnpm i --frozen-lockfile
 
 # Rebuild the source code only when needed
 FROM node:lts-alpine AS builder
-WORKDIR /home/node/app
-COPY --from=deps /home/node/app/node_modules ./node_modules
+WORKDIR /app
+RUN npm rm yarn -g
+RUN npm i pnpm -g
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 # Next.js collects completely anonymous telemetry data about general usage.
@@ -27,7 +29,7 @@ RUN CI=true  pnpm build
 
 # Production image, copy all the files and run next
 FROM node:lts-alpine AS runner
-WORKDIR /home/node/app
+WORKDIR /app
 
 ENV NODE_ENV production
 # Uncomment the following line in case you want to disable telemetry during runtime.
@@ -36,7 +38,7 @@ ENV NODE_ENV production
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-COPY --from=builder /home/node/app/public ./public
+COPY --from=builder /app/public ./public
 
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
