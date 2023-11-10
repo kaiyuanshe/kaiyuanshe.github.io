@@ -1,12 +1,14 @@
-# 阶段一：构建应用程序
+# Stage 1: Building the application
 FROM node:18-slim AS builder
 WORKDIR /app
-COPY package.json package-lock.json ./
-RUN npm install
+COPY package.json pnpm-lock.yaml .npmrc ./
+RUN npm rm yarn -g
+RUN npm i pnpm -g 
+RUN pnpm install --frozen-lockfile
 COPY . .
-RUN npm run build
+RUN pnpm build
 
-# 阶段二：生产镜像
+# Stage 2: Production docker images
 FROM node:18-slim
 RUN apt-get update && \
     apt-get install curl -y --no-install-recommends
