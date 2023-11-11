@@ -1,20 +1,22 @@
-# Stage 1: Building the application
-FROM node:18-slim AS builder
+FROM node:18-slim AS base
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
+COPY . /app
 WORKDIR /app
-COPY package.json pnpm-lock.yaml .npmrc ./
-RUN npm rm yarn -g
-RUN npm i pnpm -g 
-RUN pnpm install --frozen-lockfile
-COPY . .
-RUN pnpm build
 
-# Stage 2: Production docker images
-FROM node:18-slim
+FROM base AS prod-deps
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
+
+FROM base AS build
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
+RUN pnpm run build
+
+FROM base
 RUN apt-get update && \
     apt-get install curl -y --no-install-recommends
-WORKDIR /app
-COPY --from=builder /app/package.json /app/package-lock.json ./
-RUN npm ci --only=production
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/public ./public
-CMD ["npm", "start"]
+COPY --from=prod-deps /app/node_modules /app/node_modules
+COPY --from=build /app/.next /app/.next
+
+EXPOSE 3000
+CMD [ "pnpm", "start" ]
