@@ -10,13 +10,14 @@ RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-l
 
 FROM base AS build
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
-RUN pnpm run build
+RUN pnpm build
 
 FROM base
 RUN apt-get update && \
     apt-get install curl -y --no-install-recommends
+WORKDIR /app
 COPY --from=prod-deps /app/node_modules /app/node_modules
 COPY --from=build /app/.next /app/.next
 
 EXPOSE 3000
-CMD [ "pnpm", "start" ]
+CMD [ "npm", "start" ]
