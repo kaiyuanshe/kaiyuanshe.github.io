@@ -269,7 +269,11 @@ export default class ActivityDetailPage extends PureComponent<
           direction="horizontal"
           gap={3}
         >
-          <Button variant="danger" href={`/activity/${activity.id}/gift`}>
+          <Button
+            className={'d-sm-block'}
+            variant="danger"
+            href={`/activity/${activity.id}/gift`}
+          >
             {t('gift_wall')}
           </Button>
           <Button variant="info" href={`/activity/${activity.id}/volunteer`}>
