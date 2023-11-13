@@ -13,8 +13,6 @@
 }
 
 .box {
-  --width: 80px;
-  width: var(--width);
   .scrollWrap {
     --duration: 4s;
     max-width: 100%;
@@ -23,8 +21,13 @@
     overflow: hidden;
     white-space: nowrap;
     .scrollItem {
-      animation: scroll linear var(--duration) alternate infinite;
+      animation: scroll;
+      animation-duration: var(--duration);
+      animation-direction: alternate;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
       float: left;
+      display: inline-block;
       &:hover {
         animation-play-state: paused;
       }

@@ -13,7 +13,7 @@ export const TextScrollableBox: FC<TextScrollableBoxProps> = ({
   duration,
 }) => (
   // @ts-ignore
-  <div className={style.box} style={{ '--width': width }}>
+  <div className={style.box} style={{ width: width || '80px' }}>
     <div
       className={style.scrollWrap}
       // @ts-ignore

@@ -251,7 +251,11 @@ export default class ActivityDetailPage extends PureComponent<
           className={`d-flex flex-column align-items-center justify-content-around ${styles.header}`}
         >
           <VerticalScrollableBox>
-            <Image loading="lazy" src={blobURLOf(activity.image)} />
+            <Image
+              style={{ maxWidth: '100%' }}
+              loading="lazy"
+              src={blobURLOf(activity.image)}
+            />
           </VerticalScrollableBox>
           <h1 className="visually-hidden" id="top">
             {activity.name as string}
@@ -266,7 +270,7 @@ export default class ActivityDetailPage extends PureComponent<
           gap={3}
         >
           <Button variant="danger" href={`/activity/${activity.id}/gift`}>
-            礼品墙
+            {t('gift_wall')}
           </Button>
           <Button variant="info" href={`/activity/${activity.id}/volunteer`}>
             {t('volunteer')}

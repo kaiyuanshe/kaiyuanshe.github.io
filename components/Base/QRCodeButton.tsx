@@ -8,7 +8,7 @@ export type QRCodeButtonProps = Omit<OverlayBoxProps, 'children'> & ButtonProps;
 export const QRCodeButton: FC<QRCodeButtonProps> = ({
   title,
   value = '',
-  trigger = 'click',
+  trigger = 'hover',
   placement = 'bottom',
   size = 'sm',
   variant = 'danger',
