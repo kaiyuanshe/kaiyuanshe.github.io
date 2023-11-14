@@ -57,7 +57,7 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
 
   currentRecommend?: AgendaModel;
 
-  requiredKeys = ['title', 'mentors', 'approver'] as const;
+  requiredKeys = ['title', 'type', 'mentors', 'approver'] as const;
 
   sort = { startTime: 'ASC' } as const;
 

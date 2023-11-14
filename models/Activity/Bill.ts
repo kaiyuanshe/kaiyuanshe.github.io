@@ -33,7 +33,7 @@ export class BillModel extends BiDataTable<Bill>() {
 
   client = larkClient;
 
-  requiredKeys = ['price'] as const;
+  requiredKeys = ['type', 'price'] as const;
 
   @observable
   group: Record<string, Bill[]> = {};
