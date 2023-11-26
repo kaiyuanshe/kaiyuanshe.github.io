@@ -8,6 +8,7 @@ import { Badge, Breadcrumb, Col, Container, Image, Row } from 'react-bootstrap';
 import { formatDate } from 'web-utility';
 
 import { CommentBox } from '../../components/Base/CommentBox';
+import { LarkImage } from '../../components/Base/LarkImage';
 import PageHead from '../../components/Layout/PageHead';
 import { i18n } from '../../models/Base/Translation';
 import { Personnel, PersonnelModel } from '../../models/Personnel';
@@ -40,6 +41,7 @@ export default class PersonDetailPage extends PureComponent<
   renderProfile = ({
     name,
     gender,
+    avatar,
     city,
     email,
     website,
@@ -47,7 +49,11 @@ export default class PersonDetailPage extends PureComponent<
     skills,
   }: Person) => (
     <>
-      <Image fluid src={`${github}.png`} alt="GitHub profile image" />
+      {avatar ? (
+        <LarkImage src={avatar} />
+      ) : (
+        <Image fluid src={`${github}.png`} alt="GitHub profile image" />
+      )}
 
       <h1>{name as string}</h1>
       <ul>
