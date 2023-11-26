@@ -46,6 +46,7 @@ export default {
   open_source_mirror: '開源鏡像站',
   license_tool: '開源許可證選擇器',
   about_us: '關於我們',
+  xiaohongshu: '小紅書',
 
   no_more: '沒有更多',
   load_more: '加載更多……',

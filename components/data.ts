@@ -110,6 +110,15 @@ export const MainRoutes = (): Link[] => [
   },
   {
     title: t('about_us'),
-    path: 'https://kaiyuanshe.feishu.cn/wiki/wikcn749HAOCD2dwaNq4dOC67db',
+    subs: [
+      {
+        title: t('about_us'),
+        path: 'https://kaiyuanshe.feishu.cn/wiki/wikcn749HAOCD2dwaNq4dOC67db',
+      },
+      {
+        title: t('xiaohongshu'),
+        path: 'https://www.xiaohongshu.com/user/profile/6528f512000000002a018253',
+      },
+    ],
   },
 ];
