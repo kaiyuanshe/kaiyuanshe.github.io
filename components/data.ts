@@ -1,4 +1,5 @@
 import { TimeDistanceProps } from 'idea-react';
+import { textJoin } from 'mobx-i18n';
 
 import { i18n } from '../models/Base/Translation';
 import { Link } from './Layout/MainNav';
@@ -116,7 +117,7 @@ export const MainRoutes = (): Link[] => [
         path: 'https://kaiyuanshe.feishu.cn/wiki/wikcn749HAOCD2dwaNq4dOC67db',
       },
       {
-        title: t('xiaohongshu'),
+        title: textJoin(t('KaiYuanShe'), t('cultural_and_creative_store')),
         path: 'https://www.xiaohongshu.com/user/profile/6528f512000000002a018253',
       },
     ],

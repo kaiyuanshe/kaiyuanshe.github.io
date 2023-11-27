@@ -47,7 +47,7 @@ export default {
   open_source_mirror: 'Open-Source Mirror',
   license_tool: 'License Tool',
   about_us: 'About Us',
-  xiaohongshu: 'KAIYUANSHE Cultural and Creative Store',
+  cultural_and_creative_store: 'Cultural and Creative Store',
 
   no_more: 'no more',
   load_more: 'load more...',
