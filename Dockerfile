@@ -19,5 +19,6 @@ WORKDIR /app
 COPY --from=prod-deps /app/node_modules /app/node_modules
 COPY --from=build /app/.next /app/.next
 
+RUN rm .npmrc
 EXPOSE 3000
 CMD [ "npm", "start" ]
