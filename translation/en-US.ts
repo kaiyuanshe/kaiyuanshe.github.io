@@ -1,7 +1,7 @@
 import { IDType } from 'mobx-restful';
 
 export default {
-  KaiYuanShe: 'KaiYuanShe',
+  KaiYuanShe: 'KAIYUANSHE',
   our_vision: 'Our Vision',
   our_vision_content:
     'Based in China, contribute to the world, and promote open source as a way of life in the new era',
@@ -17,7 +17,7 @@ export default {
   our_mission: 'Our Mission',
   latest_news: 'Latest News',
   latest_activity: 'Latest Activity',
-  slogan: 'KaiYuanShe - The Home of Open-source Believer',
+  slogan: 'KAIYUANSHE - The Home of Open-source Believer',
   our_projects: 'Our Projects',
   activity_map: 'Activity Map',
   previous_activities: 'Previous Activities',
@@ -29,25 +29,25 @@ export default {
   our_members: 'Our Members',
   our_articles: 'Our Articles',
   coscon: 'China Open Source Conference',
-  kcc: 'KaiYuanShe City Community',
-  kcc_forum: 'KaiYuanShe City Community Forum',
+  kcc: 'KAIYUANSHE City Community',
+  kcc_forum: 'KAIYUANSHE City Community Forum',
   open_source_book_club: 'Open Source Book Club',
   original_articles: 'Original Articles',
   translated_articles: 'Translated Articles',
   all_articles: 'All Articles',
   our_annual_report: 'Our Annual Report',
   china_open_source_annual_report: 'China Open Source Annual Report',
-  kaiyuanshe_annual_report: 'KaiYuanShe Annual Report',
+  kaiyuanshe_annual_report: 'KAIYUANSHE Annual Report',
   china_open_source_landscape: 'China Open Source Landscape',
   open_source_projects: 'Open Source Projects',
-  community_list: 'Kaiyuanshe City Community',
+  community_list: 'KAIYUANSHE City Community',
   our_partners: 'Our Partners',
   open_source_treasure_box: 'Treasure-box',
   Web_polyfill_CDN: 'Web Polyfill CDN',
   open_source_mirror: 'Open-Source Mirror',
   license_tool: 'License Tool',
   about_us: 'About Us',
-  xiaohongshu: 'Xiaohongshu',
+  xiaohongshu: 'KAIYUANSHE Cultural and Creative Store',
 
   no_more: 'no more',
   load_more: 'load more...',
@@ -243,7 +243,7 @@ export default {
   host_activity: 'Host Activity',
 
   // GitHub project list page
-  kaiyuanshe_projects: 'Kaiyuanshe projects',
+  kaiyuanshe_projects: 'KAIYUANSHE projects',
   home_page: 'Home page',
   more_projects: 'More projects',
 } as const;
