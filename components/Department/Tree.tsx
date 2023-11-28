@@ -27,7 +27,15 @@ export default class DepartmentTree extends PureComponent {
   }
 
   jumpLink({ name }: DepartmentNode) {
-    location.href = `/department/${name}`;
+    if (name === '理事会') {
+      location.href = '/department/council';
+    } else if (name === '顾问委员会') {
+      location.href = '/department/committee/consultant';
+    } else if (name === '法律咨询委员会') {
+      location.href = '/department/committee/legal-advisory';
+    } else {
+      location.href = `/department/${name}`;
+    }
   }
 
   render() {
