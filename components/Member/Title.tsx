@@ -19,7 +19,8 @@ export const MemberTitle: FC<MemberTitleProps> = ({
     className={`position-relative border-bottom border-2 border-info lh-lg mb-4 ${styles.memberTitle} ${className}`}
     {...props}
   >
-    {title}
+    <a href={`/department/${title}`}>{title}</a>
+
     <Badge
       className="position-absolute translate-middle top-4 mt-2 ms-2 fw-normal fs-6 rounded-pill"
       bg="info"
