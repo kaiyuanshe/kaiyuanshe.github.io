@@ -227,6 +227,7 @@ export default {
   expert_committee: '專家委員會',
   producer: '出品人',
   volunteer: '志願者',
+  gift_wall: '禮品墻',
 
   //community list & community detail page
   community_member: '社區成員',

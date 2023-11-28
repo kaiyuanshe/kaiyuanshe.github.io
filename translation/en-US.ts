@@ -230,6 +230,7 @@ export default {
   expert_committee: 'Expert Committee',
   producer: 'Producer',
   volunteer: 'Volunteer',
+  gift_wall: 'Gift Wall',
 
   //community detail page
   community_member: 'Community Members',
