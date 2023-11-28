@@ -54,13 +54,11 @@ export const TextScrollableBox: FC<TextScrollableProps> = ({
         >
           {children}
         </div>
-        <TextScrollable duration={duration}>
-          {children}
-        </TextScrollable>
+        <TextScrollable duration={duration}>{children}</TextScrollable>
       </div>
     </div>
   ) : (
-    <TextScrollable maxWidth={maxWidth} duration={duration} height={height}>
+    <TextScrollable {...{ maxWidth, duration, height }}>
       {children}
     </TextScrollable>
   );

@@ -252,7 +252,7 @@ export default class ActivityDetailPage extends PureComponent<
         >
           <VerticalScrollableBox>
             <Image
-              style={{ maxWidth: '100%' }}
+              className="mw-100"
               loading="lazy"
               src={blobURLOf(activity.image)}
             />
@@ -270,7 +270,7 @@ export default class ActivityDetailPage extends PureComponent<
           gap={3}
         >
           <Button
-            className={'d-sm-block'}
+            className="d-sm-block"
             variant="danger"
             href={`/activity/${activity.id}/gift`}
           >
