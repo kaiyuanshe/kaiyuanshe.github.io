@@ -78,14 +78,9 @@ export default safeAPI(
           ]);
 
         //@ts-ignore
-        const membersData = { people, communities };
+        const membersData = { people, communities, departments };
         //@ts-ignore
-        const articlesData = {
-          articles,
-          activities,
-          departments,
-          organizations,
-        };
+        const articlesData = { articles, activities, organizations };
         //@ts-ignore
         response.json({ ...articlesData, ...membersData });
       }
