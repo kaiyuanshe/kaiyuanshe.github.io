@@ -1,6 +1,8 @@
 import { text2color } from 'idea-react';
+import { marked } from 'marked';
 import { TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
+import dynamic from 'next/dynamic';
 import {
   cache,
   compose,
@@ -12,6 +14,7 @@ import {
 import { PureComponent } from 'react';
 import {
   Badge,
+  Breadcrumb,
   Col,
   Container,
   Dropdown,
@@ -20,27 +23,37 @@ import {
 } from 'react-bootstrap';
 import { buildURLData } from 'web-utility';
 
-import { AgendaCard } from '../../../../../components/Activity/Agenda/Card';
-import { FileList } from '../../../../../components/Activity/Agenda/FileList';
-import { AgendaToolbar } from '../../../../../components/Activity/Agenda/Toolbar';
-import { CheckConfirm } from '../../../../../components/Activity/CheckConfirm';
-import { ActivityPeople } from '../../../../../components/Activity/People';
+import {
+  ActivityPeople,
+  AgendaCard,
+  AgendaToolbar,
+  CheckConfirm,
+  FileList,
+} from '../../../../../components/Activity';
 import { CommentBox } from '../../../../../components/Base/CommentBox';
+import { QRCodeButton } from '../../../../../components/Base/QRCodeButton';
 import { ScoreBar } from '../../../../../components/Base/ScoreBar';
 import PageHead from '../../../../../components/Layout/PageHead';
 import { Activity, ActivityModel } from '../../../../../models/Activity';
 import { Agenda } from '../../../../../models/Activity/Agenda';
 import { CheckEventModel } from '../../../../../models/Activity/CheckEvent';
-import { blobURLOf } from '../../../../../models/Base';
+import { API_Host, blobURLOf } from '../../../../../models/Base';
+import systemStore from '../../../../../models/Base/System';
 import { i18n } from '../../../../../models/Base/Translation';
 import userStore from '../../../../../models/Base/User';
+
+const SessionBox = dynamic(
+    () => import('../../../../../components/Layout/SessionBox'),
+    { ssr: false },
+  ),
+  { t } = i18n;
 
 type PageParameter = Record<'id' | 'agendaId', string>;
 
 interface AgendaDetailPageProps extends RouteProps<PageParameter> {
   activity: Activity;
   agenda: Agenda;
-  recommends: Agenda[];
+  recommendList: Agenda[];
   score: number;
 }
 
@@ -58,23 +71,20 @@ export const getServerSideProps = compose<PageParameter, AgendaDetailPageProps>(
     const agenda = await currentAgenda!.getOne(agendaId!);
     await currentEvaluation!.getAll({ agenda: agenda.title });
 
-    const recommends =
-      activityStore.currentAgenda!.currentRecommend!.currentPage;
+    const { recommendList } = activityStore.currentAgenda!;
 
     return {
       props: JSON.parse(
         JSON.stringify({
           activity,
           agenda,
-          recommends,
+          recommendList,
           score: currentEvaluation!.currentScore,
         }),
       ),
     };
   },
 );
-
-const { t } = i18n;
 
 @observer
 export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProps> {
@@ -93,7 +103,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
   }
 
   renderHeader() {
-    const { user } = this.props.route.query,
+    const { user } = systemStore.hashQuery,
       { id, name, location } = this.props.activity,
       {
         id: agendaId,
@@ -110,66 +120,77 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
     return (
       <header>
         <div className="d-flex flex-column flex-lg-row align-items-center justify-content-between">
-          <h1>{title}</h1>
-
-          <AgendaToolbar
-            className="my-3 text-nowrap"
-            activityId={id + ''}
-            location={location + ''}
-            {...this.props.agenda}
-            checked={!!checkEvent}
-          >
-            {evaluationForms && (
-              <DropdownButton variant="warning" size="sm" title="评价问卷">
-                {evaluationForms.map(({ name, shared_url }) => (
-                  <Dropdown.Item
-                    key={name}
-                    as="a"
-                    target="_blank"
-                    href={`${shared_url}?${buildURLData({
-                      prefill_phone: mobilePhone,
-                      prefill_agenda: title,
-                    })}`}
-                  >
-                    {name}
-                  </Dropdown.Item>
-                ))}
-              </DropdownButton>
-            )}
-            {user && (
-              <CheckConfirm
-                store={this.checkEventStore}
-                user={+user}
-                activityId={id as string}
-                activityName={name as string}
-                agendaId={agendaId as string}
-                agendaTitle={title as string}
-              />
-            )}
-          </AgendaToolbar>
+          <h1>{title as string}</h1>
         </div>
-        <div className="d-flex flex-wrap align-items-center gap-3 my-3">
-          <Badge bg={text2color(type as string, ['light'])}>{type}</Badge>
 
-          <div className="text-success">{forum}</div>
+        <div className="d-flex flex-wrap align-items-center gap-3 my-3">
+          <Badge bg={text2color(type + '', ['light'])}>{type + ''}</Badge>
+
+          <div className="text-success">{forum as string}</div>
           <div>
             🕒 {new Date(+startTime!).toLocaleString()} ~{' '}
             {new Date(+endTime!).toLocaleString()}
           </div>
         </div>
+
+        <AgendaToolbar
+          className="my-3 text-nowrap"
+          activityId={id + ''}
+          location={location + ''}
+          {...this.props.agenda}
+        >
+          <SessionBox>
+            <QRCodeButton
+              title="请该打卡点工作人员扫码"
+              value={`${API_Host}/activity/${id}/agenda/${agendaId}#?user=${userStore.session?.id}`}
+              disabled={!!checkEvent}
+            >
+              打卡
+            </QRCodeButton>
+          </SessionBox>
+
+          {evaluationForms && (
+            <DropdownButton variant="warning" size="sm" title="评价问卷">
+              {evaluationForms.map(({ name, shared_url }) => (
+                <Dropdown.Item
+                  key={name}
+                  as="a"
+                  target="_blank"
+                  href={`${shared_url}?${buildURLData({
+                    prefill_phone: mobilePhone,
+                    prefill_agenda: title,
+                  })}`}
+                >
+                  {name}
+                </Dropdown.Item>
+              ))}
+            </DropdownButton>
+          )}
+          {user && (
+            <CheckConfirm
+              store={this.checkEventStore}
+              user={+user}
+              activityId={id as string}
+              activityName={name as string}
+              agendaId={agendaId as string}
+              agendaTitle={title as string}
+            />
+          )}
+        </AgendaToolbar>
       </header>
     );
   }
 
   render() {
-    const { id, name, location } = this.props.activity,
-      { score, recommends } = this.props;
+    const { id, alias, name, location } = this.props.activity,
+      { score, recommendList } = this.props;
     const {
       title,
       fileInfo,
       mentors,
       mentorAvatars,
       mentorPositions,
+      mentorOrganizations,
       mentorSummaries,
       summary = t('no_data'),
     } = this.props.agenda;
@@ -177,18 +198,28 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
     return (
       <Container className="pt-5">
         <PageHead title={`${title} - ${name}`} />
+        <Breadcrumb>
+          <Breadcrumb.Item href="/">{t('KaiYuanShe')}</Breadcrumb.Item>
+          <Breadcrumb.Item href="/activity">{t('activity')}</Breadcrumb.Item>
+          <Breadcrumb.Item href={`/activity/${alias || id}`}>
+            {name as string}
+          </Breadcrumb.Item>
+          <Breadcrumb.Item active>{title as string}</Breadcrumb.Item>
+        </Breadcrumb>
+
         <Row className="my-3">
-          <Col xs={12} sm={9}>
+          <Col xs={12} lg={8}>
             {this.renderHeader()}
           </Col>
-          <Col xs={12} sm={3}>
+          <Col xs={12} lg={4}>
             <ActivityPeople
-              size={6}
+              size={5}
               names={mentors as string[]}
               avatars={(mentorAvatars as TableCellValue[]).map(file =>
                 blobURLOf([file] as TableCellValue),
               )}
               positions={mentorPositions as string[]}
+              organizations={mentorOrganizations as string[]}
               summaries={mentorSummaries as string[]}
             />
             <section id="score">
@@ -196,9 +227,11 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
               <ScoreBar value={score} />
             </section>
           </Col>
-          <Col xs={12} sm={9}>
-            <main className="my-4">{summary + ''}</main>
-
+          <Col xs={12} lg={8}>
+            <main
+              className="my-4"
+              dangerouslySetInnerHTML={{ __html: marked(summary + '') }}
+            />
             {fileInfo && <FileList data={fileInfo} />}
 
             <div className="my-5">
@@ -208,12 +241,12 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
               />
             </div>
           </Col>
-          {recommends[0] && (
-            <Col xs={12} sm={3} as="section" id="related_agenda">
+          {recommendList[0] && (
+            <Col xs={12} lg={4} as="section" id="related_agenda">
               <h2 className="my-3">{t('related_agenda')}</h2>
 
               <ol className="list-unstyled d-flex flex-column gap-4">
-                {recommends.map(
+                {recommendList.map(
                   agenda =>
                     agenda.title !== title && (
                       <li key={agenda.id + ''}>
@@ -224,7 +257,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
                         />
                       </li>
                     ),
-                  )}
+                )}
               </ol>
             </Col>
           )}

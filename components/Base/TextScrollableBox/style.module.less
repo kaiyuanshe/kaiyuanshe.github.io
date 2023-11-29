@@ -1,0 +1,55 @@
+@keyframes scrollWrap {
+  0%,
+  10% {
+    transform: translateX(0);
+  }
+
+  90%,
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes scrollItem {
+  0%,
+  10% {
+    transform: translateX(0);
+  }
+
+  90%,
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.scrollWrap {
+  animation: scrollWrap linear 4s alternate infinite;
+  .scrollItem {
+    animation: scrollItem linear 4s alternate infinite;
+  }
+  &:hover {
+    animation-play-state: paused;
+    .scrollItem {
+      animation-play-state: paused;
+    }
+  }
+}
+
+.scrollHeightWrap {
+  --scroll-height: 20px;
+  height: var(--scroll-height);
+  .scrollContainer {
+    max-height: calc(var(--scroll-height) * 3);
+    transform: translateY(
+      calc(calc(-100% + var(--scroll-height) + var(--scroll-height)) * 2)
+    );
+    .unScrollItem {
+      line-height: var(--scroll-height);
+      max-height: calc(var(--scroll-height) * 2);
+    }
+    .scrollItem {
+      height: var(--scroll-height);
+      line-height: var(--scroll-height);
+    }
+  }
+}

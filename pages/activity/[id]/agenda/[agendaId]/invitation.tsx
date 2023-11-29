@@ -95,6 +95,7 @@ export default class InvitationPage extends PureComponent<InvitationPageProps> {
         mentors,
         mentorAvatars,
         mentorPositions,
+        mentorOrganizations,
       } = agenda;
 
     return (
@@ -102,18 +103,18 @@ export default class InvitationPage extends PureComponent<InvitationPageProps> {
         <PageHead title={`${title} - ${name}`} />
 
         <header className="d-flex flex-column align-items-center gap-4">
-          <h1>{name}</h1>
+          <h1>{name as string}</h1>
 
           <ul className="list-unstyled d-flex flex-column align-items-center gap-4">
-            <li>🏙{city}</li>
+            <li>🏙{city as string}</li>
             <li>🗺{(location as TableCellLocation)?.full_address}</li>
           </ul>
         </header>
         <section className="d-flex flex-column align-items-center gap-4">
           <h2 className="d-flex align-items-center gap-2 text-start">
-            <Badge bg={text2color(type as string, ['light'])}>{type}</Badge>
+            <Badge bg={text2color(type + '', ['light'])}>{type + ''}</Badge>
 
-            {title}
+            {title as string}
           </h2>
 
           <ul className="list-unstyled d-flex flex-column align-items-center gap-4">
@@ -124,6 +125,7 @@ export default class InvitationPage extends PureComponent<InvitationPageProps> {
                   blobURLOf([file] as TableCellValue),
                 )}
                 positions={mentorPositions as string[]}
+                organizations={mentorOrganizations as string[]}
               />
             </li>
             <li>

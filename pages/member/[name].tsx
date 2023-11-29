@@ -1,12 +1,14 @@
 import { text2color } from 'idea-react';
 import { marked } from 'marked';
+import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
 import { compose, errorLogger, translator } from 'next-ssr-middleware';
 import { PureComponent } from 'react';
-import { Badge, Col, Container, Image, Row } from 'react-bootstrap';
+import { Badge, Breadcrumb, Col, Container, Image, Row } from 'react-bootstrap';
 import { formatDate } from 'web-utility';
 
 import { CommentBox } from '../../components/Base/CommentBox';
+import { LarkImage } from '../../components/Base/LarkImage';
 import PageHead from '../../components/Layout/PageHead';
 import { i18n } from '../../models/Base/Translation';
 import { Personnel, PersonnelModel } from '../../models/Personnel';
@@ -30,12 +32,16 @@ export const getServerSideProps = compose<
   };
 });
 
+const { t } = i18n;
+
+@observer
 export default class PersonDetailPage extends PureComponent<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > {
   renderProfile = ({
     name,
     gender,
+    avatar,
     city,
     email,
     website,
@@ -43,12 +49,16 @@ export default class PersonDetailPage extends PureComponent<
     skills,
   }: Person) => (
     <>
-      <Image fluid src={`${github}.png`} alt="GitHub profile image" />
+      {avatar ? (
+        <LarkImage src={avatar} />
+      ) : (
+        <Image fluid src={`${github}.png`} alt="GitHub profile image" />
+      )}
 
-      <h1>{name}</h1>
+      <h1>{name as string}</h1>
       <ul>
         <li>
-          <Badge bg={text2color(gender as string, ['light'])}>{gender}</Badge>
+          <Badge bg={text2color(gender + '', ['light'])}>{gender + ''}</Badge>
         </li>
         {skills && (
           <li>
@@ -63,20 +73,20 @@ export default class PersonDetailPage extends PureComponent<
             ))}
           </li>
         )}
-        <li>🗺 {city}</li>
+        <li>🗺 {city as string}</li>
         <li>
           📬 <a href={email as string}>{(email as string)?.split(':')[1]}</a>
         </li>
         <li>
           🖥{' '}
           <a target="_blank" href={website as string} rel="noreferrer">
-            {website}
+            {website as string}
           </a>
         </li>
         <li>
           ⌨{' '}
           <a target="_blank" href={github as string} rel="noreferrer">
-            {github}
+            {github as string}
           </a>
         </li>
       </ul>
@@ -100,13 +110,13 @@ export default class PersonDetailPage extends PureComponent<
             <time dateTime={new Date(createdAt as number).toJSON()}>
               {formatDate(createdAt as number, 'YYYY-MM-DD')}
             </time>
-            <Badge bg={text2color(type as string, ['light'])}>{type}</Badge>
+            <Badge bg={text2color(type + '', ['light'])}>{type + ''}</Badge>
             {award ? (
-              <span>{award}</span>
+              <span>{award as string}</span>
             ) : (
               <>
-                <span>{department}</span>
-                <span>{position}</span>
+                <span>{department as string}</span>
+                <span>{position as string}</span>
               </>
             )}
           </div>
@@ -114,7 +124,7 @@ export default class PersonDetailPage extends PureComponent<
 
         <figure className="mt-3 px-3">
           <blockquote className="blockquote">
-            <p>{reason}</p>
+            <p>{reason as string}</p>
           </blockquote>
           {applicants && (
             <figcaption className="blockquote-footer">
@@ -132,6 +142,12 @@ export default class PersonDetailPage extends PureComponent<
     return (
       <Container className="py-5">
         <PageHead title={person.name as string} />
+
+        <Breadcrumb>
+          <Breadcrumb.Item href="/">{t('KaiYuanShe')}</Breadcrumb.Item>
+          <Breadcrumb.Item href="/member">{t('member')}</Breadcrumb.Item>
+          <Breadcrumb.Item active>{person.name as string}</Breadcrumb.Item>
+        </Breadcrumb>
 
         <Row>
           <Col xs={12} sm={4}>

@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
 import { cache, compose, errorLogger, translator } from 'next-ssr-middleware';
 import { FC } from 'react';
-import { Button, Container } from 'react-bootstrap';
+import { Breadcrumb, Button, Container } from 'react-bootstrap';
 
 import { CommunityMemberList } from '../../components/Community/MemberList';
 import PageHead from '../../components/Layout/PageHead';
@@ -21,17 +21,27 @@ export const getServerSideProps = compose<
     list: CommunityMember[];
     community: string;
   }
->(errorLogger, translator(i18n), async ({ params: { community } = {} }) => {
-  const list = await new CommunityMemberModel().getAll({ community });
+>(
+  cache(),
+  errorLogger,
+  translator(i18n),
+  async ({ params: { community } = {} }) => {
+    const list = await new CommunityMemberModel().getAll({ community });
 
-  return { props: JSON.parse(JSON.stringify({ list, community })) };
-});
+    return { props: JSON.parse(JSON.stringify({ list, community })) };
+  },
+);
 
 const CommunityMemberListPage: FC<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = observer(({ list, community }) => (
   <Container className="py-5">
     <PageHead title={textJoin(community, t('community'))} />
+    <Breadcrumb>
+      <Breadcrumb.Item href="/">{t('KaiYuanShe')}</Breadcrumb.Item>
+      <Breadcrumb.Item href="/community">{t('community')}</Breadcrumb.Item>
+      <Breadcrumb.Item active>{community}</Breadcrumb.Item>
+    </Breadcrumb>
     <h1 className="text-center">{textJoin(community, t('community'))}</h1>
 
     <section className="my-5 text-center">

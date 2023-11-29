@@ -1,4 +1,4 @@
-import { TableCellValue } from 'mobx-lark';
+import { TableCellText, TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
 import dynamic from 'next/dynamic';
@@ -11,24 +11,30 @@ import {
   Dropdown,
   DropdownButton,
   DropdownButtonProps,
+  Image,
   Row,
   Stack,
 } from 'react-bootstrap';
 
-import { AgendaCard } from '../../../components/Activity/Agenda/Card';
-import { DrawerNav } from '../../../components/Activity/DrawerNav';
-import { ActivityPeople } from '../../../components/Activity/People';
+import {
+  ActivityPeople,
+  AgendaCard,
+  DrawerNav,
+} from '../../../components/Activity';
+import { VerticalScrollableBox } from '../../../components/Base/VerticalScrollableBox';
 import PageHead from '../../../components/Layout/PageHead';
 import type { ImageMarker } from '../../../components/Map/ListMap';
 import { Activity, ActivityModel } from '../../../models/Activity';
 import { AgendaModel } from '../../../models/Activity/Agenda';
-import { CheckEventModel } from '../../../models/Activity/CheckEvent';
 import { Forum } from '../../../models/Activity/Forum';
 import { Place } from '../../../models/Activity/Place';
 import { blobURLOf } from '../../../models/Base';
 import { i18n } from '../../../models/Base/Translation';
-import { coordinateOf, TableFormViewItem } from '../../api/lark/core';
-import { fileURLOf } from '../../api/lark/file/[id]';
+import {
+  coordinateOf,
+  normalizeTextArray,
+  TableFormViewItem,
+} from '../../api/lark/core';
 import styles from './index.module.less';
 
 const ListMap = dynamic(() => import('../../../components/Map/ListMap'), {
@@ -68,14 +74,6 @@ export const getServerSideProps = compose<
 export default class ActivityDetailPage extends PureComponent<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > {
-  checkEventStore = new CheckEventModel();
-
-  componentDidMount() {
-    this.checkEventStore.getUserCount({
-      activityId: this.props.activity.id as string,
-    });
-  }
-
   renderFormMenu(
     title: string,
     forms: TableFormViewItem[],
@@ -147,7 +145,7 @@ export default class ActivityDetailPage extends PureComponent<
                     location && {
                       title: name,
                       summary: forum?.toString(),
-                      image: photos && fileURLOf(photos),
+                      image: photos && blobURLOf(photos),
                       position: coordinateOf(location),
                     },
                 )
@@ -164,6 +162,7 @@ export default class ActivityDetailPage extends PureComponent<
     names: TableCellValue,
     avatars: TableCellValue,
     positions?: TableCellValue,
+    organizations?: TableCellValue,
   ) {
     return (
       <div className="d-flex align-items-center gap-3 px-3">
@@ -175,6 +174,7 @@ export default class ActivityDetailPage extends PureComponent<
             blobURLOf([file] as TableCellValue),
           )}
           positions={positions as string[]}
+          organizations={organizations as string[]}
         />
       </div>
     );
@@ -188,19 +188,24 @@ export default class ActivityDetailPage extends PureComponent<
     producers,
     producerAvatars,
     producerPositions,
+    producerOrganizations,
     location,
   }: Forum) => {
-    const { activity, agendaGroup } = this.props,
-      { allItems } = this.checkEventStore;
+    const { activity, agendaGroup } = this.props;
 
     return (
       <section key={name as string}>
-        <h2 className="my-5 text-center" id={name as string}>
-          {name}
+        <h2 className="mt-5 mb-3 text-center" id={name as string}>
+          {name as string}
         </h2>
+        {location && (
+          <h4 className="mb-5 text-center">
+            {normalizeTextArray(location as TableCellText[])[0]}
+          </h4>
+        )}
         <Row>
           <Col xl={{ offset: 2, span: 8 }} as="p" className="text-muted">
-            {summary}
+            {summary as string}
           </Col>
         </Row>
         <div className="d-flex justify-content-center">
@@ -210,6 +215,7 @@ export default class ActivityDetailPage extends PureComponent<
               producers,
               producerAvatars,
               producerPositions,
+              producerOrganizations,
             )}
             {(volunteers as string[])?.[0] &&
               this.renderForumPeople(
@@ -220,16 +226,13 @@ export default class ActivityDetailPage extends PureComponent<
           </div>
         </div>
 
-        <Row as="ol" className="list-unstyled g-4" xs={1} sm={2} lg={3}>
+        <Row as="ol" className="list-unstyled g-4" xs={1} md={2}>
           {agendaGroup[name as string]?.map(agenda => (
             <Col as="li" key={agenda.id + ''}>
               <AgendaCard
                 activityId={activity.id + ''}
                 location={location + ''}
                 {...agenda}
-                checked={allItems.some(
-                  ({ agendaId }) => agendaId === agenda.id,
-                )}
               />
             </Col>
           ))}
@@ -240,21 +243,22 @@ export default class ActivityDetailPage extends PureComponent<
 
   render() {
     const { activity, forums } = this.props;
-
     return (
       <>
         <PageHead title={activity.name + ''} />
 
         <header
           className={`d-flex flex-column align-items-center justify-content-around ${styles.header}`}
-          style={{
-            backgroundImage: `url(${JSON.stringify(
-              blobURLOf(activity.image),
-            )})`,
-          }}
         >
+          <VerticalScrollableBox>
+            <Image
+              className="mw-100"
+              loading="lazy"
+              src={blobURLOf(activity.image)}
+            />
+          </VerticalScrollableBox>
           <h1 className="visually-hidden" id="top">
-            {activity.name}
+            {activity.name as string}
           </h1>
         </header>
 
@@ -265,8 +269,12 @@ export default class ActivityDetailPage extends PureComponent<
           direction="horizontal"
           gap={3}
         >
-          <Button variant="danger" href={`/activity/${activity.id}/gift`}>
-            礼品墙
+          <Button
+            className="d-sm-block"
+            variant="danger"
+            href={`/activity/${activity.id}/gift`}
+          >
+            {t('gift_wall')}
           </Button>
           <Button variant="info" href={`/activity/${activity.id}/volunteer`}>
             {t('volunteer')}

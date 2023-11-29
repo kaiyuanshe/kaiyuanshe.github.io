@@ -1,12 +1,18 @@
 .header {
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: calc(50vh - 5rem);
-
+  overflow: hidden;
   @media (min-width: 576px) {
     height: calc(70vh - 5rem);
   }
   @media (min-width: 768px) {
     height: calc(100vh - 5rem);
+  }
+}
+
+@media (max-width: 767px) {
+  .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    border-radius: 0.2rem;
   }
 }

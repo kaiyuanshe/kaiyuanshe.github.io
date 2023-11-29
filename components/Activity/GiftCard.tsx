@@ -25,7 +25,7 @@ export const GiftCard: FC<GiftCardProps> = ({
 
       <div className="position-absolute end-0 bottom-0 p-2">
         <Badge bg="danger" pill>
-          {stock}
+          {stock as number}
         </Badge>
       </div>
     </div>

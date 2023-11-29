@@ -2,9 +2,7 @@
 
 该项目是使用 [`create-next-app`][6] 脚手架引导安装，基于 [TypeScript][2]、[Next.js][3]、[Bootstrap][4] 和 [Workbox][5] 的 [React][1] 项目。
 
-<!-- [![NPM Dependency](https://david-dm.org/kaiyuanshe/kaiyuanshe.github.io.svg)][7] -->
-
-[![CI & CD](https://github.com/kaiyuanshe/kaiyuanshe.github.io/workflows/CI%20&%20CD/badge.svg)][8]
+[![Deploy to Production environment](https://github.com/kaiyuanshe/kaiyuanshe.github.io/actions/workflows/deploy-production.yml/badge.svg)][8]
 
 ## 主要功能
 
@@ -50,7 +48,7 @@
 ## 开源协作
 
 - 申请加入**开源社志愿者**，填表后组长会联系你加入飞书组织：https://kaiyuanshe.feishu.cn/share/base/shrcnfO89tYlYIjZpS5PXJBaK2f
-- 参与代码贡献：⚠️ 由于官网项目需要调用飞书 API，需要预先配置才能在本地运行，所有**必须先申请加入 KaiYuanShe GitHub 组织**后，再贡献代码，不能直接 fork 仓库贡献代码。⚠️
+- 参与代码贡献：⚠️ 由于官网项目需要调用飞书 API，需要预先配置才能在本地运行，所有**必须先申请加入 https://github.com/kaiyuanshe 组织**后，再贡献代码，不能直接 fork 仓库贡献代码。⚠️
 
 ## 项目技术栈
 
@@ -105,12 +103,11 @@ pnpm container
 [4]: https://getbootstrap.com/
 [5]: https://developers.google.com/web/tools/workbox
 [6]: https://github.com/vercel/next.js/tree/canary/packages/create-next-app
-[7]: https://david-dm.org/idea2app/next-bootstrap-ts
-[8]: https://github.com/idea2app/Next-Bootstrap-ts/actions/workflows/main.yml
+[8]: https://github.com/kaiyuanshe/kaiyuanshe.github.io/actions/workflows/deploy-production.yml
 [9]: https://zh.mobx.js.org/
 [10]: https://github.com/kaiyuanshe/KYS-service#sign-in-github-packages-with-npm
 [11]: https://github.com/features/actions
-[12]: https://vercel.com/new?filter=next.js
+[12]: https://vercel.com/
 [13]: https://nextjs.org/docs/api-routes/introduction
 [14]: https://nextjs.org/docs
 [15]: https://nextjs.org/learn

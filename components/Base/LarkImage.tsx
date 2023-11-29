@@ -3,13 +3,16 @@ import { FC } from 'react';
 import { Image, ImageProps } from 'react-bootstrap';
 
 import { blobURLOf } from '../../models/Base';
-import { fileURLOf } from '../../pages/api/lark/file/[id]';
+import { DefaultImage, fileURLOf } from '../../pages/api/lark/file/[id]';
 
 export interface LarkImageProps extends Omit<ImageProps, 'src'> {
-  src: TableCellValue;
+  src?: TableCellValue;
 }
 
-export const LarkImage: FC<LarkImageProps> = ({ src, ...props }) => (
+export const LarkImage: FC<LarkImageProps> = ({
+  src = DefaultImage,
+  ...props
+}) => (
   <Image
     fluid
     loading="lazy"
@@ -18,7 +21,15 @@ export const LarkImage: FC<LarkImageProps> = ({ src, ...props }) => (
     onError={({ currentTarget: image }) => {
       const path = fileURLOf(src);
 
-      if (path && !image.src.endsWith(path)) image.src = path;
+      if (!path) return;
+
+      const errorURL = decodeURI(image.src);
+
+      image.src = errorURL.endsWith(path)
+        ? errorURL.endsWith(DefaultImage)
+          ? ''
+          : DefaultImage
+        : path;
     }}
   />
 );

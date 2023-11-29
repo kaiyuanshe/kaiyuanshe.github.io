@@ -25,7 +25,7 @@ interface List {
 
 const { t } = i18n;
 
-const chooseSteps: string[] = [
+const choiceSteps = [
   'popularity',
   'reuseCondition',
   'infectionIntensity',
@@ -36,7 +36,7 @@ const chooseSteps: string[] = [
   'enhancedAttribution',
   'privacyLoophole',
   'marketingEndorsement',
-];
+] as const;
 
 const LicenseTool: FC = observer(() => {
   const [stepIndex, setStepIndex] = useState(0);
@@ -45,15 +45,15 @@ const LicenseTool: FC = observer(() => {
   const [disableChoose, setDisableChoose] = useState(false);
   const [lists, setLists] = useState<List[]>([]);
 
-  const now = Math.ceil(100 / chooseSteps.length);
+  const now = Math.ceil(100 / choiceSteps.length);
 
   useEffect(() => {
-    if (stepIndex === chooseSteps.length) setDisableChoose(true);
+    if (stepIndex === choiceSteps.length) setDisableChoose(true);
   }, [stepIndex]);
 
   const handleChoose = (value: string | null) => {
     const choice = value ? +value : 0;
-    const key = chooseSteps[keyIndex];
+    const key = choiceSteps[keyIndex];
 
     const newObject = { ...filterOption, [key]: choice };
     const tempLists = filterLicenses(newObject);
@@ -62,9 +62,31 @@ const LicenseTool: FC = observer(() => {
 
     setLists(tempLists);
 
-    setStepIndex(stepIndex < chooseSteps.length ? stepIndex + 1 : stepIndex);
+    setStepIndex(stepIndex < choiceSteps.length ? stepIndex + 1 : stepIndex);
 
-    setKeyIndex(keyIndex < chooseSteps.length - 1 ? keyIndex + 1 : keyIndex);
+    setKeyIndex(keyIndex < choiceSteps.length - 1 ? keyIndex + 1 : keyIndex);
+  };
+
+  const backToLast = () => {
+    const choice = 0;
+    const key = choiceSteps[keyIndex];
+
+    const newObject = { ...filterOption, [key]: choice };
+    const tempLists = filterLicenses(newObject);
+
+    setFilterOption(newObject);
+
+    setStepIndex(
+      stepIndex === choiceSteps.length
+        ? stepIndex - 2
+        : stepIndex > 0
+        ? stepIndex - 1
+        : stepIndex,
+    );
+    setKeyIndex(keyIndex > 0 ? keyIndex - 1 : keyIndex);
+
+    if (disableChoose) setDisableChoose(false);
+    setLists(tempLists);
   };
 
   return (
@@ -75,9 +97,11 @@ const LicenseTool: FC = observer(() => {
       <p>{t('license_tool_description')}</p>
       <p className="text-warning">{t('warn_info')}</p>
 
-      <h2>{t('filter_option')}</h2>
+      <h2>
+        {t('filter_option')}: {t(choiceSteps[keyIndex])}
+      </h2>
 
-      {licenseTips()[chooseSteps[keyIndex]].map(({ text }) => (
+      {licenseTips()[choiceSteps[keyIndex]].map(({ text }) => (
         <p key={text}>{text}</p>
       ))}
       <ProgressBar
@@ -86,8 +110,11 @@ const LicenseTool: FC = observer(() => {
         now={(keyIndex + 1) * now}
         label={t('step_x', { step: keyIndex + 1 })}
       />
+      <Button className="mb-2" variant="warning" onClick={backToLast}>
+        {t('last_step')}
+      </Button>
       <ButtonGroup className="mb-2">
-        {optionValue()[chooseSteps[keyIndex]].map(({ value, text }) => (
+        {optionValue()[choiceSteps[keyIndex]].map(({ value, text }) => (
           <Button
             key={value}
             className="mx-1"
@@ -137,40 +164,36 @@ function renderInfo({ link, feature }: License) {
     <>
       <ul>
         <li>
-          {t('feature_popularity')}: {judge(feature.popularity)}
+          {t('popularity')}: {judge(feature.popularity)}
         </li>
         <li>
-          {t('feature_reuse_condition')}: {judge(feature.reuseCondition)}
+          {t('reuseCondition')}: {judge(feature.reuseCondition)}
         </li>
         <li>
-          {t('feature_infection_intensity')}:{' '}
-          {judge(feature.infectionIntensity)}
-        </li>
-
-        <li>
-          {t('feature_infection_range')}:
-          {judgeInfectionRange(feature.infectionRange)}
+          {t('infectionIntensity')}: {judge(feature.infectionIntensity)}
         </li>
 
         <li>
-          {t('feature_jurisdiction')}: {judge(feature.jurisdiction)}
+          {t('infectionRange')}: {judgeInfectionRange(feature.infectionRange)}
+        </li>
+
+        <li>
+          {t('jurisdiction')}: {judge(feature.jurisdiction)}
         </li>
         <li>
-          {t('feature_patent_statement')}: {judge(feature.patentStatement)}
+          {t('patentStatement')}: {judge(feature.patentStatement)}
         </li>
         <li>
-          {t('feature_patent_retaliation')}: {judge(feature.patentRetaliation)}
+          {t('patentRetaliation')}: {judge(feature.patentRetaliation)}
         </li>
         <li>
-          {t('feature_enhanced_attribution')}:{' '}
-          {judge(feature.enhancedAttribution)}
+          {t('enhancedAttribution')}: {judge(feature.enhancedAttribution)}
         </li>
         <li>
-          {t('feature_privacy_loophole')}: {judge(feature.privacyLoophole)}
+          {t('privacyLoophole')}: {judge(feature.privacyLoophole)}
         </li>
         <li>
-          {t('feature_marketing_endorsement')}:
-          {judge(feature.marketingEndorsement)}
+          {t('marketingEndorsement')}: {judge(feature.marketingEndorsement)}
         </li>
       </ul>
       <Button size="sm" target="_blank" href={link}>

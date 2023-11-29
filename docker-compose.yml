@@ -1,8 +1,5 @@
 version: '3'
 
-networks:
-  kaiyuanshe:
-
 services:
   kys-ows:
     image: kaiyuanshe/kys-ows
@@ -11,17 +8,21 @@ services:
       - PORT=3000
     ports:
       - 3000:3000
-    networks:
-      - kaiyuanshe
-    restart: on-failure
-  caddy:
-    depends_on:
-      - kys-ows
-    image: caddy
-    ports:
-      - 80:80
-      - 443:443
-    networks:
-      - kaiyuanshe
-    command: caddy reverse-proxy --from kaiyuanshe.cn --to kys-ows:3000
-    restart: on-failure
+    healthcheck:
+      test: ['CMD-SHELL', 'curl -f http://localhost:3000/ || exit 1']
+      interval: 3s
+      retries: 5
+      start_period: 30s
+    labels:
+      - 'autoheal=true'
+    restart: always
+    logging:
+      driver: 'json-file'
+      options:
+        max-size: '10m'
+
+  autoheal:
+    image: willfarrell/autoheal:1.2.0
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: always

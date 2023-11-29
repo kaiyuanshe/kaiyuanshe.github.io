@@ -1,21 +1,24 @@
-FROM node:18-slim
+FROM node:18-slim AS base
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
+COPY . /app
+WORKDIR /app
 
-USER root
+FROM base AS prod-deps
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile  --ignore-scripts
 
-RUN npm rm yarn -g
-RUN npm i pnpm -g
-
-RUN mkdir /home/node/app
-WORKDIR /home/node/app
-
-COPY package.json pnpm-lock.yaml .npmrc /home/node/app/
-RUN pnpm i --frozen-lockfile
-
-COPY . /home/node/app
+FROM base AS build
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 RUN pnpm build
 
-RUN pnpm prune --prod || true \
-    pnpm store prune
+FROM base
+RUN apt-get update && \
+    apt-get install curl -y --no-install-recommends
+WORKDIR /app
+COPY --from=prod-deps /app/node_modules /app/node_modules
+COPY --from=build /app/.next /app/.next
 
+RUN rm .npmrc
 EXPOSE 3000
 CMD ["npm", "start"]

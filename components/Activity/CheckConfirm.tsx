@@ -35,10 +35,12 @@ export class CheckConfirm extends PureComponent<CheckConfirmProps> {
 
   private disposer?: IReactionDisposer;
 
-  componentDidMount() {
+  async componentDidMount() {
     this.disposer = reaction(() => userStore.session, this.checkAuthorization);
 
-    if (this.props.user) this.checkAuthorization();
+    if (!this.props.user) return;
+
+    if (await this.checkAuthorization()) this.handleCheck();
   }
 
   componentWillUnmount() {

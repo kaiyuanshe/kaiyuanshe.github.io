@@ -22,9 +22,9 @@ export const CommunityMemberCard: FC<CommunityMember> = ({
         className="fs-6 text-decoration-none stretched-link"
         href={`/member/${name}`}
       >
-        {name}
+        {name as string}
       </Card.Title>
-      <Card.Text className="fw-light mt-2">{summary}</Card.Text>
+      <Card.Text className="fw-light mt-2">{summary as string}</Card.Text>
     </Card.Body>
   </Card>
 );

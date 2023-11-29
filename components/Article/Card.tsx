@@ -1,9 +1,10 @@
-import { text2color, TimeDistance } from 'idea-react';
+import { TimeDistance } from 'idea-react';
 import type { FC } from 'react';
-import { Badge, Card, Col, Row } from 'react-bootstrap';
+import { Card, Col, Row } from 'react-bootstrap';
 
 import type { BaseArticle } from '../../models/Product/Article';
 import { LarkImage } from '../Base/LarkImage';
+import { TagNav } from '../Base/TagNav';
 import { TimeOption } from '../data';
 
 export interface ArticleCardProps extends BaseArticle {
@@ -31,7 +32,7 @@ export const ArticleCard: FC<ArticleCardProps> = ({
           className="text-decoration-none text-secondary text-truncate-lines"
           href={`/article/${alias}`}
         >
-          {title}
+          {title as string}
         </a>
       </Card.Title>
 
@@ -41,23 +42,12 @@ export const ArticleCard: FC<ArticleCardProps> = ({
           className="text-decoration-none text-end text-truncate align-self-end"
           href={`/search?keywords=${author}`}
         >
-          {author}
+          {author as string}
         </Col>
       </Row>
       <Row as="footer" className="flex-fill small mt-1">
-        <Col xs={8}>
-          {(tags as string[])?.map(name => (
-            <Badge
-              as="a"
-              key={name}
-              className="text-decoration-none me-2"
-              bg={text2color(name, ['light'])}
-              href={`/search?tag=${name}`}
-            >
-              {name}
-            </Badge>
-          ))}
-        </Col>
+        <TagNav className="col-8" list={tags as string[]} />
+
         <Col className="text-end" xs={4}>
           <TimeDistance {...TimeOption} date={publishedAt as number} />
         </Col>

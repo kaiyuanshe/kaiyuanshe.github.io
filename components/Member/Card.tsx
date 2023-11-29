@@ -2,7 +2,7 @@ import { observer } from 'mobx-react';
 import { FC } from 'react';
 
 import { i18n } from '../../models/Base/Translation';
-import { LazyImage } from '../Base/LazyImage';
+import { LarkImage } from '../Base/LarkImage';
 import styles from './Card.module.less';
 
 const { t } = i18n;
@@ -17,9 +17,9 @@ export const MemberCard: FC<MemberCard> = observer(
       className={`d-inline-block position-relative w-auto text-center ${styles.member}`}
       title={'' + (name || nickname || t('member_x'))}
     >
-      <LazyImage
+      <LarkImage
         className={`d-inlink-block overflow-hidden rounded-circle position-relative ${styles.avatar}`}
-        src={avatar}
+        src={avatar!}
       />
       <h3 className="h4 my-3">
         <a

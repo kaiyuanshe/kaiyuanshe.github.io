@@ -1,7 +1,7 @@
 import { Loading, MonthCalendar } from 'idea-react';
 import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
-import { Container } from 'react-bootstrap';
+import { Breadcrumb, Container } from 'react-bootstrap';
 
 import { ArticleListLayout } from '../../../components/Article/List';
 import PageHead from '../../../components/Layout/PageHead';
@@ -26,7 +26,13 @@ export default class CalendarPage extends PureComponent {
     return (
       <Container className="py-5">
         <PageHead title={t('activity_articles_calendar')} />
-
+        <Breadcrumb>
+          <Breadcrumb.Item href="/">{t('KaiYuanShe')}</Breadcrumb.Item>
+          <Breadcrumb.Item href="/activity">{t('activity')}</Breadcrumb.Item>
+          <Breadcrumb.Item active>
+            {t('activity_articles_calendar')}
+          </Breadcrumb.Item>
+        </Breadcrumb>
         <h1 className="mb-5 text-center">{t('activity_articles_calendar')}</h1>
 
         {downloading > 0 && <Loading />}
@@ -35,7 +41,7 @@ export default class CalendarPage extends PureComponent {
           className="text-center"
           value={allItems.map(({ title, publishedAt, alias }) => ({
             date: new Date(publishedAt as number),
-            content: title,
+            content: title as string,
             link: `/article/${alias}`,
           }))}
           onChange={this.loadData}

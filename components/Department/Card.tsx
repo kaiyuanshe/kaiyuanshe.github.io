@@ -1,13 +1,12 @@
 import classNames from 'classnames';
-import { text2color } from 'idea-react';
 import { FC } from 'react';
-import { Badge } from 'react-bootstrap';
 
 import { Department } from '../../models/Personnel/Department';
 import { LarkImage } from '../Base/LarkImage';
+import { TagNav } from '../Base/TagNav';
 
 export interface GroupCardProps
-  extends Pick<Department, 'name' | 'logo' | 'tags' | 'summary'> {
+  extends Pick<Department, 'name' | 'logo' | 'tags' | 'summary' | 'email'> {
   className?: string;
 }
 
@@ -17,6 +16,7 @@ export const GroupCard: FC<GroupCardProps> = ({
   logo,
   tags,
   summary,
+  email,
 }) => (
   <div
     className={classNames('d-flex flex-column align-items-center', className)}
@@ -33,24 +33,21 @@ export const GroupCard: FC<GroupCardProps> = ({
         alt={name as string}
       />
     )}
-    <nav>
-      {(tags as string[])?.map(tag => (
-        <Badge
-          as="a"
-          key={tag}
-          className="text-decoration-none mx-1"
-          bg={text2color(tag, ['light'])}
-          href={`/search?tag=${tag}`}
-        >
-          {tag}
-        </Badge>
-      ))}
-    </nav>
+    {tags && <TagNav list={tags as string[]} />}
+
+    {email && (
+      <dl className="mt-1 d-flex align-items-start">
+        <dt className="me-1">E-mail:</dt>
+        <dd>
+          <a href={email + ''}>{(email + '').split(':')[1]}</a>
+        </dd>
+      </dl>
+    )}
     <p
-      className="mt-3 mb-0 text-wrap overflow-auto"
+      className="mt-3 mb-0 text-wrap text-start overflow-auto"
       style={{ maxWidth: '50vw', maxHeight: '10rem' }}
     >
-      {summary}
+      {summary as string}
     </p>
   </div>
 );

@@ -1,7 +1,7 @@
 import { IDType } from 'mobx-restful';
 
 export default {
-  KaiYuanShe: 'KaiYuanShe',
+  KaiYuanShe: 'KAIYUANSHE',
   our_vision: 'Our Vision',
   our_vision_content:
     'Based in China, contribute to the world, and promote open source as a way of life in the new era',
@@ -17,7 +17,7 @@ export default {
   our_mission: 'Our Mission',
   latest_news: 'Latest News',
   latest_activity: 'Latest Activity',
-  slogan: 'KaiYuanShe - The Home of Open-source Believer',
+  slogan: 'KAIYUANSHE - The Home of Open-source Believer',
   our_projects: 'Our Projects',
   activity_map: 'Activity Map',
   previous_activities: 'Previous Activities',
@@ -29,24 +29,25 @@ export default {
   our_members: 'Our Members',
   our_articles: 'Our Articles',
   coscon: 'China Open Source Conference',
-  kcc: 'KaiYuanShe City Community',
-  kcc_forum: 'KaiYuanShe City Community Forum',
+  kcc: 'KAIYUANSHE City Community',
+  kcc_forum: 'KAIYUANSHE City Community Forum',
   open_source_book_club: 'Open Source Book Club',
   original_articles: 'Original Articles',
   translated_articles: 'Translated Articles',
   all_articles: 'All Articles',
   our_annual_report: 'Our Annual Report',
   china_open_source_annual_report: 'China Open Source Annual Report',
-  kaiyuanshe_annual_report: 'KaiYuanShe Annual Report',
+  kaiyuanshe_annual_report: 'KAIYUANSHE Annual Report',
   china_open_source_landscape: 'China Open Source Landscape',
   open_source_projects: 'Open Source Projects',
-  community_list: 'Kaiyuanshe City Community',
+  community_list: 'KAIYUANSHE City Community',
   our_partners: 'Our Partners',
   open_source_treasure_box: 'Treasure-box',
   Web_polyfill_CDN: 'Web Polyfill CDN',
   open_source_mirror: 'Open-Source Mirror',
   license_tool: 'License Tool',
   about_us: 'About Us',
+  cultural_and_creative_store: 'Cultural and Creative Store',
 
   no_more: 'no more',
   load_more: 'load more...',
@@ -121,6 +122,7 @@ export default {
   银牌赞助: 'Silver sponsorship',
   铜牌赞助: 'Bronze sponsorship',
   星牌赞助: 'Star sponsorship',
+  特别支持: 'Special support',
   亮点赞助: 'Highlight sponsorship',
   成员赞助: 'Member sponsorship',
   讲师赞助: 'Lecturer sponsorship',
@@ -146,19 +148,21 @@ export default {
     'Do you want to limit the result to a license agreement that is "popular and widely used, or has a broad community" as described by the Open Source Initiative (OSI)?',
   tip_popularity_1:
     'This will sacrifice some less popular but perhaps useful features to ensure that the license becomes a mainstream license.',
-  tip_reuse_condition: 'Do you want to set license conditions for code reuse?',
+  tip_reuse_condition:
+    'Do you want to set license conditions for code reuse? If not, your license will be one of the so-called "permissive" licenses.',
   tip_infection_intensity:
-    'Do you want to choose a strongly infectious protocol?',
+    'Do you want to choose a strongly Copyleft licensing? When a software project contains some of your code, the project as a whole must be distributed under your license, if it is distributed at all. The effect of this will be that the source code for all additions made to the code will be available. If not,the parts of the project you originated from must be distributed under your license, if it is distributed at all. Other parts may be distributed under other licenses, even though they form part of a work with is - as a whole - a modified version of your code. The effect of this will be that the source code to some additions made to the code may not be available.',
   tip_jurisdiction: 'Do you want your region to be the jurisdiction?',
   tip_patent_statement:
     'Do you want to use a license agreement that explicitly grants patent rights (if any)?',
   tip_patent_retaliation:
-    'Do you want to use a license agreement that includes a patent retaliation clause?',
+    'Do you want to use a license agreement that includes a patent retaliation clause? who brings legal action alleging that the licensed software embodies one of their software patents will lose the license you have granted to copy, use, adapt, and distribute the code. It is intended to dissuade people from bringing this kind of legal action.',
   tip_enhanced_attribution:
-    'Do you want to use a license agreement that specifies "enhanced attribution"?',
+    'Do you want to use a license agreement that specifies "enhanced attribution"? It must take a particular form and appear in specific instances, for example on the user interface of softwares  every time it is run. ',
   tip_privacy_loophole:
-    'Do you want to use a license that addresses a "privacy loophole"',
-  tip_marketing_endorsement: 'Do you want to allow promotional licenses?',
+    'Do you want to use a license that addresses a "privacy loophole". Require that source code must also be released when services are provided over the Web or when code is deployed internally. The purpose of this is to ensure that all those who benefit from open source projects have a responsibility to give back to the community by sharing their improved and adapted versions.',
+  tip_marketing_endorsement:
+    "Do you want to allow promotional licenses? Avoid using the author's name to promote products or services based on the author's code. Such a restriction is intended to protect the authors reputation or prevent misleading publicity.",
   tip_infection_range:
     'Which parts of the modified version do you want to allow for other licenses, with four options: module-level, file-level, library interface-level, and no requirements ?',
   license_tool_headline: 'Open Source License Selector',
@@ -170,22 +174,23 @@ export default {
   option_undefined: 'Not required',
   step_x: ({ step }: { step: number }) => `step ${step}`,
   license_score: 'score',
-  feature_popularity: 'Popularity',
-  feature_reuse_condition: 'Reuse Condition',
-  feature_infection_intensity: 'Infection Intensity',
-  feature_infection_range: 'Infection Range',
-  feature_jurisdiction: 'Jurisdiction',
-  feature_patent_statement: 'Patent Statement',
-  feature_patent_retaliation: 'Patent Retaliation',
-  feature_enhanced_attribution: 'Enhanced Attribution',
-  feature_privacy_loophole: 'Privacy Loophole',
-  feature_marketing_endorsement: 'Marketing Endorsement',
+  popularity: 'Popularity',
+  reuseCondition: 'Reuse Condition',
+  infectionIntensity: 'Infection Intensity',
+  infectionRange: 'Infection Range',
+  jurisdiction: 'Jurisdiction',
+  patentStatement: 'Patent Statement',
+  patentRetaliation: 'Patent Retaliation',
+  enhancedAttribution: 'Enhanced Attribution',
+  privacyLoophole: 'Privacy Loophole',
+  marketingEndorsement: 'Marketing Endorsement',
   license_detail: 'license detail',
   attitude_positive: 'Yes',
   attitude_negative: 'Yes',
   range_library: 'library',
   range_file: 'file',
   range_module: 'module',
+  last_step: 'back',
 
   //finance Page
   bill_id: 'bill id',
@@ -225,6 +230,7 @@ export default {
   expert_committee: 'Expert Committee',
   producer: 'Producer',
   volunteer: 'Volunteer',
+  gift_wall: 'Gift Wall',
 
   //community detail page
   community_member: 'Community Members',
@@ -238,7 +244,7 @@ export default {
   host_activity: 'Host Activity',
 
   // GitHub project list page
-  kaiyuanshe_projects: 'Kaiyuanshe projects',
+  kaiyuanshe_projects: 'KAIYUANSHE projects',
   home_page: 'Home page',
   more_projects: 'More projects',
 } as const;

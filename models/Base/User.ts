@@ -17,6 +17,8 @@ export class UserModel extends BaseListModel<User> {
   constructor() {
     super();
     makeObservable(this);
+
+    if (!this.session) globalThis.localStorage?.clear();
   }
 
   baseURI = 'user';

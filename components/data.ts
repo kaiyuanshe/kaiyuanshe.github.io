@@ -1,4 +1,5 @@
 import { TimeDistanceProps } from 'idea-react';
+import { textJoin } from 'mobx-i18n';
 
 import { i18n } from '../models/Base/Translation';
 import { Link } from './Layout/MainNav';
@@ -37,6 +38,7 @@ export const MainRoutes = (): Link[] => [
         title: t('legal_advisory_committee'),
         path: '/department/committee/legal-advisory',
       },
+      { title: t('community_list'), path: '/community' },
       { title: t('our_members'), path: '/member' },
     ],
   },
@@ -102,7 +104,6 @@ export const MainRoutes = (): Link[] => [
         path: 'https://github.com/orgs/kaiyuanshe/discussions',
       },
       { title: t('china_open_source_landscape'), path: '/organization' },
-      { title: t('community_list'), path: '/community' },
       { title: t('Web_polyfill_CDN'), path: 'https://polyfill.kaiyuanshe.cn/' },
       { title: t('open_source_mirror'), path: 'http://mirror.kaiyuanshe.cn/' },
       { title: t('license_tool'), path: '/tool/license-filter' },
@@ -110,6 +111,15 @@ export const MainRoutes = (): Link[] => [
   },
   {
     title: t('about_us'),
-    path: 'https://kaiyuanshe.feishu.cn/wiki/wikcn749HAOCD2dwaNq4dOC67db',
+    subs: [
+      {
+        title: t('about_us'),
+        path: 'https://kaiyuanshe.feishu.cn/wiki/wikcn749HAOCD2dwaNq4dOC67db',
+      },
+      {
+        title: textJoin(t('KaiYuanShe'), t('cultural_and_creative_store')),
+        path: 'https://www.xiaohongshu.com/user/profile/6528f512000000002a018253',
+      },
+    ],
   },
 ];
