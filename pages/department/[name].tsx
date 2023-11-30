@@ -1,7 +1,7 @@
 import { InferGetServerSidePropsType } from 'next';
 import { compose, errorLogger, translator } from 'next-ssr-middleware';
 import { PureComponent } from 'react';
-import { Container } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 
 import { CommentBox } from '../../components/Base/CommentBox';
 import { GroupCard } from '../../components/Department/Card';
@@ -32,7 +32,24 @@ export default class DepartmentDetailPage extends PureComponent<
     return (
       <Container className="py-5">
         <PageHead title={name as string} />
-        <GroupCard {...department} />
+        <Row>
+          <Col xs={12} sm={4}>
+            <GroupCard {...department} />
+          </Col>
+          <Col xs={12} sm={8} as="ol" className="list-unstyled">
+            {person.summary && (
+              <article
+                dangerouslySetInnerHTML={{
+                  __html: marked(person.summary as string),
+                }}
+              />
+            )}
+            <hr className="my-5" />
+
+            {personnels.map(this.renderPersonnel)}
+          </Col>
+        </Row>
+
         <CommentBox category="General" categoryId="DIC_kwDOB88JLM4COLSV" />
       </Container>
     );
