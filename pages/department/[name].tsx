@@ -58,7 +58,7 @@ export default class DepartmentDetailPage extends PureComponent<
             <GroupCard {...department} />
           </Col>
           <Col xs={12} sm={8}>
-            <h2>{name as string}{t('latest_activity')}</h2>
+            <h2>{name as string} {t('members')}</h2>
             
             <hr className="my-5" />
 
