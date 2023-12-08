@@ -33,9 +33,16 @@ export default class DepartmentDetailPage extends PureComponent<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > {
   renderPersonnel = ({ id, recipientAvatar, recipient }: Personnel) => (
-    <li key={id as string} className="mb-3">
-      <h3>{recipient as string}</h3>
-      <LarkImage className="card-img-top rounded-0 " src={recipientAvatar} />
+    <li
+      key={id as string}
+      className="d-flex flex-column align-items-center gap-2 position-relative"
+    >
+      <LarkImage
+        className="overflow-hidden rounded-circle position-relative"
+        src={recipientAvatar}
+        style={{ width: '6rem', height: '6rem' }}
+      />
+      <p>{recipient as string}</p>
     </li>
   );
 
@@ -51,13 +58,13 @@ export default class DepartmentDetailPage extends PureComponent<
             <GroupCard {...department} />
           </Col>
           <Col xs={12} sm={8}>
-            <h2>{name as string} Members</h2>
+            <h2>{name as string}成员</h2>
 
             <hr className="my-5" />
 
-            <ol className="list-unstyled">
+            <ul className="list-unstyled d-flex flex-wrap gap-3">
               {personnels.map(this.renderPersonnel)}
-            </ol>
+            </ul>
           </Col>
         </Row>
 
