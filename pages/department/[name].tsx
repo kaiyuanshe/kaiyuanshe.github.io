@@ -42,14 +42,14 @@ export default class DepartmentDetailPage extends PureComponent<
         src={recipientAvatar}
         style={{ width: '6rem', height: '6rem' }}
       />
-      <p>{recipient as string}</p>
+      <div>{recipient as string}</div>
     </li>
   );
 
   render() {
     const { department, personnels } = this.props;
     const { name } = department;
-
+    const { t } = i18n;
     return (
       <Container className="py-5">
         <PageHead title={name as string} />
@@ -58,8 +58,8 @@ export default class DepartmentDetailPage extends PureComponent<
             <GroupCard {...department} />
           </Col>
           <Col xs={12} sm={8}>
-            <h2>{name as string}成员</h2>
-
+            <h2>{name as string}{t('latest_activity')}</h2>
+            
             <hr className="my-5" />
 
             <ul className="list-unstyled d-flex flex-wrap gap-3">

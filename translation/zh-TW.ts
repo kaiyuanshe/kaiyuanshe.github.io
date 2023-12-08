@@ -244,4 +244,7 @@ export default {
   kaiyuanshe_projects: '開源社專案',
   home_page: '專案首頁',
   more_projects: '更多專案',
+
+  // Deparment Detail Page
+  members: '成員',
 } as const;
