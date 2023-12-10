@@ -29,16 +29,19 @@ export const getServerSideProps = compose<
   };
 });
 
+import { observer } from 'mobx-react';
+
+@observer
 export default class DepartmentDetailPage extends PureComponent<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > {
   renderPersonnel = ({ id, recipientAvatar, recipient }: Personnel) => (
     <li
       key={id as string}
-      className="d-flex flex-column align-items-center gap-2 position-relative"
+      className="d-flex flex-column align-items-center gap-2"
     >
       <LarkImage
-        className="overflow-hidden rounded-circle position-relative"
+        className="rounded-circle"
         src={recipientAvatar}
         style={{ width: '6rem', height: '6rem' }}
       />
@@ -50,6 +53,7 @@ export default class DepartmentDetailPage extends PureComponent<
     const { department, personnels } = this.props;
     const { name } = department;
     const { t } = i18n;
+
     return (
       <Container className="py-5">
         <PageHead title={name as string} />
@@ -58,8 +62,11 @@ export default class DepartmentDetailPage extends PureComponent<
             <GroupCard {...department} />
           </Col>
           <Col xs={12} sm={8}>
-            <h2>{name as string} {t('members')}</h2>
-            
+            <h2>
+              {name as string}
+              {t('members')}
+            </h2>
+
             <hr className="my-5" />
 
             <ul className="list-unstyled d-flex flex-wrap gap-3">
