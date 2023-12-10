@@ -70,7 +70,7 @@ export class DepartmentModel extends BiDataTable<Department>() {
 
   normalize({
     id,
-    fields: { superior, link, codeLink, email, ...fields },
+    fields: { superior, link, codeLink, ...fields },
   }: TableRecord<Department>): Department {
     return {
       ...fields,
@@ -78,7 +78,6 @@ export class DepartmentModel extends BiDataTable<Department>() {
       superior: (superior as TableCellRelation[])?.map(normalizeText)[0],
       link: (link as TableCellLink)?.link,
       codeLink: (codeLink as TableCellLink)?.link,
-      email: (email as TableCellLink)?.link,
     };
   }
 }

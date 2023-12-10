@@ -1,13 +1,12 @@
-import { text2color } from 'idea-react';
 import { InferGetServerSidePropsType } from 'next';
 import { compose, errorLogger, translator } from 'next-ssr-middleware';
-import { PureComponent } from 'react';
+import { FC } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 
 import { CommentBox } from '../../components/Base/CommentBox';
-import { LarkImage } from '../../components/Base/LarkImage';
 import { GroupCard } from '../../components/Department/Card';
 import PageHead from '../../components/Layout/PageHead';
+import { MemberGroup } from '../../components/Member/Group';
 import { i18n } from '../../models/Base/Translation';
 import { Personnel, PersonnelModel } from '../../models/Personnel';
 import { Department, DepartmentModel } from '../../models/Personnel/Department';
@@ -29,54 +28,22 @@ export const getServerSideProps = compose<
   };
 });
 
-import { observer } from 'mobx-react';
-
-@observer
-export default class DepartmentDetailPage extends PureComponent<
+const DepartmentDetailPage: FC<
   InferGetServerSidePropsType<typeof getServerSideProps>
-> {
-  renderPersonnel = ({ id, recipientAvatar, recipient }: Personnel) => (
-    <li
-      key={id as string}
-      className="d-flex flex-column align-items-center gap-2"
-    >
-      <LarkImage
-        className="rounded-circle"
-        src={recipientAvatar}
-        style={{ width: '6rem', height: '6rem' }}
-      />
-      <div>{recipient as string}</div>
-    </li>
-  );
+> = ({ department, personnels }) => (
+  <Container className="py-5">
+    <PageHead title={department.name as string} />
+    <Row>
+      <Col xs={12} sm={4}>
+        <GroupCard {...department} />
+      </Col>
+      <Col xs={12} sm={8}>
+        <MemberGroup name={department.name as string} list={personnels} />
+      </Col>
+    </Row>
 
-  render() {
-    const { department, personnels } = this.props;
-    const { name } = department;
-    const { t } = i18n;
+    <CommentBox category="General" categoryId="DIC_kwDOB88JLM4COLSV" />
+  </Container>
+);
 
-    return (
-      <Container className="py-5">
-        <PageHead title={name as string} />
-        <Row>
-          <Col xs={12} sm={4}>
-            <GroupCard {...department} />
-          </Col>
-          <Col xs={12} sm={8}>
-            <h2>
-              {name as string}
-              {t('members')}
-            </h2>
-
-            <hr className="my-5" />
-
-            <ul className="list-unstyled d-flex flex-wrap gap-3">
-              {personnels.map(this.renderPersonnel)}
-            </ul>
-          </Col>
-        </Row>
-
-        <CommentBox category="General" categoryId="DIC_kwDOB88JLM4COLSV" />
-      </Container>
-    );
-  }
-}
+export default DepartmentDetailPage;

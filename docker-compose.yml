@@ -3,9 +3,6 @@ version: '3'
 services:
   kys-ows:
     image: kaiyuanshe/kys-ows
-    environment:
-      - NODE_ENV=production
-      - PORT=3000
     ports:
       - 3000:3000
     healthcheck:
