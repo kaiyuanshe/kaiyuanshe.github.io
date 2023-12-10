@@ -78,7 +78,7 @@ const SearchPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
 
           <h2>{t('department')}</h2>
 
-          <Row className="my-0 g-4" xs={1} sm={2} md={4}>
+          <Row className="my-0 g-4" xs={1} sm={2} lg={4}>
             {departments.map(group => (
               <Col key={group.id + ''}>
                 <GroupCard className="h-100 border rounded-3 p-3" {...group} />

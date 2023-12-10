@@ -1,18 +1,13 @@
-import 'array-unique-proposal';
-
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
 import { cache, compose, errorLogger, translator } from 'next-ssr-middleware';
-import { PureComponent } from 'react';
+import { FC } from 'react';
 import { Container } from 'react-bootstrap';
-import { TimeData } from 'web-utility';
 
 import PageHead from '../../components/Layout/PageHead';
-import { MemberCard } from '../../components/Member/Card';
-import { MemberTitle } from '../../components/Member/Title';
-import { blobURLOf } from '../../models/Base';
+import { MemberGroup } from '../../components/Member/Group';
 import { i18n } from '../../models/Base/Translation';
-import { Personnel, PersonnelModel } from '../../models/Personnel';
+import { PersonnelModel } from '../../models/Personnel';
 
 export const getServerSideProps = compose<{}, Pick<PersonnelModel, 'group'>>(
   cache(),
@@ -32,60 +27,19 @@ export const getServerSideProps = compose<{}, Pick<PersonnelModel, 'group'>>(
 
 const { t } = i18n;
 
-@observer
-export default class MemberPage extends PureComponent<
-  InferGetServerSidePropsType<typeof getServerSideProps>
-> {
-  renderMember = ({
-    id,
-    createdAt,
-    position,
-    recipient,
-    recipientAvatar,
-  }: Personnel) => (
-    <li
-      key={id as string}
-      className="d-flex flex-column align-items-center gap-2 position-relative"
-    >
-      <MemberCard
-        name={recipient + ''}
-        nickname={`${position}${
-          (position as string).includes('组长')
-            ? `(${new Date(createdAt as TimeData).getFullYear()})`
-            : ''
-        }`}
-        avatar={blobURLOf(recipientAvatar)}
-      />
-    </li>
-  );
+const MemberPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
+  observer(({ group }) => (
+    <Container className="py-5">
+      <PageHead title={t('正式成员')} />
 
-  render() {
-    const { group } = this.props;
-    return (
-      <Container className="py-5">
-        <PageHead title={t('正式成员')} />
+      <h1 className="text-center">{t('正式成员')}</h1>
 
-        <h1 className="text-center">{t('正式成员')}</h1>
+      {Object.entries(group)
+        .sort(([a], [b]) => (a ? -1 : b ? 1 : 0))
+        .map(([name, list]) => (
+          <MemberGroup key={name} {...{ name, list }} />
+        ))}
+    </Container>
+  ));
 
-        {Object.entries(group)
-          .sort(([a], [b]) => (a ? -1 : b ? 1 : 0))
-          .map(([department, list]) => {
-            list = list.uniqueBy(({ recipient }) => recipient + '');
-
-            return (
-              <section key={department} id={department}>
-                <MemberTitle
-                  className="my-5"
-                  title={department || t('unclassified')}
-                  count={list.length}
-                />
-                <ul className="list-unstyled d-flex flex-wrap gap-3">
-                  {list.map(this.renderMember)}
-                </ul>
-              </section>
-            );
-          })}
-      </Container>
-    );
-  }
-}
+export default MemberPage;

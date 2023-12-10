@@ -44,7 +44,7 @@ export const GroupCard: FC<GroupCardProps> = ({
       <dl className="mt-1 d-flex align-items-start">
         <dt className="me-1">E-mail:</dt>
         <dd>
-          <a href={email + ''}>{(email + '').split(':')[1]}</a>
+          <a href={`mailto:${email}`}>{email as string}</a>
         </dd>
       </dl>
     )}
