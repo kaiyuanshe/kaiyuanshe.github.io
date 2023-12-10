@@ -247,4 +247,7 @@ export default {
   kaiyuanshe_projects: 'KAIYUANSHE projects',
   home_page: 'Home page',
   more_projects: 'More projects',
+
+  // Deparment Detail Page
+  members: 'Members',
 } as const;

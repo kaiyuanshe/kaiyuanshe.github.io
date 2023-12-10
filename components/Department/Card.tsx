@@ -21,7 +21,15 @@ export const GroupCard: FC<GroupCardProps> = ({
   <div
     className={classNames('d-flex flex-column align-items-center', className)}
   >
-    <h3 className="h5 mb-3 flex-fill">{name as string}</h3>
+    <h3 className="h5 mb-3 flex-fill">
+      <a
+        className="text-decoration-none text-dark"
+        href={`/department/${name}`}
+      >
+        {name as string}
+      </a>
+    </h3>
+
     {logo && (
       <LarkImage
         className="mb-3 flex-fill object-fit-contain"
