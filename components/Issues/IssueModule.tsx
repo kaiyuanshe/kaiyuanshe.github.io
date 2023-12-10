@@ -11,7 +11,7 @@ export const IssueModule: FC<GitRepository> = ({ name, language, issues }) => {
   return (
     <Card className="p-0" bg="light" text="dark">
       <Card.Header
-        style={{ cursor: 'pointer' }}
+        className="cursor-pointer"
         onClick={() => setIsExpand(!isExpand)}
       >
         <Row className="align-items-center gx-3">

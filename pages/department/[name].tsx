@@ -19,9 +19,7 @@ export const getServerSideProps = compose<
 
   if (!department) return { notFound: true, props: {} };
 
-  const personnels = await new PersonnelModel().getList({
-    department: name,
-  });
+  const personnels = await new PersonnelModel().getAll({ department: name });
 
   return {
     props: JSON.parse(JSON.stringify({ department, personnels })),

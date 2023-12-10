@@ -76,7 +76,14 @@ export class OrganizationCard extends PureComponent<OrganizationCardProps> {
       this.props;
 
     return (
-      <Card {...props}>
+      <Card
+        {...props}
+        style={{
+          ...props.style,
+          contentVisibility: 'auto',
+          containIntrinsicHeight: '36rem',
+        }}
+      >
         <LarkImage
           className="card-img-top object-fit-contain"
           style={{ height: '30vh' }}
@@ -86,9 +93,8 @@ export class OrganizationCard extends PureComponent<OrganizationCardProps> {
           <Card.Title>
             {name as string}
             <Badge
-              className="ms-2"
+              className="ms-2 cursor-pointer"
               bg={text2color(type + '', ['light'])}
-              style={{ cursor: 'pointer' }}
               onClick={
                 onSwitch &&
                 (() =>
@@ -105,7 +111,7 @@ export class OrganizationCard extends PureComponent<OrganizationCardProps> {
               <Badge
                 key={tag}
                 bg={text2color(tag, ['light'])}
-                style={{ cursor: 'pointer' }}
+                className="cursor-pointer"
                 onClick={
                   onSwitch &&
                   (() =>

@@ -61,7 +61,10 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
     } = this.props;
 
     return (
-      <Container className="h-100">
+      <Container
+        className="h-100"
+        style={{ contentVisibility: 'auto', containIntrinsicHeight: '13rem' }}
+      >
         <Row className="border shadow-sm rounded h-100">
           <Col
             xs={4}
