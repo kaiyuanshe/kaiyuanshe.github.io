@@ -13,6 +13,7 @@ export interface ElectorCardProps extends CardProps, Omit<Personnel, 'id'> {
 }
 
 export const ElectorCard: FC<ElectorCardProps> = ({
+  style,
   createdAt,
   recipient,
   recipientAvatar,
@@ -27,7 +28,14 @@ export const ElectorCard: FC<ElectorCardProps> = ({
   order,
   ...props
 }) => (
-  <Card {...props}>
+  <Card
+    {...props}
+    style={{
+      ...style,
+      contentVisibility: 'auto',
+      containIntrinsicHeight: '42rem',
+    }}
+  >
     <Card.Header className="d-flex justify-content-between">
       <time dateTime={new Date(createdAt as number).toJSON()}>
         {formatDate(createdAt as number, 'YYYY-MM-DD')}

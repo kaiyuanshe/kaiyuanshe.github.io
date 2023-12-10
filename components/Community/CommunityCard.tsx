@@ -5,7 +5,10 @@ import { Community } from '../../models/Community';
 import { LarkImage } from '../Base/LarkImage';
 
 export const CommunityCard: FC<Community> = ({ name, logo }) => (
-  <Card className="border-0 align-items-center position-relative">
+  <Card
+    className="border-0 align-items-center position-relative"
+    style={{ contentVisibility: 'auto', containIntrinsicHeight: '12rem' }}
+  >
     <LarkImage
       className="card-img-top"
       style={{ width: '8rem' }}

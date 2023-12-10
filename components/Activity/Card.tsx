@@ -21,8 +21,11 @@ export const ActivityCard: FC<ActivityCardProps> = ({
   location,
   image,
   ...activity
-}: ActivityCardProps) => (
-  <Card className={`shadow-sm ${className}`}>
+}) => (
+  <Card
+    className={`shadow-sm ${className}`}
+    style={{ contentVisibility: 'auto', containIntrinsicHeight: '23rem' }}
+  >
     <div className="position-relative w-100" style={{ paddingBottom: '56%' }}>
       <div className="position-absolute top-0 left-0 w-100 h-100">
         <LarkImage

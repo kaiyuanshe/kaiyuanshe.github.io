@@ -25,7 +25,10 @@ export const GitCard: FC<GitCardProps> = observer(
     description,
     homepage,
   }) => (
-    <Card className={className}>
+    <Card
+      className={className}
+      style={{ contentVisibility: 'auto', containIntrinsicHeight: '22rem' }}
+    >
       <Card.Body className="d-flex flex-column gap-3">
         <Card.Title as="h3" className="h5">
           <a target="_blank" href={html_url} rel="noreferrer">

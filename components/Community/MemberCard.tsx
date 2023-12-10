@@ -9,7 +9,10 @@ export const CommunityMemberCard: FC<CommunityMember> = ({
   name,
   summary,
 }) => (
-  <Card className="border-0 align-items-center position-relative">
+  <Card
+    className="border-0 align-items-center position-relative"
+    style={{ contentVisibility: 'auto', containIntrinsicHeight: '17rem' }}
+  >
     <LarkImage
       className="card-img-top rounded-circle object-fit-cover"
       style={{ width: '10rem', height: '10rem' }}

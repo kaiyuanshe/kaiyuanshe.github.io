@@ -17,7 +17,7 @@ export const GiftCard: FC<GiftCardProps> = ({
 }) => (
   <>
     <div
-      className={`position-relative mb-3 ${style.gift} ${
+      className={`position-relative mb-3 cursor-pointer ${style.gift} ${
         disabled ? style.disabled : ''
       }`}
     >

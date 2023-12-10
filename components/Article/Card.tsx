@@ -19,8 +19,11 @@ export const ArticleCard: FC<ArticleCardProps> = ({
   tags,
   image,
   publishedAt,
-}: ArticleCardProps) => (
-  <Card className={`shadow-sm ${className}`}>
+}) => (
+  <Card
+    className={`shadow-sm ${className}`}
+    style={{ contentVisibility: 'auto', containIntrinsicHeight: '20rem' }}
+  >
     <LarkImage
       className="card-img-top object-fit-cover"
       style={{ aspectRatio: '2.35 / 1' }}

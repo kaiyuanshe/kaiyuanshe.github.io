@@ -70,8 +70,7 @@ export default class ListMap extends PureComponent<ListMapProps> {
   renderItem = (marker: ImageMarker) => (
     <ListGroup.Item
       key={marker.title}
-      className="d-flex gap-2 justify-content-between"
-      style={{ cursor: 'pointer' }}
+      className="d-flex gap-2 justify-content-between cursor-pointer"
       onClick={this.selectOne(marker)}
     >
       <ImagePreview className="w-25" fluid loading="lazy" src={marker.image} />
