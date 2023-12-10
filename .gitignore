@@ -49,6 +49,3 @@ yarn-error.log*
 # IDE
 .vscode/settings.json
 .idea/
-
-# npmrc
-.npmrc
