@@ -1,5 +1,5 @@
 import { InferGetServerSidePropsType } from 'next';
-import { compose, errorLogger, translator } from 'next-ssr-middleware';
+import { cache, compose, errorLogger, translator } from 'next-ssr-middleware';
 import { FC } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 
@@ -14,12 +14,15 @@ import { Department, DepartmentModel } from '../../models/Personnel/Department';
 export const getServerSideProps = compose<
   { name: string },
   { department: Department; personnels: Personnel[] }
->(errorLogger, translator(i18n), async ({ params: { name } = {} }) => {
+>(cache(), errorLogger, translator(i18n), async ({ params: { name } = {} }) => {
   const [department] = await new DepartmentModel().getList({ name });
 
   if (!department) return { notFound: true, props: {} };
 
-  const personnels = await new PersonnelModel().getAll({ department: name });
+  const personnels = await new PersonnelModel().getAll({
+    department: name,
+    passed: true,
+  });
 
   return {
     props: JSON.parse(JSON.stringify({ department, personnels })),
