@@ -6,6 +6,7 @@ import { configure } from 'mobx';
 import { enableStaticRendering, observer } from 'mobx-react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+import Script from 'next/script';
 import { GoogleAnalytics } from 'nextjs-google-analytics';
 import { FC } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
@@ -38,6 +39,16 @@ const AppShell: FC<AppProps> = observer(({ Component, pageProps, router }) => (
       <meta name="viewport" content="width=device-width, initial-scale=1" />
     </Head>
     <GoogleAnalytics strategy="lazyOnload" trackPageViews />
+    <Script id="AITable-meta">
+      {`window.__aitable = window.__aitable || {};
+window.__aitable.share = "shrLPzmeV2iapzGSowywU";
+window.__aitable.baseUrl = "https://aitable.ai";`}
+    </Script>
+    <Script
+      id="AITable-widget"
+      async
+      src="https://aitable.ai/file/js/aitable_widget.js?v=0.0.1"
+    ></Script>
 
     <MainNav title={t('KaiYuanShe')} logo={DefaultImage} links={MainRoutes()} />
 
