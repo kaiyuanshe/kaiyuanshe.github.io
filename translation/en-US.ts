@@ -41,6 +41,7 @@ export default {
   china_open_source_landscape: 'China Open Source Landscape',
   open_source_projects: 'Open Source Projects',
   community_list: 'KAIYUANSHE City Community',
+  pioneer:'中国开源先锋',
   our_partners: 'Our Partners',
   open_source_treasure_box: 'Treasure-box',
   Web_polyfill_CDN: 'Web Polyfill CDN',

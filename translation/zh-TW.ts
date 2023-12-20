@@ -41,6 +41,7 @@ export default {
   open_source_projects: '開源項目',
   our_partners: '合作夥伴',
   community_list: '開源社城市社區（KCC）',
+  pioneer:'中国开源先锋',
   open_source_treasure_box: '開源百寶箱',
   Web_polyfill_CDN: 'Web 標準補丁 CDN',
   open_source_mirror: '開源鏡像站',
