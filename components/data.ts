@@ -39,7 +39,6 @@ export const MainRoutes = (): Link[] => [
         path: '/department/committee/legal-advisory',
       },
       { title: t('community_list'), path: '/community' },
-      { title: t('china_open_source_pioneer'), path: '/community/pioneer' },
       { title: t('our_members'), path: '/member' },
     ],
   },
@@ -67,19 +66,6 @@ export const MainRoutes = (): Link[] => [
     ],
   },
   {
-    title: t('our_annual_report'),
-    subs: [
-      {
-        title: t('china_open_source_annual_report'),
-        path: 'https://kaiyuanshe.feishu.cn/wiki/wikcnUDeVll6PNzw900yPV71Sxd',
-      },
-      {
-        title: t('kaiyuanshe_annual_report'),
-        path: 'https://kaiyuanshe.feishu.cn/wiki/U2S7wudEUisLdnkqUadczo1SnSc',
-      },
-    ],
-  },
-  {
     title: t('wonderful_activity'),
     subs: [
       { title: t('host_activity'), path: '/activity' },
@@ -96,18 +82,30 @@ export const MainRoutes = (): Link[] => [
       },
     ],
   },
-  { title: t('our_partners'), path: '/organization/cooperation' },
+  {
+    title: t('community_development'),
+    subs: [
+      {
+        title: t('china_open_source_annual_report'),
+        path: 'https://kaiyuanshe.feishu.cn/wiki/wikcnUDeVll6PNzw900yPV71Sxd',
+      },
+      { title: t('china_open_source_pioneer'), path: '/community/pioneer' },
+      { title: t('china_open_source_landscape'), path: '/organization' },
+    ],
+  },
   {
     title: t('open_source_treasure_box'),
     subs: [
-      {
-        title: t('kcc_forum'),
-        path: 'https://github.com/orgs/kaiyuanshe/discussions',
-      },
-      { title: t('china_open_source_landscape'), path: '/organization' },
-      { title: t('Web_polyfill_CDN'), path: 'https://polyfill.kaiyuanshe.cn/' },
-      { title: t('open_source_mirror'), path: 'http://mirror.kaiyuanshe.cn/' },
       { title: t('license_tool'), path: '/tool/license-filter' },
+      {
+        title: `${t('Web_polyfill_CDN')} v1`,
+        path: 'https://polyfill.kaiyuanshe.cn/',
+      },
+      {
+        title: `${t('Web_polyfill_CDN')} v2`,
+        path: 'https://polyfiller.kaiyuanshe.cn/',
+      },
+      { title: t('open_source_mirror'), path: 'http://mirror.kaiyuanshe.cn/' },
     ],
   },
   {
@@ -118,8 +116,17 @@ export const MainRoutes = (): Link[] => [
         path: 'https://kaiyuanshe.feishu.cn/wiki/wikcn749HAOCD2dwaNq4dOC67db',
       },
       {
+        title: t('kaiyuanshe_annual_report'),
+        path: 'https://kaiyuanshe.feishu.cn/wiki/U2S7wudEUisLdnkqUadczo1SnSc',
+      },
+      {
         title: textJoin(t('KaiYuanShe'), t('cultural_and_creative_store')),
         path: 'https://www.xiaohongshu.com/user/profile/6528f512000000002a018253',
+      },
+      { title: t('our_partners'), path: '/organization/cooperation' },
+      {
+        title: t('kcc_forum'),
+        path: 'https://github.com/orgs/kaiyuanshe/discussions',
       },
     ],
   },
