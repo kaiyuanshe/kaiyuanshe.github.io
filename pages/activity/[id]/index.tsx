@@ -194,7 +194,7 @@ export default class ActivityDetailPage extends PureComponent<
         <h2 className="mt-5 mb-3 text-center" id={name as string}>
           {name as string}
         </h2>
-        {location && <h4 className="mb-5 text-center">{location}</h4>}
+        {location && <h4 className="mb-5 text-center">{location as string}</h4>}
         <Row>
           <Col xl={{ offset: 2, span: 8 }} as="p" className="text-muted">
             {summary as string}

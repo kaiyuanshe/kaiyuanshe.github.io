@@ -60,7 +60,7 @@ export class ForumModel extends BiDataTable<Forum>() {
       producerOrganizations:
         producerOrganizations &&
         normalizeTextArray(producerOrganizations as TableCellText[]),
-      location: location && normalizeTextArray(location as TableCellText[]),
+      location: location && normalizeTextArray(location as TableCellRelation[]),
     };
   }
 }
