@@ -4,6 +4,7 @@ import { observer } from 'mobx-react';
 import dynamic from 'next/dynamic';
 import { Component } from 'react';
 import { Badge, Carousel, Col, Container, Row } from 'react-bootstrap';
+import { formatDate } from 'web-utility';
 
 import { blobURLOf } from '../../../models/Base';
 import { LarkImage } from '../../Base/LarkImage';
@@ -97,8 +98,8 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
             </h3>
             <ul className="list-unstyled flex-fill d-flex flex-column justify-content-between gap-2">
               <li>
-                🕒 {new Date(+startTime!).toLocaleString()} ~{' '}
-                {new Date(+endTime!).toLocaleString()}
+                🕒 {formatDate(+startTime!, 'YYYY-MM-DD')} ~{' '}
+                {formatDate(+endTime!, 'YYYY-MM-DD')}
               </li>
               <li>{(mentorOrganizations as string[])?.join(' ')}</li>
 

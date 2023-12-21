@@ -21,7 +21,7 @@ import {
   DropdownButton,
   Row,
 } from 'react-bootstrap';
-import { buildURLData } from 'web-utility';
+import { buildURLData, formatDate } from 'web-utility';
 
 import {
   ActivityPeople,
@@ -104,7 +104,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
 
   renderHeader() {
     const { user } = systemStore.hashQuery,
-      { id, name, location } = this.props.activity,
+      { id, name } = this.props.activity,
       {
         id: agendaId,
         type,
@@ -128,15 +128,14 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
 
           <div className="text-success">{forum as string}</div>
           <div>
-            🕒 {new Date(+startTime!).toLocaleString()} ~{' '}
-            {new Date(+endTime!).toLocaleString()}
+            🕒 {formatDate(+startTime!, 'YYYY-MM-DD')} ~{' '}
+            {formatDate(+endTime!, 'YYYY-MM-DD')}
           </div>
         </div>
 
         <AgendaToolbar
           className="my-3 text-nowrap"
           activityId={id + ''}
-          location={location + ''}
           {...this.props.agenda}
         >
           <SessionBox>
@@ -182,7 +181,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
   }
 
   render() {
-    const { id, alias, name, location } = this.props.activity,
+    const { id, alias, name } = this.props.activity,
       { score, recommendList } = this.props;
     const {
       title,
@@ -250,11 +249,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
                   agenda =>
                     agenda.title !== title && (
                       <li key={agenda.id + ''}>
-                        <AgendaCard
-                          activityId={id + ''}
-                          location={location + ''}
-                          {...agenda}
-                        />
+                        <AgendaCard activityId={id + ''} {...agenda} />
                       </li>
                     ),
                 )}

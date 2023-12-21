@@ -31,6 +31,7 @@ export type Agenda = Record<
   | 'endTime'
   | 'approver'
   | 'score'
+  | 'location'
   | '负责人手机号',
   TableCellValue
 > & {
@@ -91,6 +92,7 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
       mentorSummaries,
       score,
       tags,
+      location,
       ...data
     } = fields;
 
@@ -112,6 +114,7 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
         normalizeTextArray(mentorSummaries as TableCellText[]),
       score: typeof score === 'number' ? score : null,
       tags: (tags as string)?.trim().split(/\s+/),
+      location: (location as TableCellRelation[])?.map(normalizeText),
     };
   }
 
