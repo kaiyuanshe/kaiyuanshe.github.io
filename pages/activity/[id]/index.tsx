@@ -253,24 +253,36 @@ export default class ActivityDetailPage extends PureComponent<
         {this.renderButtonBar()}
 
         <Stack
-          className="justify-content-center"
+          className="justify-content-center flex-wrap"
           direction="horizontal"
           gap={3}
         >
           <Button
-            className="d-sm-block"
+            className="text-nowrap"
             variant="danger"
             href={`/activity/${activity.id}/gift`}
           >
             {t('gift_wall')}
           </Button>
-          <Button variant="info" href={`/activity/${activity.id}/volunteer`}>
+          <Button
+            className="text-nowrap"
+            variant="info"
+            href={`/activity/${activity.id}/volunteer`}
+          >
             {t('volunteer')}
           </Button>
-          <Button variant="secondary" href={`/activity/${activity.id}/finance`}>
+          <Button
+            className="text-nowrap"
+            variant="secondary"
+            href={`/activity/${activity.id}/finance`}
+          >
             {t('financial_disclosure')}
           </Button>
-          <Button variant="success" href="/search?keywords=收官">
+          <Button
+            className="text-nowrap"
+            variant="success"
+            href="/search?keywords=收官"
+          >
             {t('previous_activities')}
           </Button>
         </Stack>

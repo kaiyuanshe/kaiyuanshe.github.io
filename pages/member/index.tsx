@@ -28,17 +28,17 @@ export const getServerSideProps = compose<{}, Pick<PersonnelModel, 'group'>>(
 const { t } = i18n;
 
 const MemberPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
-  observer(({ group }) => (
+  observer(({ group: { '': unGrouped, ...group } }) => (
     <Container className="py-5">
       <PageHead title={t('正式成员')} />
 
       <h1 className="text-center">{t('正式成员')}</h1>
 
-      {Object.entries(group)
-        .sort(([a], [b]) => (a ? -1 : b ? 1 : 0))
-        .map(([name, list]) => (
+      {[...Object.entries(group), ['', unGrouped] as const].map(
+        ([name, list]) => (
           <MemberGroup key={name} {...{ name, list }} />
-        ))}
+        ),
+      )}
     </Container>
   ));
 
