@@ -3,6 +3,7 @@ import { InferGetServerSidePropsType } from 'next';
 import { compose, errorLogger, translator } from 'next-ssr-middleware';
 import { FC } from 'react';
 import { Breadcrumb, Container } from 'react-bootstrap';
+
 import PageHead from '../../components/Layout/PageHead';
 import { MemberCard } from '../../components/Member/Card';
 import { blobURLOf } from '../../models/Base';
@@ -15,7 +16,7 @@ export const getServerSideProps = compose<{}, Pick<PersonnelModel, 'group'>>(
   async () => {
     const group = await new PersonnelModel().getYearGroup(
       {
-        award : ['中国开源先锋33人'],
+        award: ['中国开源先锋33人'],
       },
       ['createdAt'],
     );
@@ -23,17 +24,18 @@ export const getServerSideProps = compose<{}, Pick<PersonnelModel, 'group'>>(
   },
 );
 
-
 const { t } = i18n;
 
 const Pioneer: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
-observer(({ group }) => (
+  observer(({ group }) => (
     <Container className="py-5">
       <PageHead title={t('china_open_source_pioneer')} />
       <Breadcrumb>
         <Breadcrumb.Item href="/">{t('KaiYuanShe')}</Breadcrumb.Item>
         <Breadcrumb.Item href="/department">{t('department')}</Breadcrumb.Item>
-        <Breadcrumb.Item active>{t('china_open_source_pioneer')}</Breadcrumb.Item>
+        <Breadcrumb.Item active>
+          {t('china_open_source_pioneer')}
+        </Breadcrumb.Item>
       </Breadcrumb>
       <h1 className="text-center">{t('china_open_source_pioneer')}</h1>
       {Object.entries(group)
