@@ -40,6 +40,7 @@ export default {
   china_open_source_landscape: '开源地图',
   open_source_projects: '开源项目',
   community_list: '开源社城市社区（KCC）',
+  china_open_source_pioneer:'中国开源先锋',
   our_partners: '合作伙伴',
   open_source_treasure_box: '开源百宝箱',
   Web_polyfill_CDN: 'Web 标准补丁 CDN',

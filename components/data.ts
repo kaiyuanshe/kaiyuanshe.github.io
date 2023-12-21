@@ -39,6 +39,7 @@ export const MainRoutes = (): Link[] => [
         path: '/department/committee/legal-advisory',
       },
       { title: t('community_list'), path: '/community' },
+      { title: t('china_open_source_pioneer'), path: '/community/pioneer' },
       { title: t('our_members'), path: '/member' },
     ],
   },
