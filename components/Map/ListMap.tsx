@@ -90,8 +90,11 @@ export default class ListMap extends PureComponent<ListMapProps> {
 
     return (
       <div className={`position-relative ${className}`} style={style}>
-        <ChinaMap {...props} markers={currentMarker && [currentMarker]} />
-
+        <ChinaMap
+          className="h-100"
+          {...props}
+          markers={currentMarker && [currentMarker]}
+        />
         <div
           className={`position-absolute end-0 top-0 h-100 overflow-y-auto d-flex align-items-start ${drawerWidth}`}
           style={{ zIndex: 1000 }}

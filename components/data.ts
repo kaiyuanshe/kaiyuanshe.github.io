@@ -106,6 +106,14 @@ export const MainRoutes = (): Link[] => [
         path: 'https://polyfiller.kaiyuanshe.cn/',
       },
       { title: t('open_source_mirror'), path: 'http://mirror.kaiyuanshe.cn/' },
+      {
+        title: t('open_hackathon_platform'),
+        path: 'https://hackathon.kaiyuanshe.cn/',
+      },
+      {
+        title: t('xiaoyuan_chatbot'),
+        path: 'https://aitable.ai/share/shrLPzmeV2iapzGSowywU',
+      },
     ],
   },
   {

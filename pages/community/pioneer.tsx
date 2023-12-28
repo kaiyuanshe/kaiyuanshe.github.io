@@ -15,9 +15,7 @@ export const getServerSideProps = compose<{}, Pick<PersonnelModel, 'group'>>(
   translator(i18n),
   async () => {
     const group = await new PersonnelModel().getYearGroup(
-      {
-        award: ['中国开源先锋33人'],
-      },
+      { award: '中国开源先锋33人' },
       ['createdAt'],
     );
     return { props: JSON.parse(JSON.stringify({ group })) };
@@ -30,14 +28,17 @@ const Pioneer: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
   observer(({ group }) => (
     <Container className="py-5">
       <PageHead title={t('china_open_source_pioneer')} />
+
       <Breadcrumb>
         <Breadcrumb.Item href="/">{t('KaiYuanShe')}</Breadcrumb.Item>
-        <Breadcrumb.Item href="/department">{t('department')}</Breadcrumb.Item>
+        <Breadcrumb.Item>{t('community_development')}</Breadcrumb.Item>
         <Breadcrumb.Item active>
           {t('china_open_source_pioneer')}
         </Breadcrumb.Item>
       </Breadcrumb>
+
       <h1 className="text-center">{t('china_open_source_pioneer')}</h1>
+
       {Object.entries(group)
         .sort(([a], [b]) => +b - +a)
         .map(([year, list]) => (

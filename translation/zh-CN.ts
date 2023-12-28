@@ -40,12 +40,14 @@ export default {
   china_open_source_landscape: '开源地图',
   open_source_projects: '开源项目',
   community_list: '开源社城市社区（KCC）',
-  china_open_source_pioneer:'中国开源先锋',
+  china_open_source_pioneer: '中国开源先锋',
   our_partners: '合作伙伴',
   open_source_treasure_box: '开源百宝箱',
   Web_polyfill_CDN: 'Web 标准补丁 CDN',
   open_source_mirror: '开源镜像站',
   license_tool: '开源许可证选择器',
+  open_hackathon_platform: '开放黑客松平台',
+  xiaoyuan_chatbot: '小源问答机器人',
   about_us: '关于我们',
   cultural_and_creative_store: '文创商店',
 
@@ -230,7 +232,7 @@ export default {
   volunteer: '志愿者',
   gift_wall: '礼品墙',
 
-  //community detail page
+  // community list & community detail page
   community_member: '社区成员',
   add_member: '数据整理中，敬请期待',
   community: '社区',
