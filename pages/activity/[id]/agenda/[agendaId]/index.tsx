@@ -21,7 +21,7 @@ import {
   DropdownButton,
   Row,
 } from 'react-bootstrap';
-import { buildURLData, formatDate } from 'web-utility';
+import { buildURLData } from 'web-utility';
 
 import {
   ActivityPeople,
@@ -33,6 +33,7 @@ import {
 import { CommentBox } from '../../../../../components/Base/CommentBox';
 import { QRCodeButton } from '../../../../../components/Base/QRCodeButton';
 import { ScoreBar } from '../../../../../components/Base/ScoreBar';
+import { TimeRange } from '../../../../../components/Base/TimeRange';
 import PageHead from '../../../../../components/Layout/PageHead';
 import { Activity, ActivityModel } from '../../../../../models/Activity';
 import { Agenda } from '../../../../../models/Activity/Agenda';
@@ -128,8 +129,7 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
 
           <div className="text-success">{forum as string}</div>
           <div>
-            🕒 {formatDate(+startTime!, 'YYYY-MM-DD')} ~{' '}
-            {formatDate(+endTime!, 'YYYY-MM-DD')}
+            <TimeRange {...{ startTime, endTime }} />
           </div>
         </div>
 

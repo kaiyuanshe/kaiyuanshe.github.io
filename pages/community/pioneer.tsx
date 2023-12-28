@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
-import { compose, errorLogger, translator } from 'next-ssr-middleware';
+import { cache, compose, errorLogger, translator } from 'next-ssr-middleware';
 import { FC } from 'react';
 import { Breadcrumb, Container } from 'react-bootstrap';
 
@@ -11,6 +11,7 @@ import { i18n } from '../../models/Base/Translation';
 import { PersonnelModel } from '../../models/Personnel';
 
 export const getServerSideProps = compose<{}, Pick<PersonnelModel, 'group'>>(
+  cache(),
   errorLogger,
   translator(i18n),
   async () => {

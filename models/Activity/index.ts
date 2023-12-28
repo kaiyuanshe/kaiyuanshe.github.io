@@ -1,3 +1,4 @@
+import { HTTPError } from 'koajax';
 import { action, computed, makeObservable, observable } from 'mobx';
 import {
   BiDataTable,
@@ -185,13 +186,21 @@ export class ActivityModel extends BiDataTable<Activity>() {
     return database ? `/activity/${alias || id}` : link + '';
   }
 
+  @toggle('downloading')
   async getOneByAlias(alias: string) {
     const { body } = await this.client.get<LarkPageData<TableRecord<Activity>>>(
       `${this.baseURI}?${buildURLData({
         filter: makeSimpleFilter({ alias }, '='),
       })}`,
     );
-    const [item] = body!.data!.items;
+    const [item] = body!.data!.items || [];
+
+    if (!item)
+      throw new HTTPError(`Activity "${alias}" is not found`, {
+        status: 404,
+        statusText: 'Not found',
+        headers: {},
+      });
     return (this.currentOne = this.normalize(item));
   }
 
