@@ -3,7 +3,7 @@ import { TimeDistance } from 'idea-react';
 import { observer } from 'mobx-react';
 import { ScrollList } from 'mobx-restful-table';
 import { InferGetServerSidePropsType } from 'next';
-import { cache, compose } from 'next-ssr-middleware';
+import { cache, compose, errorLogger } from 'next-ssr-middleware';
 import { PureComponent } from 'react';
 import { Breadcrumb, Button, Col, Container, Row } from 'react-bootstrap';
 
@@ -15,7 +15,7 @@ import userStore, { UserModel } from '../../models/Base/User';
 export const getServerSideProps = compose<
   { uuid: string },
   { user: User; checkEvents: CheckEvent[] }
->(cache(), async ({ params: { uuid } = {} }) => {
+>(cache(), errorLogger, async ({ params: { uuid } = {} }) => {
   const user = await new UserModel().getOne(uuid!);
 
   const checkEvents = await new CheckEventModel().getList({ user: user.id });

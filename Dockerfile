@@ -1,6 +1,6 @@
 FROM node:18-slim AS base
 RUN apt-get update && \
-    apt-get install curl -y --no-install-recommends
+    apt-get install ca-certificates curl -y --no-install-recommends
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable

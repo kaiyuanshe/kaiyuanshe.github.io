@@ -1,3 +1,4 @@
+import { HTTPError } from 'koajax';
 import {
   BiDataTable,
   LarkPageData,
@@ -67,7 +68,15 @@ export class ArticleModel extends BiDataTable<Article>() {
         filter: makeSimpleFilter({ alias }, '='),
       })}`,
     );
-    const item = this.normalize(body!.data!.items[0]);
+    const [rawItem] = body!.data!.items || [];
+
+    if (!rawItem)
+      throw new HTTPError(`Article "${alias}" is not found`, {
+        status: 404,
+        statusText: 'Not found',
+        headers: {},
+      });
+    const item = this.normalize(rawItem);
 
     const path = `article/${
       (item.link as string).split('/').slice(-1)[0]
