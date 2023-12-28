@@ -16,7 +16,7 @@ export default function Document() {
         />
         <link
           rel="stylesheet"
-          href="https://npm.onmicrosoft.cn/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+          href="https://npm.onmicrosoft.cn/bootstrap-icons@1.11.2/font/bootstrap-icons.css"
         />
         <link
           rel="stylesheet"

@@ -1,4 +1,5 @@
 import NextMDX from '@next/mdx';
+import { withSentryConfig } from '@sentry/nextjs';
 import CopyPlugin from 'copy-webpack-plugin';
 import { readdirSync, statSync } from 'fs';
 import setPWA from 'next-pwa';
@@ -25,7 +26,7 @@ const withPWA = setPWA({
 });
 
 /** @type {import('next').NextConfig} */
-export default withPWA(
+const nextConfig = withPWA(
   withLess(
     withMDX({
       pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
@@ -76,4 +77,20 @@ export default withPWA(
       }),
     }),
   ),
+);
+
+export default withSentryConfig(
+  {
+    ...nextConfig,
+    sentry: {
+      transpileClientSDK: true,
+      autoInstrumentServerFunctions: false,
+    },
+  },
+  {
+    org: 'kaiyuanshe',
+    project: 'ows',
+    authToken: process.env.SENTRY_AUTH_TOKEN,
+    silent: true,
+  },
 );

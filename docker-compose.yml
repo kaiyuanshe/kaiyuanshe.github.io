@@ -17,9 +17,3 @@ services:
       driver: 'json-file'
       options:
         max-size: '10m'
-
-  autoheal:
-    image: willfarrell/autoheal:1.2.0
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    restart: always
