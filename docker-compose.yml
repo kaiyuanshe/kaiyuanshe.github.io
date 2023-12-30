@@ -17,3 +17,7 @@ services:
       driver: 'json-file'
       options:
         max-size: '10m'
+    deploy:
+      resources:
+        limits:
+          memory: 4000M
