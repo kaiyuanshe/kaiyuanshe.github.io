@@ -1,4 +1,3 @@
-import { Guard } from '@authing/guard';
 import { User } from '@kaiyuanshe/kys-service';
 import { HTTPClient } from 'koajax';
 import { makeObservable, observable } from 'mobx';
@@ -7,11 +6,6 @@ import { BaseListModel, toggle } from 'mobx-restful';
 import { KYS_SERVICE_HOST } from './index';
 
 const { localStorage } = globalThis;
-
-export const guard = new Guard({
-  mode: 'modal',
-  appId: process.env.NEXT_PUBLIC_AUTHING_APP_ID!,
-});
 
 export class UserModel extends BaseListModel<User> {
   constructor() {
@@ -54,10 +48,7 @@ export class UserModel extends BaseListModel<User> {
     return this.saveSession(body!);
   }
 
-  @toggle('uploading')
-  async signOut() {
-    await guard.logout();
-
+  signOut() {
     this.session = undefined;
 
     localStorage.clear();

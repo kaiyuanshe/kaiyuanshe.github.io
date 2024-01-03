@@ -1,8 +1,14 @@
+import { Guard } from '@authing/guard';
 import { observer } from 'mobx-react';
 import Head from 'next/head';
 import { Component, MouseEvent, PropsWithChildren } from 'react';
 
-import userStore, { guard } from '../../models/Base/User';
+import userStore from '../../models/Base/User';
+
+export const guard = new Guard({
+  mode: 'modal',
+  appId: process.env.NEXT_PUBLIC_AUTHING_APP_ID!,
+});
 
 export type SessionBoxProps = PropsWithChildren<{
   className?: string;
