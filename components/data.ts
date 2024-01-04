@@ -40,6 +40,9 @@ export const MainRoutes = (): Link[] => [
       },
       { title: t('community_list'), path: '/community' },
       { title: t('our_members'), path: '/member' },
+      { title: t('china_open_source_honor_COSCon'), path: '/community/honor/COSCon' },
+      { title: t('china_open_source_honor_star'), path: '/community/honor/star' },
+      { title: t('china_open_source_honor_community_cooperation'), path: '/community/honor/community-cooperation' },
     ],
   },
   {
@@ -89,7 +92,7 @@ export const MainRoutes = (): Link[] => [
         title: t('china_open_source_annual_report'),
         path: 'https://kaiyuanshe.feishu.cn/wiki/wikcnUDeVll6PNzw900yPV71Sxd',
       },
-      { title: t('china_open_source_pioneer'), path: '/community/pioneer' },
+      { title: t('china_open_source_pioneer'), path: '/community/honor/pioneer' },
       { title: t('china_open_source_landscape'), path: '/organization' },
     ],
   },
