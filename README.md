@@ -4,6 +4,8 @@
 
 [![Deploy to Production environment](https://github.com/kaiyuanshe/kaiyuanshe.github.io/actions/workflows/deploy-production.yml/badge.svg)][8]
 
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)][7]
+
 ## 主要功能
 
 本站不仅承担传统官网的职能，还是一个**同时具备 SSR 和 PWA 能力的 Web 前端基座**，与开源社其它应用项目的前端模块组成一个矩阵。
@@ -53,7 +55,7 @@
 ## 项目技术栈
 
 - 编程语言: [TypeScript v5][2]
-- 组件引擎: [Nextjs v12][3]
+- 组件引擎: [Next.js v14][3]
 - 组件套件: [Bootstrap v5][4]
 - PWA 框架: [Workbox v6][5]
 - 状态管理: [MobX v6][9]
@@ -103,6 +105,7 @@ pnpm container
 [4]: https://getbootstrap.com/
 [5]: https://developers.google.com/web/tools/workbox
 [6]: https://github.com/vercel/next.js/tree/canary/packages/create-next-app
+[7]: https://gitpod.io/?autostart=true#https://github.com/kaiyuanshe/kaiyuanshe.github.io
 [8]: https://github.com/kaiyuanshe/kaiyuanshe.github.io/actions/workflows/deploy-production.yml
 [9]: https://zh.mobx.js.org/
 [10]: https://github.com/kaiyuanshe/KYS-service#sign-in-github-packages-with-npm

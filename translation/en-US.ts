@@ -41,12 +41,17 @@ export default {
   china_open_source_landscape: 'China Open Source Landscape',
   open_source_projects: 'Open Source Projects',
   community_list: 'KAIYUANSHE City Community',
-  china_open_source_pioneer:'China Open Source Pioneer',
+  china_open_source_pioneer: 'China Open Source Pioneer',
+  china_open_source_honor_COSCon:'COSCon Star',
+  china_open_source_honor_star:'Open Source Star',
+  china_open_source_honor_community_cooperation:'Community Cooperation Star',
   our_partners: 'Our Partners',
   open_source_treasure_box: 'Treasure-box',
   Web_polyfill_CDN: 'Web Polyfill CDN',
   open_source_mirror: 'Open-Source Mirror',
   license_tool: 'License Tool',
+  open_hackathon_platform: 'Open Hackathon Platform',
+  xiaoyuan_chatbot: 'XiaoYuan ChatBot',
   about_us: 'About Us',
   cultural_and_creative_store: 'Cultural and Creative Store',
 
@@ -233,7 +238,7 @@ export default {
   volunteer: 'Volunteer',
   gift_wall: 'Gift Wall',
 
-  //community detail page
+  // community list & community detail page
   community_member: 'Community Members',
   add_member: 'Community Member Data is being Compiled, Please Stay Tuned',
   community: ' Community',

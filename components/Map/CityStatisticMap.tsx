@@ -61,14 +61,13 @@ export class CityStatisticMap extends Component<CityStatisticMapProps> {
     const { markers } = this;
 
     return (
-      <div style={{ height: '70vh' }}>
-        <ChinaMap
-          center={[34.32, 108.55]}
-          zoom={4}
-          markers={markers}
-          onMarkerClick={this.handleChange}
-        />
-      </div>
+      <ChinaMap
+        style={{ height: '70vh' }}
+        center={[34.32, 108.55]}
+        zoom={4}
+        markers={markers}
+        onMarkerClick={this.handleChange}
+      />
     );
   }
 }

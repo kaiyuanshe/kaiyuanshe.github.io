@@ -1,10 +1,11 @@
+import { HTTPError } from 'koajax';
 import {
   BiDataTable,
+  LarkPageData,
   makeSimpleFilter,
   TableCellLink,
   TableCellValue,
   TableRecord,
-  TableRecordList,
 } from 'mobx-lark';
 import { Filter, NewData, toggle } from 'mobx-restful';
 import { buildURLData, isEmpty } from 'web-utility';
@@ -60,12 +61,22 @@ export class ArticleModel extends BiDataTable<Article>() {
 
   @toggle('downloading')
   async getOne(alias: string) {
-    const { body } = await this.client.get<TableRecordList<BaseArticle>>(
+    const { body } = await this.client.get<
+      LarkPageData<TableRecord<BaseArticle>>
+    >(
       `${this.baseURI}?${buildURLData({
         filter: makeSimpleFilter({ alias }, '='),
       })}`,
     );
-    const item = this.normalize(body!.data.items[0]);
+    const [rawItem] = body!.data!.items || [];
+
+    if (!rawItem)
+      throw new HTTPError(`Article "${alias}" is not found`, {
+        status: 404,
+        statusText: 'Not found',
+        headers: {},
+      });
+    const item = this.normalize(rawItem);
 
     const path = `article/${
       (item.link as string).split('/').slice(-1)[0]

@@ -9,6 +9,7 @@ import { blobURLOf } from '../../../models/Base';
 import { LarkImage } from '../../Base/LarkImage';
 import { ScoreBar } from '../../Base/ScoreBar';
 import { TextScrollableBox } from '../../Base/TextScrollableBox';
+import { TimeRange } from '../../Base/TimeRange';
 import { ActivityPeople } from '../People';
 import { AgendaToolbarProps } from './Toolbar';
 
@@ -97,8 +98,7 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
             </h3>
             <ul className="list-unstyled flex-fill d-flex flex-column justify-content-between gap-2">
               <li>
-                🕒 {new Date(+startTime!).toLocaleString()} ~{' '}
-                {new Date(+endTime!).toLocaleString()}
+                <TimeRange {...{ startTime, endTime }} />
               </li>
               <li>{(mentorOrganizations as string[])?.join(' ')}</li>
 

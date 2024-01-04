@@ -1,4 +1,4 @@
-import { TableCellText, TableCellValue } from 'mobx-lark';
+import { TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
 import dynamic from 'next/dynamic';
@@ -30,11 +30,7 @@ import { Forum } from '../../../models/Activity/Forum';
 import { Place } from '../../../models/Activity/Place';
 import { blobURLOf } from '../../../models/Base';
 import { i18n } from '../../../models/Base/Translation';
-import {
-  coordinateOf,
-  normalizeTextArray,
-  TableFormViewItem,
-} from '../../api/lark/core';
+import { coordinateOf, TableFormViewItem } from '../../api/lark/core';
 import styles from './index.module.less';
 
 const ListMap = dynamic(() => import('../../../components/Map/ListMap'), {
@@ -198,11 +194,7 @@ export default class ActivityDetailPage extends PureComponent<
         <h2 className="mt-5 mb-3 text-center" id={name as string}>
           {name as string}
         </h2>
-        {location && (
-          <h4 className="mb-5 text-center">
-            {normalizeTextArray(location as TableCellText[])[0]}
-          </h4>
-        )}
+        {location && <h4 className="mb-5 text-center">{location as string}</h4>}
         <Row>
           <Col xl={{ offset: 2, span: 8 }} as="p" className="text-muted">
             {summary as string}
@@ -229,11 +221,7 @@ export default class ActivityDetailPage extends PureComponent<
         <Row as="ol" className="list-unstyled g-4" xs={1} md={2}>
           {agendaGroup[name as string]?.map(agenda => (
             <Col as="li" key={agenda.id + ''}>
-              <AgendaCard
-                activityId={activity.id + ''}
-                location={location + ''}
-                {...agenda}
-              />
+              <AgendaCard activityId={activity.id + ''} {...agenda} />
             </Col>
           ))}
         </Row>
@@ -265,24 +253,36 @@ export default class ActivityDetailPage extends PureComponent<
         {this.renderButtonBar()}
 
         <Stack
-          className="justify-content-center"
+          className="justify-content-center flex-wrap"
           direction="horizontal"
           gap={3}
         >
           <Button
-            className="d-sm-block"
+            className="text-nowrap"
             variant="danger"
             href={`/activity/${activity.id}/gift`}
           >
             {t('gift_wall')}
           </Button>
-          <Button variant="info" href={`/activity/${activity.id}/volunteer`}>
+          <Button
+            className="text-nowrap"
+            variant="info"
+            href={`/activity/${activity.id}/volunteer`}
+          >
             {t('volunteer')}
           </Button>
-          <Button variant="secondary" href={`/activity/${activity.id}/finance`}>
+          <Button
+            className="text-nowrap"
+            variant="secondary"
+            href={`/activity/${activity.id}/finance`}
+          >
             {t('financial_disclosure')}
           </Button>
-          <Button variant="success" href="/search?keywords=收官">
+          <Button
+            className="text-nowrap"
+            variant="success"
+            href="/search?keywords=收官"
+          >
             {t('previous_activities')}
           </Button>
         </Stack>

@@ -1,16 +1,17 @@
+import { HTTPError } from 'koajax';
 import { action, computed, makeObservable, observable } from 'mobx';
 import {
   BiDataTable,
+  BITable,
   BiTable,
-  BiTableItem,
   BiTableView,
+  LarkPageData,
   makeSimpleFilter,
   normalizeText,
   TableCellLink,
   TableCellRelation,
   TableCellValue,
   TableRecord,
-  TableRecordList,
 } from 'mobx-lark';
 import { Filter, NewData, toggle } from 'mobx-restful';
 import { buildURLData, cache, countBy, Hour, isEmpty } from 'web-utility';
@@ -77,7 +78,7 @@ export class ActivityTableModel extends BiTable() {
           const { body } = await this.client.get<LarkFormData>(
             `${this.baseURI}/${table_id}/forms/${view_id}`,
           );
-          forms.push(body!.data.form);
+          forms.push(body!.data!.form);
         }
       yield [name, forms] as const;
     }
@@ -86,7 +87,7 @@ export class ActivityTableModel extends BiTable() {
   @action
   @toggle('downloading')
   // @ts-ignore
-  async getAll(filter?: Filter<BiTableItem>, pageSize?: number) {
+  async getAll(filter?: Filter<BITable>, pageSize?: number) {
     // @ts-ignore
     const tables = await super.getAll(filter, pageSize);
 
@@ -185,13 +186,21 @@ export class ActivityModel extends BiDataTable<Activity>() {
     return database ? `/activity/${alias || id}` : link + '';
   }
 
+  @toggle('downloading')
   async getOneByAlias(alias: string) {
-    const { body } = await this.client.get<TableRecordList<Activity>>(
+    const { body } = await this.client.get<LarkPageData<TableRecord<Activity>>>(
       `${this.baseURI}?${buildURLData({
         filter: makeSimpleFilter({ alias }, '='),
       })}`,
     );
-    const [item] = body!.data!.items;
+    const [item] = body!.data!.items || [];
+
+    if (!item)
+      throw new HTTPError(`Activity "${alias}" is not found`, {
+        status: 404,
+        statusText: 'Not found',
+        headers: {},
+      });
     return (this.currentOne = this.normalize(item));
   }
 

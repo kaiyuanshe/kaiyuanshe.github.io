@@ -41,11 +41,16 @@ export default {
   open_source_projects: '開源項目',
   our_partners: '合作夥伴',
   community_list: '開源社城市社區（KCC）',
-  china_open_source_pioneer:'中國開源先鋒',
+  china_open_source_pioneer: '中國開源先鋒',
+  china_open_source_honor_COSCon:'COSCon之星',
+  china_open_source_honor_star:'開源之星',
+  china_open_source_honor_community_cooperation:'社區合作之星',
   open_source_treasure_box: '開源百寶箱',
   Web_polyfill_CDN: 'Web 標準補丁 CDN',
   open_source_mirror: '開源鏡像站',
   license_tool: '開源許可證選擇器',
+  open_hackathon_platform: '開放黑客鬆平台',
+  xiaoyuan_chatbot: '小源問答機器人',
   about_us: '關於我們',
   cultural_and_creative_store: '文創商店',
 
@@ -230,7 +235,7 @@ export default {
   volunteer: '志願者',
   gift_wall: '禮品墻',
 
-  //community list & community detail page
+  // community list & community detail page
   community_member: '社區成員',
   add_member: '數據整理中，敬請期待',
   community: '社區',

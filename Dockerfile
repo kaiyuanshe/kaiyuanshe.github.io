@@ -1,6 +1,11 @@
 FROM node:18-slim AS base
 RUN apt-get update && \
-    apt-get install curl -y --no-install-recommends
+    apt-get install ca-certificates curl libjemalloc-dev -y --no-install-recommends  && \
+    rm -rf /var/lib/apt/lists/*
+
+#set environment variable to preload  jemalloc
+ENV LD_PRELOAD="/usr/lib/x86_64-linux-gnu/libjemalloc.so.2"
+
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
