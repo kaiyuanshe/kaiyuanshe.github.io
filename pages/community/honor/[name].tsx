@@ -32,11 +32,14 @@ export const getServerSideProps = compose<{ name: string }, CommitteePageProps>(
   translator(i18n),
   async ({ params }) => {
     const award = nameMap[params!.name as keyof typeof nameMap];
+
     if (!award) return { notFound: true, props: {} as CommitteePageProps };
+    
     const group = await new PersonnelModel().getYearGroup(
       { award},
       ['createdAt'],
     );
+    
     return { props: JSON.parse(JSON.stringify({ group })) };
   },
 );
@@ -44,9 +47,9 @@ export const getServerSideProps = compose<{ name: string }, CommitteePageProps>(
 const { t } = i18n;
 
 const titleMap = () => ({
-  'community-cooperation': t('china_open_source_honor_community_cooperation'),
-  star: t('china_open_source_honor_star'),
-  COSCon: t('china_open_source_honor_COSCon'),
+  'community-cooperation': t('honor_community_cooperation'),
+  star: t('honor_star'),
+  COSCon: t('honor_COSCon'),
   pioneer: t('china_open_source_pioneer')
 });
 
