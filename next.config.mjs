@@ -9,7 +9,8 @@ import RemarkGfm from 'remark-gfm';
 import RemarkMdxFrontMatter from 'remark-mdx-frontmatter';
 import webpack from 'webpack';
 
-const { NODE_ENV } = process.env;
+const { NODE_ENV, SENTRY_AUTH_TOKEN, SENTRY_ORG, SENTRY_PROJECT } = process.env;
+const isDev = NODE_ENV === 'development';
 
 const withMDX = NextMDX({
   extension: /\.mdx?$/,
@@ -22,7 +23,7 @@ const withPWA = setPWA({
   dest: 'public',
   register: true,
   skipWaiting: true,
-  disable: NODE_ENV === 'development',
+  disable: isDev,
 });
 
 /** @type {import('next').NextConfig} */
@@ -56,7 +57,7 @@ const nextConfig = withPWA(
           );
         return config;
       },
-      rewrites: async () => ({
+      rewrites: () => ({
         fallback: [
           {
             source: '/article/original/:path*',
@@ -79,18 +80,20 @@ const nextConfig = withPWA(
   ),
 );
 
-export default withSentryConfig(
-  {
-    ...nextConfig,
-    sentry: {
-      transpileClientSDK: true,
-      autoInstrumentServerFunctions: false,
-    },
-  },
-  {
-    org: 'kaiyuanshe',
-    project: 'ows',
-    authToken: process.env.SENTRY_AUTH_TOKEN,
-    silent: true,
-  },
-);
+export default isDev || !SENTRY_AUTH_TOKEN
+  ? nextConfig
+  : withSentryConfig(
+      {
+        ...nextConfig,
+        sentry: {
+          transpileClientSDK: true,
+          autoInstrumentServerFunctions: false,
+        },
+      },
+      {
+        org: SENTRY_ORG,
+        project: SENTRY_PROJECT,
+        authToken: SENTRY_AUTH_TOKEN,
+        silent: true,
+      },
+    );
