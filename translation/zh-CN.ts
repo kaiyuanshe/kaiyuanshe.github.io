@@ -29,7 +29,7 @@ export default {
   our_articles: '开源文库',
   coscon: '中国开源年会 (COSCon)',
   kcc: '开源社城市社区 (KCC)',
-  kcc_forum: '开源社论坛',
+  kys_forum: '开源社论坛',
   open_source_book_club: '开源读书会',
   original_articles: '原创文章',
   translated_articles: '翻译文章',
@@ -53,6 +53,7 @@ export default {
   xiaoyuan_chatbot: '小源问答机器人',
   about_us: '关于我们',
   cultural_and_creative_store: '文创商店',
+  meeting_calendar: '会议日历',
 
   no_more: '没有更多',
   load_more: '加载更多……',

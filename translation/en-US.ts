@@ -30,7 +30,7 @@ export default {
   our_articles: 'Our Articles',
   coscon: 'China Open Source Conference',
   kcc: 'KAIYUANSHE City Community',
-  kcc_forum: 'KAIYUANSHE City Community Forum',
+  kys_forum: 'KAIYUANSHE Community Forum',
   open_source_book_club: 'Open Source Book Club',
   original_articles: 'Original Articles',
   translated_articles: 'Translated Articles',
@@ -54,6 +54,7 @@ export default {
   xiaoyuan_chatbot: 'XiaoYuan ChatBot',
   about_us: 'About Us',
   cultural_and_creative_store: 'Cultural and Creative Store',
+  meeting_calendar: 'Meeting Calendar',
 
   no_more: 'no more',
   load_more: 'load more...',
