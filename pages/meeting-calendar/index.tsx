@@ -12,14 +12,14 @@ const { t } = i18n;
 
 const PublicMeetingPage: FC = observer(() => (
   <Container className="py-5 text-center">
-    <PageHead title={t('public_meeting')} />
+    <PageHead title={t('meeting_calendar')} />
 
     <Breadcrumb>
       <Breadcrumb.Item href="/">{t('KaiYuanShe')}</Breadcrumb.Item>
-      <Breadcrumb.Item active>{t('public_meeting')}</Breadcrumb.Item>
+      <Breadcrumb.Item active>{t('meeting_calendar')}</Breadcrumb.Item>
     </Breadcrumb>
 
-    <h1>{t('public_meeting')}</h1>
+    <h1 className="pb-4">{t('meeting_calendar')}</h1>
 
     <iframe
       className="w-100 vh-100"

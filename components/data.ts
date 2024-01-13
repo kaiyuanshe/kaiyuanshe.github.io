@@ -145,8 +145,12 @@ export const MainRoutes = (): Link[] => [
       },
       { title: t('our_partners'), path: '/organization/cooperation' },
       {
-        title: t('kcc_forum'),
+        title: t('kys_forum'),
         path: 'https://github.com/orgs/kaiyuanshe/discussions',
+      },
+      {
+        title: t('meeting_calendar'),
+        path: '/meeting-calendar',
       },
     ],
   },
