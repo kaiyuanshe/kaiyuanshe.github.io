@@ -54,6 +54,7 @@ export default {
   xiaoyuan_chatbot: 'XiaoYuan ChatBot',
   about_us: 'About Us',
   cultural_and_creative_store: 'Cultural and Creative Store',
+  public_meeting: 'Public Meeting',
 
   no_more: 'no more',
   load_more: 'load more...',

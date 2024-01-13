@@ -53,6 +53,7 @@ export default {
   xiaoyuan_chatbot: '小源問答機器人',
   about_us: '關於我們',
   cultural_and_creative_store: '文創商店',
+  public_meeting: '會議公開',
 
   no_more: '沒有更多',
   load_more: '加載更多……',

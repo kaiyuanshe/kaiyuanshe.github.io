@@ -53,6 +53,7 @@ export default {
   xiaoyuan_chatbot: '小源问答机器人',
   about_us: '关于我们',
   cultural_and_creative_store: '文创商店',
+  public_meeting: '会议公开',
 
   no_more: '没有更多',
   load_more: '加载更多……',
