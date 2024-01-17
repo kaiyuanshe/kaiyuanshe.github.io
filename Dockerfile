@@ -2,9 +2,10 @@ FROM node:18-slim AS base
 RUN apt-get update && \
     apt-get install ca-certificates curl libjemalloc-dev -y --no-install-recommends  && \
     rm -rf /var/lib/apt/lists/*
-
-#set environment variable to preload  jemalloc
+# set environment variable to preload JEMalloc
 ENV LD_PRELOAD="/usr/lib/x86_64-linux-gnu/libjemalloc.so.2"
+#set GC time, set arenas number, set background_thread run GC
+ENV MALLOC_CONF=dirty_decay_ms:1000,narenas:2,background_thread:true
 
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"

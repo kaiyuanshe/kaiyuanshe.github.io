@@ -13,4 +13,7 @@ CustomErrorComponent.getInitialProps = async contextData => {
   return Error.getInitialProps(contextData);
 };
 
-export default CustomErrorComponent;
+export default process.env.NODE_ENV === 'development' ||
+!process.env.SENTRY_AUTH_TOKEN
+  ? Error
+  : CustomErrorComponent;
