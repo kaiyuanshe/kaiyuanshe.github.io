@@ -254,4 +254,17 @@ export default {
 
   // Deparment Detail Page
   members: '成員',
+
+  // Election pages
+  general_election: '換屆選舉',
+  director_nomination: '理事提名',
+  member_application: '正式成員提名',
+  voting: '選舉投票',
+  nominated: '提名',
+  take_charge_of: '擔任',
+  grant: '授予',
+  nomination_reason: '提名理由',
+  previous_term_contribution: '上屆貢獻',
+  this_term_proposition: '本屆主張',
+  recommendation: '推薦語',
 } as const;

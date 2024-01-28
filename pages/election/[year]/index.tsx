@@ -53,17 +53,17 @@ const ElectionPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
           <Button
             variant="warning"
             target="_blank"
-            href="https://kaiyuanshe.feishu.cn/share/base/form/shrcnVxuTa41nb80lCy7H9GXrkb?prefill_%E6%8F%90%E5%90%8D%E7%B1%BB%E5%9E%8B=%E4%BB%BB%E5%91%BD&prefill_%E7%9B%AE%E6%A0%87%E9%83%A8%E9%97%A8=%E7%90%86%E4%BA%8B%E4%BC%9A&prefill_%E7%9B%AE%E6%A0%87%E8%81%8C%E4%BD%8D=%E7%90%86%E4%BA%8B"
+            href="https://kaiyuanshe.feishu.cn/share/base/form/shrcnVxuTa41nb80lCy7H9GXrkb?prefill_%E7%9B%AE%E6%A0%87%E9%83%A8%E9%97%A8=%E7%90%86%E4%BA%8B%E4%BC%9A&prefill_%E7%9B%AE%E6%A0%87%E8%81%8C%E4%BD%8D=%E7%90%86%E4%BA%8B"
             disabled={passed}
           >
-            理事提名
+            {t('director_nomination')}
           </Button>
           <Button
             target="_blank"
-            href="https://kaiyuanshe.feishu.cn/share/base/form/shrcn20SIKJgdsHH9AEGEMYFPwf?prefill_%E7%94%B3%E8%AF%B7%E7%B1%BB%E5%9E%8B=%E4%BB%BB%E5%91%BD&prefill_%E7%94%B3%E8%AF%B7%E8%81%8C%E4%BD%8D=%E6%AD%A3%E5%BC%8F%E6%88%90%E5%91%98"
+            href="https://kaiyuanshe.feishu.cn/share/base/form/shrcn20SIKJgdsHH9AEGEMYFPwf?prefill_%E7%94%B3%E8%AF%B7%E8%81%8C%E4%BD%8D=%E6%AD%A3%E5%BC%8F%E6%88%90%E5%91%98"
             disabled={passed}
           >
-            正式成员申请
+            {t('member_application')}
           </Button>
           <Button
             variant="danger"
@@ -71,7 +71,7 @@ const ElectionPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
             href="https://kaiyuanshe.feishu.cn/share/base/form/shrcnVYqyX5w8wTNiCLeH7Ziy1g"
             disabled={passed}
           >
-            选举投票
+            {t('voting')}
           </Button>
         </div>
 

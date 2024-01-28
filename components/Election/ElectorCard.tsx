@@ -1,5 +1,6 @@
+import { marked } from 'marked';
 import { FC } from 'react';
-import { Badge, Card, CardProps } from 'react-bootstrap';
+import { Accordion, Badge, Card, CardProps } from 'react-bootstrap';
 import { formatDate } from 'web-utility';
 
 import { i18n } from '../../models/Base/Translation';
@@ -22,6 +23,11 @@ export const ElectorCard: FC<ElectorCardProps> = ({
   position,
   award,
   reason,
+  contribution,
+  proposition,
+  recommenders,
+  recommendation1,
+  recommendation2,
   approvers,
   rejecters,
   passed,
@@ -40,12 +46,19 @@ export const ElectorCard: FC<ElectorCardProps> = ({
       <time dateTime={new Date(createdAt as number).toJSON()}>
         {formatDate(createdAt as number, 'YYYY-MM-DD')}
       </time>
-      <span>{(applicants as string[])?.join('、')} 提名</span>
+      {(applicants as string[])?.[0] && (
+        <span>
+          {(applicants as string[]).join(', ')} {t('nominated')}
+        </span>
+      )}
     </Card.Header>
 
-    <LarkImage className="card-img-top rounded-0" src={recipientAvatar} />
-
-    <Card.Body>
+    <LarkImage
+      className="card-img-top object-fit-contain"
+      style={{ height: '20rem' }}
+      src={recipientAvatar}
+    />
+    <Card.Body className="position-relative">
       <Card.Title as="h3">
         <a
           className="stretched-link text-decoration-none"
@@ -55,24 +68,45 @@ export const ElectorCard: FC<ElectorCardProps> = ({
         </a>
       </Card.Title>
       <Card.Subtitle>
-        {award ? (
-          <>
-            授予
-            <span>{award as string}</span>
-          </>
-        ) : (
-          <>
-            担任
-            <span>{department as string}</span>
-            <span>{position as string}</span>
-          </>
-        )}
+        {award
+          ? `${t('grant')} ${award as string}`
+          : `${t('take_charge_of')} ${department as string} ${
+              position as string
+            }`}
       </Card.Subtitle>
-      <hr />
-      <h4 className="fs-5">提名理由</h4>
-
-      <Card.Text>{reason as string}</Card.Text>
     </Card.Body>
+
+    <Accordion flush>
+      {[
+        { title: t('nomination_reason'), content: reason as string },
+        {
+          title: t('previous_term_contribution'),
+          content: contribution as string,
+        },
+        { title: t('this_term_proposition'), content: proposition as string },
+        {
+          title: `${applicants} ${t('recommendation')}`,
+          content: recommendation1 as string,
+        },
+        {
+          title: `${recommenders} ${t('recommendation')}`,
+          content: recommendation2 as string,
+        },
+      ].map(
+        ({ title, content }) =>
+          content && (
+            <Accordion.Item key={title} eventKey={title}>
+              <Accordion.Header>{title}</Accordion.Header>
+
+              <Accordion.Body
+                className="overflow-auto"
+                style={{ maxHeight: '20rem' }}
+                dangerouslySetInnerHTML={{ __html: marked(content) }}
+              />
+            </Accordion.Item>
+          ),
+      )}
+    </Accordion>
 
     <Card.Footer
       as="ul"

@@ -257,4 +257,17 @@ export default {
 
   // Deparment Detail Page
   members: 'Members',
+
+  // Election pages
+  general_election: 'General Election',
+  director_nomination: 'Director nomination',
+  member_application: 'Member application',
+  voting: 'Voting',
+  nominated: 'nominated',
+  take_charge_of: 'take charge of',
+  grant: 'grant',
+  nomination_reason: 'Nomination reason',
+  previous_term_contribution: 'Previous term contribution',
+  this_term_proposition: 'This term proposition',
+  recommendation: 'recommendation',
 } as const;

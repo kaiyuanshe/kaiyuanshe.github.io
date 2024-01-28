@@ -49,6 +49,10 @@ export const MainRoutes = (): Link[] => [
         title: t('community_cooperation_star'),
         path: '/community/award/community-cooperation-star',
       },
+      {
+        title: t('general_election'),
+        path: '/election',
+      },
     ],
   },
   {
