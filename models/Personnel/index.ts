@@ -27,6 +27,10 @@ export type Personnel = Record<
   | 'position'
   | 'award'
   | 'reason'
+  | 'contribution'
+  | 'proposition'
+  | 'recommenders'
+  | `recommendation${1 | 2}`
   | 'approvers'
   | 'rejecters'
   | 'passed',
@@ -78,6 +82,7 @@ export class PersonnelModel extends BiDataTable<Personnel>() {
       department,
       position,
       award,
+      recommenders,
       passed,
       ...fields
     },
@@ -97,6 +102,7 @@ export class PersonnelModel extends BiDataTable<Personnel>() {
       department: (department as TableCellRelation[])?.map(normalizeText)[0],
       position: (position as TableCellRelation[])?.map(normalizeText)[0],
       award: (award as TableCellRelation[])?.map(normalizeText)[0],
+      recommenders: (recommenders as TableCellRelation[])?.map(normalizeText),
       passed: JSON.parse(normalizeText((passed as TableCellText[])[0])),
     };
   }
