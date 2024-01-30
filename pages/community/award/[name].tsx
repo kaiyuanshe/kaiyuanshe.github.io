@@ -1,3 +1,5 @@
+import 'array-unique-proposal';
+
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
 import {
@@ -38,6 +40,11 @@ export const getServerSideProps = compose<{ name: string }, CommitteePageProps>(
     const group = await new PersonnelModel().getYearGroup({ award }, [
       'createdAt',
     ]);
+    for (const year in group)
+      group[year] = group[year]
+        .filter(({ recipient }) => recipient)
+        .uniqueBy('recipient');
+
     return { props: JSON.parse(JSON.stringify({ group })) };
   },
 );
