@@ -1,3 +1,4 @@
+import 'array-unique-proposal';
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
 import {
@@ -9,7 +10,6 @@ import {
 } from 'next-ssr-middleware';
 import { FC } from 'react';
 import { Breadcrumb, Container } from 'react-bootstrap';
-import 'array-unique-proposal';
 
 import PageHead from '../../../components/Layout/PageHead';
 import { MemberCard } from '../../../components/Member/Card';
@@ -42,10 +42,10 @@ export const getServerSideProps = compose<{ name: string }, CommitteePageProps>(
       },
       ['createdAt'],
     );
-    for (const year in group) {
-      group[year] = group[year].filter(person => person.recipient != '');
-      group[year] = group[year].uniqueBy('recipient');
-    }
+    for (const year in group)
+      group[year] = group[year]
+        .filter(({ recipient }) => recipient)
+        .uniqueBy('recipient');
     return { props: JSON.parse(JSON.stringify({ group })) };
   },
 );
