@@ -9,7 +9,7 @@ import {
 } from 'next-ssr-middleware';
 import { FC } from 'react';
 import { Breadcrumb, Container } from 'react-bootstrap';
-import { groupBy } from 'web-utility';
+import 'array-unique-proposal';
 
 import PageHead from '../../../components/Layout/PageHead';
 import { MemberCard } from '../../../components/Member/Card';
@@ -36,22 +36,16 @@ export const getServerSideProps = compose<{ name: string }, CommitteePageProps>(
 
     if (!award) return { notFound: true, props: {} as CommitteePageProps };
 
-    const yearGroup = await new PersonnelModel().getYearGroup({ 
-      award
-      }, [
-      'createdAt',
-    ]);
-
-    let group: { [year: string]: any[] } = {};
-     for (const year in yearGroup) {
-       const group_unique = groupBy(yearGroup[year], "recipient" )
-       let arr_recipient = []
-       for(const recipient in group_unique){
-        if(recipient!='') arr_recipient.push(group_unique[recipient][0])
-      }
-       group[year]=arr_recipient
-     }
- 
+    const group = await new PersonnelModel().getYearGroup(
+      {
+        award,
+      },
+      ['createdAt'],
+    );
+    for (const year in group) {
+      group[year] = group[year].filter(person => person.recipient != '');
+      group[year] = group[year].uniqueBy('recipient');
+    }
     return { props: JSON.parse(JSON.stringify({ group })) };
   },
 );
@@ -78,7 +72,7 @@ const HonorPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
           <Breadcrumb.Item active>{title}</Breadcrumb.Item>
         </Breadcrumb>
         <h1 className="mb-5 text-center">{title}</h1>
-        
+
         {Object.entries(group)
           .sort(([a], [b]) => +b - +a)
           .map(([year, list]) => (
