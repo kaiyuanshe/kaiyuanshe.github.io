@@ -37,15 +37,14 @@ export const getServerSideProps = compose<{ name: string }, CommitteePageProps>(
     if (!award) return { notFound: true, props: {} as CommitteePageProps };
 
     const group = await new PersonnelModel().getYearGroup(
-      {
-        award,
-      },
+      { award },
       ['createdAt'],
     );
     for (const year in group)
       group[year] = group[year]
         .filter(({ recipient }) => recipient)
         .uniqueBy('recipient');
+
     return { props: JSON.parse(JSON.stringify({ group })) };
   },
 );
