@@ -1,4 +1,5 @@
 import 'array-unique-proposal';
+
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
 import {
@@ -36,10 +37,9 @@ export const getServerSideProps = compose<{ name: string }, CommitteePageProps>(
 
     if (!award) return { notFound: true, props: {} as CommitteePageProps };
 
-    const group = await new PersonnelModel().getYearGroup(
-      { award },
-      ['createdAt'],
-    );
+    const group = await new PersonnelModel().getYearGroup({ award }, [
+      'createdAt',
+    ]);
     for (const year in group)
       group[year] = group[year]
         .filter(({ recipient }) => recipient)
