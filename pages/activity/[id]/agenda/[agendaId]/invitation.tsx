@@ -1,18 +1,16 @@
-import { Loading, text2color } from 'idea-react';
-import { makeObservable, observable } from 'mobx';
+import { text2color } from 'idea-react';
 import { TableCellLocation, TableCellValue } from 'mobx-lark';
-import { observer } from 'mobx-react';
 import { compose, errorLogger, router } from 'next-ssr-middleware';
 import { QRCodeSVG } from 'qrcode.react';
-import { createRef, MouseEvent, PureComponent } from 'react';
-import { Badge, Container, Image } from 'react-bootstrap';
+import { PureComponent } from 'react';
+import { Badge, Container } from 'react-bootstrap';
 
 import { ActivityPeople } from '../../../../../components/Activity/People';
+import { ShareBox } from '../../../../../components/Base/ShareBox';
 import PageHead from '../../../../../components/Layout/PageHead';
 import { Activity, ActivityModel } from '../../../../../models/Activity';
 import { Agenda } from '../../../../../models/Activity/Agenda';
-import { API_Host, blobURLOf, isServer } from '../../../../../models/Base';
-import systemStore from '../../../../../models/Base/System';
+import { API_Host, blobURLOf } from '../../../../../models/Base';
 import { i18n } from '../../../../../models/Base/Translation';
 import { fileURLOf } from '../../../../api/lark/file/[id]';
 import styles from './invitation.module.less';
@@ -39,54 +37,13 @@ export const getServerSideProps = compose<
   };
 });
 
-@observer
 export default class InvitationPage extends PureComponent<InvitationPageProps> {
-  constructor(props: InvitationPageProps) {
-    super(props);
-    makeObservable(this);
-  }
-
-  elementRef = createRef<HTMLDivElement>();
-
   sharedURL = `${API_Host}/activity/${this.props.activity.id}/agenda/${this.props.agenda.id}`;
-
-  @observable
-  imageDataURL = '';
-
-  componentDidMount() {
-    globalThis.addEventListener?.('resize', this.generateImage);
-  }
-
-  componentWillUnmount() {
-    globalThis.removeEventListener?.('resize', this.generateImage);
-  }
-
-  generateImage = async () => {
-    if (this.imageDataURL) {
-      URL.revokeObjectURL(this.imageDataURL);
-      this.imageDataURL = '';
-    }
-    this.imageDataURL = await systemStore.convertToImageURI(
-      this.elementRef.current!,
-    );
-  };
-
-  share = (event: MouseEvent<HTMLImageElement>) => {
-    event.stopPropagation();
-
-    const { title, summary } = this.props.agenda;
-
-    return navigator.share?.({
-      title: title as string,
-      text: summary as string,
-      url: this.sharedURL,
-    });
-  };
 
   renderContent() {
     const { activity, agenda } = this.props,
       { sharedURL } = this;
-    const { name, city, location } = activity,
+    const { name, city, location, image, cardImage } = activity,
       {
         type,
         startTime,
@@ -99,9 +56,12 @@ export default class InvitationPage extends PureComponent<InvitationPageProps> {
       } = agenda;
 
     return (
-      <>
-        <PageHead title={`${title} - ${name}`} />
-
+      <Container
+        className={`d-flex flex-column justify-content-around align-items-center text-center ${styles.invitationBG}`}
+        style={{
+          backgroundImage: `url(${fileURLOf(cardImage || image)})`,
+        }}
+      >
         <header className="d-flex flex-column align-items-center gap-4">
           <h1>{name as string}</h1>
 
@@ -111,7 +71,7 @@ export default class InvitationPage extends PureComponent<InvitationPageProps> {
           </ul>
         </header>
         <section className="d-flex flex-column align-items-center gap-4">
-          <h2 className="d-flex align-items-center gap-2 text-start">
+          <h2 className="d-flex flex-wrap justify-content-center align-items-center gap-2 text-start">
             <Badge bg={text2color(type + '', ['light'])}>{type + ''}</Badge>
 
             {title as string}
@@ -135,44 +95,31 @@ export default class InvitationPage extends PureComponent<InvitationPageProps> {
           </ul>
         </section>
         <footer className="d-flex flex-column align-items-center gap-4">
-          {!isServer() && <QRCodeSVG value={sharedURL} />}
+          <QRCodeSVG value={sharedURL} />
 
           <div>{t('press_to_share')}</div>
         </footer>
-      </>
+      </Container>
     );
   }
 
   render() {
-    const { image, cardImage } = this.props.activity,
-      { elementRef, imageDataURL } = this,
-      { uploading } = systemStore;
+    const { activity, agenda } = this.props,
+      { sharedURL } = this;
+    const { name } = activity,
+      { title, summary } = agenda;
 
     return (
       <>
-        {uploading > 0 && <Loading />}
+        <PageHead title={`${title} - ${name}`} />
 
-        <Container
-          ref={elementRef}
-          className={`d-flex flex-column justify-content-around align-items-center text-center position-relative ${styles.invitationBG}`}
-          style={{
-            backgroundImage: `url(${fileURLOf(cardImage || image)})`,
-          }}
-          onMouseEnter={imageDataURL ? undefined : this.generateImage}
-          onTouchStart={imageDataURL ? undefined : this.generateImage}
+        <ShareBox
+          title={title as string}
+          text={summary as string}
+          url={sharedURL}
         >
           {this.renderContent()}
-
-          {imageDataURL && (
-            <Image
-              className="position-absolute start-0 top-0 w-100 h-100"
-              fluid
-              src={imageDataURL}
-              alt="shareQRcode"
-              onClick={this.share}
-            />
-          )}
-        </Container>
+        </ShareBox>
       </>
     );
   }

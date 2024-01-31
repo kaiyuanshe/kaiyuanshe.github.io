@@ -83,6 +83,8 @@ export class PersonnelModel extends BiDataTable<Personnel>() {
       position,
       award,
       recommenders,
+      approvers,
+      rejecters,
       passed,
       ...fields
     },
@@ -103,6 +105,14 @@ export class PersonnelModel extends BiDataTable<Personnel>() {
       position: (position as TableCellRelation[])?.map(normalizeText)[0],
       award: (award as TableCellRelation[])?.map(normalizeText)[0],
       recommenders: (recommenders as TableCellRelation[])?.map(normalizeText),
+      approvers: (approvers as TableCellText[])
+        ?.map(normalizeText)
+        .toString()
+        .split(','),
+      rejecters: (rejecters as TableCellText[])
+        ?.map(normalizeText)
+        .toString()
+        .split(','),
       passed: JSON.parse(normalizeText((passed as TableCellText[])[0])),
     };
   }
