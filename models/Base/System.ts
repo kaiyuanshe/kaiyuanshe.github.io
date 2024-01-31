@@ -1,4 +1,3 @@
-import html2canvas from 'html2canvas';
 import { makeObservable, observable } from 'mobx';
 import { normalizeText, TableCellLink, TableCellText } from 'mobx-lark';
 import { BaseModel, toggle } from 'mobx-restful';
@@ -46,23 +45,6 @@ export class SystemModel extends BaseModel {
       'https://ideapp.dev/public-meta-data/china-city-coordinate.json',
     );
     return (this.cityCoordinate = body!);
-  }
-
-  @toggle('uploading')
-  async convertToImageURI(
-    element: HTMLElement,
-    type?: string,
-    quality?: number,
-  ) {
-    const canvas = await html2canvas(element, { useCORS: true });
-
-    return new Promise<string>((resolve, reject) =>
-      canvas.toBlob(
-        blob => (blob ? resolve(URL.createObjectURL(blob)) : reject()),
-        type,
-        quality,
-      ),
-    );
   }
 
   @toggle('downloading')
