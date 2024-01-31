@@ -15,6 +15,7 @@ import { ElectorCard } from '../../../components/Election/ElectorCard';
 import PageHead from '../../../components/Layout/PageHead';
 import { i18n } from '../../../models/Base/Translation';
 import { ElectionTarget, PersonnelModel } from '../../../models/Personnel';
+import { VoteForm } from './candidate/[recipient]/poster/[position]';
 
 type ElectionYearPageProps = RouteProps<{ year: string }> &
   Pick<PersonnelModel, 'group'>;
@@ -75,7 +76,7 @@ const ElectionYearPage: FC<ElectionYearPageProps> = observer(
           <Button
             variant="danger"
             target="_blank"
-            href="https://kaiyuanshe.feishu.cn/share/base/form/shrcnXIXPn0lOt4YomFsvhjnzjf"
+            href={VoteForm.理事}
             disabled={passed}
           >
             {t('director_election_voting')}
@@ -90,7 +91,7 @@ const ElectionYearPage: FC<ElectionYearPageProps> = observer(
           <Button
             variant="success"
             target="_blank"
-            href="https://kaiyuanshe.feishu.cn/share/base/form/shrcnFARtfFj3P3LrlbKqXYvoxb"
+            href={VoteForm.正式成员}
             disabled={passed}
           >
             {t('member_application_voting')}

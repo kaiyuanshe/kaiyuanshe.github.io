@@ -62,7 +62,7 @@ export const ElectorCard: FC<ElectorCardProps> = ({
       <Card.Title as="h3">
         <a
           className="stretched-link text-decoration-none"
-          href={`/member/${recipient}`}
+          href={`/election/${new Date(createdAt as string).getFullYear()}/candidate/${recipient}/poster/${position}`}
         >
           {recipient as string}
         </a>

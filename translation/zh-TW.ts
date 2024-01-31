@@ -268,4 +268,5 @@ export default {
   previous_term_contribution: '上屆貢獻',
   this_term_proposition: '本屆主張',
   recommendation: '推薦語',
+  vote_for_me: '投我一票',
 } as const;
