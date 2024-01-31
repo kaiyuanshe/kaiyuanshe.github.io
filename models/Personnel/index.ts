@@ -19,6 +19,7 @@ import { HR_BASE_ID } from './Person';
 export type Personnel = Record<
   | 'id'
   | 'createdAt'
+  | 'overview'
   | 'type'
   | 'applicants'
   | 'recipient'
@@ -76,6 +77,7 @@ export class PersonnelModel extends BiDataTable<Personnel>() {
   normalize({
     id,
     fields: {
+      overview,
       applicants,
       recipient,
       recipientAvatar,
@@ -92,6 +94,7 @@ export class PersonnelModel extends BiDataTable<Personnel>() {
     return {
       ...fields,
       id: id!,
+      overview: (overview as TableCellRelation[]).map(normalizeText),
       applicants: (applicants as TableCellRelation[])?.map(normalizeText),
       recipient: (recipient as TableCellRelation[])?.map(normalizeText)[0],
       recipientAvatar: (recipientAvatar as TableCellAttachment[])?.map(

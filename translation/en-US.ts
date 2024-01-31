@@ -271,4 +271,5 @@ export default {
   previous_term_contribution: 'Previous term contribution',
   this_term_proposition: 'This term proposition',
   recommendation: 'recommendation',
+  vote_for_me: 'Vote for Me',
 } as const;
