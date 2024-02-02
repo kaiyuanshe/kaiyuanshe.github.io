@@ -4,6 +4,7 @@ import { makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { createRef, MouseEvent, PropsWithChildren, PureComponent } from 'react';
 import { Image } from 'react-bootstrap';
+import { blobOf } from 'web-utility';
 
 export async function elementToImage(
   element: HTMLElement,
@@ -56,10 +57,15 @@ export class ShareBox extends PureComponent<ShareBoxProps> {
     this.loading = false;
   };
 
-  share = (event: MouseEvent<HTMLImageElement>) => {
+  share = async (event: MouseEvent<HTMLImageElement>) => {
     event.stopPropagation();
 
-    return navigator.share?.(this.props);
+    const image = await blobOf(this.imageURI);
+
+    const file = new File([image], `${this.props.title}.png`, {
+      type: image.type,
+    });
+    await navigator.share?.({ files: [file], ...this.props });
   };
 
   render() {

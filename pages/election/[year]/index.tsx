@@ -110,9 +110,10 @@ const ElectionYearPage: FC<ElectionYearPageProps> = observer(
               {list
                 .sort(
                   (
-                    { approvers: a1, rejecters: a2, createdAt: a3 },
-                    { approvers: b1, rejecters: b2, createdAt: b3 },
+                    { score: a0, approvers: a1, rejecters: a2, createdAt: a3 },
+                    { score: b0, approvers: b1, rejecters: b2, createdAt: b3 },
                   ) =>
+                    +b0! - +a0! ||
                     (b1 as string[])?.length - (a1 as string[])?.length ||
                     (a2 as string[])?.length - (b2 as string[])?.length ||
                     +new Date(a3 as string) - +new Date(b3 as string),

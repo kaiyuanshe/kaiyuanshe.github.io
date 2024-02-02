@@ -10,7 +10,7 @@ import {
   translator,
 } from 'next-ssr-middleware';
 import { QRCodeSVG } from 'qrcode.react';
-import { FC } from 'react';
+import { PureComponent } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 
 import { LarkImage } from '../../../../../../components/Base/LarkImage';
@@ -52,22 +52,99 @@ export const VoteForm = {
     'https://kaiyuanshe.feishu.cn/share/base/form/shrcnXIXPn0lOt4YomFsvhjnzjf',
 };
 
-const CandidatePoster: FC<CandidatePosterProps> = observer(
-  ({
-    route: { params },
-    overview,
-    applicants,
-    recipient,
-    recipientAvatar,
-    position,
-    reason,
-    contribution,
-    proposition,
-    recommenders,
-    recommendation1,
-    recommendation2,
-  }) => {
-    const { year } = params!;
+@observer
+export default class CandidatePoster extends PureComponent<CandidatePosterProps> {
+  rootURL = `${API_Host}/election/${this.props.route.params!.year}`;
+  sharePath = `/candidate/${this.props.recipient}/poster/${this.props.position}`;
+
+  renderContent(title: string, subTitle: string) {
+    const {
+      overview,
+      applicants,
+      recipientAvatar,
+      position,
+      reason,
+      contribution,
+      proposition,
+      recommenders,
+      recommendation1,
+      recommendation2,
+    } = this.props;
+
+    return (
+      <Container
+        className="d-flex flex-column gap-3 py-5"
+        style={{
+          background: `url(/api/lark/file/SC8ibClWyoi5usxY8KtcnpCgntg) center no-repeat`,
+          backgroundSize: 'cover',
+        }}
+      >
+        <header className="d-flex gap-3 align-items-center justify-content-center">
+          <h1>
+            {title}
+            <br />
+            {subTitle}
+          </h1>
+
+          <LarkImage
+            roundedCircle
+            className="object-fit-contain"
+            style={{ width: '5rem', height: '5rem' }}
+            src={recipientAvatar}
+          />
+        </header>
+        {[
+          { title: t('nomination_reason'), content: reason as string },
+          {
+            title: t('previous_term_contribution'),
+            content: contribution as string,
+          },
+          {
+            title: t('this_term_proposition'),
+            content: proposition as string,
+          },
+          {
+            title: `${applicants} ${t('recommendation')}`,
+            content: recommendation1 as string,
+          },
+          {
+            title: `${recommenders} ${t('recommendation')}`,
+            content: recommendation2 as string,
+          },
+        ].map(
+          ({ title, content }) =>
+            content && (
+              <section key={title}>
+                <h2>{title}</h2>
+                <article
+                  className="text-break"
+                  dangerouslySetInnerHTML={{ __html: marked(content) }}
+                />
+              </section>
+            ),
+        )}
+        <Row as="footer" className="text-center">
+          <Col xs={6}>
+            <QRCodeSVG value={`${this.rootURL}#${position}`} />
+            <div className="my-3">
+              {textJoin(position as string, t('candidate'))}
+            </div>
+          </Col>
+          <Col xs={6}>
+            <QRCodeSVG
+              value={`${VoteForm[position as keyof typeof VoteForm] || VoteForm.common}?prefill_赞成=${overview}`}
+            />
+            <div className="my-3">{t('vote_for_me')}</div>
+          </Col>
+          <Col xs={12}>{t('press_to_share')}</Col>
+        </Row>
+      </Container>
+    );
+  }
+
+  render() {
+    const { route, recipient, position } = this.props;
+    const { year } = route.params!;
     const title = `${t('KaiYuanShe')} ${year}`,
       subTitle = `${textJoin(position as string, t('candidate'))} ${recipient}`;
 
@@ -77,80 +154,11 @@ const CandidatePoster: FC<CandidatePosterProps> = observer(
 
         <ShareBox
           title={`${title} ${subTitle}`}
-          url={`${API_Host}/election/${year}/candidate/${recipient}/poster/${position}`}
+          url={this.rootURL + this.sharePath}
         >
-          <Container
-            className="d-flex flex-column gap-3 p-5"
-            style={{
-              backgroundImage: `url(/api/lark/file/SC8ibClWyoi5usxY8KtcnpCgntg)`,
-              backgroundRepeat: 'no-repeat',
-              backgroundPosition: 'center',
-              backgroundSize: 'cover',
-            }}
-          >
-            <header className="d-flex gap-3 align-items-center justify-content-center">
-              <h1>
-                {title}
-                <br />
-                {subTitle}
-              </h1>
-
-              <LarkImage
-                roundedCircle
-                className="object-fit-contain"
-                style={{ width: '5rem', height: '5rem' }}
-                src={recipientAvatar}
-              />
-            </header>
-            {[
-              { title: t('nomination_reason'), content: reason as string },
-              {
-                title: t('previous_term_contribution'),
-                content: contribution as string,
-              },
-              {
-                title: t('this_term_proposition'),
-                content: proposition as string,
-              },
-              {
-                title: `${applicants} ${t('recommendation')}`,
-                content: recommendation1 as string,
-              },
-              {
-                title: `${recommenders} ${t('recommendation')}`,
-                content: recommendation2 as string,
-              },
-            ].map(
-              ({ title, content }) =>
-                content && (
-                  <section key={title}>
-                    <h2>{title}</h2>
-                    <article
-                      dangerouslySetInnerHTML={{ __html: marked(content) }}
-                    />
-                  </section>
-                ),
-            )}
-            <Row as="footer" className="text-center">
-              <Col xs={6}>
-                <QRCodeSVG value={`${API_Host}/election/${year}#${position}`} />
-                <div className="my-3">
-                  {textJoin(position as string, t('candidate'))}
-                </div>
-              </Col>
-              <Col xs={6}>
-                <QRCodeSVG
-                  value={`${VoteForm[position as keyof typeof VoteForm] || VoteForm.common}?prefill_赞成=${overview}`}
-                />
-                <div className="my-3">{t('vote_for_me')}</div>
-              </Col>
-              <Col xs={12}>{t('press_to_share')}</Col>
-            </Row>
-          </Container>
+          {this.renderContent(title, subTitle)}
         </ShareBox>
       </>
     );
-  },
-);
-
-export default CandidatePoster;
+  }
+}

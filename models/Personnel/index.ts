@@ -34,6 +34,7 @@ export type Personnel = Record<
   | `recommendation${1 | 2}`
   | 'approvers'
   | 'rejecters'
+  | 'score'
   | 'passed',
   TableCellValue
 >;
@@ -111,11 +112,13 @@ export class PersonnelModel extends BiDataTable<Personnel>() {
       approvers: (approvers as TableCellText[])
         ?.map(normalizeText)
         .toString()
-        .split(','),
+        .split(',')
+        .filter(Boolean),
       rejecters: (rejecters as TableCellText[])
         ?.map(normalizeText)
         .toString()
-        .split(','),
+        .split(',')
+        .filter(Boolean),
       passed: JSON.parse(normalizeText((passed as TableCellText[])[0])),
     };
   }

@@ -1,5 +1,6 @@
 import { text2color } from 'idea-react';
 import { TableCellLocation, TableCellValue } from 'mobx-lark';
+import { observer } from 'mobx-react';
 import { compose, errorLogger, router } from 'next-ssr-middleware';
 import { QRCodeSVG } from 'qrcode.react';
 import { PureComponent } from 'react';
@@ -37,6 +38,7 @@ export const getServerSideProps = compose<
   };
 });
 
+@observer
 export default class InvitationPage extends PureComponent<InvitationPageProps> {
   sharedURL = `${API_Host}/activity/${this.props.activity.id}/agenda/${this.props.agenda.id}`;
 
