@@ -1,6 +1,6 @@
 import { User } from '@kaiyuanshe/kys-service';
 import { HTTPClient } from 'koajax';
-import { makeObservable, observable } from 'mobx';
+import { observable } from 'mobx';
 import { BaseListModel, toggle } from 'mobx-restful';
 
 import { KYS_SERVICE_HOST } from './index';
@@ -10,7 +10,6 @@ const { localStorage } = globalThis;
 export class UserModel extends BaseListModel<User> {
   constructor() {
     super();
-    makeObservable(this);
 
     if (!this.session) globalThis.localStorage?.clear();
   }
@@ -18,7 +17,8 @@ export class UserModel extends BaseListModel<User> {
   baseURI = 'user';
 
   @observable
-  session?: User = localStorage?.session && JSON.parse(localStorage.session);
+  accessor session: User | undefined =
+    localStorage?.session && JSON.parse(localStorage.session);
 
   client = new HTTPClient({
     baseURI: KYS_SERVICE_HOST,

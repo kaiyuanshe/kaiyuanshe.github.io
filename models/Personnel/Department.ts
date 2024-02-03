@@ -1,5 +1,6 @@
 import { computed } from 'mobx';
 import {
+  BiDataQueryOptions,
   BiDataTable,
   makeSimpleFilter,
   normalizeText,
@@ -44,6 +45,8 @@ export class DepartmentModel extends BiDataTable<Department>() {
   }
 
   requiredKeys = ['name'] as const;
+
+  queryOptions: BiDataQueryOptions = { text_field_as_array: false };
 
   @computed
   get tree() {

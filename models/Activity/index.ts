@@ -1,6 +1,7 @@
 import { HTTPError } from 'koajax';
-import { action, computed, makeObservable, observable } from 'mobx';
+import { action, computed, observable } from 'mobx';
 import {
+  BiDataQueryOptions,
   BiDataTable,
   BITable,
   BiTable,
@@ -60,13 +61,12 @@ export class ActivityTableModel extends BiTable() {
     public loadForm = false,
   ) {
     super(id);
-    makeObservable(this);
   }
 
   client = larkClient;
 
   @observable
-  formMap = {} as Record<string, TableFormViewItem[]>;
+  accessor formMap = {} as Record<string, TableFormViewItem[]>;
 
   async *loadFormStream() {
     for (const { table_id, name } of this.allItems) {
@@ -107,16 +107,16 @@ export class ActivityModel extends BiDataTable<Activity>() {
 
   constructor(appId = MAIN_BASE_ID, tableId = ACTIVITY_TABLE_ID) {
     super(appId, tableId);
-
-    makeObservable(this);
   }
 
   requiredKeys = ['name', 'startTime', 'image'] as const;
 
   sort = { startTime: 'DESC' } as const;
 
+  queryOptions: BiDataQueryOptions = { text_field_as_array: false };
+
   @observable
-  formMap = {} as ActivityTableModel['formMap'];
+  accessor formMap = {} as ActivityTableModel['formMap'];
 
   static SubModel = {
     Person: StaffModel,
@@ -132,10 +132,10 @@ export class ActivityModel extends BiDataTable<Activity>() {
   currentForum?: ForumModel;
 
   @observable
-  currentAgenda?: AgendaModel = undefined;
+  accessor currentAgenda: AgendaModel | undefined;
 
   @observable
-  currentEvaluation?: EvaluationModel = undefined;
+  accessor currentEvaluation: EvaluationModel | undefined;
 
   currentPlace?: PlaceModel;
   currentGift?: GiftModel;

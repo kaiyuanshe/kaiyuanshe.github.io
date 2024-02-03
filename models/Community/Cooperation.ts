@@ -1,5 +1,6 @@
-import { computed, makeObservable, observable } from 'mobx';
+import { computed, observable } from 'mobx';
 import {
+  BiDataQueryOptions,
   BiDataTable,
   normalizeText,
   TableCellAttachment,
@@ -27,14 +28,14 @@ export class CooperationModel extends BiDataTable<Cooperation>() {
 
   constructor(appId = MAIN_BASE_ID, tableId = COOPERATION_TABLE_ID) {
     super(appId, tableId);
-
-    makeObservable(this);
   }
 
   requiredKeys = ['organization', 'year', 'level', 'logos'] as const;
 
+  queryOptions: BiDataQueryOptions = { text_field_as_array: false };
+
   @observable
-  group: Record<string, Cooperation[]> = {};
+  accessor group: Record<string, Cooperation[]> = {};
 
   @computed
   get yearGroup() {

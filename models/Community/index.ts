@@ -1,5 +1,6 @@
-import { makeObservable, observable } from 'mobx';
+import { observable } from 'mobx';
 import {
+  BiDataQueryOptions,
   BiDataTable,
   makeSimpleFilter,
   normalizeText,
@@ -9,7 +10,7 @@ import {
   TableRecord,
 } from 'mobx-lark';
 import { NewData } from 'mobx-restful';
-import { cache, countBy, groupBy, Hour, isEmpty } from 'web-utility';
+import { isEmpty } from 'web-utility';
 
 import { larkClient } from '../Base';
 
@@ -33,16 +34,16 @@ export class CommunityModel extends BiDataTable<Community>() {
 
   constructor(appId = KCC_BASE_ID, tableId = COMMUNITY_TABLE_ID) {
     super(appId, tableId);
-
-    makeObservable(this);
   }
 
   requiredKeys = ['name', 'approver'] as const;
 
   sort = { name: 'ASC' } as const;
 
+  queryOptions: BiDataQueryOptions = { text_field_as_array: false };
+
   @observable
-  group: Record<string, Community[]> = {};
+  accessor group: Record<string, Community[]> = {};
 
   normalize({
     id,

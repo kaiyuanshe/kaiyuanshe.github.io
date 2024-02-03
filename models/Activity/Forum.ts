@@ -1,4 +1,5 @@
 import {
+  BiDataQueryOptions,
   BiDataTable,
   TableCellRelation,
   TableCellText,
@@ -33,6 +34,8 @@ export class ForumModel extends BiDataTable<Forum>() {
   requiredKeys = ['name', 'summary', 'producers'] as const;
 
   sort = { type: 'ASC', startTime: 'ASC' } as const;
+
+  queryOptions: BiDataQueryOptions = { text_field_as_array: false };
 
   normalize({
     id,

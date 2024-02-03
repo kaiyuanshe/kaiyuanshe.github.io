@@ -1,5 +1,5 @@
 import { Loading, text2color } from 'idea-react';
-import { computed, makeObservable, observable } from 'mobx';
+import { computed, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { Column, RestTable } from 'mobx-restful-table';
 import {
@@ -30,16 +30,11 @@ const { t } = i18n;
 
 @observer
 export default class BillDetailPage extends PureComponent<BillDetailPageProps> {
-  constructor(props: BillDetailPageProps) {
-    super(props);
-    makeObservable(this);
-  }
+  @observable
+  accessor activityStore: ActivityModel | undefined;
 
   @observable
-  activityStore?: ActivityModel = undefined;
-
-  @observable
-  billStore?: BillModel = undefined;
+  accessor billStore: BillModel | undefined;
 
   async componentDidMount() {
     const { id } = this.props.route.params!;

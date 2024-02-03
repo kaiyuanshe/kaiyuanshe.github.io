@@ -1,4 +1,5 @@
 import {
+  BiDataQueryOptions,
   BiDataTable,
   makeSimpleFilter,
   TableCellLink,
@@ -30,6 +31,7 @@ export const HR_BASE_ID = process.env.NEXT_PUBLIC_HR_BASE_ID!,
 
 export class PersonModel extends BiDataTable<Person>() {
   client = larkClient;
+  queryOptions: BiDataQueryOptions = { text_field_as_array: false };
 
   constructor(appId = HR_BASE_ID, tableId = PERSON_TABLE_ID) {
     super(appId, tableId);

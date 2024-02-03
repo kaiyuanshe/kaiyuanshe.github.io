@@ -1,5 +1,6 @@
 import { HTTPError } from 'koajax';
 import {
+  BiDataQueryOptions,
   BiDataTable,
   LarkPageData,
   makeSimpleFilter,
@@ -44,6 +45,8 @@ export class ArticleModel extends BiDataTable<Article>() {
   requiredKeys = ['title', 'image', 'publishedAt'] as const;
 
   sort = { publishedAt: 'DESC' } as const;
+
+  queryOptions: BiDataQueryOptions = { text_field_as_array: false };
 
   currentRecommend?: ArticleModel;
 

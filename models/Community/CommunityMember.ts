@@ -1,5 +1,6 @@
-import { makeObservable, observable } from 'mobx';
+import { observable } from 'mobx';
 import {
+  BiDataQueryOptions,
   BiDataTable,
   TableCellLink,
   TableCellText,
@@ -32,16 +33,16 @@ export class CommunityMemberModel extends BiDataTable<CommunityMember>() {
 
   constructor(appId = KCC_BASE_ID, tableId = PERSON_TABLE_ID) {
     super(appId, tableId);
-
-    makeObservable(this);
   }
 
   requiredKeys = ['name', 'approver'] as const;
 
   sort = { name: 'ASC' } as const;
 
+  queryOptions: BiDataQueryOptions = { text_field_as_array: false };
+
   @observable
-  group: Record<string, CommunityMember[]> = {};
+  accessor group: Record<string, CommunityMember[]> = {};
 
   normalize({
     id,

@@ -1,5 +1,5 @@
 import { text2color } from 'idea-react';
-import { makeObservable, observable } from 'mobx';
+import { observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { ScrollList } from 'mobx-restful-table';
 import dynamic from 'next/dynamic';
@@ -20,15 +20,10 @@ const OrganizationCharts = dynamic(() => import('./Charts'), { ssr: false }),
 
 @observer
 export class OpenSourceMap extends PureComponent {
-  constructor(props: {}) {
-    super(props);
-    makeObservable(this);
-  }
-
   listStore = new OrganizationModel();
 
   @observable
-  tabKey: 'map' | 'chart' = 'map';
+  accessor tabKey: 'map' | 'chart' = 'map';
 
   switchFilter: Required<OrganizationCardProps>['onSwitch'] = ({
     type,
@@ -43,10 +38,10 @@ export class OpenSourceMap extends PureComponent {
       type
         ? { ...filter, type }
         : tags
-        ? { ...filter, tags }
-        : city
-        ? { city }
-        : {},
+          ? { ...filter, tags }
+          : city
+            ? { city }
+            : {},
     );
   };
 
