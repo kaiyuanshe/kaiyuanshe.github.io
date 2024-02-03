@@ -1,5 +1,6 @@
-import { makeObservable, observable } from 'mobx';
+import { observable } from 'mobx';
 import {
+  BiDataQueryOptions,
   BiDataTable,
   makeSimpleFilter,
   TableCellLink,
@@ -47,16 +48,16 @@ export class OrganizationModel extends BiDataTable<Organization>() {
 
   constructor(appId = MAIN_BASE_ID, tableId = ORGANIZATION_TABLE_ID) {
     super(appId, tableId);
-
-    makeObservable(this);
   }
 
   requiredKeys = ['name', 'type', 'tags', 'city', 'logos', 'summary'] as const;
 
+  queryOptions: BiDataQueryOptions = { text_field_as_array: false };
+
   declare statistic: OrganizationStatistic;
 
   @observable
-  tagMap: Record<string, Organization[]> = {};
+  accessor tagMap: Record<string, Organization[]> = {};
 
   normalize({
     id,

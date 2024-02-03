@@ -1,6 +1,6 @@
 import { Icon } from 'idea-react';
 import { LatLngTuple } from 'leaflet';
-import { computed, makeObservable, observable } from 'mobx';
+import { computed, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { ImagePreview } from 'mobx-restful-table';
 import { MarkerMeta, OpenReactMapProps } from 'open-react-map';
@@ -23,13 +23,8 @@ export interface ListMapProps extends OpenReactMapProps {
 
 @observer
 export default class ListMap extends PureComponent<ListMapProps> {
-  constructor(props: ListMapProps) {
-    super(props);
-    makeObservable(this);
-  }
-
   @observable
-  drawerOpen = false;
+  accessor drawerOpen = false;
 
   @computed
   get drawerWidth() {
@@ -41,7 +36,7 @@ export default class ListMap extends PureComponent<ListMapProps> {
   }
 
   @observable
-  currentMarker?: ImageMarker = undefined;
+  accessor currentMarker: ImageMarker | undefined;
 
   componentDidMount() {
     this.drawerOpen = !systemStore.screenNarrow;

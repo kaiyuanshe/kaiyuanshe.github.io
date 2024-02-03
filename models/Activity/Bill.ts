@@ -1,5 +1,6 @@
-import { makeObservable, observable } from 'mobx';
+import { observable } from 'mobx';
 import {
+  BiDataQueryOptions,
   BiDataTable,
   normalizeText,
   TableCellRelation,
@@ -25,18 +26,14 @@ export type Bill = Record<
 >;
 
 export class BillModel extends BiDataTable<Bill>() {
-  constructor(appId: string, tableId: string) {
-    super(appId, tableId);
-
-    makeObservable(this);
-  }
-
   client = larkClient;
 
   requiredKeys = ['type', 'price'] as const;
 
+  queryOptions: BiDataQueryOptions = { text_field_as_array: false };
+
   @observable
-  group: Record<string, Bill[]> = {};
+  accessor group: Record<string, Bill[]> = {};
 
   normalize({
     id,

@@ -1,4 +1,4 @@
-import { text2color } from 'idea-react';
+import { ShareBox, text2color } from 'idea-react';
 import { TableCellLocation, TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
 import { compose, errorLogger, router } from 'next-ssr-middleware';
@@ -7,7 +7,6 @@ import { PureComponent } from 'react';
 import { Badge, Container } from 'react-bootstrap';
 
 import { ActivityPeople } from '../../../../../components/Activity/People';
-import { ShareBox } from '../../../../../components/Base/ShareBox';
 import PageHead from '../../../../../components/Layout/PageHead';
 import { Activity, ActivityModel } from '../../../../../models/Activity';
 import { Agenda } from '../../../../../models/Activity/Agenda';

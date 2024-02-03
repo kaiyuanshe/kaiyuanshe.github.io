@@ -1,5 +1,6 @@
 import { textJoin } from 'mobx-i18n';
 import { observer } from 'mobx-react';
+import dynamic from 'next/dynamic';
 import {
   compose,
   errorLogger,
@@ -14,8 +15,14 @@ import { isEmpty } from 'web-utility';
 import { ElectorCard } from '../../../components/Election/ElectorCard';
 import PageHead from '../../../components/Layout/PageHead';
 import { i18n } from '../../../models/Base/Translation';
+import userStore from '../../../models/Base/User';
 import { ElectionTarget, PersonnelModel } from '../../../models/Personnel';
 import { VoteForm } from './candidate/[recipient]/poster/[position]';
+
+const SessionBox = dynamic(
+  () => import('../../../components/Layout/SessionBox'),
+  { ssr: false },
+);
 
 type ElectionYearPageProps = RouteProps<{ year: string }> &
   Pick<PersonnelModel, 'group'>;
@@ -58,6 +65,8 @@ const ElectionYearPage: FC<ElectionYearPageProps> = observer(
       title => [title, group[title]] as const,
     ).filter(([_, list]) => list);
 
+    const mobilePhone = userStore.session?.mobilePhone.replace(/^\+\d\d/, '');
+
     return (
       <Container>
         <PageHead title={title} />
@@ -73,14 +82,16 @@ const ElectionYearPage: FC<ElectionYearPageProps> = observer(
           >
             {t('director_nomination')}
           </Button>
-          <Button
-            variant="danger"
-            target="_blank"
-            href={VoteForm.理事}
-            disabled={passed}
-          >
-            {t('director_election_voting')}
-          </Button>
+          <SessionBox>
+            <Button
+              variant="danger"
+              target="_blank"
+              href={`${VoteForm.理事}?prefill_登记手机号=${mobilePhone}`}
+              disabled={passed}
+            >
+              {t('director_election_voting')}
+            </Button>
+          </SessionBox>
           <Button
             target="_blank"
             href="https://kaiyuanshe.feishu.cn/share/base/form/shrcn20SIKJgdsHH9AEGEMYFPwf?prefill_%E7%94%B3%E8%AF%B7%E8%81%8C%E4%BD%8D=%E6%AD%A3%E5%BC%8F%E6%88%90%E5%91%98"
@@ -88,14 +99,16 @@ const ElectionYearPage: FC<ElectionYearPageProps> = observer(
           >
             {t('member_application')}
           </Button>
-          <Button
-            variant="success"
-            target="_blank"
-            href={VoteForm.正式成员}
-            disabled={passed}
-          >
-            {t('member_application_voting')}
-          </Button>
+          <SessionBox>
+            <Button
+              variant="success"
+              target="_blank"
+              href={`${VoteForm.正式成员}?prefill_登记手机号=${mobilePhone}`}
+              disabled={passed}
+            >
+              {t('member_application_voting')}
+            </Button>
+          </SessionBox>
         </div>
 
         {sections.map(([target, list]) => (

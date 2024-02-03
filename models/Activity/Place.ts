@@ -1,4 +1,5 @@
 import {
+  BiDataQueryOptions,
   BiDataTable,
   normalizeText,
   TableCellRelation,
@@ -28,6 +29,8 @@ export class PlaceModel extends BiDataTable<Place>() {
   client = larkClient;
 
   requiredKeys = ['name', 'type', 'bill'] as const;
+
+  queryOptions: BiDataQueryOptions = { text_field_as_array: false };
 
   normalize({ id, fields: { forum, bill, ...fields } }: TableRecord<Place>) {
     return {

@@ -1,4 +1,4 @@
-import { makeObservable, observable } from 'mobx';
+import { observable } from 'mobx';
 import { normalizeText, TableCellLink, TableCellText } from 'mobx-lark';
 import { BaseModel, toggle } from 'mobx-restful';
 import { buildURLData, parseURLData, URLData } from 'web-utility';
@@ -10,17 +10,16 @@ export type CityCoordinateMap = Record<string, [number, number]>;
 
 export class SystemModel extends BaseModel {
   @observable
-  hashQuery: URLData<string> = {};
+  accessor hashQuery: URLData<string> = {};
 
   @observable
-  screenNarrow = false;
+  accessor screenNarrow = false;
 
   @observable
-  cityCoordinate: CityCoordinateMap = {};
+  accessor cityCoordinate: CityCoordinateMap = {};
 
   constructor() {
     super();
-    makeObservable(this);
 
     this.updateHashQuery();
     this.updateScreen();

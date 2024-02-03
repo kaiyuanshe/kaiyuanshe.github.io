@@ -18,8 +18,6 @@ export interface CityStatisticMapProps {
 @observer
 @observePropsState
 export class CityStatisticMap extends Component<CityStatisticMapProps> {
-  declare observedProps: CityStatisticMapProps;
-
   componentDidMount() {
     metaStore.getCityCoordinate();
 
@@ -29,6 +27,7 @@ export class CityStatisticMap extends Component<CityStatisticMapProps> {
   @computed
   get markers() {
     const { cityCoordinate } = metaStore,
+      // @ts-ignore
       { city = {} } = this.observedProps.store.statistic;
 
     return Object.entries(city)

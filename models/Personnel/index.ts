@@ -1,5 +1,6 @@
-import { makeObservable, observable } from 'mobx';
+import { observable } from 'mobx';
 import {
+  BiDataQueryOptions,
   BiDataTable,
   makeSimpleFilter,
   normalizeText,
@@ -48,16 +49,16 @@ export class PersonnelModel extends BiDataTable<Personnel>() {
 
   constructor(appId = HR_BASE_ID, tableId = PERSONNEL_TABLE_ID) {
     super(appId, tableId);
-
-    makeObservable(this);
   }
 
   requiredKeys = ['recipient'] as const;
 
   sort = { createdAt: 'DESC' } as const;
 
+  queryOptions: BiDataQueryOptions = { text_field_as_array: false };
+
   @observable
-  group: Record<string, Personnel[]> = {};
+  accessor group: Record<string, Personnel[]> = {};
 
   currentYear?: number;
 

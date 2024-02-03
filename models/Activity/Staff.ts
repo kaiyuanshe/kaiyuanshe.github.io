@@ -1,5 +1,5 @@
-import { makeObservable, observable } from 'mobx';
-import { BiDataTable, TableCellValue } from 'mobx-lark';
+import { observable } from 'mobx';
+import { BiDataQueryOptions, BiDataTable, TableCellValue } from 'mobx-lark';
 import { NewData } from 'mobx-restful';
 import { groupBy } from 'web-utility';
 
@@ -18,18 +18,14 @@ export type Staff = Record<
 export type StaffFilter = Partial<NewData<Staff>>;
 
 export class StaffModel extends BiDataTable<Staff>() {
-  constructor(appId: string, tableId: string) {
-    super(appId, tableId);
-
-    makeObservable(this);
-  }
-
   client = larkClient;
 
   requiredKeys = ['name'] as const;
 
+  queryOptions: BiDataQueryOptions = { text_field_as_array: false };
+
   @observable
-  group: Record<string, Staff[]> = {};
+  accessor group: Record<string, Staff[]> = {};
 
   async getGroup(filter: StaffFilter) {
     return (this.group = groupBy(

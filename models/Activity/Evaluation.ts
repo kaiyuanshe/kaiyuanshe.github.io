@@ -1,5 +1,5 @@
 import { computed } from 'mobx';
-import { BiDataTable, TableCellValue } from 'mobx-lark';
+import { BiDataQueryOptions, BiDataTable, TableCellValue } from 'mobx-lark';
 import { averageOf } from 'web-utility';
 
 import { larkClient } from '../Base';
@@ -18,6 +18,7 @@ export type Evaluation = Record<
 
 export class EvaluationModel extends BiDataTable<Evaluation>() {
   client = larkClient;
+  queryOptions: BiDataQueryOptions = { text_field_as_array: false };
 
   @computed
   get currentScore() {

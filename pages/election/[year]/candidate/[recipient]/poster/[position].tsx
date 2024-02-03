@@ -1,3 +1,4 @@
+import { ShareBox } from 'idea-react';
 import { marked } from 'marked';
 import { textJoin } from 'mobx-i18n';
 import { observer } from 'mobx-react';
@@ -14,7 +15,6 @@ import { PureComponent } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 
 import { LarkImage } from '../../../../../../components/Base/LarkImage';
-import { ShareBox } from '../../../../../../components/Base/ShareBox';
 import PageHead from '../../../../../../components/Layout/PageHead';
 import { API_Host } from '../../../../../../models/Base';
 import { i18n } from '../../../../../../models/Base/Translation';

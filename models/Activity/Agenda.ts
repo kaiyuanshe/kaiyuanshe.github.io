@@ -1,5 +1,6 @@
-import { makeObservable, observable } from 'mobx';
+import { observable } from 'mobx';
 import {
+  BiDataQueryOptions,
   BiDataTable,
   makeSimpleFilter,
   normalizeText,
@@ -48,8 +49,6 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
     public tableId: string,
   ) {
     super(appId, tableId);
-
-    makeObservable(this);
   }
 
   client = larkClient;
@@ -62,11 +61,13 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
 
   sort = { startTime: 'ASC' } as const;
 
-  @observable
-  group: Record<string, Agenda[]> = {};
+  queryOptions: BiDataQueryOptions = { text_field_as_array: false };
 
   @observable
-  currentAuthorized = false;
+  accessor group: Record<string, Agenda[]> = {};
+
+  @observable
+  accessor currentAuthorized = false;
 
   get authorization(): Record<string, boolean> | undefined {
     const { activityAgendaAuthorization } = globalThis.localStorage || {};
