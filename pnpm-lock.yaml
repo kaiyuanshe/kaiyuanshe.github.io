@@ -16,7 +16,7 @@ dependencies:
     version: 3.0.0(webpack@5.90.1)
   '@mdx-js/react':
     specifier: ^3.0.0
-    version: 3.0.0(@types/react@18.2.52)(react@18.2.0)
+    version: 3.0.0(@types/react@18.2.53)(react@18.2.0)
   '@next/mdx':
     specifier: ^14.1.0
     version: 14.1.0(@mdx-js/loader@3.0.0)(@mdx-js/react@3.0.0)
@@ -40,7 +40,7 @@ dependencies:
     version: 19.0.0
   idea-react:
     specifier: ^2.0.0-rc.2
-    version: 2.0.0-rc.2(@types/react@18.2.52)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
+    version: 2.0.0-rc.2(@types/react@18.2.53)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
   koajax:
     specifier: ^0.9.6
     version: 0.9.6(typescript@5.3.3)
@@ -63,8 +63,8 @@ dependencies:
     specifier: ^4.17.21
     version: 4.17.21
   marked:
-    specifier: ^11.2.0
-    version: 11.2.0
+    specifier: ^12.0.0
+    version: 12.0.0
   mobx:
     specifier: ^6.12.0
     version: 6.12.0
@@ -85,7 +85,7 @@ dependencies:
     version: 0.7.0-rc.0(mobx@6.12.0)(typescript@5.3.3)
   mobx-restful-table:
     specifier: ^2.0.0-rc.0
-    version: 2.0.0-rc.0(@types/react@18.2.52)(mobx-i18n@0.5.0)(mobx-react@9.1.0)(mobx-restful@0.7.0-rc.0)(mobx@6.12.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
+    version: 2.0.0-rc.0(@types/react@18.2.53)(mobx-i18n@0.5.0)(mobx-react@9.1.0)(mobx-restful@0.7.0-rc.0)(mobx@6.12.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
   next:
     specifier: ^14.1.0
     version: 14.1.0(react-dom@18.2.0)(react@18.2.0)
@@ -112,7 +112,7 @@ dependencies:
     version: 18.2.0
   react-bootstrap:
     specifier: ^2.10.0
-    version: 2.10.0(@types/react@18.2.52)(react-dom@18.2.0)(react@18.2.0)
+    version: 2.10.0(@types/react@18.2.53)(react-dom@18.2.0)(react@18.2.0)
   react-dom:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
@@ -167,8 +167,8 @@ devDependencies:
     specifier: ^18.19.14
     version: 18.19.14
   '@types/react':
-    specifier: ^18.2.52
-    version: 18.2.52
+    specifier: ^18.2.53
+    version: 18.2.53
   '@types/react-dom':
     specifier: ^18.2.18
     version: 18.2.18
@@ -191,8 +191,8 @@ devDependencies:
     specifier: ^15.2.1
     version: 15.2.1
   prettier:
-    specifier: ^3.2.4
-    version: 3.2.4
+    specifier: ^3.2.5
+    version: 3.2.5
   typescript:
     specifier: ~5.3.3
     version: 5.3.3
@@ -1752,14 +1752,14 @@ packages:
       - supports-color
     dev: false
 
-  /@mdx-js/react@3.0.0(@types/react@18.2.52)(react@18.2.0):
+  /@mdx-js/react@3.0.0(@types/react@18.2.53)(react@18.2.0):
     resolution: {integrity: sha512-nDctevR9KyYFyV+m+/+S4cpzCWHqj+iHDHq3QrsWezcC+B17uZdIWgCguESUkwFhM3n/56KxWVE3V6EokrmONQ==}
     peerDependencies:
       '@types/react': '>=16'
       react: '>=16'
     dependencies:
       '@types/mdx': 2.0.11
-      '@types/react': 18.2.52
+      '@types/react': 18.2.53
       react: 18.2.0
     dev: false
 
@@ -1785,7 +1785,7 @@ packages:
         optional: true
     dependencies:
       '@mdx-js/loader': 3.0.0(webpack@5.90.1)
-      '@mdx-js/react': 3.0.0(@types/react@18.2.52)(react@18.2.0)
+      '@mdx-js/react': 3.0.0(@types/react@18.2.53)(react@18.2.0)
       source-map: 0.7.4
     dev: false
 
@@ -2558,17 +2558,17 @@ packages:
   /@types/react-dom@18.2.18:
     resolution: {integrity: sha512-TJxDm6OfAX2KJWJdMEVTwWke5Sc/E/RlnPGvGfS0W7+6ocy2xhDVQVh/KvC2Uf7kACs+gDytdusDSdWfWkaNzw==}
     dependencies:
-      '@types/react': 18.2.52
+      '@types/react': 18.2.53
     dev: true
 
   /@types/react-transition-group@4.4.10:
     resolution: {integrity: sha512-hT/+s0VQs2ojCX823m60m5f0sL5idt9SO6Tj6Dg+rdphGPIeJbJ6CxvBYkgkGKrYeDjvIpKTR38UzmtHJOGW3Q==}
     dependencies:
-      '@types/react': 18.2.52
+      '@types/react': 18.2.53
     dev: false
 
-  /@types/react@18.2.52:
-    resolution: {integrity: sha512-E/YjWh3tH+qsLKaUzgpZb5AY0ChVa+ZJzF7ogehVILrFpdQk6nC/WXOv0bfFEABbXbgNxLBGU7IIZByPKb6eBw==}
+  /@types/react@18.2.53:
+    resolution: {integrity: sha512-52IHsMDT8qATp9B9zoOyobW8W3/0QhaJQTw1HwRj0UY2yBpCAQ7+S/CqHYQ8niAm3p4ji+rWUQ9UCib0GxQ60w==}
     dependencies:
       '@types/prop-types': 15.7.11
       '@types/scheduler': 0.16.8
@@ -4683,7 +4683,7 @@ packages:
     resolution: {integrity: sha512-gchesWBzyvGHRO9W8tzUWFDycow5gwjvFKfyV9FF32Y7F50yZMp7mP+T2mJIWFx49zicqyC4uefHM17o6xKIVQ==}
     dev: false
 
-  /idea-react@2.0.0-rc.2(@types/react@18.2.52)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3):
+  /idea-react@2.0.0-rc.2(@types/react@18.2.53)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3):
     resolution: {integrity: sha512-E+HZegixmsKRplvZol9AU6GAH8Hzn1dzwKqizos9hsd3vjMSr2dG0dtABelERdrqifhTIO7YYxnubTsExjK9xQ==}
     peerDependencies:
       react: '>=16'
@@ -4703,7 +4703,7 @@ packages:
       mobx-react-helper: 0.3.1(mobx@6.12.0)(react@18.2.0)
       prismjs: 1.29.0
       react: 18.2.0
-      react-bootstrap: 2.10.0(@types/react@18.2.52)(react-dom@18.2.0)(react@18.2.0)
+      react-bootstrap: 2.10.0(@types/react@18.2.53)(react-dom@18.2.0)(react@18.2.0)
       react-dom: 18.2.0(react@18.2.0)
       react-editor-js: 2.1.0(@editorjs/editorjs@2.29.0)(@editorjs/paragraph@2.11.3)(react@18.2.0)
       react-element-to-jsx-string: 15.0.0(react-dom@18.2.0)(react@18.2.0)
@@ -5584,8 +5584,8 @@ packages:
     resolution: {integrity: sha512-Z1NL3Tb1M9wH4XESsCDEksWoKTdlUafKc4pt0GRwjUyXaCFZ+dc3g2erqB6zm3szA2IUSi7VnPI+o/9jnxh9hw==}
     dev: false
 
-  /marked@11.2.0:
-    resolution: {integrity: sha512-HR0m3bvu0jAPYiIvLUUQtdg1g6D247//lvcekpHO1WMvbwDlwSkZAX9Lw4F4YHE1T0HaaNve0tuAWuV1UJ6vtw==}
+  /marked@12.0.0:
+    resolution: {integrity: sha512-Vkwtq9rLqXryZnWaQc86+FHLC6tr/fycMfYAhiOIXkrNmeGAyhSxjqu0Rs1i0bBqw5u0S7+lV9fdH2ZSVaoa0w==}
     engines: {node: '>= 18'}
     hasBin: true
     dev: false
@@ -6307,7 +6307,7 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /mobx-restful-table@2.0.0-rc.0(@types/react@18.2.52)(mobx-i18n@0.5.0)(mobx-react@9.1.0)(mobx-restful@0.7.0-rc.0)(mobx@6.12.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3):
+  /mobx-restful-table@2.0.0-rc.0(@types/react@18.2.53)(mobx-i18n@0.5.0)(mobx-react@9.1.0)(mobx-restful@0.7.0-rc.0)(mobx@6.12.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3):
     resolution: {integrity: sha512-1ERdomImZVGgVtQyuiYS6Bphm+pCnHTJmkj404mO6vN82/RdkUThhMA4viCAbHCFWs3RZPg2OHrM3rCwoYKeCw==}
     peerDependencies:
       mobx: '>=6.11'
@@ -6325,7 +6325,7 @@ packages:
       mobx-react-helper: 0.3.1(mobx@6.12.0)(react@18.2.0)
       mobx-restful: 0.7.0-rc.0(mobx@6.12.0)(typescript@5.3.3)
       react: 18.2.0
-      react-bootstrap: 2.10.0(@types/react@18.2.52)(react-dom@18.2.0)(react@18.2.0)
+      react-bootstrap: 2.10.0(@types/react@18.2.53)(react-dom@18.2.0)(react@18.2.0)
       regenerator-runtime: 0.14.1
       web-utility: 4.1.3(typescript@5.3.3)
     transitivePeerDependencies:
@@ -6851,8 +6851,8 @@ packages:
     hasBin: true
     dev: true
 
-  /prettier@3.2.4:
-    resolution: {integrity: sha512-FWu1oLHKCrtpO1ypU6J0SbK2d9Ckwysq6bHj/uaCP26DxrPpppCLQRGVuqAxSTvhF00AcvDRyYrLNW7ocBhFFQ==}
+  /prettier@3.2.5:
+    resolution: {integrity: sha512-3/GWa9aOC0YeD7LUfvOG2NiDyhOWRvt1k+rcKhOuYnMY24iiCphgneUfJDyFXd6rZCAnuLBv6UeAULtrhT/F4A==}
     engines: {node: '>=14'}
     hasBin: true
     dev: true
@@ -6940,7 +6940,7 @@ packages:
       safe-buffer: 5.2.1
     dev: false
 
-  /react-bootstrap@2.10.0(@types/react@18.2.52)(react-dom@18.2.0)(react@18.2.0):
+  /react-bootstrap@2.10.0(@types/react@18.2.53)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-87gRP69VAfeU2yKgp8RI3HvzhPNrnYIV2QNranYXataz3ef+k7OhvKGGdxQLQfUsQ2RTmlY66tn4pdFrZ94hNg==}
     peerDependencies:
       '@types/react': '>=16.14.8'
@@ -6953,7 +6953,7 @@ packages:
       '@babel/runtime': 7.23.9
       '@restart/hooks': 0.4.15(react@18.2.0)
       '@restart/ui': 1.6.6(react-dom@18.2.0)(react@18.2.0)
-      '@types/react': 18.2.52
+      '@types/react': 18.2.53
       '@types/react-transition-group': 4.4.10
       classnames: 2.5.1
       dom-helpers: 5.2.1
@@ -8011,7 +8011,7 @@ packages:
       react: '>=15.0.0'
     dependencies:
       '@babel/runtime': 7.23.9
-      '@types/react': 18.2.52
+      '@types/react': 18.2.53
       invariant: 2.2.4
       react: 18.2.0
       react-lifecycles-compat: 3.0.4

@@ -8,15 +8,19 @@ import {
   router,
   translator,
 } from 'next-ssr-middleware';
-import { FC } from 'react';
+import { PureComponent } from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
-import { isEmpty } from 'web-utility';
+import { isEmpty, Week } from 'web-utility';
 
 import { ElectorCard } from '../../../components/Election/ElectorCard';
 import PageHead from '../../../components/Layout/PageHead';
 import { i18n } from '../../../models/Base/Translation';
 import userStore from '../../../models/Base/User';
-import { ElectionTarget, PersonnelModel } from '../../../models/Personnel';
+import {
+  ElectionTarget,
+  Personnel,
+  PersonnelModel,
+} from '../../../models/Personnel';
 import { VoteForm } from './candidate/[recipient]/poster/[position]';
 
 const SessionBox = dynamic(
@@ -54,16 +58,63 @@ const { t } = i18n,
     '中国开源先锋 33 人',
   ];
 
-const ElectionYearPage: FC<ElectionYearPageProps> = observer(
-  ({ route, group }) => {
-    const { year } = route.params!;
+@observer
+export default class ElectionYearPage extends PureComponent<ElectionYearPageProps> {
+  get sections() {
+    const { group } = this.props;
+
+    return SectionOrder.map(title => [title, group[title]] as const).filter(
+      ([_, list]) => list,
+    );
+  }
+
+  renderGroup(target: string, list: Personnel[]) {
+    const [startedAt] = list
+      .map(({ createdAt }) => createdAt as number)
+      .sort((a, b) => +new Date(a) - +new Date(b));
+    const open = +new Date(startedAt) + 3 * Week < Date.now();
+
+    return (
+      <section key={target} id={target}>
+        <h2 className="my-5 text-center">
+          <a className="text-decoration-none" href={`#${target}`}>
+            {textJoin(t(target as ElectionTarget) || '', t('candidate'))}
+          </a>
+        </h2>
+
+        <Row as="ul" className="list-unstyled g-4" xs={1} sm={2} lg={3}>
+          {list
+            .sort(
+              (
+                { score: a0, approvers: a1, rejecters: a2, createdAt: a3 },
+                { score: b0, approvers: b1, rejecters: b2, createdAt: b3 },
+              ) =>
+                +b0! - +a0! ||
+                (b1 as string[])?.length - (a1 as string[])?.length ||
+                (a2 as string[])?.length - (b2 as string[])?.length ||
+                +new Date(a3 as string) - +new Date(b3 as string),
+            )
+            .map(({ id, approvers, rejecters, ...item }, index) => (
+              <Col as="li" key={id + ''} id={item.recipient as string}>
+                <ElectorCard
+                  className="h-100"
+                  {...item}
+                  approvers={open && approvers}
+                  rejecters={open && rejecters}
+                  order={open ? index + 1 : undefined}
+                />
+              </Col>
+            ))}
+        </Row>
+      </section>
+    );
+  }
+
+  render() {
+    const { year } = this.props.route.params!;
 
     const title = `${year} ${t('election')}`,
       passed = +year < new Date().getFullYear();
-
-    const sections = SectionOrder.map(
-      title => [title, group[title]] as const,
-    ).filter(([_, list]) => list);
 
     const mobilePhone = userStore.session?.mobilePhone.replace(/^\+\d\d/, '');
 
@@ -111,41 +162,8 @@ const ElectionYearPage: FC<ElectionYearPageProps> = observer(
           </SessionBox>
         </div>
 
-        {sections.map(([target, list]) => (
-          <section key={target} id={target}>
-            <h2 className="my-5 text-center">
-              <a className="text-decoration-none" href={`#${target}`}>
-                {textJoin(t(target as ElectionTarget) || '', t('candidate'))}
-              </a>
-            </h2>
-
-            <Row as="ul" className="list-unstyled g-4" xs={1} sm={2} lg={3}>
-              {list
-                .sort(
-                  (
-                    { score: a0, approvers: a1, rejecters: a2, createdAt: a3 },
-                    { score: b0, approvers: b1, rejecters: b2, createdAt: b3 },
-                  ) =>
-                    +b0! - +a0! ||
-                    (b1 as string[])?.length - (a1 as string[])?.length ||
-                    (a2 as string[])?.length - (b2 as string[])?.length ||
-                    +new Date(a3 as string) - +new Date(b3 as string),
-                )
-                .map(({ id, ...item }, index) => (
-                  <Col as="li" key={id + ''} id={item.recipient as string}>
-                    <ElectorCard
-                      className="h-100"
-                      {...item}
-                      order={index + 1}
-                    />
-                  </Col>
-                ))}
-            </Row>
-          </section>
-        ))}
+        {this.sections.map(([target, list]) => this.renderGroup(target, list))}
       </Container>
     );
-  },
-);
-
-export default ElectionYearPage;
+  }
+}
