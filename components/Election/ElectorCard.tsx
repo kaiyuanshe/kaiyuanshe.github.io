@@ -10,7 +10,7 @@ import { LarkImage } from '../Base/LarkImage';
 const { t } = i18n;
 
 export interface ElectorCardProps extends CardProps, Omit<Personnel, 'id'> {
-  order: number;
+  order?: number;
 }
 
 export const ElectorCard: FC<ElectorCardProps> = ({
@@ -113,7 +113,7 @@ export const ElectorCard: FC<ElectorCardProps> = ({
       className="list-unstyled d-flex justify-content-between align-items-center"
     >
       <li className="text-success">
-        ✔ <strong>{(approvers as string[])?.length || 0}</strong>
+        ✔ <strong>{(approvers as string[])?.length}</strong>
       </li>
       {passed && (
         <Badge as="li" bg="info">
@@ -121,7 +121,7 @@ export const ElectorCard: FC<ElectorCardProps> = ({
         </Badge>
       )}
       <li className="text-danger">
-        ❌ <strong>{(rejecters as string[])?.length || 0}</strong>
+        ❌ <strong>{(rejecters as string[])?.length}</strong>
       </li>
     </Card.Footer>
   </Card>
