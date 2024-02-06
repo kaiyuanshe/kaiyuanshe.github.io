@@ -124,7 +124,10 @@ export default class ElectionYearPage extends PureComponent<ElectionYearPageProp
 
         <h1 className="my-5 text-center">{title}</h1>
 
-        <div className="d-flex flex-wrap justify-content-center gap-3 my-3">
+        <div
+          className="d-flex flex-wrap justify-content-center gap-3 py-3 sticky-top bg-white"
+          style={{ top: '5rem' }}
+        >
           <Button
             variant="warning"
             target="_blank"
