@@ -10,7 +10,7 @@ import {
 } from 'next-ssr-middleware';
 import { PureComponent } from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
-import { isEmpty, Week } from 'web-utility';
+import { Day, isEmpty } from 'web-utility';
 
 import { ElectorCard } from '../../../components/Election/ElectorCard';
 import PageHead from '../../../components/Layout/PageHead';
@@ -72,7 +72,7 @@ export default class ElectionYearPage extends PureComponent<ElectionYearPageProp
     const [startedAt] = list
       .map(({ createdAt }) => createdAt as number)
       .sort((a, b) => +new Date(a) - +new Date(b));
-    const open = +new Date(startedAt) + 3 * Week < Date.now();
+    const open = +new Date(startedAt) + 16.5 * Day < Date.now();
 
     return (
       <section key={target} id={target}>
