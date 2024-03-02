@@ -33,12 +33,6 @@
 - [后端服务](https://kaiyuanshe.feishu.cn/base/IiihbadUsaCjYSsv9N4cR3XVnWh)
 - [后端代码](models/Activity/)
 
-### 开源许可证选择器
-
-- [项目简介](https://kaiyuanshe.feishu.cn/wiki/wikcnRn5pkE3BSvqFUMkJPymaG3)
-- [前端主页](https://kaiyuanshe.cn/tool/license-filter)
-- [前端代码](pages/tool/license-filter.tsx)
-
 ### 中国开源地图
 
 - [项目简介](https://kaiyuanshe.feishu.cn/wiki/wikcnZPJ7YvMU2Qkkxu2GT7TGoh)
