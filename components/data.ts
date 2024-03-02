@@ -112,16 +112,10 @@ export const MainRoutes = (): Link[] => [
   {
     title: t('open_source_treasure_box'),
     subs: [
-      { title: t('license_tool'), path: '/tool/license-filter' },
       {
-        title: `${t('Web_polyfill_CDN')} v1`,
-        path: 'https://polyfill.kaiyuanshe.cn/',
+        title: t('open_source_treasure_box'),
+        path: 'https://oss-toolbox.vercel.app/',
       },
-      {
-        title: `${t('Web_polyfill_CDN')} v2`,
-        path: 'https://polyfiller.kaiyuanshe.cn/',
-      },
-      { title: t('open_source_mirror'), path: 'http://mirror.kaiyuanshe.cn/' },
       {
         title: t('open_hackathon_platform'),
         path: 'https://hackathon.kaiyuanshe.cn/',
