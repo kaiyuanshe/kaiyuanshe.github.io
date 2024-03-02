@@ -86,16 +86,6 @@ export const MainRoutes = (): Link[] => [
     ],
   },
   {
-    title: t('open_source_projects'),
-    subs: [
-      { title: t('more_projects'), path: '/project' },
-      {
-        title: 'GitHub issues',
-        path: '/project/issues',
-      },
-    ],
-  },
-  {
     title: t('community_development'),
     subs: [
       {
@@ -110,7 +100,7 @@ export const MainRoutes = (): Link[] => [
     ],
   },
   {
-    title: t('open_source_treasure_box'),
+    title: t('open_source_projects'),
     subs: [
       {
         title: t('open_source_treasure_box'),
