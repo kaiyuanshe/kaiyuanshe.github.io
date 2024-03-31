@@ -52,9 +52,9 @@ export const getServerSideProps = compose<{ name: string }, CommitteePageProps>(
 const { t } = i18n;
 
 const titleMap = () => ({
-  'community-cooperation-star': t('community_cooperation_star'),
-  'Open-Source-star': t('open_source_star'),
-  'COSCon-star': t('COSCon_star'),
+  'community-cooperation-star': t('stars_of_community_partnership'),
+  'Open-Source-star': t('stars_of_open_source'),
+  'COSCon-star': t('stars_of_COSCon'),
   'China-Open-Source-pioneer': t('china_open_source_pioneer'),
 });
 

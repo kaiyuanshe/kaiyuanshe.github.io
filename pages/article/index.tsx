@@ -39,7 +39,7 @@ const { t } = i18n;
 const ArticleListPage: FC<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = observer(({ route: { query }, list }) => {
-  const title = [query.type, t('our_articles')].filter(Boolean);
+  const title = [query.type, t('our_knowledge_base')].filter(Boolean);
 
   return (
     <Container className="py-5">

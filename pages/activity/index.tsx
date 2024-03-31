@@ -25,9 +25,9 @@ const ActivityListPage: FC<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = observer(({ list }) => (
   <Container className="py-5">
-    <PageHead title={t('wonderful_activity')} />
+    <PageHead title={t('highlight_events')} />
 
-    <h1 className="mb-5 text-center">{t('wonderful_activity')}</h1>
+    <h1 className="mb-5 text-center">{t('highlight_events')}</h1>
 
     <ScrollList
       translator={i18n}

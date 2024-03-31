@@ -33,7 +33,7 @@ const CommunityListPage: FC<
       target="_blank"
       href="https://kaiyuanshe.feishu.cn/share/base/form/shrcnAyfE76AHnwtJ8P1fO7avaf"
     >
-      {t('community_register')}
+      {t('KCC_community_establishment_registration')}
     </Button>
   </Container>
 ));

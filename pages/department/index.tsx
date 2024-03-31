@@ -18,9 +18,9 @@ const { t } = i18n;
 
 const DepartmentPage: FC = observer(() => (
   <Container className="py-5 text-center">
-    <PageHead title={t('community_structure')} />
+    <PageHead title={t('organization_structure')} />
 
-    <h1>{t('organization_of_open_source_society')}</h1>
+    <h1>{t('organization_structure-chart')}</h1>
 
     <DepartmentTree />
 

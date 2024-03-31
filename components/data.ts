@@ -26,27 +26,27 @@ export const TimeOption: Pick<
 
 export const MainRoutes = (): Link[] => [
   {
-    title: t('community_structure'),
+    title: t('organization_structure'),
     subs: [
-      { title: t('community_structure_overview'), path: '/department' },
-      { title: t('council'), path: '/department/council' },
+      { title: t('organization_structure_chart'), path: '/department' },
+      { title: t('board_of_directors'), path: '/department/board_of_directors' },
       {
-        title: t('advisory_committee'),
-        path: '/department/committee/consultant',
+        title: t('advisory_council'),
+        path: '/department/committee/advisor',
       },
       {
-        title: t('legal_advisory_committee'),
+        title: t('legal_advisory_council'),
         path: '/department/committee/legal-advisory',
       },
       { title: t('community_list'), path: '/community' },
       { title: t('our_members'), path: '/member' },
-      { title: t('COSCon_star'), path: '/community/award/COSCon-star' },
+      { title: t('stars_of_COSCon'), path: '/community/award/COSCon-star' },
       {
-        title: t('open_source_star'),
+        title: t('stars_of_open_source'),
         path: '/community/award/Open-Source-star',
       },
       {
-        title: t('community_cooperation_star'),
+        title: t('stars_of_community_partnership'),
         path: '/community/award/community-cooperation-star',
       },
       {
@@ -56,7 +56,7 @@ export const MainRoutes = (): Link[] => [
     ],
   },
   {
-    title: t('our_articles'),
+    title: t('our_knowledge_base'),
     subs: [
       { title: t('coscon'), path: '/search?tag=COSCon' },
       {
@@ -79,9 +79,9 @@ export const MainRoutes = (): Link[] => [
     ],
   },
   {
-    title: t('wonderful_activity'),
+    title: t('highlight_events'),
     subs: [
-      { title: t('host_activity'), path: '/activity' },
+      { title: t('hosted_activity'), path: '/activity' },
       { title: t('activity_articles_calendar'), path: '/activity/calendar' },
     ],
   },
@@ -103,7 +103,7 @@ export const MainRoutes = (): Link[] => [
     title: t('open_source_projects'),
     subs: [
       {
-        title: t('open_source_treasure_box'),
+        title: t('open_source_treasure_chest'),
         path: 'https://oss-toolbox.vercel.app/',
       },
       {
@@ -128,7 +128,7 @@ export const MainRoutes = (): Link[] => [
         path: 'https://kaiyuanshe.feishu.cn/wiki/U2S7wudEUisLdnkqUadczo1SnSc',
       },
       {
-        title: textJoin(t('KaiYuanShe'), t('cultural_and_creative_store')),
+        title: textJoin(t('KaiYuanShe'), t('cultural_and_creative_shop')),
         path: 'https://www.xiaohongshu.com/user/profile/6528f512000000002a018253',
       },
       { title: t('our_partners'), path: '/organization/cooperation' },

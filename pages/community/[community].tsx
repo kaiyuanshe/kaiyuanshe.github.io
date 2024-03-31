@@ -59,7 +59,7 @@ const CommunityMemberListPage: FC<
         target="_blank"
         href="https://kaiyuanshe.feishu.cn/share/base/form/shrcnogj5LPzlaiUkFaKpVbxNXe"
       >
-        {t('member_register')}
+        {t('KCC_member_registration')}
       </Button>
     </section>
   </Container>
