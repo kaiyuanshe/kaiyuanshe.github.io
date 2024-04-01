@@ -20,7 +20,7 @@ const DepartmentPage: FC = observer(() => (
   <Container className="py-5 text-center">
     <PageHead title={t('organization_structure')} />
 
-    <h1>{t('organization_structure-chart')}</h1>
+    <h1>{t('organization_structure_chart')}</h1>
 
     <DepartmentTree />
 

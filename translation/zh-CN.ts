@@ -56,7 +56,7 @@ export default {
   load_more: '加载更多……',
   organization_member: '组织成员',
   board_of_directors: '理事会',
-  organization_structure-chart: '开源社组织机构',
+  organization_structure_chart: '开源社组织机构',
   become_volunteer: '成为志愿者',
   china_open_source_map: '中国开源地图',
   panorama: '全景图',
