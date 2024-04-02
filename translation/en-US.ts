@@ -57,7 +57,6 @@ export default {
   load_more: 'load more...',
   organization_member: 'Organization member',
   board_of_directors: 'Board of Directors',
-  organization_structure_chart: 'Organization Structure Chart',
   become_volunteer: 'become a volunteer',
   china_open_source_map: 'China Open Source Map',
   panorama: 'Landscape',
