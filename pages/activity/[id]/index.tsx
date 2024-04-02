@@ -98,18 +98,18 @@ export default class ActivityDetailPage extends PureComponent<
     return (
       <div className="d-flex flex-wrap justify-content-center gap-3 my-3">
         {this.renderFormMenu(
-          t('register_volunteer'),
+          t('volunteer_speaker_registration'),
           personForms,
           'primary',
           passed,
         )}
         {this.renderFormMenu(
-          t('submit_agenda'),
+          t('CFP_submission'),
           agendaForms,
           'success',
           passed,
         )}
-        {this.renderFormMenu(t('submit_agenda_file'), fileForms, 'warning')}
+        {this.renderFormMenu(t('CFP_file_submission'), fileForms, 'warning')}
         {this.renderFormMenu(t('reimbursement_application'), billForms, 'info')}
         {link && (
           <Button variant="danger" target="_blank" href={link as string}>

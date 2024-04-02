@@ -31,13 +31,13 @@ const { t } = i18n;
 const CouncilPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
   observer(({ group }) => (
     <Container className="py-5">
-      <PageHead title={t('council')} />
+      <PageHead title={t('board_of_directors')} />
       <Breadcrumb>
         <Breadcrumb.Item href="/">{t('KaiYuanShe')}</Breadcrumb.Item>
         <Breadcrumb.Item href="/department">{t('department')}</Breadcrumb.Item>
-        <Breadcrumb.Item active>{t('council')}</Breadcrumb.Item>
+        <Breadcrumb.Item active>{t('board_of_directors')}</Breadcrumb.Item>
       </Breadcrumb>
-      <h1 className="text-center">{t('council')}</h1>
+      <h1 className="text-center">{t('board_of_directors')}</h1>
 
       {Object.entries(group)
         .sort(([a], [b]) => +b - +a)
