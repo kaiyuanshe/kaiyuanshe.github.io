@@ -29,7 +29,10 @@ export const MainRoutes = (): Link[] => [
     title: t('organization_structure'),
     subs: [
       { title: t('organization_structure_chart'), path: '/department' },
-      { title: t('board_of_directors'), path: '/department/board_of_directors' },
+      {
+        title: t('board_of_directors'),
+        path: '/department/board_of_directors',
+      },
       {
         title: t('advisory_council'),
         path: '/department/committee/advisor',
@@ -104,7 +107,7 @@ export const MainRoutes = (): Link[] => [
     subs: [
       {
         title: t('open_source_treasure_chest'),
-        path: 'https://oss-toolbox.vercel.app/',
+        path: 'https://oss-toolbox.kaiyuanshe.cn/',
       },
       {
         title: t('open_hackathon_platform'),

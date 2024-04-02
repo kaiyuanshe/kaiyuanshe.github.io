@@ -25,7 +25,6 @@ export default {
   // Main Navigator
   organization_structure: 'Organization Structure',
   organization_structure_chart: 'Organization Structure Chart',
-  advisory_council: 'Advisory Council',
   our_members: 'Our Members',
   our_knowledge_base: 'Our Knowledge Base',
   coscon: 'China Open Source Conference',
@@ -50,7 +49,7 @@ export default {
   open_hackathon_platform: 'Open Hackathon Platform',
   xiaoyuan_chatbot: 'XiaoYuan ChatBot',
   about_us: 'About Us',
-  cultural_and_creative_store: 'Cultural and Creative Shop',
+  cultural_and_creative_shop: 'Cultural and Creative Shop',
   meeting_calendar: 'Meeting Calendar',
 
   no_more: 'no more',
@@ -73,8 +72,10 @@ export default {
   unpublished: 'unpublished',
   unclassified: 'unclassified',
   distribution_of_communities_by_city: 'Distribution of Communities by City',
-  distribution_of_communities_by_technology: 'Distribution of Communities by Technology',
-  distribution_of_communities_by_founding_year: 'Distribution of Communities by Founding Year',
+  distribution_of_communities_by_technology:
+    'Distribution of Communities by Technology',
+  distribution_of_communities_by_founding_year:
+    'Distribution of Communities by Founding Year',
   distribution_of_communities_by_type: 'Distribution of Communities by Type',
   China_open_source_community_landscape:
     "China's open source community landscape",
@@ -184,7 +185,8 @@ export default {
   community: ' Community',
   KCC_member_registration: 'Apply to Become a KCC Member',
   KCC_activity_registration: 'KCC Activity Information Registration',
-  KCC_community_establishment_registration: 'KCC City Community Establishment Application',
+  KCC_community_establishment_registration:
+    'KCC City Community Establishment Application',
 
   activity_articles_calendar: 'Activity Calendar',
   hosted_activity: 'Hosted Activity',

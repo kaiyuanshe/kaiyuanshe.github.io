@@ -25,5 +25,6 @@ tasks:
   - before: |
       pnpm i vercel -g
       vercel login --github --oob
+      npm login --scope=@kaiyuanshe --registry=https://npm.pkg.github.com
     init: pnpm i
     command: pnpm dev

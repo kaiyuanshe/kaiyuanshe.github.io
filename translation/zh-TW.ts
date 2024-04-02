@@ -24,7 +24,6 @@ export default {
   // Main Navigator
   organization_structure: '組織機構',
   organization_structure_chart: '組織架構全景圖',
-  advisory_council: '顧問委員會',
   our_members: '正式成員',
   our_knowledge_base: '開源文庫',
   coscon: '中國開源年會 (COSCon)',
