@@ -215,7 +215,7 @@ export class ActivityModel extends BiDataTable<Activity>() {
     const { database } = this.currentOne;
 
     if (database) {
-      const dbName = (database + '').split('/').at(-1)!;
+      const dbName = new URL(database + '').pathname.split('/').at(-1)!;
 
       const table = new ActivityTableModel(dbName, loadForm);
 

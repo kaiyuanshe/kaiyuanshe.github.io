@@ -28,7 +28,7 @@ export const getServerSideProps = compose<{}, Pick<PersonnelModel, 'group'>>(
 const { t } = i18n;
 
 const MemberPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
-  observer(({ group: { '': unGrouped, ...group } }) => (
+  observer(({ group: { '': unGrouped = [], ...group } }) => (
     <Container className="py-5">
       <PageHead title={t('正式成员')} />
 

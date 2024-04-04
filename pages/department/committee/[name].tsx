@@ -20,7 +20,7 @@ type CommitteePageProps = RouteProps<{ name: string }> &
   Pick<PersonnelModel, 'allItems'>;
 
 const nameMap = {
-  advisor: '顾问委员会',
+  advisory: '顾问委员会',
   'legal-advisory': '法律咨询委员会',
 };
 
@@ -45,7 +45,7 @@ export const getServerSideProps = compose<{ name: string }, CommitteePageProps>(
 const { t } = i18n;
 
 const titleMap = () => ({
-  advisor: t('advisory_council'),
+  advisory: t('advisory_council'),
   'legal-advisory': t('legal_advisory_council'),
 });
 
