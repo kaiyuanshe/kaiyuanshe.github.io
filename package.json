@@ -7,7 +7,7 @@
         "doc": "source/_post/"
     },
     "scripts": {
-        "prepare": "husky install",
+        "prepare": "husky",
         "test": "lint-staged",
         "start": "hexo clean  &&  hexo server",
         "deploy": "hexo clean  &&  hexo deploy",
@@ -21,13 +21,13 @@
     },
     "dependencies": {
         "hexo": "^4.2.1",
-        "hexo-auto-category": "^0.2.1",
+        "hexo-auto-category": "^0.2.2",
         "hexo-deployer-git": "^2.1.0",
         "hexo-generator-archive": "^0.1.5",
         "hexo-generator-category": "^1.0.0",
         "hexo-generator-index": "^1.0.0",
         "hexo-generator-tag": "^1.0.0",
-        "hexo-migrator-web": "^1.2.0",
+        "hexo-migrator-web": "^1.2.1",
         "hexo-permalink-pinyin": "^1.1.0",
         "hexo-reference": "^1.0.4",
         "hexo-renderer-ejs": "^1.0.0",
@@ -37,9 +37,9 @@
         "icalendar": "^0.7.1"
     },
     "devDependencies": {
-        "husky": "^8.0.3",
-        "lint-staged": "^13.1.0",
-        "prettier": "^2.8.3"
+        "husky": "^9.0.11",
+        "lint-staged": "^15.2.2",
+        "prettier": "^3.2.5"
     },
     "prettier": {
         "singleQuote": true,

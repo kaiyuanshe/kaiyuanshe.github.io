@@ -17,8 +17,8 @@
 git clone --recurse-submodules \
   https://github.com/kaiyuanshe/kaiyuanshe.github.io.git \
   ~/Desktop/KaiYuanShe/OWS/
-
 cd ~/Desktop/KaiYuanShe/OWS/
+git submodule update --init --remote source/
 
 npm i pnpm -g
 pnpm i  &&  npm start
@@ -49,7 +49,7 @@ git push
 ```shell
 cd ~/Desktop/KaiYuanShe/OWS/
 
-git submodule update --remote  # 程序开发后要同步文章目录
+git submodule update --init --remote source/  # 程序开发后要同步文章目录
 
 git add .
 
