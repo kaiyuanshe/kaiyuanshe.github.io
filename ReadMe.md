@@ -1,6 +1,6 @@
 # 开源社官网
 
-[![CI & CD](https://github.com/kaiyuanshe/kaiyuanshe.github.io/workflows/CI%20&%20CD/badge.svg)][1]
+[![CI & CD](https://github.com/kaiyuanshe/kaiyuanshe.github.io/actions/workflows/main.yml/badge.svg)][1]
 
 ## 参与开发
 
@@ -20,7 +20,8 @@ git clone --recurse-submodules \
 
 cd ~/Desktop/KaiYuanShe/OWS/
 
-npm install  &&  npm start
+npm i pnpm -g
+pnpm i  &&  npm start
 ```
 
 ### 写作
@@ -59,18 +60,18 @@ git push
 
 ## 鸣谢
 
-- 静态网站生成器：https://hexo.io/
+-   静态网站生成器：https://hexo.io/
 
-- 项目搭建工具：https://tech-query.me/create-hexo-wiki/
+-   项目搭建工具：https://tech-query.me/create-hexo-wiki/
 
-- 页面模板：https://electronjs.org/
+-   页面模板：https://electronjs.org/
 
-- 日历组件：https://fullcalendar.io/
+-   日历组件：https://fullcalendar.io/
 
-- 地图组件：https://lbs.amap.com/api/javascript-api/summary
+-   地图组件：https://lbs.amap.com/api/javascript-api/summary
 
-- 博文迁移工具：https://github.com/TechQuery/hexo-migrator-web
+-   博文迁移工具：https://github.com/TechQuery/hexo-migrator-web
 
-- 在线编辑器：https://github.com/kaiyuanshe/git-pager
+-   在线编辑器：https://github.com/kaiyuanshe/git-pager
 
-[1]: https://github.com/kaiyuanshe/kaiyuanshe.github.io/actions
+[1]: https://github.com/kaiyuanshe/kaiyuanshe.github.io/actions/workflows/main.yml
