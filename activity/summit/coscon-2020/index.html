@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+
+  <title>开源社</title>
+
+  
+  <meta name="description" content="转载自：SegmentFault编辑：黄欣宜设计：冯艺怡责编：王玥敏    这些人相信大家都不陌生 每一位在业内都属于“顶级配置”了 这次这些大咖都将现身于 一年一度的开源盛会 一起探讨  —— 开源向善    2020 中国开源年会  (COSCon’20)  将于 10 月 24-25 日由开源社举办，SegmentFault 思否社区为本次大会的战略合作媒体，并将进行独家的线上直播。 本次">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="中国开源年会 2020">
+<meta property="og:url" content="http://kaiyuanshe.cn/activity/summit/coscon-2020/index.html">
+<meta property="og:site_name" content="开源社">
+<meta property="og:description" content="转载自：SegmentFault编辑：黄欣宜设计：冯艺怡责编：王玥敏    这些人相信大家都不陌生 每一位在业内都属于“顶级配置”了 这次这些大咖都将现身于 一年一度的开源盛会 一起探讨  —— 开源向善    2020 中国开源年会  (COSCon’20)  将于 10 月 24-25 日由开源社举办，SegmentFault 思否社区为本次大会的战略合作媒体，并将进行独家的线上直播。 本次">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://kaiyuanshe.cn/activity/summit/coscon-2020/banner.png">
+<meta property="article:published_time" content="2020-10-19T21:00:00.000Z">
+<meta property="article:modified_time" content="2024-04-05T20:16:41.211Z">
+<meta property="article:author" content="shiy2008@gmail.com">
+<meta property="article:tag" content="开源">
+<meta property="article:tag" content="社区">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://kaiyuanshe.cn/activity/summit/coscon-2020/banner.png">
+<meta name="twitter:site" content="contactkaiyuan1">
+  <meta name="author" content="shiy2008@gmail.com">
+  <meta name="generator" content="hexo">
+  <meta name="theme-color" content="#2f3241">
+
+  <!-- consumed by scripts/get-localized-strings -->
+  <meta name="localized.clipboard.copy" content="Copy">
+  <meta name="localized.clipboard.copy_to_clipboard" content="复制到剪贴板">
+  <meta name="localized.clipboard.copied" content="已复制">
+
+  <base href="/">
+
+  <link rel="shortcut icon" href="image/KaiYuanShe-logo.png">
+
+  <link rel="stylesheet" href="https://npm.webcache.cn/github-markdown-css@5.5.1/github-markdown-light.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/devicon@2.16.0/devicon.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/highlight.js@9.18.5/styles/dark.css">
+  <link rel="stylesheet" href="library/index.css">
+  <link rel="stylesheet" href="common.css">
+  <style>
+    .site-header-nav-item a:link {
+      text-decoration: none;
+    }
+  </style>
+  <script src="https://npm.webcache.cn/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script src="https://npm.webcache.cn/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://npm.webcache.cn/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+  <script src="https://npm.webcache.cn/highlight.js@9.18.5/lib/highlight.js"></script>
+  <script src="common.js" defer async></script>
+</head>
+
+<body>
+  <div class="alert alert-danger mb-0 text-center" role="alert">
+    开源社官网（2019 版）已存档、只读，请移步
+    <a href="https://kaiyuanshe.cn" class="alert-link">2022 版官网</a>
+    关注最新信息~
+  </div>
+
+  <header class="site-header">
+    <div class="container">
+
+      <a class="site-header-logo no-underline-hover" href=".">
+        <img class="site-header-icon" src="image/KaiYuanShe-logo.png">
+        开源社
+      </a>
+
+      <nav class="site-header-nav">
+        
+          <div class="site-header-nav-item">
+            
+              <a role="button" href="/categories/Activity/Summit/" data-href-match="">
+                年度大会
+              </a>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_1" href="" data-href-match="">
+                资讯
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_1">
+                
+                  <a class="dropdown-item" href="/categories/Activity/">活动</a>
+                
+                  <a class="dropdown-item" href="/blog/">博客</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_2" href="" data-href-match="">
+                成员
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_2">
+                
+                  <a class="dropdown-item" href="/members/">正式成员</a>
+                
+                  <a class="dropdown-item" href="https://kaiyuanshe.feishu.cn/share/base/shrcnfO89tYlYIjZpS5PXJBaK2f" target="_blank" rel="noopener">加入我们</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a role="button" href="/partners" data-href-match="">
+                合作伙伴
+              </a>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_4" href="" data-href-match="">
+                资源
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_4">
+                
+                  <a class="dropdown-item" href="https://test.kaiyuanshe.cn/organization" target="_blank" rel="noopener">开源地图</a>
+                
+                  <a class="dropdown-item" href="/categories/Document">开源文档</a>
+                
+                  <a class="dropdown-item" href="/license-tool/">许可证选择器</a>
+                
+                  <a class="dropdown-item" href="http://mirror.kaiyuanshe.cn/" target="_blank" rel="noopener">开源镜像</a>
+                
+                  <a class="dropdown-item" href="https://polyfill.kaiyuanshe.cn/" target="_blank" rel="noopener">Web 标准补丁服务</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_5" href="" data-href-match="">
+                关于
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_5">
+                
+                  <a class="dropdown-item" href="/profile/about">介绍</a>
+                
+                  <a class="dropdown-item" href="/profile/structure">组织架构</a>
+                
+                  <a class="dropdown-item" href="/governance">工作组</a>
+                
+                  <a class="dropdown-item" href="/profile/charter">章程</a>
+                
+                  <a class="dropdown-item" href="/categories/Meeting">会议纪要</a>
+                
+              </div>
+            
+          </div>
+        
+        <form action="search/" class="ais-search-box">
+          <input type="search" name="keyword" required placeholder="搜索"
+            id="search-input" class="nav-search ais-search-box--input"
+            aria-label="search-box" autocapitalize="off" autocorrect="off" role="textbox">
+        </form>
+        <a class="site-header-nav-item octicon"
+          href="https://github.com/kaiyuanshe/"
+          title="Github Organization">
+          <span class="mega-octicon octicon-mark-github vertical-middle"></span>
+        </a>
+        <a class="site-header-nav-item bordered lang-select-button" href="#Language" data-toggle="collapse">
+          中文
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <div id="Language" class="container collapse">
+  <div class="m-4">
+    <div class="text-center-sm mb-4">
+      <strong>请选择语言</strong>
+    </div>
+    <div class="clearfix">
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/en-US" target="_blank" rel="noopener">
+          English
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ja-JP" target="_blank" rel="noopener">
+          日本語
+          
+          (Japanese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/es-ES" target="_blank" rel="noopener">
+          Español
+          
+          (Spanish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/zh-CN" target="_blank" rel="noopener">
+          中文
+          
+          (Chinese Simplified)
+          
+        </a>
+        
+        <span class="faint"><span class="octicon octicon-check mr-1"></span></span>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/tr-TR" target="_blank" rel="noopener">
+          Türkçe
+          
+          (Turkish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/id-ID" target="_blank" rel="noopener">
+          Indonesian
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fil-PH" target="_blank" rel="noopener">
+          Filipino
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fr-FR" target="_blank" rel="noopener">
+          Français
+          
+          (French)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ru-RU" target="_blank" rel="noopener">
+          Русский
+          
+          (Russian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ko-KR" target="_blank" rel="noopener">
+          한국어
+          
+          (Korean)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/it-IT" target="_blank" rel="noopener">
+          Italiano
+          
+          (Italian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/pt-BR" target="_blank" rel="noopener">
+          Português
+          
+          (Portuguese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/de-DE" target="_blank" rel="noopener">
+          Deutsch
+          
+          (German)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/uk-UA" target="_blank" rel="noopener">
+          Українська
+          
+          (Ukrainian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/zh-TW" target="_blank" rel="noopener">
+          中文
+          
+          (Chinese Traditional)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/pl-PL" target="_blank" rel="noopener">
+          język polski
+          
+          (Polish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/bg-BG" target="_blank" rel="noopener">
+          български език
+          
+          (Bulgarian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/hi-IN" target="_blank" rel="noopener">
+          हिन्दी
+          
+          (Hindi)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/nl-NL" target="_blank" rel="noopener">
+          Nederlands
+          
+          (Dutch)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/vi-VN" target="_blank" rel="noopener">
+          Tiếng Việt
+          
+          (Vietnamese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ar-SA" target="_blank" rel="noopener">
+          اللغة العربية
+          
+          (Arabic)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fa-IR" target="_blank" rel="noopener">
+          فارسی
+          
+          (Persian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/cs-CZ" target="_blank" rel="noopener">
+          čeština
+          
+          (Czech)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/th-TH" target="_blank" rel="noopener">
+          ไทย
+          
+          (Thai)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/he-IL" target="_blank" rel="noopener">
+          עברית
+          
+          (Hebrew)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ro-RO" target="_blank" rel="noopener">
+          limba română
+          
+          (Romanian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/tl-PH" target="_blank" rel="noopener">
+          Wikang Tagalog
+          
+          (Tagalog)
+          
+        </a>
+        
+      </div>
+      
+    </div>
+    <hr>
+    <div class="text-center-sm">
+      <a href="https://electronjs.org/languages" target="_blank" rel="noopener">查看更多语言详情</a>
+    </div>
+  </div>
+</div>
+
+
+  <style>
+  .blog-post hr:first-of-type {
+    display: block;
+  }
+</style>
+
+
+
+<section class="page-section blog-post">
+  <div class="container">
+    <h1>中国开源年会 2020</h1>
+
+    
+
+    
+
+<div class="blog-byline mt-2 mb-4 d-flex justify-content-between align-items-center">
+  <span class="blog-index-time">2020-10-19 21:00:00</span>
+
+
+
+  <span>
+    
+      <a class="badge badge-primary" href="categories/Activity/">
+        Activity
+      </a>
+    
+      <a class="badge badge-primary" href="categories/Activity/Summit/">
+        Summit
+      </a>
+    
+    
+  </span>
+</div>
+
+
+    
+
+    <details>
+      <summary>正文大纲</summary>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#业界顶配嘉宾团"><span class="toc-text">业界顶配嘉宾团</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#论坛主题：开源向善"><span class="toc-text">论坛主题：开源向善</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#部分主题论坛"><span class="toc-text">部分主题论坛</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#开源向善-Open-Source-for-Good"><span class="toc-text">开源向善 Open Source for Good</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#人工智能-OSS-AI"><span class="toc-text">人工智能 OSS+AI</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#云原生与微服务"><span class="toc-text">云原生与微服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据技术-OSS-DT"><span class="toc-text">数据技术 OSS+DT</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#操作系统-OSS-OS"><span class="toc-text">操作系统 OSS+OS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#硬件-OSS-HW"><span class="toc-text">硬件 OSS+HW</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#区块链-OSS-BC"><span class="toc-text">区块链 OSS+BC</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#教育与公益-OSS-EP"><span class="toc-text">教育与公益 OSS+EP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#女性半边天-OSS-Wo"><span class="toc-text">女性半边天 OSS+Wo</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Apache-中国路演-2020"><span class="toc-text">Apache 中国路演 2020</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相关阅读-Related-Reading"><span class="toc-text">相关阅读 | Related Reading</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#COSCon‘20-开源操作系统论坛-1"><span class="toc-text">COSCon‘20+开源操作系统论坛(1)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#COSCon‘20-Track-F-区块链论坛介绍"><span class="toc-text">COSCon‘20 Track F 区块链论坛介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开源年会成都场丨码农在-1024-技术趴上可以做什么？"><span class="toc-text">开源年会成都场丨码农在 1024 技术趴上可以做什么？</span></a></li></ol></li></ol>
+    </details>
+
+    <main class="markdown-body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><blockquote>
+<p>转载自：SegmentFault<br>编辑：黄欣宜<br>设计：冯艺怡<br>责编：王玥敏</p>
+</blockquote>
+<img src="/activity/summit/coscon-2020/2xgkwbvz03k.webp" class="">
+
+<p>这些人相信大家都不陌生</p>
+<p>每一位在业内都属于<strong>“顶级配置”</strong>了</p>
+<p>这次这些大咖都将现身于</p>
+<p>一年一度的开源盛会</p>
+<p>一起探讨  —— <strong>开源向善</strong></p>
+<hr>
+<img src="/activity/summit/coscon-2020/banner.png" class="">
+
+<p>2020 中国开源年会  (COSCon’20)  将于 10 月 24-25 日由开源社举办，SegmentFault 思否社区为本次大会的战略合作媒体，并将进行独家的线上直播。</p>
+<p>本次年会将采取线上线下相结合的形式，<strong>北京、上海、深圳、成都、长沙五城联动</strong>，11 个分会场，线上线下同时进行。</p>
+<p>而讲师阵容正如我们开头所说，堪称豪华：</p>
+<hr>
+<h2 id="业界顶配嘉宾团"><a href="#业界顶配嘉宾团" class="headerlink" title="业界顶配嘉宾团"></a>业界顶配嘉宾团</h2><img src="/activity/summit/coscon-2020/51swmnp8z4w.webp" class="">
+
+<p>Jono Bacon, 《社区运营的艺术》作者。若是对开源社区运营及治理感兴趣者，推荐阅读！我们更荣幸地邀请到作者本人现身大会开讲。</p>
+<img src="/activity/summit/coscon-2020/1siis54ovcm.webp" class="">
+
+<p>GitHub 的 COO Erica Brescia 女士将会给大家带来全球领先的代码托管与协作平台的最新发展方向以及在中国的发展战略。</p>
+<img src="/activity/summit/coscon-2020/1y5isvq7n1z.webp" class="">
+
+<p>激动人心的是，以太坊创始人 V 神 Vitalik Buterin 现身和大家分享区块链发展的趋势。</p>
+<img src="/activity/summit/coscon-2020/19vpzw5fc6u.webp" class="">
+
+<p>中国首个开源基金会“开放原子开源基金会”已于近日亮相，我们也特地邀请到基金会 TOC 主席堵俊平与副主席谭中意给大家第一时间解读这家备受关注的基金会的情况。</p>
+<img src="/activity/summit/coscon-2020/3aeqzrrdcn0.webp" class="">
+
+<p>作为国内开源与新技术的思潮洞察者与引领者，中国信通院云计算与大数据研究所所长何宝宏博士（笔名何所思，相信很多人都读过他的文章或是书），也将继 COSCon’17、  COSCon’19 之后，再度现身 COSCon’20。他的主题演讲《开源法则》绝对值得期待。</p>
+<img src="/activity/summit/coscon-2020/18zme2q6moy.webp" class="">
+
+<p>Linux 基金会 AI 基金会执行董事以及 Linux 基金会战略计划副总裁 Ibrahim Haddad 将给大家带来题为 “Accelerating Innovation in the AI Market” 的报告，分享人工智能领域中的开源创新之道。</p>
+<p>此外还有</p>
+<p><strong>国内外顶级社区的创始人</strong></p>
+<p><strong>科技大厂的技术专家</strong></p>
+<p><strong>高校的讲师学者</strong></p>
+<p>……</p>
+<p><em>（以下为部分活动嘉宾，完整名单可于官网查看）</em></p>
+<img src="/activity/summit/coscon-2020/12wyh10ykrl.webp" class="">
+
+<img src="/activity/summit/coscon-2020/3ey5xd66pnw.webp" class="">
+
+<img src="/activity/summit/coscon-2020/olv9xvrm8k.webp" class="">
+
+<img src="/activity/summit/coscon-2020/4q93yghlk0g.webp" class="">
+
+<hr>
+<h2 id="论坛主题：开源向善"><a href="#论坛主题：开源向善" class="headerlink" title="论坛主题：开源向善"></a>论坛主题：开源向善</h2><img src="/activity/summit/coscon-2020/88n36x37104.webp" class="">
+
+<p>本次活动分享的主题包括：<strong>教育与公益、社区与治理、社会/经济/法律/文化、女性半边天、人工智能、云原生与微服务、数据技术、开源硬件与操作系统</strong>等方向。</p>
+<h3 id="部分主题论坛"><a href="#部分主题论坛" class="headerlink" title="部分主题论坛"></a>部分主题论坛</h3><h4 id="开源向善-Open-Source-for-Good"><a href="#开源向善-Open-Source-for-Good" class="headerlink" title="开源向善 Open Source for Good"></a>开源向善 Open Source for Good</h4><p>中国开源年会作为国内最具影响力的开源爱好者聚会品牌，今年大会的主题是「开源向善」，由来自于国内外领头羊的开源基金会和企业领袖，和观众分享开源运动与开源技术的最新发展和开源向善的本质与实践是如何改变了世界。</p>
+<h4 id="人工智能-OSS-AI"><a href="#人工智能-OSS-AI" class="headerlink" title="人工智能 OSS+AI"></a>人工智能 OSS+AI</h4><p>在人工智能产业蓬勃发展的当下，工具、框架、算力、应用都在不断更新迭代，丰富整个业态。开源正成为人工智能产业中的核心生产力，将更多的人与力量汇集在一起，时刻准备碰撞出更大的火花。</p>
+<h4 id="云原生与微服务"><a href="#云原生与微服务" class="headerlink" title="云原生与微服务"></a>云原生与微服务</h4><p>从 Cloud 进化到 Cloud Native，代表着云计算技术的理论基础和实践探索都已经进化到了一个新的境界。与此同时，云原生、微服务、DevOps 和消息中间件等领域，都有层出不穷的开源技术涌现出来。干货、前沿、变革，都在这里，欢迎参加！</p>
+<h4 id="数据技术-OSS-DT"><a href="#数据技术-OSS-DT" class="headerlink" title="数据技术 OSS+DT"></a>数据技术 OSS+DT</h4><p>数据是新的石油，大数据现如今已经渗透到生活的方方面面，特别随着移动互联网、物联网时代的到来，数据量级更是呈几何级增长，大数据技术也随之迅猛发展，到底发生了哪些变化，数据技术论坛特别邀请大数据前沿技术大咖分享。</p>
+<h4 id="操作系统-OSS-OS"><a href="#操作系统-OSS-OS" class="headerlink" title="操作系统 OSS+OS"></a>操作系统 OSS+OS</h4><p>本专场聚焦操作系统技术的发展及开源生态面临的机遇和挑战，聚集了当前国内外主流操作系统的核心技术大咖，分享开源操作系统发展现状的火热技术话题，内容覆盖系统内核、桌面环境、应用生态以及人才培养等方面，带你领略当前开源操作系统的迅猛发展势头。</p>
+<h4 id="硬件-OSS-HW"><a href="#硬件-OSS-HW" class="headerlink" title="硬件 OSS+HW"></a>硬件 OSS+HW</h4><p>【开源硬件论坛】发轫于 2018，软硬同台“共享大开源”；共生于 2019，多元携手“共筑源生态”。而生态的可持续，更需要产业落地前行。开源硬件产业，既面临早已有之的制造业本身的苦，又要考虑业已加剧的贸易争端背景下的自主与自足。2020，愿我们共同分享相互借鉴，一起探索开源硬件的产业发展之路</p>
+<h4 id="区块链-OSS-BC"><a href="#区块链-OSS-BC" class="headerlink" title="区块链 OSS+BC"></a>区块链 OSS+BC</h4><p>区块链源自于开源精神，不仅从技术层面，也从社区的治理层面奠定了数字世界中坚实可靠的“信任”的基础。由此对于互联网应用，甚至对于传统产业在数字化的过程中爆发出更多潜力，挖掘出更大价值。而今区块链技术应用已延伸到数字金融、物联网、智能制造、供应链管理、数字资产交易等等多个领域。我们希望通过“开源向善”用区块链技术把开源精神更好的体现在大家的生活和工作中。</p>
+<h4 id="教育与公益-OSS-EP"><a href="#教育与公益-OSS-EP" class="headerlink" title="教育与公益 OSS+EP"></a>教育与公益 OSS+EP</h4><p>开源教育关系着开源发展的未来，少年强则国强。开源需要启蒙，需要传授，需要激励。开源向善是本次年会的主题，开源开始越来越多地在公共事业中发挥起重要作用。我们邀请广发从业人员分享你们在教育和公益领域的经历与故事，用开源技术让我们这个世界变得越来越好。</p>
+<h4 id="女性半边天-OSS-Wo"><a href="#女性半边天-OSS-Wo" class="headerlink" title="女性半边天 OSS+Wo"></a>女性半边天 OSS+Wo</h4><p>乘风破浪的程序媛们，CONSCon’20 女子天团正在等待着你们的加入！无论你的年龄是 20、30 还是 40，无论你专注的领域是 Software、Hardware 还是 Cloud-native，无论你关注的问题是技术、生态还是职场八卦，欢迎来 COSCon’20 “女性半边天”专场，从女性特有的角度分享你的话题。赶快来加入中国开源第一女子天团 Programmer Queens 的精彩现场吧！Pick your PQ!!</p>
+<p><em>*更多主题信息以会议当天内容为准</em></p>
+<hr>
+<h2 id="Apache-中国路演-2020"><a href="#Apache-中国路演-2020" class="headerlink" title="Apache 中国路演 2020"></a>Apache 中国路演 2020</h2><img src="/activity/summit/coscon-2020/tsqjjjhs3k.png" class="">
+
+<p>全球最大的开源基金会 Apache 软件基金会（ASF），从 2015 年开始便与中国开源年会同期进行 Apache 中国路演，本次再度与开源社联手，邀请 Apache 国内外大神、大咖们，参与分享精彩话题！</p>
+<p>在今年的 Apache 路演中，ASF 董事（前任主席）Craig Russell 将作为大会首位主题演讲嘉宾为大会拉开序幕，和大家分享 Building Communities The Apache Way (Apache 的社区建设之道），同时还有多位 Apache 项目大神在接下来二天的大会里，和大家分享各种精彩的开源话题。</p>
+<hr>
+<h2 id="相关阅读-Related-Reading"><a href="#相关阅读-Related-Reading" class="headerlink" title="相关阅读 | Related Reading"></a>相关阅读 | Related Reading</h2><h3 id="COSCon‘20-开源操作系统论坛-1"><a href="#COSCon‘20-开源操作系统论坛-1" class="headerlink" title="COSCon‘20+开源操作系统论坛(1)"></a>COSCon‘20+开源操作系统论坛(1)</h3><p><a href="https://mp.weixin.qq.com/s/UC31kb8dUT7TI2ZBK8jRRA" target="_blank" rel="noopener"><img src="/activity/summit/coscon-2020/2hkel38jhdo.webp" class=""></a></p>
+<h3 id="COSCon‘20-Track-F-区块链论坛介绍"><a href="#COSCon‘20-Track-F-区块链论坛介绍" class="headerlink" title="COSCon‘20 Track F 区块链论坛介绍"></a>COSCon‘20 Track F 区块链论坛介绍</h3><p><a href="https://mp.weixin.qq.com/s/P7qKuUyp0zoUGi1GCir3bA" target="_blank" rel="noopener"><img src="/activity/summit/coscon-2020/281x6g9jcck.webp" class=""></a></p>
+<h3 id="开源年会成都场丨码农在-1024-技术趴上可以做什么？"><a href="#开源年会成都场丨码农在-1024-技术趴上可以做什么？" class="headerlink" title="开源年会成都场丨码农在 1024 技术趴上可以做什么？"></a>开源年会成都场丨码农在 1024 技术趴上可以做什么？</h3><p><a href="https://mp.weixin.qq.com/s/JJTXxLDloiYXQpqAhubiAg" target="_blank" rel="noopener"><img src="/activity/summit/coscon-2020/banner.webp" class=""></a></p>
+</main>
+
+    
+    <hr>
+    
+<h2 class="d-flex justify-content-between align-items-center">
+  活动简讯
+  <span>
+    <a class="btn btn-primary" download="中国开源年会 2020.ics"
+      href="data:text/calendar;base64,QkVHSU46VkNBTEVOREFSDQpWRVJTSU9OOjIuMA0KUFJPRElEOi0vL1RyaSBUZWNoIENvbXB1dGVycy8vbm9kZS1pY2FsZW5kYXIvL0VODQpCRUdJTjpWRVZFTlQNClNVTU1BUlk65Lit5Zu95byA5rqQ5bm05LyaIDIwMjANCkRUU1RBUlQ6MjAyMDEwMjRUMDkyMDAwWg0KRFRFTkQ6MjAyMDEwMjVUMTgwMDAwWg0KRU5EOlZFVkVOVA0KRU5EOlZDQUxFTkRBUg0K">
+      添加日历
+    </a>
+    
+      <a class="btn btn-primary" target="_blank" href="https://www.bagevent.com/event/6840909">
+        报名
+      </a>
+    
+      <a class="btn btn-primary" target="_blank" href="https://segmentfault.com/area/coscon-2020">
+        直播
+      </a>
+    
+  </span>
+</h2>
+<ul>
+  <li>时间：2020-10-24 09:20:00 ~ 2020-10-25 18:00:00</li>
+  <li>地点：</li>
+</ul>
+
+
+    
+  </div>
+</section>
+
+<nav class="page-section text-center">
+  <div class="btn-group" role="group" aria-label="Post navigator">
+    
+    <a class="btn btn-secondary" role="button" href="document/china-os-report-2020/">
+      &lt; 2020 中国开源年度报告
+    </a>
+    
+    <a class="btn btn-secondary" role="button" href="meeting/council/2020-05-13/">
+      理事会 2020-05-12 例会 &gt;
+    </a>
+    
+  </div>
+</nav>
+
+<script>
+(function () {
+
+  var path = self.location.href.split('#')[0];
+
+  $('details > .toc a[href]').attr('href', function (_, value) {
+
+    return path + value;
+  });
+
+  $('.blog-post').find('h1, h2, h3, h4, h5, h6').append(function () {
+
+    if ( this.id.trim() )
+      return '<a class="header-link" title="Permalink" href="' +
+        path + '#' + this.id +
+        '"><span class="octicon octicon-link"></span></a>';
+  });
+})();
+</script>
+
+
+  <footer class="footer">
+    <div class="container">
+      <nav class="footer-nav">
+        
+          <a class="footer-nav-item active" href="/categories/Activity/">
+            活动
+          </a>
+        
+          <a class="footer-nav-item " href="/page/2">
+            博客
+          </a>
+        
+          <a class="footer-nav-item " href="/profile/charter">
+            章程
+          </a>
+        
+          <a class="footer-nav-item " href="https://github.com/kaiyuanshe/kaiyuanshe.github.io/tree/hexo/License" target="_blank" rel="noopener">
+            许可
+          </a>
+        
+          <a class="footer-nav-item " href="/profile/contact">
+            联系我们
+          </a>
+        
+          <a class="footer-nav-item " href="https://git-pager.avosapps.us/?repository=kaiyuanshe/Wiki" target="_blank" rel="noopener">
+            协作编辑
+          </a>
+        
+      </nav>
+      <span class="col">沪 ICP 备 19006015 号</span>
+      <span class="col">公安备案 31011202006203 号</span>
+
+      <span class="footer-social">
+        
+          <a class="footer-nav-item icon"
+            href="https://github.com/kaiyuanshe"
+            title="Github Organization">
+            <i class="devicon-github-plain vertical-middle"></i>
+          </a>
+        
+          <a class="footer-nav-item icon"
+            href="https://twitter.com/contactkaiyuan1"
+            title="@contactkaiyuan1 on Twitter">
+            <i class="devicon-twitter-plain vertical-middle"></i>
+          </a>
+        
+          <a class="footer-nav-item icon"
+            href="https://www.facebook.com/kaiyuanshe.china"
+            title="Facebook account">
+            <i class="devicon-facebook-plain vertical-middle"></i>
+          </a>
+        
+      </span>
+    </div>
+  </footer>
+  <script src="library/virtual-anchor-sdk.js"></script>
+  <script>
+    new VirtualAnchor({ id: '191be2ab-8c6e-6201-c419-3ef2d26eadf2' });
+  </script>
+</body>
+
+</html>

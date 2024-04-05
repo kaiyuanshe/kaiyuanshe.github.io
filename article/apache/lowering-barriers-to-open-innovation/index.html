@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+
+  <title>开源社</title>
+
+  
+  <meta name="description" content="序 精英制、慈善机构、纯粹的个人志愿者、至今仍然是一个虚拟组织、拥有超过 350 个开源项目、有 3255 个提交者为 Apache 的项目做出了贡献…… Apache 的项目支撑了大半个互联网，Hadoop 及其周边的软件项目构成了整个的大数据生态、更加不用提运行在无数服务器中的底层程序库了。 Apache 协议对商业友好，不受任何限制的使用其软件项目。 它同样也酝酿了很多的故事，有参与贡献的快">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="降低开放式创新的壁垒 | 赢在 Apache 系列之一">
+<meta property="og:url" content="http://kaiyuanshe.cn/article/apache/lowering-barriers-to-open-innovation/index.html">
+<meta property="og:site_name" content="开源社">
+<meta property="og:description" content="序 精英制、慈善机构、纯粹的个人志愿者、至今仍然是一个虚拟组织、拥有超过 350 个开源项目、有 3255 个提交者为 Apache 的项目做出了贡献…… Apache 的项目支撑了大半个互联网，Hadoop 及其周边的软件项目构成了整个的大数据生态、更加不用提运行在无数服务器中的底层程序库了。 Apache 协议对商业友好，不受任何限制的使用其软件项目。 它同样也酝酿了很多的故事，有参与贡献的快">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://kaiyuanshe.cn/article/apache/lowering-barriers-to-open-innovation/1amfzj70ce9.webp">
+<meta property="og:image" content="http://kaiyuanshe.cn/article/apache/lowering-barriers-to-open-innovation/ea8qfgrd8t.webp">
+<meta property="og:image" content="http://kaiyuanshe.cn/article/apache/lowering-barriers-to-open-innovation/sq3ga8kk8b.webp">
+<meta property="og:image" content="http://kaiyuanshe.cn/article/apache/lowering-barriers-to-open-innovation/2d1i2vuiwrk.webp">
+<meta property="og:image" content="http://kaiyuanshe.cn/article/apache/lowering-barriers-to-open-innovation/1bmhmthjozd.webp">
+<meta property="article:published_time" content="2018-06-08T12:35:00.000Z">
+<meta property="article:modified_time" content="2024-04-05T20:16:41.291Z">
+<meta property="article:author" content="shiy2008@gmail.com">
+<meta property="article:tag" content="innovation">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://kaiyuanshe.cn/article/apache/lowering-barriers-to-open-innovation/1amfzj70ce9.webp">
+<meta name="twitter:site" content="contactkaiyuan1">
+  <meta name="author" content="shiy2008@gmail.com">
+  <meta name="generator" content="hexo">
+  <meta name="theme-color" content="#2f3241">
+
+  <!-- consumed by scripts/get-localized-strings -->
+  <meta name="localized.clipboard.copy" content="Copy">
+  <meta name="localized.clipboard.copy_to_clipboard" content="复制到剪贴板">
+  <meta name="localized.clipboard.copied" content="已复制">
+
+  <base href="/">
+
+  <link rel="shortcut icon" href="image/KaiYuanShe-logo.png">
+
+  <link rel="stylesheet" href="https://npm.webcache.cn/github-markdown-css@5.5.1/github-markdown-light.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/devicon@2.16.0/devicon.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/highlight.js@9.18.5/styles/dark.css">
+  <link rel="stylesheet" href="library/index.css">
+  <link rel="stylesheet" href="common.css">
+  <style>
+    .site-header-nav-item a:link {
+      text-decoration: none;
+    }
+  </style>
+  <script src="https://npm.webcache.cn/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script src="https://npm.webcache.cn/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://npm.webcache.cn/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+  <script src="https://npm.webcache.cn/highlight.js@9.18.5/lib/highlight.js"></script>
+  <script src="common.js" defer async></script>
+</head>
+
+<body>
+  <div class="alert alert-danger mb-0 text-center" role="alert">
+    开源社官网（2019 版）已存档、只读，请移步
+    <a href="https://kaiyuanshe.cn" class="alert-link">2022 版官网</a>
+    关注最新信息~
+  </div>
+
+  <header class="site-header">
+    <div class="container">
+
+      <a class="site-header-logo no-underline-hover" href=".">
+        <img class="site-header-icon" src="image/KaiYuanShe-logo.png">
+        开源社
+      </a>
+
+      <nav class="site-header-nav">
+        
+          <div class="site-header-nav-item">
+            
+              <a role="button" href="/categories/Activity/Summit/" data-href-match="">
+                年度大会
+              </a>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_1" href="" data-href-match="">
+                资讯
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_1">
+                
+                  <a class="dropdown-item" href="/categories/Activity/">活动</a>
+                
+                  <a class="dropdown-item" href="/blog/">博客</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_2" href="" data-href-match="">
+                成员
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_2">
+                
+                  <a class="dropdown-item" href="/members/">正式成员</a>
+                
+                  <a class="dropdown-item" href="https://kaiyuanshe.feishu.cn/share/base/shrcnfO89tYlYIjZpS5PXJBaK2f" target="_blank" rel="noopener">加入我们</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a role="button" href="/partners" data-href-match="">
+                合作伙伴
+              </a>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_4" href="" data-href-match="">
+                资源
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_4">
+                
+                  <a class="dropdown-item" href="https://test.kaiyuanshe.cn/organization" target="_blank" rel="noopener">开源地图</a>
+                
+                  <a class="dropdown-item" href="/categories/Document">开源文档</a>
+                
+                  <a class="dropdown-item" href="/license-tool/">许可证选择器</a>
+                
+                  <a class="dropdown-item" href="http://mirror.kaiyuanshe.cn/" target="_blank" rel="noopener">开源镜像</a>
+                
+                  <a class="dropdown-item" href="https://polyfill.kaiyuanshe.cn/" target="_blank" rel="noopener">Web 标准补丁服务</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_5" href="" data-href-match="">
+                关于
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_5">
+                
+                  <a class="dropdown-item" href="/profile/about">介绍</a>
+                
+                  <a class="dropdown-item" href="/profile/structure">组织架构</a>
+                
+                  <a class="dropdown-item" href="/governance">工作组</a>
+                
+                  <a class="dropdown-item" href="/profile/charter">章程</a>
+                
+                  <a class="dropdown-item" href="/categories/Meeting">会议纪要</a>
+                
+              </div>
+            
+          </div>
+        
+        <form action="search/" class="ais-search-box">
+          <input type="search" name="keyword" required placeholder="搜索"
+            id="search-input" class="nav-search ais-search-box--input"
+            aria-label="search-box" autocapitalize="off" autocorrect="off" role="textbox">
+        </form>
+        <a class="site-header-nav-item octicon"
+          href="https://github.com/kaiyuanshe/"
+          title="Github Organization">
+          <span class="mega-octicon octicon-mark-github vertical-middle"></span>
+        </a>
+        <a class="site-header-nav-item bordered lang-select-button" href="#Language" data-toggle="collapse">
+          中文
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <div id="Language" class="container collapse">
+  <div class="m-4">
+    <div class="text-center-sm mb-4">
+      <strong>请选择语言</strong>
+    </div>
+    <div class="clearfix">
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/en-US" target="_blank" rel="noopener">
+          English
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ja-JP" target="_blank" rel="noopener">
+          日本語
+          
+          (Japanese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/es-ES" target="_blank" rel="noopener">
+          Español
+          
+          (Spanish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/zh-CN" target="_blank" rel="noopener">
+          中文
+          
+          (Chinese Simplified)
+          
+        </a>
+        
+        <span class="faint"><span class="octicon octicon-check mr-1"></span></span>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/tr-TR" target="_blank" rel="noopener">
+          Türkçe
+          
+          (Turkish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/id-ID" target="_blank" rel="noopener">
+          Indonesian
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fil-PH" target="_blank" rel="noopener">
+          Filipino
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fr-FR" target="_blank" rel="noopener">
+          Français
+          
+          (French)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ru-RU" target="_blank" rel="noopener">
+          Русский
+          
+          (Russian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ko-KR" target="_blank" rel="noopener">
+          한국어
+          
+          (Korean)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/it-IT" target="_blank" rel="noopener">
+          Italiano
+          
+          (Italian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/pt-BR" target="_blank" rel="noopener">
+          Português
+          
+          (Portuguese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/de-DE" target="_blank" rel="noopener">
+          Deutsch
+          
+          (German)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/uk-UA" target="_blank" rel="noopener">
+          Українська
+          
+          (Ukrainian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/zh-TW" target="_blank" rel="noopener">
+          中文
+          
+          (Chinese Traditional)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/pl-PL" target="_blank" rel="noopener">
+          język polski
+          
+          (Polish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/bg-BG" target="_blank" rel="noopener">
+          български език
+          
+          (Bulgarian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/hi-IN" target="_blank" rel="noopener">
+          हिन्दी
+          
+          (Hindi)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/nl-NL" target="_blank" rel="noopener">
+          Nederlands
+          
+          (Dutch)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/vi-VN" target="_blank" rel="noopener">
+          Tiếng Việt
+          
+          (Vietnamese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ar-SA" target="_blank" rel="noopener">
+          اللغة العربية
+          
+          (Arabic)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fa-IR" target="_blank" rel="noopener">
+          فارسی
+          
+          (Persian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/cs-CZ" target="_blank" rel="noopener">
+          čeština
+          
+          (Czech)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/th-TH" target="_blank" rel="noopener">
+          ไทย
+          
+          (Thai)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/he-IL" target="_blank" rel="noopener">
+          עברית
+          
+          (Hebrew)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ro-RO" target="_blank" rel="noopener">
+          limba română
+          
+          (Romanian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/tl-PH" target="_blank" rel="noopener">
+          Wikang Tagalog
+          
+          (Tagalog)
+          
+        </a>
+        
+      </div>
+      
+    </div>
+    <hr>
+    <div class="text-center-sm">
+      <a href="https://electronjs.org/languages" target="_blank" rel="noopener">查看更多语言详情</a>
+    </div>
+  </div>
+</div>
+
+
+  <style>
+  .blog-post hr:first-of-type {
+    display: block;
+  }
+</style>
+
+
+
+<section class="page-section blog-post">
+  <div class="container">
+    <h1>降低开放式创新的壁垒 | 赢在 Apache 系列之一</h1>
+
+    
+
+    
+
+<div class="blog-byline mt-2 mb-4 d-flex justify-content-between align-items-center">
+  <span class="blog-index-time">2018-06-08 12:35:00</span>
+
+
+  <a class="author-link ml-3 text-center" href="https://github.com/韩卿" target="_blank" rel="noopener">
+    <img
+      class="avatar mr-2"
+      style="max-width: 2.25rem"
+      src="https://github.com/韩卿.png?size=36"
+      alt="韩卿"
+    >
+    韩卿
+  </a>
+
+  <a class="author-link ml-3 text-center" href="https://github.com/董振伟" target="_blank" rel="noopener">
+    <img
+      class="avatar mr-2"
+      style="max-width: 2.25rem"
+      src="https://github.com/董振伟.png?size=36"
+      alt="董振伟"
+    >
+    董振伟
+  </a>
+
+
+  <span>
+    
+      <a class="badge badge-primary" href="categories/Article/">
+        Article
+      </a>
+    
+      <a class="badge badge-primary" href="categories/Article/Apache/">
+        Apache
+      </a>
+    
+    
+      <a class="badge badge-primary" href="tags/innovation/">
+          innovation
+      </a>
+    
+  </span>
+</div>
+
+
+    
+    <blockquote>
+      <p>
+        原文链接：<a target="_blank" href="https://blogs.apache.org/foundation/entry/success-at-apache-lowering-barriers">
+          https://blogs.apache.org/foundation/entry/success-at-apache-lowering-barriers
+        </a>
+      </p>
+    </blockquote>
+    
+
+    <details>
+      <summary>正文大纲</summary>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#序"><span class="toc-text">序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Part-1-MY-EXPERIENCES"><span class="toc-text">Part 1 - MY EXPERIENCES</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Part-2-APACHE-KYLIN"><span class="toc-text">Part 2 - APACHE KYLIN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Part-3-CULTURE-CHALLENGES"><span class="toc-text">Part 3 - CULTURE CHALLENGES</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Part-4-CHINESE-MARKET"><span class="toc-text">Part 4 - CHINESE MARKET</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Part-5-SUMMARY-amp-OUTLOOK"><span class="toc-text">Part 5 - SUMMARY &amp; OUTLOOK</span></a></li></ol>
+    </details>
+
+    <main class="markdown-body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><blockquote>
+<p>精英制、慈善机构、纯粹的个人志愿者、至今仍然是一个虚拟组织、拥有超过 350 个开源项目、有 3255 个提交者为 Apache 的项目做出了贡献……</p>
+<p>Apache 的项目支撑了大半个互联网，Hadoop 及其周边的软件项目构成了整个的大数据生态、更加不用提运行在无数服务器中的底层程序库了。</p>
+<p>Apache 协议对商业友好，不受任何限制的使用其软件项目。</p>
+<p>它同样也酝酿了很多的故事，有参与贡献的快乐、有开放的创新精神、有多样性带来思想碰撞、也有社区共识原则的感慨、也有社区参与与现实的平衡、更加有改变世界的美好。</p>
+<p>让我们来看看 Apache 人，讲述他们自己个人的故事，每一个故事都有不同，但主题无疑是：Apache 无可置疑的影响着我们的数字世界！</p>
+<p><em>by 开源社文案组 - 适兕</em></p>
+</blockquote>
+<img src="/article/apache/lowering-barriers-to-open-innovation/1amfzj70ce9.webp" class="">
+
+<a id="more"></a>
+
+<h2 id="Part-1-MY-EXPERIENCES"><a href="#Part-1-MY-EXPERIENCES" class="headerlink" title="Part 1 - MY EXPERIENCES"></a>Part 1 - MY EXPERIENCES</h2><p>在过去的十年里，作为一名 Java 开发人员，我使用过很多 Apache 项目，比如 Tomcat，Jakarta，Struts 和 Velocity 等。2010 年，我进入大数据领域，开始积极参与 Apache 项目，2015 年初，我与几位成员一起开始了 Apache Kylin 项目，并成为了 ASF 成员。</p>
+<figure>
+<img src="/article/apache/lowering-barriers-to-open-innovation/ea8qfgrd8t.webp" class="">
+  <figcaption>韩卿</figcaption>
+</figure>
+
+<p>​ 除了担任 Apache Kylin 的副总裁之外，我还帮助 Apache Eagle 和 CarbonData 等项目进入 ASF，并担任 Apache Superset、Apache Weex 和 RocketMQ 项目的导师。今天，我还有一个身份是 Kyligence 的联合创始人兼 CEO（在此之前，我是 eBay 的大数据产品主管，Actuate China 的首席顾问）。</p>
+<h2 id="Part-2-APACHE-KYLIN"><a href="#Part-2-APACHE-KYLIN" class="headerlink" title="Part 2 - APACHE KYLIN"></a>Part 2 - APACHE KYLIN</h2><p>回到 Apache Kylin 项目，正如其名字所暗示的，Apache Kylin 的名字来源于中国（“Kylin”：即中文的“麒麟”)：</p>
+<figure>
+<img src="/article/apache/lowering-barriers-to-open-innovation/sq3ga8kk8b.webp" class="">
+  <figcaption>“麒麟”，东方神话中刚柔并济、可以喷火的神兽</figcaption>
+</figure>
+
+<p>“Apache Kylin”：Hadoop 上的一个 OLAP 引擎，支持 PB 级别数据量的秒级查询 <a href="http://kylin.apache.org/，作为中国第一个被高度认可的" target="_blank" rel="noopener">http://kylin.apache.org/，作为中国第一个被高度认可的</a> Apache 项目的带头人，我很自豪地看到，在这两年内，Kylin 已经为全球超过 500 家机构输出了大数据解决方案。</p>
+<h2 id="Part-3-CULTURE-CHALLENGES"><a href="#Part-3-CULTURE-CHALLENGES" class="headerlink" title="Part 3 - CULTURE CHALLENGES"></a>Part 3 - CULTURE CHALLENGES</h2><p>在 Kylin 从 Apache 孵化器毕业之前，Kylin 团队面临着许多文化挑战。之前大量的中国项目在 Apache 都以失败告终，所以 Kylin 自然也受到了东西方世界的诸多质疑。必须承认的是，由于我们母语不是英语，所以在孵化阶段与导师的沟通变得有些困难，但幸运的是，通过全身心地拥抱 Apache Way，Kylin 最终在 Apache 社区成员的强大支持下成功毕业。</p>
+<p>目前，在开发高质量软件的同时，我们也在吸引更多的西方人去了解东方文化。自从启动 Kylin 以来，我有很多机会走到世界各地，见识全球各地的朋友，这其中有 Apache 的董事成员和导师，也有开发人员和社区贡献者。他们有的来自美国、澳大利亚、加拿大、智利等西方国家，也有的来自日本和台湾等东方国家，有些人对 Kylin 印象深刻，有些人对于东方人对开源软件的态度感到好奇。我问过他们很多关于 The Apache Way 的问题，他们都慷慨地指导我和我的团队，并给出了详细可靠的答案，在发生分歧的时候，经过深入而公开的讨论后，我们也可以达成共识。</p>
+<h2 id="Part-4-CHINESE-MARKET"><a href="#Part-4-CHINESE-MARKET" class="headerlink" title="Part 4 - CHINESE MARKET"></a>Part 4 - CHINESE MARKET</h2><figure>
+<img src="/article/apache/lowering-barriers-to-open-innovation/2d1i2vuiwrk.webp" class="">
+  <figcaption>图片来源：Paxin.com</figcaption>
+</figure>
+
+<p>而在中国市场方面，Apache Kylin 收获了许多的用户反馈及用户建议，这些反馈与建议既有从开发者视角提出的，也有从产品角度提出的。更让我惊讶的是，许多社区成员还在热心地为 Kylin 编写工具，帮助用户更好地理解和使用 Kylin，这也让我们更加坚定了无保留地分享我们的收获来回馈社区的信念。</p>
+<h2 id="Part-5-SUMMARY-amp-OUTLOOK"><a href="#Part-5-SUMMARY-amp-OUTLOOK" class="headerlink" title="Part 5 - SUMMARY &amp; OUTLOOK"></a>Part 5 - SUMMARY &amp; OUTLOOK</h2><p>可以说，Kylin 获得了比我预期更多的鼓励和认可，但作为 Apache 顶级项目的副总裁，我的担子在 Kylin 从 Apache 孵化器毕业后变得更重，因为 Kylin 开源软件的性质，其问题修复频率和测试频率越来越快，这也使 Kylin 面临着更多的机遇。</p>
+<img src="/article/apache/lowering-barriers-to-open-innovation/1bmhmthjozd.webp" class="">
+
+<p>但不管是鼓励、认可还是机遇，我都非常感谢 ASF 以及参与这个开源社区的每一个人，正是这个饱含热情、开放、全球化元素的地方，让我有机会与我尊崇的人一起从事开源这份事业，并共同为世界带来改变。</p>
+<p>当下，除了不断迭代更新 Kylin 软件之外，我们团队还正积极与全球各地有才华的人合作，以便将中国声音传播到世界。</p>
+<p><strong>让世界听见我们的声音</strong></p>
+</main>
+
+    
+  </div>
+</section>
+
+<nav class="page-section text-center">
+  <div class="btn-group" role="group" aria-label="Post navigator">
+    
+    <a class="btn btn-secondary" role="button" href="article/github/how-to-participate-in-open-source/">
+      &lt; 如何参与开源 | GitHub 开源指南系列之一
+    </a>
+    
+    <a class="btn btn-secondary" role="button" href="profile/council/2018/">
+      开源社 2018 理事会选举结果通告 &gt;
+    </a>
+    
+  </div>
+</nav>
+
+<script>
+(function () {
+
+  var path = self.location.href.split('#')[0];
+
+  $('details > .toc a[href]').attr('href', function (_, value) {
+
+    return path + value;
+  });
+
+  $('.blog-post').find('h1, h2, h3, h4, h5, h6').append(function () {
+
+    if ( this.id.trim() )
+      return '<a class="header-link" title="Permalink" href="' +
+        path + '#' + this.id +
+        '"><span class="octicon octicon-link"></span></a>';
+  });
+})();
+</script>
+
+
+  <footer class="footer">
+    <div class="container">
+      <nav class="footer-nav">
+        
+          <a class="footer-nav-item active" href="/categories/Activity/">
+            活动
+          </a>
+        
+          <a class="footer-nav-item " href="/page/2">
+            博客
+          </a>
+        
+          <a class="footer-nav-item " href="/profile/charter">
+            章程
+          </a>
+        
+          <a class="footer-nav-item " href="https://github.com/kaiyuanshe/kaiyuanshe.github.io/tree/hexo/License" target="_blank" rel="noopener">
+            许可
+          </a>
+        
+          <a class="footer-nav-item " href="/profile/contact">
+            联系我们
+          </a>
+        
+          <a class="footer-nav-item " href="https://git-pager.avosapps.us/?repository=kaiyuanshe/Wiki" target="_blank" rel="noopener">
+            协作编辑
+          </a>
+        
+      </nav>
+      <span class="col">沪 ICP 备 19006015 号</span>
+      <span class="col">公安备案 31011202006203 号</span>
+
+      <span class="footer-social">
+        
+          <a class="footer-nav-item icon"
+            href="https://github.com/kaiyuanshe"
+            title="Github Organization">
+            <i class="devicon-github-plain vertical-middle"></i>
+          </a>
+        
+          <a class="footer-nav-item icon"
+            href="https://twitter.com/contactkaiyuan1"
+            title="@contactkaiyuan1 on Twitter">
+            <i class="devicon-twitter-plain vertical-middle"></i>
+          </a>
+        
+          <a class="footer-nav-item icon"
+            href="https://www.facebook.com/kaiyuanshe.china"
+            title="Facebook account">
+            <i class="devicon-facebook-plain vertical-middle"></i>
+          </a>
+        
+      </span>
+    </div>
+  </footer>
+  <script src="library/virtual-anchor-sdk.js"></script>
+  <script>
+    new VirtualAnchor({ id: '191be2ab-8c6e-6201-c419-3ef2d26eadf2' });
+  </script>
+</body>
+
+</html>

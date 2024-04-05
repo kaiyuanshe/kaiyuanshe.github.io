@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+
+  <title>开源社</title>
+
+  
+  <meta name="description" content="Section 1 - 为何要为开源贡献力量？   在【自由代码】下工作，让我学习到了职业生涯中非常重要的技能，无论是大学还是实际的工作，我认为从开源项目中得到的收获的远大於我的贡献！ —— @Errietta，《我为何是如此的热衷于为开源软件贡献力量?》  为开源贡献力量，得到的回报就是能够学习到很多、受教很多、且能够锻炼任何你能够想到的经验。 为什么会有人为开源做贡献？这可能是很多人都不明白的">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="如何参与开源 | GitHub 开源指南系列之一">
+<meta property="og:url" content="http://kaiyuanshe.cn/article/github/how-to-participate-in-open-source/index.html">
+<meta property="og:site_name" content="开源社">
+<meta property="og:description" content="Section 1 - 为何要为开源贡献力量？   在【自由代码】下工作，让我学习到了职业生涯中非常重要的技能，无论是大学还是实际的工作，我认为从开源项目中得到的收获的远大於我的贡献！ —— @Errietta，《我为何是如此的热衷于为开源软件贡献力量?》  为开源贡献力量，得到的回报就是能够学习到很多、受教很多、且能够锻炼任何你能够想到的经验。 为什么会有人为开源做贡献？这可能是很多人都不明白的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://kaiyuanshe.cn/article/github/how-to-participate-in-open-source/2c2ow3489yy.webp">
+<meta property="og:image" content="http://kaiyuanshe.cn/article/github/how-to-participate-in-open-source/6alfi2w632w.webp">
+<meta property="og:image" content="http://kaiyuanshe.cn/article/github/how-to-participate-in-open-source/731x69vqn0.webp">
+<meta property="og:image" content="http://kaiyuanshe.cn/article/github/how-to-participate-in-open-source/1n774xdefvh.webp">
+<meta property="og:image" content="http://kaiyuanshe.cn/article/github/how-to-participate-in-open-source/114n92u9v19.webp">
+<meta property="og:image" content="http://kaiyuanshe.cn/article/github/how-to-participate-in-open-source/3po7eitxxj.webp">
+<meta property="og:image" content="http://kaiyuanshe.cn/article/github/how-to-participate-in-open-source/1r6tjt9sfwj.webp">
+<meta property="og:image" content="http://kaiyuanshe.cn/article/github/how-to-participate-in-open-source/22ebotv3uuz.webp">
+<meta property="og:image" content="http://kaiyuanshe.cn/article/github/how-to-participate-in-open-source/2aayp33i772.webp">
+<meta property="og:image" content="http://kaiyuanshe.cn/article/github/how-to-participate-in-open-source/1j1se4s3tan.webp">
+<meta property="og:image" content="http://kaiyuanshe.cn/article/github/how-to-participate-in-open-source/1pbvrp4bwji.webp">
+<meta property="og:image" content="http://kaiyuanshe.cn/article/github/how-to-participate-in-open-source/18c0av4j8ow.webp">
+<meta property="og:image" content="http://kaiyuanshe.cn/article/github/how-to-participate-in-open-source/1ng6b6ntnpa.webp">
+<meta property="og:image" content="http://kaiyuanshe.cn/article/github/how-to-participate-in-open-source/dngeayctegw.webp">
+<meta property="og:image" content="http://kaiyuanshe.cn/article/github/how-to-participate-in-open-source/1j717c220gy.webp">
+<meta property="article:published_time" content="2018-06-09T21:23:00.000Z">
+<meta property="article:modified_time" content="2019-05-06T12:50:00.000Z">
+<meta property="article:author" content="shiy2008@gmail.com">
+<meta property="article:tag" content="participate">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://kaiyuanshe.cn/article/github/how-to-participate-in-open-source/2c2ow3489yy.webp">
+<meta name="twitter:site" content="contactkaiyuan1">
+  <meta name="author" content="shiy2008@gmail.com">
+  <meta name="generator" content="hexo">
+  <meta name="theme-color" content="#2f3241">
+
+  <!-- consumed by scripts/get-localized-strings -->
+  <meta name="localized.clipboard.copy" content="Copy">
+  <meta name="localized.clipboard.copy_to_clipboard" content="复制到剪贴板">
+  <meta name="localized.clipboard.copied" content="已复制">
+
+  <base href="/">
+
+  <link rel="shortcut icon" href="image/KaiYuanShe-logo.png">
+
+  <link rel="stylesheet" href="https://npm.webcache.cn/github-markdown-css@5.5.1/github-markdown-light.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/devicon@2.16.0/devicon.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/highlight.js@9.18.5/styles/dark.css">
+  <link rel="stylesheet" href="library/index.css">
+  <link rel="stylesheet" href="common.css">
+  <style>
+    .site-header-nav-item a:link {
+      text-decoration: none;
+    }
+  </style>
+  <script src="https://npm.webcache.cn/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script src="https://npm.webcache.cn/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://npm.webcache.cn/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+  <script src="https://npm.webcache.cn/highlight.js@9.18.5/lib/highlight.js"></script>
+  <script src="common.js" defer async></script>
+</head>
+
+<body>
+  <div class="alert alert-danger mb-0 text-center" role="alert">
+    开源社官网（2019 版）已存档、只读，请移步
+    <a href="https://kaiyuanshe.cn" class="alert-link">2022 版官网</a>
+    关注最新信息~
+  </div>
+
+  <header class="site-header">
+    <div class="container">
+
+      <a class="site-header-logo no-underline-hover" href=".">
+        <img class="site-header-icon" src="image/KaiYuanShe-logo.png">
+        开源社
+      </a>
+
+      <nav class="site-header-nav">
+        
+          <div class="site-header-nav-item">
+            
+              <a role="button" href="/categories/Activity/Summit/" data-href-match="">
+                年度大会
+              </a>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_1" href="" data-href-match="">
+                资讯
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_1">
+                
+                  <a class="dropdown-item" href="/categories/Activity/">活动</a>
+                
+                  <a class="dropdown-item" href="/blog/">博客</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_2" href="" data-href-match="">
+                成员
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_2">
+                
+                  <a class="dropdown-item" href="/members/">正式成员</a>
+                
+                  <a class="dropdown-item" href="https://kaiyuanshe.feishu.cn/share/base/shrcnfO89tYlYIjZpS5PXJBaK2f" target="_blank" rel="noopener">加入我们</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a role="button" href="/partners" data-href-match="">
+                合作伙伴
+              </a>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_4" href="" data-href-match="">
+                资源
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_4">
+                
+                  <a class="dropdown-item" href="https://test.kaiyuanshe.cn/organization" target="_blank" rel="noopener">开源地图</a>
+                
+                  <a class="dropdown-item" href="/categories/Document">开源文档</a>
+                
+                  <a class="dropdown-item" href="/license-tool/">许可证选择器</a>
+                
+                  <a class="dropdown-item" href="http://mirror.kaiyuanshe.cn/" target="_blank" rel="noopener">开源镜像</a>
+                
+                  <a class="dropdown-item" href="https://polyfill.kaiyuanshe.cn/" target="_blank" rel="noopener">Web 标准补丁服务</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_5" href="" data-href-match="">
+                关于
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_5">
+                
+                  <a class="dropdown-item" href="/profile/about">介绍</a>
+                
+                  <a class="dropdown-item" href="/profile/structure">组织架构</a>
+                
+                  <a class="dropdown-item" href="/governance">工作组</a>
+                
+                  <a class="dropdown-item" href="/profile/charter">章程</a>
+                
+                  <a class="dropdown-item" href="/categories/Meeting">会议纪要</a>
+                
+              </div>
+            
+          </div>
+        
+        <form action="search/" class="ais-search-box">
+          <input type="search" name="keyword" required placeholder="搜索"
+            id="search-input" class="nav-search ais-search-box--input"
+            aria-label="search-box" autocapitalize="off" autocorrect="off" role="textbox">
+        </form>
+        <a class="site-header-nav-item octicon"
+          href="https://github.com/kaiyuanshe/"
+          title="Github Organization">
+          <span class="mega-octicon octicon-mark-github vertical-middle"></span>
+        </a>
+        <a class="site-header-nav-item bordered lang-select-button" href="#Language" data-toggle="collapse">
+          中文
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <div id="Language" class="container collapse">
+  <div class="m-4">
+    <div class="text-center-sm mb-4">
+      <strong>请选择语言</strong>
+    </div>
+    <div class="clearfix">
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/en-US" target="_blank" rel="noopener">
+          English
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ja-JP" target="_blank" rel="noopener">
+          日本語
+          
+          (Japanese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/es-ES" target="_blank" rel="noopener">
+          Español
+          
+          (Spanish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/zh-CN" target="_blank" rel="noopener">
+          中文
+          
+          (Chinese Simplified)
+          
+        </a>
+        
+        <span class="faint"><span class="octicon octicon-check mr-1"></span></span>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/tr-TR" target="_blank" rel="noopener">
+          Türkçe
+          
+          (Turkish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/id-ID" target="_blank" rel="noopener">
+          Indonesian
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fil-PH" target="_blank" rel="noopener">
+          Filipino
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fr-FR" target="_blank" rel="noopener">
+          Français
+          
+          (French)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ru-RU" target="_blank" rel="noopener">
+          Русский
+          
+          (Russian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ko-KR" target="_blank" rel="noopener">
+          한국어
+          
+          (Korean)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/it-IT" target="_blank" rel="noopener">
+          Italiano
+          
+          (Italian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/pt-BR" target="_blank" rel="noopener">
+          Português
+          
+          (Portuguese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/de-DE" target="_blank" rel="noopener">
+          Deutsch
+          
+          (German)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/uk-UA" target="_blank" rel="noopener">
+          Українська
+          
+          (Ukrainian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/zh-TW" target="_blank" rel="noopener">
+          中文
+          
+          (Chinese Traditional)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/pl-PL" target="_blank" rel="noopener">
+          język polski
+          
+          (Polish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/bg-BG" target="_blank" rel="noopener">
+          български език
+          
+          (Bulgarian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/hi-IN" target="_blank" rel="noopener">
+          हिन्दी
+          
+          (Hindi)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/nl-NL" target="_blank" rel="noopener">
+          Nederlands
+          
+          (Dutch)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/vi-VN" target="_blank" rel="noopener">
+          Tiếng Việt
+          
+          (Vietnamese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ar-SA" target="_blank" rel="noopener">
+          اللغة العربية
+          
+          (Arabic)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fa-IR" target="_blank" rel="noopener">
+          فارسی
+          
+          (Persian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/cs-CZ" target="_blank" rel="noopener">
+          čeština
+          
+          (Czech)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/th-TH" target="_blank" rel="noopener">
+          ไทย
+          
+          (Thai)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/he-IL" target="_blank" rel="noopener">
+          עברית
+          
+          (Hebrew)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ro-RO" target="_blank" rel="noopener">
+          limba română
+          
+          (Romanian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/tl-PH" target="_blank" rel="noopener">
+          Wikang Tagalog
+          
+          (Tagalog)
+          
+        </a>
+        
+      </div>
+      
+    </div>
+    <hr>
+    <div class="text-center-sm">
+      <a href="https://electronjs.org/languages" target="_blank" rel="noopener">查看更多语言详情</a>
+    </div>
+  </div>
+</div>
+
+
+  <style>
+  .blog-post hr:first-of-type {
+    display: block;
+  }
+</style>
+
+
+
+<section class="page-section blog-post">
+  <div class="container">
+    <h1>如何参与开源 | GitHub 开源指南系列之一</h1>
+
+    
+
+    
+
+<div class="blog-byline mt-2 mb-4 d-flex justify-content-between align-items-center">
+  <span class="blog-index-time">2018-06-09 21:23:00</span>
+
+
+  <a class="author-link ml-3 text-center" href="https://github.com/kaiyuanshe" target="_blank" rel="noopener">
+    <img
+      class="avatar mr-2"
+      style="max-width: 2.25rem"
+      src="https://github.com/kaiyuanshe.png?size=36"
+      alt="kaiyuanshe"
+    >
+    kaiyuanshe
+  </a>
+
+
+  <span>
+    
+      <a class="badge badge-primary" href="categories/Article/">
+        Article
+      </a>
+    
+      <a class="badge badge-primary" href="categories/Article/GitHub/">
+        GitHub
+      </a>
+    
+    
+      <a class="badge badge-primary" href="tags/participate/">
+          participate
+      </a>
+    
+  </span>
+</div>
+
+
+    
+
+    <details>
+      <summary>正文大纲</summary>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Section-1-为何要为开源贡献力量？"><span class="toc-text">Section 1 - 为何要为开源贡献力量？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#巩固现有技能"><span class="toc-text">巩固现有技能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#遇见那些和你“臭味相投”的人"><span class="toc-text">遇见那些和你“臭味相投”的人</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#寻找导师，并且尝试帮助他人"><span class="toc-text">寻找导师，并且尝试帮助他人</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在公众间建立你的声誉（职业口碑）"><span class="toc-text">在公众间建立你的声誉（职业口碑）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#学习领导和管理的艺术"><span class="toc-text">学习领导和管理的艺术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#遇鼓励作出改变，哪怕改变是很微小的"><span class="toc-text">遇鼓励作出改变，哪怕改变是很微小的</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Section-2-贡献的具体含义是什么"><span class="toc-text">Section 2 - 贡献的具体含义是什么</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#如果你是一名开源界的新手，可能会对贡献的流程心生畏惧。比如：该如何找到正确的项目？不懂编码又想参与怎么办？万一做错事情了怎么办？"><span class="toc-text">如果你是一名开源界的新手，可能会对贡献的流程心生畏惧。比如：该如何找到正确的项目？不懂编码又想参与怎么办？万一做错事情了怎么办？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#你不具备编码的能力"><span class="toc-text">你不具备编码的能力</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#是否热衷于规划事件？"><span class="toc-text">是否热衷于规划事件？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#是否偏向于设计？"><span class="toc-text">是否偏向于设计？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#你是否热衷于写作？"><span class="toc-text">你是否热衷于写作？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#你喜欢组织活动吗？"><span class="toc-text">你喜欢组织活动吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#享受编码的乐趣？"><span class="toc-text">享受编码的乐趣？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#热衷于帮助他人？"><span class="toc-text">热衷于帮助他人？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在编码方面是否喜欢帮助他人？"><span class="toc-text">在编码方面是否喜欢帮助他人？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其实不必一定是软件项目！"><span class="toc-text">其实不必一定是软件项目！</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Section-3-根据项目定位自我"><span class="toc-text">Section 3 - 根据项目定位自我</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#分析感兴趣的开源项目"><span class="toc-text">分析感兴趣的开源项目</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Section-4-寻找打算做贡献的项目"><span class="toc-text">Section 4 - 寻找打算做贡献的项目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#提交贡献之前应做的检查列表"><span class="toc-text">提交贡献之前应做的检查列表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#符合开源的定义"><span class="toc-text">符合开源的定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#项目被接收的提交活跃度"><span class="toc-text">项目被接收的提交活跃度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#项目的受欢迎程度"><span class="toc-text">项目的受欢迎程度</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Section-5-如何提交成果"><span class="toc-text">Section 5 - 如何提交成果</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#有效沟通"><span class="toc-text">有效沟通</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#收集上下文"><span class="toc-text">收集上下文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建-issue"><span class="toc-text">创建 issue</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建-pull-request"><span class="toc-text">创建 pull request</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Section-6-在提交完之后需要善后事宜"><span class="toc-text">Section 6 - 在提交完之后需要善后事宜</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#😭-没有人响应你。"><span class="toc-text">😭 没有人响应你。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🚧-其他人的要求你对自己的提交做出变更。"><span class="toc-text">🚧 其他人的要求你对自己的提交做出变更。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#👎-你的贡献没有获得通过。"><span class="toc-text">👎 你的贡献没有获得通过。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🎉-你的贡献被接收。"><span class="toc-text">🎉 你的贡献被接收。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Section-7-你已经做到了"><span class="toc-text">Section 7 - 你已经做到了!</span></a></li></ol>
+    </details>
+
+    <main class="markdown-body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="Section-1-为何要为开源贡献力量？"><a href="#Section-1-为何要为开源贡献力量？" class="headerlink" title="Section 1 - 为何要为开源贡献力量？"></a>Section 1 - 为何要为开源贡献力量？</h2><img src="/article/github/how-to-participate-in-open-source/2c2ow3489yy.webp" class="">
+
+<blockquote>
+<p>在【自由代码】下工作，让我学习到了职业生涯中非常重要的技能，无论是大学还是实际的工作，我认为从开源项目中得到的收获的远大於我的贡献！</p>
+<p>—— @Errietta，《<a href="https://www.errietta.me/blog/open-source/" target="_blank" rel="noopener">我为何是如此的热衷于为开源软件贡献力量?</a>》</p>
+</blockquote>
+<p>为开源贡献力量，得到的回报就是能够学习到很多、受教很多、且能够锻炼任何你能够想到的经验。</p>
+<p>为什么会有人为开源做贡献？这可能是很多人都不明白的地方，这里不妨列出一些！</p>
+<a id="more"></a>
+
+<h3 id="巩固现有技能"><a href="#巩固现有技能" class="headerlink" title="巩固现有技能"></a>巩固现有技能</h3><p>无论是撰写代码、设计用户界面、图形设计、撰写文档、亦或是组织活动，假如你有实践的愿望，你总能在开源项目中找到自己的位置。</p>
+<h3 id="遇见那些和你“臭味相投”的人"><a href="#遇见那些和你“臭味相投”的人" class="headerlink" title="遇见那些和你“臭味相投”的人"></a>遇见那些和你“臭味相投”的人</h3><p>开源项目一般都会有一个和谐、热心的社区，以让大家团结一致。实际上，开源界经常发生这样的情形，很多人的深厚友谊都是通过共同参与开源所建立起来的，至于具体的方式，可能是在一次技术研讨会上相谈甚欢，也可能是一直在聊天室中探讨问题。</p>
+<h3 id="寻找导师，并且尝试帮助他人"><a href="#寻找导师，并且尝试帮助他人" class="headerlink" title="寻找导师，并且尝试帮助他人"></a>寻找导师，并且尝试帮助他人</h3><p>和他人共同在一个共享的项目下工作，这意味着需要向他人解释清楚自己是如何做的，同理，也需要向他人求助，询问别人是如何做的。相互学习和彼此教学对于每位参与者都能满载而归。</p>
+<h3 id="在公众间建立你的声誉（职业口碑）"><a href="#在公众间建立你的声誉（职业口碑）" class="headerlink" title="在公众间建立你的声誉（职业口碑）"></a>在公众间建立你的声誉（职业口碑）</h3><p>根据开源的定义，你在开源下所有的工作都是公开的，这也就意味着开源项目是一个很好展示你实力的地方。</p>
+<h3 id="学习领导和管理的艺术"><a href="#学习领导和管理的艺术" class="headerlink" title="学习领导和管理的艺术"></a>学习领导和管理的艺术</h3><p>开源为实践领导力和管理技能提供了很好的机会，比如解决冲突、组织团队、工作的优先级排列。</p>
+<h3 id="遇鼓励作出改变，哪怕改变是很微小的"><a href="#遇鼓励作出改变，哪怕改变是很微小的" class="headerlink" title="遇鼓励作出改变，哪怕改变是很微小的"></a>遇鼓励作出改变，哪怕改变是很微小的</h3><p>在开源的世界里，作出贡献的不一定非得是花了很长时间拥有大量经验的人。你是否遇到过浏览某些网站发现有拼写错误，希望有人能修改它？其实，在开源的项目中，你只需要做就可以了。没有那么多的顾忌，开源让人们在很舒服的状态做事，而这才是这个世界应有的体验。</p>
+<img src="/article/github/how-to-participate-in-open-source/6alfi2w632w.webp" class="">
+
+<h2 id="Section-2-贡献的具体含义是什么"><a href="#Section-2-贡献的具体含义是什么" class="headerlink" title="Section 2 - 贡献的具体含义是什么"></a>Section 2 - 贡献的具体含义是什么</h2><h3 id="如果你是一名开源界的新手，可能会对贡献的流程心生畏惧。比如：该如何找到正确的项目？不懂编码又想参与怎么办？万一做错事情了怎么办？"><a href="#如果你是一名开源界的新手，可能会对贡献的流程心生畏惧。比如：该如何找到正确的项目？不懂编码又想参与怎么办？万一做错事情了怎么办？" class="headerlink" title="如果你是一名开源界的新手，可能会对贡献的流程心生畏惧。比如：该如何找到正确的项目？不懂编码又想参与怎么办？万一做错事情了怎么办？"></a>如果你是一名开源界的新手，可能会对贡献的流程心生畏惧。比如：该如何找到正确的项目？不懂编码又想参与怎么办？万一做错事情了怎么办？</h3><p>其实没有关系的啦！条条大路通罗马，开源项目有太多的路径可以参与！以下是一些实用的技巧，帮助你快速的获得经验。</p>
+<h3 id="你不具备编码的能力"><a href="#你不具备编码的能力" class="headerlink" title="你不具备编码的能力"></a>你不具备编码的能力</h3><p>对于为开源做贡献常见的误解就是：为开源做贡献必须得提交代码。事实上，代码固然重要，但是项目中不需编码的重要部分<a href="https://blog.github.com/2016-06-23-the-shape-of-open-source/" target="_blank" rel="noopener">经常被忽视</a>。你若做了这部分，对于项目来说可是莫大的贡献，而这根本就不需要什么撰写代码！</p>
+<img src="/article/github/how-to-participate-in-open-source/731x69vqn0.webp" class="">
+
+<blockquote>
+<p>我被大家所熟知是因为为 CocoaPods 做了一些事, 其实大伙并不知道我实际并没有为 CocoaPods 本身做了什么，我大多数的工作是诸如撰写文档、品牌宣传之类的。</p>
+<p>—— @Orta，《<a href="https://academy.realm.io/posts/orta-therox-moving-to-oss-by-default/" target="_blank" rel="noopener">默认迁移到开源软件</a>》</p>
+</blockquote>
+<p>即使你是一位开发者，非代码的贡献对于项目来说也是举足轻重的，尤其是对于社区的其他成员来说。用心维系这些关系能够让你有工作到项目其它部分的机会。</p>
+<img src="/article/github/how-to-participate-in-open-source/1n774xdefvh.webp" class="">
+
+<blockquote>
+<p>我第一次接触 Python 开发团队（简称 python-dev)是在 2002 年 6 月 17 日，当时我是向其邮件列表发送了一份邮件，是关于请求通过我的补丁的。我很快就又发现了开源的 bug，于是决定开始为小组收集邮件摘要，然后他们给了我一个澄清问题的理由，但是更加重要的是，我能够捕获到某人指出需要修复的问题。</p>
+<p>—— @Brettcannon，《<a href="https://github.com/open-source/stories/brettcannon" target="_blank" rel="noopener">维护者的故事</a>》</p>
+</blockquote>
+<h3 id="是否热衷于规划事件？"><a href="#是否热衷于规划事件？" class="headerlink" title="是否热衷于规划事件？"></a>是否热衷于规划事件？</h3><ul>
+<li>为项目组织研讨会或线下分享，<a href="https://github.com/nodeschool/organizers/issues/406" target="_blank" rel="noopener">一如 fzamperin 为 NodeSchool 所做的那样</a></li>
+<li>为项目组织大型会议（假如它有的话）</li>
+<li>帮助社区成员寻找合适的技术会议，且帮助有实力的成员提交演讲的拟稿</li>
+</ul>
+<h3 id="是否偏向于设计？"><a href="#是否偏向于设计？" class="headerlink" title="是否偏向于设计？"></a>是否偏向于设计？</h3><ul>
+<li>重新布置布局以提高项目的可用性</li>
+<li>进行用户研究以重新组织和完善项目的导航或菜单</li>
+<li>整理一个风格指南，以帮助项目有一致的视觉设计</li>
+<li>创建 T 恤的艺术或一个新的标志，<a href="https://github.com/hapijs/contrib/issues/68" target="_blank" rel="noopener">就像 hapi.js 的贡献者那样</a></li>
+</ul>
+<h3 id="你是否热衷于写作？"><a href="#你是否热衷于写作？" class="headerlink" title="你是否热衷于写作？"></a>你是否热衷于写作？</h3><ul>
+<li>撰写和改进项目的文档</li>
+<li>能够以实例来展示项目该如何使 match 用的</li>
+<li>为项目撰写新闻稿，或者到邮件列表高调布道</li>
+<li>为项目撰写教程，<a href="https://github.com/pypa/python-packaging-user-guide/issues/194" target="_blank" rel="noopener">一如 pypa 的贡献者所做的</a></li>
+<li>翻译项目的文档为本土语言</li>
+</ul>
+<img src="/article/github/how-to-participate-in-open-source/114n92u9v19.webp" class="">
+
+<blockquote>
+<p>说真心话，【文档】是非常重要的. 目前 Babel 的文档已经很棒了，这也是其杀手锏的特性之一。当然，还有一些章节需要大家的完善，即使是随便在哪儿增加一个段落都很感激。</p>
+<p>—— @kittens，《<a href="https://github.com/babel/babel/issues/1347" target="_blank" rel="noopener">贡献者召集令</a>》</p>
+</blockquote>
+<h3 id="你喜欢组织活动吗？"><a href="#你喜欢组织活动吗？" class="headerlink" title="你喜欢组织活动吗？"></a>你喜欢组织活动吗？</h3><ul>
+<li>链接重复的问题，并建议新的问题标签，使事物井井有条</li>
+<li>通过开放的问题，并建议关闭旧的，<a href="https://github.com/eslint/eslint/issues/6765" target="_blank" rel="noopener">就像 @nzakas 为 eslint 做的</a></li>
+<li>把最近开放的问题阐述清晰，以推动讨论</li>
+</ul>
+<h3 id="享受编码的乐趣？"><a href="#享受编码的乐趣？" class="headerlink" title="享受编码的乐趣？"></a>享受编码的乐趣？</h3><ul>
+<li>找到一个开放的问题并解决它，<a href="https://github.com/Leaflet/Leaflet/issues/4528#issuecomment-216520560" target="_blank" rel="noopener">就像 @dianjin 为 Leaflet 做的</a></li>
+<li>想一想你是否可以帮忙写一个新的功能</li>
+<li>自动化项目设置</li>
+<li>改进工具和测试</li>
+</ul>
+<h3 id="热衷于帮助他人？"><a href="#热衷于帮助他人？" class="headerlink" title="热衷于帮助他人？"></a>热衷于帮助他人？</h3><ul>
+<li>回答关于项目的问题，例如在 Stack Overflow（<a href="http://stackoverflow.com/questions/18664074/getting-error-peer-authentication-failed-for-user-postgres-when-to-ge" target="_blank" rel="noopener">像 Postgres 的这个示例</a>）或者 Reddit 上</li>
+<li>为人们解答公开的问题</li>
+<li>帮助缓和讨论板或对话渠道</li>
+</ul>
+<h3 id="在编码方面是否喜欢帮助他人？"><a href="#在编码方面是否喜欢帮助他人？" class="headerlink" title="在编码方面是否喜欢帮助他人？"></a>在编码方面是否喜欢帮助他人？</h3><ul>
+<li>为他人的提交审核代码</li>
+<li>为如何利用项目撰写教程</li>
+<li>为其他贡献者做导师， <a href="https://github.com/rust-lang/book/issues/123#issuecomment-238049666" target="_blank" rel="noopener">正如 @ereichert 为 @bronzdoc 所做的那样，哦，是 Rust 项目</a></li>
+</ul>
+<h3 id="其实不必一定是软件项目！"><a href="#其实不必一定是软件项目！" class="headerlink" title="其实不必一定是软件项目！"></a>其实不必一定是软件项目！</h3><p>尽管人们一提起“开源”二字，默认就是指开源软件，其实不尽然，开源可以是任何事情的修饰，而不仅仅是指软件而言的。比如图书、食谱、列表、以及任何可以开源的项目类。</p>
+<p>举例来说：</p>
+<p><a href="https://github.com/sindresorhus" target="_blank" rel="noopener">@sindresorhus</a> 创建了 <a href="https://github.com/sindresorhus/awesome" target="_blank" rel="noopener">“惊奇” 列表</a></p>
+<p><a href="https://github.com/h5bp" target="_blank" rel="noopener">@h5bp</a> 维护了针对前端开发者的<a href="https://github.com/h5bp/Front-end-Developer-Interview-Questions" target="_blank" rel="noopener">面试题</a></p>
+<p><a href="https://github.com/stuartlynn" target="_blank" rel="noopener">@stuartlynn</a> 和 <a href="https://github.com/nicole-a-tesla" target="_blank" rel="noopener">@nicole-a-tesla</a> 制作了<a href="https://github.com/stuartlynn/puffin_facts" target="_blank" rel="noopener">收集关于海雀的有趣的事实</a></p>
+<p>尽管你是一名软件开发者，也可以去撰写一些文档去帮助新的入门者。其实项目中那些看起来令人生畏的项目并不是写代码，做开发者总得挑战自己，其实在做的过程中可以增强信心和获得全新的体验。</p>
+<img src="/article/github/how-to-participate-in-open-source/3po7eitxxj.webp" class="">
+
+<h2 id="Section-3-根据项目定位自我"><a href="#Section-3-根据项目定位自我" class="headerlink" title="Section 3 - 根据项目定位自我"></a>Section 3 - 根据项目定位自我</h2><img src="/article/github/how-to-participate-in-open-source/1r6tjt9sfwj.webp" class="">
+
+<blockquote>
+<p>如果你跟着了一条 issue，还发现了令人感到困惑的事情，这很正常，不是你一个人这样。这些工具需要大量的隐式的知识，但是总会有人带着你熟悉这些，当然你要找他们问对的问题。</p>
+<p>—— <a href="https://github.com/shaunagm" target="_blank" rel="noopener">@shaunagm</a>，《<a href="http://readwrite.com/2014/10/10/open-source-diversity-how-to-contribute/" target="_blank" rel="noopener">如何为开源做贡献</a>》</p>
+</blockquote>
+<p>为开源做贡献，除了单词拼写错误之外，大多数时候就像是走在陌生人中间，浑身上下不适。这就像人们已经在西边讨论的非常深入了，你突然开始讲东，肯定会让人感到不舒服。</p>
+<p>与其盲目的在项目中游荡，不如静下心来学习规则。这样反而会让你的想法被注意到，也会有人听到你的声音。</p>
+<h3 id="分析感兴趣的开源项目"><a href="#分析感兴趣的开源项目" class="headerlink" title="分析感兴趣的开源项目"></a>分析感兴趣的开源项目</h3><p>每一个开源社区都是不一样的。</p>
+<p>在某一个开源项目扎根多年，这意味着你只是对这一个开源项目无比的熟悉。若是切换到不同的项目，可能会发现完全是另外一回事，所谓的使用词汇、习惯用语、沟通方式都发生了变化。</p>
+<p>然而，很多的开源项目还是遵循类似的组织结构的。理解不同的社区角色和全部的流程，可以很好的帮助你快速的切入新的项目。</p>
+<p>一个典型的开源项目均会有如下类型的人：</p>
+<ul>
+<li><p><strong>作者:</strong> 项目的创始人或创始组织</p>
+</li>
+<li><p><strong>归属者:</strong> 代码仓库或组织的管理员（不一定和作者是同一个人）</p>
+</li>
+<li><p><strong>维护者:</strong> 贡献者，负责项目的未来走向和组织的管理（他们通常也是项目的作者或归属者。）</p>
+</li>
+<li><p><strong>贡献者:</strong> 只要是为项目做出了贡献，就算。</p>
+</li>
+<li><p><strong>社区成员:</strong> 那些实用项目的人们。他们或许是积极的讨论者，又或者是为项目的方向提出意见的人。</p>
+</li>
+</ul>
+<p>一个较大的项目，可能下面还会细分子社区，或者是针对不同的任务分成不同的小组，比如工具小组、分流、社区事务、以及活动组织等。径直到项目到 web 站点，找到“团队”页面，或者是查看治理文档，从而获得类似到信息。</p>
+<p>靠谱的开源项目，一般都会有一个文档的，这些文档文件通常会在代码仓库的顶级目录列出。</p>
+<ul>
+<li><p><strong>许可协议:</strong> 根据开源软件的定义，每一个开源项目必须是有<a href="https://choosealicense.com/" target="_blank" rel="noopener">开源许可协议</a>的. 可以这么认为：假如说某个项目源码开放，但是没有任何的许可协议，那么它就不能叫做开源。</p>
+</li>
+<li><p><strong>README:</strong> README 是一个介绍性的说明文件，对初次光临社区对人们表示欢迎，它通常会解释项目有何用处，为何发起，以及如何快速入门等。</p>
+</li>
+<li><p><strong>贡献:</strong> READMEs 帮助人们来认识项目，贡献这个文件则是帮助对项目如何做贡献。它解释了目前项目需要什么样类型对贡献者，社区对流程是啥样的。并非所有的项目都会有这个文件，它某种程度上也是展示项目对于贡献者的友好程度。</p>
+</li>
+<li><p><strong>行为准则:</strong> 顾名思义，即是一些参与社区时的一些礼仪、说话方式、行为等，帮助形成一种友好的氛围，不是所有的项目都会撰写行为准则文件，它某种程度上也是展示项目对于贡献者的友好程度。</p>
+</li>
+<li><p><strong>其它文档:</strong> 有些项目也许还有其它文档，例如教程、导游，或者是治理规则，这在大型项目中常见。</p>
+</li>
+</ul>
+<p>此外，开源项目还会利用如下一些工具来进行组织讨论，阅读这些归档对于理解社区的想法、是如何工作的有非常大的作用。</p>
+<ul>
+<li><p><strong>问题追踪:</strong> 这里是人们讨论项目相关问题的地方。</p>
+</li>
+<li><p><strong>Pull requests:</strong> 审核代码、以及相关的问题讨论。</p>
+</li>
+<li><p><strong>论坛或邮件列表:</strong> 一些项目会实用会话式的主题（例如 <em>“How do I…“</em> 或 <em>“What do you think about…“</em> 来替代 Bug 报告或特性请求）。然而有一些项目关于讨论全部实用问题追踪。</p>
+</li>
+<li><p><strong>即时在线聊天:</strong> 有一些项目会实用聊天频道（诸如 Slack 或 IRC），从而能够随意的谈话、协作和快速交流。</p>
+</li>
+</ul>
+<img src="/article/github/how-to-participate-in-open-source/22ebotv3uuz.webp" class="">
+
+<h2 id="Section-4-寻找打算做贡献的项目"><a href="#Section-4-寻找打算做贡献的项目" class="headerlink" title="Section 4 - 寻找打算做贡献的项目"></a>Section 4 - 寻找打算做贡献的项目</h2><p><strong>你读到这里，说明已经对于一个开源项目如何运作的有了清晰的认识，是该找一个合适的项目做贡献的时候了！</strong></p>
+<p>假如你之前从来都没有为开源做过贡献的话，那么请记住来自美国总统约翰·F·肯尼迪的这段话：<strong>不要问你的国家能为你做什么，要问你能为国家做什么。</strong></p>
+<p>开源项目的方方面面都需要贡献者，你先不要通盘考虑该往哪里贡献，或者是它将如何看。</p>
+<p>相反，从你已经使用到的或者打算用到项目开启贡献之路，在你积极的贡献过程中，项目也会反馈给你，让你更好的定位自己。</p>
+<p>一旦进入某项目，不论何时，你都要听从自己的直觉，做你认为更好或者不同的事情。</p>
+<p>开源并不是高级俱乐部；它就是由你这样的人所浇铸和打造。<strong>“开源”只是针对这个世界的需要修复的问题的一个梦幻术语罢了。</strong></p>
+<p>你或许在查看 README 的时候，发现了损坏的链接，又或者拼写错误。又或者是你是一名新手，使用的过程中发现了问题，又或者是某问题应该在文档中注明。请不要坐视不理，径直绕开，或者是请求他人修复，伸出你的援助之手，解决这些你能看到的问题。而这正是开源的精髓之所在！</p>
+<blockquote>
+<p><a href="http://www.igor.pro.br/publica/papers/saner2016.pdf" target="_blank" rel="noopener">28% 的随意贡献</a> 就是说明了文档的开源，诸如拼写错误，段落语句调整、或者是翻译。</p>
+</blockquote>
+<p>你也可以利用如下列出的资源来找到合适的新项目：</p>
+<ul>
+<li><p><a href="https://github.com/explore/" target="_blank" rel="noopener">GitHub 探索</a></p>
+</li>
+<li><p><a href="http://www.firsttimersonly.com/" target="_blank" rel="noopener">First Timers Only</a></p>
+</li>
+<li><p><a href="https://yourfirstpr.github.io/" target="_blank" rel="noopener">你的第一个 PR</a></p>
+</li>
+<li><p><a href="https://www.codetriage.com/" target="_blank" rel="noopener">CodeTriage</a></p>
+</li>
+<li><p><a href="https://24pullrequests.com/" target="_blank" rel="noopener">24 Pull Requests</a></p>
+</li>
+<li><p><a href="http://up-for-grabs.net/" target="_blank" rel="noopener">Up For Grabs</a></p>
+</li>
+<li><p><a href="https://contributor.ninja/" target="_blank" rel="noopener">像忍者一样贡献</a></p>
+</li>
+</ul>
+<h3 id="提交贡献之前应做的检查列表"><a href="#提交贡献之前应做的检查列表" class="headerlink" title="提交贡献之前应做的检查列表"></a>提交贡献之前应做的检查列表</h3><p>当你找到了你打算贡献的项目时，在进一步行动之前，作一个快速的扫描工作，以确保项目是否接受贡献的。否则，你煞费苦心的工作可能没有任何的回报。</p>
+<p>这是一个简易的检查表，用来评估一个项目是否适合新的贡献者。</p>
+<h4 id="符合开源的定义"><a href="#符合开源的定义" class="headerlink" title="符合开源的定义"></a>符合开源的定义</h4><ul>
+<li><input checked="" disabled="" type="checkbox"> 有许可协议吗？通常情况下，会在根目录有一个叫做 LICENSE 的文件。</li>
+</ul>
+<h4 id="项目被接收的提交活跃度"><a href="#项目被接收的提交活跃度" class="headerlink" title="项目被接收的提交活跃度"></a>项目被接收的提交活跃度</h4><p>在主干上确认提交的活跃度。在 GitHub 上托管的开源项目，你可以在仓库主页上看到这些信息。</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 最后一次提交是在什么时候？</li>
+<li><input checked="" disabled="" type="checkbox"> 项目目前有多少贡献者？</li>
+<li><input checked="" disabled="" type="checkbox"> 人们提交的频繁吗？ (在 GitHub，可以在顶栏里点击“commits”来展现。）</li>
+</ul>
+<p>接下来，就是看项目的 issue 数量。</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 目前有多少个还处于开放状态的 issue？</li>
+<li><input checked="" disabled="" type="checkbox"> 项目的维护者对于处于开放状态的 issue 响应是否迅速？</li>
+<li><input checked="" disabled="" type="checkbox"> 是否有讨论很活跃的 issue？</li>
+<li><input checked="" disabled="" type="checkbox"> issue 均是近期产生的吗？</li>
+<li><input checked="" disabled="" type="checkbox"> 有没有关闭的 issue？ (在 GitHub, 点击“closed”标签就可以看到所有已经关闭的 issue。)</li>
+</ul>
+<p>同样再来看看 PR 的情形。</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 现下有多少处于开放状态的 PR？</li>
+<li><input checked="" disabled="" type="checkbox"> 当提交了 PR 后，维护者响应是否迅速？</li>
+<li><input checked="" disabled="" type="checkbox"> 是否有活跃讨论的 PR ？</li>
+<li><input checked="" disabled="" type="checkbox"> 均是近期的 RP 吗？</li>
+<li><input checked="" disabled="" type="checkbox"> 最近有多少 PR 合并？ (在 GitHub , 点击 PR 页面的“closed”的标签页来查看已经关闭的标签页。)</li>
+</ul>
+<h4 id="项目的受欢迎程度"><a href="#项目的受欢迎程度" class="headerlink" title="项目的受欢迎程度"></a>项目的受欢迎程度</h4><p>一个项目的友好程度和受欢迎意味着更能吸引新的贡献者。</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 在 issue 的问题中，维护者的回答是否非常有帮助？issue 的讨论中、在线聊天室、论坛是否很友好？</li>
+<li><input checked="" disabled="" type="checkbox"> PR 是否被 review？</li>
+<li><input checked="" disabled="" type="checkbox"> 维护者是否对做贡献的人们道声”谢谢”？</li>
+</ul>
+<img src="/article/github/how-to-participate-in-open-source/2aayp33i772.webp" class="">
+
+<blockquote>
+<p>当你看到一个很长当对话时，来自核心开发者的零星的响应排在列表的后面。你就得考虑，他们在作建设性的总结？是否保持风度的情况下做出最后的决定？如果你看到的是更多的口水仗，而且还在继续，这通常意味着社区的能量重心已经不在开发上了。</p>
+<p>—— <a href="https://github.com/kfogel" target="_blank" rel="noopener">@kfogel</a>，《<a href="http://producingoss.com/en/evaluating-oss-projects.html" target="_blank" rel="noopener">开源软件生产力</a>》</p>
+</blockquote>
+<img src="/article/github/how-to-participate-in-open-source/1j1se4s3tan.webp" class="">
+
+<h2 id="Section-5-如何提交成果"><a href="#Section-5-如何提交成果" class="headerlink" title="Section 5 - 如何提交成果"></a>Section 5 - 如何提交成果</h2><p><strong>你已经找到了你喜爱的项目，也已准备好贡献了，迫不及待、跃跃欲试了。好吧！以下就是带领你如何以正确的姿势作贡献。</strong></p>
+<h3 id="有效沟通"><a href="#有效沟通" class="headerlink" title="有效沟通"></a>有效沟通</h3><p>无论你处于什么样的目的：仅仅是一次性的贡献，亦或是永久性的加入社区，都的和他人进行沟通和交往，这是你要在开源圈发展必须修炼的技能。</p>
+<img src="/article/github/how-to-participate-in-open-source/1pbvrp4bwji.webp" class="">
+
+<blockquote>
+<p><strong>作为一名新手</strong>，我很快的就意识到，我若是要关闭一条 issue 时，我不得不问更多的问题。我浏览了代码库，一旦我觉得有什么问题的时候，我就得需要更多的指点，瞧！在我得到所有的所需要的信息后，我就可以解决这个问题！</p>
+<p>—— <a href="https://github.com/shubheksha" target="_blank" rel="noopener">@shubheksha</a>，《<a href="https://medium.freecodecamp.com/a-beginners-very-bumpy-journey-through-the-world-of-open-source-4d108d540b39#.pcswr2e78" target="_blank" rel="noopener">一名菜鸟进入开源世界的坎坷之旅</a>》</p>
+</blockquote>
+<p>在你开启一个 issue 或 PR 之前，或者是在聊天室问问题之前，请牢记下面所列出的几点建议，会让你的工作更加的高效。</p>
+<p><strong>给出上下文</strong> 以便于让其他人能够快速的理解。比方说你运行程序时遇到一个错误，要解释你是如何做的，并描述如何才能再现错误现象。又比方说你是提交一个新的想法，要解释你为什么这么想，对于项目有用处吗（不仅仅是只有你！）</p>
+<blockquote>
+<p>😇 <em>“当我做 Y 的时候 X 不能工作”</em></p>
+<p>😢 <em>“X 出问题! 请修复它。”</em></p>
+</blockquote>
+<p><strong>在进一步行动前，做好准备工作。</strong> 不知道没关系，但是要展现你尝试过、努力过。在寻求帮助之前，请确认阅读了项目的 README、文档、问题（开放的和关闭的）、邮件列表，并搜索了网络。当你表现出很强烈的求知欲的时候，人们是非常欣赏这点的，会很乐意的帮助你。</p>
+<blockquote>
+<p>😇 <em>“我不确定 X 是如何实现的，我查阅了相关的帮助文档，然而毫无所获。”</em></p>
+<p>😢 <em>“我该怎么做 X ?”</em></p>
+</blockquote>
+<p><strong>保持请求内容短小而直接。</strong> 正如发送一份邮件，每一次的贡献，无论是多么的简单，都是需要他人去查阅的。很多项目都是请求的人多，提供帮助的人少。相信我，保持简洁，你能得到他人帮助的机会会大大的增加。</p>
+<blockquote>
+<p>😇 <em>“我很乐意写 API 的教程。”</em></p>
+<p>😢 <em>” 有一天我驾驶汽车行驶在高速公路上，在某个加油站加油的时候，突发奇想，我们应该这么做，不过在我进一步解释之前，我先和大家展示一下。。。”</em></p>
+</blockquote>
+<p><strong>让所有的沟通都是在公开场合下进行。</strong> 哪怕是很不起眼的小事，也不要去给维护者发私信，除非是你要分享一些敏感信息（诸如安全问题或严重的过失）。你若能够保持谈话是公开的，很多人可以你们交换的意见中学习和受益。</p>
+<blockquote>
+<p>😇 <em>(评论) “@维护者 你好！我们该如何处理这个 PR？”</em></p>
+<p>😢 <em>(邮件) “你好，非常抱歉给发信，但是我实在很希望你能看一下我提交的 PR。”</em></p>
+</blockquote>
+<p><strong>大胆的提问（但是要谨慎！）。</strong> 每个人参与社区，开始的时候都是新手，哪怕是非常有经验的贡献者也一样，在刚进入一个新的项目的时候，也是新手。出于同样的原因,甚至长期维护人员并不总是熟悉一个项目的每一部分。给他们同样的耐心,你也会得到同样的回报。</p>
+<blockquote>
+<p>😇 <em>“感谢查看了这个错误，我按照您的建议做了，这是输出结果。”</em></p>
+<p>😢 <em>“你为什么不修复我的问题？这难道不是你的项目吗？”</em></p>
+</blockquote>
+<p><strong>尊重社区的决定。</strong> 你的想法可能会和社区的优先级、愿景等有差异，他们可能对于你的想法提供了反馈和最后的决定的理由，这时你应该去积极的讨论，并寻求妥协的办法，维护者必须慎重的考虑你的想法。但是如果你实在是不能同意社区的做法，你可以坚持自己！保持自己的分支，或者另起炉灶。</p>
+<blockquote>
+<p>😇 <em>“你不能支持我的用例，我蛮失望，但是你的解释仅仅是对一小部分用户起作用，我理解是为什么。感谢你的耐心倾听。”</em></p>
+<p>😢 <em>“你为什么不支持我的用例？这是不可接受的！”</em></p>
+</blockquote>
+<p><strong>以上几点，要铭记在心。</strong> 开源是由来自世界各地的人们共同协作实现的。面临的问题是跨语言、跨文化、不同的地理为止、不同的时区，另外，撰写文字的沟通更是难上加难，无法传达语气和情绪。请让这些会话都充满善意吧！在以下情形中请保持礼貌：推动一个想法、请求更多的上下文、进一步澄清你的立场。既然你在互联网找到了自己的所需，那么请尝试让它变得更好！</p>
+<h3 id="收集上下文"><a href="#收集上下文" class="headerlink" title="收集上下文"></a>收集上下文</h3><p>在正式开始之前，做一些快速的检查项，以确保你的想法是没有被讨论过的。遍历项目的 README、问题（开放的和关闭的都算）、邮件列表、Stack Overflow。毋需去花好几个小时去全部折腾一遍，但是使用几个关键的词汇来搜索一下是必要的。</p>
+<p>如果你没有找到和你想法一样的内容，你就可以继续了。如果项目是在 GitHub 上的话，你可以通过开启一个 issue 或 PR：</p>
+<ul>
+<li><p><strong>Issues</strong> 开启一次对话或讨论</p>
+</li>
+<li><p><strong>Pull requests</strong>  请求接受自己的解决方法</p>
+</li>
+<li><p><strong>少量的沟通，</strong>诸如澄清或 how-to 的问题，尝试到 Stack Overflow 、IRC、Slack 或其它聊天频道。</p>
+</li>
+</ul>
+<p>在你创建 issue 和 PR 之前，请检查项目的贡献者文档（文件名通常叫做 CONTRIBUTING，或者就直接包含在 README 中），找一些你需要的较具体的东西，例如，他们会要求你遵循某个模版，或者是要求你使用某个测试。</p>
+<p>如果你做的是一个非常实际的贡献，在正式开启之前，先创建一个 issue。监视项目是很有帮助的（在 GitHub，<a href="https://help.github.com/articles/watching-repositories/" target="_blank" rel="noopener">点击 “Watch”</a>，所有的对话都会通知到你），要让社区的成员们知道你要做的工作，免得你做了之后，再让他们知道，他们不同意，就浪费了。</p>
+<img src="/article/github/how-to-participate-in-open-source/18c0av4j8ow.webp" class="">
+
+<blockquote>
+<p>你能够从单个的项目学习到<em>很多</em>，只要你踊跃的去使用，在 GitHub 上密切观察项目，并阅读每一个 issue 和 PR。</p>
+<p>—— <a href="https://github.com/gaearon" target="_blank" rel="noopener">@gaearon</a>，《<a href="https://twitter.com/dan_abramov/status/819555257055322112" target="_blank" rel="noopener">参与项目</a>》</p>
+</blockquote>
+<h3 id="创建-issue"><a href="#创建-issue" class="headerlink" title="创建 issue"></a>创建 issue</h3><p>你应该在遇到下列情况下，去创建一个 issue：</p>
+<ul>
+<li><p>报告你自己无法解决的错误</p>
+</li>
+<li><p>讨论一个高级主题或想法(例如. 社区、远景、政策等)</p>
+</li>
+<li><p>期望实现某新的特性，或者其它项目的想法</p>
+</li>
+</ul>
+<p>在 issue 的沟通中几点实用的技巧:</p>
+<ul>
+<li><p><strong>如果你刚好看到一个开放的 issue，恰是你打算解决的，</strong>添加评论，告诉他人你将负责这个。这样的话，可以避免他人重复劳动。</p>
+</li>
+<li><p><strong>如果说某个 issue 已经开放很久了，</strong>这可能是已经有人正在解决中，又或者是早已经解决过了，所以也请添加评论，在打算开启工作之前，最好是确认一下。</p>
+</li>
+<li><p><strong>如果你创建了一 issue，但是没多久自己解决了，</strong>也要添加评论，让其他人知道，然后关闭该 issue。记录本身就是为社区的贡献。</p>
+</li>
+</ul>
+<h3 id="创建-pull-request"><a href="#创建-pull-request" class="headerlink" title="创建 pull request"></a>创建 pull request</h3><p>在下面的情形时，请你务必使用 PR：</p>
+<ul>
+<li><p>提交补丁 (例如，纠正拼写错误、损坏的链接、或者是其它较明显的错误）</p>
+</li>
+<li><p>开始一项别人请求的任务，或者是过去在 issue 中早就讨论过的</p>
+</li>
+</ul>
+<p>一个 PR 并不代表着工作已经完成。它通常是尽早的开启一个 PR，是为了其他人可以观看或者给作者反馈意见。只需要在子标题标记为“WIP”（正在进行中）。作者可以在后面添加很多评论。</p>
+<p>如果说项目是托管在 GitHub 上的，以下是我们总结出的提交 PR 的建议：</p>
+<ul>
+<li><p><strong><a href="https://guides.github.com/activities/forking/" target="_blank" rel="noopener">Fork 代码仓库</a></strong>  并克隆到本地，在本地的仓库配置“上游”为远端仓库。这样你可以在提交你的 PR 时保持和“上游”同步，会减少很多解决冲突的时间。（更多关于同步的说明，请参考<a href="https://help.github.com/articles/syncing-a-fork/" target="_blank" rel="noopener">这里</a>）</p>
+</li>
+<li><p><strong><a href="https://guides.github.com/introduction/flow/" target="_blank" rel="noopener">创建一个分支</a></strong>  用于自己编辑。</p>
+</li>
+<li><p><strong>参考任何相关的 issue</strong>  或者在你的 RP 中支持文档(比如 <code>Closes #37</code>)</p>
+</li>
+<li><p><strong>包含之前和之后的快照</strong>  如果你的改动是包含了不同的 HTML/CSS。在你的 PR 中拖拉相应的图片。</p>
+</li>
+<li><p><strong>测试你的改动！</strong> 若测试用例存在的话，跑一遍，以覆盖你的更改，若没有的话，则创建相应的用例。无论测试是否存在，一定要确保你的改动不会破坏掉现有的项目。</p>
+</li>
+<li><p><strong>和项目现有的风格保持一致</strong> 尽你最大的努力，这也就是意味着在使用缩进、分号、以及注释很可能和你自己的风格大相径庭，但是为了节省维护者的精力，以及未来他人更好的理解和维护，还请你容忍一下。</p>
+</li>
+</ul>
+<p>如果这是你第一次提交 PR。可以浏览 <a href="http://makeapullrequest.com/" target="_blank" rel="noopener">PR 制造</a> 的文档，这是 <a href="https://github.com/kentcdodds" target="_blank" rel="noopener">@kentcdodds</a> 专门为初次创建 PR 的人写的公开的资料。</p>
+<img src="/article/github/how-to-participate-in-open-source/1ng6b6ntnpa.webp" class="">
+
+<h2 id="Section-6-在提交完之后需要善后事宜"><a href="#Section-6-在提交完之后需要善后事宜" class="headerlink" title="Section 6 - 在提交完之后需要善后事宜"></a>Section 6 - 在提交完之后需要善后事宜</h2><p><strong>很不错，你做到了！恭贺你成为开源贡献者。我们希望这是一个良好的开端。</strong></p>
+<p>在你提交了贡献之后，下面几种情形中的某种是可能发生的：</p>
+<h3 id="😭-没有人响应你。"><a href="#😭-没有人响应你。" class="headerlink" title="😭 没有人响应你。"></a>😭 没有人响应你。</h3><p>希望你确认在开始工作之前<a href="https://ocselected.github.io/open-source-guide/how-to-contribute/#a-checklist-before-you-contribute" target="_blank" rel="noopener">检查过了项目的活跃度</a>，不过即使检查过了，也不保证一个活跃的项目，没有人理会你的贡献也是很正常的。</p>
+<p>如果过去了一周，依旧没有人响应，请心平气和的在后面跟帖，询求他人帮助你审核下。如果你熟悉某个人可以审核你的贡献，你可以使用@+名字，直接提醒他一下。</p>
+<p><strong>千万不要</strong> 私下里去联系他人；一定要记住，开源项目所有的沟通都应该是公开的。</p>
+<p>如果你做了所有该做的事情，还是没有人理你，那就是真的没有人对你的贡献做出响应。这可能感觉上不太好受，但是千万不要灰心。每个人都会遇到这样的情况。其实有太多种原因没有人响应你的提交了，包括很多个人情形都是不在你控制范围的。再接再厉，换一种方法去提交，或者换一个项目。这年头，很多社区成员都在积极的参与和响应他人，都在抢夺优秀的人才，若没有人搭理你，你换地方是没有任何不对的地方的。</p>
+<h3 id="🚧-其他人的要求你对自己的提交做出变更。"><a href="#🚧-其他人的要求你对自己的提交做出变更。" class="headerlink" title="🚧 其他人的要求你对自己的提交做出变更。"></a>🚧 其他人的要求你对自己的提交做出变更。</h3><p>对于自己的提交作出变更这件事非常的普遍，可能是你获得了反馈，也可能是变更了代码。</p>
+<p>当有人提出变更时，请表现出大度的地方，要及时响应。他们花时间审核了你的提交，要尊重他们。开启了 PR，然后一走了之，是一种恶习。如果你不知道如何修改，请花时间深入研究问题的所在，如果还是没有想到好的办法，那么是该向他人求助的时候了。</p>
+<p>如果你因为没有时间而无法继续在此 issue 继续工作（举例来说，如果对话已经过去了一个月了，没有任何的回复和进度，环境肯定变得不一样了），那么请向维护者告知你无法在及时的响应了，肯定有人非常乐意接替你的工作的。</p>
+<h3 id="👎-你的贡献没有获得通过。"><a href="#👎-你的贡献没有获得通过。" class="headerlink" title="👎 你的贡献没有获得通过。"></a>👎 你的贡献没有获得通过。</h3><p>你的提交最后可能没有被接受。真心希望你没有在此作出过多的努力。如果你不确定为什么没有被接收的话，这正是一个很好的询问维护者反馈和澄清的机会。最终，无论如何，你都要对他们的决定表示尊重。不要去做过多无谓的争论或者是充满敌意的谩骂。如果你坚持自己，你可以随意的 fork 项目，按照自己的思路发展出分支来。</p>
+<h3 id="🎉-你的贡献被接收。"><a href="#🎉-你的贡献被接收。" class="headerlink" title="🎉 你的贡献被接收。"></a>🎉 你的贡献被接收。</h3><p>太棒了！你已经成功的做到了，为开源做贡献也不过如此！</p>
+<img src="/article/github/how-to-participate-in-open-source/dngeayctegw.webp" class="">
+
+<h2 id="Section-7-你已经做到了"><a href="#Section-7-你已经做到了" class="headerlink" title="Section 7 - 你已经做到了!"></a>Section 7 - 你已经做到了!</h2><p><strong>你刚刚完成了自己的开源贡献处女秀，接下来，你可能打算寻找另外的方法来做贡献，希望本文给你提供了灵感和实践。即使是你的贡献没有被采纳或接收，也不要有失风度，请对帮助过你的维护者表示感谢！</strong></p>
+<p>开源就是由你这样的人所铸造：开启一个 issue，在提交 PR，评论、讨论、收集反馈，直到被接收。就是这么简单。</p>
+<img src="/article/github/how-to-participate-in-open-source/1j717c220gy.webp" class="">
+
+</main>
+
+    
+  </div>
+</section>
+
+<nav class="page-section text-center">
+  <div class="btn-group" role="group" aria-label="Post navigator">
+    
+    <a class="btn btn-secondary" role="button" href="article/enterprise/big-players-microsoft-open-source-road/">
+      &lt; “大玩家” 微软的开源之路 | 世界顶级企业开源故事系列之一
+    </a>
+    
+    <a class="btn btn-secondary" role="button" href="article/apache/lowering-barriers-to-open-innovation/">
+      降低开放式创新的壁垒 | 赢在 Apache 系列之一 &gt;
+    </a>
+    
+  </div>
+</nav>
+
+<script>
+(function () {
+
+  var path = self.location.href.split('#')[0];
+
+  $('details > .toc a[href]').attr('href', function (_, value) {
+
+    return path + value;
+  });
+
+  $('.blog-post').find('h1, h2, h3, h4, h5, h6').append(function () {
+
+    if ( this.id.trim() )
+      return '<a class="header-link" title="Permalink" href="' +
+        path + '#' + this.id +
+        '"><span class="octicon octicon-link"></span></a>';
+  });
+})();
+</script>
+
+
+  <footer class="footer">
+    <div class="container">
+      <nav class="footer-nav">
+        
+          <a class="footer-nav-item active" href="/categories/Activity/">
+            活动
+          </a>
+        
+          <a class="footer-nav-item " href="/page/2">
+            博客
+          </a>
+        
+          <a class="footer-nav-item " href="/profile/charter">
+            章程
+          </a>
+        
+          <a class="footer-nav-item " href="https://github.com/kaiyuanshe/kaiyuanshe.github.io/tree/hexo/License" target="_blank" rel="noopener">
+            许可
+          </a>
+        
+          <a class="footer-nav-item " href="/profile/contact">
+            联系我们
+          </a>
+        
+          <a class="footer-nav-item " href="https://git-pager.avosapps.us/?repository=kaiyuanshe/Wiki" target="_blank" rel="noopener">
+            协作编辑
+          </a>
+        
+      </nav>
+      <span class="col">沪 ICP 备 19006015 号</span>
+      <span class="col">公安备案 31011202006203 号</span>
+
+      <span class="footer-social">
+        
+          <a class="footer-nav-item icon"
+            href="https://github.com/kaiyuanshe"
+            title="Github Organization">
+            <i class="devicon-github-plain vertical-middle"></i>
+          </a>
+        
+          <a class="footer-nav-item icon"
+            href="https://twitter.com/contactkaiyuan1"
+            title="@contactkaiyuan1 on Twitter">
+            <i class="devicon-twitter-plain vertical-middle"></i>
+          </a>
+        
+          <a class="footer-nav-item icon"
+            href="https://www.facebook.com/kaiyuanshe.china"
+            title="Facebook account">
+            <i class="devicon-facebook-plain vertical-middle"></i>
+          </a>
+        
+      </span>
+    </div>
+  </footer>
+  <script src="library/virtual-anchor-sdk.js"></script>
+  <script>
+    new VirtualAnchor({ id: '191be2ab-8c6e-6201-c419-3ef2d26eadf2' });
+  </script>
+</body>
+
+</html>

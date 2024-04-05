@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+
+  <title>开源社</title>
+
+  
+  <meta name="description" content="1. 开源在微软  微软现在是开源领域公认的大玩家，但就在几年前，这样的角色对这个软件巨头似乎是不可想象的。微软从一个占有市场领先地位的专有软件制造商，以超乎想象的大动作实现开源，令许多人感到惊讶。虽然该公司的故事是引人注目的，它的开源旅程不是像表面看起来那样地突然或意想不到。  尽管坊间有各种看法，微软其实已经做了相当一段时间的开源。起初，这些实验性的片断散布各处，但大约六年前，在 2011 年">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="“大玩家” 微软的开源之路 | 世界顶级企业开源故事系列之一">
+<meta property="og:url" content="http://kaiyuanshe.cn/article/enterprise/big-players-microsoft-open-source-road/index.html">
+<meta property="og:site_name" content="开源社">
+<meta property="og:description" content="1. 开源在微软  微软现在是开源领域公认的大玩家，但就在几年前，这样的角色对这个软件巨头似乎是不可想象的。微软从一个占有市场领先地位的专有软件制造商，以超乎想象的大动作实现开源，令许多人感到惊讶。虽然该公司的故事是引人注目的，它的开源旅程不是像表面看起来那样地突然或意想不到。  尽管坊间有各种看法，微软其实已经做了相当一段时间的开源。起初，这些实验性的片断散布各处，但大约六年前，在 2011 年">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://kaiyuanshe.cn/article/enterprise/big-players-microsoft-open-source-road/9hjcovrlsk.webp">
+<meta property="og:image" content="http://kaiyuanshe.cn/article/enterprise/big-players-microsoft-open-source-road/2idrzmd4slk.webp">
+<meta property="og:image" content="http://kaiyuanshe.cn/article/enterprise/big-players-microsoft-open-source-road/1e3as4svntb.webp">
+<meta property="og:image" content="http://kaiyuanshe.cn/article/enterprise/big-players-microsoft-open-source-road/3oe9cpd775y.webp">
+<meta property="og:image" content="http://kaiyuanshe.cn/article/enterprise/big-players-microsoft-open-source-road/7chstqxcqww.webp">
+<meta property="og:image" content="http://kaiyuanshe.cn/article/enterprise/big-players-microsoft-open-source-road/whesmpdnj.webp">
+<meta property="og:image" content="http://kaiyuanshe.cn/article/enterprise/big-players-microsoft-open-source-road/1xfnw4olsvb.webp">
+<meta property="article:published_time" content="2018-06-15T15:11:00.000Z">
+<meta property="article:modified_time" content="2024-04-05T20:16:41.295Z">
+<meta property="article:author" content="shiy2008@gmail.com">
+<meta property="article:tag" content="开源">
+<meta property="article:tag" content="社区">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://kaiyuanshe.cn/article/enterprise/big-players-microsoft-open-source-road/9hjcovrlsk.webp">
+<meta name="twitter:site" content="contactkaiyuan1">
+  <meta name="author" content="shiy2008@gmail.com">
+  <meta name="generator" content="hexo">
+  <meta name="theme-color" content="#2f3241">
+
+  <!-- consumed by scripts/get-localized-strings -->
+  <meta name="localized.clipboard.copy" content="Copy">
+  <meta name="localized.clipboard.copy_to_clipboard" content="复制到剪贴板">
+  <meta name="localized.clipboard.copied" content="已复制">
+
+  <base href="/">
+
+  <link rel="shortcut icon" href="image/KaiYuanShe-logo.png">
+
+  <link rel="stylesheet" href="https://npm.webcache.cn/github-markdown-css@5.5.1/github-markdown-light.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/devicon@2.16.0/devicon.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/highlight.js@9.18.5/styles/dark.css">
+  <link rel="stylesheet" href="library/index.css">
+  <link rel="stylesheet" href="common.css">
+  <style>
+    .site-header-nav-item a:link {
+      text-decoration: none;
+    }
+  </style>
+  <script src="https://npm.webcache.cn/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script src="https://npm.webcache.cn/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://npm.webcache.cn/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+  <script src="https://npm.webcache.cn/highlight.js@9.18.5/lib/highlight.js"></script>
+  <script src="common.js" defer async></script>
+</head>
+
+<body>
+  <div class="alert alert-danger mb-0 text-center" role="alert">
+    开源社官网（2019 版）已存档、只读，请移步
+    <a href="https://kaiyuanshe.cn" class="alert-link">2022 版官网</a>
+    关注最新信息~
+  </div>
+
+  <header class="site-header">
+    <div class="container">
+
+      <a class="site-header-logo no-underline-hover" href=".">
+        <img class="site-header-icon" src="image/KaiYuanShe-logo.png">
+        开源社
+      </a>
+
+      <nav class="site-header-nav">
+        
+          <div class="site-header-nav-item">
+            
+              <a role="button" href="/categories/Activity/Summit/" data-href-match="">
+                年度大会
+              </a>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_1" href="" data-href-match="">
+                资讯
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_1">
+                
+                  <a class="dropdown-item" href="/categories/Activity/">活动</a>
+                
+                  <a class="dropdown-item" href="/blog/">博客</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_2" href="" data-href-match="">
+                成员
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_2">
+                
+                  <a class="dropdown-item" href="/members/">正式成员</a>
+                
+                  <a class="dropdown-item" href="https://kaiyuanshe.feishu.cn/share/base/shrcnfO89tYlYIjZpS5PXJBaK2f" target="_blank" rel="noopener">加入我们</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a role="button" href="/partners" data-href-match="">
+                合作伙伴
+              </a>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_4" href="" data-href-match="">
+                资源
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_4">
+                
+                  <a class="dropdown-item" href="https://test.kaiyuanshe.cn/organization" target="_blank" rel="noopener">开源地图</a>
+                
+                  <a class="dropdown-item" href="/categories/Document">开源文档</a>
+                
+                  <a class="dropdown-item" href="/license-tool/">许可证选择器</a>
+                
+                  <a class="dropdown-item" href="http://mirror.kaiyuanshe.cn/" target="_blank" rel="noopener">开源镜像</a>
+                
+                  <a class="dropdown-item" href="https://polyfill.kaiyuanshe.cn/" target="_blank" rel="noopener">Web 标准补丁服务</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_5" href="" data-href-match="">
+                关于
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_5">
+                
+                  <a class="dropdown-item" href="/profile/about">介绍</a>
+                
+                  <a class="dropdown-item" href="/profile/structure">组织架构</a>
+                
+                  <a class="dropdown-item" href="/governance">工作组</a>
+                
+                  <a class="dropdown-item" href="/profile/charter">章程</a>
+                
+                  <a class="dropdown-item" href="/categories/Meeting">会议纪要</a>
+                
+              </div>
+            
+          </div>
+        
+        <form action="search/" class="ais-search-box">
+          <input type="search" name="keyword" required placeholder="搜索"
+            id="search-input" class="nav-search ais-search-box--input"
+            aria-label="search-box" autocapitalize="off" autocorrect="off" role="textbox">
+        </form>
+        <a class="site-header-nav-item octicon"
+          href="https://github.com/kaiyuanshe/"
+          title="Github Organization">
+          <span class="mega-octicon octicon-mark-github vertical-middle"></span>
+        </a>
+        <a class="site-header-nav-item bordered lang-select-button" href="#Language" data-toggle="collapse">
+          中文
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <div id="Language" class="container collapse">
+  <div class="m-4">
+    <div class="text-center-sm mb-4">
+      <strong>请选择语言</strong>
+    </div>
+    <div class="clearfix">
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/en-US" target="_blank" rel="noopener">
+          English
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ja-JP" target="_blank" rel="noopener">
+          日本語
+          
+          (Japanese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/es-ES" target="_blank" rel="noopener">
+          Español
+          
+          (Spanish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/zh-CN" target="_blank" rel="noopener">
+          中文
+          
+          (Chinese Simplified)
+          
+        </a>
+        
+        <span class="faint"><span class="octicon octicon-check mr-1"></span></span>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/tr-TR" target="_blank" rel="noopener">
+          Türkçe
+          
+          (Turkish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/id-ID" target="_blank" rel="noopener">
+          Indonesian
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fil-PH" target="_blank" rel="noopener">
+          Filipino
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fr-FR" target="_blank" rel="noopener">
+          Français
+          
+          (French)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ru-RU" target="_blank" rel="noopener">
+          Русский
+          
+          (Russian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ko-KR" target="_blank" rel="noopener">
+          한국어
+          
+          (Korean)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/it-IT" target="_blank" rel="noopener">
+          Italiano
+          
+          (Italian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/pt-BR" target="_blank" rel="noopener">
+          Português
+          
+          (Portuguese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/de-DE" target="_blank" rel="noopener">
+          Deutsch
+          
+          (German)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/uk-UA" target="_blank" rel="noopener">
+          Українська
+          
+          (Ukrainian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/zh-TW" target="_blank" rel="noopener">
+          中文
+          
+          (Chinese Traditional)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/pl-PL" target="_blank" rel="noopener">
+          język polski
+          
+          (Polish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/bg-BG" target="_blank" rel="noopener">
+          български език
+          
+          (Bulgarian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/hi-IN" target="_blank" rel="noopener">
+          हिन्दी
+          
+          (Hindi)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/nl-NL" target="_blank" rel="noopener">
+          Nederlands
+          
+          (Dutch)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/vi-VN" target="_blank" rel="noopener">
+          Tiếng Việt
+          
+          (Vietnamese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ar-SA" target="_blank" rel="noopener">
+          اللغة العربية
+          
+          (Arabic)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fa-IR" target="_blank" rel="noopener">
+          فارسی
+          
+          (Persian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/cs-CZ" target="_blank" rel="noopener">
+          čeština
+          
+          (Czech)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/th-TH" target="_blank" rel="noopener">
+          ไทย
+          
+          (Thai)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/he-IL" target="_blank" rel="noopener">
+          עברית
+          
+          (Hebrew)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ro-RO" target="_blank" rel="noopener">
+          limba română
+          
+          (Romanian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/tl-PH" target="_blank" rel="noopener">
+          Wikang Tagalog
+          
+          (Tagalog)
+          
+        </a>
+        
+      </div>
+      
+    </div>
+    <hr>
+    <div class="text-center-sm">
+      <a href="https://electronjs.org/languages" target="_blank" rel="noopener">查看更多语言详情</a>
+    </div>
+  </div>
+</div>
+
+
+  <style>
+  .blog-post hr:first-of-type {
+    display: block;
+  }
+</style>
+
+
+
+<section class="page-section blog-post">
+  <div class="container">
+    <h1>“大玩家” 微软的开源之路 | 世界顶级企业开源故事系列之一</h1>
+
+    
+
+    
+
+<div class="blog-byline mt-2 mb-4 d-flex justify-content-between align-items-center">
+  <span class="blog-index-time">2018-06-15 15:11:00</span>
+
+
+  <a class="author-link ml-3 text-center" href="https://github.com/tedliu1" target="_blank" rel="noopener">
+    <img
+      class="avatar mr-2"
+      style="max-width: 2.25rem"
+      src="https://github.com/tedliu1.png?size=36"
+      alt="tedliu1"
+    >
+    tedliu1
+  </a>
+
+
+  <span>
+    
+      <a class="badge badge-primary" href="categories/Article/">
+        Article
+      </a>
+    
+      <a class="badge badge-primary" href="categories/Article/enterprise/">
+        enterprise
+      </a>
+    
+    
+  </span>
+</div>
+
+
+    
+
+    <details>
+      <summary>正文大纲</summary>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-开源在微软"><span class="toc-text">1. 开源在微软</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-认真地开源"><span class="toc-text">2. 认真地开源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-业务和计划目标"><span class="toc-text">3. 业务和计划目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-管理的工具"><span class="toc-text">4. 管理的工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-简化开源使用"><span class="toc-text">5. 简化开源使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#致谢"><span class="toc-text">致谢</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于受访者"><span class="toc-text">关于受访者</span></a></li></ol>
+    </details>
+
+    <main class="markdown-body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="1-开源在微软"><a href="#1-开源在微软" class="headerlink" title="1. 开源在微软"></a>1. 开源在微软</h2><img src="/article/enterprise/big-players-microsoft-open-source-road/9hjcovrlsk.webp" class="">
+
+<p>微软现在是开源领域公认的大玩家，但就在几年前，这样的角色对这个软件巨头似乎是不可想象的。微软从一个占有市场领先地位的专有软件制造商，以超乎想象的大动作实现开源，令许多人感到惊讶。虽然该公司的故事是引人注目的，它的开源旅程不是像表面看起来那样地突然或意想不到。</p>
+<blockquote>
+<p>尽管坊间有各种看法，微软其实已经做了相当一段时间的开源。起初，这些实验性的片断散布各处，但大约六年前，在 2011 年，我们聚焦成立了 <strong>微软开放技术 (MS Open Technologies)</strong> 子公司 “</p>
+<p>—— Jeff McAffer，微软开源计划办公室主任</p>
+</blockquote>
+<a id="more"></a>
+
+<h2 id="2-认真地开源"><a href="#2-认真地开源" class="headerlink" title="2. 认真地开源"></a>2. 认真地开源</h2><img src="/article/enterprise/big-players-microsoft-open-source-road/2idrzmd4slk.webp" class="">
+
+<p>McAffer 说：“就是从这时候起，微软开始认真地探索如何运用开源软件。在早期，如果公司中的任何人都对开源感兴趣，他们就会来到这个集中的小组，寻求来自开源开发者、贡献者和维护者的帮助。”</p>
+<p>大约三年前，事情开始发生变化。微软决定让开源在整个公司中普及，并将开源融入主要的工程团队。</p>
+<p>“假如我们只做了这些事，那么我们在开源的作为上将只会留下一个站不住脚的空白，”McAffer 说，“有人必须考虑政策，协调所有的开源努力，将使用的流程和工具，如何跟踪项目，等等。因此，我们创建了现在的开源计划办公室来处理所有这些问题。”</p>
+<p>来自早期开源小组的一些技术人员搬到了新成立的开源计划办公室，而其他人则加入了与他们的工作相关的工程小组。事实证明，微软需要额外的人才，以确保所有项目和流程都有足够的人才来驾驭，因此，内部和外部的招聘工作很快就开展起来了。今天，开源是微软全球工作的一个蓬勃发展的部分。</p>
+<h2 id="3-业务和计划目标"><a href="#3-业务和计划目标" class="headerlink" title="3. 业务和计划目标"></a>3. 业务和计划目标</h2><img src="/article/enterprise/big-players-microsoft-open-source-road/1e3as4svntb.webp" class="">
+
+<p>微软并没有一个中央开源战略或一个中央审批机构。取而代之的是，开源计划办公室促进了整个公司的讨论和决策。各个团队仍需要对其开源参与进行审查，但大多数是在该团队里进行。</p>
+<p><strong>“每个团队知道他们自己的业务，理解自己希望技术互动如何运作，在生态系统方面向什么方向驱动，以及所有需要发生的细微差别。”McAffer 说。</strong></p>
+<p><strong>“我们把大部分的决定和方向都交给当地的管理部门决定，但是我们给他们一个架构来考虑这些决定和方向。我们的确有关于如何管理 IP（知识产权）的中央政策，以及我们如何处理安全问题。我们提供工具和流程，体现了这些政策，使其超级简便，让他们能以连贯而具体的方式执行。”</strong></p>
+<h2 id="4-管理的工具"><a href="#4-管理的工具" class="headerlink" title="4. 管理的工具"></a>4. 管理的工具</h2><img src="/article/enterprise/big-players-microsoft-open-source-road/3oe9cpd775y.webp" class="">
+
+<p>Microsoft 的政策归结为处理工作负载的流程，然后相应地进行调整。一个例子是开源版本发布。根据我们的政策，版本发布是在 GitHub 上进行的。</p>
+<p><strong>“我们在 GitHub 上有一堆工具，在那里我们管理大约 100 个组织的 1 万多代码仓库，大约 1.2 万微软人在这个空间里互动。”McAffer 说。</strong></p>
+<p><strong>“达到了这样的规模，你真的需要一个系统来管理许多方面。”例如，当人们想为正在运行的某个项目做出贡献时，我们需要工具来帮助管理贡献者许可协议 (Contributor License Agreement-CLA)。对于所有这些事情，我们要么自己建立了解决方案，要么转而寻求开源解决方案。例如，对于贡献者许可协议管理，Microsoft 使用了“CLA 助手”，一个源于 SAP 开发的开源程序。</strong></p>
+<p><strong>“在 GitHub 管理方面，我们走了另一个方向，因为目前还没有一套工具来帮助管理 GitHub 上的企业的活动，”McAffer 说，“因此，我们最终在 GitHub 创建了一个开源门户网站，而我们也将这个门户网站开源了。”</strong></p>
+<p>类似 GitHub 上的这些元素很容易在微软自己的开源门户网站 <a href="https://opensource.microsoft.com" target="_blank" rel="noopener">https://opensource.microsoft.com</a> 上看到，而微软员工在内部也用同样的方式来管理代码仓库和团队。</p>
+<p><strong>McAffer 解释说：“我们也将其开源，其他公司学会了以后，开始在内部使用，因此，这是一个双向的互动。”</strong></p>
+<p>GitHub 是一个非常丰富的环境，在那里有很多的互动是可能的。与许多公司一样，微软发现很难跟踪所有正在进行的事情，并了解自己所有代码仓库的情况。</p>
+<p><strong>“我们最终参与了 GHTorrent 项目。我们与他们携手做了相当多的工作，而现在正实际上赞助 GHTorrent 项目，例如支付所有的 Azure 云计算资源费用。”</strong></p>
+<p>GHTorrent 不但帮助微软了解其在 GitHub 发生的事，同时也帮助了它自己了解内部的项目。即便如此，也有一些 GHTorrent 尚未做到的事情，例如与拥有私有代码库以及关切细致数据管理权限的团队的协同工作。</p>
+<p>微软最终创建了另一个名为 <strong>GHCrawler</strong> 的开源系统。此工具将 GitHub 中的所有内容跟踪到提交的层级、团队和权限更改。然后，数据将用于度量和跟踪分析，以发现一些洞察力，例如，拉请求 (pull requests) 的数量有多少，回应速度有多快，需要多久才能结案或合并。“<strong>这给了我们一个追踪我们的表现的方法</strong>”，McAffer 说。</p>
+<h2 id="5-简化开源使用"><a href="#5-简化开源使用" class="headerlink" title="5. 简化开源使用"></a>5. 简化开源使用</h2><img src="/article/enterprise/big-players-microsoft-open-source-road/7chstqxcqww.webp" class="">
+
+<p>在微软，开源的消费是一个完全不同的问题，也是一个不同的流程。微软公司以多种方式使用开源，对其进行全面跟踪和管理法律与安全等方方面面的需求是巨大的。</p>
+<p>“我们做了大量的工作来简化开源的使用流程和政策，真正了解微软作为负责任的开源消费者的重要品质，如何做对的事，并确保我们遵守许可证。”McAffer 说。</p>
+<p>McAffer 继续说“为此，我们在内部编写了大量的工具来发掘、跟踪和监视发生的事情，并报告开源的使用情况。”这些工具也往往具有一定的专有性质，因为它们与 Microsoft 的工程系统紧密集成在一起。</p>
+<p>“我们一直在试图梳理我们自己使用的工具，寻求让更多的开源社区可以更广泛地受益的方法，但有点困难的是，这些工具在许多方面和我们的业务政策或我们的工程系统是非常具体联结的，并不适用与所有人。”McAffer 说。</p>
+<p><strong>多年来，Microsoft 开源的旅程一直是一个真正植基于开源精神且有趣的过程，在这一进程中，我们将持续地分享我们从工具到代码里所学到的东西给所有人。</strong></p>
+<h2 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h2><p>我们要感谢来自微软的高级开源项目经理 <em>Carol Smith</em> 和微软开源计划办公室主任 <em>Jeff McAffer</em> 接受采访。</p>
+<p>我们还要感谢 <em>Pam Baker</em> 的采访。</p>
+<h2 id="关于受访者"><a href="#关于受访者" class="headerlink" title="关于受访者"></a>关于受访者</h2><figure>
+<img src="/article/enterprise/big-players-microsoft-open-source-road/whesmpdnj.webp" class="">
+  <figcaption>Jeff McAffer</figcaption>
+</figure>
+
+<p><em>Jeff McAffer</em> 有超过 25 年的经验，领导诸多有影响力、以高性能指标来管理的软件开发团队。他的主要兴趣在于“平台”，使人们能够创建和部署可扩展的系统。特别是，作为微软开源计划办公室的主任，杰夫正在推动微软的工程实践和与开源社区的接触。</p>
+<p>他是开源版 Eclipse 的工具和运行时成就的创始人和架构师之一，是 Eclipse 创始的社区和生态系统建设的关键人物，同时还写了几本书，他还是 Eclipse 和 OSGi 社区的著名演讲者。</p>
+<p>在他的职业生涯中，他曾在包括模块化的运行时、集成式开发环境、语言设计、分布式和大规模并行系统、仿真、专家系统和虚拟机设计等领域工作。</p>
+<p>在大型企业和小型创业公司工作时，他担任过首席研究官、创始人/创业家、董事和经理，以及远见家、建筑师、项目/团队领导、设计师和实施者的角色。</p>
+<p>他在开源项目 (Eclipse) 开放规范 (OSGi、JCP、IETF、ANSI)、工业级产品以及纯理论研究项目方面有着深厚的经验。</p>
+<p>Jeff 的<strong>专长</strong>：开源、组件设计、部署、资源调配、Eclipse、Equinox、RCP、OSGi、Node、Java 和 Smalltalk。</p>
+<hr>
+<img src="/article/enterprise/big-players-microsoft-open-source-road/1xfnw4olsvb.webp" class="">
+</main>
+
+    
+  </div>
+</section>
+
+<nav class="page-section text-center">
+  <div class="btn-group" role="group" aria-label="Post navigator">
+    
+    <a class="btn btn-secondary" role="button" href="article/enterprise/salesforce-open-source-story/">
+      &lt; Salesforce 的开源故事 | 世界顶级企业开源故事系列之二
+    </a>
+    
+    <a class="btn btn-secondary" role="button" href="article/github/how-to-participate-in-open-source/">
+      如何参与开源 | GitHub 开源指南系列之一 &gt;
+    </a>
+    
+  </div>
+</nav>
+
+<script>
+(function () {
+
+  var path = self.location.href.split('#')[0];
+
+  $('details > .toc a[href]').attr('href', function (_, value) {
+
+    return path + value;
+  });
+
+  $('.blog-post').find('h1, h2, h3, h4, h5, h6').append(function () {
+
+    if ( this.id.trim() )
+      return '<a class="header-link" title="Permalink" href="' +
+        path + '#' + this.id +
+        '"><span class="octicon octicon-link"></span></a>';
+  });
+})();
+</script>
+
+
+  <footer class="footer">
+    <div class="container">
+      <nav class="footer-nav">
+        
+          <a class="footer-nav-item active" href="/categories/Activity/">
+            活动
+          </a>
+        
+          <a class="footer-nav-item " href="/page/2">
+            博客
+          </a>
+        
+          <a class="footer-nav-item " href="/profile/charter">
+            章程
+          </a>
+        
+          <a class="footer-nav-item " href="https://github.com/kaiyuanshe/kaiyuanshe.github.io/tree/hexo/License" target="_blank" rel="noopener">
+            许可
+          </a>
+        
+          <a class="footer-nav-item " href="/profile/contact">
+            联系我们
+          </a>
+        
+          <a class="footer-nav-item " href="https://git-pager.avosapps.us/?repository=kaiyuanshe/Wiki" target="_blank" rel="noopener">
+            协作编辑
+          </a>
+        
+      </nav>
+      <span class="col">沪 ICP 备 19006015 号</span>
+      <span class="col">公安备案 31011202006203 号</span>
+
+      <span class="footer-social">
+        
+          <a class="footer-nav-item icon"
+            href="https://github.com/kaiyuanshe"
+            title="Github Organization">
+            <i class="devicon-github-plain vertical-middle"></i>
+          </a>
+        
+          <a class="footer-nav-item icon"
+            href="https://twitter.com/contactkaiyuan1"
+            title="@contactkaiyuan1 on Twitter">
+            <i class="devicon-twitter-plain vertical-middle"></i>
+          </a>
+        
+          <a class="footer-nav-item icon"
+            href="https://www.facebook.com/kaiyuanshe.china"
+            title="Facebook account">
+            <i class="devicon-facebook-plain vertical-middle"></i>
+          </a>
+        
+      </span>
+    </div>
+  </footer>
+  <script src="library/virtual-anchor-sdk.js"></script>
+  <script>
+    new VirtualAnchor({ id: '191be2ab-8c6e-6201-c419-3ef2d26eadf2' });
+  </script>
+</body>
+
+</html>

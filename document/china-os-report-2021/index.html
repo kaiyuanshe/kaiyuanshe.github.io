@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+
+  <title>开源社</title>
+
+  
+  <meta name="description" content="引言 开源，在 2021 年，火了，而且是燎原烈火，烧的焮天铄地，可以说是中国开源迅猛发展的元年也不为过。我们看到，在开源领域上，国策的重点扶持、资本的加码青睐、社区的联合推广、教育的持续深入……这些无不都在昭示着一个趋势——中国开源已经向高水平、高质量和高层次的态势不断迈进，正处于发展曲线上升期的关键历史阶段。 而在这个阶段里，如何观察中国开源现状，如何预测中国开源发展方向，如何让中国开源更好地">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="2021 中国开源年度报告">
+<meta property="og:url" content="http://kaiyuanshe.cn/document/china-os-report-2021/index.html">
+<meta property="og:site_name" content="开源社">
+<meta property="og:description" content="引言 开源，在 2021 年，火了，而且是燎原烈火，烧的焮天铄地，可以说是中国开源迅猛发展的元年也不为过。我们看到，在开源领域上，国策的重点扶持、资本的加码青睐、社区的联合推广、教育的持续深入……这些无不都在昭示着一个趋势——中国开源已经向高水平、高质量和高层次的态势不断迈进，正处于发展曲线上升期的关键历史阶段。 而在这个阶段里，如何观察中国开源现状，如何预测中国开源发展方向，如何让中国开源更好地">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://kaiyuanshe.cn/image/Heart_of_Community.png">
+<meta property="article:published_time" content="2022-01-26T00:00:00.000Z">
+<meta property="article:modified_time" content="2024-04-05T20:16:41.607Z">
+<meta property="article:author" content="shiy2008@gmail.com">
+<meta property="article:tag" content="开源">
+<meta property="article:tag" content="社区">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kaiyuanshe.cn/image/Heart_of_Community.png">
+<meta name="twitter:site" content="contactkaiyuan1">
+  <meta name="author" content="shiy2008@gmail.com">
+  <meta name="generator" content="hexo">
+  <meta name="theme-color" content="#2f3241">
+
+  <!-- consumed by scripts/get-localized-strings -->
+  <meta name="localized.clipboard.copy" content="Copy">
+  <meta name="localized.clipboard.copy_to_clipboard" content="复制到剪贴板">
+  <meta name="localized.clipboard.copied" content="已复制">
+
+  <base href="/">
+
+  <link rel="shortcut icon" href="image/KaiYuanShe-logo.png">
+
+  <link rel="stylesheet" href="https://npm.webcache.cn/github-markdown-css@5.5.1/github-markdown-light.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/devicon@2.16.0/devicon.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/highlight.js@9.18.5/styles/dark.css">
+  <link rel="stylesheet" href="library/index.css">
+  <link rel="stylesheet" href="common.css">
+  <style>
+    .site-header-nav-item a:link {
+      text-decoration: none;
+    }
+  </style>
+  <script src="https://npm.webcache.cn/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script src="https://npm.webcache.cn/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://npm.webcache.cn/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+  <script src="https://npm.webcache.cn/highlight.js@9.18.5/lib/highlight.js"></script>
+  <script src="common.js" defer async></script>
+</head>
+
+<body>
+  <div class="alert alert-danger mb-0 text-center" role="alert">
+    开源社官网（2019 版）已存档、只读，请移步
+    <a href="https://kaiyuanshe.cn" class="alert-link">2022 版官网</a>
+    关注最新信息~
+  </div>
+
+  <header class="site-header">
+    <div class="container">
+
+      <a class="site-header-logo no-underline-hover" href=".">
+        <img class="site-header-icon" src="image/KaiYuanShe-logo.png">
+        开源社
+      </a>
+
+      <nav class="site-header-nav">
+        
+          <div class="site-header-nav-item">
+            
+              <a role="button" href="/categories/Activity/Summit/" data-href-match="">
+                年度大会
+              </a>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_1" href="" data-href-match="">
+                资讯
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_1">
+                
+                  <a class="dropdown-item" href="/categories/Activity/">活动</a>
+                
+                  <a class="dropdown-item" href="/blog/">博客</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_2" href="" data-href-match="">
+                成员
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_2">
+                
+                  <a class="dropdown-item" href="/members/">正式成员</a>
+                
+                  <a class="dropdown-item" href="https://kaiyuanshe.feishu.cn/share/base/shrcnfO89tYlYIjZpS5PXJBaK2f" target="_blank" rel="noopener">加入我们</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a role="button" href="/partners" data-href-match="">
+                合作伙伴
+              </a>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_4" href="" data-href-match="">
+                资源
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_4">
+                
+                  <a class="dropdown-item" href="https://test.kaiyuanshe.cn/organization" target="_blank" rel="noopener">开源地图</a>
+                
+                  <a class="dropdown-item" href="/categories/Document">开源文档</a>
+                
+                  <a class="dropdown-item" href="/license-tool/">许可证选择器</a>
+                
+                  <a class="dropdown-item" href="http://mirror.kaiyuanshe.cn/" target="_blank" rel="noopener">开源镜像</a>
+                
+                  <a class="dropdown-item" href="https://polyfill.kaiyuanshe.cn/" target="_blank" rel="noopener">Web 标准补丁服务</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_5" href="" data-href-match="">
+                关于
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_5">
+                
+                  <a class="dropdown-item" href="/profile/about">介绍</a>
+                
+                  <a class="dropdown-item" href="/profile/structure">组织架构</a>
+                
+                  <a class="dropdown-item" href="/governance">工作组</a>
+                
+                  <a class="dropdown-item" href="/profile/charter">章程</a>
+                
+                  <a class="dropdown-item" href="/categories/Meeting">会议纪要</a>
+                
+              </div>
+            
+          </div>
+        
+        <form action="search/" class="ais-search-box">
+          <input type="search" name="keyword" required placeholder="搜索"
+            id="search-input" class="nav-search ais-search-box--input"
+            aria-label="search-box" autocapitalize="off" autocorrect="off" role="textbox">
+        </form>
+        <a class="site-header-nav-item octicon"
+          href="https://github.com/kaiyuanshe/"
+          title="Github Organization">
+          <span class="mega-octicon octicon-mark-github vertical-middle"></span>
+        </a>
+        <a class="site-header-nav-item bordered lang-select-button" href="#Language" data-toggle="collapse">
+          中文
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <div id="Language" class="container collapse">
+  <div class="m-4">
+    <div class="text-center-sm mb-4">
+      <strong>请选择语言</strong>
+    </div>
+    <div class="clearfix">
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/en-US" target="_blank" rel="noopener">
+          English
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ja-JP" target="_blank" rel="noopener">
+          日本語
+          
+          (Japanese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/es-ES" target="_blank" rel="noopener">
+          Español
+          
+          (Spanish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/zh-CN" target="_blank" rel="noopener">
+          中文
+          
+          (Chinese Simplified)
+          
+        </a>
+        
+        <span class="faint"><span class="octicon octicon-check mr-1"></span></span>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/tr-TR" target="_blank" rel="noopener">
+          Türkçe
+          
+          (Turkish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/id-ID" target="_blank" rel="noopener">
+          Indonesian
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fil-PH" target="_blank" rel="noopener">
+          Filipino
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fr-FR" target="_blank" rel="noopener">
+          Français
+          
+          (French)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ru-RU" target="_blank" rel="noopener">
+          Русский
+          
+          (Russian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ko-KR" target="_blank" rel="noopener">
+          한국어
+          
+          (Korean)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/it-IT" target="_blank" rel="noopener">
+          Italiano
+          
+          (Italian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/pt-BR" target="_blank" rel="noopener">
+          Português
+          
+          (Portuguese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/de-DE" target="_blank" rel="noopener">
+          Deutsch
+          
+          (German)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/uk-UA" target="_blank" rel="noopener">
+          Українська
+          
+          (Ukrainian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/zh-TW" target="_blank" rel="noopener">
+          中文
+          
+          (Chinese Traditional)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/pl-PL" target="_blank" rel="noopener">
+          język polski
+          
+          (Polish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/bg-BG" target="_blank" rel="noopener">
+          български език
+          
+          (Bulgarian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/hi-IN" target="_blank" rel="noopener">
+          हिन्दी
+          
+          (Hindi)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/nl-NL" target="_blank" rel="noopener">
+          Nederlands
+          
+          (Dutch)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/vi-VN" target="_blank" rel="noopener">
+          Tiếng Việt
+          
+          (Vietnamese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ar-SA" target="_blank" rel="noopener">
+          اللغة العربية
+          
+          (Arabic)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fa-IR" target="_blank" rel="noopener">
+          فارسی
+          
+          (Persian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/cs-CZ" target="_blank" rel="noopener">
+          čeština
+          
+          (Czech)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/th-TH" target="_blank" rel="noopener">
+          ไทย
+          
+          (Thai)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/he-IL" target="_blank" rel="noopener">
+          עברית
+          
+          (Hebrew)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ro-RO" target="_blank" rel="noopener">
+          limba română
+          
+          (Romanian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/tl-PH" target="_blank" rel="noopener">
+          Wikang Tagalog
+          
+          (Tagalog)
+          
+        </a>
+        
+      </div>
+      
+    </div>
+    <hr>
+    <div class="text-center-sm">
+      <a href="https://electronjs.org/languages" target="_blank" rel="noopener">查看更多语言详情</a>
+    </div>
+  </div>
+</div>
+
+
+  <style>
+  .blog-post hr:first-of-type {
+    display: block;
+  }
+</style>
+
+
+
+<section class="page-section blog-post">
+  <div class="container">
+    <h1>2021 中国开源年度报告</h1>
+
+    
+
+    
+
+<div class="blog-byline mt-2 mb-4 d-flex justify-content-between align-items-center">
+  <span class="blog-index-time">2022-01-26 00:00:00</span>
+
+
+  <a class="author-link ml-3 text-center" href="https://github.com/will-ww" target="_blank" rel="noopener">
+    <img
+      class="avatar mr-2"
+      style="max-width: 2.25rem"
+      src="https://github.com/will-ww.png?size=36"
+      alt="will-ww"
+    >
+    will-ww
+  </a>
+
+  <a class="author-link ml-3 text-center" href="https://github.com/frank-zsy" target="_blank" rel="noopener">
+    <img
+      class="avatar mr-2"
+      style="max-width: 2.25rem"
+      src="https://github.com/frank-zsy.png?size=36"
+      alt="frank-zsy"
+    >
+    frank-zsy
+  </a>
+
+
+  <span>
+    
+      <a class="badge badge-primary" href="categories/Document/">
+        Document
+      </a>
+    
+    
+  </span>
+</div>
+
+
+    
+
+    <details>
+      <summary>正文大纲</summary>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#出圈"><span class="toc-text">出圈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#生态责任"><span class="toc-text">生态责任</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#历史感"><span class="toc-text">历史感</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在线阅读"><span class="toc-text">在线阅读</span></a></li></ol>
+    </details>
+
+    <main class="markdown-body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><blockquote>
+<p>开源，在 2021 年，火了，而且是燎原烈火，烧的焮天铄地，可以说是中国开源迅猛发展的元年也不为过。我们看到，在开源领域上，国策的重点扶持、资本的加码青睐、社区的联合推广、教育的持续深入……这些无不都在昭示着一个趋势——中国开源已经向高水平、高质量和高层次的态势不断迈进，正处于发展曲线上升期的关键历史阶段。 而在这个阶段里，如何观察中国开源现状，如何预测中国开源发展方向，如何让中国开源更好地拥抱世界舞台，已经成为一个重要的研究议题。开源社作为国内最早以 “开源治理、国际接轨、社区发展、开源项目” 为使命的开源社区联合体，早在 2014 年就下定决心要促进中国开源的发展，而今，对外发布的中国开源年度报告已经持续了四年，2021 年，我们联合诸多开源界的朋友们，从开源开发者问卷、Github/Gitee 数据、开源商业化和开源大事记四个方面缓缓展开，制作了此份《2021 中国开源年度报告》，力图向所有关注中国开源的朋友们绘制出一幅清晰、专业、有价值的属于中国开源的年度画卷。</p>
+</blockquote>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>2022 年来了，网上有一个段子，说这不过是“2020 too”，2022 年 1 月，也不过是 2020 年第 25 月。看起来一切都没有变化，我们依然在 COVID 之中。但是，从另一个角度来看，世界正在发生巨变，我们所处的世界，正在高速朝着某个未知的方向前进。</p>
+<p>对于中国开源而言，2021 年的关键词，应该是“助跑”。迹象已经非常明显，工信部信息技术发展司发布了《“十四五”软件和信息技术服务业发展规划》，就是一个典型的信号，开源领域即将起飞了。从地面行走，到天空飞行，这是两个完全不同的阶段。而 2021 年，则是起飞之前的助跑阶段。从地面到天空，意味着整个行为的模式都会发生深刻的变化。我们原来只需要在一个二维平面思考路径与方向，而到了天空，在三维空间里，我们多了无数选择。</p>
+<p>虽然对于未来，对于在空中的状态，我们还无法预测和把握，但是：所有人都在奋力奔跑，奋勇向前。</p>
+<p>去年的中国开源年度报告，我们总结了三个趋势，今年的报告，我们索性新增了《开源大事记》栏目，整整总结了十个趋势。所以在这个前言里，我们就聊聊感想吧。</p>
+<h3 id="出圈"><a href="#出圈" class="headerlink" title="出圈"></a>出圈</h3><p>开源不仅越来越热，而且已经在圈外的朋友中引发了各种讨论。首先是嗅觉灵敏的投资人开始关注开源这个“赛道”，然后是基于中美对抗的背景，很多人开始从国际政治、国家实力、国家安全的角度，来探讨开源（这个原本是纯技术的范畴）。直到最近几起开源软件安全事件，更是令大家议论纷纷。这样一个令人喜忧参半的现象，也许还会继续持续下去。</p>
+<h3 id="生态责任"><a href="#生态责任" class="headerlink" title="生态责任"></a>生态责任</h3><p>在开源还只是一个小众群体的业余爱好时，几乎做任何事情，都是自由的。但是，在软件吞噬世界、开源吞噬软件的今天，开源技术，已经成为整个世界的基础设施之一。能力越大，责任越大。应用越广，风险越高。我们应该如何思考与保障<a href="https://mp.weixin.qq.com/s/NGDxaNWrYiyzP8XJddDW_A" target="_blank" rel="noopener">开源供应链安全</a>呢？应该如何建设更加健康的开源生态呢？在这样一种生态中，各方的责任又该如何界定呢？</p>
+<h3 id="历史感"><a href="#历史感" class="headerlink" title="历史感"></a>历史感</h3><p>开源社已经连续第四年发布中国开源年度报告了，也举办了<a href="https://mp.weixin.qq.com/s/qzv8tf5dY80fBzh7b6jNyg" target="_blank" rel="noopener">第六届中国开源年会</a>了。不断的，在与朋友的交流中，我们常常会谈到：如果开源的事情，我们再做 10 年、再做 20 年将会怎样？如果再过 10 年、20 年，我们再回来看我们这些开源人，所做的这些事情，哪些做对了？哪些做错了？哪些应该更早去做？这样的感受，就是一种“历史感”。当我们更多具备这样的历史感，更多以将来会被人回看的心态，来做这些事情时，我们又该如何抉择？又该如何行动呢？</p>
+<p>当然，千里之行，始于足下。那个我们无限向往的未来，也只能由我们的点滴努力来塑造。与诸位共勉吧！</p>
+<p>庄表伟 2021 开源社理事⻓</p>
+<p>2022 年 1 ⽉ 14 ⽇</p>
+<h2 id="在线阅读"><a href="#在线阅读" class="headerlink" title="在线阅读"></a>在线阅读</h2><iframe src="https://kaiyuanshe.cn/document/china-os-report-2021/2021%20%E4%B8%AD%E5%9B%BD%E5%BC%80%E6%BA%90%E5%B9%B4%E5%BA%A6%E6%8A%A5%E5%91%8A.pdf" width="100%" height="720px" frameborder="0" loading="lazy" allowfullscreen></iframe>
+
+</main>
+
+    
+    <hr>
+    <h2>资料下载</h2>
+    <ol>
+      
+  <li>
+    <a target="_blank" href="document/china-os-report-2021/2021%20%E4%B8%AD%E5%9B%BD%E5%BC%80%E6%BA%90%E5%B9%B4%E5%BA%A6%E6%8A%A5%E5%91%8A.pdf">
+
+      <i class="fas fa-2x fa-file-pdf"></i>
+
+      <span>2021 中国开源年度报告.pdf</span>
+    </a>
+  </li>
+
+
+    </ol>
+    
+  </div>
+</section>
+
+<nav class="page-section text-center">
+  <div class="btn-group" role="group" aria-label="Post navigator">
+    
+    <a class="btn btn-secondary" role="button" href="document/china-os-report-2021-jp/">
+      &lt; 2021 中国开源年度报告（日文版）
+    </a>
+    
+    <a class="btn btn-secondary" role="button" href="activity/summit/coscon-2021/">
+      2021 第六届中国开源年会（COSCon&#39;21） &gt;
+    </a>
+    
+  </div>
+</nav>
+
+<script>
+(function () {
+
+  var path = self.location.href.split('#')[0];
+
+  $('details > .toc a[href]').attr('href', function (_, value) {
+
+    return path + value;
+  });
+
+  $('.blog-post').find('h1, h2, h3, h4, h5, h6').append(function () {
+
+    if ( this.id.trim() )
+      return '<a class="header-link" title="Permalink" href="' +
+        path + '#' + this.id +
+        '"><span class="octicon octicon-link"></span></a>';
+  });
+})();
+</script>
+
+
+  <footer class="footer">
+    <div class="container">
+      <nav class="footer-nav">
+        
+          <a class="footer-nav-item active" href="/categories/Activity/">
+            活动
+          </a>
+        
+          <a class="footer-nav-item " href="/page/2">
+            博客
+          </a>
+        
+          <a class="footer-nav-item " href="/profile/charter">
+            章程
+          </a>
+        
+          <a class="footer-nav-item " href="https://github.com/kaiyuanshe/kaiyuanshe.github.io/tree/hexo/License" target="_blank" rel="noopener">
+            许可
+          </a>
+        
+          <a class="footer-nav-item " href="/profile/contact">
+            联系我们
+          </a>
+        
+          <a class="footer-nav-item " href="https://git-pager.avosapps.us/?repository=kaiyuanshe/Wiki" target="_blank" rel="noopener">
+            协作编辑
+          </a>
+        
+      </nav>
+      <span class="col">沪 ICP 备 19006015 号</span>
+      <span class="col">公安备案 31011202006203 号</span>
+
+      <span class="footer-social">
+        
+          <a class="footer-nav-item icon"
+            href="https://github.com/kaiyuanshe"
+            title="Github Organization">
+            <i class="devicon-github-plain vertical-middle"></i>
+          </a>
+        
+          <a class="footer-nav-item icon"
+            href="https://twitter.com/contactkaiyuan1"
+            title="@contactkaiyuan1 on Twitter">
+            <i class="devicon-twitter-plain vertical-middle"></i>
+          </a>
+        
+          <a class="footer-nav-item icon"
+            href="https://www.facebook.com/kaiyuanshe.china"
+            title="Facebook account">
+            <i class="devicon-facebook-plain vertical-middle"></i>
+          </a>
+        
+      </span>
+    </div>
+  </footer>
+  <script src="library/virtual-anchor-sdk.js"></script>
+  <script>
+    new VirtualAnchor({ id: '191be2ab-8c6e-6201-c419-3ef2d26eadf2' });
+  </script>
+</body>
+
+</html>

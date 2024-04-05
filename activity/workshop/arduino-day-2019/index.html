@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+
+  <title>开源社</title>
+
+  
+  <meta name="description" content="本期编辑：Sylvia Shu Arduino 是目前全球使用最广泛的开源硬件平台，由意大利 Ivrea 交互设计学院的师生于 2005 年开发，具有便捷灵活、方便上手的特点，有利于进行零基础跨学科背景的设计开发。 每年 3 月 16 日，Arduino 会举行全球范围的生日庆典，今年的庆典包括有分布于 103 个国家地区的 602 场认证活动。其中，北京地区的 Arduino Day 活动由">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Arduino Day 2019">
+<meta property="og:url" content="http://kaiyuanshe.cn/activity/workshop/arduino-day-2019/index.html">
+<meta property="og:site_name" content="开源社">
+<meta property="og:description" content="本期编辑：Sylvia Shu Arduino 是目前全球使用最广泛的开源硬件平台，由意大利 Ivrea 交互设计学院的师生于 2005 年开发，具有便捷灵活、方便上手的特点，有利于进行零基础跨学科背景的设计开发。 每年 3 月 16 日，Arduino 会举行全球范围的生日庆典，今年的庆典包括有分布于 103 个国家地区的 602 场认证活动。其中，北京地区的 Arduino Day 活动由">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://kaiyuanshe.cn/activity/workshop/arduino-day-2019/1naqrk1obsx.png">
+<meta property="og:image" content="http://kaiyuanshe.cn/activity/workshop/arduino-day-2019/1gcwu4v3taz.png">
+<meta property="og:image" content="http://kaiyuanshe.cn/activity/workshop/arduino-day-2019/4uymesizd1c.png">
+<meta property="og:image" content="http://kaiyuanshe.cn/activity/workshop/arduino-day-2019/bj0csnm9ml.png">
+<meta property="og:image" content="http://kaiyuanshe.cn/activity/workshop/arduino-day-2019/4z997hti5r.png">
+<meta property="og:image" content="http://kaiyuanshe.cn/activity/workshop/arduino-day-2019/28hlq6xcs27.png">
+<meta property="og:image" content="http://kaiyuanshe.cn/activity/workshop/arduino-day-2019/2gumaej5eb0.png">
+<meta property="og:image" content="http://kaiyuanshe.cn/activity/workshop/arduino-day-2019/12f11ontyf5.png">
+<meta property="og:image" content="http://kaiyuanshe.cn/activity/workshop/arduino-day-2019/15fm5uf5l79.png">
+<meta property="article:published_time" content="2019-03-13T00:00:00.000Z">
+<meta property="article:modified_time" content="2024-04-05T20:16:41.271Z">
+<meta property="article:author" content="shiy2008@gmail.com">
+<meta property="article:tag" content="hardware">
+<meta property="article:tag" content="Arduino">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://kaiyuanshe.cn/activity/workshop/arduino-day-2019/1naqrk1obsx.png">
+<meta name="twitter:site" content="contactkaiyuan1">
+  <meta name="author" content="shiy2008@gmail.com">
+  <meta name="generator" content="hexo">
+  <meta name="theme-color" content="#2f3241">
+
+  <!-- consumed by scripts/get-localized-strings -->
+  <meta name="localized.clipboard.copy" content="Copy">
+  <meta name="localized.clipboard.copy_to_clipboard" content="复制到剪贴板">
+  <meta name="localized.clipboard.copied" content="已复制">
+
+  <base href="/">
+
+  <link rel="shortcut icon" href="image/KaiYuanShe-logo.png">
+
+  <link rel="stylesheet" href="https://npm.webcache.cn/github-markdown-css@5.5.1/github-markdown-light.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/devicon@2.16.0/devicon.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/highlight.js@9.18.5/styles/dark.css">
+  <link rel="stylesheet" href="library/index.css">
+  <link rel="stylesheet" href="common.css">
+  <style>
+    .site-header-nav-item a:link {
+      text-decoration: none;
+    }
+  </style>
+  <script src="https://npm.webcache.cn/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script src="https://npm.webcache.cn/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://npm.webcache.cn/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+  <script src="https://npm.webcache.cn/highlight.js@9.18.5/lib/highlight.js"></script>
+  <script src="common.js" defer async></script>
+</head>
+
+<body>
+  <div class="alert alert-danger mb-0 text-center" role="alert">
+    开源社官网（2019 版）已存档、只读，请移步
+    <a href="https://kaiyuanshe.cn" class="alert-link">2022 版官网</a>
+    关注最新信息~
+  </div>
+
+  <header class="site-header">
+    <div class="container">
+
+      <a class="site-header-logo no-underline-hover" href=".">
+        <img class="site-header-icon" src="image/KaiYuanShe-logo.png">
+        开源社
+      </a>
+
+      <nav class="site-header-nav">
+        
+          <div class="site-header-nav-item">
+            
+              <a role="button" href="/categories/Activity/Summit/" data-href-match="">
+                年度大会
+              </a>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_1" href="" data-href-match="">
+                资讯
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_1">
+                
+                  <a class="dropdown-item" href="/categories/Activity/">活动</a>
+                
+                  <a class="dropdown-item" href="/blog/">博客</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_2" href="" data-href-match="">
+                成员
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_2">
+                
+                  <a class="dropdown-item" href="/members/">正式成员</a>
+                
+                  <a class="dropdown-item" href="https://kaiyuanshe.feishu.cn/share/base/shrcnfO89tYlYIjZpS5PXJBaK2f" target="_blank" rel="noopener">加入我们</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a role="button" href="/partners" data-href-match="">
+                合作伙伴
+              </a>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_4" href="" data-href-match="">
+                资源
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_4">
+                
+                  <a class="dropdown-item" href="https://test.kaiyuanshe.cn/organization" target="_blank" rel="noopener">开源地图</a>
+                
+                  <a class="dropdown-item" href="/categories/Document">开源文档</a>
+                
+                  <a class="dropdown-item" href="/license-tool/">许可证选择器</a>
+                
+                  <a class="dropdown-item" href="http://mirror.kaiyuanshe.cn/" target="_blank" rel="noopener">开源镜像</a>
+                
+                  <a class="dropdown-item" href="https://polyfill.kaiyuanshe.cn/" target="_blank" rel="noopener">Web 标准补丁服务</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_5" href="" data-href-match="">
+                关于
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_5">
+                
+                  <a class="dropdown-item" href="/profile/about">介绍</a>
+                
+                  <a class="dropdown-item" href="/profile/structure">组织架构</a>
+                
+                  <a class="dropdown-item" href="/governance">工作组</a>
+                
+                  <a class="dropdown-item" href="/profile/charter">章程</a>
+                
+                  <a class="dropdown-item" href="/categories/Meeting">会议纪要</a>
+                
+              </div>
+            
+          </div>
+        
+        <form action="search/" class="ais-search-box">
+          <input type="search" name="keyword" required placeholder="搜索"
+            id="search-input" class="nav-search ais-search-box--input"
+            aria-label="search-box" autocapitalize="off" autocorrect="off" role="textbox">
+        </form>
+        <a class="site-header-nav-item octicon"
+          href="https://github.com/kaiyuanshe/"
+          title="Github Organization">
+          <span class="mega-octicon octicon-mark-github vertical-middle"></span>
+        </a>
+        <a class="site-header-nav-item bordered lang-select-button" href="#Language" data-toggle="collapse">
+          中文
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <div id="Language" class="container collapse">
+  <div class="m-4">
+    <div class="text-center-sm mb-4">
+      <strong>请选择语言</strong>
+    </div>
+    <div class="clearfix">
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/en-US" target="_blank" rel="noopener">
+          English
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ja-JP" target="_blank" rel="noopener">
+          日本語
+          
+          (Japanese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/es-ES" target="_blank" rel="noopener">
+          Español
+          
+          (Spanish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/zh-CN" target="_blank" rel="noopener">
+          中文
+          
+          (Chinese Simplified)
+          
+        </a>
+        
+        <span class="faint"><span class="octicon octicon-check mr-1"></span></span>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/tr-TR" target="_blank" rel="noopener">
+          Türkçe
+          
+          (Turkish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/id-ID" target="_blank" rel="noopener">
+          Indonesian
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fil-PH" target="_blank" rel="noopener">
+          Filipino
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fr-FR" target="_blank" rel="noopener">
+          Français
+          
+          (French)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ru-RU" target="_blank" rel="noopener">
+          Русский
+          
+          (Russian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ko-KR" target="_blank" rel="noopener">
+          한국어
+          
+          (Korean)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/it-IT" target="_blank" rel="noopener">
+          Italiano
+          
+          (Italian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/pt-BR" target="_blank" rel="noopener">
+          Português
+          
+          (Portuguese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/de-DE" target="_blank" rel="noopener">
+          Deutsch
+          
+          (German)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/uk-UA" target="_blank" rel="noopener">
+          Українська
+          
+          (Ukrainian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/zh-TW" target="_blank" rel="noopener">
+          中文
+          
+          (Chinese Traditional)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/pl-PL" target="_blank" rel="noopener">
+          język polski
+          
+          (Polish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/bg-BG" target="_blank" rel="noopener">
+          български език
+          
+          (Bulgarian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/hi-IN" target="_blank" rel="noopener">
+          हिन्दी
+          
+          (Hindi)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/nl-NL" target="_blank" rel="noopener">
+          Nederlands
+          
+          (Dutch)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/vi-VN" target="_blank" rel="noopener">
+          Tiếng Việt
+          
+          (Vietnamese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ar-SA" target="_blank" rel="noopener">
+          اللغة العربية
+          
+          (Arabic)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fa-IR" target="_blank" rel="noopener">
+          فارسی
+          
+          (Persian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/cs-CZ" target="_blank" rel="noopener">
+          čeština
+          
+          (Czech)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/th-TH" target="_blank" rel="noopener">
+          ไทย
+          
+          (Thai)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/he-IL" target="_blank" rel="noopener">
+          עברית
+          
+          (Hebrew)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ro-RO" target="_blank" rel="noopener">
+          limba română
+          
+          (Romanian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/tl-PH" target="_blank" rel="noopener">
+          Wikang Tagalog
+          
+          (Tagalog)
+          
+        </a>
+        
+      </div>
+      
+    </div>
+    <hr>
+    <div class="text-center-sm">
+      <a href="https://electronjs.org/languages" target="_blank" rel="noopener">查看更多语言详情</a>
+    </div>
+  </div>
+</div>
+
+
+  <style>
+  .blog-post hr:first-of-type {
+    display: block;
+  }
+</style>
+
+
+
+<section class="page-section blog-post">
+  <div class="container">
+    <h1>Arduino Day 2019</h1>
+
+    
+
+    
+
+<div class="blog-byline mt-2 mb-4 d-flex justify-content-between align-items-center">
+  <span class="blog-index-time">2019-03-13 00:00:00</span>
+
+
+  <a class="author-link ml-3 text-center" href="https://github.com/WallaceOS" target="_blank" rel="noopener">
+    <img
+      class="avatar mr-2"
+      style="max-width: 2.25rem"
+      src="https://github.com/WallaceOS.png?size=36"
+      alt="WallaceOS"
+    >
+    WallaceOS
+  </a>
+
+
+  <span>
+    
+      <a class="badge badge-primary" href="categories/Activity/">
+        Activity
+      </a>
+    
+      <a class="badge badge-primary" href="categories/Activity/Workshop/">
+        Workshop
+      </a>
+    
+    
+      <a class="badge badge-primary" href="tags/hardware/">
+          hardware
+      </a>
+    
+      <a class="badge badge-primary" href="tags/Arduino/">
+          Arduino
+      </a>
+    
+  </span>
+</div>
+
+
+    
+
+    <details>
+      <summary>正文大纲</summary>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一项议程-开源硬件-Arduino-的开发应用探索"><span class="toc-text">第一项议程 - 开源硬件 Arduino 的开发应用探索</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二项议程-Arduino-产学研协同创新沙龙"><span class="toc-text">第二项议程 - Arduino 产学研协同创新沙龙</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第三项议程-Arduino-入门工作坊-——-从-0-开始的"><span class="toc-text">第三项议程 - Arduino 入门工作坊 —— 从 0 开始的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#嘉宾介绍"><span class="toc-text">嘉宾介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#李永华"><span class="toc-text">李永华</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#李文波"><span class="toc-text">李文波</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#宣程"><span class="toc-text">宣程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#培训方"><span class="toc-text">培训方</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#报名二维码"><span class="toc-text">报名二维码</span></a></li></ol>
+    </details>
+
+    <main class="markdown-body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><img src="/activity/workshop/arduino-day-2019/1naqrk1obsx.png" class="">
+
+<p>本期编辑：Sylvia Shu</p>
+<p>Arduino 是目前全球使用最广泛的开源硬件平台，由意大利 Ivrea 交互设计学院的师生于 2005 年开发，具有便捷灵活、方便上手的特点，有利于进行零基础跨学科背景的设计开发。</p>
+<p>每年 3 月 16 日，Arduino 会举行全球范围的生日庆典，今年的庆典包括有分布于 103 个国家地区的 602 场认证活动。其中，北京地区的 Arduino Day 活动由开源社和清华大学学生创客空间协会联合举办，将于<strong>3 月 16 日</strong>在<strong>清华大学李兆基科技大楼 B570</strong>举行，欢迎前来交流体验！</p>
+<a id="more"></a>
+
+<h2 id="第一项议程-开源硬件-Arduino-的开发应用探索"><a href="#第一项议程-开源硬件-Arduino-的开发应用探索" class="headerlink" title="第一项议程 - 开源硬件 Arduino 的开发应用探索"></a>第一项议程 - 开源硬件 Arduino 的开发应用探索</h2><p><strong>09:30am - 10:30am</strong></p>
+<img src="/activity/workshop/arduino-day-2019/1gcwu4v3taz.png" class="">
+
+<h2 id="第二项议程-Arduino-产学研协同创新沙龙"><a href="#第二项议程-Arduino-产学研协同创新沙龙" class="headerlink" title="第二项议程 - Arduino 产学研协同创新沙龙"></a>第二项议程 - Arduino 产学研协同创新沙龙</h2><p><strong>10:30am - 11:30am</strong></p>
+<img src="/activity/workshop/arduino-day-2019/4uymesizd1c.png" class="">
+
+<img src="/activity/workshop/arduino-day-2019/bj0csnm9ml.png" class="">
+
+<img src="/activity/workshop/arduino-day-2019/4z997hti5r.png" class="">
+
+<img src="/activity/workshop/arduino-day-2019/28hlq6xcs27.png" class="">
+
+<h2 id="第三项议程-Arduino-入门工作坊-——-从-0-开始的"><a href="#第三项议程-Arduino-入门工作坊-——-从-0-开始的" class="headerlink" title="第三项议程 - Arduino 入门工作坊 —— 从 0 开始的"></a>第三项议程 - Arduino 入门工作坊 —— 从 0 开始的</h2><p><strong>2:00pm - 5:00pm</strong></p>
+<p><strong>自动循迹小车软硬件搭建</strong></p>
+<img src="/activity/workshop/arduino-day-2019/2gumaej5eb0.png" class="">
+
+<h2 id="嘉宾介绍"><a href="#嘉宾介绍" class="headerlink" title="嘉宾介绍"></a>嘉宾介绍</h2><h3 id="李永华"><a href="#李永华" class="headerlink" title="李永华"></a>李永华</h3><p>北京邮电大学工学博士、北京邮电大学信息与通信工程学院副教授。主要研究方向包括物联网、边云协同计算、机器学习及高等工程教育。出版有《Arduino 实战指南》、《Arduino 软硬件协同设计实战指南》、《Arduino 案例实战》（含八册）等著作。在智能硬件和物联网等关键技术领域有多年的研发经历，承担和参与了 30 余项国家级、企业的理论研究和工程实现项目，在国内外学术期刊和会议发表论文 60 多篇，申请专利 40 余项，指导学生完成智能硬件创新 300 余项，出版教材及专著 10 余部，在重大会议物联网及相关研究方向的主题演讲 10 余次。</p>
+<h3 id="李文波"><a href="#李文波" class="headerlink" title="李文波"></a>李文波</h3><p>北京科技大学博士、京东方企业博士后、京东方技术研发专家。在京东方创客实验室主要负责前瞻性、创意性的技术研发以及 Arduino 开源硬件平台的创新应用。目前已通过中国专利授权 217 项（其中发明授权 94 项）、美国授权 75 项，8 次获得专利先进个人，4 次荣获专利个人一等奖，4 次荣获专利团队奖。曾荣获“京东方人”研发英才、北京电控“经济技术创新”标兵、北京市优秀人才、国家高级工程师、北京市科委专家、国家科技部专家等荣誉称号。</p>
+<h3 id="宣程"><a href="#宣程" class="headerlink" title="宣程"></a>宣程</h3><p>清华大学汽车工程系本科、清华大学美术学院信息艺术设计系交叉学科硕士研究生，擅长智能硬件和设计。墨狄机器人创始人，曾任清华创客空间协会会长，清华 GoGlobal 协会联合创始人。中关村 U30 创业大使，清华大学五道口金融学院创业管理和融资实践结业，国家科技传播中心成果转化与高端人才。创办的企业曾获得北京高校大学生优秀创业团队一等奖，中国创翼创业创大赛暨二等奖等奖项，获得 Plug and Play 中国投资，在生命科学和工业方面广泛应用。</p>
+<h2 id="培训方"><a href="#培训方" class="headerlink" title="培训方"></a>培训方</h2><p><strong>清华大学学生创客空间协会</strong></p>
+<img src="/activity/workshop/arduino-day-2019/12f11ontyf5.png" class="">
+
+<h2 id="报名二维码"><a href="#报名二维码" class="headerlink" title="报名二维码"></a>报名二维码</h2><img src="/activity/workshop/arduino-day-2019/15fm5uf5l79.png" class="">
+</main>
+
+    
+    <hr>
+    
+<h2 class="d-flex justify-content-between align-items-center">
+  活动简讯
+  <span>
+    <a class="btn btn-primary" download="Arduino Day 2019.ics"
+      href="data:text/calendar;base64,QkVHSU46VkNBTEVOREFSDQpWRVJTSU9OOjIuMA0KUFJPRElEOi0vL1RyaSBUZWNoIENvbXB1dGVycy8vbm9kZS1pY2FsZW5kYXIvL0VODQpCRUdJTjpWRVZFTlQNClNVTU1BUlk6QXJkdWlubyBEYXkgMjAxOQ0KRFRTVEFSVDoyMDE5MDMxNFQwOTMwMDBaDQpEVEVORDoyMDE5MDMxNFQxNzAwMDBaDQpMT0NBVElPTjrljJfkuqzluILmuIXljY7lpKflrabmnY7lhYbln7rnp5HmioDlpKfmpbwNCkVORDpWRVZFTlQNCkVORDpWQ0FMRU5EQVINCg==">
+      添加日历
+    </a>
+    
+      <a class="btn btn-primary" target="_blank" href="http://thumaker.mikecrm.com/TRuMFbo">
+        报名
+      </a>
+    
+  </span>
+</h2>
+<ul>
+  <li>时间：2019-03-14 09:30:00 ~ 2019-03-14 17:00:00</li>
+  <li>地点：北京市清华大学李兆基科技大楼</li>
+</ul>
+
+  <script src="https://npm.webcache.cn/@babel/polyfill@7.12.1/dist/polyfill.min.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=Promise%2CIntersectionObserver"></script>
+
+<script src="https://npm.webcache.cn/dom-renderer@1.0.3/dist/dom-renderer.min.js"></script>
+<script src="//webapi.amap.com/maps?v=1.4.14&key=8325164e247e15eea68b59e89200988b&plugin=AMap.Geocoder,AMap.AdvancedInfoWindow"></script>
+
+<template>[{&#34;title&#34;:&#34;Arduino Day 2019&#34;,&#34;URL&#34;:&#34;http://kaiyuanshe.cn/activity/workshop/arduino-day-2019/&#34;,&#34;address&#34;:&#34;北京市清华大学李兆基科技大楼&#34;}]</template>
+<template>
+  <div class="pt-2 pl-2 pr-2">
+    <h4>
+      <a href="${view.URL}">${view.title}</a>
+    </h4>
+    <p>${view.address}</p>
+  </div>
+</template>
+<div class="embed-box"></div>
+
+<script>
+(function (main) {
+
+  var box = document.currentScript.previousElementSibling;
+
+  self.addEventListener('load',  function () {
+
+    new IntersectionObserver(function (entry, observer) {
+
+      observer.disconnect();
+
+      main(
+        self['dom-renderer'].default,
+        box,
+        box.previousElementSibling,
+        box.previousElementSibling.previousElementSibling
+      );
+    }).observe( box );
+  });
+})(function (View, box, template, list) {
+
+  list = JSON.parse( list.innerHTML.trim() );
+
+  var map = new AMap.Map(box, {resizeEnable: true}),
+    coder = new AMap.Geocoder(),
+    dialog = new AMap.AdvancedInfoWindow({
+      offset: new AMap.Pixel(0, -30),
+      showShadow: true,
+      closeWhenClickMap: true
+    }),
+    template = new View( template.innerHTML );
+
+  function getCoords(addresses) {
+
+    return new Promise(function (resolve, reject) {
+
+      coder.getLocation(addresses,  function (status, result) {
+
+        if (status === 'error')
+          reject( result );
+        else if (status === 'complete')
+          resolve( result );
+      });
+    });
+  }
+
+  getCoords(
+    list.map(function (item) {  return item.address;  })
+  ).then(function (data) {
+
+    if (! data.geocodes[0])  return;
+
+    var markers = data.geocodes.map(function (item, index) {
+
+      var marker = new AMap.Marker({position: item.location});
+
+      marker.on('click',  function () {
+
+        template.render( list[index] ).then(function () {
+
+          dialog.setContent(template + '');
+
+          dialog.open(map, item.location);
+        });
+      });
+
+      return marker;
+    });
+
+    map.add( markers ),  map.setFitView( markers );
+  });
+});
+</script>
+
+
+    
+  </div>
+</section>
+
+<nav class="page-section text-center">
+  <div class="btn-group" role="group" aria-label="Post navigator">
+    
+    <a class="btn btn-secondary" role="button" href="activity/salon/sofa-meetup-1/">
+      &lt; SOFA Meetup#1 北京站
+    </a>
+    
+    <a class="btn btn-secondary" role="button" href="profile/council/2019/">
+      开源社 2019 理事会走马上任啦！ &gt;
+    </a>
+    
+  </div>
+</nav>
+
+<script>
+(function () {
+
+  var path = self.location.href.split('#')[0];
+
+  $('details > .toc a[href]').attr('href', function (_, value) {
+
+    return path + value;
+  });
+
+  $('.blog-post').find('h1, h2, h3, h4, h5, h6').append(function () {
+
+    if ( this.id.trim() )
+      return '<a class="header-link" title="Permalink" href="' +
+        path + '#' + this.id +
+        '"><span class="octicon octicon-link"></span></a>';
+  });
+})();
+</script>
+
+
+  <footer class="footer">
+    <div class="container">
+      <nav class="footer-nav">
+        
+          <a class="footer-nav-item active" href="/categories/Activity/">
+            活动
+          </a>
+        
+          <a class="footer-nav-item " href="/page/2">
+            博客
+          </a>
+        
+          <a class="footer-nav-item " href="/profile/charter">
+            章程
+          </a>
+        
+          <a class="footer-nav-item " href="https://github.com/kaiyuanshe/kaiyuanshe.github.io/tree/hexo/License" target="_blank" rel="noopener">
+            许可
+          </a>
+        
+          <a class="footer-nav-item " href="/profile/contact">
+            联系我们
+          </a>
+        
+          <a class="footer-nav-item " href="https://git-pager.avosapps.us/?repository=kaiyuanshe/Wiki" target="_blank" rel="noopener">
+            协作编辑
+          </a>
+        
+      </nav>
+      <span class="col">沪 ICP 备 19006015 号</span>
+      <span class="col">公安备案 31011202006203 号</span>
+
+      <span class="footer-social">
+        
+          <a class="footer-nav-item icon"
+            href="https://github.com/kaiyuanshe"
+            title="Github Organization">
+            <i class="devicon-github-plain vertical-middle"></i>
+          </a>
+        
+          <a class="footer-nav-item icon"
+            href="https://twitter.com/contactkaiyuan1"
+            title="@contactkaiyuan1 on Twitter">
+            <i class="devicon-twitter-plain vertical-middle"></i>
+          </a>
+        
+          <a class="footer-nav-item icon"
+            href="https://www.facebook.com/kaiyuanshe.china"
+            title="Facebook account">
+            <i class="devicon-facebook-plain vertical-middle"></i>
+          </a>
+        
+      </span>
+    </div>
+  </footer>
+  <script src="library/virtual-anchor-sdk.js"></script>
+  <script>
+    new VirtualAnchor({ id: '191be2ab-8c6e-6201-c419-3ef2d26eadf2' });
+  </script>
+</body>
+
+</html>

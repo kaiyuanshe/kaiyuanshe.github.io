@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+
+  <title>开源社</title>
+
+  
+  <meta name="description" content="议程4 月 28 日下午分会场 主持人：开源社 刘天栋    时刻 议题 演讲人    13:30 开场白 + 开源社介绍 主持人： 刘天栋   13:35 领导致辞 中国信息通信研究院 技术与标准所   13:40 大数据趋势 Omid Afnan 微软大数据首席项目经理   14:10 大数据生态系统分析 AdMaster 技术副总裁 卢亿雷   14:40 观·数据未来 —— 让成长插上比特">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="2016 年大数据产业峰会之开源与大数据专场">
+<meta property="og:url" content="http://kaiyuanshe.cn/activity/summit/big-data-industry-summit-2016/index.html">
+<meta property="og:site_name" content="开源社">
+<meta property="og:description" content="议程4 月 28 日下午分会场 主持人：开源社 刘天栋    时刻 议题 演讲人    13:30 开场白 + 开源社介绍 主持人： 刘天栋   13:35 领导致辞 中国信息通信研究院 技术与标准所   13:40 大数据趋势 Omid Afnan 微软大数据首席项目经理   14:10 大数据生态系统分析 AdMaster 技术副总裁 卢亿雷   14:40 观·数据未来 —— 让成长插上比特">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-04-29T10:34:44.000Z">
+<meta property="article:modified_time" content="2016-04-29T12:44:16.000Z">
+<meta property="article:author" content="shiy2008@gmail.com">
+<meta property="article:tag" content="big-data">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="contactkaiyuan1">
+  <meta name="author" content="shiy2008@gmail.com">
+  <meta name="generator" content="hexo">
+  <meta name="theme-color" content="#2f3241">
+
+  <!-- consumed by scripts/get-localized-strings -->
+  <meta name="localized.clipboard.copy" content="Copy">
+  <meta name="localized.clipboard.copy_to_clipboard" content="复制到剪贴板">
+  <meta name="localized.clipboard.copied" content="已复制">
+
+  <base href="/">
+
+  <link rel="shortcut icon" href="image/KaiYuanShe-logo.png">
+
+  <link rel="stylesheet" href="https://npm.webcache.cn/github-markdown-css@5.5.1/github-markdown-light.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/devicon@2.16.0/devicon.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/highlight.js@9.18.5/styles/dark.css">
+  <link rel="stylesheet" href="library/index.css">
+  <link rel="stylesheet" href="common.css">
+  <style>
+    .site-header-nav-item a:link {
+      text-decoration: none;
+    }
+  </style>
+  <script src="https://npm.webcache.cn/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script src="https://npm.webcache.cn/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://npm.webcache.cn/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+  <script src="https://npm.webcache.cn/highlight.js@9.18.5/lib/highlight.js"></script>
+  <script src="common.js" defer async></script>
+</head>
+
+<body>
+  <div class="alert alert-danger mb-0 text-center" role="alert">
+    开源社官网（2019 版）已存档、只读，请移步
+    <a href="https://kaiyuanshe.cn" class="alert-link">2022 版官网</a>
+    关注最新信息~
+  </div>
+
+  <header class="site-header">
+    <div class="container">
+
+      <a class="site-header-logo no-underline-hover" href=".">
+        <img class="site-header-icon" src="image/KaiYuanShe-logo.png">
+        开源社
+      </a>
+
+      <nav class="site-header-nav">
+        
+          <div class="site-header-nav-item">
+            
+              <a role="button" href="/categories/Activity/Summit/" data-href-match="">
+                年度大会
+              </a>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_1" href="" data-href-match="">
+                资讯
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_1">
+                
+                  <a class="dropdown-item" href="/categories/Activity/">活动</a>
+                
+                  <a class="dropdown-item" href="/blog/">博客</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_2" href="" data-href-match="">
+                成员
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_2">
+                
+                  <a class="dropdown-item" href="/members/">正式成员</a>
+                
+                  <a class="dropdown-item" href="https://kaiyuanshe.feishu.cn/share/base/shrcnfO89tYlYIjZpS5PXJBaK2f" target="_blank" rel="noopener">加入我们</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a role="button" href="/partners" data-href-match="">
+                合作伙伴
+              </a>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_4" href="" data-href-match="">
+                资源
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_4">
+                
+                  <a class="dropdown-item" href="https://test.kaiyuanshe.cn/organization" target="_blank" rel="noopener">开源地图</a>
+                
+                  <a class="dropdown-item" href="/categories/Document">开源文档</a>
+                
+                  <a class="dropdown-item" href="/license-tool/">许可证选择器</a>
+                
+                  <a class="dropdown-item" href="http://mirror.kaiyuanshe.cn/" target="_blank" rel="noopener">开源镜像</a>
+                
+                  <a class="dropdown-item" href="https://polyfill.kaiyuanshe.cn/" target="_blank" rel="noopener">Web 标准补丁服务</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_5" href="" data-href-match="">
+                关于
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_5">
+                
+                  <a class="dropdown-item" href="/profile/about">介绍</a>
+                
+                  <a class="dropdown-item" href="/profile/structure">组织架构</a>
+                
+                  <a class="dropdown-item" href="/governance">工作组</a>
+                
+                  <a class="dropdown-item" href="/profile/charter">章程</a>
+                
+                  <a class="dropdown-item" href="/categories/Meeting">会议纪要</a>
+                
+              </div>
+            
+          </div>
+        
+        <form action="search/" class="ais-search-box">
+          <input type="search" name="keyword" required placeholder="搜索"
+            id="search-input" class="nav-search ais-search-box--input"
+            aria-label="search-box" autocapitalize="off" autocorrect="off" role="textbox">
+        </form>
+        <a class="site-header-nav-item octicon"
+          href="https://github.com/kaiyuanshe/"
+          title="Github Organization">
+          <span class="mega-octicon octicon-mark-github vertical-middle"></span>
+        </a>
+        <a class="site-header-nav-item bordered lang-select-button" href="#Language" data-toggle="collapse">
+          中文
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <div id="Language" class="container collapse">
+  <div class="m-4">
+    <div class="text-center-sm mb-4">
+      <strong>请选择语言</strong>
+    </div>
+    <div class="clearfix">
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/en-US" target="_blank" rel="noopener">
+          English
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ja-JP" target="_blank" rel="noopener">
+          日本語
+          
+          (Japanese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/es-ES" target="_blank" rel="noopener">
+          Español
+          
+          (Spanish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/zh-CN" target="_blank" rel="noopener">
+          中文
+          
+          (Chinese Simplified)
+          
+        </a>
+        
+        <span class="faint"><span class="octicon octicon-check mr-1"></span></span>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/tr-TR" target="_blank" rel="noopener">
+          Türkçe
+          
+          (Turkish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/id-ID" target="_blank" rel="noopener">
+          Indonesian
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fil-PH" target="_blank" rel="noopener">
+          Filipino
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fr-FR" target="_blank" rel="noopener">
+          Français
+          
+          (French)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ru-RU" target="_blank" rel="noopener">
+          Русский
+          
+          (Russian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ko-KR" target="_blank" rel="noopener">
+          한국어
+          
+          (Korean)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/it-IT" target="_blank" rel="noopener">
+          Italiano
+          
+          (Italian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/pt-BR" target="_blank" rel="noopener">
+          Português
+          
+          (Portuguese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/de-DE" target="_blank" rel="noopener">
+          Deutsch
+          
+          (German)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/uk-UA" target="_blank" rel="noopener">
+          Українська
+          
+          (Ukrainian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/zh-TW" target="_blank" rel="noopener">
+          中文
+          
+          (Chinese Traditional)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/pl-PL" target="_blank" rel="noopener">
+          język polski
+          
+          (Polish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/bg-BG" target="_blank" rel="noopener">
+          български език
+          
+          (Bulgarian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/hi-IN" target="_blank" rel="noopener">
+          हिन्दी
+          
+          (Hindi)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/nl-NL" target="_blank" rel="noopener">
+          Nederlands
+          
+          (Dutch)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/vi-VN" target="_blank" rel="noopener">
+          Tiếng Việt
+          
+          (Vietnamese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ar-SA" target="_blank" rel="noopener">
+          اللغة العربية
+          
+          (Arabic)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fa-IR" target="_blank" rel="noopener">
+          فارسی
+          
+          (Persian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/cs-CZ" target="_blank" rel="noopener">
+          čeština
+          
+          (Czech)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/th-TH" target="_blank" rel="noopener">
+          ไทย
+          
+          (Thai)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/he-IL" target="_blank" rel="noopener">
+          עברית
+          
+          (Hebrew)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ro-RO" target="_blank" rel="noopener">
+          limba română
+          
+          (Romanian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/tl-PH" target="_blank" rel="noopener">
+          Wikang Tagalog
+          
+          (Tagalog)
+          
+        </a>
+        
+      </div>
+      
+    </div>
+    <hr>
+    <div class="text-center-sm">
+      <a href="https://electronjs.org/languages" target="_blank" rel="noopener">查看更多语言详情</a>
+    </div>
+  </div>
+</div>
+
+
+  <style>
+  .blog-post hr:first-of-type {
+    display: block;
+  }
+</style>
+
+
+
+<section class="page-section blog-post">
+  <div class="container">
+    <h1>2016 年大数据产业峰会之开源与大数据专场</h1>
+
+    
+
+    
+
+<div class="blog-byline mt-2 mb-4 d-flex justify-content-between align-items-center">
+  <span class="blog-index-time">2016-04-29 10:34:44</span>
+
+
+  <a class="author-link ml-3 text-center" href="https://github.com/sssuyx" target="_blank" rel="noopener">
+    <img
+      class="avatar mr-2"
+      style="max-width: 2.25rem"
+      src="https://github.com/sssuyx.png?size=36"
+      alt="sssuyx"
+    >
+    sssuyx
+  </a>
+
+
+  <span>
+    
+      <a class="badge badge-primary" href="categories/Activity/">
+        Activity
+      </a>
+    
+      <a class="badge badge-primary" href="categories/Activity/Summit/">
+        Summit
+      </a>
+    
+    
+      <a class="badge badge-primary" href="tags/big-data/">
+          big-data
+      </a>
+    
+  </span>
+</div>
+
+
+    
+
+    <details>
+      <summary>正文大纲</summary>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#议程"><span class="toc-text">议程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实录"><span class="toc-text">实录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#开场白"><span class="toc-text">开场白</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#领导致辞"><span class="toc-text">领导致辞</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#大数据趋势"><span class="toc-text">大数据趋势</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#大数据生态系统分析"><span class="toc-text">大数据生态系统分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#观·数据未来"><span class="toc-text">观·数据未来</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自助式社交大数据智能分析自动化平台"><span class="toc-text">自助式社交大数据智能分析自动化平台</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#互联网-时代下的大数据平台演进方向"><span class="toc-text">互联网+ 时代下的大数据平台演进方向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#容器化大数据应用部署实践"><span class="toc-text">容器化大数据应用部署实践</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#圆桌交流"><span class="toc-text">圆桌交流</span></a></li></ol></li></ol>
+    </details>
+
+    <main class="markdown-body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="议程"><a href="#议程" class="headerlink" title="议程"></a>议程</h2><p>4 月 28 日下午分会场</p>
+<p>主持人：开源社 刘天栋</p>
+<table>
+<thead>
+<tr>
+<th align="center">时刻</th>
+<th align="center">议题</th>
+<th align="center">演讲人</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">13:30</td>
+<td align="center">开场白 + 开源社介绍</td>
+<td align="center">主持人： 刘天栋</td>
+</tr>
+<tr>
+<td align="center">13:35</td>
+<td align="center">领导致辞</td>
+<td align="center">中国信息通信研究院 技术与标准所</td>
+</tr>
+<tr>
+<td align="center">13:40</td>
+<td align="center">大数据趋势</td>
+<td align="center">Omid Afnan 微软大数据首席项目经理</td>
+</tr>
+<tr>
+<td align="center">14:10</td>
+<td align="center">大数据生态系统分析</td>
+<td align="center">AdMaster 技术副总裁 卢亿雷</td>
+</tr>
+<tr>
+<td align="center">14:40</td>
+<td align="center">观·数据未来 —— 让成长插上比特的翅膀</td>
+<td align="center">易观 CTO 郭炜</td>
+</tr>
+<tr>
+<td align="center">15:10</td>
+<td align="center">自助式社交大数据智能分析自动化平台</td>
+<td align="center">环信大数据技术总监 黄智</td>
+</tr>
+<tr>
+<td align="center">15:40</td>
+<td align="center">互联网+ 时代下的大数据平台演进方向 —— BigData over DCOS</td>
+<td align="center">Linker Networks 首席技术官 陈冉</td>
+</tr>
+<tr>
+<td align="center">16:10</td>
+<td align="center">容器化大数据应用部署实践</td>
+<td align="center">数人云 CTO 肖德时</td>
+</tr>
+<tr>
+<td align="center">16:40</td>
+<td align="center">圆桌交流</td>
+<td align="center">主持人： 姜春宇</td>
+</tr>
+</tbody></table>
+<a id="more"></a>
+
+<h2 id="实录"><a href="#实录" class="headerlink" title="实录"></a>实录</h2><h3 id="开场白"><a href="#开场白" class="headerlink" title="开场白"></a>开场白</h3><p><strong>主持人</strong>：尊敬的各位来宾，各位领导，大家下午好！我是今天下午开源与大数据论坛的主持人刘天栋，我之前在微软研发集团云计算事业部担任首席技术辅导师，目前是在专职担任开源社的义工，我负责协办开源与大数据论坛，开源社理事，智能家居开放路演网联盟中国大使。简单介绍这次协办的开源社，开源社是中国本土的草根开源联盟，创办于 2014 年 10 月，目前有将近 60 家社区、企业，开源社致力于开源理念的推广、开源社区的建设以及国内外开源社区及开源技术的交流，欢迎大家登陆开源社的网站去进一步了解开源社。</p>
+<p>开源社去年 10 月份主办的阿帕奇软件基金会的中国路演，环绕着阿帕奇的顶级项目，尤其是大数据方面大家耳熟能详的，像 Hadoop 等顶级项目，在中国这些技术已经受到广大的欢迎和应用。我们组织了与会者展开深入的讨论和激烈的思维火花碰撞，推动本土与国际领先的大数据相关的开源社区的交流。这次大数据产业峰会的开源与大数据论坛，题目是开源大数据系统的开发和运维，由中国信息通信研究院主办，开源社协办，微软公司赞助。邀请了大数据开源领域的知名专家共同分享大数据开源技术，探讨我国如何参与大数据开源的浪潮以及如何引领大数据开源技术的发展。大家可以期待今天下午精彩的丰富的内容。演讲结束后会有讲师们的轮桌交流半小时。</p>
+<p>接下来欢迎这次大会主办方中国信息通信研究院技术与标准所大数据工作组副组长姜春宇，他是圆桌交流的主持人，有请姜组长为今天下午的专场揭开序幕。</p>
+<h3 id="领导致辞"><a href="#领导致辞" class="headerlink" title="领导致辞"></a>领导致辞</h3><p><strong>姜春宇</strong>：感谢开源社刘天栋老师的介绍，我是中国信息通信研究院的姜春宇，我代表中国信息通信研究院对各位嘉宾和与会者表示热烈的欢迎！我们知道这几年无论是大数据还是云计算，开源技术都在引领整个技术的方向，我们院从 2013 年开始关注和跟进大数据的整个技术，从 Hadoop 的数据库开始，我们发现几乎整个大数据的生态技术都是以开源的方式在运行，一项开源技术从它的诞生到稳定化商业化的产品，从商业化的产品到成熟的服务还存在一些距离，2014 年我们一直致力于制定一套标准衡量整个商业化大数据产品的能力，将开源的技术稳定下来。今年我们推出了 Hadoop 商业化大数据系统的基础能力认证，如果大家参与了昨天大会的话会知道有 6 家企业的产品通过了这次的基础能力认证，中国信息通信研究院在开源方面做的事情。</p>
+<p>中国信息通信研究院肩负着政府智库和行业平台的使命，在大数据的重大支撑和产业发展方面都开展了很多工作，我们特别关心开源技术在中国的整个发展情况，这两年我们很高兴地发现越来越多的企业参与到大数据的开源社区，越来越多的开发者也成为了一些开源项目的贡献者，开源作为一种理念渐渐地渗透到许多企业和开发者的意识之中。但是我们也意识到短时间内我们和国外的差距还是很明显的，目前我们主要作为跟随者在学习，开源这种理念的深入乃至规则的重洗是长远的过程，今天我们有幸邀请了很多开源大数据的专家一同探讨开源大数据的技术发展、开源社区的运营模式以及中国如何参与乃至最后引导哪些开源大数据项目等议题，希望增加大家在开源方面的兴趣和了解。</p>
+<p>最后，我代表中国信息通信研究院再次感谢会议的协办方开源社和各位演讲嘉宾参会嘉宾的支持，欢迎你们的到来，谢谢！</p>
+<h3 id="大数据趋势"><a href="#大数据趋势" class="headerlink" title="大数据趋势"></a>大数据趋势</h3><p><strong>主持人</strong>：接下来开源社的理事陈阳女士跟大家打个招呼，这次的开源与大数据论坛能够召开，陈阳在里面做了很多工作，跟大会主办方和微软有很多的交流，促成了这次论坛的召开。承袭上次阿帕奇路演大数据的题目，今天很多嘉宾都是上次路演里有实务经验的讲师。</p>
+<p>大数据的趋势，微软大数据团队的首席项目经理，在过去七年里他一直为致力于构建大数据平台和微软内部的大数据产品（英文），为很多微软的项目及时语音通信等产品使用，今年他的贡献拓展到 HDinSet（英文），专注于开发者的经验和程序的编写调试。接下来让我们欢迎 Omid Afnan！</p>
+<p><strong>Omid Afnan</strong>：（英文演讲）</p>
+<h3 id="大数据生态系统分析"><a href="#大数据生态系统分析" class="headerlink" title="大数据生态系统分析"></a>大数据生态系统分析</h3><p><strong>主持人</strong>：谢谢 Omid Afnan 的精彩演讲。大数据演进了这么多年，以前讲数据仓库的时候挺神秘，网上流行一个段子，大数据就像高中生男女交往，大家都知道怎么做，但实际上都没交过。开源与大数据有点像《非诚勿扰》，是开放的开源的可以让大家揭开神秘面纱，进一步了解大数据。接下来还有很多大数据的专家，在产业、行业里有实践经验，他们会跟大家做进一步的介绍。接下来的题目是 Hadoop 的生态系统分析，演讲人关注 Hadoop、Hbase、（英文），有超过 10 年的云计算、云存储、大数据经验，曾在联想、百度工作，拥有大数据相关的专利和论文。让我们欢迎 AdMaster 技术副总裁卢亿雷先生，为大家介绍大数据生态系统分析。</p>
+<p><strong>卢亿雷</strong>：大家下午好！很荣幸在这里跟大家做个分享，今天论坛的主题是开源大数据，我想给大家分享的是开源系统，大家有兴趣可以多关注一下。给大家介绍四点，第一大数据生态系统的架构。第二是大数据生态系统发展，大数据发展很多年了，每个公司的发展历程不一样，选择适合你目前阶段的大数据系统就可以了。第三是离线、实时系统分析。第四是数字营销案例分析，我们是做数据分析的公司。</p>
+<p>大数据的架构。大家可能见过这个图，大数据增长太快了，达到了 40ZB 的量级。这里把作用作为重点，Elastic Search，用（英文）可以满足你 80%到 90%的业务。另一个系统是（英文）。如果你对数据做多维分析的时候，UA 比 ES 好很多。Elastic Search 默认 4 万个 UA 的时候准确度达到 100%，超过 4 万个准确度到 10%，性能急速下降。但是价格是不一样的，准确度也可以达到 100%。比较细的系统架构图，这层是 Applications，用 Hlive、Mahout 等基于大数据平台之上的系统可以满足业务需求。数据系统，MapReduce、Flink、Spark、Storm、Tez。任务控制器，Mesas 的架构对异构的管理平台更好，主要看公司内部的研发情况来选择。传输的方式，包括 HDFS、Hbase。目前所有大数据平台会尽量简化开发应用。有 Flink 的优化。目前随着我们的业务发展，一定会有源服务。底下的是 local 的方式，我不说了。</p>
+<p>生态发展的趋势。这个图是蛮有意思的，大家看过很多大数据，怎么样理解它的每个阶段是怎么形成的，为什么用大数据，很多人比较难回答。这么多数据放在网上怎么把它收集过来，用 nutch 把数据收集过来。可以用比较好的方式做分析，发现性能不够，出现了一个 mapreduce 的架构。既然文本数据都已经解决了，但是非文本的数据怎么来解决这个问题？日志收集器，大家注意是收集系统，不是采集，收集和采集是不一样的。怎么把 MySQL 的数据导入到大数据系统里。我是不是可以写一个简单的语言来实现我的数据分析？在高水平人群里实现这个需求。每个人都知道我的业务需求其实不是由一个 M 码组成，我需要整个的 workflow（音）组成。大数据平台有管理平台、监控平台，出现了各种 monitor。我们需要高级的接口，以 R5 的方式保证数据的实时性。发展到这个阶段大家会想我是不是可以把 MySQL 做一些替换或者补充，出现了 Sbase 系统。再往下走需要把系统再升级，出现 Flink Spark。</p>
+<p>离线的系统的实时性怎么做分析，这是我们公司的真实案例，我们确实是这样做的。业务需求提过来以后是很粗的，我们进行业务拆分，把计算的结果返回给前端或者应用端，自然会提供类似于文件服务器来实现。业务需求方是很复杂的，但是我们在模型里需要做异构模型。底下用 MapReduce、HBase、Spark。如果需要实时做计算的话用下面这个模型，整个架构应该是流式的架构。实时计算用 Storm，最终把数据给前端。刚刚我介绍的是实时跟离线系统的模型，开源系统太多了，要抉择的话是很痛苦的，到底是选择成熟的还是符合我自己业务需求的，这里面有很多原因。Spack 是最火的实时分析系统。Flink 的框架。Database，大家选择很多，业务查询是非常复杂的。2014、2015 年大家选择 HBase 是没错的，但是目前国外 Cassandra 的发展势头已经超过 Hbase。OLAP，大家应该知道分析处理，这里有 ElasticSearch 和 Druid（pinot），如果你的业务需求量没那么大的话选择 ElasticSearch 就可以了。去年 10 月份以后国内做 Utroop（音），可以满足大家移动端的 APP 分析，是非常好用的，这是非常好的一个系统。</p>
+<p>介绍一些案例。数字营销精准投放 3W 原则，最合适的时间、最合适的地点推给合适的人。我们的传统广告跟 DSP 广告，大家可能没有概念。我们公司做了数据采集、数据存储、数据分析到效果分析，过多解释有打广告的嫌疑，我不多解释。</p>
+<p>广告主整合跨屏投放策略，这是今年最热的点，我们现在有 PC，有移动的，还有 CDV，现在至少三个大屏，怎么保证效果最好。我希望花的钱越少利润越多越好，把三屏打通后才能实现这个目标。跨设备打通，是以什么方式实现的？用 GBDT，可以实现移动和 PC 打通，效果可以达到 85%，可以把人群做很好的划分。广告反作弊分析。这是个漏斗分析模型，由于时间的关系我不作详细解释了。移动端消费分析归因模型，你在 APP 里下载了某个应用，最后是在苹果 APP Store 里下载，你是看了广告之后去苹果商店下载。</p>
+<p>这个案例是很成功的，我们 2013 年做的一个很经典的模型，怎么利用社交数据给客户解决问题，怎么给客户提供更大的收入？我们会根据个人的年龄、说的话、最热的词选择 300 个词，这 300 个词是大家很关注的，比如高富帅、白富美，大家看到这些词会买可乐，带来很大的销售额。把数据进行多维分析以后再挑词，这是个迭代的模型。</p>
+<p>我就讲到这里，谢谢大家。</p>
+<p>（口音太严重听不懂）</p>
+<h3 id="观·数据未来"><a href="#观·数据未来" class="headerlink" title="观·数据未来"></a>观·数据未来</h3><p><strong>主持人</strong>：谢谢卢亿雷，接下来是易观 CTO 郭炜给大家介绍观数据未来——让成长插上比特的翅膀。郭炜毕业于北京大学，加入易观智库之前担任过联想研究院大数据总监、万达电商数据部总经理，曾经在 IBM 等公司担任大数据方向的重要岗位，在大数据采集、存储、处理、挖掘、应用研发方面有非常的理论和实践经验，为大数据前沿的领域研究，包含视频、智能、WiFi 等大数据软硬件的数据处理一体技术有独特的见解跟实践。郭炜曾经国际国内重要会议和论坛发言，在传统行业、互联网领域都有很好的声誉，欢迎郭炜先生。</p>
+<p><strong>郭炜</strong>：非常荣幸今天能够和大家来分享我们看到的趋势。今天我的演讲题目是观数据未来——让成长插上比特的翅膀。我现在是易观智库的 CTO，是专门做行业的分析报告，特别是针对互联网行业。我简单介绍一下。易观智库在 2012 年成立，做了这个行业做了很久，大家提到互联网+这个词是易观 CEO 在 2011 年提出，后来被国家战略所采纳，现在这成为大数据分析的词，有 7.5 亿的智能设备上的相关数据和 SDK，现在有 1.5 亿移动端月活跃用户。废话不多说，跟大家分享我们今天看到的观点。</p>
+<p>第一，我们生活在一个比特化的世界。第二，万物皆云化。第三，让成长插上比特的翅膀。今天聊的是大数据，会发现所有的数据在过去最开始的时候从一台计算机 ENIAC 开始做起，我们把企业内部的信息做了数据化的工作，后来我们发现 ERP，企业内的数据大量涌现。最近 2010 年以后大数据这个词出现了，上网的行为已经云化了，所有的线上行为都会被记录下来。最近非常火的是 IoT，就是现在所有的智能设备。线下人们的行为，比如大家去逛商场，你在商场里里的位置，在里面购买的物品，完全可以实现和线上一样，在相关的电商网站上去购物去停留。线下的行为也形成了比特化。前段时间大家都在讨论阿尔法狗，人类的思维特别是逻辑思维也被比特化，我们生活在一个比特化的世界。我们发现 2012、2013 一直到 2018 年，我们从 2015 年的 10ZB 到 2018 年的 40 多 ZB，它是不断增长的，但是有一个趋势是增长率由过去指数级的增长慢慢变缓，过去大家都说大数据是很大的数据，其实我们现在在经历大数据由大变深的过程。我们原来说数据越多越好，现在不一样，现在有了多的数据以后数据背后意味着什么，现在大数据发生这样的一个趋势变化，由大变深。</p>
+<p>这两点是结合非常紧密的，不知道在座有没有传统厂商，传统厂商在进入大数据领域里会觉得非常难，因为所有做大数据的人第一件事情会先想到开源的组件，比如 Hadoop、Spark，IBM 卖一个软件给我们我们就能拿到企业里赚钱吗，没有。在开源这件事情上，整个软件行业在发生一个变革，我把这个变革就像计划经济变成市场经济一样。软件这件事情慢慢变得开源了，未来软件将会变成云的交互形式，最终是开源相关的服务作为你的收入，而不是过去的方式，发生了比较大的变革。</p>
+<p>分享一个图，这是去 Facebook 参观的时候照的，有一个大拇指，Facebook 现在的办公室就是原来的 San（音）的办公室。这个世界在发生变化，开源是大的趋势，对于大数据产业来讲是拥抱开源的领跑者，现在所有组件都是基于开源软件。中国在大数据技术全球化进程中崛起。过去提到大数据大家都想到 Hadoop，现在最火的是 Spark。最近 Spark 要推出 2.0，控制数据里有一半是中国人，在 Hadoop 年代里中国人很少。过去大家提到用大数据线想到国外的先进经验，比如 Facebook 等，现在会发现联想做大数据分析的时候和国际在同一个水平线上，国内企业的水平在不断提升，这是第二个趋势。第三，大数据人才培养，现在大家都说大数据的人才非常缺，现在中国每个企业都需要大数据人才，从整个中国来看会发现现在人才的基数摆在这儿，同样一个职位在中国招的时候要花半个月甚至一个月时间，同样一个职位到美国去招会需要半年时间，中国人才的基数远远高于美国，这是我从 Spark 看到的一些苗头，中国的人才越来越多。业务模式创新野蛮生长，国家现在发布了大数据的激励政策，各种各样的大数据公司风起云涌，多了好多家，和过去在传统市场里慢慢培育不一样，特别是最近半年。我们的整个模式在不断的创新。我们自己的技术不断在向前前进。</p>
+<p>跨境大数据产品正在形成输出的模式，很多创业的公司过去销售的都是中国自己的企业，现在反过来，我认识的好几个创业公司第一个用户其实不是在中国，是在硅谷，因为他的软件好用，他符合国际化的要求，在这个驱使下中国人才的红利和企业的野蛮生长正在形成一个对外输出技术。这是我们看到中国在大数据技术全球化进程中正在崛起，这是我们看到的趋势。</p>
+<p>过去的软件厂商的日子不好过，云化和大数据的结合越来越紧密。大家都知道我们采集的无论是互联网上的 APP 还是大家可穿戴的手环等智能设备，它的数据和过去企业内的 ERP 不一样，因为它数据本身就来自互联网，这样给公有云的技术提供了良好的数据基础，原来这个数据就在互联网上不在企业内部，把这些数据放在云上还是企业内只不过是地方不同而已。很多企业没有那么多的人才把 Hadoop 这些事情做好，所有的物理软件都是由第三方云化公司提供的，不需要自己来做，养人和维护技术的难度越来越高，不是每个企业都能承担得了的。</p>
+<p>刚才说大数据由大变深不意味着大就是厉害，要用非常强大的挖掘服务把大数据迅速地转化成有用的知识存在企业的相关系统里，所以挖掘服务和挖掘人才不是每个企业都能做的，我们现在有很多地方也希望找到外包的人才把这些事情搞定，而不是自己做数据过滤等相关工作。有这样的需求证明不是每个企业都需要去建这样的东西，他可以做云化。目前的加密技术蓬勃发展，阿里最新的芯片里面已经装备了大数据在指令级别的优化代码。爬虫技术，从网上爬到自己的相关舆情和分析，我们只需要一些相关的公司把互联网上的东西爬完之后拿过来用就行了。大数据联盟是个趋势，过去大家都说企业内部有数据孤岛，我们要建大数据平台，打通原来企业内部的数据孤岛，现在打破了自己信息系统之间的孤岛。对于万达来讲他知道这些人逛广场，但是不知道他们在线上做了什么。我们现在要做数据交换，这些数据在哪里交换？需要第三方的系统去交换相关数据，这个时候云这件事情和大数据非常紧密地捆绑在一起，我们需要的数字来自于互联网，我们的挖掘服务需要第三方来提供，开源平台维护自己来做，加密技术保证我的数据安全，爬虫能提供不用自己的代码可以在网上爬一遍，大数据云化是一个大的趋势。</p>
+<p>大数据云化的服务。对于企业来讲光有虚拟机还不够，大数据上海有 PaaS 或者 DaaS 平台，我们想要的是直接弄到 Hadoop 的平台，技术上大家用 Openstack，第一层虚拟化的存储再加上 Hadoop 分布式存储之后会打架，这件事情是不可行的，一定是需要深度优化一个新的 Hadoop 的平台。现在非常高兴的是有一些企业开始做这些事情，对于企业用户来讲我们希望底层的东西都是我搞定。分析与模型服务，我现在有硬件有平台有这些数据了，这些数据最后能出什么样的分析结果，分析这件事情对于我们来讲还是非常难的，易观要建立一个分析服务，现在我们把分析师人脑的东西程序化，有些东西已经变成程序化算法化的东西，给相关的企业再提供服务。我们关注的是如何给企业更好地做分析。再往上是营销服务，基于分析的结果再做一层业务上的服务，这是第四层业务交流相关的服务。大数据对于云化服务来讲分为这样四层，这层已经是红海阶段，第二层目前还是蓝海，目前支持大数据云化的平台还没有。每个行业都有自己的分析平台，对于营销更是如此，每个行业如何进行业务服务。</p>
+<p>究竟怎样让成长插上比特的翅膀，反过来来看一个企业的生命周期，从用户的角度来讲，过去生产完了卖出去就完了，现在不一样，因为在大数据的环境下每步都可以数字化信息化。比如我们做企业品牌和产品的时候，过去会找一个相关的经营公司做调研看产品的反馈或品牌的反馈，在大数据环境下怎么做这件事情呢？现在有非常强大的大数据工具，对于你自己产品的描述、品牌描述，新闻稿还是电商上用户的，可以通过自然语言的技术看到你这款产品哪里好哪里不好，这款笔记本好评还是差评不仅是一个电商上的，好是好在哪里，是屏幕好？待机时间长？刚才我说的这件事情完全可以做好，通过相关的数据反馈来看，准确率超过 92%，意味着你想看产品究竟不好完全可以利用大数据系统来做，而不需要过去的调查问卷的方式。现在要选什么样的合作伙伴，自己和对手的差距在哪里，我哪里好哪里不好，产品选择有很多大数据分析帮你做这件事。购买，通过电商的途径和线下智能硬件的采购，可以通过大数据做非常详尽的分析。产品使用，过去买完就完了，现在厂商非常辛苦，你开多长时间，选了什么台，经常在什么时候看什么节目，怎么去优化，在产品使用期间所有的数据已经完全被厂商采集。过去服务都是找客服，业务创新现在通过数据语言和用户分析。以用户为中心的转型，离不开云化的大数据来帮你做。</p>
+<p>大家都在做大数据，我国现在缺一些东西，就是大数据的治理和标准。这是国内开放的大数据平台，我们自己的大数据平台，每个省每个市同样的数据的标准不一样，美国每个企业有唯一的企业税号，工商管理局一个，税号一个，做相关处理的时候对于这些公开数据，我们怎么做更好的治理，把它的标准做起来，这件事情是现在一直在困惑从业者的。现在是做大数据 3.0 的时候，很多企业还在做 1.0 的时候。非常欣喜地看到最近的这些院校，除了大数据的技术、分析人才，已经开始有标准化的研究课，就加数据化标准课的专门课程和研究方向。我在这里呼吁大家做大数据的时候一定要从国家层面重视大数据，对于企业来讲建立大数据的时候第一件事情是把标准做好，然后才是大数据相关的治理。</p>
+<p>今天我就跟大家分享这么多，欢迎大家和我们讨论大数据相关的事情，非常感谢给我这次机会！</p>
+<h3 id="自助式社交大数据智能分析自动化平台"><a href="#自助式社交大数据智能分析自动化平台" class="headerlink" title="自助式社交大数据智能分析自动化平台"></a>自助式社交大数据智能分析自动化平台</h3><p><strong>主持人</strong>：谢谢易观智库的郭炜和大家分享，易观做的产业分析报告是我经常学习的，有非常好的内容。接下来的题目是自助型社交大数据智能分析自动化平台，介绍人是黄智，环信大数据技术总监、首席科学家，在加盟环信之前在英国 BAE 系统公司智能部任职 14 年，我们欢迎黄智！</p>
+<p><strong>黄智</strong>：大家下午好，我的题目是自助式社交大数据智能化分析平台。题目有点长，我给大家具体介绍下是什么意思。首先节绕一下环信公司产品的构架总览，从大数据分析的角度看我们的产品。环信有两款产品，一款是即时通信云的平台，另一个是是客服产品。这是社交行为数字化的产品。这个引擎代表的是我们的这款产品，今天不讲这款产品，我今天主要是讲大数据平台。大数据的系统平台，现在开源的框架基础上用的是 Hadoop 的框架和 Spark，在这上面做了一些研发工作，数据预处理框架、指标分析框架、积极学习预测的框架，从用户的需求出发，从社交平台这个业务角度来界定一些框架。下面有自动化分析引擎，以李盾框架为基础开发的社交计算的算法组件，以插件的方式放到平台里计算。用户可以制定一些规则，直接触发业务的某些逻辑。第二，形成自动化的闭环，反馈是非常及时的。当然我们也提供分析的可视化，通过界面看到指标随着时间的趋势做些决策。这是主要的产品构架。这个平台的四个特征。这是大数据并发分析平台、人工智能、自动化、多租户自助系统。多租户的自助系统，希望用户能够通过自己自助配置实现个性化分析业务逻辑。</p>
+<p>从平台的业务功能角度讲一下我们的架构。从业务逻辑的角度讲，所有的部件可以分为三个部分，首先社交大数据的分析平台的基础功能有四个模块，从上到下三个部分，底下有四个块，信息获取的数据。这些数据送的数据处理分析的模块里，这个模块是我们基础的业务模块，有很多功能组件。我们可以对 APP 本身进行画像。要适应用户不同的分析需求，用户可以通过这个模型自己定义自己的分析需求，这是我们的目标。为了满足多功能不同的需求，有很多配置，从系统几个层面进行配置，系统级别的配置、任务调度配置、平台配置、分析模型配置。我们的目标是将来通过这些配置慢慢形成行业解决方案，满足不同的行业的需求，我们把它叫做分析应用创建器。</p>
+<p>环信的用户。我们根据 APP 类型，它的社交行为和社交环境的发展阶段的不同，用户可以定义不同的社交指标模型以及人工智能机器学习模型，帮助他们的 APP 提升社交质量，最终拥有一个成功的产品。我们的 APP 用户有很多类型，社交型、游戏型、内容型、功能型，每个类型有很多不同的 APP，有三个发展状态，工具型到平台型，到云生态类型。通过自助式的服务配置适合自己的分析指标，并以此作为各种决策的依据。我们还有个用户叫澳瑞普（音），成立于 2012 年，他自己也做分析，专注在游戏数据的分析和挖掘、可视化，为全球用户提供数据查询服务。从环信大数据平台上线，他们一直在用我们的系统，自己配置自己的技术指标和模型，用这个来指导他们的业务。</p>
+<p>自助式指标分析。环信支持上万 APP 用户，实际现在已经到 5 万了，这些用户开发很多不同的指标，经过我们自己对社交领域应用的了解，有一些专门研究社交业务的专家，提交一些指标、计算汇总，当成一个插件式的模式，用户从界面上配置自己的指标。配置选择了以后平台就可以展现他们需要的指标。这是环信客户自主选择启用用户行为概况和发出消息概况分析的配置页面，只要把这两个液面打开就可以看，将来推出越来越多的选项，第一版配置比较简单，以后可以自助式服务。</p>
+<p>对机器学习预测分析做的工作，我们在进行深度研究，我们的模型包括智能化社交模型，很多指标难度非常大，在预定时间内完成有很大的困难。采用的方法是大数据+计算能力+社交模型+高效算法，用这个方法实现机器学习预测分析。我们需要解决几类大问题，分类问题、关键绩效指标相关的预估问题、社交图谱、自然语言分析。我们现在在做一些研究。这些技术是比较成熟的技术，但是要整合在一起进行并发的大数据计算，还有很多事情要做。自助式服务的规则定义，我们的规则有三种，日规则、月规则、实时规则。日规则、月规则都是一线的规则，每一类规则可以定义很多规则，日规则，新增用户活跃度不足。什么叫新增用户活跃度不足？这些表达式里用到我们计算出来的很多指标，根据这些指标判断什么情况下是新增用户活跃度不足，有几个条件，把这个条件做后逻辑计算，利用表达式触发报警。我们也提供数据过滤的功能，排除系统消息并且排除无效信息。</p>
+<p>平台组件交互逻辑。要形成一个系统的话必须相互配合，各个不同的组件、模块相互配合，完成一个复杂的过程。环信大数据的分析系统架构有可以分四层，从数据层、分析层、集成层、决策层，刚才郭炜已经讲到这个问题了，我讲得比较具体。我们用 Hadoop 存了一些非结构化的数据，我们使用 MySQL 数据库保存了管理相关数据，所有的数据是整个分析系统的基础。数据层次上第三层分析层，我们用 Spark 做分析平台，为社交指标分析算法和机器学习用 Spark 的（英文）。Spark 的平台构成了分析模型计算的基础，分析层之上是集成层，在集成层做了两个东西，集成层像粘合剂，把系统的组成部分有机地粘合起来。把底下数据分析的计算整合在一起。我们 APP 很多，必须有个任务调度系统。最上层是决策层，可视化界面和预警信号，信号通过 API 的方式可以直接反馈给业务系统，是自动化决策的层次。</p>
+<p>应用构造，应用构造指的是针对不同类型 APP 的分析需求进行抽象后的一个模板类型的具体实现。这个实现体现在根据该类型 APP 的需求所定义的配置模板。该模板主要包括三大块，系统配置、模型配置、界面配置。应用构造是形成不同类型 APP 行业大数据分析解决方案的基础。</p>
+<p>我们的服务规模。这是 2015 年易观的报告，截止 2015 年下半年数据规模 SDK 覆盖手机终端数高达 3.19 亿，日均发送消息量上亿，环信共服务注册 APP 50833+。分析要求，实时处理+批处理，完全的水平扩展性。这是我们的平台开源系统架构。从我们的业务角度出发和需求角度出发选择架构需要的开源组件，现在开源的东西太多了。我不希望公司的开源架构特别麻烦，要考虑到出错怎么办。</p>
+<p>这就是我今天要介绍的内容，谢谢大家！</p>
+<p><strong>主持人</strong>：环信对市场做的即时通信的移动客服平台，是中国市场的领先者。中国的整个大数据生态系统正在快速发展，官方的说法是中国的大数据生态系统快速发展也在起步阶段，好多都是用户亲身体会，有很多干货，生态系统的发展不是只有用，用的时候还能贡献的话，得到的深度跟广度就不一样。记得去年阿帕奇软件基金会在中国路演的时候，主席说阿帕奇软件基金会现在顶级项目里有两种人，一半是白人，白的男人，另外一半是有胡子的白的男人，加起来还是白人多。但是阿帕奇软件基金会在中国路演的时候我们看到在大数据 Hadoop、Spark 等顶级项目里，国内有非常多的贡献者也出现在了会场，大数据这个领域里中国的贡献者越来越多。接下来有请不但是用户而且是贡献者，对全球顶级项目的贡献者，第一个是 Linker Networks 的首席技术官陈冉，他讲的是互联网+时代下的大数据平台演进分享——BigData over DCOS，有请陈冉！</p>
+<h3 id="互联网-时代下的大数据平台演进方向"><a href="#互联网-时代下的大数据平台演进方向" class="headerlink" title="互联网+ 时代下的大数据平台演进方向"></a>互联网+ 时代下的大数据平台演进方向</h3><p><strong>陈冉</strong>：谢谢开源社给我们这个机会站到这么大的舞台上介绍，数据在爆炸，平台也有，政策又这么好，还有这么多人参与。有多少人是大数据方面的开发人员，能不能举一下手？基本上没有，那我今天的主题是对的，不会讲太深。我想问一下有多少人对 DCOS 这个概念了解？有几个人，很棒。我的标题起得有点大，但是总的意思是想告诉大家大数据+云计算+现在这个时代很多不一样的化学反应。BigData over DCOS 是什么意思？大数据是 Hadoop 和 Spark 等各种各样的平台，over DCOS，郭总说应该存在一个下面是 DCOS 下面是应用中间是数据和服务，就是我们讲的 DCOS，有一定的贴合性。数据存在总有计算方提供大数据的平台安装和使用。</p>
+<p>这个是大数据的现状，我不想做 Hadoop 和 Spark，我就想用它，不管是（英文），创建几台虚机，再把 Hadoop 或者是自己装上或者是请人装上，然后你开始用 Hadoop、Spark。还得想业务系统出现的数据进到 Hadoop 里面出去的又是什么，所以非常多的领域对于很多人来说台阶特别高，现在既然有这样的问题，虽然大家都是在提大数据，但是数据还是隔离的，还是跟应用，大数据对很多人来说是（英文），这个（英文）怎么产生，需要人帮助他，这就是数据模型。既然出现这么多问题，下面讲一下，我不讲 Hadoop、Spark 是什么，前面已经讲了很多。现在很多人自己装几台机器，有些高尖的人装 Openstack，再高尖的人用混合的模型，基本是这样的现状。它跟业务没有任何联系，怎么样解决这个问题？这张纸说明了一个问题，左边是物联网，刚才大家提到了 IoT，右边是互联网，上面就是大数据，下面就是各种机器，上面是（英文）的东西。这层是我即将要探讨的 DCOS 怎么样跟 SaaS 平台兼容，并且去做 Ecosystem，Ecosystem 是很多公司参与的事情，基于大数据做分析做报表。现在有些案例是我们可以通过平台性的 IoT 的平台做的服务分发。这是（英文）就是 5G 时代，5G 时代是信息爆炸非常需要（英文）的网络，需要一个 Ach（音）端，未来的远景是这样。</p>
+<p>什么是 Open DC/OS？（英文）是非常棒的项目，Open DC/OS 是基于（英文）之上的企业级的增加。DC/OS 是一个基于被企业级验证的 Apache Mesos 分布式系统内核，其中包括多年在生产环境真实经验和最佳实践积累。DC/OS 是在 SaaS 之下帮你做（英文）的那一层。为什么要有 Open DC/OS？用了 DC/OS 之后和没用的对比，运维成本直降 50%，资源利用率一下子提升了 60%，业务收入提高了 30%，原因在于你在你自己的业务使用状况下会选几台机器把 Hadoop 和 Spark 装好，实际情况下一年的时间里可能只有 80%是空闲的，20%的时间才用，出现严重的浪费。Open DC/OS 提供了一个很好的想法，把资源比如 Hadoop、Spark 各种各样的分布式系统全部 Base 在一个操作系统上。有了 DC/OS，会把异构资源全部管理成一台 PC 一样，上面装一个 Hadoop 会不相关的（英文）配好，把 Hadoop 装好，就开始数据建模就可以了，这就是 Open DC/OS 提供的一个概念。ebay 用了 DC/OS，资源达到最大的利用率，带来了很多的营收。</p>
+<p>DC/OS 的技术层面，今年 9 月份会正式变成阿帕奇 lessons，我们是第一个中国参与仿真性建设而且能推动仿真性再走一步的公司。这些上面是 DC/OS，再上面是 Container Apps、PaaS 等，配置在系统上，达到资源的最大利用。如果形容这是一个 Rack 的话，上面有很多服务器，五种颜色有可能是 Hadoop、Spark 等，它的部署以前是这种结构，最终到了 DC/OS 变成了这种结构，可以看到资源是立减的状况。MESOS，前面有讲师谈到 MESOS，主要做 Resource。我们现在做的很多 case 里面 MESOS 的源生代码我们会使用。</p>
+<p>这有个项目叫 Myriad，最大的问题是现有的大数据平台怎么跟云适配，如果在自己的（英文）系统里用个机房，创建的可能是 10 台到 20 台的机器，部署了 Hadoop 和 Spark，你不希望它迁到云上直接把它（英文）掉，你希望有这样一个（英文），能够帮你现有的 Hadoop 里各种业务系统接到一起，不用把你的系统干掉，这系非常棒的一个事，这是 Pramework 推动的，也是阿帕奇的项目。讲这个故事是因为现在三大运营商，移动、联通都在考虑，很多人在用（英文）Hadoop，大数据已经走了非常多年，怎么能现有的云走在一起，这是大家都在考虑的问题。</p>
+<p>我说得有些快，我刚才调查了，大家对 DCOS 了解不是特别多，这边有个网址 dcos.io，我先说这么多，希望开源社能更加支持中国的贡献，谢谢！</p>
+<p><strong>主持人</strong>：陈冉在国际社区和中国社区做了大量工作，现在不再负责 Linker Networks 的技术路线制定和孵化产品推广，他在更多的开源社区，比如中国的 openstack（英文），同时是（英文）开源社区的发起者，同时担任 openstack 开源社区共同组织者，精力充沛，为社区做了非常多贡献。接下来讲容器化大数据应用部署实践，主讲人是肖德时先生，他在 15 年的计算机行业从业经验，为红帽（英文），是直接参与到国际顶级项目的社区代码贡献者，他现在在数人，数人云也是开源社的成员企业，负责云计算的研发及架构设计工作，深入研究 docker、云计算等领域，我们欢迎肖德时。</p>
+<h3 id="容器化大数据应用部署实践"><a href="#容器化大数据应用部署实践" class="headerlink" title="容器化大数据应用部署实践"></a>容器化大数据应用部署实践</h3><p><strong>肖德时</strong>：大家好，我是数人云的肖德时，我是大数据的外行，今天讲的这个事是如何用工具化的方式把大数据的部署问题快速解决，我们现在做的是用容器化的方式部署大数据的应用。</p>
+<p>介绍一下我们的现状，提出我们容器化的想法，按照最佳实践看一下我们在应用大数据的工具部署上是怎么做的。大数据已经被很多人在部署中，最常见的是 Hadoop、Spark，这些工具都会部署，但是原来的部署基本是手工的方式，开源的工具给你提供的都是源码，回来以后你要做部署。每个组织内部用大数据的过程中，每个部门都想构建自己的 Hadoop 平台，大家都知道 Hadoop 的（英文）没有几台机器是玩不起来的，这方面会督促一个企业内部有很多大数据的环境产生，资源的浪费就会出现。每个部门有自己的职能和想法，他们做大数据处理的时候对每份数据都会拷贝一份到自己的大数据环境里，如果你自己搭建的环境每个人都有一套，管理上会出现协调的问题。资源的浪费和使用率，对大数据的接入都会产生实际的场景问题，我们公司在使用大数据的过程中，因为我们是一家做 PaaS 平台的公司，我们跟传统企业交流的时候发现这样一个问题，总结起来几个点，第一资源利用率能不能提高，第二你的部署、版本升级可能已经非常熟悉了，但是我希望有一套标准的解决方案给我去做。这是我们总结出来的想法，能不能快速地用一套技术去解决。从 2014 年开始，终于有机会可以在大数据的基础上应用到容器技术，结合在一起解决我们最重要的问题，就是资源的利用率。</p>
+<p>大数据的发展很快，原来用的都是 Hadoop、Spark，大数据的工具链是很多的，有华人做的麒麟引擎，这种新的技术你会想能不能拿过来也用用。你在用的时候会觉得都听说过，但是真正落地的时候就会发现它非常困难，因为你还要去学习，你需要快速部署，有一个机会可以快速搭建，这产生了一个问题，大数据的工具会越来越多，势必会随着数据往深处走，各种各样的大数据工具，尤其是开源的会提出来。我们关注 Hadoop、Spark 的同时，其他工具也希望得到使用和支持，这样就需要一套方法论或者需要技术去承载快速试错的过程。</p>
+<p>我们想了一个办法，现在有 docker，它不只是在美国比较流行，2014、2015 年到中国来以后，大家都听过 docker 的名词，工具和软件多起来了也有中国的开发者把这些工具 docker 化。我们的工具，我们已经做了分布式 PaaS，把所有的机器都组装起来了，但是上面的特点是需要一个承载物，应该把 Hadoop 和 Spark 的工具用 docker 的方式包起来，即使是单机的情况下也能跑起来，这是我们认为可行的方式。特点是一平台是统一的，不管在哪个平台上，只要用 dockerrun 就能跑起来，PaaS 在慢慢的发展，资源混合的部署能力也在慢慢成熟，这是我们数人云在做的事。</p>
+<p>这里需要讲的一个特点是推荐大家都用 docker 或者容器的方式去部署自己的应用，这样你会发现所有的技术点，不管是工程师还是数据师，底下的工具都是用一套生态链的方法去部署的，部署方式越来越标准化。资源利用率的复用，对资源利用率更高。</p>
+<p>原来要部署一个 Hadoop 一定要阿帕奇的网站或者第三方的网站上，要下载一套阿帕奇的软件，要把它解压，还要安装，但是到了容器这块，可以到 docker 的仓库拿到 Hadoop Cluster，它也是 Hadoop 的安装包，但是用容器包起来的，你要做的事把它下载就可以了，它也是一个卡包，这个好处的是显而易见的，对底层的依赖比较少。</p>
+<p>你做 Hadoop 这种工具的时候，有一些工作是不需要 Hadoop 来做的，可以尝试用别的工具来做，这个 Pachyderm 是分布式的系统，通过 Pachyderm 减少对 MapReduce 的依赖。如果只是存你的非结构 化数据，你应该有一个更合适的组件，开源里有很多非常针对性的组件，这个叫 Pachyderm，可以解决这个问题，原来你是不敢想的，还要学这个，但是到了容器时代，你把本地的子盘直接变成分布式的文件系统。我们认为第二件事就是容器可以让你有更多的选择，而不仅仅是用 Hadoop 去建 Cluster，你可以融合，不仅仅是选择一套解决方案。</p>
+<p>还有一些任务，我们会用分布式的组件去跑分析任务，这是我们认为可以考虑的，因为在 Hadoop 上面，这些文件跑的是一些（英文），有一个 Chronos 的软件，可以跑分布式调度。并不是所有的（英文）的工具都要自己开发。我们把原来大数据的方式抽出来，用统一的规矩能够专款专用，用更合适的工具来处理你的任务。</p>
+<p>你的本地要用容器，你要搭一个 Hadoop 的 Cluster，你怎么去做，它是有工具的，开源里有个 Ferry，使用它在本地搭建大数据应用开发环境。善用的开源工具可以让你力量更足。到测试环境或者生产环境，你熟悉了 docker 的使用和大数据平台的使用，你一定需要一个 PaaS 平台，这种分布式的软件加上容器一定是可以快速部署环境。你需要从测试、开发到 Demo 环境，到生产环境有一个连续的过程，这个过程 Hadoop 需要 PaaS，这个 PaaS 就是为企业提供生产级的环境，提供这个服务。它里面有个特点，把这些工具包起来分发到你的主机上能够去部署这套主机，这是我们的一个想法。</p>
+<p>容器化大数据的好处。第一是快速安装大数据组件。我们刚才也看到了，所有的组件都是已经在仓库里了，直接拉下来就可以跑起来，这是利用容器的特点。第二是这个容器就是一个安装包，这个包不需要解压，这个包可以到机器上存一份，服务器上也可以存一份，它的安装方式和运行方式都是一样的，所以你的配置也都是一样的，只不过是单机版、Demo 版然后到分布式平台，是这样的情况，流程一致化，这是非常理想的一种方式。之后我们需要分布式的节点，原来跑的 Hadoop 是一个，如果变成多个怎么办？原来的手工架台机器，这样可以借助数人云分布式的 PaaS 管理平台，把手工的方式自动化，让你自动地把节点安装到容器启动一体化的解决。如果你说我自己能不能做？没问题，你可以手动地把机器架上，把容器提起来，这也没问题。容器化大数据是目前正在探索的方向，这里面有很多问题，比如网络，容器很好，隔离性怎么样，效率层怎么样，这些是实际的问题。从我们的经验来看，这提出了一种深意，容器确实能给大家带来一些好处，至于这些亟待解决的问题就只能在实践中慢慢地去解决。</p>
+<p>数人云在做一件事，我们认定容器化的解决方案一定能给大数据带来未来的方向，我们会在中间一层，在私有云上搭建一层运营支撑的平台，提供监控报警，提供一键发布，提供应用上云的界面管理平台，把你的这些应用布上去。这就是以后的 PaaS 平台或者大数据平台能够支撑的方向。</p>
+<p>谢谢大家！</p>
+<h3 id="圆桌交流"><a href="#圆桌交流" class="headerlink" title="圆桌交流"></a>圆桌交流</h3><p><strong>主持人</strong>：接下来针对今天的讲师有一个精彩的圆桌交流环节，大家可能有问题想问，交流之后大家有任何问题想提问的话可以提出。请中国信息通信研究院大数据工作组的姜春宇担任组长，有请卢亿雷、黄智、陈冉、肖德时、朱晓勇（音）上台！</p>
+<p><strong>姜春宇</strong>：很荣幸地邀请到五位重量级嘉宾参加圆桌讨论的环节。大家对开源软件，尤其是在大数据领域我们都知道 Hadoop 从一开始诞生都是采取开源的策略来做这个事情，大家一定对开源软件有比较好奇的地方。从我自己来说，开源是在自由软件和闭源软件之间的产物，有一些协议和社区在里面。我想请问大家一个问题，开源软件到底是什么样的形式？大家采取开源的方式能带来什么好处？为什么 Hadoop、Facebook 都愿意投到开源里，这是第一个问题，请卢总先回答。</p>
+<p><strong>卢亿雷</strong>：开源软件就是免费的，这个理解是不对的，它里面的协议包括阿帕奇等，需要放源代码进去，阿帕奇这种是必须的，国外利用 Hadoop 没有贡献出源代码。对于开源的公司来说，他们有什么好处呢？第一就是他的品牌，第二是他的精神，推进软件系统有更好的发展。开源软件至少是大家一起写代码，而不是一个公司写代码。</p>
+<p><strong>陈冉</strong>：说开源要先说闭源，比较单一，没有创新的趋势。开源从形式上来说不是免费，但是交付上是免费的，至少把代码给你了，1989 年开源的这条路，真像动物世界里的（英文），有人在做肉食性的动物有人在吃草，总的来说大家都是最终为了赚钱。以 Openstack 为主，很多公司都在做（英文），很多大公司都在免费做，最终的目的是为了自己能够在商业利益上赢得更多，做的贡献越多，得到的就越多，西方人的思想和中国人的思想不一样，中国人觉得我把它抓在手上就能干什么，其实不然。为什么好的社区都在美国出现不是在中国出现，中国比较闭塞，抓住好的东西就要一技制敌。我从 Openstack 做代码贡献做到现在，我的感受是贡献多了以后你是不光索取而是付出的人。刚才提到阿帕奇、BSP、BPL，有各种各样的协议，我搞开源的时候还背过阿帕奇的八条规则，现在都忘了，所以我感同身受。中国现在最火的也就是阿帕奇，阿帕奇可以改，可以不贡献也可以贡献，带给大家足够的柔韧度，这是中国人喜欢的。西方的 BSD 也蛮好，BPL 在中国就不怎么受关注。开源的好处是参与的人越多就越具有创新，各种各样的文化参与到其中就有某一个爆发的点，我期待中国开源的圈子越来越大，参与的人越来越多，能够享受到开源带来的好处。</p>
+<p><strong>姜春宇</strong>：我听出了我为人人人人为我，众人拾柴火焰高。</p>
+<p><strong>肖德时</strong>：前段时间我们做宣传片的时候，导演不懂开源，问你们公司是做什么的，我说我们公司是用开源技术做驱动的，你给我讲讲什么是开源？我跟他说可能是自由，他说这个太空了，能讲具体的东西吗？我每天就是两点一线，写代码。从技术的角度来说，我的目的是想去改变点什么参与点什么，大背景是越来越多的人在发现现在的软件在慢慢地驱动或者定义整个世界的发展，我作为一个人，在社交的过程中我要参与到社会中，有各种方式，唱歌的有网红，作为开源者做什么？实际就是参与，开源就是参与。通过参与，你的观点、你的声音可以被别人听到。这里面会有一些人觉得中国人参与的开源比较少，其实不是这样，国际语言现在都是英语，国外有 N 多个公司、N 多技术仍然是必然的。你觉得参与的人很多，但是你放眼全球，放眼美国其他地方，有很多地方没有参与开源。中国在慢慢发展的过程中把自己的标准定得很高，我做开源我一定要自己做开源，但是没有做好准备，做大数据的一定要做 3.0，其实 1.0 还没做好，是这样一个过程。既然现在国家是高标准，我们现在搞点新的，做 3.0 时代，开源也是一样，所有工程师和资源，你让工程师贡献代码他照样可以，但是第一件事就是你知道阿帕奇 lessons 是什么东西吗，不知道。我们对子的要求很高，所有的企业一说开源，就是我的软件自己必须要全开源。我是从红帽出来的，红帽是百分百开源，但是有 polic（音），他自己的知识产权不会立即开源，这就是对开源的理解，不要把自己定得很高。开源是一种文化，你可以参与。我们已经是走在前面了。</p>
+<p><strong>姜春宇</strong>：在中国要先去适应它了解它，才能去主导，现在我们处于初级的级别，希望大家更多地关注去学习，谢谢，我觉得讲得非常好，有请下一位。</p>
+<p><strong>郭炜</strong>：对开源闭源的问题，我有些体会，以前我公司是英国的一家 BAE 系统公司，不知道你们对这个公司了解不了解，他们的东西都是闭源，一套东西卖出去都是很贵的情况下不能开源。后来我在 BAE 公司的时候已经感受到压力，开源在运行计算方面的压力很快提升起来，公司迟早要面临这种压力，只要他的业务能做到跟你一样精致，你最后会被颠覆掉。公司在这个层面上要做自己利益方面的考虑，要利用开源技术把产品拿下来。当然做开源要看自己的兴趣。</p>
+<p><strong>朱晓勇</strong>：大家好我是朱晓勇，刚刚演讲的老外是我的老板，他的中文水平明显没有我好，我们是一个团队。有的公司就知道卖 lessons，我心中一紧，一定是指我们微软公司。五年前说微软怎么样，大多数人都同意是为了我的领地从来不放开自己的代码的形象，但是最近两年尤其是我们最近新换了一个 CEO，这种情况下对开源技术的拥抱，对 Linux 的热爱，在专业领域还是有目共睹的，我们对 Hadoop 贡献了很多代码，我们开源了我们自己的（英文）的东西，我们的 IDE 等等，都是有计划的。开源可能有两种，一种是纯（英文），比如 Hadoop 是很典型的，我们有社区贡献了很多东西，但我觉得对于这种技术来说，商业公司更多的是我们有能力去把这个技术变得更容易用更好用，和 Hadoop 比较难用，我们有一键部署的方式，让技术惠及更多人，Linux 也是类似的情况。商业公司得到更多的商业收入，开源社区得到了把代码运送到更多环节的机会，同时也能让这个系统变得更加健壮，这都是特别好的事情。微软这样的公司希望自己的技术走得更远，这种情况下也希望开源自己的技术，这样的情况下可以将自己的系统运行到更多环境中，他希望把（英文）变成业界的标准，希望在这种前提下能够让不同的公司、不同的系统都能运行这种运行环境，某种意义上让自己的影响力最大化，最大化自己的商业利益。总结下来无论是社区主导的开源系统还是某种商业公司主导的开源系统，本质上都是扩大自己影响力的特别好的途径。</p>
+<p><strong>姜春宇</strong>：我觉得晓勇把下面的问题都回答出来了，就是开源商业模式，刚才数人云的专家也回答了一部分，中国的程序员在参与开源的时候遇到的问题是语言，这是很大的阻碍。这里面有很多专家是切身地参与到开源甚至发起了开源，如何参与一项开源技术？它的流程是什么样的？如果我想主导开源的技术，我应该怎么样去规划？</p>
+<p><strong>卢亿雷</strong>：我参与了一些开源，中国人在很多开源社区里的主导权是比较弱的，希望更多的人参与到里面。Spark 里中国人很多，这是我的切身体会。</p>
+<p><strong>陈冉</strong>：讲一下我自己的感受和参与，我很早以前在 Openstack 刚起来的时候发现它非常火，做贡献非常容易。回到（英文）是你单方面的想法，能不能被接受，比如 Openstack 有 PDL，在社区里各种利益集团、各种公司都要参与。怎么样参与到现有的社区中，有觉得有几条路，第一条是你不断地（英文），你要不断地讲你的想法，他有可能给你（英文）到 10 次，11 次开始以后不被接受了，原因在于他有可能在验证你的耐心，每个 PDL 也是公司来参与的，怎么主导一个社区，在中国很难。我们试图孵化阿帕奇（英文）的组织，我们参与这个过程中发现刚一进来已经有 30 个公司大佬跳进来了，大家会看你行不行我行不行，大家会展示自己的经验，美国人比中国人好一点，一旦认为你是一个可以交的人，他会 touch 你，他会在这个社区里可以成长并且能达到一定程度的人。（英文），被别人接受以后你要怎么做，熟悉完这个过程以后第二步就是不断地看他的（英文），最终能了如指掌，但这不是一个人能做到的，是一个组织才能达到这样的目的。</p>
+<p><strong>姜春宇</strong>：开源里有很多角色，一种是贡献者，你经常贡献，贡献的程度比较高的话你会被容纳进去成为（英文）。</p>
+<p><strong>陈冉</strong>：（英文），DCOS 也是一样。</p>
+<p><strong>姜春宇</strong>：整个流程非常漫长，每个贡献者的考验也是非常持久，最后才能把你接纳到你有一定的权利去决定这个技术怎么走或者这个 Pach（音）能不能进来。</p>
+<p><strong>卢亿雷</strong>：当你能决定 Pach 能不能进的时候你就是一个有用之才。</p>
+<p><strong>姜春宇</strong>：我们了解到整个社区里你要做这个事情要花多少精力和工夫做这个事情，非常不容易。</p>
+<p><strong>肖德时</strong>：我举点中国人做的事，阿帕奇 Clin（音），是 ebay 做的项目，他自己在公司内部成功地拿到奖以后自己出来创业，华人做这个项目，他进了阿帕奇项目里。你要做开源项目首先你要有一个好的点子，中国人外国人大家都是一样的，开源软件里有无数的想法都是改良的想法，真正有建议的想法一定会被社区认可或者被孵化出来。阿帕奇的 Hicon（音）是做内部数据库，这也是个华人在美国，他是伯克利大学的教授。开源的领袖里有华人的，有一个叫梁盛（音）是做容器，（英文）是他做的，做完之后又做（英文），不管他怎么参与他是主要的人，中国人在某些地方仍然是老大。我认为对开源代码的贡献，Spark，主要是文化的理想，我们认为我们发了东西别人必须得理我，你不理我是不是不尊重我，不是这样，外国人讲的是必须得有原因，开源一定是正向的，大家都想往好的方向发展。得有规矩，一旦你遵守了规矩，你比他熟了，能很快地进步。我看到业界里有很多聪明的工程师，尤其是中国的工程师，学到以后可以非常熟练地掌握，但是这里面有个最大的问题，国内的生活成本和各种因素比较多，国外的环境比较专注，时间比较长。如果中国的工程师，主要是年轻的大学生是主力，他们如果能参与进去，因为他们的精力充足，我相信能把开源做起来。</p>
+<p><strong>姜春宇</strong>：对于开源的宣传来说，在大学生这个阶层应该做好广泛的宣传或者推广，这是开源事业未来的工作重点。</p>
+<p><strong>郭炜</strong>：针对我在这段时间做的开源项目利用开源架构的经验和体会谈一下，中国的开源项目很少，要做很多的工作，要二次开发。</p>
+<p><strong>朱晓勇</strong>：前面几位都讲得非常好，之前我就这个问题跟老师交流过，开源更多的是需要主动性，如果我是一个开发者，我要向社区提交 Pach，提交代码，如果我不是一个开发者，我是一个学生，参与到开源社的活动里，也有很多其他路径，哪怕去阿帕奇（英文）上面买张票看一看也是很好的。像我们这种整天卖 lessons 的公司，可以把内部的小项目尝试开源，我们现在的团队就在尝试这个事情。如果公司的某一个技术人员，我有一个东西用开源的项目去做特别好，那我就会去用这个项目，用的过程中我会不自觉地遇到一些问题，遇到这些问题的时候及时地向开源社区反馈。如果做得比较好，直接写好 Pach 提交上去，另一方面哪怕写不好 Pach，写一些（英文），这个地方有问题是个坑大家要小心，提供一些我自己的想法，我觉得这也是极好的。我们没有办法要求每个人都直接去社区贡献代码，那样不现实，但我们只要有这个心有这个主动性，积极地向这个方面靠拢，就像刚刚说的让这个东西变得更好，只要我们都有这样的心，只要我们做出在我们能力范围内的相应的举措和行动，整体上这个社区会更好。</p>
+<p><strong>姜春宇</strong>：中国应该具备工程师文化和对技术、知识的敬畏，这块多一点的话会不会更好一些？我们的技术人员和科研人员在社会里受到的冲击和这方面的认识偏激一点，大家如果对技术和科学搞懂，做好（英文）做好技术会得到反馈。再问一个问题，中国目前参与开源技术或者运营开源社区有哪些问题？未来前景怎么样？</p>
+<p><strong>朱晓勇</strong>：语言可能是一个比较大的问题，相对比较先进的技术某种意义上是由西方国家主导的，语言问题包括文化是对中国人参与开源社区、参与开源文化的相对比较大的路径，一方面可以说我们中国人有自己的开源项目，某种程度上变成了中国人和中国人自己玩，区域性开源，语言上是一个问题。但随着中国越来越开放，英文水平越来越高，对西方的知识和世界理解得更加深刻，十年之后这应该就不是一个问题了。</p>
+<p><strong>郭炜</strong>：技术上还是有些差距，要做开源的领袖，技术一定要走在他们前面，这是必然的，我们还有一段时间的路要走，有些方向还是有希望的。</p>
+<p><strong>姜春宇</strong>：我知道的哈工大的一套中文的系统目前还是不错的，科大讯飞也在做类似的事情。</p>
+<p><strong>肖德时</strong>：技术有差距，我们还是缺少年轻人的参与，我们的群众基础还是很少的，要成为某个领域的专家至少要五年以上，五年以上对于年轻人来说，他有大把的时间。但这个是缺失，年轻人有很多想法，一个是国内的土壤，大家都觉得生存上要好一点，我们现在缺少这种环境去做，这是一个发展，大家先把肚子吃饱了再朝科技的方向走。通常的开源软件上缺少年轻人，有专家，但不能紧紧依靠几个人，这几个人再是意见领袖也抵不过人家几千个人。我相信未来慢慢发展，开源的普及也像现在这样，不断地宣传开源，意义在于能让更多的人参与进来。</p>
+<p><strong>陈冉</strong>：澄清一下，我没有说闭源不好。如果真想做点事，中国的大背景下首先是文化不可能改变，中国在很多教育方面，大家提倡的是出来找份好的工作，但从开源的角度来说你必须投入，你在投入的过程中很多公司投入开源的开发有可能是没有利益的，一些大公司比如 HP，投了很多钱砸到社区，让这些人不为 HP 工作为社区工作，很多小公司在中国的温饱问题还没有解决，这是一个非常大的问题。不能说美国衣食无忧，但至少要有（英文）去做开源。怎么样通过开源跟挣钱的点去普及，怎么样把开源讲清楚，哪些点上有哪些布局，公司在哪儿能布局他才有这个方向去做。从人群来看，中国的大背景下，教育的背景下，不是我们一个人能说清楚的。很多大学很多老师也不懂，凭几个公司几个人人去推广开源，我们只能进企业和社区的氛围，通过免费的渠道、更加快捷的渠道推广开源，开源的程度最终做到什么样，应该是给大家传递一个消息，大家参与开源，你以后的薪水有可能很高。五年前招做 Openstack 的人花五万十万，现在五十万可能都挖不到这样的人。</p>
+<p><strong>卢亿雷</strong>：一个是整个中国的文化背景，一个是公司的考核机制，不是为了生存去做一些事情，公司能大力支持，中国的开源会越来越火。</p>
+<p><strong>姜春宇</strong>：感谢各位的精彩答案，开源背后还有开源社区基金会的组织在运行，基于种种原因在中国建这样的基因会困难比较大，不仅仅是个人或公司的努力，我们还是缺乏中间的组织，这样的组织怎么样去建立、运营或维护，在中国难度也是比较大的，这也是开源一部分的缺失，这块需要等待政府或者其他层面有一些改变，我们拭目以待。今天的圆桌会议到此结束，感谢各位，感谢开源社，谢谢大家！</p>
+<p><strong>提问</strong>：我是来自大连的一个企业负责人，我做 IT 十多年的时间，特别感谢各位大咖，我听了两天的大数据峰会论坛，今天下午是技术最先进也是最接地气的讲演，所以我从头听到结束，首先对各位表示感谢。我也是做技术出身的，做了十多年，第一个感受是站在台上的几位大咖有技术的天赋和技术的基因，做技术的人都可以做技术，但是真的做到好的、特别高端的，一定要有天赋，刘翔跑得快，刘翔是有天赋的，跟普通运动员是不一样的。从表达、谈吐、长相都能看出有技术的基因在里面。</p>
+<p>现在已经走了很多人，不是这几位讲的问题，来的技术出身的负责人会更感兴趣，讲得非常精彩。有几个问题请教各位大咖，我对开源的技术有点又爱又恨，我的公司规模不是很大，做传统 IT 很多年，这两年转向了大数据的开发，政府和金融都做了大数据的项目。金融银行强调的就是要做开源，有安全的担忧，希望我们这些人给他用开源的方式实现，爱的是给这些传统企业和中小型企业一个机会，用开源的技术进入到大数据行业里来。但是坑太多，坑太多了之后对于我们这些企业带来了很大的门槛和很多的困难，这是困扰我的一个问题，包括开源技术的开发人员，大连的环境不比北京，能不能给我好的建议？</p>
+<p><strong>陈冉</strong>：你做 Hadoop 没问题，给你举个联通的例子，联通从三年前用开源，填坑的过程中发现填不满了，找别人给他做商业的服务。有两个方式走，积极投入到百度社区里做贡献，跟那些人很熟，你知道怎样去改，改完以后可以通过不同的（英文）帮助你。第二，你可以找一些人，看你有没有钱了，要请（英文）。可以招一堆这样的人帮你做，就是这些思路，开源是什么？相当于给你个免费的代码，前段时间说代码必须开放我才相信你，实际上这也是个坑，这是个很大的坑。具体要看你自己公司的背景和文化背景，你才能从中选择。</p>
+<p><strong>提问</strong>：我是来自境外咨询公司的员工，我们在国内没有业务，我想跟大家分享我观察到的东西和我的问题。大家的议题很有趣，大家的演讲很好，现实是听的人越来越少，说明一个什么问题？说明大家的水平不好，说明中国对开源认识的认知度没到这个层面。我在国外参加会议越到最后人数越多，这是我想跟大家分享的反差。在座各位对开源对中国的现实情况比较了解，开源跟大数据在中国需要多少时间才能走到成熟的阶段？国外有一个成熟的弯度去爬，中国要爬多久才能爬到比较成熟的阶段？刚才陈老师说到（英文），我们体会很深，在这个过程中（英文）跑了十年跑到现在的阶段，但是还有很多坑，在中国 Hadoop 要跑多久？</p>
+<p><strong>卢亿雷</strong>：我回答第一个问题，听到后面人越来越少，很多会场有这个问题，它可能不适合这个场景，也有可能他们过来想听开源的系统能用到哪些案例，后面我们讲的都是很深的技术手段。我们可以讲一些开源的系统可能会解决你的问题。</p>
+<p><strong>陈冉</strong>：说一下我们的邻国日本，日本的英语也差，但是日本在开源技术和社区上做得比我们好得多，以 Openstack 来说，人家已经做了两次（英文），我说的原因是日本人做事是放低自己的位置，中国人觉得自己牛，我很厉害，我比你们都厉害，刚才你提的问题特别好，我认为在大政策背景下，从代码开放，从国家政策上要求代码开放，政策上已经要求了，但是技术、教育和文化综合来说，至少还有五六年的时间要往下走，因为从某种层面上来说，你需要不断地适配国外的文化，不断地适配语言，中国的教育，我曾经面试过非常多一流的学生，他的英语还是不行，可能会说不会写，可能会写不会说，老外跟他对话也听不懂。</p>
+<p><strong>主持人</strong>：技术方面，中国的技术领先程度不比国外差。我举个例子，开源社曾经协助阿里巴巴把他们的社区对接到阿帕奇的 PMC 社区，他们希望把（英文）合并到（英文），经过了双十一的考验肯定很牛。源代码共享不叫开源，没有让别人持续去丰富它的代码，很多大公司做开源项目的事情，他希望有更多的人参与到他的项目中来。后来跟阿帕奇的总裁说沟通蛮困难的，我至少回复了十遍以上他还是回答同一个问题，语言沟通上有问题。最后皇天不负有心人，阿里的项目终于加入了社区，阿里做大数据的规模，他的技术绝对是领先的。</p>
+<p><strong>提问</strong>：各位老师，大家下午好。我请教一个问题，刚才几位老师都谈到容器的问题，有个问题我比较困惑，我们在容器上面搭一个小的系统完全没有问题，如果涉及到 P 级别的，这里面需要考虑的问比较多，比如我怎么使用本地的磁盘，怎么考虑主机之间的带宽，有些容器需要分布在一个主机上，有些容器要分布在不同的主机上，我觉得需要考虑的问题很多。请教几位老师，你们在做这样的架构设计的时候，你们考虑到你们这个系统可扩展到什么样的场景？刚才我提的问题有没有在你们的方案里考虑到？这可能比较技术。</p>
+<p><strong>肖德时</strong>：我刚才说了这是问题，没有最佳方案，因为现在没有标准，我们只是在实践中走这个事，成熟的方案当然是利用老的方案，现在 Openstack 这种网络的层面解决这个问题，容器现在没有标准的方案，这些问题只要提出来了，最终是会被解决的。</p>
+<p><strong>提问</strong>：你这么说我能理解，前期在电信行业里提了很多电信行业的诉求，包括 Openstack，以后像容器技术，如果想到 P 级别可以在容器上随便部署，还有比较长的路走。我特别担心一个问题，有可能到 P 级别的环境，理论一旦出去了以后，这里面应该没有政府官员，在政府的引导下他会追求新的趋势，会强制你为什么不用那个容器，但那种场景真不一定适合去用。我想说在后面的场景考虑上可以做一些建议，我思考这个问题思考了很久，怎么把系统部署到容器上，目前的确没有完美的解决方案。</p>
+<p><strong>陈冉</strong>：docker 像合租房，有些人会租合租房里的一间，有些人会租那么大的房子，docker 在大数据里是不是很成熟，把（英文）容器化了以后，你刚才讲了两个 P，一个是存储级别的 P，一个可能是带宽级别的 P，docker 横向的拓展能力很强，但是要针对很老型的有可能不适应。未来的方向可能要轻，因为你的资源这么大，你怎么能把它最大利用起来，我可以判断未来肯定要容器化，怎么样把容器做得适配各种行业、各个业务、各个场景，这是大家都在思考的问题。</p>
+<p><strong>主持人</strong>：谢谢大家，今天辛苦了，谢谢！</p>
+</main>
+
+    
+    <hr>
+    
+<h2 class="d-flex justify-content-between align-items-center">
+  活动简讯
+  <span>
+    <a class="btn btn-primary" download="2016 年大数据产业峰会之开源与大数据专场.ics"
+      href="data:text/calendar;base64,QkVHSU46VkNBTEVOREFSDQpWRVJTSU9OOjIuMA0KUFJPRElEOi0vL1RyaSBUZWNoIENvbXB1dGVycy8vbm9kZS1pY2FsZW5kYXIvL0VODQpCRUdJTjpWRVZFTlQNClNVTU1BUlk6MjAxNiDlubTlpKfmlbDmja7kuqfkuJrls7DkvJrkuYvlvIDmupDkuI7lpKfmlbDmja7kuJPlnLoNCkRUU1RBUlQ6MjAxNjA0MjhUMTMzMDAwWg0KRFRFTkQ6MjAxNjA0MjhUMTcxMDAwWg0KTE9DQVRJT0465YyX5Lqs5Zu96ZmF5Lya6K6u5Lit5b+D56ys5LqM5Lya6K6u5Y6FDQpFTkQ6VkVWRU5UDQpFTkQ6VkNBTEVOREFSDQo=">
+      添加日历
+    </a>
+    
+  </span>
+</h2>
+<ul>
+  <li>时间：2016-04-28 13:30:00 ~ 2016-04-28 17:10:00</li>
+  <li>地点：北京国际会议中心第二会议厅</li>
+</ul>
+
+  <script src="https://npm.webcache.cn/@babel/polyfill@7.12.1/dist/polyfill.min.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=Promise%2CIntersectionObserver"></script>
+
+<script src="https://npm.webcache.cn/dom-renderer@1.0.3/dist/dom-renderer.min.js"></script>
+<script src="//webapi.amap.com/maps?v=1.4.14&key=8325164e247e15eea68b59e89200988b&plugin=AMap.Geocoder,AMap.AdvancedInfoWindow"></script>
+
+<template>[{&#34;title&#34;:&#34;2016 年大数据产业峰会之开源与大数据专场&#34;,&#34;URL&#34;:&#34;http://kaiyuanshe.cn/activity/summit/big-data-industry-summit-2016/&#34;,&#34;address&#34;:&#34;北京国际会议中心第二会议厅&#34;}]</template>
+<template>
+  <div class="pt-2 pl-2 pr-2">
+    <h4>
+      <a href="${view.URL}">${view.title}</a>
+    </h4>
+    <p>${view.address}</p>
+  </div>
+</template>
+<div class="embed-box"></div>
+
+<script>
+(function (main) {
+
+  var box = document.currentScript.previousElementSibling;
+
+  self.addEventListener('load',  function () {
+
+    new IntersectionObserver(function (entry, observer) {
+
+      observer.disconnect();
+
+      main(
+        self['dom-renderer'].default,
+        box,
+        box.previousElementSibling,
+        box.previousElementSibling.previousElementSibling
+      );
+    }).observe( box );
+  });
+})(function (View, box, template, list) {
+
+  list = JSON.parse( list.innerHTML.trim() );
+
+  var map = new AMap.Map(box, {resizeEnable: true}),
+    coder = new AMap.Geocoder(),
+    dialog = new AMap.AdvancedInfoWindow({
+      offset: new AMap.Pixel(0, -30),
+      showShadow: true,
+      closeWhenClickMap: true
+    }),
+    template = new View( template.innerHTML );
+
+  function getCoords(addresses) {
+
+    return new Promise(function (resolve, reject) {
+
+      coder.getLocation(addresses,  function (status, result) {
+
+        if (status === 'error')
+          reject( result );
+        else if (status === 'complete')
+          resolve( result );
+      });
+    });
+  }
+
+  getCoords(
+    list.map(function (item) {  return item.address;  })
+  ).then(function (data) {
+
+    if (! data.geocodes[0])  return;
+
+    var markers = data.geocodes.map(function (item, index) {
+
+      var marker = new AMap.Marker({position: item.location});
+
+      marker.on('click',  function () {
+
+        template.render( list[index] ).then(function () {
+
+          dialog.setContent(template + '');
+
+          dialog.open(map, item.location);
+        });
+      });
+
+      return marker;
+    });
+
+    map.add( markers ),  map.setFitView( markers );
+  });
+});
+</script>
+
+
+    
+    <hr>
+    <h2>资料下载</h2>
+    <ol>
+      
+  <li>
+    <a target="_blank" href="activity/summit/big-data-industry-summit-2016/%E5%A4%A7%E6%95%B0%E6%8D%AE%E8%B6%8B%E5%8A%BF%20-%20Omid%20Afnan%20-%20%E5%BE%AE%E8%BD%AF.pdf">
+
+      <i class="fas fa-2x fa-file-pdf"></i>
+
+      <span>大数据趋势 - Omid Afnan - 微软.pdf</span>
+    </a>
+  </li>
+
+  <li>
+    <a target="_blank" href="activity/summit/big-data-industry-summit-2016/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%20-%20%E5%8D%A2%E4%BA%BF%E9%9B%B7%20-%20AdMaster.pdf">
+
+      <i class="fas fa-2x fa-file-pdf"></i>
+
+      <span>大数据生态系统分析 - 卢亿雷 - AdMaster.pdf</span>
+    </a>
+  </li>
+
+  <li>
+    <a target="_blank" href="activity/summit/big-data-industry-summit-2016/%E8%A7%82%C2%B7%E6%95%B0%E6%8D%AE%E6%9C%AA%E6%9D%A5%20-%20%E9%83%AD%E7%82%9C%20-%20%E6%98%93%E8%A7%82.pdf">
+
+      <i class="fas fa-2x fa-file-pdf"></i>
+
+      <span>观·数据未来 - 郭炜 - 易观.pdf</span>
+    </a>
+  </li>
+
+  <li>
+    <a target="_blank" href="activity/summit/big-data-industry-summit-2016/%E8%87%AA%E5%8A%A9%E5%BC%8F%E7%A4%BE%E4%BA%A4%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%99%BA%E8%83%BD%E5%8C%96%E5%88%86%E6%9E%90%E5%B9%B3%E5%8F%B0%20-%20%E9%BB%84%E6%99%BA%20-%20%E7%8E%AF%E4%BF%A1.pdf">
+
+      <i class="fas fa-2x fa-file-pdf"></i>
+
+      <span>自助式社交大数据智能化分析平台 - 黄智 - 环信.pdf</span>
+    </a>
+  </li>
+
+  <li>
+    <a target="_blank" href="activity/summit/big-data-industry-summit-2016/%E4%BA%92%E8%81%94%E7%BD%91+%E6%97%B6%E4%BB%A3%E4%B8%8B%E7%9A%84%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0%20-%20%E9%99%88%E5%86%89%20-%20Samlinker.pdf">
+
+      <i class="fas fa-2x fa-file-pdf"></i>
+
+      <span>互联网+时代下的大数据平台 - 陈冉 - Samlinker.pdf</span>
+    </a>
+  </li>
+
+  <li>
+    <a target="_blank" href="activity/summit/big-data-industry-summit-2016/%E5%AE%B9%E5%99%A8%E5%8C%96%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E5%AE%9E%E8%B7%B5%20-%20%E8%82%96%E5%BE%B7%E6%97%B6%20-%20%E6%95%B0%E4%BA%BA%E4%BA%91.pdf">
+
+      <i class="fas fa-2x fa-file-pdf"></i>
+
+      <span>容器化大数据应用部署实践 - 肖德时 - 数人云.pdf</span>
+    </a>
+  </li>
+
+
+    </ol>
+    
+  </div>
+</section>
+
+<nav class="page-section text-center">
+  <div class="btn-group" role="group" aria-label="Post navigator">
+    
+    <a class="btn btn-secondary" role="button" href="activity/summit/coscon-2016-summary/">
+      &lt; 中国开源年会2016圆满落幕
+    </a>
+    
+    <a class="btn btn-secondary" role="button" href="activity/salon/nodejs-live-2016-beijing/">
+      Node.JS Live 北京站开放注册！征集演讲者！ &gt;
+    </a>
+    
+  </div>
+</nav>
+
+<script>
+(function () {
+
+  var path = self.location.href.split('#')[0];
+
+  $('details > .toc a[href]').attr('href', function (_, value) {
+
+    return path + value;
+  });
+
+  $('.blog-post').find('h1, h2, h3, h4, h5, h6').append(function () {
+
+    if ( this.id.trim() )
+      return '<a class="header-link" title="Permalink" href="' +
+        path + '#' + this.id +
+        '"><span class="octicon octicon-link"></span></a>';
+  });
+})();
+</script>
+
+
+  <footer class="footer">
+    <div class="container">
+      <nav class="footer-nav">
+        
+          <a class="footer-nav-item active" href="/categories/Activity/">
+            活动
+          </a>
+        
+          <a class="footer-nav-item " href="/page/2">
+            博客
+          </a>
+        
+          <a class="footer-nav-item " href="/profile/charter">
+            章程
+          </a>
+        
+          <a class="footer-nav-item " href="https://github.com/kaiyuanshe/kaiyuanshe.github.io/tree/hexo/License" target="_blank" rel="noopener">
+            许可
+          </a>
+        
+          <a class="footer-nav-item " href="/profile/contact">
+            联系我们
+          </a>
+        
+          <a class="footer-nav-item " href="https://git-pager.avosapps.us/?repository=kaiyuanshe/Wiki" target="_blank" rel="noopener">
+            协作编辑
+          </a>
+        
+      </nav>
+      <span class="col">沪 ICP 备 19006015 号</span>
+      <span class="col">公安备案 31011202006203 号</span>
+
+      <span class="footer-social">
+        
+          <a class="footer-nav-item icon"
+            href="https://github.com/kaiyuanshe"
+            title="Github Organization">
+            <i class="devicon-github-plain vertical-middle"></i>
+          </a>
+        
+          <a class="footer-nav-item icon"
+            href="https://twitter.com/contactkaiyuan1"
+            title="@contactkaiyuan1 on Twitter">
+            <i class="devicon-twitter-plain vertical-middle"></i>
+          </a>
+        
+          <a class="footer-nav-item icon"
+            href="https://www.facebook.com/kaiyuanshe.china"
+            title="Facebook account">
+            <i class="devicon-facebook-plain vertical-middle"></i>
+          </a>
+        
+      </span>
+    </div>
+  </footer>
+  <script src="library/virtual-anchor-sdk.js"></script>
+  <script>
+    new VirtualAnchor({ id: '191be2ab-8c6e-6201-c419-3ef2d26eadf2' });
+  </script>
+</body>
+
+</html>

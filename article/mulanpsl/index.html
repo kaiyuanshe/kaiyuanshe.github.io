@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+
+  <title>开源社</title>
+
+  
+  <meta name="description" content="开源社引言木兰开源许可证系列（宽松、严格、FRAND）由产学研携手合作，而开源社是主要贡献单位之一（也是唯一的开源社区）。 这里特别感谢开源社法律咨询委员会成员 —— 黄鸿文 、林诚夏、梁尧三位专家的意见与反馈，华为的开源项目极可能成为第一个引用木兰宽松协议者，我们拭目以待。 作为国内主要推动开源治理的社区，我们全力支持开源协议的发展和生态的建设。我们期待后续能：  与目前国际流行许可证的一个">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="木兰开源许可证：开源社如是说">
+<meta property="og:url" content="http://kaiyuanshe.cn/article/mulanpsl/index.html">
+<meta property="og:site_name" content="开源社">
+<meta property="og:description" content="开源社引言木兰开源许可证系列（宽松、严格、FRAND）由产学研携手合作，而开源社是主要贡献单位之一（也是唯一的开源社区）。 这里特别感谢开源社法律咨询委员会成员 —— 黄鸿文 、林诚夏、梁尧三位专家的意见与反馈，华为的开源项目极可能成为第一个引用木兰宽松协议者，我们拭目以待。 作为国内主要推动开源治理的社区，我们全力支持开源协议的发展和生态的建设。我们期待后续能：  与目前国际流行许可证的一个">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://kaiyuanshe.cn/article/mulanpsl/29zf2qqp6s.png">
+<meta property="article:published_time" content="2019-08-12T00:00:00.000Z">
+<meta property="article:modified_time" content="2019-08-13T17:44:08.000Z">
+<meta property="article:author" content="shiy2008@gmail.com">
+<meta property="article:tag" content="license">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://kaiyuanshe.cn/article/mulanpsl/29zf2qqp6s.png">
+<meta name="twitter:site" content="contactkaiyuan1">
+  <meta name="author" content="shiy2008@gmail.com">
+  <meta name="generator" content="hexo">
+  <meta name="theme-color" content="#2f3241">
+
+  <!-- consumed by scripts/get-localized-strings -->
+  <meta name="localized.clipboard.copy" content="Copy">
+  <meta name="localized.clipboard.copy_to_clipboard" content="复制到剪贴板">
+  <meta name="localized.clipboard.copied" content="已复制">
+
+  <base href="/">
+
+  <link rel="shortcut icon" href="image/KaiYuanShe-logo.png">
+
+  <link rel="stylesheet" href="https://npm.webcache.cn/github-markdown-css@5.5.1/github-markdown-light.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/devicon@2.16.0/devicon.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/highlight.js@9.18.5/styles/dark.css">
+  <link rel="stylesheet" href="library/index.css">
+  <link rel="stylesheet" href="common.css">
+  <style>
+    .site-header-nav-item a:link {
+      text-decoration: none;
+    }
+  </style>
+  <script src="https://npm.webcache.cn/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script src="https://npm.webcache.cn/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://npm.webcache.cn/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+  <script src="https://npm.webcache.cn/highlight.js@9.18.5/lib/highlight.js"></script>
+  <script src="common.js" defer async></script>
+</head>
+
+<body>
+  <div class="alert alert-danger mb-0 text-center" role="alert">
+    开源社官网（2019 版）已存档、只读，请移步
+    <a href="https://kaiyuanshe.cn" class="alert-link">2022 版官网</a>
+    关注最新信息~
+  </div>
+
+  <header class="site-header">
+    <div class="container">
+
+      <a class="site-header-logo no-underline-hover" href=".">
+        <img class="site-header-icon" src="image/KaiYuanShe-logo.png">
+        开源社
+      </a>
+
+      <nav class="site-header-nav">
+        
+          <div class="site-header-nav-item">
+            
+              <a role="button" href="/categories/Activity/Summit/" data-href-match="">
+                年度大会
+              </a>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_1" href="" data-href-match="">
+                资讯
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_1">
+                
+                  <a class="dropdown-item" href="/categories/Activity/">活动</a>
+                
+                  <a class="dropdown-item" href="/blog/">博客</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_2" href="" data-href-match="">
+                成员
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_2">
+                
+                  <a class="dropdown-item" href="/members/">正式成员</a>
+                
+                  <a class="dropdown-item" href="https://kaiyuanshe.feishu.cn/share/base/shrcnfO89tYlYIjZpS5PXJBaK2f" target="_blank" rel="noopener">加入我们</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a role="button" href="/partners" data-href-match="">
+                合作伙伴
+              </a>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_4" href="" data-href-match="">
+                资源
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_4">
+                
+                  <a class="dropdown-item" href="https://test.kaiyuanshe.cn/organization" target="_blank" rel="noopener">开源地图</a>
+                
+                  <a class="dropdown-item" href="/categories/Document">开源文档</a>
+                
+                  <a class="dropdown-item" href="/license-tool/">许可证选择器</a>
+                
+                  <a class="dropdown-item" href="http://mirror.kaiyuanshe.cn/" target="_blank" rel="noopener">开源镜像</a>
+                
+                  <a class="dropdown-item" href="https://polyfill.kaiyuanshe.cn/" target="_blank" rel="noopener">Web 标准补丁服务</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_5" href="" data-href-match="">
+                关于
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_5">
+                
+                  <a class="dropdown-item" href="/profile/about">介绍</a>
+                
+                  <a class="dropdown-item" href="/profile/structure">组织架构</a>
+                
+                  <a class="dropdown-item" href="/governance">工作组</a>
+                
+                  <a class="dropdown-item" href="/profile/charter">章程</a>
+                
+                  <a class="dropdown-item" href="/categories/Meeting">会议纪要</a>
+                
+              </div>
+            
+          </div>
+        
+        <form action="search/" class="ais-search-box">
+          <input type="search" name="keyword" required placeholder="搜索"
+            id="search-input" class="nav-search ais-search-box--input"
+            aria-label="search-box" autocapitalize="off" autocorrect="off" role="textbox">
+        </form>
+        <a class="site-header-nav-item octicon"
+          href="https://github.com/kaiyuanshe/"
+          title="Github Organization">
+          <span class="mega-octicon octicon-mark-github vertical-middle"></span>
+        </a>
+        <a class="site-header-nav-item bordered lang-select-button" href="#Language" data-toggle="collapse">
+          中文
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <div id="Language" class="container collapse">
+  <div class="m-4">
+    <div class="text-center-sm mb-4">
+      <strong>请选择语言</strong>
+    </div>
+    <div class="clearfix">
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/en-US" target="_blank" rel="noopener">
+          English
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ja-JP" target="_blank" rel="noopener">
+          日本語
+          
+          (Japanese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/es-ES" target="_blank" rel="noopener">
+          Español
+          
+          (Spanish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/zh-CN" target="_blank" rel="noopener">
+          中文
+          
+          (Chinese Simplified)
+          
+        </a>
+        
+        <span class="faint"><span class="octicon octicon-check mr-1"></span></span>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/tr-TR" target="_blank" rel="noopener">
+          Türkçe
+          
+          (Turkish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/id-ID" target="_blank" rel="noopener">
+          Indonesian
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fil-PH" target="_blank" rel="noopener">
+          Filipino
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fr-FR" target="_blank" rel="noopener">
+          Français
+          
+          (French)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ru-RU" target="_blank" rel="noopener">
+          Русский
+          
+          (Russian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ko-KR" target="_blank" rel="noopener">
+          한국어
+          
+          (Korean)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/it-IT" target="_blank" rel="noopener">
+          Italiano
+          
+          (Italian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/pt-BR" target="_blank" rel="noopener">
+          Português
+          
+          (Portuguese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/de-DE" target="_blank" rel="noopener">
+          Deutsch
+          
+          (German)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/uk-UA" target="_blank" rel="noopener">
+          Українська
+          
+          (Ukrainian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/zh-TW" target="_blank" rel="noopener">
+          中文
+          
+          (Chinese Traditional)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/pl-PL" target="_blank" rel="noopener">
+          język polski
+          
+          (Polish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/bg-BG" target="_blank" rel="noopener">
+          български език
+          
+          (Bulgarian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/hi-IN" target="_blank" rel="noopener">
+          हिन्दी
+          
+          (Hindi)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/nl-NL" target="_blank" rel="noopener">
+          Nederlands
+          
+          (Dutch)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/vi-VN" target="_blank" rel="noopener">
+          Tiếng Việt
+          
+          (Vietnamese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ar-SA" target="_blank" rel="noopener">
+          اللغة العربية
+          
+          (Arabic)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fa-IR" target="_blank" rel="noopener">
+          فارسی
+          
+          (Persian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/cs-CZ" target="_blank" rel="noopener">
+          čeština
+          
+          (Czech)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/th-TH" target="_blank" rel="noopener">
+          ไทย
+          
+          (Thai)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/he-IL" target="_blank" rel="noopener">
+          עברית
+          
+          (Hebrew)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ro-RO" target="_blank" rel="noopener">
+          limba română
+          
+          (Romanian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/tl-PH" target="_blank" rel="noopener">
+          Wikang Tagalog
+          
+          (Tagalog)
+          
+        </a>
+        
+      </div>
+      
+    </div>
+    <hr>
+    <div class="text-center-sm">
+      <a href="https://electronjs.org/languages" target="_blank" rel="noopener">查看更多语言详情</a>
+    </div>
+  </div>
+</div>
+
+
+  <style>
+  .blog-post hr:first-of-type {
+    display: block;
+  }
+</style>
+
+
+
+<section class="page-section blog-post">
+  <div class="container">
+    <h1>木兰开源许可证：开源社如是说</h1>
+
+    
+
+    
+
+<div class="blog-byline mt-2 mb-4 d-flex justify-content-between align-items-center">
+  <span class="blog-index-time">2019-08-12 00:00:00</span>
+
+
+  <a class="author-link ml-3 text-center" href="https://github.com/kaiyuanshe" target="_blank" rel="noopener">
+    <img
+      class="avatar mr-2"
+      style="max-width: 2.25rem"
+      src="https://github.com/kaiyuanshe.png?size=36"
+      alt="kaiyuanshe"
+    >
+    kaiyuanshe
+  </a>
+
+
+  <span>
+    
+      <a class="badge badge-primary" href="categories/Article/">
+        Article
+      </a>
+    
+    
+      <a class="badge badge-primary" href="tags/license/">
+          license
+      </a>
+    
+  </span>
+</div>
+
+
+    
+
+    <details>
+      <summary>正文大纲</summary>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#开源社引言"><span class="toc-text">开源社引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参与单位"><span class="toc-text">参与单位</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#云计算和大数据开源社区生态系统简介"><span class="toc-text">云计算和大数据开源社区生态系统简介</span></a></li></ol>
+    </details>
+
+    <main class="markdown-body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><img src="/article/mulanpsl/29zf2qqp6s.png" class="">
+
+<h2 id="开源社引言"><a href="#开源社引言" class="headerlink" title="开源社引言"></a>开源社引言</h2><p><strong>木兰开源许可证系列</strong>（宽松、严格、FRAND）由产学研携手合作，而<strong>开源社</strong>是主要贡献单位之一（也是<strong>唯一</strong>的<strong>开源社区</strong>）。</p>
+<p>这里特别感谢开源社法律咨询委员会成员 —— 黄鸿文 、林诚夏、梁尧三位专家的意见与反馈，华为的开源项目极可能成为第一个引用木兰宽松协议者，我们拭目以待。</p>
+<p>作为国内主要推动开源治理的社区，我们全力支持开源协议的发展和生态的建设。我们期待后续能：</p>
+<ol>
+<li><p>与目前国际流行许可证的一个简单对比及兼容性描述</p>
+</li>
+<li><p>和国际开源协议权威组织 OSI 沟通，开源社作为 OSI 在中国的唯一成员，乐于协助对接。</p>
+</li>
+</ol>
+<a id="more"></a>
+
+<p><strong>林诚夏</strong>先生，开源社法律咨询委员会成员，开放文化基金会及钧理知识产权事务所法制顾问的寄语：</p>
+<blockquote>
+<p>木兰协议就宽松版来看，是一个简洁、广度及深度都合宜的开放源码许可证，后续期待编撰团队能够进一步释疑及处理的，是这款许可证与其他国际间使用比例较高的开源许可证之间，相容关系的分析。例如能不能与 GPL 许可证相容，或有没有机会在跨国项目合作时，转为 Apache 许可证，或汇入 MIT、BSD 等许可证的项目转以木兰宽松协议来发布等应用模式，若能就此议题进一步发展，当能更收开源多方共工之效。另外，一个开放源码项目的成功与持续发展，除了有适合的许可证作为其框架(骨)之外，也需要实质有用、能引发协作共鸣的代码来充实其内容(血、肉)，就像 Linux 核心、GCC 编译器之于 GPL 许可证，Hadoop、OpenStack 之于 Apache 许可证一般，期许未来能有更多具发展潜质的开源项目能与木兰协议搭配，将相关的循环生态系建立起来。</p>
+</blockquote>
+<p>为响应开源产业发展需求，本着立足本土、面向全球、开放透明的原则，北京大学作为国家重点研发计划“云计算和大数据开源社区生态系统”的子任务牵头单位，依托全国信标委云计算标准工作组和中国开源云联盟，联合国内开源生态圈产学研各界优势团队、开源社区以及拥有丰富知识产权相关经验的众多律师，共同研制形成重要成果 —— <strong>木兰系列开源许可证的《木兰宽松许可证，第 1 版》</strong>，于 <strong>2019 年 8 月 5 日</strong>在中国开源云联盟官网正式上线。</p>
+<p><a href="http://license.coscl.org.cn/MulanPSL/" target="_blank" rel="noopener">http://license.coscl.org.cn/MulanPSL/</a></p>
+<p>随着软件的快速发展，企业拥抱开源是大势所趋，“<strong>开放、自由、共享</strong>”的开源理念越来越深入人心。但由此带来的知识产权问题，尤其是开源软件与专利保护，经常令人困惑。开源许可证是一种具有法律性质的合同，也是开源规则的重要组成部分，详尽的表述了获得开源软件后拥有的权利及义务，目的在于规范受版权法保护的软件的使用、复制、修改或者分发行为。当前，伴随着国内开源文化的不断兴起，开源产业逐渐完善，一方面国内开发者和企业参与开源的热情不断高涨，而另一方面由于开源领域存在的许可证版本众多、语言理解存在偏差、涉及的法律问题晦涩难懂以及由此带来的知识产权问题，尤其是开源软件合规性操作与专利保护，给国内开源产业参与者带来诸多不便。为此，国内产学研各界优势团队共同梳理了当前主流的开源协议，详细分析其框架、核心内容以及存在的问题，并在此基础上积极推进中国本土的开源许可证研制，形成更简洁易读、商业友好的木兰系列开源许可证，为国内开源产业发展提供坚实的基础保障。</p>
+<p>为进一步发展国内开源生态，基于国家重点专项构建的平台 (TosCode) 将推荐用户优先使用<strong>木兰协议</strong>。国内主流开源代码托管平台开源中国码云 (Gitee)、确实 (Trustie)、鹏城汇智 (iHub) 等率先支持<strong>木兰协议</strong>，中国开源基金会在其支持项目中也将优先采用。</p>
+<p>结合产业界关注热点，中国开源云联盟将就“木兰”许可证推出 FAQ 系列内容，欢迎关注。</p>
+<h2 id="参与单位"><a href="#参与单位" class="headerlink" title="参与单位"></a>参与单位</h2><p>（排名不分先后）</p>
+<ul>
+<li><p>北京大学</p>
+</li>
+<li><p>中国电子技术标准化研究院</p>
+</li>
+<li><p>西南大学</p>
+</li>
+<li><p>中国科学院软件所</p>
+</li>
+<li><p>国防科技大学</p>
+</li>
+<li><p>开源社</p>
+</li>
+<li><p>中移（苏州）软件技术有限公司</p>
+</li>
+<li><p>华为技术有限公司</p>
+</li>
+<li><p>华云数据集团有限公司</p>
+</li>
+<li><p>普元信息技术股份有限公司</p>
+</li>
+<li><p>中兴通讯股份有限公司</p>
+</li>
+<li><p>中标软件有限公司</p>
+</li>
+</ul>
+<h2 id="云计算和大数据开源社区生态系统简介"><a href="#云计算和大数据开源社区生态系统简介" class="headerlink" title="云计算和大数据开源社区生态系统简介"></a>云计算和大数据开源社区生态系统简介</h2><p>“云计算和大数据开源社区生态系统”是 2018 年下达的国家重点研发计划项目，由中国电子技术标准化研究院牵头，联合北京大学、国防科大、联想、腾讯云，以及开源中国、北航、中科院计算所、西南大学、华为、阿里云、浪潮、新华三、中电标协、中科院东莞育成中心、湖南酷得共 16 家单位共同承担，面向开源社区及其生态系统的构建理论、支撑平台以及建设和运营三大关键问题，聚焦四类项目任务，通过五个重点课题开展研究，项目预期面向开源社区生态系统形成一套构建理论、一个支撑平台、一组开源生态、一套运营体系，为我国开源社区和生态系统建设做出贡献。</p>
+</main>
+
+    
+  </div>
+</section>
+
+<nav class="page-section text-center">
+  <div class="btn-group" role="group" aria-label="Post navigator">
+    
+    <a class="btn btn-secondary" role="button" href="activity/summit/coscon-2019-workshop/">
+      &lt; COSCon 2019 动手训练营
+    </a>
+    
+    <a class="btn btn-secondary" role="button" href="article/casual-contributors-management/">
+      如何管理开源项目中的即兴贡献者 &gt;
+    </a>
+    
+  </div>
+</nav>
+
+<script>
+(function () {
+
+  var path = self.location.href.split('#')[0];
+
+  $('details > .toc a[href]').attr('href', function (_, value) {
+
+    return path + value;
+  });
+
+  $('.blog-post').find('h1, h2, h3, h4, h5, h6').append(function () {
+
+    if ( this.id.trim() )
+      return '<a class="header-link" title="Permalink" href="' +
+        path + '#' + this.id +
+        '"><span class="octicon octicon-link"></span></a>';
+  });
+})();
+</script>
+
+
+  <footer class="footer">
+    <div class="container">
+      <nav class="footer-nav">
+        
+          <a class="footer-nav-item active" href="/categories/Activity/">
+            活动
+          </a>
+        
+          <a class="footer-nav-item " href="/page/2">
+            博客
+          </a>
+        
+          <a class="footer-nav-item " href="/profile/charter">
+            章程
+          </a>
+        
+          <a class="footer-nav-item " href="https://github.com/kaiyuanshe/kaiyuanshe.github.io/tree/hexo/License" target="_blank" rel="noopener">
+            许可
+          </a>
+        
+          <a class="footer-nav-item " href="/profile/contact">
+            联系我们
+          </a>
+        
+          <a class="footer-nav-item " href="https://git-pager.avosapps.us/?repository=kaiyuanshe/Wiki" target="_blank" rel="noopener">
+            协作编辑
+          </a>
+        
+      </nav>
+      <span class="col">沪 ICP 备 19006015 号</span>
+      <span class="col">公安备案 31011202006203 号</span>
+
+      <span class="footer-social">
+        
+          <a class="footer-nav-item icon"
+            href="https://github.com/kaiyuanshe"
+            title="Github Organization">
+            <i class="devicon-github-plain vertical-middle"></i>
+          </a>
+        
+          <a class="footer-nav-item icon"
+            href="https://twitter.com/contactkaiyuan1"
+            title="@contactkaiyuan1 on Twitter">
+            <i class="devicon-twitter-plain vertical-middle"></i>
+          </a>
+        
+          <a class="footer-nav-item icon"
+            href="https://www.facebook.com/kaiyuanshe.china"
+            title="Facebook account">
+            <i class="devicon-facebook-plain vertical-middle"></i>
+          </a>
+        
+      </span>
+    </div>
+  </footer>
+  <script src="library/virtual-anchor-sdk.js"></script>
+  <script>
+    new VirtualAnchor({ id: '191be2ab-8c6e-6201-c419-3ef2d26eadf2' });
+  </script>
+</body>
+
+</html>

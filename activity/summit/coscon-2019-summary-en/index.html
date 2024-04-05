@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+
+  <title>开源社</title>
+
+  
+  <meta name="description" content="视频作者：微软实习生 侯鸿志   StatisticsCOSCon19, the 2019 China Open Source Conference, organized by kaiyuanshe, was successfully concluded on Nov. 2-3, 2019 at East China Normal University in Shanghai. The">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="COSCon&#39;19 concluded - Let&#39;s Cross the Boundaries, Together!">
+<meta property="og:url" content="http://kaiyuanshe.cn/activity/summit/coscon-2019-summary-en/index.html">
+<meta property="og:site_name" content="开源社">
+<meta property="og:description" content="视频作者：微软实习生 侯鸿志   StatisticsCOSCon19, the 2019 China Open Source Conference, organized by kaiyuanshe, was successfully concluded on Nov. 2-3, 2019 at East China Normal University in Shanghai. The">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://kaiyuanshe.cn/activity/summit/coscon-2019-summary/statistics.png">
+<meta property="article:published_time" content="2019-11-18T00:00:00.000Z">
+<meta property="article:modified_time" content="2024-04-05T20:16:41.191Z">
+<meta property="article:author" content="shiy2008@gmail.com">
+<meta property="article:tag" content="开源">
+<meta property="article:tag" content="社区">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://kaiyuanshe.cn/activity/summit/coscon-2019-summary/statistics.png">
+<meta name="twitter:site" content="contactkaiyuan1">
+  <meta name="author" content="shiy2008@gmail.com">
+  <meta name="generator" content="hexo">
+  <meta name="theme-color" content="#2f3241">
+
+  <!-- consumed by scripts/get-localized-strings -->
+  <meta name="localized.clipboard.copy" content="Copy">
+  <meta name="localized.clipboard.copy_to_clipboard" content="复制到剪贴板">
+  <meta name="localized.clipboard.copied" content="已复制">
+
+  <base href="/">
+
+  <link rel="shortcut icon" href="image/KaiYuanShe-logo.png">
+
+  <link rel="stylesheet" href="https://npm.webcache.cn/github-markdown-css@5.5.1/github-markdown-light.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/devicon@2.16.0/devicon.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/highlight.js@9.18.5/styles/dark.css">
+  <link rel="stylesheet" href="library/index.css">
+  <link rel="stylesheet" href="common.css">
+  <style>
+    .site-header-nav-item a:link {
+      text-decoration: none;
+    }
+  </style>
+  <script src="https://npm.webcache.cn/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script src="https://npm.webcache.cn/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://npm.webcache.cn/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+  <script src="https://npm.webcache.cn/highlight.js@9.18.5/lib/highlight.js"></script>
+  <script src="common.js" defer async></script>
+</head>
+
+<body>
+  <div class="alert alert-danger mb-0 text-center" role="alert">
+    开源社官网（2019 版）已存档、只读，请移步
+    <a href="https://kaiyuanshe.cn" class="alert-link">2022 版官网</a>
+    关注最新信息~
+  </div>
+
+  <header class="site-header">
+    <div class="container">
+
+      <a class="site-header-logo no-underline-hover" href=".">
+        <img class="site-header-icon" src="image/KaiYuanShe-logo.png">
+        开源社
+      </a>
+
+      <nav class="site-header-nav">
+        
+          <div class="site-header-nav-item">
+            
+              <a role="button" href="/categories/Activity/Summit/" data-href-match="">
+                年度大会
+              </a>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_1" href="" data-href-match="">
+                资讯
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_1">
+                
+                  <a class="dropdown-item" href="/categories/Activity/">活动</a>
+                
+                  <a class="dropdown-item" href="/blog/">博客</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_2" href="" data-href-match="">
+                成员
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_2">
+                
+                  <a class="dropdown-item" href="/members/">正式成员</a>
+                
+                  <a class="dropdown-item" href="https://kaiyuanshe.feishu.cn/share/base/shrcnfO89tYlYIjZpS5PXJBaK2f" target="_blank" rel="noopener">加入我们</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a role="button" href="/partners" data-href-match="">
+                合作伙伴
+              </a>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_4" href="" data-href-match="">
+                资源
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_4">
+                
+                  <a class="dropdown-item" href="https://test.kaiyuanshe.cn/organization" target="_blank" rel="noopener">开源地图</a>
+                
+                  <a class="dropdown-item" href="/categories/Document">开源文档</a>
+                
+                  <a class="dropdown-item" href="/license-tool/">许可证选择器</a>
+                
+                  <a class="dropdown-item" href="http://mirror.kaiyuanshe.cn/" target="_blank" rel="noopener">开源镜像</a>
+                
+                  <a class="dropdown-item" href="https://polyfill.kaiyuanshe.cn/" target="_blank" rel="noopener">Web 标准补丁服务</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_5" href="" data-href-match="">
+                关于
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_5">
+                
+                  <a class="dropdown-item" href="/profile/about">介绍</a>
+                
+                  <a class="dropdown-item" href="/profile/structure">组织架构</a>
+                
+                  <a class="dropdown-item" href="/governance">工作组</a>
+                
+                  <a class="dropdown-item" href="/profile/charter">章程</a>
+                
+                  <a class="dropdown-item" href="/categories/Meeting">会议纪要</a>
+                
+              </div>
+            
+          </div>
+        
+        <form action="search/" class="ais-search-box">
+          <input type="search" name="keyword" required placeholder="搜索"
+            id="search-input" class="nav-search ais-search-box--input"
+            aria-label="search-box" autocapitalize="off" autocorrect="off" role="textbox">
+        </form>
+        <a class="site-header-nav-item octicon"
+          href="https://github.com/kaiyuanshe/"
+          title="Github Organization">
+          <span class="mega-octicon octicon-mark-github vertical-middle"></span>
+        </a>
+        <a class="site-header-nav-item bordered lang-select-button" href="#Language" data-toggle="collapse">
+          中文
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <div id="Language" class="container collapse">
+  <div class="m-4">
+    <div class="text-center-sm mb-4">
+      <strong>请选择语言</strong>
+    </div>
+    <div class="clearfix">
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/en-US" target="_blank" rel="noopener">
+          English
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ja-JP" target="_blank" rel="noopener">
+          日本語
+          
+          (Japanese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/es-ES" target="_blank" rel="noopener">
+          Español
+          
+          (Spanish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/zh-CN" target="_blank" rel="noopener">
+          中文
+          
+          (Chinese Simplified)
+          
+        </a>
+        
+        <span class="faint"><span class="octicon octicon-check mr-1"></span></span>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/tr-TR" target="_blank" rel="noopener">
+          Türkçe
+          
+          (Turkish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/id-ID" target="_blank" rel="noopener">
+          Indonesian
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fil-PH" target="_blank" rel="noopener">
+          Filipino
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fr-FR" target="_blank" rel="noopener">
+          Français
+          
+          (French)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ru-RU" target="_blank" rel="noopener">
+          Русский
+          
+          (Russian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ko-KR" target="_blank" rel="noopener">
+          한국어
+          
+          (Korean)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/it-IT" target="_blank" rel="noopener">
+          Italiano
+          
+          (Italian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/pt-BR" target="_blank" rel="noopener">
+          Português
+          
+          (Portuguese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/de-DE" target="_blank" rel="noopener">
+          Deutsch
+          
+          (German)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/uk-UA" target="_blank" rel="noopener">
+          Українська
+          
+          (Ukrainian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/zh-TW" target="_blank" rel="noopener">
+          中文
+          
+          (Chinese Traditional)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/pl-PL" target="_blank" rel="noopener">
+          język polski
+          
+          (Polish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/bg-BG" target="_blank" rel="noopener">
+          български език
+          
+          (Bulgarian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/hi-IN" target="_blank" rel="noopener">
+          हिन्दी
+          
+          (Hindi)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/nl-NL" target="_blank" rel="noopener">
+          Nederlands
+          
+          (Dutch)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/vi-VN" target="_blank" rel="noopener">
+          Tiếng Việt
+          
+          (Vietnamese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ar-SA" target="_blank" rel="noopener">
+          اللغة العربية
+          
+          (Arabic)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fa-IR" target="_blank" rel="noopener">
+          فارسی
+          
+          (Persian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/cs-CZ" target="_blank" rel="noopener">
+          čeština
+          
+          (Czech)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/th-TH" target="_blank" rel="noopener">
+          ไทย
+          
+          (Thai)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/he-IL" target="_blank" rel="noopener">
+          עברית
+          
+          (Hebrew)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ro-RO" target="_blank" rel="noopener">
+          limba română
+          
+          (Romanian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/tl-PH" target="_blank" rel="noopener">
+          Wikang Tagalog
+          
+          (Tagalog)
+          
+        </a>
+        
+      </div>
+      
+    </div>
+    <hr>
+    <div class="text-center-sm">
+      <a href="https://electronjs.org/languages" target="_blank" rel="noopener">查看更多语言详情</a>
+    </div>
+  </div>
+</div>
+
+
+  <style>
+  .blog-post hr:first-of-type {
+    display: block;
+  }
+</style>
+
+
+
+<section class="page-section blog-post">
+  <div class="container">
+    <h1>COSCon&#39;19 concluded - Let&#39;s Cross the Boundaries, Together!</h1>
+
+    
+
+    
+
+<div class="blog-byline mt-2 mb-4 d-flex justify-content-between align-items-center">
+  <span class="blog-index-time">2019-11-18 00:00:00</span>
+
+
+  <a class="author-link ml-3 text-center" href="https://github.com/kaiyuanshe" target="_blank" rel="noopener">
+    <img
+      class="avatar mr-2"
+      style="max-width: 2.25rem"
+      src="https://github.com/kaiyuanshe.png?size=36"
+      alt="kaiyuanshe"
+    >
+    kaiyuanshe
+  </a>
+
+
+  <span>
+    
+      <a class="badge badge-primary" href="categories/Activity/">
+        Activity
+      </a>
+    
+      <a class="badge badge-primary" href="categories/Activity/Summit/">
+        Summit
+      </a>
+    
+    
+  </span>
+</div>
+
+
+    
+
+    <details>
+      <summary>正文大纲</summary>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Statistics"><span class="toc-text">Statistics</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Quotes-from-our-VIP-speakers"><span class="toc-text">Quotes from our VIP speakers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Highlights"><span class="toc-text">Highlights</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Women-for-Open-Source-Forum"><span class="toc-text">Women for Open Source Forum</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lightning-Talk"><span class="toc-text">Lightning Talk</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Open-Source-Hardware-Forum"><span class="toc-text">Open Source Hardware Forum</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Habds-On-Camp"><span class="toc-text">Habds-On Camp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Executive-Roundtable"><span class="toc-text">Executive Roundtable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Open-Source-Night-ASF-20-Year-Anniversary-Celebration-Party"><span class="toc-text">Open Source Night + ASF 20-Year Anniversary Celebration Party</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Open-Source-Rooted-from-Youth"><span class="toc-text">Open Source Rooted from Youth</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#COSCon’19-speaker-slides-and-videos"><span class="toc-text">COSCon’19 speaker slides and videos</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#COSCon’20-Announcement"><span class="toc-text">COSCon’20 Announcement</span></a></li></ol>
+    </details>
+
+    <main class="markdown-body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><figure>
+  <iframe
+    src="//player.bilibili.com/player.html?aid=76644302&cid=131098612&page=1"
+    scrolling="no" frameborder="no" framespacing="0" allowfullscreen="true"
+  ></iframe>
+  <figcaption>视频作者：微软实习生 侯鸿志</figcaption>
+</figure>
+
+<h2 id="Statistics"><a href="#Statistics" class="headerlink" title="Statistics"></a>Statistics</h2><p>COSCon19, the 2019 China Open Source Conference, organized by kaiyuanshe, was successfully concluded on Nov. 2-3, 2019 at East China Normal University in Shanghai. The 2-day conference totaled 1,456 attendees, with 13,400 live photo broadcast viewers, and 29,826 people followed the conference website. The attendees participated lectures delivered by 14 international gurus, 94 domestic speakers in 12 keynotes, 86 breakout sessions, 15 lightning talks, 6 hands-on camps, 6 forums (Open Source Education Forum, Open Source Hardware Forum, Enterprise Open Source Forum, Women for Open Source Forum, Open Source Operating System Forum, Open Source Governance Forum) and an Open Source Executive Roundtable. 116 lovely volunteers from all over the country enthusiastically served the lecturers and the audience.</p>
+<img src="activity/summit/coscon-2019-summary/statistics.png" />
+
+<p>The conference was participated and supported by international foundations including the Apache Software Foundation (ASF), Open Source Initiative (OSI), the GNOME Foundation, the Linux Foundation (LF), the FreeBSD Foundation, the OpenStack Foundation, and 34 domestic and overseas communities. As of today, the global and domestic community help promote the conference’s blogs with over 150,000 views. We thank these lovely partners!</p>
+<figure>
+<img src="activity/summit/coscon-2019-summary/participant.png" />
+  <figcaption>Participant statistics</figcaption>
+</figure>
+
+<figure>
+<img src="activity/summit/coscon-2019-summary/gender.png" />
+  <figcaption>Gender Analysis</figcaption>
+</figure>
+
+<p>Eben Moglen, the founder and maintainer of the GPL and founder and president of the Software Freedom Law Center, also sent a short greeting video.</p>
+<figure>
+  <iframe
+    src="//player.bilibili.com/player.html?aid=79732756&cid=136453253&page=1"
+    scrolling="no" frameborder="no" framespacing="0" allowfullscreen="true"
+  ></iframe>
+  <figcaption>
+    Thanks to Wang Dongfang for inviting Eben Moglen to deliver the video greeting for COSCon19
+  </figcaption>
+</figure>
+
+<p>We are honored to have the support from both the East China Normal University (ECNU), as the conference and venue hosting partner, and the College of Data Science and Engineering of ECNU for the entire conference. We are very grateful that the China Academy of Information, Communication and Technologies (CAICT) for being the conference partner three years in a row. This year TC608 - China Communications Standardization Committee continues to support COSCon’19! It is inspiring that more and more leading companies recognize and sponsor this grass-roots, volunteer-driven conference, including Strategic Sponsor: Huawei; Platinum Sponsor: Alibaba, Microsoft, Tencent Cloud, WeBank and Synopsys; Gold Sponsor: JD Cloud, Zaihu; Silver Sponsor: Didi, Yinhe Kylin, Oushu Technology; Bronze Sponsor: Crytoape, Nebula Graph, CS2C, Pengcheng Huizh.</p>
+<p>Media partners CSDN, InfoQ, LinuxCN, OSChina also contributed to the full coverage. CSDN founder Jiang Tao conducted a fireside chat with Thomas Dohmke, VP of GitHub, and the HyperAI Media team conducted in-depth interviews with several featured speakers. 34 domestic and international community partners, including ASF, LF, FreeBSD Foundation, GNOME Foundation, OpenStack Foundation, LF HyperLedger Project, OSI, Linux Professional Institute, Juejin, Ubuntun Kylin, EaseMob, Ubuntu, Oukan Online, freeCodeCamp, Shenzhen Open Innovation Lab, Firefox, TesterHome, ThoughtWorks, Nha Wood Technologies, Shenzhen Bay Community, Y-CITY Global Innovation Institute, Jenkins Chinese Community , DevOps China Community, AI Institute, TaosData, JSConfChina, Dragon Core Club, Deepin, SOFAStack, GAAS, PX4, RT-Thread, RedHat, PYconChina.</p>
+<h2 id="Quotes-from-our-VIP-speakers"><a href="#Quotes-from-our-VIP-speakers" class="headerlink" title="Quotes from our VIP speakers"></a>Quotes from our VIP speakers</h2><p>Let’s hear what our VIP speaker guests say about this conference.</p>
+<p><strong>Neil McGovern, Executive Director of the GNOME Foundation</strong>, says:</p>
+<blockquote>
+<p>COSCon brings together companies, organisations and open source projects in a unique way. It is China’s premier open source conference and one which any open source project should attend.</p>
+</blockquote>
+<p><strong>Thomas Dohmke, Vice President of GitHub</strong>, sent a thank-you note:</p>
+<blockquote>
+<p>COSCon was a fantastice opportunity to better understand how we can overcome boundaries and build bridges in the open source community. Open source in China is on the rise and it’s wonderful to see a thriving interconnected developer community at work.</p>
+</blockquote>
+<p><strong>Keith Chan of Linux Foundation Asia Pacific</strong> says:</p>
+<blockquote>
+<p>What a great event!  Met a lots of experts and friends in the open source community.  It is my second time to participate in this event.  I will come again. Way to go, COSCon!</p>
+</blockquote>
+<p><strong>Sharan Foga, Vice President of Community Development, Apache Software Foundation</strong>, says:</p>
+<blockquote>
+<p>I’ve never been to China before so attending COSCon 19 in Shanghai I wasn’t too sure what to expect. The theme of let’s cross the boundaries together was a perfect description of the spirit of the conference. It was wonderful to see so many open source foundations, organisations, contributors and enthusiasts come together to engage and collaborate. One of the highlights for me was participating in the Women in Open Source panel and even being involved in the ASF for over 10 years I was very humbled and inspired by the women’s stories and their dedication to open source.</p>
+<p>Having the chance to meet, chat and discuss with people from other open source related organisations such as GitHub, HyperLedger, GNOME Foundation, LPI, FreeBSD was amazing.</p>
+<p>Kudos and a huge thank you to Ted Liu and Kaiyuanshe for putting on a superb event that made everyone want to stay and keep on talking. And by talking and collaborating we make progress…together!”</p>
+</blockquote>
+<p><strong>CSDN founder Jiang Tao</strong> says:</p>
+<blockquote>
+<p>The China Open Source Conference (COSCon) is a bridge between China’s open source community and the global open source community, and it is a great place to meet old friends, meet new friends, share open-source, and promote industrial innovation.</p>
+</blockquote>
+<h2 id="Highlights"><a href="#Highlights" class="headerlink" title="Highlights"></a>Highlights</h2><h3 id="Women-for-Open-Source-Forum"><a href="#Women-for-Open-Source-Forum" class="headerlink" title="Women for Open Source Forum"></a>Women for Open Source Forum</h3><p>Encouraging diversity in the open source community, especially women’s participation, has been the theme of kaiyuanshe’s active advocacy and practice. 2019 China Open Source Conference organized an unique open source women’s BoF (Birds of a Feather). The Forum was kicked off by three sharing, Yuan Yi (rolling), the forum hostess and the chief editor of HyperAI media group, shared “Women, make the technology community more romantic”; Emily Chen, vice chairman of kaiyuanshe, shared “My 24 Hours”, which revealed the struggling moments of an open source women in the workplace through the photos of their lives and witty stories. Sharan Foga, VP of Community Development, Apache Software Foundation, shared her observations and experiences in the Apache community. Xue Guo, deputy director of the Cloud &amp; Big Data Institute of CAICT, Mabel Li, board director and the media workgroup lead of kaiyuanshe, Queena Chao, volunteer lead of kaiyuanshe, and five other female representatives, including FreeCodeCamp Miya Liu, shared their feelings and experiences of participating in open source contributions in a free-flowing way.</p>
+<img src="activity/summit/coscon-2019-summary/3yonv16s0yo.webp" />
+
+<img src="activity/summit/coscon-2019-summary/1nelvfr3yt8.webp" />
+
+<img src="activity/summit/coscon-2019-summary/bwvdmuo0iu.webp" />
+
+<h3 id="Lightning-Talk"><a href="#Lightning-Talk" class="headerlink" title="Lightning Talk"></a>Lightning Talk</h3><p>Lightning Talk is one of the highlights of this year’s COSCon, where speakers use very limited time (e.g. 5 minutes) to deliver quick presentations in the hope that they can quickly get the audience to understand the subject with a fast pace, which is a demanding test of the speaker’s ability to be quick, clear and even entertaining to deliver the core message. This year’s COSCon producer, Bestony Bai, refers to the lightning talks design of the well-known open source conference COSCUP. The Lightning Talks of COSCon’19 is arranged as the final session of the conference, and where Lin, who hosted the COSCUP Lightning Speech, serves as the host of this COSCon with a rhythmic atmosphere which led the participants end the fruitful COSCon journey in a cheerful atmosphere of open source.</p>
+<p>It is worth mentioning that, in addition to the 6 pre-enrolled lightning talk speakers, 9 more lecturers delivered their talks spontaneously and nicely. There are impressive live coding, “3 minutes” lightning talk showcase, code specifications and readability in Japanese, and many more wonderful sharing which becomes the new spotlights of the COSCon going forward.</p>
+<figure>
+  <iframe
+    src="//player.bilibili.com/player.html?aid=77196705&cid=132027208&page=2"
+    scrolling="no" frameborder="no" framespacing="0" allowfullscreen="true"
+  ></iframe>
+  <figcaption>ZoomQuiet's 3 minutes demo on fastest lightning talk</figcaption>
+</figure>
+
+<figure>
+<img src="activity/summit/coscon-2019-summary/30vcsfc549k.webp" />
+  <figcaption>Wow, daddy took me to Lightning Talk, yeah!</figcaption>
+</figure>
+
+<img src="activity/summit/coscon-2019-summary/227oou6tig4.webp" />
+
+<img src="activity/summit/coscon-2019-summary/5yhwstufsbc.webp" />
+
+<img src="activity/summit/coscon-2019-summary/1653giru6rp.webp" />
+
+<h3 id="Open-Source-Hardware-Forum"><a href="#Open-Source-Hardware-Forum" class="headerlink" title="Open Source Hardware Forum"></a>Open Source Hardware Forum</h3><p>Being through from 0 to 1 last year, Open Source Hardware Forum has entered a new path of steady development this year, but also made the acquaintance of more new partners! Open Source Hardware Forum this time started with the theme of “co-building source ecology”, in the hope to further the development of multiple ecology in the open source hardware community, which were based on the theme of “sharing open source at larger scale” called out last year. There are many sharing of multiple topics from different regions and fields involved. Forum lecturers come from Beijing, Shanghai, Dalian, Nanjing, Chengdu, Taiwan, Japan and other regions from domestic and overseas. Including Shen Ye - founder of DFRobot, the earliest open source hardware company in China, Masafumi Ohta - founder of Raspberry user group Japan, Jiyang Lin - CEO of Yixin Technology in Taiwan, Jiang Wang - founder of Landzo Technology, Zihao Yu - PhD Computing Institute from Chinese Academy of Sciences, Nan Shi - founder of Longxin Club, Bing Sun - Co-founder of Jiqi Technology, Zheng Zeng - head of Auterion APAC, and Xinyi Tang - Co-founder of Andoromeda Science and Technology Ltd, etc.</p>
+<img src="activity/summit/coscon-2019-summary/3gfg0kzhtrs.webp" />
+
+<img src="activity/summit/coscon-2019-summary/1zopby6kcwx.webp" />
+
+<img src="activity/summit/coscon-2019-summary/2q0edymyodq.webp" />
+
+<h3 id="Habds-On-Camp"><a href="#Habds-On-Camp" class="headerlink" title="Habds-On Camp"></a>Habds-On Camp</h3><p>The essence of open source is to “communicate with an open mind, to collaborate with an open model” and to improve society as a whole with practical actions. Therefore, hands-on camp was the highlight of this conference.</p>
+<p>However, it is possible that the current awareness of the Open Source Technology Conference in Mainland China is still in the era of traditional industry conferences. Nearly half of the people who came to the hands-on training camp did not bring a computer. Coupled with the limited network of the venue, most workshops have been degraded into lectures and presentations. Only the freeCodeCamp self-developed online teaching platform was adapted to the mobile device earlier, so that people who did not bring a computer on site could also write code with the lecturer, and the overall feedback was the best.</p>
+<p>In post-event review meeting, we put forward some targeted improvements to the Open Hackathon Platform of kaiyuanshe and the Kung Fu Programming Platform developed by X-Lab team, and hope these platforms can be better support the hands-on camp / workshop’s next year.</p>
+<img src="activity/summit/coscon-2019-summary/2ep91w71me3.webp" />
+
+<img src="activity/summit/coscon-2019-summary/6h0w75z7fy4.webp" />
+
+<img src="activity/summit/coscon-2019-summary/2cq9mnsftme.webp" />
+
+<img src="activity/summit/coscon-2019-summary/1of25c4te05.webp" />
+
+<h3 id="Executive-Roundtable"><a href="#Executive-Roundtable" class="headerlink" title="Executive Roundtable"></a>Executive Roundtable</h3><p>One of the convention of the China Open Source Conference is the Open Source Executive Roundtable. kaiyuanshe invited 28 leaders from open source foundations, enterprises and open source communities to discuss cooperation and to exchange thoughts, such as the language and culture barriers and communication tools, the characteristics of the new generation of open source, the incubation journey of Chinese open source projects, corporate support for open source business and the promotion of open source education. We see the special characteristics of China as well as the global trend of open source. The meeting was full of interaction of friendship and thought leadership.</p>
+<img src="activity/summit/coscon-2019-summary/56f6ufovrw8.webp" />
+
+<img src="activity/summit/coscon-2019-summary/2ox3khu2bw8.webp" />
+
+<h3 id="Open-Source-Night-ASF-20-Year-Anniversary-Celebration-Party"><a href="#Open-Source-Night-ASF-20-Year-Anniversary-Celebration-Party" class="headerlink" title="Open Source Night + ASF 20-Year Anniversary Celebration Party"></a>Open Source Night + ASF 20-Year Anniversary Celebration Party</h3><p>On the evening of the first day of the conference (November 2nd), the COSCon19 hosted the “Open Source Night and Apache 20th Anniversary Celebration Party” with all the Chinese and foreign lecturers, sponsors, community partners, media partners and VIP guests, and we not only shared the ASF 20th birthday cake, together with three leaders of the Apache Software Foundation, as well as the apache project contributors and users from China, but also signed the special Apache project banner, witnessing the glorious moment of the Chinese-originated contribution to the world.</p>
+<img src="activity/summit/coscon-2019-summary/157aww5sdxp.webp" />
+
+<img src="activity/summit/coscon-2019-summary/mdeuzcfhmc.webp" />
+
+<img src="activity/summit/coscon-2019-summary/770i7f1f0ps.webp" />
+
+<img src="activity/summit/coscon-2019-summary/1kjqzo6l989.webp" />
+
+<img src="activity/summit/coscon-2019-summary/hhog1occiw.webp" />
+
+<img src="activity/summit/coscon-2019-summary/2ayogt1fkqx.webp" />
+
+<img src="activity/summit/coscon-2019-summary/21cj7gujlyb.webp" />
+
+<h3 id="Open-Source-Rooted-from-Youth"><a href="#Open-Source-Rooted-from-Youth" class="headerlink" title="Open Source Rooted from Youth"></a>Open Source Rooted from Youth</h3><p>Throughout the conference, we witnessed the power and energy of new open source generations.</p>
+<figure>
+<img src="activity/summit/coscon-2019-summary/k3u6n3e03.webp" />
+<img src="activity/summit/coscon-2019-summary/j69p74ow01.webp" />
+<img src="activity/summit/coscon-2019-summary/2ibj6dpzzn6.webp" />
+</figure>
+
+<h2 id="COSCon’19-speaker-slides-and-videos"><a href="#COSCon’19-speaker-slides-and-videos" class="headerlink" title="COSCon’19 speaker slides and videos"></a>COSCon’19 speaker slides and videos</h2><p>Thank our passionate volunteers who organized most speakers’ presentation slides and video. These will be shared in the next few articles.</p>
+<h2 id="COSCon’20-Announcement"><a href="#COSCon’20-Announcement" class="headerlink" title="COSCon’20 Announcement"></a>COSCon’20 Announcement</h2><p>2020 COScon time is tentatively scheduled for 2020/10/24 -10/25, we’ll see you next year!</p>
+<img src="activity/summit/coscon-2019-summary/158q7ysb4ws.webp" />
+
+<img src="activity/summit/coscon-2019-summary/20wwmrlqcpe.webp" />
+
+</main>
+
+    
+    <hr>
+    
+<h2 class="d-flex justify-content-between align-items-center">
+  活动简讯
+  <span>
+    <a class="btn btn-primary" download="COSCon&#39;19 concluded - Let&#39;s Cross the Boundaries, Together!.ics"
+      href="data:text/calendar;base64,QkVHSU46VkNBTEVOREFSDQpWRVJTSU9OOjIuMA0KUFJPRElEOi0vL1RyaSBUZWNoIENvbXB1dGVycy8vbm9kZS1pY2FsZW5kYXIvL0VODQpCRUdJTjpWRVZFTlQNClNVTU1BUlk6Q09TQ29uJzE5IGNvbmNsdWRlZCAtIExldCdzIENyb3NzIHRoZSBCb3VuZGFyaWVzXCwgVG9nZXRoZXIhDQpEVFNUQVJUOjIwMTkxMTAyVDA5MDAwMFoNCkRURU5EOjIwMTkxMTAzVDE3MDAwMFoNCkxPQ0FUSU9OOuS4iua1t+W4guaZrumZgOWMuuS4reWxseWMl+i3rzM2NjPlj7fljY7kuJzluIjojIPlpKflrabvvIjkuK3ljJcNCiDmoKHljLrvvIkNCkVORDpWRVZFTlQNCkVORDpWQ0FMRU5EQVINCg==">
+      添加日历
+    </a>
+    
+      <a class="btn btn-primary" target="_blank" href="https://live.photoplus.cn/live/46633881?uniqCode=8zqbsMpH3P">
+        照片直播
+      </a>
+    
+  </span>
+</h2>
+<ul>
+  <li>时间：2019-11-02 09:00:00 ~ 2019-11-03 17:00:00</li>
+  <li>地点：上海市普陀区中山北路3663号华东师范大学（中北校区）</li>
+</ul>
+
+  <script src="https://npm.webcache.cn/@babel/polyfill@7.12.1/dist/polyfill.min.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=Promise%2CIntersectionObserver"></script>
+
+<script src="https://npm.webcache.cn/dom-renderer@1.0.3/dist/dom-renderer.min.js"></script>
+<script src="//webapi.amap.com/maps?v=1.4.14&key=8325164e247e15eea68b59e89200988b&plugin=AMap.Geocoder,AMap.AdvancedInfoWindow"></script>
+
+<template>[{&#34;title&#34;:&#34;COSCon&#39;19 concluded - Let&#39;s Cross the Boundaries, Together!&#34;,&#34;URL&#34;:&#34;http://kaiyuanshe.cn/activity/summit/coscon-2019-summary-en/&#34;,&#34;address&#34;:&#34;上海市普陀区中山北路3663号华东师范大学（中北校区）&#34;}]</template>
+<template>
+  <div class="pt-2 pl-2 pr-2">
+    <h4>
+      <a href="${view.URL}">${view.title}</a>
+    </h4>
+    <p>${view.address}</p>
+  </div>
+</template>
+<div class="embed-box"></div>
+
+<script>
+(function (main) {
+
+  var box = document.currentScript.previousElementSibling;
+
+  self.addEventListener('load',  function () {
+
+    new IntersectionObserver(function (entry, observer) {
+
+      observer.disconnect();
+
+      main(
+        self['dom-renderer'].default,
+        box,
+        box.previousElementSibling,
+        box.previousElementSibling.previousElementSibling
+      );
+    }).observe( box );
+  });
+})(function (View, box, template, list) {
+
+  list = JSON.parse( list.innerHTML.trim() );
+
+  var map = new AMap.Map(box, {resizeEnable: true}),
+    coder = new AMap.Geocoder(),
+    dialog = new AMap.AdvancedInfoWindow({
+      offset: new AMap.Pixel(0, -30),
+      showShadow: true,
+      closeWhenClickMap: true
+    }),
+    template = new View( template.innerHTML );
+
+  function getCoords(addresses) {
+
+    return new Promise(function (resolve, reject) {
+
+      coder.getLocation(addresses,  function (status, result) {
+
+        if (status === 'error')
+          reject( result );
+        else if (status === 'complete')
+          resolve( result );
+      });
+    });
+  }
+
+  getCoords(
+    list.map(function (item) {  return item.address;  })
+  ).then(function (data) {
+
+    if (! data.geocodes[0])  return;
+
+    var markers = data.geocodes.map(function (item, index) {
+
+      var marker = new AMap.Marker({position: item.location});
+
+      marker.on('click',  function () {
+
+        template.render( list[index] ).then(function () {
+
+          dialog.setContent(template + '');
+
+          dialog.open(map, item.location);
+        });
+      });
+
+      return marker;
+    });
+
+    map.add( markers ),  map.setFitView( markers );
+  });
+});
+</script>
+
+
+    
+  </div>
+</section>
+
+<nav class="page-section text-center">
+  <div class="btn-group" role="group" aria-label="Post navigator">
+    
+    <a class="btn btn-secondary" role="button" href="activity/summit/coscon-2019-ppt-0/">
+      &lt; 中国开源年会 COSCon&#39;19 Day 1 讲师 PPT
+    </a>
+    
+    <a class="btn btn-secondary" role="button" href="activity/summit/coscon-2019-summary/">
+      COSCon&#39;19 精彩收官、无问西东! &gt;
+    </a>
+    
+  </div>
+</nav>
+
+<script>
+(function () {
+
+  var path = self.location.href.split('#')[0];
+
+  $('details > .toc a[href]').attr('href', function (_, value) {
+
+    return path + value;
+  });
+
+  $('.blog-post').find('h1, h2, h3, h4, h5, h6').append(function () {
+
+    if ( this.id.trim() )
+      return '<a class="header-link" title="Permalink" href="' +
+        path + '#' + this.id +
+        '"><span class="octicon octicon-link"></span></a>';
+  });
+})();
+</script>
+
+
+  <footer class="footer">
+    <div class="container">
+      <nav class="footer-nav">
+        
+          <a class="footer-nav-item active" href="/categories/Activity/">
+            活动
+          </a>
+        
+          <a class="footer-nav-item " href="/page/2">
+            博客
+          </a>
+        
+          <a class="footer-nav-item " href="/profile/charter">
+            章程
+          </a>
+        
+          <a class="footer-nav-item " href="https://github.com/kaiyuanshe/kaiyuanshe.github.io/tree/hexo/License" target="_blank" rel="noopener">
+            许可
+          </a>
+        
+          <a class="footer-nav-item " href="/profile/contact">
+            联系我们
+          </a>
+        
+          <a class="footer-nav-item " href="https://git-pager.avosapps.us/?repository=kaiyuanshe/Wiki" target="_blank" rel="noopener">
+            协作编辑
+          </a>
+        
+      </nav>
+      <span class="col">沪 ICP 备 19006015 号</span>
+      <span class="col">公安备案 31011202006203 号</span>
+
+      <span class="footer-social">
+        
+          <a class="footer-nav-item icon"
+            href="https://github.com/kaiyuanshe"
+            title="Github Organization">
+            <i class="devicon-github-plain vertical-middle"></i>
+          </a>
+        
+          <a class="footer-nav-item icon"
+            href="https://twitter.com/contactkaiyuan1"
+            title="@contactkaiyuan1 on Twitter">
+            <i class="devicon-twitter-plain vertical-middle"></i>
+          </a>
+        
+          <a class="footer-nav-item icon"
+            href="https://www.facebook.com/kaiyuanshe.china"
+            title="Facebook account">
+            <i class="devicon-facebook-plain vertical-middle"></i>
+          </a>
+        
+      </span>
+    </div>
+  </footer>
+  <script src="library/virtual-anchor-sdk.js"></script>
+  <script>
+    new VirtualAnchor({ id: '191be2ab-8c6e-6201-c419-3ef2d26eadf2' });
+  </script>
+</body>
+
+</html>

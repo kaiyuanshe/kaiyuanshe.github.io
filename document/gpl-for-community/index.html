@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+
+  <title>开源社</title>
+
+  
+  <meta name="description" content="摘要：本文为开源社法律委员会与自由软件管理机构（Software Freedom Conservancy）合作， 翻译《面向社区实施 GPL 的原则》简体中文版。 [英文原文] 面向社区实施 GPL 的原则 GNU 通用公共许可 (GPL) 是一种主要的著作权（Copyleft）许可方式。Copyleft 是允许对已发表作品进行持续分享的框架，与其它仅赋予自由而不保护自由的免费许可不同，Copy">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="面向社区实施 GPL 的原则">
+<meta property="og:url" content="http://kaiyuanshe.cn/document/gpl-for-community/index.html">
+<meta property="og:site_name" content="开源社">
+<meta property="og:description" content="摘要：本文为开源社法律委员会与自由软件管理机构（Software Freedom Conservancy）合作， 翻译《面向社区实施 GPL 的原则》简体中文版。 [英文原文] 面向社区实施 GPL 的原则 GNU 通用公共许可 (GPL) 是一种主要的著作权（Copyleft）许可方式。Copyleft 是允许对已发表作品进行持续分享的框架，与其它仅赋予自由而不保护自由的免费许可不同，Copy">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2015-11-20T07:34:31.000Z">
+<meta property="article:modified_time" content="2015-11-20T07:34:31.000Z">
+<meta property="article:author" content="shiy2008@gmail.com">
+<meta property="article:tag" content="Governance">
+<meta property="article:tag" content="GPL">
+<meta property="article:tag" content="Software Freedom Conservancy">
+<meta property="article:tag" content="Copyleft">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="contactkaiyuan1">
+  <meta name="author" content="shiy2008@gmail.com">
+  <meta name="generator" content="hexo">
+  <meta name="theme-color" content="#2f3241">
+
+  <!-- consumed by scripts/get-localized-strings -->
+  <meta name="localized.clipboard.copy" content="Copy">
+  <meta name="localized.clipboard.copy_to_clipboard" content="复制到剪贴板">
+  <meta name="localized.clipboard.copied" content="已复制">
+
+  <base href="/">
+
+  <link rel="shortcut icon" href="image/KaiYuanShe-logo.png">
+
+  <link rel="stylesheet" href="https://npm.webcache.cn/github-markdown-css@5.5.1/github-markdown-light.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/devicon@2.16.0/devicon.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/highlight.js@9.18.5/styles/dark.css">
+  <link rel="stylesheet" href="library/index.css">
+  <link rel="stylesheet" href="common.css">
+  <style>
+    .site-header-nav-item a:link {
+      text-decoration: none;
+    }
+  </style>
+  <script src="https://npm.webcache.cn/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script src="https://npm.webcache.cn/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://npm.webcache.cn/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+  <script src="https://npm.webcache.cn/highlight.js@9.18.5/lib/highlight.js"></script>
+  <script src="common.js" defer async></script>
+</head>
+
+<body>
+  <div class="alert alert-danger mb-0 text-center" role="alert">
+    开源社官网（2019 版）已存档、只读，请移步
+    <a href="https://kaiyuanshe.cn" class="alert-link">2022 版官网</a>
+    关注最新信息~
+  </div>
+
+  <header class="site-header">
+    <div class="container">
+
+      <a class="site-header-logo no-underline-hover" href=".">
+        <img class="site-header-icon" src="image/KaiYuanShe-logo.png">
+        开源社
+      </a>
+
+      <nav class="site-header-nav">
+        
+          <div class="site-header-nav-item">
+            
+              <a role="button" href="/categories/Activity/Summit/" data-href-match="">
+                年度大会
+              </a>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_1" href="" data-href-match="">
+                资讯
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_1">
+                
+                  <a class="dropdown-item" href="/categories/Activity/">活动</a>
+                
+                  <a class="dropdown-item" href="/blog/">博客</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_2" href="" data-href-match="">
+                成员
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_2">
+                
+                  <a class="dropdown-item" href="/members/">正式成员</a>
+                
+                  <a class="dropdown-item" href="https://kaiyuanshe.feishu.cn/share/base/shrcnfO89tYlYIjZpS5PXJBaK2f" target="_blank" rel="noopener">加入我们</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a role="button" href="/partners" data-href-match="">
+                合作伙伴
+              </a>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_4" href="" data-href-match="">
+                资源
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_4">
+                
+                  <a class="dropdown-item" href="https://test.kaiyuanshe.cn/organization" target="_blank" rel="noopener">开源地图</a>
+                
+                  <a class="dropdown-item" href="/categories/Document">开源文档</a>
+                
+                  <a class="dropdown-item" href="/license-tool/">许可证选择器</a>
+                
+                  <a class="dropdown-item" href="http://mirror.kaiyuanshe.cn/" target="_blank" rel="noopener">开源镜像</a>
+                
+                  <a class="dropdown-item" href="https://polyfill.kaiyuanshe.cn/" target="_blank" rel="noopener">Web 标准补丁服务</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_5" href="" data-href-match="">
+                关于
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_5">
+                
+                  <a class="dropdown-item" href="/profile/about">介绍</a>
+                
+                  <a class="dropdown-item" href="/profile/structure">组织架构</a>
+                
+                  <a class="dropdown-item" href="/governance">工作组</a>
+                
+                  <a class="dropdown-item" href="/profile/charter">章程</a>
+                
+                  <a class="dropdown-item" href="/categories/Meeting">会议纪要</a>
+                
+              </div>
+            
+          </div>
+        
+        <form action="search/" class="ais-search-box">
+          <input type="search" name="keyword" required placeholder="搜索"
+            id="search-input" class="nav-search ais-search-box--input"
+            aria-label="search-box" autocapitalize="off" autocorrect="off" role="textbox">
+        </form>
+        <a class="site-header-nav-item octicon"
+          href="https://github.com/kaiyuanshe/"
+          title="Github Organization">
+          <span class="mega-octicon octicon-mark-github vertical-middle"></span>
+        </a>
+        <a class="site-header-nav-item bordered lang-select-button" href="#Language" data-toggle="collapse">
+          中文
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <div id="Language" class="container collapse">
+  <div class="m-4">
+    <div class="text-center-sm mb-4">
+      <strong>请选择语言</strong>
+    </div>
+    <div class="clearfix">
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/en-US" target="_blank" rel="noopener">
+          English
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ja-JP" target="_blank" rel="noopener">
+          日本語
+          
+          (Japanese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/es-ES" target="_blank" rel="noopener">
+          Español
+          
+          (Spanish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/zh-CN" target="_blank" rel="noopener">
+          中文
+          
+          (Chinese Simplified)
+          
+        </a>
+        
+        <span class="faint"><span class="octicon octicon-check mr-1"></span></span>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/tr-TR" target="_blank" rel="noopener">
+          Türkçe
+          
+          (Turkish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/id-ID" target="_blank" rel="noopener">
+          Indonesian
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fil-PH" target="_blank" rel="noopener">
+          Filipino
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fr-FR" target="_blank" rel="noopener">
+          Français
+          
+          (French)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ru-RU" target="_blank" rel="noopener">
+          Русский
+          
+          (Russian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ko-KR" target="_blank" rel="noopener">
+          한국어
+          
+          (Korean)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/it-IT" target="_blank" rel="noopener">
+          Italiano
+          
+          (Italian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/pt-BR" target="_blank" rel="noopener">
+          Português
+          
+          (Portuguese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/de-DE" target="_blank" rel="noopener">
+          Deutsch
+          
+          (German)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/uk-UA" target="_blank" rel="noopener">
+          Українська
+          
+          (Ukrainian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/zh-TW" target="_blank" rel="noopener">
+          中文
+          
+          (Chinese Traditional)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/pl-PL" target="_blank" rel="noopener">
+          język polski
+          
+          (Polish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/bg-BG" target="_blank" rel="noopener">
+          български език
+          
+          (Bulgarian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/hi-IN" target="_blank" rel="noopener">
+          हिन्दी
+          
+          (Hindi)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/nl-NL" target="_blank" rel="noopener">
+          Nederlands
+          
+          (Dutch)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/vi-VN" target="_blank" rel="noopener">
+          Tiếng Việt
+          
+          (Vietnamese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ar-SA" target="_blank" rel="noopener">
+          اللغة العربية
+          
+          (Arabic)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fa-IR" target="_blank" rel="noopener">
+          فارسی
+          
+          (Persian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/cs-CZ" target="_blank" rel="noopener">
+          čeština
+          
+          (Czech)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/th-TH" target="_blank" rel="noopener">
+          ไทย
+          
+          (Thai)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/he-IL" target="_blank" rel="noopener">
+          עברית
+          
+          (Hebrew)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ro-RO" target="_blank" rel="noopener">
+          limba română
+          
+          (Romanian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/tl-PH" target="_blank" rel="noopener">
+          Wikang Tagalog
+          
+          (Tagalog)
+          
+        </a>
+        
+      </div>
+      
+    </div>
+    <hr>
+    <div class="text-center-sm">
+      <a href="https://electronjs.org/languages" target="_blank" rel="noopener">查看更多语言详情</a>
+    </div>
+  </div>
+</div>
+
+
+  <style>
+  .blog-post hr:first-of-type {
+    display: block;
+  }
+</style>
+
+
+
+<section class="page-section blog-post">
+  <div class="container">
+    <h1>面向社区实施 GPL 的原则</h1>
+
+    
+
+    
+
+<div class="blog-byline mt-2 mb-4 d-flex justify-content-between align-items-center">
+  <span class="blog-index-time">2015-11-20 07:34:31</span>
+
+
+  <a class="author-link ml-3 text-center" href="https://github.com/OSS Watch" target="_blank" rel="noopener">
+    <img
+      class="avatar mr-2"
+      style="max-width: 2.25rem"
+      src="https://github.com/OSS Watch.png?size=36"
+      alt="OSS Watch"
+    >
+    OSS Watch
+  </a>
+
+
+  <span>
+    
+      <a class="badge badge-primary" href="categories/Document/">
+        Document
+      </a>
+    
+    
+      <a class="badge badge-primary" href="tags/Governance/">
+          Governance
+      </a>
+    
+      <a class="badge badge-primary" href="tags/GPL/">
+          GPL
+      </a>
+    
+      <a class="badge badge-primary" href="tags/Software-Freedom-Conservancy/">
+          Software Freedom Conservancy
+      </a>
+    
+      <a class="badge badge-primary" href="tags/Copyleft/">
+          Copyleft
+      </a>
+    
+  </span>
+</div>
+
+
+    
+
+    <details>
+      <summary>正文大纲</summary>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#面向社区实施-GPL-的指导原则"><span class="toc-text">面向社区实施 GPL 的指导原则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#实施-GPL-的主要目标是-GPL-合规性。"><span class="toc-text">实施 GPL 的主要目标是 GPL 合规性。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#法律诉讼是最后的手段。"><span class="toc-text">法律诉讼是最后的手段。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#保密能提高接受能力和响应能力。"><span class="toc-text">保密能提高接受能力和响应能力。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#面向社区的实施工作永远不应以经济收益为导向。"><span class="toc-text">面向社区的实施工作永远不应以经济收益为导向。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#面向社区的合规工作不应以忽略问题为条件索取或接受付款。"><span class="toc-text">面向社区的合规工作不应以忽略问题为条件索取或接受付款。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#面向社区的合规工作应从仔细验证违规开始，到完成综合分析结束。"><span class="toc-text">面向社区的合规工作应从仔细验证违规开始，到完成综合分析结束。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#面向社区的合规流程应推广-GPLv3-终止条款，甚至可推行至仅根据-GPLv2-许可的作品。"><span class="toc-text">面向社区的合规流程应推广 GPLv3 终止条款，甚至可推行至仅根据 GPLv2 许可的作品。</span></a></li></ol></li></ol>
+    </details>
+
+    <main class="markdown-body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><blockquote>
+<p>摘要：本文为开源社法律委员会与自由软件管理机构（Software Freedom Conservancy）合作， 翻译《面向社区实施 GPL 的原则》简体中文版。 [英文原文] 面向社区实施 GPL 的原则 GNU 通用公共许可 (GPL) 是一种主要的著作权（Copyleft）许可方式。Copyleft 是允许对已发表作品进行持续分享的框架，与其它仅赋予自由而不保护自由的免费许可不同，Copyleft 授予作品使用者自由，并且保护使用者的自由。根据 GPL 发布的自由软件是现代技术的基础，从笔记本电脑、台式机到家用电器、轿车、手机，再到互联网基础，所有这一切都是由自由软件推动的。遵循 GPL 条款很简单，只有当发布的产品既包含以 GPL 方式授权的软件又包含根据用户限制条款发布的软件时，情况才会变得复杂。即便在这种情况下，很多公司依然能很好地遵循 GPL 条款，而某些公司则会篡改或违反 GPL 规则，以便发挥其已有优势。</p>
+</blockquote>
+<a id="more"></a>
+
+<p>目前，自由软件基金会 (FSF) 和自由软件管理机构 (Software Freedom Conservancy)是全球推行 GPL 系列许可的主要机构。FSF 自二十世纪八十年代起开始推动 Copyleft 的实施，而自由软件管理机构自近十年前成立伊始便在很多项目中推行 GPL。去年，FSF 和自由软件管理机构共同发表《著作权与 GNU 通用公共许可：综合教程与指南》一书，该书包括“GPL 合规性实用指南”和“GPL 实施案例分析”等章节，阐述了 FSF 和自由软件管理机构在 GPL 实施中共同遵循的典型流程。（FSF 和自由软件管理机构在博客中对这些流程进行了简单说明。）</p>
+<p>作为社区自由的坚决捍卫者，当有公司妨碍用户行使复制、分享、修改和/或重新发布 Copyleft 许可软件的权利时，我们将扮演用户代理人的角色。我们要求所有重新发布者遵守 GPL 要求，这首先是为了保护所有用户的自由，其次是支持尊重自由的公司，打击和惩罚不良行为。</p>
+<p>Copyleft 以版权为基础，并基于版权保护用户修改和重新发布的自由，而非限制修改和重新发布。未经许可将作品给予他人即视为违反传统版权许可，而通过限制条件妨碍他人重新发布作品则视为违反 Copyleft 许可。由于 Copyleft 许可需遵循版权法，因此 Copyleft 许可的实施机制与其它版权许可机制相同——使用相同的术语和流程。我们需要注意的是，在实施 Copyleft 的过程中，应关注自由传播这一终极目标，而不要过度热衷于处罚或将版权体系中既有不公平合法化。因此，自由软件管理机构和 FSF 是按照 FSF 于 2001 年制定的面向社区的原则来实施 Copyleft 的。</p>
+<h2 id="面向社区实施-GPL-的指导原则"><a href="#面向社区实施-GPL-的指导原则" class="headerlink" title="面向社区实施 GPL 的指导原则"></a>面向社区实施 GPL 的指导原则</h2><h3 id="实施-GPL-的主要目标是-GPL-合规性。"><a href="#实施-GPL-的主要目标是-GPL-合规性。" class="headerlink" title="实施 GPL 的主要目标是 GPL 合规性。"></a>实施 GPL 的主要目标是 GPL 合规性。</h3><p>Copyleft 的首要政策目标是，使尊重用户的自由成为一种规范。这是 FSF 制定 GNU GPL 文本的初衷。根据这一原则，实施 Copyleft 时应侧重制止不正当发布，鼓励正当发布，以及处理过去的违规行为给社区和用户造成的损害。处理先前损害的常见方法包括：告知已得到软件的用户如何获取软件源代码，以及他们享有哪些相关权利。所有其它次要目标都不应妨碍严格遵守 GPL 规则以及尊重用户复制、分享、修改和重新发布软件的自由。</p>
+<h3 id="法律诉讼是最后的手段。"><a href="#法律诉讼是最后的手段。" class="headerlink" title="法律诉讼是最后的手段。"></a>法律诉讼是最后的手段。</h3><p>合规行为是教育和帮助违反许可者的主要手段。大多数违反 GPL 的行为都属过失行为，而非有意为之。Copyleft 的实施应帮助此类发布者在他们所倚赖的自由软件项目中发挥积极作用。少数 GPL 违规行为是有意的或是严重疏忽的结果，对此类行为无需姑息。但即使在这种情况下，诉诸法律也是最后的手段，双方以协商方式调整（或至少停止）后续发布，并采取措施减少已发生的损失，这样做比闹上法庭要好得多。</p>
+<h3 id="保密能提高接受能力和响应能力。"><a href="#保密能提高接受能力和响应能力。" class="headerlink" title="保密能提高接受能力和响应能力。"></a>保密能提高接受能力和响应能力。</h3><p>软件自由的支持者理所当然地将保密协议视为不信任的表现，他们更倾向于进行公开讨论。但对于合规工作来说，发起并持续私下讨论是诚意的体现，可以倡导合规性而不必担心公开报复，同时使对方有机会弥补无心之过。强制执行反而较难达到合规性的主要目标，因为提起公诉不仅花费不菲，也旷日费时。因此，实施者应将保密作为一种和解办法。如果某家公司显然在以诚意和保密来掩盖不作为、不反应，那么实施者可在发出足够的警告后将问题公之于众。</p>
+<h3 id="面向社区的实施工作永远不应以经济收益为导向。"><a href="#面向社区的实施工作永远不应以经济收益为导向。" class="headerlink" title="面向社区的实施工作永远不应以经济收益为导向。"></a>面向社区的实施工作永远不应以经济收益为导向。</h3><p>合理的经济处罚是实现合规性的合法工具。从逻辑上来讲，如果对违规的唯一处罚仅仅是强制遵守原始规则，那么恶意违规者只会等待实施行为，而根本不会去阅读 GPL。这样的 Copyleft 社会模式和实施方式是无法站住脚的。没有经济处罚的实施体系有利于恶意行为者，不利于善意行为者，因为后者须承担合规发布的最低（数额并不低）人员成本，而前者则可以规避这项开支。因此，版权持有者（或其授权代理人）有理由就其配合实施行为所投入的合规性教导时间要求补偿。但通常，追回版权法允许范围内的全部损失是没有必要的，在某些情况下，这样做可能与 Copyleft 的目的背道而驰。</p>
+<h3 id="面向社区的合规工作不应以忽略问题为条件索取或接受付款。"><a href="#面向社区的合规工作不应以忽略问题为条件索取或接受付款。" class="headerlink" title="面向社区的合规工作不应以忽略问题为条件索取或接受付款。"></a>面向社区的合规工作不应以忽略问题为条件索取或接受付款。</h3><p>在面向社区的实施过程中，实施者不应以忽略某项违规或接受针对已发现问题的不完整解决方案为条件接受付款。版权持有者应完全拒绝所有付款，直至发布者纠正过去的违规行为并正式（书面）提交未来合规计划。</p>
+<h3 id="面向社区的合规工作应从仔细验证违规开始，到完成综合分析结束。"><a href="#面向社区的合规工作应从仔细验证违规开始，到完成综合分析结束。" class="headerlink" title="面向社区的合规工作应从仔细验证违规开始，到完成综合分析结束。"></a>面向社区的合规工作应从仔细验证违规开始，到完成综合分析结束。</h3><p>这意味着，在起诉某实体违反 GPL 之前，应仔细核查报告，确认违规行为。随后，应检查所有相关软件，确定已提出并解决了除原始报告中所列问题和涉及相关许可条款的问题之外的所有合规性问题。这一点非常重要，这样在对话结束后，双方可以得到不会再次发生违规的合理保证。（已有的合规性正面范例可帮助发布者了解他们的义务。）</p>
+<h3 id="面向社区的合规流程应推广-GPLv3-终止条款，甚至可推行至仅根据-GPLv2-许可的作品。"><a href="#面向社区的合规流程应推广-GPLv3-终止条款，甚至可推行至仅根据-GPLv2-许可的作品。" class="headerlink" title="面向社区的合规流程应推广 GPLv3 终止条款，甚至可推行至仅根据 GPLv2 许可的作品。"></a>面向社区的合规流程应推广 GPLv3 终止条款，甚至可推行至仅根据 GPLv2 许可的作品。</h3><p>GPLv2 规定，一旦发生违规行为，将永久性终止所有版权许可。GPLv3 的终止条款规定，初次违规者在及时纠正违规行为后可自动恢复发布权，同时向违规者提供需要得到其谅解的版权持有者的准确名单。GPLv3 终止条款的合作精神体现了对继续合作的承诺与期望。对于无心之过引起的违规（即使是针对 GPLv2 许可作品的违规），建议使用以上方法。</p>
+<p>这些原则不是严格的规定。实现合规性需要了解违规者的实际情况，不是为了原谅违规行为，而是为了找到帮助他们合规的方法。Copyleft 许可没有特定的实施办法（除终止许可外），部分原因是 GPL 违规的现实情况千差万别，过于严苛不利于实现合规性。</p>
+<p>特别要说明的是，以上原则无意为实施行为建立严格标准和/或“升级和调解规则”。那样做将限制版权持有者使用 Copyleft 许可达到预期效果——维护用户复制、修改和重新发布自由软件的权利。</p>
+<p>根据以上原则在必要时实施 GPL 是构建尊重、平等的软件共享社区的基础。</p>
+<blockquote>
+<p>本文版权为自由软件基金会与自由软件管理机构所有，并经由 Creative Commons Attribution-ShareAlike 4.0 International License 许可证发布。</p>
+</blockquote>
+</main>
+
+    
+  </div>
+</section>
+
+<nav class="page-section text-center">
+  <div class="btn-group" role="group" aria-label="Post navigator">
+    
+    <a class="btn btn-secondary" role="button" href="document/osi-2015/">
+      &lt; OSI 2015年度报告
+    </a>
+    
+    <a class="btn btn-secondary" role="button" href="activity/summit/apache-roadshow-2015-china/">
+      众人添柴火焰高，社区主导开发强 &gt;
+    </a>
+    
+  </div>
+</nav>
+
+<script>
+(function () {
+
+  var path = self.location.href.split('#')[0];
+
+  $('details > .toc a[href]').attr('href', function (_, value) {
+
+    return path + value;
+  });
+
+  $('.blog-post').find('h1, h2, h3, h4, h5, h6').append(function () {
+
+    if ( this.id.trim() )
+      return '<a class="header-link" title="Permalink" href="' +
+        path + '#' + this.id +
+        '"><span class="octicon octicon-link"></span></a>';
+  });
+})();
+</script>
+
+
+  <footer class="footer">
+    <div class="container">
+      <nav class="footer-nav">
+        
+          <a class="footer-nav-item active" href="/categories/Activity/">
+            活动
+          </a>
+        
+          <a class="footer-nav-item " href="/page/2">
+            博客
+          </a>
+        
+          <a class="footer-nav-item " href="/profile/charter">
+            章程
+          </a>
+        
+          <a class="footer-nav-item " href="https://github.com/kaiyuanshe/kaiyuanshe.github.io/tree/hexo/License" target="_blank" rel="noopener">
+            许可
+          </a>
+        
+          <a class="footer-nav-item " href="/profile/contact">
+            联系我们
+          </a>
+        
+          <a class="footer-nav-item " href="https://git-pager.avosapps.us/?repository=kaiyuanshe/Wiki" target="_blank" rel="noopener">
+            协作编辑
+          </a>
+        
+      </nav>
+      <span class="col">沪 ICP 备 19006015 号</span>
+      <span class="col">公安备案 31011202006203 号</span>
+
+      <span class="footer-social">
+        
+          <a class="footer-nav-item icon"
+            href="https://github.com/kaiyuanshe"
+            title="Github Organization">
+            <i class="devicon-github-plain vertical-middle"></i>
+          </a>
+        
+          <a class="footer-nav-item icon"
+            href="https://twitter.com/contactkaiyuan1"
+            title="@contactkaiyuan1 on Twitter">
+            <i class="devicon-twitter-plain vertical-middle"></i>
+          </a>
+        
+          <a class="footer-nav-item icon"
+            href="https://www.facebook.com/kaiyuanshe.china"
+            title="Facebook account">
+            <i class="devicon-facebook-plain vertical-middle"></i>
+          </a>
+        
+      </span>
+    </div>
+  </footer>
+  <script src="library/virtual-anchor-sdk.js"></script>
+  <script>
+    new VirtualAnchor({ id: '191be2ab-8c6e-6201-c419-3ef2d26eadf2' });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+
+  <title>开源社</title>
+
+  
+  <meta name="description" content="2017 中国开源年会-COSCon’17 于 11 月 18-19 日在上海交大闵行校区圆满收官。继成功举办 2015 阿帕奇中国路演，以及 2016 中国开源年会-COSCon’16 之后，这次 COSCon’17 由开源社与中国计算机学会（CCF）上海分部共同主办，上海交大计算机系协办，与云计算开源产业联盟也再度携手合作，大家志同道合为热爱开源、热爱社区、喜欢技术交流、喜欢活跃分享的社区">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="2017 中国开源年会-COSCon&#39;17 圆满收官">
+<meta property="og:url" content="http://kaiyuanshe.cn/activity/summit/coscon-2017-summary/index.html">
+<meta property="og:site_name" content="开源社">
+<meta property="og:description" content="2017 中国开源年会-COSCon’17 于 11 月 18-19 日在上海交大闵行校区圆满收官。继成功举办 2015 阿帕奇中国路演，以及 2016 中国开源年会-COSCon’16 之后，这次 COSCon’17 由开源社与中国计算机学会（CCF）上海分部共同主办，上海交大计算机系协办，与云计算开源产业联盟也再度携手合作，大家志同道合为热爱开源、热爱社区、喜欢技术交流、喜欢活跃分享的社区">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://kaiyuanshe.cn/activity/summit/coscon-2017-summary/cb90wvqt1dc.webp">
+<meta property="article:published_time" content="2017-11-23T00:00:00.000Z">
+<meta property="article:modified_time" content="2024-04-05T20:16:41.179Z">
+<meta property="article:author" content="shiy2008@gmail.com">
+<meta property="article:tag" content="COSCon">
+<meta property="article:tag" content="summary">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://kaiyuanshe.cn/activity/summit/coscon-2017-summary/cb90wvqt1dc.webp">
+<meta name="twitter:site" content="contactkaiyuan1">
+  <meta name="author" content="shiy2008@gmail.com">
+  <meta name="generator" content="hexo">
+  <meta name="theme-color" content="#2f3241">
+
+  <!-- consumed by scripts/get-localized-strings -->
+  <meta name="localized.clipboard.copy" content="Copy">
+  <meta name="localized.clipboard.copy_to_clipboard" content="复制到剪贴板">
+  <meta name="localized.clipboard.copied" content="已复制">
+
+  <base href="/">
+
+  <link rel="shortcut icon" href="image/KaiYuanShe-logo.png">
+
+  <link rel="stylesheet" href="https://npm.webcache.cn/github-markdown-css@5.5.1/github-markdown-light.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/devicon@2.16.0/devicon.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/highlight.js@9.18.5/styles/dark.css">
+  <link rel="stylesheet" href="library/index.css">
+  <link rel="stylesheet" href="common.css">
+  <style>
+    .site-header-nav-item a:link {
+      text-decoration: none;
+    }
+  </style>
+  <script src="https://npm.webcache.cn/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script src="https://npm.webcache.cn/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://npm.webcache.cn/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+  <script src="https://npm.webcache.cn/highlight.js@9.18.5/lib/highlight.js"></script>
+  <script src="common.js" defer async></script>
+</head>
+
+<body>
+  <div class="alert alert-danger mb-0 text-center" role="alert">
+    开源社官网（2019 版）已存档、只读，请移步
+    <a href="https://kaiyuanshe.cn" class="alert-link">2022 版官网</a>
+    关注最新信息~
+  </div>
+
+  <header class="site-header">
+    <div class="container">
+
+      <a class="site-header-logo no-underline-hover" href=".">
+        <img class="site-header-icon" src="image/KaiYuanShe-logo.png">
+        开源社
+      </a>
+
+      <nav class="site-header-nav">
+        
+          <div class="site-header-nav-item">
+            
+              <a role="button" href="/categories/Activity/Summit/" data-href-match="">
+                年度大会
+              </a>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_1" href="" data-href-match="">
+                资讯
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_1">
+                
+                  <a class="dropdown-item" href="/categories/Activity/">活动</a>
+                
+                  <a class="dropdown-item" href="/blog/">博客</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_2" href="" data-href-match="">
+                成员
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_2">
+                
+                  <a class="dropdown-item" href="/members/">正式成员</a>
+                
+                  <a class="dropdown-item" href="https://kaiyuanshe.feishu.cn/share/base/shrcnfO89tYlYIjZpS5PXJBaK2f" target="_blank" rel="noopener">加入我们</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a role="button" href="/partners" data-href-match="">
+                合作伙伴
+              </a>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_4" href="" data-href-match="">
+                资源
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_4">
+                
+                  <a class="dropdown-item" href="https://test.kaiyuanshe.cn/organization" target="_blank" rel="noopener">开源地图</a>
+                
+                  <a class="dropdown-item" href="/categories/Document">开源文档</a>
+                
+                  <a class="dropdown-item" href="/license-tool/">许可证选择器</a>
+                
+                  <a class="dropdown-item" href="http://mirror.kaiyuanshe.cn/" target="_blank" rel="noopener">开源镜像</a>
+                
+                  <a class="dropdown-item" href="https://polyfill.kaiyuanshe.cn/" target="_blank" rel="noopener">Web 标准补丁服务</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_5" href="" data-href-match="">
+                关于
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_5">
+                
+                  <a class="dropdown-item" href="/profile/about">介绍</a>
+                
+                  <a class="dropdown-item" href="/profile/structure">组织架构</a>
+                
+                  <a class="dropdown-item" href="/governance">工作组</a>
+                
+                  <a class="dropdown-item" href="/profile/charter">章程</a>
+                
+                  <a class="dropdown-item" href="/categories/Meeting">会议纪要</a>
+                
+              </div>
+            
+          </div>
+        
+        <form action="search/" class="ais-search-box">
+          <input type="search" name="keyword" required placeholder="搜索"
+            id="search-input" class="nav-search ais-search-box--input"
+            aria-label="search-box" autocapitalize="off" autocorrect="off" role="textbox">
+        </form>
+        <a class="site-header-nav-item octicon"
+          href="https://github.com/kaiyuanshe/"
+          title="Github Organization">
+          <span class="mega-octicon octicon-mark-github vertical-middle"></span>
+        </a>
+        <a class="site-header-nav-item bordered lang-select-button" href="#Language" data-toggle="collapse">
+          中文
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <div id="Language" class="container collapse">
+  <div class="m-4">
+    <div class="text-center-sm mb-4">
+      <strong>请选择语言</strong>
+    </div>
+    <div class="clearfix">
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/en-US" target="_blank" rel="noopener">
+          English
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ja-JP" target="_blank" rel="noopener">
+          日本語
+          
+          (Japanese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/es-ES" target="_blank" rel="noopener">
+          Español
+          
+          (Spanish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/zh-CN" target="_blank" rel="noopener">
+          中文
+          
+          (Chinese Simplified)
+          
+        </a>
+        
+        <span class="faint"><span class="octicon octicon-check mr-1"></span></span>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/tr-TR" target="_blank" rel="noopener">
+          Türkçe
+          
+          (Turkish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/id-ID" target="_blank" rel="noopener">
+          Indonesian
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fil-PH" target="_blank" rel="noopener">
+          Filipino
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fr-FR" target="_blank" rel="noopener">
+          Français
+          
+          (French)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ru-RU" target="_blank" rel="noopener">
+          Русский
+          
+          (Russian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ko-KR" target="_blank" rel="noopener">
+          한국어
+          
+          (Korean)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/it-IT" target="_blank" rel="noopener">
+          Italiano
+          
+          (Italian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/pt-BR" target="_blank" rel="noopener">
+          Português
+          
+          (Portuguese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/de-DE" target="_blank" rel="noopener">
+          Deutsch
+          
+          (German)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/uk-UA" target="_blank" rel="noopener">
+          Українська
+          
+          (Ukrainian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/zh-TW" target="_blank" rel="noopener">
+          中文
+          
+          (Chinese Traditional)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/pl-PL" target="_blank" rel="noopener">
+          język polski
+          
+          (Polish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/bg-BG" target="_blank" rel="noopener">
+          български език
+          
+          (Bulgarian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/hi-IN" target="_blank" rel="noopener">
+          हिन्दी
+          
+          (Hindi)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/nl-NL" target="_blank" rel="noopener">
+          Nederlands
+          
+          (Dutch)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/vi-VN" target="_blank" rel="noopener">
+          Tiếng Việt
+          
+          (Vietnamese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ar-SA" target="_blank" rel="noopener">
+          اللغة العربية
+          
+          (Arabic)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fa-IR" target="_blank" rel="noopener">
+          فارسی
+          
+          (Persian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/cs-CZ" target="_blank" rel="noopener">
+          čeština
+          
+          (Czech)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/th-TH" target="_blank" rel="noopener">
+          ไทย
+          
+          (Thai)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/he-IL" target="_blank" rel="noopener">
+          עברית
+          
+          (Hebrew)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ro-RO" target="_blank" rel="noopener">
+          limba română
+          
+          (Romanian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/tl-PH" target="_blank" rel="noopener">
+          Wikang Tagalog
+          
+          (Tagalog)
+          
+        </a>
+        
+      </div>
+      
+    </div>
+    <hr>
+    <div class="text-center-sm">
+      <a href="https://electronjs.org/languages" target="_blank" rel="noopener">查看更多语言详情</a>
+    </div>
+  </div>
+</div>
+
+
+  <style>
+  .blog-post hr:first-of-type {
+    display: block;
+  }
+</style>
+
+
+
+<section class="page-section blog-post">
+  <div class="container">
+    <h1>2017 中国开源年会-COSCon&#39;17 圆满收官</h1>
+
+    
+
+    
+
+<div class="blog-byline mt-2 mb-4 d-flex justify-content-between align-items-center">
+  <span class="blog-index-time">2017-11-23 00:00:00</span>
+
+
+  <a class="author-link ml-3 text-center" href="https://github.com/kaiyuanshe" target="_blank" rel="noopener">
+    <img
+      class="avatar mr-2"
+      style="max-width: 2.25rem"
+      src="https://github.com/kaiyuanshe.png?size=36"
+      alt="kaiyuanshe"
+    >
+    kaiyuanshe
+  </a>
+
+
+  <span>
+    
+      <a class="badge badge-primary" href="categories/Activity/">
+        Activity
+      </a>
+    
+      <a class="badge badge-primary" href="categories/Activity/Summit/">
+        Summit
+      </a>
+    
+    
+      <a class="badge badge-primary" href="tags/COSCon/">
+          COSCon
+      </a>
+    
+      <a class="badge badge-primary" href="tags/summary/">
+          summary
+      </a>
+    
+  </span>
+</div>
+
+
+    
+
+    <details>
+      <summary>正文大纲</summary>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#大会盛况"><span class="toc-text">大会盛况</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#亮点连连看"><span class="toc-text">亮点连连看</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#大牛云集"><span class="toc-text">大牛云集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#草根崛起"><span class="toc-text">草根崛起</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#社区经营之奥"><span class="toc-text">社区经营之奥</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开源治理之辩"><span class="toc-text">开源治理之辩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#明星项目开源啦"><span class="toc-text">明星项目开源啦</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#精彩花絮"><span class="toc-text">精彩花絮</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#大神专访"><span class="toc-text">大神专访</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#社区经营者闭门圆桌会"><span class="toc-text">社区经营者闭门圆桌会</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#难忘“开源夜话”"><span class="toc-text">难忘“开源夜话”</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#特别鸣谢"><span class="toc-text">特别鸣谢</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#社区助力"><span class="toc-text">社区助力</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#大神祝福"><span class="toc-text">大神祝福</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#媒体给力"><span class="toc-text">媒体给力</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#赞助伙伴加持"><span class="toc-text">赞助伙伴加持</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Community-Contribution"><span class="toc-text">Community Contribution</span></a></li></ol>
+    </details>
+
+    <main class="markdown-body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><img src="/activity/summit/coscon-2017-summary/cb90wvqt1dc.webp" class="" title="Community Loves Contribution">
+
+<p>2017 中国开源年会-COSCon’17 于 11 月 18-19 日在上海交大闵行校区圆满收官。继成功举办 2015 阿帕奇中国路演，以及 2016 中国开源年会-COSCon’16 之后，这次 <strong>COSCon’17</strong> 由开源社与中国计算机学会（CCF）上海分部共同主办，上海交大计算机系协办，与云计算开源产业联盟也再度携手合作，大家志同道合为热爱开源、热爱社区、喜欢技术交流、喜欢活跃分享的社区氛围的开源人精心打造了一场令人难忘的盛会。</p>
+<a id="more"></a>
+
+<h2 id="大会盛况"><a href="#大会盛况" class="headerlink" title="大会盛况"></a>大会盛况</h2><p>这次大会总共 1,108 人次到场，在线视频观众总计 2,284 人，参加了接近 60 位大牛讲师的 5 场主题演讲，45 场分会场演讲，6 场动手训练营，5 场嘉宾对谈/观众问答，而来自五湖四海的 50 位可爱的志愿者们，热情地为讲师与观众们服务。</p>
+<img src="/activity/summit/coscon-2017-summary/a4tx5400n7s.webp" class="">
+
+<h2 id="亮点连连看"><a href="#亮点连连看" class="headerlink" title="亮点连连看"></a>亮点连连看</h2><h3 id="大牛云集"><a href="#大牛云集" class="headerlink" title="大牛云集"></a>大牛云集</h3><p>中国计算机学会（CCF）上海分部主席暨上海交通大学计算机系教授<strong>谷大武</strong>作为东道主开场致辞，中国信息通信研究院标准研究所副所长暨云计算开源产业联盟常务副理事长<strong>何宝宏</strong>博士做了主题演讲，而激动人心的是，我们还请到了全球三个大基金会的大牛 GNOME 基金会主席 <strong>Nuritzi Sanchez</strong>，FreeBSD 基金会首位华人董事 <strong>梁莉</strong> <strong>Kylie</strong>，Apache 软件基金会 <strong>Niclas Hedhman</strong>，还有极客邦科技创始人兼 CEO <strong>霍泰稳</strong>来做主题演讲及高峰论坛。</p>
+
+
+<p>除了上述大神之外，我们还邀请到了本土原生的 5 个 ASF 项目 （孵化中或顶级项目 —— CarbonData、Kylin、RocketMQ、Weex、Griffin）来揭秘如何立足于世界顶级开源社区/基金会。我们甚至也邀请到了 <strong>Jenkins 创始人</strong> <strong>Kohsuke Kawaguchi</strong>（K.K）大神来分享“<strong>黑客觅食记</strong>”。</p>
+<img src="/activity/summit/coscon-2017-summary/1od8o6gg6z7.webp" class="">
+
+<h3 id="草根崛起"><a href="#草根崛起" class="headerlink" title="草根崛起"></a>草根崛起</h3><p>“国内崛起于草根，在 Github 拼出一片天”的 5 个著名开源项目或社区（beego、Element、Swoole、TiDB、掘金）创始大神现身揭秘。</p>
+<img src="/activity/summit/coscon-2017-summary/8ki0mr02md4.webp" class="">
+
+<h3 id="社区经营之奥"><a href="#社区经营之奥" class="headerlink" title="社区经营之奥"></a>社区经营之奥</h3><p>“如何运作一个技术社区”分会场，诸位大咖分享他们社区经营的诀窍。</p>
+<img src="/activity/summit/coscon-2017-summary/8pcsw2g6cuk.webp" class="">
+
+<h3 id="开源治理之辩"><a href="#开源治理之辩" class="headerlink" title="开源治理之辩"></a>开源治理之辩</h3><p>作为开源社所举办的、大会独具特色的“开源治理论坛”也是高潮迭起，众多开源治理及社区专家分享了许多开源治理的心得。</p>
+<img src="/activity/summit/coscon-2017-summary/2oeakam9vnw.png" class="">
+
+<h3 id="明星项目开源啦"><a href="#明星项目开源啦" class="headerlink" title="明星项目开源啦"></a>明星项目开源啦</h3><p>同时还有多场明星开源项目分享技术秘技，可喜的是阿里巴巴的容器技术 Pouch 项目也在本次大会正式宣布开源，此外还有大牛带着同学们动手实验训练手脑并用。</p>
+<p>更多精彩缤纷的主题、专题演讲、干货分享，本文就不再一一列举，读者可以根据下图，按图索骥，在 IT 大咖说的视频平台，点播我们演讲嘉宾的内容。</p>
+<h2 id="精彩花絮"><a href="#精彩花絮" class="headerlink" title="精彩花絮"></a>精彩花絮</h2><h3 id="大神专访"><a href="#大神专访" class="headerlink" title="大神专访"></a>大神专访</h3><p>这次大会 InfoQ 主编徐川专访了 ASF Niclas Hedhmen 以及 Jenkins 大神 KK。</p>
+<img src="/activity/summit/coscon-2017-summary/291euh9sg9p.webp" class="">
+
+<ul>
+<li><p>Niclas Hedhman 专访内容：<a href="http://www.infoq.com/cn/news/2017/11/niclas-hedhman-Interview" target="_blank" rel="noopener">Apache 欢迎什么样的开源项目</a></p>
+</li>
+<li><p>Kohsuke Kawaguchi 专访内容：如何依靠开源项目养活自己… （InfoQ 整理中，请关注）</p>
+</li>
+</ul>
+<h3 id="社区经营者闭门圆桌会"><a href="#社区经营者闭门圆桌会" class="headerlink" title="社区经营者闭门圆桌会"></a>社区经营者闭门圆桌会</h3><p>一个健康、良好的社区该如何运营？作为社区能够为相关人群奉献何种能力？如何帮助企业从开源中受益？如何帮助个人获得更快速的成长？新生代的 GitHub 和传统基金会的模式有何区别？来自本土顶级社区运营人士、新生代、老黑客欢聚一堂，共同探讨社区在本土的发展。</p>
+<img src="/activity/summit/coscon-2017-summary/btstgrmc940.webp" class="">
+
+<h3 id="难忘“开源夜话”"><a href="#难忘“开源夜话”" class="headerlink" title="难忘“开源夜话”"></a>难忘“开源夜话”</h3><p>在紧张劳顿的一天之后，大家放松下来，以更为轻松的方式相互结识、讨论开源！</p>
+<img src="/activity/summit/coscon-2017-summary/5mee63gbtrc.webp" class="">
+
+<p>在临近结束，我们特别为二位对开源社作出重大贡献的个人<strong>李思颖</strong>及<strong>王春生</strong>表示感谢，并颁发 [<strong>开源之星</strong>] 纪念奖杯。</p>
+
+
+<h2 id="特别鸣谢"><a href="#特别鸣谢" class="headerlink" title="特别鸣谢"></a>特别鸣谢</h2><h3 id="社区助力"><a href="#社区助力" class="headerlink" title="社区助力"></a>社区助力</h3><p>开源社以社区的社区定位自身，以推动开源治理、社区合作/建设、与国际接轨为使命，并且付诸行动，举办了国内首次以社区经营及开源项目贡献为主题的盛会，为此我们联合了 25 家国内外社区携手共同努力。</p>
+<img src="/activity/summit/coscon-2017-summary/fhte2hzbcwg.webp" class="">
+
+<h3 id="大神祝福"><a href="#大神祝福" class="headerlink" title="大神祝福"></a>大神祝福</h3><p>Apache 软件基金会 （ASF）的创世大神 Jim Jagielshi 特别为大会发表了祝贺视频，以及推文宣传。而 Apache 软件基金会也同时推文助力宣传！</p>
+<img src="/activity/summit/coscon-2017-summary/25cksynp9mx.webp" class="">
+
+<h3 id="媒体给力"><a href="#媒体给力" class="headerlink" title="媒体给力"></a>媒体给力</h3><p>我们与国内领先的 IT 媒体极客邦科技/InfoQ 携手推广及报导，与 IT 大咖说合作进行线上视频直播，与掘金科技及 Linux 中国联手在技术社区平台上推广，总计超过 20 万人次以上的关注，活动行作为独家报名平台获得了超过 6 万人次的浏览与关注，IT 大咖说做为视频直播伙伴也吸引了几千位在线观众。</p>
+<img src="/activity/summit/coscon-2017-summary/2rvq8h62e0g.webp" class="">
+
+<h3 id="赞助伙伴加持"><a href="#赞助伙伴加持" class="headerlink" title="赞助伙伴加持"></a>赞助伙伴加持</h3><p>我们也要特别感谢这次大会的赞助伙伴，有了他们的鼎力支持，我们才能越办越好。</p>
+<img src="/activity/summit/coscon-2017-summary/21143gc10h2.webp" class="">
+
+<img src="/activity/summit/coscon-2017-summary/2nmu1xriz7e.webp" class="">
+
+<h2 id="Community-Contribution"><a href="#Community-Contribution" class="headerlink" title="Community Contribution"></a>Community Contribution</h2><p>大会结束了，但是我们的征途才刚刚开始。开源社理事会之前对这次大会的主题定位为“社区经营与项目贡献”之旅是否能吸引国内偏重技术的群众而忐忑不安。而我们从大会中及结束后收集的反馈来看，全球领先的基金会所提倡的“社区重于代码 —— Community over Code”，以及我们所揭示的 “<strong>立足社区，贡献全球 —— Community ♥</strong> <strong>Contribution”</strong> ，在这次大会里获得了众多大咖讲师以及严选精品的观众的良好回响，这对开源社成立三年以来的理想坚持 —— 开源治理、社区合作、国际接轨 —— 是最大的鼓舞，但是也更让我们临深履薄兢兢业业地在众多伙伴护持下继续向前行进。</p>
+<p>您想第一时间获得本次大会演讲稿、速记以及视频回放吗（预计 11 月 27 日放出）？请即刻关注开源社微信公众号。您还想与众多大咖讲师密切交流吗？您想参与开源社丰富多彩的社区互动吗？您想为 2018 中国开源年会的大会场地选址投下您神圣的一票吗？请关注开源社微信公众号并回复“我要入群”，即可加入开源社社区交流群参与社区互动的乐趣哦！</p>
+<img src="/activity/summit/coscon-2017-summary/28riqzu1v2w.webp" class="" title="IT 大咖说视频回放">
+</main>
+
+    
+    <hr>
+    
+<h2 class="d-flex justify-content-between align-items-center">
+  活动简讯
+  <span>
+    <a class="btn btn-primary" download="2017 中国开源年会-COSCon&#39;17 圆满收官.ics"
+      href="data:text/calendar;base64,QkVHSU46VkNBTEVOREFSDQpWRVJTSU9OOjIuMA0KUFJPRElEOi0vL1RyaSBUZWNoIENvbXB1dGVycy8vbm9kZS1pY2FsZW5kYXIvL0VODQpCRUdJTjpWRVZFTlQNClNVTU1BUlk6MjAxNyDkuK3lm73lvIDmupDlubTkvJotQ09TQ29uJzE3IOWchua7oeaUtuWumA0KRFRTVEFSVDoyMDE3MTExOFQwODUwMDBaDQpEVEVORDoyMDE3MTExOVQxODAwMDBaDQpMT0NBVElPTjrkuIrmtbfluILpl7XooYzljLrkuJzlt53ot684MDDlj7fkuIrmtbfkuqTlpKfpmYjnkZ7nkIPmpbwNCkVORDpWRVZFTlQNCkVORDpWQ0FMRU5EQVINCg==">
+      添加日历
+    </a>
+    
+  </span>
+</h2>
+<ul>
+  <li>时间：2017-11-18 08:50:00 ~ 2017-11-19 18:00:00</li>
+  <li>地点：上海市闵行区东川路800号上海交大陈瑞球楼</li>
+</ul>
+
+  <script src="https://npm.webcache.cn/@babel/polyfill@7.12.1/dist/polyfill.min.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=Promise%2CIntersectionObserver"></script>
+
+<script src="https://npm.webcache.cn/dom-renderer@1.0.3/dist/dom-renderer.min.js"></script>
+<script src="//webapi.amap.com/maps?v=1.4.14&key=8325164e247e15eea68b59e89200988b&plugin=AMap.Geocoder,AMap.AdvancedInfoWindow"></script>
+
+<template>[{&#34;title&#34;:&#34;2017 中国开源年会-COSCon&#39;17 圆满收官&#34;,&#34;URL&#34;:&#34;http://kaiyuanshe.cn/activity/summit/coscon-2017-summary/&#34;,&#34;address&#34;:&#34;上海市闵行区东川路800号上海交大陈瑞球楼&#34;}]</template>
+<template>
+  <div class="pt-2 pl-2 pr-2">
+    <h4>
+      <a href="${view.URL}">${view.title}</a>
+    </h4>
+    <p>${view.address}</p>
+  </div>
+</template>
+<div class="embed-box"></div>
+
+<script>
+(function (main) {
+
+  var box = document.currentScript.previousElementSibling;
+
+  self.addEventListener('load',  function () {
+
+    new IntersectionObserver(function (entry, observer) {
+
+      observer.disconnect();
+
+      main(
+        self['dom-renderer'].default,
+        box,
+        box.previousElementSibling,
+        box.previousElementSibling.previousElementSibling
+      );
+    }).observe( box );
+  });
+})(function (View, box, template, list) {
+
+  list = JSON.parse( list.innerHTML.trim() );
+
+  var map = new AMap.Map(box, {resizeEnable: true}),
+    coder = new AMap.Geocoder(),
+    dialog = new AMap.AdvancedInfoWindow({
+      offset: new AMap.Pixel(0, -30),
+      showShadow: true,
+      closeWhenClickMap: true
+    }),
+    template = new View( template.innerHTML );
+
+  function getCoords(addresses) {
+
+    return new Promise(function (resolve, reject) {
+
+      coder.getLocation(addresses,  function (status, result) {
+
+        if (status === 'error')
+          reject( result );
+        else if (status === 'complete')
+          resolve( result );
+      });
+    });
+  }
+
+  getCoords(
+    list.map(function (item) {  return item.address;  })
+  ).then(function (data) {
+
+    if (! data.geocodes[0])  return;
+
+    var markers = data.geocodes.map(function (item, index) {
+
+      var marker = new AMap.Marker({position: item.location});
+
+      marker.on('click',  function () {
+
+        template.render( list[index] ).then(function () {
+
+          dialog.setContent(template + '');
+
+          dialog.open(map, item.location);
+        });
+      });
+
+      return marker;
+    });
+
+    map.add( markers ),  map.setFitView( markers );
+  });
+});
+</script>
+
+
+    
+  </div>
+</section>
+
+<nav class="page-section text-center">
+  <div class="btn-group" role="group" aria-label="Post navigator">
+    
+    <a class="btn btn-secondary" role="button" href="profile/council/2018/">
+      &lt; 开源社 2018 理事会选举结果通告
+    </a>
+    
+    <a class="btn btn-secondary" role="button" href="international/codeheat-open-source-competition/">
+      Codeheat 开源竞赛 &gt;
+    </a>
+    
+  </div>
+</nav>
+
+<script>
+(function () {
+
+  var path = self.location.href.split('#')[0];
+
+  $('details > .toc a[href]').attr('href', function (_, value) {
+
+    return path + value;
+  });
+
+  $('.blog-post').find('h1, h2, h3, h4, h5, h6').append(function () {
+
+    if ( this.id.trim() )
+      return '<a class="header-link" title="Permalink" href="' +
+        path + '#' + this.id +
+        '"><span class="octicon octicon-link"></span></a>';
+  });
+})();
+</script>
+
+
+  <footer class="footer">
+    <div class="container">
+      <nav class="footer-nav">
+        
+          <a class="footer-nav-item active" href="/categories/Activity/">
+            活动
+          </a>
+        
+          <a class="footer-nav-item " href="/page/2">
+            博客
+          </a>
+        
+          <a class="footer-nav-item " href="/profile/charter">
+            章程
+          </a>
+        
+          <a class="footer-nav-item " href="https://github.com/kaiyuanshe/kaiyuanshe.github.io/tree/hexo/License" target="_blank" rel="noopener">
+            许可
+          </a>
+        
+          <a class="footer-nav-item " href="/profile/contact">
+            联系我们
+          </a>
+        
+          <a class="footer-nav-item " href="https://git-pager.avosapps.us/?repository=kaiyuanshe/Wiki" target="_blank" rel="noopener">
+            协作编辑
+          </a>
+        
+      </nav>
+      <span class="col">沪 ICP 备 19006015 号</span>
+      <span class="col">公安备案 31011202006203 号</span>
+
+      <span class="footer-social">
+        
+          <a class="footer-nav-item icon"
+            href="https://github.com/kaiyuanshe"
+            title="Github Organization">
+            <i class="devicon-github-plain vertical-middle"></i>
+          </a>
+        
+          <a class="footer-nav-item icon"
+            href="https://twitter.com/contactkaiyuan1"
+            title="@contactkaiyuan1 on Twitter">
+            <i class="devicon-twitter-plain vertical-middle"></i>
+          </a>
+        
+          <a class="footer-nav-item icon"
+            href="https://www.facebook.com/kaiyuanshe.china"
+            title="Facebook account">
+            <i class="devicon-facebook-plain vertical-middle"></i>
+          </a>
+        
+      </span>
+    </div>
+  </footer>
+  <script src="library/virtual-anchor-sdk.js"></script>
+  <script>
+    new VirtualAnchor({ id: '191be2ab-8c6e-6201-c419-3ef2d26eadf2' });
+  </script>
+</body>
+
+</html>

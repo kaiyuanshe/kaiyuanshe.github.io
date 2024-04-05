@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+
+  <title>开源社</title>
+
+  
+  <meta name="description" content="摘要：Matthew Mascord 写于 2008 年 1 月 4 日，最后更新于 2013 年 5 月 9 日 对一个开源项目来说，社区是至关重要的。活跃而强大的社区无疑是项目的心脏。然而，只有开源许可是不足以吸引用户和开发者参加项目并共同建立社区的。本文介绍如何建立一个成功的开源社区。  为什么启动开源项目？事实上，启动开源项目与启动其他类型的软件项目并没有什么不同。开源项目的启动，或者是">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="如何建立开源社区">
+<meta property="og:url" content="http://kaiyuanshe.cn/document/how-to-build-open-source-community/index.html">
+<meta property="og:site_name" content="开源社">
+<meta property="og:description" content="摘要：Matthew Mascord 写于 2008 年 1 月 4 日，最后更新于 2013 年 5 月 9 日 对一个开源项目来说，社区是至关重要的。活跃而强大的社区无疑是项目的心脏。然而，只有开源许可是不足以吸引用户和开发者参加项目并共同建立社区的。本文介绍如何建立一个成功的开源社区。  为什么启动开源项目？事实上，启动开源项目与启动其他类型的软件项目并没有什么不同。开源项目的启动，或者是">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2015-02-06T05:41:24.000Z">
+<meta property="article:modified_time" content="2016-04-01T17:01:56.000Z">
+<meta property="article:author" content="shiy2008@gmail.com">
+<meta property="article:tag" content="governance">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="contactkaiyuan1">
+  <meta name="author" content="shiy2008@gmail.com">
+  <meta name="generator" content="hexo">
+  <meta name="theme-color" content="#2f3241">
+
+  <!-- consumed by scripts/get-localized-strings -->
+  <meta name="localized.clipboard.copy" content="Copy">
+  <meta name="localized.clipboard.copy_to_clipboard" content="复制到剪贴板">
+  <meta name="localized.clipboard.copied" content="已复制">
+
+  <base href="/">
+
+  <link rel="shortcut icon" href="image/KaiYuanShe-logo.png">
+
+  <link rel="stylesheet" href="https://npm.webcache.cn/github-markdown-css@5.5.1/github-markdown-light.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/devicon@2.16.0/devicon.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/highlight.js@9.18.5/styles/dark.css">
+  <link rel="stylesheet" href="library/index.css">
+  <link rel="stylesheet" href="common.css">
+  <style>
+    .site-header-nav-item a:link {
+      text-decoration: none;
+    }
+  </style>
+  <script src="https://npm.webcache.cn/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script src="https://npm.webcache.cn/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://npm.webcache.cn/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+  <script src="https://npm.webcache.cn/highlight.js@9.18.5/lib/highlight.js"></script>
+  <script src="common.js" defer async></script>
+</head>
+
+<body>
+  <div class="alert alert-danger mb-0 text-center" role="alert">
+    开源社官网（2019 版）已存档、只读，请移步
+    <a href="https://kaiyuanshe.cn" class="alert-link">2022 版官网</a>
+    关注最新信息~
+  </div>
+
+  <header class="site-header">
+    <div class="container">
+
+      <a class="site-header-logo no-underline-hover" href=".">
+        <img class="site-header-icon" src="image/KaiYuanShe-logo.png">
+        开源社
+      </a>
+
+      <nav class="site-header-nav">
+        
+          <div class="site-header-nav-item">
+            
+              <a role="button" href="/categories/Activity/Summit/" data-href-match="">
+                年度大会
+              </a>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_1" href="" data-href-match="">
+                资讯
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_1">
+                
+                  <a class="dropdown-item" href="/categories/Activity/">活动</a>
+                
+                  <a class="dropdown-item" href="/blog/">博客</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_2" href="" data-href-match="">
+                成员
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_2">
+                
+                  <a class="dropdown-item" href="/members/">正式成员</a>
+                
+                  <a class="dropdown-item" href="https://kaiyuanshe.feishu.cn/share/base/shrcnfO89tYlYIjZpS5PXJBaK2f" target="_blank" rel="noopener">加入我们</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a role="button" href="/partners" data-href-match="">
+                合作伙伴
+              </a>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_4" href="" data-href-match="">
+                资源
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_4">
+                
+                  <a class="dropdown-item" href="https://test.kaiyuanshe.cn/organization" target="_blank" rel="noopener">开源地图</a>
+                
+                  <a class="dropdown-item" href="/categories/Document">开源文档</a>
+                
+                  <a class="dropdown-item" href="/license-tool/">许可证选择器</a>
+                
+                  <a class="dropdown-item" href="http://mirror.kaiyuanshe.cn/" target="_blank" rel="noopener">开源镜像</a>
+                
+                  <a class="dropdown-item" href="https://polyfill.kaiyuanshe.cn/" target="_blank" rel="noopener">Web 标准补丁服务</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_5" href="" data-href-match="">
+                关于
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_5">
+                
+                  <a class="dropdown-item" href="/profile/about">介绍</a>
+                
+                  <a class="dropdown-item" href="/profile/structure">组织架构</a>
+                
+                  <a class="dropdown-item" href="/governance">工作组</a>
+                
+                  <a class="dropdown-item" href="/profile/charter">章程</a>
+                
+                  <a class="dropdown-item" href="/categories/Meeting">会议纪要</a>
+                
+              </div>
+            
+          </div>
+        
+        <form action="search/" class="ais-search-box">
+          <input type="search" name="keyword" required placeholder="搜索"
+            id="search-input" class="nav-search ais-search-box--input"
+            aria-label="search-box" autocapitalize="off" autocorrect="off" role="textbox">
+        </form>
+        <a class="site-header-nav-item octicon"
+          href="https://github.com/kaiyuanshe/"
+          title="Github Organization">
+          <span class="mega-octicon octicon-mark-github vertical-middle"></span>
+        </a>
+        <a class="site-header-nav-item bordered lang-select-button" href="#Language" data-toggle="collapse">
+          中文
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <div id="Language" class="container collapse">
+  <div class="m-4">
+    <div class="text-center-sm mb-4">
+      <strong>请选择语言</strong>
+    </div>
+    <div class="clearfix">
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/en-US" target="_blank" rel="noopener">
+          English
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ja-JP" target="_blank" rel="noopener">
+          日本語
+          
+          (Japanese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/es-ES" target="_blank" rel="noopener">
+          Español
+          
+          (Spanish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/zh-CN" target="_blank" rel="noopener">
+          中文
+          
+          (Chinese Simplified)
+          
+        </a>
+        
+        <span class="faint"><span class="octicon octicon-check mr-1"></span></span>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/tr-TR" target="_blank" rel="noopener">
+          Türkçe
+          
+          (Turkish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/id-ID" target="_blank" rel="noopener">
+          Indonesian
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fil-PH" target="_blank" rel="noopener">
+          Filipino
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fr-FR" target="_blank" rel="noopener">
+          Français
+          
+          (French)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ru-RU" target="_blank" rel="noopener">
+          Русский
+          
+          (Russian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ko-KR" target="_blank" rel="noopener">
+          한국어
+          
+          (Korean)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/it-IT" target="_blank" rel="noopener">
+          Italiano
+          
+          (Italian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/pt-BR" target="_blank" rel="noopener">
+          Português
+          
+          (Portuguese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/de-DE" target="_blank" rel="noopener">
+          Deutsch
+          
+          (German)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/uk-UA" target="_blank" rel="noopener">
+          Українська
+          
+          (Ukrainian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/zh-TW" target="_blank" rel="noopener">
+          中文
+          
+          (Chinese Traditional)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/pl-PL" target="_blank" rel="noopener">
+          język polski
+          
+          (Polish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/bg-BG" target="_blank" rel="noopener">
+          български език
+          
+          (Bulgarian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/hi-IN" target="_blank" rel="noopener">
+          हिन्दी
+          
+          (Hindi)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/nl-NL" target="_blank" rel="noopener">
+          Nederlands
+          
+          (Dutch)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/vi-VN" target="_blank" rel="noopener">
+          Tiếng Việt
+          
+          (Vietnamese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ar-SA" target="_blank" rel="noopener">
+          اللغة العربية
+          
+          (Arabic)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fa-IR" target="_blank" rel="noopener">
+          فارسی
+          
+          (Persian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/cs-CZ" target="_blank" rel="noopener">
+          čeština
+          
+          (Czech)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/th-TH" target="_blank" rel="noopener">
+          ไทย
+          
+          (Thai)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/he-IL" target="_blank" rel="noopener">
+          עברית
+          
+          (Hebrew)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ro-RO" target="_blank" rel="noopener">
+          limba română
+          
+          (Romanian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/tl-PH" target="_blank" rel="noopener">
+          Wikang Tagalog
+          
+          (Tagalog)
+          
+        </a>
+        
+      </div>
+      
+    </div>
+    <hr>
+    <div class="text-center-sm">
+      <a href="https://electronjs.org/languages" target="_blank" rel="noopener">查看更多语言详情</a>
+    </div>
+  </div>
+</div>
+
+
+  <style>
+  .blog-post hr:first-of-type {
+    display: block;
+  }
+</style>
+
+
+
+<section class="page-section blog-post">
+  <div class="container">
+    <h1>如何建立开源社区</h1>
+
+    
+
+    
+
+<div class="blog-byline mt-2 mb-4 d-flex justify-content-between align-items-center">
+  <span class="blog-index-time">2015-02-06 05:41:24</span>
+
+
+  <a class="author-link ml-3 text-center" href="https://github.com/sssuyx" target="_blank" rel="noopener">
+    <img
+      class="avatar mr-2"
+      style="max-width: 2.25rem"
+      src="https://github.com/sssuyx.png?size=36"
+      alt="sssuyx"
+    >
+    sssuyx
+  </a>
+
+
+  <span>
+    
+      <a class="badge badge-primary" href="categories/Document/">
+        Document
+      </a>
+    
+    
+      <a class="badge badge-primary" href="tags/governance/">
+          governance
+      </a>
+    
+  </span>
+</div>
+
+
+    
+
+    <details>
+      <summary>正文大纲</summary>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么启动开源项目？"><span class="toc-text">为什么启动开源项目？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是社区？为什么开源项目要建立社区？"><span class="toc-text">什么是社区？为什么开源项目要建立社区？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开源社区的典型发展路线"><span class="toc-text">开源社区的典型发展路线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#规避陷阱"><span class="toc-text">规避陷阱</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#此分化非彼分化？"><span class="toc-text">此分化非彼分化？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#放手"><span class="toc-text">放手</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#综述"><span class="toc-text">综述</span></a></li></ol>
+    </details>
+
+    <main class="markdown-body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><blockquote>
+<p><strong>摘要</strong>：Matthew Mascord 写于 2008 年 1 月 4 日，最后更新于 2013 年 5 月 9 日 对一个开源项目来说，社区是至关重要的。活跃而强大的社区无疑是项目的心脏。然而，只有开源许可是不足以吸引用户和开发者参加项目并共同建立社区的。本文介绍如何建立一个成功的开源社区。</p>
+</blockquote>
+<h2 id="为什么启动开源项目？"><a href="#为什么启动开源项目？" class="headerlink" title="为什么启动开源项目？"></a>为什么启动开源项目？</h2><p>事实上，启动开源项目与启动其他类型的软件项目并没有什么不同。开源项目的启动，或者是因为某人想开发某个软件，或者是在产品开发中，某人想满足别人的未来需求。在前一种情况下，开发者可能永远不会考虑共享最终成果，而在后一种情况下，开发者会出于某种目的而共享软件。</p>
+<h2 id="什么是社区？为什么开源项目要建立社区？"><a href="#什么是社区？为什么开源项目要建立社区？" class="headerlink" title="什么是社区？为什么开源项目要建立社区？"></a>什么是社区？为什么开源项目要建立社区？</h2><p>社区就是有共同兴趣的一群人。开源项目和闭源项目都有用户社区，大部分用户不会积极地与社区其他成员互动。而另一方面，无论是开源社区还是闭源社区，都会有成员愿意更积极地参与，例如，报告 bug、帮助其他用户、撰写文档或进行推广。最活跃的社区成员甚至可以得到回报。例如，微软通过最有价值专家 (MVP) 项目奖励帮助人们充分利用微软技术的用户社区成员。在开源社区中，活跃的成员往往会获得额外的项目访问权和管理权。</p>
+<p>虽然闭源项目也有奖励，但通过奖励社区成员而取得项目贡献毕竟有明确限制。由于不能公开验证代码，因此用户无法真正深入项目、解决问题或开发新功能，或者贡献代码。相反，在开源社区中，信息（代码和文档）可以从任何社区成员流入社区中心，尽管管理者会加以调整。更重要的是，一旦出现任何问题，社区中会有很多“眼球”盯着它，以便集思广益、群策群力。在闭源项目中，解决某个问题的最多人数总是由受雇的开发者人数决定的。</p>
+<h2 id="开源社区的典型发展路线"><a href="#开源社区的典型发展路线" class="headerlink" title="开源社区的典型发展路线"></a>开源社区的典型发展路线</h2><p>社区创建之初可能非常小，可能只有一两个开发者，几乎没有用户。根据项目的类型，这种情况可能会持续一段时间，甚至几年，在此“孵化期”，初始团队会努力工作打下基础。Eric Raymond 在《大教堂与集市》中指出，成功的一个必要条件是，开发出可运行、可测试的东西，让游戏继续下去。注意，“可运行”并不意味着完美，甚至可以不完整。“早发布，多发布”是一条众所周知的开源开发准则，主要是因为这样做可以获得宝贵的早期反馈，帮助项目团队建立自信。因此，社区不应对早期发布存在顾虑或迟疑；只要能够明确、如实地管理期望值，早期发布将使项目受益良多。</p>
+<p>软件要最终吸引用户，软件的演示和品牌推广必须让潜在用户相信，该软件与竞争性产品相比有显著优势。引起用户的兴趣后，必须要降低进入的门槛：例如，安装等简单操作必须非常顺畅。用户注册并不是故事的结尾；从长远来看，还需要更多开发者的参与，他们至少可以完成少量工作，如果仅依赖个别开发者，他很可能被这些琐碎的工作压垮。开发者可能直接从用户中产生，但也可能来自其他地方，如为了挑战技术难题、为了声誉，或为提高或展示自己的编程水平而参与到项目中。</p>
+<p>以这样的方式开放项目会带来新的复杂度。Karl Fogel 在《开发开源软件》一书中指出，“开放意味着以完全陌生的人可以理解的方式编写代码，建立开发网站和邮件列表，并往往需要撰写文档初稿。所有这些是很大的工作量。当然，如果真的出现了感兴趣的开发者，在他们作出贡献之前，还需要一段时间来回答他们的问题，这也是额外的负担。”而 GitHub、Google Code、StackExchange 等协作工具至少可以部分分担这些额外工作。此外，开放项目并不一定意味着失去控制权。许多项目在初期采用贤明君主模式，由一个人负责开发主要新功能并审核贡献的代码。</p>
+<p>贤明君主的技术水平不必最强，但 Fogel 认为，他们应该“有辨别好的设计的能力”。但 Fogel 进而指出，他们的主要职责是确保参与者始终相信“团队合作胜过单打独斗”。团队领袖必须有足够的凝聚力，让开发者愿意持续参与项目，只有这样，开发者才会留下来。这意味着，应适当回报努力工作的人，如给予适当的肯定，或根据开发者的意愿赋予更重要的工作职责。人们已将开源项目管理描述为一项活跃、灵活而低调的工作。</p>
+<h2 id="规避陷阱"><a href="#规避陷阱" class="headerlink" title="规避陷阱"></a>规避陷阱</h2><p>社区领导者的责任是，确保环境条件始终有利于充分发挥开源的潜力。这样的条件不会自动形成，而需要悉心管理。</p>
+<p>在项目早期阶段，最重要的问题可能是如何应对不可避免的支持负担。如果处理不善，至少将导致用户流失，而最坏的可能是创始者放弃项目。要取得成功，领导者最终必须找到能完成工作的人。雇佣人员是一种选择；另一选择是鼓励用户通过撰写文档和修复 bug 来相互帮助。然而，要做到这一点，首先基础设施必须到位，这样参与者才能在此基础上为项目作出贡献。项目领导者必须积极鼓励参与者作出贡献，同时应确保贡献是有帮助、高质量的。</p>
+<p>项目启动后应持续满足成员的需求，这一点很重要。如果项目不再能满足成员的需求，那么那些认为自己的利益未被满足的成员可能拿走代码库，转而自行开发。这一过程称为分化（“fork”）。需要注意的是，分化不一定是坏事，它可能只是因为社区的部分成员有一些特殊需求，他们认为自己的需求无法与更广泛社区的需求达到平衡。另一种可能的情况是，已确立的治理模式不再符合项目的最大利益，因此社区决定以新的治理结构进行新项目的开发。然而，应避免因个人冲突或简单分歧造成的分化，因为此类分化会导致社区分裂，令用户感到困惑。为避免此类分化，项目领导者应努力确保所有贡献者感觉到他们可以自由参与决策过程，即使最终他们的意见未被采纳。</p>
+<h3 id="此分化非彼分化？"><a href="#此分化非彼分化？" class="headerlink" title="此分化非彼分化？"></a>此分化非彼分化？</h3><p>随着分布式版本控制系统，特别是 GitHub 等托管网站的兴起，“分化”这一术语有了新的含义，表示个人开发者获取己发布代码库的副本，进行更改以满足自己的需求，并往往将更改交回原始代码（称为 <em>拉</em> <code>pull</code> 或 <em>合并</em> <code>merge</code>）。这种意义上的分化与前述分化大不相同，前述分化指围绕项目的社区被分割，而不仅仅是代码的分割。</p>
+<h2 id="放手"><a href="#放手" class="headerlink" title="放手"></a>放手</h2><p>为保持社区的健康发展， 开源社区必须能够超越创始人原有的个人兴趣而可持续发展。如果社区在很大程度上依赖于“君主”，那么当领导人离开或退休时，社区也将面临分裂或瓦解的风险。</p>
+<p>在大多数社区，甚至是贤明君主模式的社区，创始人以外的其他参与者将在关键决策过程中发挥越来越重要的作用。其必然结果是，社区转向以共识为基础的民主治理。这种新的模式并不意味着所有决定，甚至是小决定，都由委员会作出。大多数时候，提议是根据“懒惰共识”来决定的，即“沉默表示同意”。对于未能达成共识的提议，大多数社区坚持采用某种投票形式来决定。</p>
+<p>这些惯例和程序越复杂，它们在指导新加入者如何参与项目、如何在决策中取得发言权方面就越重要。新社区可以依赖于逐渐积累、并以邮件列表形式获取的知识体系，但这种知识体系并不总能帮到新加入者，甚至会让他们感到困惑。我们需要的是书面形式的<a href="http://oss-watch.ac.uk/resources/governanceModels" target="_blank" rel="noopener">治理模型</a>，以便将已取得的共识以简明文档的形式呈现。规范化有助于确保社区有自己的生命——独立于任何个人的生命——只要对项目产出的真实的、持续的需求存在，社区即可延续下去并不断发展壮大。</p>
+<h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h2><p>围绕开源软件建立社区可能是一项缓慢而艰巨的工作，其成功取决于很多因素。然而，没有社区也就没有项目。社区不会自动建立，社区的建立需要悉心管理。所有社区都始于被软件的包装、品牌推广或口碑推荐所吸引用户。一旦有了用户，不辜负用户的高期望又成为新的挑战。一个繁荣的开发者社区能够满足并超越这些期望，但前提是他的领导者具有凝聚力，能确保参与者不偏离轨道。从长远来看，社区需要落实<a href="http://oss-watch.ac.uk/resources/odm" target="_blank" rel="noopener">开放开发</a>机制，以确保包括创始人在内的关键贡献者离开时，他们的角色可由他合适的人选填补。</p>
+<hr>
+<p>本文由 <a href="http://oss-watch.ac.uk/" target="_blank" rel="noopener">OSS Watch</a> 原创并经由<a href="http://creativecommons.org/licenses/by-sa/2.0/uk/" target="_blank" rel="noopener">Creative Commons Attribution-ShareAlike 2.0 England &amp; Wales license</a>许可证发布。</p>
+</main>
+
+    
+  </div>
+</section>
+
+<nav class="page-section text-center">
+  <div class="btn-group" role="group" aria-label="Post navigator">
+    
+    <a class="btn btn-secondary" role="button" href="document/sustainable-open-source/">
+      &lt; 可持续开源
+    </a>
+    
+    <a class="btn btn-secondary" role="button" href="document/contribute-code-to-open-source-projects/">
+      您会为开源项目贡献代码吗？ &gt;
+    </a>
+    
+  </div>
+</nav>
+
+<script>
+(function () {
+
+  var path = self.location.href.split('#')[0];
+
+  $('details > .toc a[href]').attr('href', function (_, value) {
+
+    return path + value;
+  });
+
+  $('.blog-post').find('h1, h2, h3, h4, h5, h6').append(function () {
+
+    if ( this.id.trim() )
+      return '<a class="header-link" title="Permalink" href="' +
+        path + '#' + this.id +
+        '"><span class="octicon octicon-link"></span></a>';
+  });
+})();
+</script>
+
+
+  <footer class="footer">
+    <div class="container">
+      <nav class="footer-nav">
+        
+          <a class="footer-nav-item active" href="/categories/Activity/">
+            活动
+          </a>
+        
+          <a class="footer-nav-item " href="/page/2">
+            博客
+          </a>
+        
+          <a class="footer-nav-item " href="/profile/charter">
+            章程
+          </a>
+        
+          <a class="footer-nav-item " href="https://github.com/kaiyuanshe/kaiyuanshe.github.io/tree/hexo/License" target="_blank" rel="noopener">
+            许可
+          </a>
+        
+          <a class="footer-nav-item " href="/profile/contact">
+            联系我们
+          </a>
+        
+          <a class="footer-nav-item " href="https://git-pager.avosapps.us/?repository=kaiyuanshe/Wiki" target="_blank" rel="noopener">
+            协作编辑
+          </a>
+        
+      </nav>
+      <span class="col">沪 ICP 备 19006015 号</span>
+      <span class="col">公安备案 31011202006203 号</span>
+
+      <span class="footer-social">
+        
+          <a class="footer-nav-item icon"
+            href="https://github.com/kaiyuanshe"
+            title="Github Organization">
+            <i class="devicon-github-plain vertical-middle"></i>
+          </a>
+        
+          <a class="footer-nav-item icon"
+            href="https://twitter.com/contactkaiyuan1"
+            title="@contactkaiyuan1 on Twitter">
+            <i class="devicon-twitter-plain vertical-middle"></i>
+          </a>
+        
+          <a class="footer-nav-item icon"
+            href="https://www.facebook.com/kaiyuanshe.china"
+            title="Facebook account">
+            <i class="devicon-facebook-plain vertical-middle"></i>
+          </a>
+        
+      </span>
+    </div>
+  </footer>
+  <script src="library/virtual-anchor-sdk.js"></script>
+  <script>
+    new VirtualAnchor({ id: '191be2ab-8c6e-6201-c419-3ef2d26eadf2' });
+  </script>
+</body>
+
+</html>

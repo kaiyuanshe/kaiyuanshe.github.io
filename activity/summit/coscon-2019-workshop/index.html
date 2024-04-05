@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+
+  <title>开源社</title>
+
+  
+  <meta name="description" content="Workshop 这种活动形式，国内的小伙伴们可能了解不多。它直译过来通常叫工作坊，意译又称作动手训练营，是一种重在现场实操的技术活动。它与我们学生时代的“上机实验课”很像，但需要参与者带着自己的电脑，通过现场提供的多元化技术平台（如开源社自研的开放黑客松平台），亲身体验各类新技术，快速上手~">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="COSCon 2019 动手训练营">
+<meta property="og:url" content="http://kaiyuanshe.cn/activity/summit/coscon-2019-workshop/index.html">
+<meta property="og:site_name" content="开源社">
+<meta property="og:description" content="Workshop 这种活动形式，国内的小伙伴们可能了解不多。它直译过来通常叫工作坊，意译又称作动手训练营，是一种重在现场实操的技术活动。它与我们学生时代的“上机实验课”很像，但需要参与者带着自己的电脑，通过现场提供的多元化技术平台（如开源社自研的开放黑客松平台），亲身体验各类新技术，快速上手~">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.nmbu.no/sites/default/files/styles/linkboxes/public/workshopbilde_0.png?itok=rJGeB-FS">
+<meta property="og:image" content="http://kaiyuanshe.cn/activity/summit/coscon-2019-workshop/Zhang-QiuYi.jpg">
+<meta property="og:image" content="http://kaiyuanshe.cn/activity/summit/coscon-2019-workshop/Bai-HuanCheng.jpg">
+<meta property="og:image" content="http://kaiyuanshe.cn/activity/summit/coscon-2019-workshop/Yu-Hang.jpeg">
+<meta property="og:image" content="http://kaiyuanshe.cn/activity/summit/coscon-2019-workshop/Jeong-HyunGil.jpg">
+<meta property="og:image" content="http://kaiyuanshe.cn/activity/summit/coscon-2019-workshop/Hu-Xun.jpg">
+<meta property="og:image" content="http://kaiyuanshe.cn/activity/summit/coscon-2019-workshop/Tan-ZhongYi.png">
+<meta property="article:published_time" content="2019-10-13T20:37:34.000Z">
+<meta property="article:modified_time" content="2024-04-05T20:16:41.203Z">
+<meta property="article:author" content="shiy2008@gmail.com">
+<meta property="article:tag" content="COSCon">
+<meta property="article:tag" content="workshop">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.nmbu.no/sites/default/files/styles/linkboxes/public/workshopbilde_0.png?itok=rJGeB-FS">
+<meta name="twitter:site" content="contactkaiyuan1">
+  <meta name="author" content="shiy2008@gmail.com">
+  <meta name="generator" content="hexo">
+  <meta name="theme-color" content="#2f3241">
+
+  <!-- consumed by scripts/get-localized-strings -->
+  <meta name="localized.clipboard.copy" content="Copy">
+  <meta name="localized.clipboard.copy_to_clipboard" content="复制到剪贴板">
+  <meta name="localized.clipboard.copied" content="已复制">
+
+  <base href="/">
+
+  <link rel="shortcut icon" href="image/KaiYuanShe-logo.png">
+
+  <link rel="stylesheet" href="https://npm.webcache.cn/github-markdown-css@5.5.1/github-markdown-light.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/devicon@2.16.0/devicon.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/highlight.js@9.18.5/styles/dark.css">
+  <link rel="stylesheet" href="library/index.css">
+  <link rel="stylesheet" href="common.css">
+  <style>
+    .site-header-nav-item a:link {
+      text-decoration: none;
+    }
+  </style>
+  <script src="https://npm.webcache.cn/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script src="https://npm.webcache.cn/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://npm.webcache.cn/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+  <script src="https://npm.webcache.cn/highlight.js@9.18.5/lib/highlight.js"></script>
+  <script src="common.js" defer async></script>
+</head>
+
+<body>
+  <div class="alert alert-danger mb-0 text-center" role="alert">
+    开源社官网（2019 版）已存档、只读，请移步
+    <a href="https://kaiyuanshe.cn" class="alert-link">2022 版官网</a>
+    关注最新信息~
+  </div>
+
+  <header class="site-header">
+    <div class="container">
+
+      <a class="site-header-logo no-underline-hover" href=".">
+        <img class="site-header-icon" src="image/KaiYuanShe-logo.png">
+        开源社
+      </a>
+
+      <nav class="site-header-nav">
+        
+          <div class="site-header-nav-item">
+            
+              <a role="button" href="/categories/Activity/Summit/" data-href-match="">
+                年度大会
+              </a>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_1" href="" data-href-match="">
+                资讯
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_1">
+                
+                  <a class="dropdown-item" href="/categories/Activity/">活动</a>
+                
+                  <a class="dropdown-item" href="/blog/">博客</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_2" href="" data-href-match="">
+                成员
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_2">
+                
+                  <a class="dropdown-item" href="/members/">正式成员</a>
+                
+                  <a class="dropdown-item" href="https://kaiyuanshe.feishu.cn/share/base/shrcnfO89tYlYIjZpS5PXJBaK2f" target="_blank" rel="noopener">加入我们</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a role="button" href="/partners" data-href-match="">
+                合作伙伴
+              </a>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_4" href="" data-href-match="">
+                资源
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_4">
+                
+                  <a class="dropdown-item" href="https://test.kaiyuanshe.cn/organization" target="_blank" rel="noopener">开源地图</a>
+                
+                  <a class="dropdown-item" href="/categories/Document">开源文档</a>
+                
+                  <a class="dropdown-item" href="/license-tool/">许可证选择器</a>
+                
+                  <a class="dropdown-item" href="http://mirror.kaiyuanshe.cn/" target="_blank" rel="noopener">开源镜像</a>
+                
+                  <a class="dropdown-item" href="https://polyfill.kaiyuanshe.cn/" target="_blank" rel="noopener">Web 标准补丁服务</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_5" href="" data-href-match="">
+                关于
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_5">
+                
+                  <a class="dropdown-item" href="/profile/about">介绍</a>
+                
+                  <a class="dropdown-item" href="/profile/structure">组织架构</a>
+                
+                  <a class="dropdown-item" href="/governance">工作组</a>
+                
+                  <a class="dropdown-item" href="/profile/charter">章程</a>
+                
+                  <a class="dropdown-item" href="/categories/Meeting">会议纪要</a>
+                
+              </div>
+            
+          </div>
+        
+        <form action="search/" class="ais-search-box">
+          <input type="search" name="keyword" required placeholder="搜索"
+            id="search-input" class="nav-search ais-search-box--input"
+            aria-label="search-box" autocapitalize="off" autocorrect="off" role="textbox">
+        </form>
+        <a class="site-header-nav-item octicon"
+          href="https://github.com/kaiyuanshe/"
+          title="Github Organization">
+          <span class="mega-octicon octicon-mark-github vertical-middle"></span>
+        </a>
+        <a class="site-header-nav-item bordered lang-select-button" href="#Language" data-toggle="collapse">
+          中文
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <div id="Language" class="container collapse">
+  <div class="m-4">
+    <div class="text-center-sm mb-4">
+      <strong>请选择语言</strong>
+    </div>
+    <div class="clearfix">
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/en-US" target="_blank" rel="noopener">
+          English
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ja-JP" target="_blank" rel="noopener">
+          日本語
+          
+          (Japanese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/es-ES" target="_blank" rel="noopener">
+          Español
+          
+          (Spanish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/zh-CN" target="_blank" rel="noopener">
+          中文
+          
+          (Chinese Simplified)
+          
+        </a>
+        
+        <span class="faint"><span class="octicon octicon-check mr-1"></span></span>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/tr-TR" target="_blank" rel="noopener">
+          Türkçe
+          
+          (Turkish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/id-ID" target="_blank" rel="noopener">
+          Indonesian
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fil-PH" target="_blank" rel="noopener">
+          Filipino
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fr-FR" target="_blank" rel="noopener">
+          Français
+          
+          (French)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ru-RU" target="_blank" rel="noopener">
+          Русский
+          
+          (Russian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ko-KR" target="_blank" rel="noopener">
+          한국어
+          
+          (Korean)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/it-IT" target="_blank" rel="noopener">
+          Italiano
+          
+          (Italian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/pt-BR" target="_blank" rel="noopener">
+          Português
+          
+          (Portuguese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/de-DE" target="_blank" rel="noopener">
+          Deutsch
+          
+          (German)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/uk-UA" target="_blank" rel="noopener">
+          Українська
+          
+          (Ukrainian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/zh-TW" target="_blank" rel="noopener">
+          中文
+          
+          (Chinese Traditional)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/pl-PL" target="_blank" rel="noopener">
+          język polski
+          
+          (Polish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/bg-BG" target="_blank" rel="noopener">
+          български език
+          
+          (Bulgarian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/hi-IN" target="_blank" rel="noopener">
+          हिन्दी
+          
+          (Hindi)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/nl-NL" target="_blank" rel="noopener">
+          Nederlands
+          
+          (Dutch)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/vi-VN" target="_blank" rel="noopener">
+          Tiếng Việt
+          
+          (Vietnamese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ar-SA" target="_blank" rel="noopener">
+          اللغة العربية
+          
+          (Arabic)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fa-IR" target="_blank" rel="noopener">
+          فارسی
+          
+          (Persian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/cs-CZ" target="_blank" rel="noopener">
+          čeština
+          
+          (Czech)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/th-TH" target="_blank" rel="noopener">
+          ไทย
+          
+          (Thai)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/he-IL" target="_blank" rel="noopener">
+          עברית
+          
+          (Hebrew)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ro-RO" target="_blank" rel="noopener">
+          limba română
+          
+          (Romanian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/tl-PH" target="_blank" rel="noopener">
+          Wikang Tagalog
+          
+          (Tagalog)
+          
+        </a>
+        
+      </div>
+      
+    </div>
+    <hr>
+    <div class="text-center-sm">
+      <a href="https://electronjs.org/languages" target="_blank" rel="noopener">查看更多语言详情</a>
+    </div>
+  </div>
+</div>
+
+
+  <style>
+  .blog-post hr:first-of-type {
+    display: block;
+  }
+</style>
+
+
+
+<section class="page-section blog-post">
+  <div class="container">
+    <h1>COSCon 2019 动手训练营</h1>
+
+    
+
+    
+
+<div class="blog-byline mt-2 mb-4 d-flex justify-content-between align-items-center">
+  <span class="blog-index-time">2019-10-13 20:37:34</span>
+
+
+  <a class="author-link ml-3 text-center" href="https://github.com/TechQuery" target="_blank" rel="noopener">
+    <img
+      class="avatar mr-2"
+      style="max-width: 2.25rem"
+      src="https://github.com/TechQuery.png?size=36"
+      alt="TechQuery"
+    >
+    TechQuery
+  </a>
+
+
+  <span>
+    
+      <a class="badge badge-primary" href="categories/Activity/">
+        Activity
+      </a>
+    
+      <a class="badge badge-primary" href="categories/Activity/Summit/">
+        Summit
+      </a>
+    
+    
+      <a class="badge badge-primary" href="tags/COSCon/">
+          COSCon
+      </a>
+    
+      <a class="badge badge-primary" href="tags/workshop/">
+          workshop
+      </a>
+    
+  </span>
+</div>
+
+
+    
+
+    <details>
+      <summary>正文大纲</summary>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Node-js-Code-Learn-Workshop"><span class="toc-text">Node.js Code+Learn Workshop</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#张秋怡"><span class="toc-text">张秋怡</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何基于开源方案快速建立起一个线下-Hackthon-的支持平台"><span class="toc-text">如何基于开源方案快速建立起一个线下 Hackthon 的支持平台</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#白宦成"><span class="toc-text">白宦成</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#freeCodeCamp-前端动手训练营"><span class="toc-text">freeCodeCamp 前端动手训练营</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#于航"><span class="toc-text">于航</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hands-on-Pinpoint-Plugin-Workshop-How-to-trace-your-system-down-to-the-code-level"><span class="toc-text">Hands-on Pinpoint Plugin Workshop: How to trace your system down to the code level</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#受众收获"><span class="toc-text">受众收获</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#课前准备"><span class="toc-text">课前准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Jeong-HyunGil"><span class="toc-text">Jeong HyunGil</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Intelligence-In-Ads-IIA-introduction-and-beyond"><span class="toc-text">Intelligence In Ads (IIA) introduction and beyond</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Hu-Xun"><span class="toc-text">Hu Xun</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#教你如何使用-bRPC-快速搭建一个高性能的-RPC-服务"><span class="toc-text">教你如何使用 bRPC 快速搭建一个高性能的 RPC 服务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#谭中意"><span class="toc-text">谭中意</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文档"><span class="toc-text">参考文档</span></a></li></ol>
+    </details>
+
+    <main class="markdown-body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><img src="https://www.nmbu.no/sites/default/files/styles/linkboxes/public/workshopbilde_0.png?itok=rJGeB-FS" alt=""></p>
+<p><strong>Workshop</strong> 这种活动形式，国内的小伙伴们可能了解不多。它直译过来通常叫<strong>工作坊</strong>，意译又称作<strong>动手训练营</strong>，是一种重在<strong>现场实操</strong>的技术活动。它与我们学生时代的“上机实验课”很像，但需要<strong>参与者带着自己的电脑</strong>，通过现场提供的多元化技术平台（如开源社自研的<a href="http://hacking.kaiyuanshe.cn/" target="_blank" rel="noopener">开放黑客松平台</a>），亲身体验各类新技术，快速上手~</p>
+<a id="more"></a>
+
+<h2 id="Node-js-Code-Learn-Workshop"><a href="#Node-js-Code-Learn-Workshop" class="headerlink" title="Node.js Code+Learn Workshop"></a>Node.js Code+Learn Workshop</h2><table>
+<thead>
+<tr>
+<th align="center">技术类别</th>
+<th align="center">内容难度</th>
+<th align="left">演讲语言</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">云计算</td>
+<td align="center">入门</td>
+<td align="left">汉语</td>
+</tr>
+</tbody></table>
+<p>本次工作坊将教大家如何给 Node.js 社区提交代码，贡献 Node.js 仓库。并尽量能给每个人分配实战小练习，让大家都能体验一次给 Node.js 提交代码。</p>
+<h3 id="张秋怡"><a href="#张秋怡" class="headerlink" title="张秋怡"></a>张秋怡</h3><p><a href="https://github.com/joyeecheung" target="_blank" rel="noopener">https://github.com/joyeecheung</a></p>
+<figure>
+<img src="/activity/summit/coscon-2019-workshop/Zhang-QiuYi.jpg" class="">
+</figure>
+
+<p>她目前工作于 Igalia 的编译器团队，也是 Node.js Technical Steering Committee 的成员以及 V8 committer。</p>
+<h2 id="如何基于开源方案快速建立起一个线下-Hackthon-的支持平台"><a href="#如何基于开源方案快速建立起一个线下-Hackthon-的支持平台" class="headerlink" title="如何基于开源方案快速建立起一个线下 Hackthon 的支持平台"></a>如何基于开源方案快速建立起一个线下 Hackthon 的支持平台</h2><table>
+<thead>
+<tr>
+<th align="center">技术类别</th>
+<th align="center">内容难度</th>
+<th align="left">演讲语言</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">云计算</td>
+<td align="center">入门</td>
+<td align="left">汉语</td>
+</tr>
+</tbody></table>
+<p>在本场工作坊中，白宦成将分享如何基于开源方案，快速建立起一个 Hackthon 的线下活动平台，帮助与会者建立起自己的 Hackthon 活动平台，并分享一些 Hackthon 举办的重点和要点工作。</p>
+<h3 id="白宦成"><a href="#白宦成" class="headerlink" title="白宦成"></a>白宦成</h3><p><a href="https://github.com/bestony" target="_blank" rel="noopener">https://github.com/bestony</a></p>
+<figure>
+<img src="/activity/summit/coscon-2019-workshop/Bai-HuanCheng.jpg" class="">
+  <figcaption>腾讯云 - 工程师</figcaption>
+  <figcaption>Linux 中国 - 技术合伙人、布道师</figcaption>
+</figure>
+
+<h2 id="freeCodeCamp-前端动手训练营"><a href="#freeCodeCamp-前端动手训练营" class="headerlink" title="freeCodeCamp 前端动手训练营"></a>freeCodeCamp 前端动手训练营</h2><table>
+<thead>
+<tr>
+<th align="center">技术类别</th>
+<th align="center">内容难度</th>
+<th align="left">演讲语言</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Web 前端</td>
+<td align="center">入门</td>
+<td align="left">汉语</td>
+</tr>
+</tbody></table>
+<p>freeCodeCamp.org 是一个注册在美国的非营利组织，创立于 2014 年，以“帮助人们免费学习编程”为使命，创建了大量免费的编程教程。我们的线下开发者社区遍布全球 160 多个国家、2000 多个城市。在这里，你可以和社区的小伙伴一起开启全新的编程学习之路。我们正在帮助全球数百万人学习编程，其中有数千人由此找到了他们的第一份软件开发者工作，改善了他们的事业和生活。</p>
+<p>通过本次训练营我们将使用 FCC 官方的免费前端挑战课程来让大家对前端基本技术及网页的基本组成结构有一个主观的、第一视角的印象。</p>
+<h3 id="于航"><a href="#于航" class="headerlink" title="于航"></a>于航</h3><p><a href="https://github.com/Becavalier" target="_blank" rel="noopener">https://github.com/Becavalier</a></p>
+<figure>
+<img src="/activity/summit/coscon-2019-workshop/Yu-Hang.jpeg" class="">
+  <figcaption>PayPal - Web 前端工程师</figcaption>
+  <figcaption>freeCodeCamp 上海社区 - 负责人</figcaption>
+</figure>
+
+<ul>
+<li>曾在阿里巴巴本地生活、Tapatalk 等国内外企业工作，现在 PayPal 上海负责 Global GRT 平台相关的技术研发工作；</li>
+<li>FCC (freeCodeCamp China) 上海技术社区负责人；</li>
+<li>多次 QCon、GMTC 大会讲师；</li>
+<li>WebAssembly 技术布道者，2017 年注册成为 W3C 官方 CG 成员，定期参与 CG 组织的各种在线视频研讨会议，在跟进 Wasm 最新发展情况的同时也为 Wasm 的标准化提出自己的建议和意见。</li>
+</ul>
+<p>2018 年深度参与到 Emscripten 编译器工具链项目的研发工作中，同年出版名为《深入浅出 WebAssembly》的国内第一本 Wasm 技术书籍，为推动国内 Wasm 技术的发展和落地实践做出了微小的贡献。</p>
+<p>研究领域主要为前端基础技术架构、 Serverless、WebAssembly、LLVM 及编译器等相关方向。</p>
+<h2 id="Hands-on-Pinpoint-Plugin-Workshop-How-to-trace-your-system-down-to-the-code-level"><a href="#Hands-on-Pinpoint-Plugin-Workshop-How-to-trace-your-system-down-to-the-code-level" class="headerlink" title="Hands-on Pinpoint Plugin Workshop: How to trace your system down to the code level"></a>Hands-on Pinpoint Plugin Workshop: How to trace your system down to the code level</h2><table>
+<thead>
+<tr>
+<th align="center">技术类别</th>
+<th align="center">内容难度</th>
+<th align="left">演讲语言</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">微服务</td>
+<td align="center">进阶</td>
+<td align="left">英语</td>
+</tr>
+</tbody></table>
+<p>Pinpoint is currently one of the most popular open-source APMs in China, capable of distributed tracing with code-level visibility.</p>
+<ul>
+<li>This interactive workshop kicks off with an introduction to how distributed tracing works in general, and how Pinpoint works internally to trace your applications over multiple nodes all the way down to the code level.</li>
+<li>We will build a brand new plugin together from scratch, discussing various issues such as deciding tracepoints and class load time/runtime considerations, so that everyone will gain the first-hand experience in making a Pinpoint plugin.</li>
+<li>Armed with this knowledge, you will be able to build a plugin for any library so that you can trace your very own system, or simply throw a pull request and join in on an open-source community.</li>
+</ul>
+<h3 id="受众收获"><a href="#受众收获" class="headerlink" title="受众收获"></a>受众收获</h3><p>All those who were curious about how java agents work, as well as those interested in the application performance monitoring (APM) tool, will find the workshop interesting. The workshop covers a wide range of topics - from bytecode instrumentation to distributed tracing, and the audience will be able to gain first-hand experience into seeing how the different topics come together to run an APM tool.</p>
+<h3 id="课前准备"><a href="#课前准备" class="headerlink" title="课前准备"></a>课前准备</h3><p>在 Windows PowerShell 中执行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">choco install git jdk8</span><br><span class="line"></span><br><span class="line">git clone https://github.com/pinpoint-plugin-workshop/pinpoint-plugin-workshop.git ~/Desktop/PinPoint</span><br><span class="line"></span><br><span class="line">cd ~/Desktop/PinPoint</span><br><span class="line">./mvnw install -Dmaven.test.skip=true</span><br></pre></td></tr></table></figure>
+
+<p>或在 Mac OS X Terminal 中执行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">brew install git</span><br><span class="line">brew cask install java8</span><br><span class="line"></span><br><span class="line">git clone https://github.com/pinpoint-plugin-workshop/pinpoint-plugin-workshop.git ~/Desktop/PinPoint</span><br><span class="line"></span><br><span class="line">cd ~/Desktop/PinPoint</span><br><span class="line">./mvnw install -Dmaven.test.skip=true</span><br></pre></td></tr></table></figure>
+
+<h3 id="Jeong-HyunGil"><a href="#Jeong-HyunGil" class="headerlink" title="Jeong HyunGil"></a>Jeong HyunGil</h3><p><a href="https://github.com/Xylus" target="_blank" rel="noopener">https://github.com/Xylus</a></p>
+<figure>
+<img src="/activity/summit/coscon-2019-workshop/Jeong-HyunGil.jpg" class="">
+  <figcaption>Naver Corporation - Software Developer</figcaption>
+  <figcaption>Pinpoint - Committer</figcaption>
+</figure>
+
+<p>Pinpoint maintainer since 2015, a software engineer at Naver trying to make life a bit easier for developers around the world.</p>
+<p>Based on his experience with open source Pinpoint, he has been a presenter at several national and international open-source conferences.</p>
+<h2 id="Intelligence-In-Ads-IIA-introduction-and-beyond"><a href="#Intelligence-In-Ads-IIA-introduction-and-beyond" class="headerlink" title="Intelligence In Ads (IIA) introduction and beyond"></a>Intelligence In Ads (IIA) introduction and beyond</h2><table>
+<thead>
+<tr>
+<th align="center">技术类别</th>
+<th align="center">内容难度</th>
+<th align="left">演讲语言</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">大数据、广告系统</td>
+<td align="center">入门</td>
+<td align="left">汉语</td>
+</tr>
+</tbody></table>
+<p>Intelligence In Ads (IIA) is a critical web infrastructure for advertising based monetization. It is a cloud platform that adds intelligence to a plain Ad System by analyzing user and other data. It is a fundamental component in a modern competitive Ads System.</p>
+<h3 id="Hu-Xun"><a href="#Hu-Xun" class="headerlink" title="Hu Xun"></a>Hu Xun</h3><figure>
+<img src="/activity/summit/coscon-2019-workshop/Hu-Xun.jpg" class="">
+  <figcaption>Futurewei Technologies - Engineering Lead</figcaption>
+</figure>
+
+<p>Senior Engineering Leader of Futurewei Technologies, a subsidiary of Huawei.</p>
+<ul>
+<li>Xun Hu received his B.S. degree from University in China of in late 80’s, and his joint M.S. degree from University in China and Washington University (US), all in Computer Science.</li>
+<li>Between 1999 and 2009, he served with Yahoo! Inc. as different roles, from senior engineer to leading architect, and product manager. He was the initial developer in Yahoo! Display ad team .</li>
+<li>From 2009 to 2012, as Engineer director of Huawei Device USA, Device Cloud BU, he led an engineering team to develop Huawei Nextgen Ad System (HiAd).</li>
+<li>From 2012 to 2016, as Sr. Engineer Manager in eBay advertising division to develop eBay data management platform (DMP).</li>
+<li>From 2009 to present, as Sr. Engineer Leader of Futurewei Technologies Consumer Cloud Service, he led an engineering team to develop Huawei IMS/IIA.</li>
+<li>He holds several US patents related to display ad system.</li>
+</ul>
+<h2 id="教你如何使用-bRPC-快速搭建一个高性能的-RPC-服务"><a href="#教你如何使用-bRPC-快速搭建一个高性能的-RPC-服务" class="headerlink" title="教你如何使用 bRPC 快速搭建一个高性能的 RPC 服务"></a>教你如何使用 bRPC 快速搭建一个高性能的 RPC 服务</h2><table>
+<thead>
+<tr>
+<th align="center">技术类别</th>
+<th align="center">内容难度</th>
+<th align="left">演讲语言</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">后端服务</td>
+<td align="center">入门</td>
+<td align="left">汉语</td>
+</tr>
+</tbody></table>
+<p>Apache bRPC (incubator) 是一个企业品质的高性能 RPC 框架，使用 C++ 语言编写，目前百度内每天有百万的实例在运行。为了让大家更熟悉它的使用，举行这次 workshop，让同学们可以在短时间内使用它搭建出一个简单但是高性能的 RPC 服务出来。</p>
+<h3 id="谭中意"><a href="#谭中意" class="headerlink" title="谭中意"></a>谭中意</h3><figure>
+<img src="/activity/summit/coscon-2019-workshop/Tan-ZhongYi.png" class="">
+  <figcaption>百度开源社区 - 负责人</figcaption>
+  <figcaption>Apache 基金会 - Committer</figcaption>
+</figure>
+
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ul>
+<li><a href="https://tech-query.me/development/coder-start-kit/" target="_blank" rel="noopener">编程入门之开发工具一键安装</a></li>
+</ul>
+</main>
+
+    
+    <hr>
+    
+<h2 class="d-flex justify-content-between align-items-center">
+  活动简讯
+  <span>
+    <a class="btn btn-primary" download="COSCon 2019 动手训练营.ics"
+      href="data:text/calendar;base64,QkVHSU46VkNBTEVOREFSDQpWRVJTSU9OOjIuMA0KUFJPRElEOi0vL1RyaSBUZWNoIENvbXB1dGVycy8vbm9kZS1pY2FsZW5kYXIvL0VODQpCRUdJTjpWRVZFTlQNClNVTU1BUlk6Q09TQ29uIDIwMTkg5Yqo5omL6K6t57uD6JClDQpEVFNUQVJUOjIwMTkxMTAyVDEzMzAwMFoNCkRURU5EOjIwMTkxMTAzVDE3MzAwMFoNCkxPQ0FUSU9OOuS4iua1t+W4guaZrumZgOWMuuS4reWxseWMl+i3rzM2NjPlj7fljY7kuJzluIjojIPlpKflrabvvIjkuK3ljJcNCiDmoKHljLrvvIkNCkVORDpWRVZFTlQNCkVORDpWQ0FMRU5EQVINCg==">
+      添加日历
+    </a>
+    
+  </span>
+</h2>
+<ul>
+  <li>时间：2019-11-02 13:30:00 ~ 2019-11-03 17:30:00</li>
+  <li>地点：上海市普陀区中山北路3663号华东师范大学（中北校区）</li>
+</ul>
+
+  <script src="https://npm.webcache.cn/@babel/polyfill@7.12.1/dist/polyfill.min.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=Promise%2CIntersectionObserver"></script>
+
+<script src="https://npm.webcache.cn/dom-renderer@1.0.3/dist/dom-renderer.min.js"></script>
+<script src="//webapi.amap.com/maps?v=1.4.14&key=8325164e247e15eea68b59e89200988b&plugin=AMap.Geocoder,AMap.AdvancedInfoWindow"></script>
+
+<template>[{&#34;title&#34;:&#34;COSCon 2019 动手训练营&#34;,&#34;URL&#34;:&#34;http://kaiyuanshe.cn/activity/summit/coscon-2019-workshop/&#34;,&#34;address&#34;:&#34;上海市普陀区中山北路3663号华东师范大学（中北校区）&#34;}]</template>
+<template>
+  <div class="pt-2 pl-2 pr-2">
+    <h4>
+      <a href="${view.URL}">${view.title}</a>
+    </h4>
+    <p>${view.address}</p>
+  </div>
+</template>
+<div class="embed-box"></div>
+
+<script>
+(function (main) {
+
+  var box = document.currentScript.previousElementSibling;
+
+  self.addEventListener('load',  function () {
+
+    new IntersectionObserver(function (entry, observer) {
+
+      observer.disconnect();
+
+      main(
+        self['dom-renderer'].default,
+        box,
+        box.previousElementSibling,
+        box.previousElementSibling.previousElementSibling
+      );
+    }).observe( box );
+  });
+})(function (View, box, template, list) {
+
+  list = JSON.parse( list.innerHTML.trim() );
+
+  var map = new AMap.Map(box, {resizeEnable: true}),
+    coder = new AMap.Geocoder(),
+    dialog = new AMap.AdvancedInfoWindow({
+      offset: new AMap.Pixel(0, -30),
+      showShadow: true,
+      closeWhenClickMap: true
+    }),
+    template = new View( template.innerHTML );
+
+  function getCoords(addresses) {
+
+    return new Promise(function (resolve, reject) {
+
+      coder.getLocation(addresses,  function (status, result) {
+
+        if (status === 'error')
+          reject( result );
+        else if (status === 'complete')
+          resolve( result );
+      });
+    });
+  }
+
+  getCoords(
+    list.map(function (item) {  return item.address;  })
+  ).then(function (data) {
+
+    if (! data.geocodes[0])  return;
+
+    var markers = data.geocodes.map(function (item, index) {
+
+      var marker = new AMap.Marker({position: item.location});
+
+      marker.on('click',  function () {
+
+        template.render( list[index] ).then(function () {
+
+          dialog.setContent(template + '');
+
+          dialog.open(map, item.location);
+        });
+      });
+
+      return marker;
+    });
+
+    map.add( markers ),  map.setFitView( markers );
+  });
+});
+</script>
+
+
+    
+  </div>
+</section>
+
+<nav class="page-section text-center">
+  <div class="btn-group" role="group" aria-label="Post navigator">
+    
+    <a class="btn btn-secondary" role="button" href="activity/summit/coscon-2019-summary/">
+      &lt; COSCon&#39;19 精彩收官、无问西东!
+    </a>
+    
+    <a class="btn btn-secondary" role="button" href="article/mulanpsl/">
+      木兰开源许可证：开源社如是说 &gt;
+    </a>
+    
+  </div>
+</nav>
+
+<script>
+(function () {
+
+  var path = self.location.href.split('#')[0];
+
+  $('details > .toc a[href]').attr('href', function (_, value) {
+
+    return path + value;
+  });
+
+  $('.blog-post').find('h1, h2, h3, h4, h5, h6').append(function () {
+
+    if ( this.id.trim() )
+      return '<a class="header-link" title="Permalink" href="' +
+        path + '#' + this.id +
+        '"><span class="octicon octicon-link"></span></a>';
+  });
+})();
+</script>
+
+
+  <footer class="footer">
+    <div class="container">
+      <nav class="footer-nav">
+        
+          <a class="footer-nav-item active" href="/categories/Activity/">
+            活动
+          </a>
+        
+          <a class="footer-nav-item " href="/page/2">
+            博客
+          </a>
+        
+          <a class="footer-nav-item " href="/profile/charter">
+            章程
+          </a>
+        
+          <a class="footer-nav-item " href="https://github.com/kaiyuanshe/kaiyuanshe.github.io/tree/hexo/License" target="_blank" rel="noopener">
+            许可
+          </a>
+        
+          <a class="footer-nav-item " href="/profile/contact">
+            联系我们
+          </a>
+        
+          <a class="footer-nav-item " href="https://git-pager.avosapps.us/?repository=kaiyuanshe/Wiki" target="_blank" rel="noopener">
+            协作编辑
+          </a>
+        
+      </nav>
+      <span class="col">沪 ICP 备 19006015 号</span>
+      <span class="col">公安备案 31011202006203 号</span>
+
+      <span class="footer-social">
+        
+          <a class="footer-nav-item icon"
+            href="https://github.com/kaiyuanshe"
+            title="Github Organization">
+            <i class="devicon-github-plain vertical-middle"></i>
+          </a>
+        
+          <a class="footer-nav-item icon"
+            href="https://twitter.com/contactkaiyuan1"
+            title="@contactkaiyuan1 on Twitter">
+            <i class="devicon-twitter-plain vertical-middle"></i>
+          </a>
+        
+          <a class="footer-nav-item icon"
+            href="https://www.facebook.com/kaiyuanshe.china"
+            title="Facebook account">
+            <i class="devicon-facebook-plain vertical-middle"></i>
+          </a>
+        
+      </span>
+    </div>
+  </footer>
+  <script src="library/virtual-anchor-sdk.js"></script>
+  <script>
+    new VirtualAnchor({ id: '191be2ab-8c6e-6201-c419-3ef2d26eadf2' });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+
+  <title>开源社</title>
+
+  
+  <meta name="description" content="摘要：作者 OSS Watch 团队发布于 2008 年 8 月 5 日，上次更新于 2014 年 4 月 9 日 可持续开源是指能够支撑自身发展的开源项目。 从软件开发组织的角度来看，可持续开源项目是指有能力及时发布改进代码并修复产品中存在的各种问题的项目，也是有充分理由能够持续发展期的项目。 从项目本身的角度来看，可持续性，简单地说就是项目可以负担本身的支出，这一点对由志愿者推动的项目意义重">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="可持续开源">
+<meta property="og:url" content="http://kaiyuanshe.cn/document/sustainable-open-source/index.html">
+<meta property="og:site_name" content="开源社">
+<meta property="og:description" content="摘要：作者 OSS Watch 团队发布于 2008 年 8 月 5 日，上次更新于 2014 年 4 月 9 日 可持续开源是指能够支撑自身发展的开源项目。 从软件开发组织的角度来看，可持续开源项目是指有能力及时发布改进代码并修复产品中存在的各种问题的项目，也是有充分理由能够持续发展期的项目。 从项目本身的角度来看，可持续性，简单地说就是项目可以负担本身的支出，这一点对由志愿者推动的项目意义重">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2015-02-06T05:44:22.000Z">
+<meta property="article:modified_time" content="2016-04-01T17:00:59.000Z">
+<meta property="article:author" content="shiy2008@gmail.com">
+<meta property="article:tag" content="governance">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="contactkaiyuan1">
+  <meta name="author" content="shiy2008@gmail.com">
+  <meta name="generator" content="hexo">
+  <meta name="theme-color" content="#2f3241">
+
+  <!-- consumed by scripts/get-localized-strings -->
+  <meta name="localized.clipboard.copy" content="Copy">
+  <meta name="localized.clipboard.copy_to_clipboard" content="复制到剪贴板">
+  <meta name="localized.clipboard.copied" content="已复制">
+
+  <base href="/">
+
+  <link rel="shortcut icon" href="image/KaiYuanShe-logo.png">
+
+  <link rel="stylesheet" href="https://npm.webcache.cn/github-markdown-css@5.5.1/github-markdown-light.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/devicon@2.16.0/devicon.min.css">
+  <link rel="stylesheet" href="https://npm.webcache.cn/highlight.js@9.18.5/styles/dark.css">
+  <link rel="stylesheet" href="library/index.css">
+  <link rel="stylesheet" href="common.css">
+  <style>
+    .site-header-nav-item a:link {
+      text-decoration: none;
+    }
+  </style>
+  <script src="https://npm.webcache.cn/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script src="https://npm.webcache.cn/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://npm.webcache.cn/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+  <script src="https://npm.webcache.cn/highlight.js@9.18.5/lib/highlight.js"></script>
+  <script src="common.js" defer async></script>
+</head>
+
+<body>
+  <div class="alert alert-danger mb-0 text-center" role="alert">
+    开源社官网（2019 版）已存档、只读，请移步
+    <a href="https://kaiyuanshe.cn" class="alert-link">2022 版官网</a>
+    关注最新信息~
+  </div>
+
+  <header class="site-header">
+    <div class="container">
+
+      <a class="site-header-logo no-underline-hover" href=".">
+        <img class="site-header-icon" src="image/KaiYuanShe-logo.png">
+        开源社
+      </a>
+
+      <nav class="site-header-nav">
+        
+          <div class="site-header-nav-item">
+            
+              <a role="button" href="/categories/Activity/Summit/" data-href-match="">
+                年度大会
+              </a>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_1" href="" data-href-match="">
+                资讯
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_1">
+                
+                  <a class="dropdown-item" href="/categories/Activity/">活动</a>
+                
+                  <a class="dropdown-item" href="/blog/">博客</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_2" href="" data-href-match="">
+                成员
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_2">
+                
+                  <a class="dropdown-item" href="/members/">正式成员</a>
+                
+                  <a class="dropdown-item" href="https://kaiyuanshe.feishu.cn/share/base/shrcnfO89tYlYIjZpS5PXJBaK2f" target="_blank" rel="noopener">加入我们</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a role="button" href="/partners" data-href-match="">
+                合作伙伴
+              </a>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_4" href="" data-href-match="">
+                资源
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_4">
+                
+                  <a class="dropdown-item" href="https://test.kaiyuanshe.cn/organization" target="_blank" rel="noopener">开源地图</a>
+                
+                  <a class="dropdown-item" href="/categories/Document">开源文档</a>
+                
+                  <a class="dropdown-item" href="/license-tool/">许可证选择器</a>
+                
+                  <a class="dropdown-item" href="http://mirror.kaiyuanshe.cn/" target="_blank" rel="noopener">开源镜像</a>
+                
+                  <a class="dropdown-item" href="https://polyfill.kaiyuanshe.cn/" target="_blank" rel="noopener">Web 标准补丁服务</a>
+                
+              </div>
+            
+          </div>
+        
+          <div class="site-header-nav-item">
+            
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                id="Nav_5" href="" data-href-match="">
+                关于
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Nav_5">
+                
+                  <a class="dropdown-item" href="/profile/about">介绍</a>
+                
+                  <a class="dropdown-item" href="/profile/structure">组织架构</a>
+                
+                  <a class="dropdown-item" href="/governance">工作组</a>
+                
+                  <a class="dropdown-item" href="/profile/charter">章程</a>
+                
+                  <a class="dropdown-item" href="/categories/Meeting">会议纪要</a>
+                
+              </div>
+            
+          </div>
+        
+        <form action="search/" class="ais-search-box">
+          <input type="search" name="keyword" required placeholder="搜索"
+            id="search-input" class="nav-search ais-search-box--input"
+            aria-label="search-box" autocapitalize="off" autocorrect="off" role="textbox">
+        </form>
+        <a class="site-header-nav-item octicon"
+          href="https://github.com/kaiyuanshe/"
+          title="Github Organization">
+          <span class="mega-octicon octicon-mark-github vertical-middle"></span>
+        </a>
+        <a class="site-header-nav-item bordered lang-select-button" href="#Language" data-toggle="collapse">
+          中文
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <div id="Language" class="container collapse">
+  <div class="m-4">
+    <div class="text-center-sm mb-4">
+      <strong>请选择语言</strong>
+    </div>
+    <div class="clearfix">
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/en-US" target="_blank" rel="noopener">
+          English
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ja-JP" target="_blank" rel="noopener">
+          日本語
+          
+          (Japanese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/es-ES" target="_blank" rel="noopener">
+          Español
+          
+          (Spanish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/zh-CN" target="_blank" rel="noopener">
+          中文
+          
+          (Chinese Simplified)
+          
+        </a>
+        
+        <span class="faint"><span class="octicon octicon-check mr-1"></span></span>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/tr-TR" target="_blank" rel="noopener">
+          Türkçe
+          
+          (Turkish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/id-ID" target="_blank" rel="noopener">
+          Indonesian
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fil-PH" target="_blank" rel="noopener">
+          Filipino
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fr-FR" target="_blank" rel="noopener">
+          Français
+          
+          (French)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ru-RU" target="_blank" rel="noopener">
+          Русский
+          
+          (Russian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ko-KR" target="_blank" rel="noopener">
+          한국어
+          
+          (Korean)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/it-IT" target="_blank" rel="noopener">
+          Italiano
+          
+          (Italian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/pt-BR" target="_blank" rel="noopener">
+          Português
+          
+          (Portuguese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/de-DE" target="_blank" rel="noopener">
+          Deutsch
+          
+          (German)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/uk-UA" target="_blank" rel="noopener">
+          Українська
+          
+          (Ukrainian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/zh-TW" target="_blank" rel="noopener">
+          中文
+          
+          (Chinese Traditional)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/pl-PL" target="_blank" rel="noopener">
+          język polski
+          
+          (Polish)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/bg-BG" target="_blank" rel="noopener">
+          български език
+          
+          (Bulgarian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/hi-IN" target="_blank" rel="noopener">
+          हिन्दी
+          
+          (Hindi)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/nl-NL" target="_blank" rel="noopener">
+          Nederlands
+          
+          (Dutch)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/vi-VN" target="_blank" rel="noopener">
+          Tiếng Việt
+          
+          (Vietnamese)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ar-SA" target="_blank" rel="noopener">
+          اللغة العربية
+          
+          (Arabic)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/fa-IR" target="_blank" rel="noopener">
+          فارسی
+          
+          (Persian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/cs-CZ" target="_blank" rel="noopener">
+          čeština
+          
+          (Czech)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/th-TH" target="_blank" rel="noopener">
+          ไทย
+          
+          (Thai)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/he-IL" target="_blank" rel="noopener">
+          עברית
+          
+          (Hebrew)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/ro-RO" target="_blank" rel="noopener">
+          limba română
+          
+          (Romanian)
+          
+        </a>
+        
+      </div>
+      
+      <div class="text-center-sm col-6 col-md-4 mb-2">
+        <a href="https://electronjs.org/languages/tl-PH" target="_blank" rel="noopener">
+          Wikang Tagalog
+          
+          (Tagalog)
+          
+        </a>
+        
+      </div>
+      
+    </div>
+    <hr>
+    <div class="text-center-sm">
+      <a href="https://electronjs.org/languages" target="_blank" rel="noopener">查看更多语言详情</a>
+    </div>
+  </div>
+</div>
+
+
+  <style>
+  .blog-post hr:first-of-type {
+    display: block;
+  }
+</style>
+
+
+
+<section class="page-section blog-post">
+  <div class="container">
+    <h1>可持续开源</h1>
+
+    
+
+    
+
+<div class="blog-byline mt-2 mb-4 d-flex justify-content-between align-items-center">
+  <span class="blog-index-time">2015-02-06 05:44:22</span>
+
+
+  <a class="author-link ml-3 text-center" href="https://github.com/sssuyx" target="_blank" rel="noopener">
+    <img
+      class="avatar mr-2"
+      style="max-width: 2.25rem"
+      src="https://github.com/sssuyx.png?size=36"
+      alt="sssuyx"
+    >
+    sssuyx
+  </a>
+
+
+  <span>
+    
+      <a class="badge badge-primary" href="categories/Document/">
+        Document
+      </a>
+    
+    
+      <a class="badge badge-primary" href="tags/governance/">
+          governance
+      </a>
+    
+  </span>
+</div>
+
+
+    
+
+    <details>
+      <summary>正文大纲</summary>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#实现可持续性"><span class="toc-text">实现可持续性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#产品开发"><span class="toc-text">产品开发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#非营利性开放开发"><span class="toc-text">非营利性开放开发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#联盟"><span class="toc-text">联盟</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对降低成本的贡献"><span class="toc-text">对降低成本的贡献</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#教育和研究资金"><span class="toc-text">教育和研究资金</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#慈善家和其他基金组织"><span class="toc-text">慈善家和其他基金组织</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#志愿者"><span class="toc-text">志愿者</span></a></li></ol>
+    </details>
+
+    <main class="markdown-body"><link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><blockquote>
+<p><strong>摘要</strong>：作者 OSS Watch 团队发布于 2008 年 8 月 5 日，上次更新于 2014 年 4 月 9 日 可持续开源是指能够支撑自身发展的开源项目。 从软件开发组织的角度来看，可持续开源项目是指有能力及时发布改进代码并修复产品中存在的各种问题的项目，也是有充分理由能够持续发展期的项目。 从项目本身的角度来看，可持续性，简单地说就是项目可以负担本身的支出，这一点对由志愿者推动的项目意义重大。 本文将从项目及其发起者的角度来探讨开源项目可持续性的几种模式。有关如何从采购或重用的角度来评估可持续性，请阅读随附简报如何评估开源项目的可持续性。</p>
+</blockquote>
+<h2 id="实现可持续性"><a href="#实现可持续性" class="headerlink" title="实现可持续性"></a>实现可持续性</h2><p>要实现可持续性，项目必需能够负担自身的各项成本。成本包括基础设施成本（如托管和配套服务），以及开发、更新和维护代码库的成本。成本还包含项目产生的治理成本、营销成本和沟通成本。</p>
+<p>很多项目的初始成本是由上级机构、赞助商、投资商或者创始开发者的初始投资来支付的。</p>
+<p>但当这些钱和资源都用完了，会怎么样呢？</p>
+<p>初期资金作为一种可行的选择并不是无限期的。到了某个阶段，就必须要开源或者节流。一个可持续的开源项目，其收入或节约的成本必须超过持续支持和开发的成本。</p>
+<p>在软件开发方面的残酷现实，绝大多数项目不能实现可持续性。开源和闭源项目都是这样的。实际上，任何需要资金支持的活动都是如此。现实证明，绝大多数的创意都无法实现可持续性，而只有少数能够做到。</p>
+<p>因此，我们有必要探究为何项目没能实现可持续性。某些情况下，这是因为项目未能达到它所设定的目标。所以，人们便期望能够撤销项目。然而，令人担忧的是，很多项目就算达到了最初的目标，却仍然会无法延续。公共资金支持的项目尤其如此。这类失败通常是由规划不当引起的。也就是说，一开始人们并没有就项目初期资金用完时如何维持项目制定计划，因此也就没有为实现可持续性分配资源。</p>
+<p>所以，结论是显而易见的：要实现可持续性，项目的初始目标必须包括实施可持续性计划。其意味着，可持续性计划应该在项目周期的最开始阶段制定出来。而要制定这一计划，您必须了解自己有哪些选择。</p>
+<p>这里无法列举所有可持续性选择，因为可用的模式和项目创意一样多。以下将简单介绍常见开源软件的可持续模型。</p>
+<p>注意，只有极少数项目可严格归为以下某种模型。大多数项目能够实现可持续性，是因为它们将各种模型的要素进行了不同方式的组合；同样，各种模型之间也有共通之处。以下部分仅为您开始制定可持续性计划时提供参考。这些信息使您能够接触到像 <a href="mailto:info@oss-watch.ac.uk">OSS Watch</a>这样了解您所面临的机遇的顾问。</p>
+<h2 id="产品开发"><a href="#产品开发" class="headerlink" title="产品开发"></a>产品开发</h2><p>一个从事开源产品业务的公司和其它公司并没有什么区别。就是说，它必须将一部分收入投入到产品研发中。四大类公司有能力从事商业性开源软件开发：</p>
+<ul>
+<li>为最大限度扩大其付费产品市场而开源软件的服务公司，如支持、培训、定制、搜索引擎和电子商务公司等</li>
+<li>想拓展潜在硬件市场的硬件公司，如打印机或手机制造商</li>
+<li>使用开源组件的软件公司</li>
+<li>采用双重授权模型，同时发行产品的专有版本和开源版本的软件公司</li>
+</ul>
+<p>一个公司的活动不仅限于以上某一种；同样，每个开源项目的商业化也可由多个公司参与完成。</p>
+<p>对于服务或硬件公司来说，主要营利方式不是出售软件本身。这样，这些公司就有可能发行受开源许可控制的软件，以便从第三方的贡献中受益。</p>
+<p>对于服务型公司来说，开放软件源代码的动机是相同的。提供咨询和定制服务的公司希望尽可能扩大对其服务的需求，因此发布核心产品的开源版本是一种市场培育方法。此外，提供软件驱动的服务（如搜索引擎、Web 2.0 服务或电商运营）的公司有充分的理由来开源他们的软件套件中不具竞争性的部分。这样就可以通过共享开发成本的形式，在初期开发、运营开发和持续维护中节约成本。例如，亚马逊、IBM、雅虎、易趣、Facebook 和越来越多的公司在使用 Apache HTTPD Web 服务器和 GNU/Linux，并为它们作出贡献。</p>
+<p>至于硬件公司，开源的动力可能来自于拓展硬件市场或降低产品开发成本。例如，打印机制造商可能会开源驱动程序，允许驱动程序被定制到不同的平台，以便扩大其硬件市场。又如，手机制造商可能将开源软件作为核心操作系统，以便与其它制造商共享公共功能的开发成本。</p>
+<p>通过销售软件营利的软件公司有两种可用模型。但每种模型只在特定的开源许可下有效。希望在专有产品中嵌入开源软件的公司可使用所谓“宽松”开源许可（一般称为 BSD 许可）来实现这一点。与此相反，其它公司对其软件产品采用<a href="http://oss-watch.ac.uk/resources/duallicence2" target="_blank" rel="noopener">双重许可</a>授权模式，即采用所谓“公共”许可（如 GPL），同时在专有许可方式下销售软件。</p>
+<h2 id="非营利性开放开发"><a href="#非营利性开放开发" class="headerlink" title="非营利性开放开发"></a>非营利性开放开发</h2><p>很多时候，由某一组织开发的软件其本身并不创造收益。在这种情况下，该组织可通过开放源代码来降低开发成本。此时，可以考虑成立非营利性组织来管理软件的开发。这样做有两种作用：首先，基础设施成本和管理成本的很大一部分可被此非营利组织吸收。这些成本由使用非营利性组织管理的产品的公司出资维持。其次，这将鼓励更多的组织参与到项目中来，因为他们相信，他们始终可以使用项目产品，并以符合所有贡献者利益的方式管理项目产品。就是说，不存在与项目战略相“冲突”的商业利益，也没有被“买断”的席位能够掌控开发。</p>
+<p>此类组织的最好例证可能就是<a href="http://www.apache.org/" target="_blank" rel="noopener">Apache 软件基金会 (ASF)</a>，一个领导着如 Apache Web 服务器 (HTTPD) 和许多基于 XML 和 Java 的项目的非营利性组织。ASF 由来自公司和个人的慈善资金支持，为 Apache 项目开发人员提供工作所需的基础设施。ASF 的工作由个人来完成，这些人通常是使用 Apache 代码作为内部开发代码或销售定制版本的公司的雇员。</p>
+<p>例如，<a href="http://rave.apache.org/" target="_blank" rel="noopener">Apache Rave</a>门户框架最初是由学术界和商业伙伴作为 Apache 孵化器的一个项目提出的，后续又成功吸引了大量开发者，并于 2012 年晋级为 ASF 顶级项目。</p>
+<p>非营利基金会的其它例子还包括：</p>
+<ul>
+<li><a href="http://www.fsf.org/" target="_blank" rel="noopener">自由软件基金会</a></li>
+<li><a href="http://www.eclipse.org/" target="_blank" rel="noopener">Eclipse 基金会</a>（注意，该组织最初是一个联合会，见下文）</li>
+<li><a href="http://www.gnome.org/" target="_blank" rel="noopener">GNOME 基金会</a></li>
+<li><a href="http://www.mozilla.org/foundation/" target="_blank" rel="noopener">Mozilla 基金会</a></li>
+<li><a href="http://www.python.org/psf/" target="_blank" rel="noopener">Python 基金会</a></li>
+</ul>
+<h2 id="联盟"><a href="#联盟" class="headerlink" title="联盟"></a>联盟</h2><p>当组织的核心团队就某一项目合作时，可能形成软件维护联合会。这与创建非营利性组织类似（见上文）。联合会与非营利性组织的主要区别是，联合会成员比非营利性组织发起者对项目拥有更多的控制权。非营利性组织会以有利于所有人的方式管理软件，而联合会则以对其成员（和共同利益者）有利的方式管理软件。</p>
+<p>联合会模式的一个优势在于，联合会能够通过决定如何使用资源（时间和金钱）来更密切地控制项目。然而，这一事实将减弱项目对非核心团队成员的吸引力。考虑到今日的用户会成为明日的开发者，因而应鼓励用户早期参与，这一点就显得尤为重要。遗憾的是，联合会模式往往使用户感到被排除在外，因为他们不是项目成员。</p>
+<p>有意思的是，许多以种子资金创立的项目常常以<a href="http://oss-watch.ac.uk/resources/benevolentdictatorgovernancemodel" target="_blank" rel="noopener">贤明君主模式</a>（benevolent dictatorship）或联合会模式启动，而当种子资金用完时不得不转变为其它模式。这种转型非常难于控制。</p>
+<p><a href="http://www.dspace.org/" target="_blank" rel="noopener">DSpace</a>项目是教育系统中一个成功的联合会项目的例子。联合会模式的其它例子还包括 <a href="http://apereo.org/" target="_blank" rel="noopener">Apereo 基金会</a>和<a href="http://www.kuali.org/" target="_blank" rel="noopener">Kuali 基金会</a>。而 DSpace 和 Apereo 都在转向更开放的模式。</p>
+<h2 id="对降低成本的贡献"><a href="#对降低成本的贡献" class="headerlink" title="对降低成本的贡献"></a>对降低成本的贡献</h2><p>一个组织选择开源软件产品可能出于多方面的原因。某些情况下，他们这样做是为了实施新流程、提高现有流程效率或者降低软件许可费用。已经采用了开源软件产品的组织可能也会选择向开源项目贡献代码，以获得更多的收益。例如，加入新功能以进一步简化内部流程，或者修复 bug 以提高员工的使用效率。</p>
+<p>在这种情况下，回馈项目的主要动机有两点。首先，通过回馈项目，该组织可确保所依赖的软件保持活跃。其次，通过回馈项目，该组织可确保未来的升级尽可能顺利，即升级后不必重复进行本地修改。</p>
+<p>例如，<a href="http://aplaws.sourceforge.net/home/index.php" target="_blank" rel="noopener">APLAWS</a>开源内容管理系统就是为帮助英国地方政府提供在线服务而开发的。</p>
+<h2 id="教育和研究资金"><a href="#教育和研究资金" class="headerlink" title="教育和研究资金"></a>教育和研究资金</h2><p>英国以及世界许多其他地方<a href="http://oss-watch.ac.uk/resources/skills" target="_blank" rel="noopener">鼓励教育机构</a>在开源许可下开发软件。大专院校的开源项目资金可能来自投资机构或学校自身。只要机构可以获得直接利益，投资，即便不是全额，也很可能会一直持续下去。</p>
+<p>机构可以多方面受益。最大的好处可能就是，内部成本的降低和在为更广泛的教育界做出贡献方面提升声誉。此类项目的一个例子是剑桥大学的 Exim 项目。菲利普·黑兹尔自 1995 年 Exim 项目开创起即负责此项目，在剑桥大学计算机系任职期间他持续服务此项目，直到 2007 年退休。这类项目的另一个例子是南安普敦大学的 <a href="http://www.mailscanner.info/" target="_blank" rel="noopener">MailScanner</a>项目，大学雇员朱利安·菲尔德是该项目的“贤明君主”。</p>
+<p><a href="http://oss-watch.ac.uk/resources/odm" target="_blank" rel="noopener">开放开发</a>已证明是具有不同利益和专长的各方的有效合作方式，尤其适合于开源软件开发。在商业领域，我们看到人们对“<a href="http://oss-watch.ac.uk/resources/openinnov" target="_blank" rel="noopener">开放式创新</a>”这一理念具有广泛兴趣，认为这是开发新产品和现有产品的有效方法。通过精心规划和管理，开放式创新提供了一种可控、可管理的流程，鼓励商业开发和社会推广，而项目学术研发团队只需专注于局部问题，而非商业计划。例如，<a href="http://wookie.apache.org/" target="_blank" rel="noopener">Apache Wookie</a>由博尔顿大学开发，却吸引了大量其它学术外领域的开发者，并于 2012 年成为 Apache 顶级项目。</p>
+<h2 id="慈善家和其他基金组织"><a href="#慈善家和其他基金组织" class="headerlink" title="慈善家和其他基金组织"></a>慈善家和其他基金组织</h2><p>多个慈善组织是开源项目的重要投资者。这些组织包括：</p>
+<ul>
+<li><a href="http://www.mellon.org/" target="_blank" rel="noopener">梅隆基金会</a> - 主要资助图书馆领域的重要工作</li>
+<li><a href="http://code.google.com/soc/" target="_blank" rel="noopener">Google Summer of Code</a> - 由 Google 运作的项目，用于资助学生参与开源项目</li>
+<li><a href="http://sfconservancy.org/" target="_blank" rel="noopener">自由软件协会</a> - 为免费和开源软件项目募集资金的慈善机构</li>
+</ul>
+<h2 id="志愿者"><a href="#志愿者" class="headerlink" title="志愿者"></a>志愿者</h2><p>参与开源软件项目很有教育意义，更不必说其乐趣了。因此，在业余时间为开源作贡献的人并不少见。除以上模式之外，志愿者的工作也是很重要的，大多数开源项目都有志愿者参与。</p>
+<p>目前，项目可通过多种方式使用免费基础设施获得托管和相关功能（如问题跟踪和社区参与），此类资源有 <a href="http://sourceforge.net/" target="_blank" rel="noopener">SourceForge</a>和 <a href="http://github.com/" target="_blank" rel="noopener">GitHub</a>。这意味着，只要项目能得到来自可靠社区的开发和发布支持，便可以零成本可持续发展。</p>
+<p>（志愿者）用户对于开源项目同样很重要，因为用户会提出需求并进行测试。只要您能够管理用户对特定版本的期望，就能发行开源软件试用版或早期采用者版本用于测试，这便可以大大降低稳定版本发行前的成本。</p>
+<hr>
+<p>OSS Watch 文档<a href="/document/how-to-build-open-source-community/">如何建立开源社区</a>切实地介绍了如何实际创建一个包容、多元的开源社区。</p>
+<p>本文由 <a href="http://oss-watch.ac.uk/" target="_blank" rel="noopener">OSS Watch</a> 原创并经由<a href="http://creativecommons.org/licenses/by-sa/2.0/uk/" target="_blank" rel="noopener">Creative Commons Attribution-ShareAlike 2.0 England &amp; Wales license</a>许可证发布。</p>
+</main>
+
+    
+  </div>
+</section>
+
+<nav class="page-section text-center">
+  <div class="btn-group" role="group" aria-label="Post navigator">
+    
+    <a class="btn btn-secondary" role="button" href="document/sage-lord-governance-model/">
+      &lt; “贤明君主”治理模型
+    </a>
+    
+    <a class="btn btn-secondary" role="button" href="document/how-to-build-open-source-community/">
+      如何建立开源社区 &gt;
+    </a>
+    
+  </div>
+</nav>
+
+<script>
+(function () {
+
+  var path = self.location.href.split('#')[0];
+
+  $('details > .toc a[href]').attr('href', function (_, value) {
+
+    return path + value;
+  });
+
+  $('.blog-post').find('h1, h2, h3, h4, h5, h6').append(function () {
+
+    if ( this.id.trim() )
+      return '<a class="header-link" title="Permalink" href="' +
+        path + '#' + this.id +
+        '"><span class="octicon octicon-link"></span></a>';
+  });
+})();
+</script>
+
+
+  <footer class="footer">
+    <div class="container">
+      <nav class="footer-nav">
+        
+          <a class="footer-nav-item active" href="/categories/Activity/">
+            活动
+          </a>
+        
+          <a class="footer-nav-item " href="/page/2">
+            博客
+          </a>
+        
+          <a class="footer-nav-item " href="/profile/charter">
+            章程
+          </a>
+        
+          <a class="footer-nav-item " href="https://github.com/kaiyuanshe/kaiyuanshe.github.io/tree/hexo/License" target="_blank" rel="noopener">
+            许可
+          </a>
+        
+          <a class="footer-nav-item " href="/profile/contact">
+            联系我们
+          </a>
+        
+          <a class="footer-nav-item " href="https://git-pager.avosapps.us/?repository=kaiyuanshe/Wiki" target="_blank" rel="noopener">
+            协作编辑
+          </a>
+        
+      </nav>
+      <span class="col">沪 ICP 备 19006015 号</span>
+      <span class="col">公安备案 31011202006203 号</span>
+
+      <span class="footer-social">
+        
+          <a class="footer-nav-item icon"
+            href="https://github.com/kaiyuanshe"
+            title="Github Organization">
+            <i class="devicon-github-plain vertical-middle"></i>
+          </a>
+        
+          <a class="footer-nav-item icon"
+            href="https://twitter.com/contactkaiyuan1"
+            title="@contactkaiyuan1 on Twitter">
+            <i class="devicon-twitter-plain vertical-middle"></i>
+          </a>
+        
+          <a class="footer-nav-item icon"
+            href="https://www.facebook.com/kaiyuanshe.china"
+            title="Facebook account">
+            <i class="devicon-facebook-plain vertical-middle"></i>
+          </a>
+        
+      </span>
+    </div>
+  </footer>
+  <script src="library/virtual-anchor-sdk.js"></script>
+  <script>
+    new VirtualAnchor({ id: '191be2ab-8c6e-6201-c419-3ef2d26eadf2' });
+  </script>
+</body>
+
+</html>
