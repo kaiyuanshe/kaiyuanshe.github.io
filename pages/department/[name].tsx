@@ -3,16 +3,14 @@ import { cache, compose, errorLogger, translator } from 'next-ssr-middleware';
 import { FC } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 
-import { MemberCard } from '../../components/Member/Card';
-import { blobURLOf } from '../../models/Base';
 import { CommentBox } from '../../components/Base/CommentBox';
 import { GroupCard } from '../../components/Department/Card';
 import PageHead from '../../components/Layout/PageHead';
+import { MemberCard } from '../../components/Member/Card';
+import { blobURLOf } from '../../models/Base';
 import { i18n } from '../../models/Base/Translation';
 import { Personnel, PersonnelModel } from '../../models/Personnel';
 import { Department, DepartmentModel } from '../../models/Personnel/Department';
-
-const { t } = i18n;
 
 export const getServerSideProps = compose<
   { name: string },
