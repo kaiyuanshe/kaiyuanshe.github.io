@@ -32,7 +32,7 @@
     "mobx-react": "^9.1.1",
     "mobx-react-helper": "^0.3.1",
     "mobx-restful": "^0.7.0-rc.0",
-    "mobx-restful-table": "2.0.0-rc.1",
+    "mobx-restful-table": "^2.0.0-rc.1",
     "next": "^14.1.4",
     "next-pwa": "^5.6.0",
     "next-ssr-middleware": "^0.7.0",

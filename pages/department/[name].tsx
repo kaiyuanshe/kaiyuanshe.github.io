@@ -1,4 +1,3 @@
-import { log } from 'console';
 import { InferGetServerSidePropsType } from 'next';
 import { cache, compose, errorLogger, translator } from 'next-ssr-middleware';
 import { FC } from 'react';
@@ -31,10 +30,6 @@ export const getServerSideProps = compose<
     ['createdAt'],
   );
 
-  const personnels = await new PersonnelModel().getAll({
-    department: name,
-    passed: true,
-  });
   return {
     props: JSON.parse(JSON.stringify({ department, group })),
   };
