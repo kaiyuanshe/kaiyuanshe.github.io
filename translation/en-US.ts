@@ -21,7 +21,7 @@ export default {
   our_projects: 'Our Projects',
   activity_map: 'Activity Map',
   previous_activities: 'Previous Activities',
-
+  activitystatistics: 'Activity Statistics',
   // Main Navigator
   organization_structure: 'Organization Structure',
   organization_structure_chart: 'Organization Structure Chart',
@@ -79,7 +79,10 @@ export default {
   distribution_of_communities_by_type: 'Distribution of Communities by Type',
   China_open_source_community_landscape:
     "China's open source community landscape",
-
+  distribution_of_activity_topics_by_heat:
+    'Distribution of activity topics by heat',
+  distribution_of_mentor_organizations_by_contribution:
+    'Distribution of mentor organizations by contribution',
   // Search Page
   keyword: 'Keyword',
   tag: 'Tag',
