@@ -20,7 +20,7 @@ export default {
   our_projects: '我們的專案',
   activity_map: '活動地圖',
   previous_activities: '往屆活動',
-  activitystatistics: '活動數據統計',
+  activity_statistics: '活動數據統計',
   // Main Navigator
   organization_structure: '組織機構',
   organization_structure_chart: '組織架構全景圖',
@@ -76,7 +76,7 @@ export default {
   distribution_of_communities_by_type: '社區類型分佈',
   China_open_source_community_landscape: '中國開源社區全景圖',
   distribution_of_activity_topics_by_heat: '活動主題熱度排行',
-  distribution_of_mentor_organizations_by_contribution: '導師組織貢獻排行',
+  distribution_of_mentor_organizations_by_topics: '導師組織議題排行',
   // Search Page
   keyword: '關鍵詞',
   tag: '標籤',

@@ -8,27 +8,28 @@ import {
   XAxis,
   YAxis,
 } from 'echarts-jsx';
+
 import { i18n } from '../../models/Base/Translation';
 
+const { t } = i18n;
+
 type ActivityDataProps = {
-  activityData: {
-    keynoteSpeechCounts: { [key: string]: number };
-    mentorOrganizationCounts: { [key: string]: number };
-  };
+  keynoteSpeechCounts: Record<string, number>;
+  mentorOrganizationCounts: Record<string, number>;
 };
 
 const ActivityCharts: FC<ActivityDataProps> = observer(props => {
-  const { t } = i18n;
-  const keynoteSpeechList = Object.entries(
-    props.activityData.keynoteSpeechCounts,
-  ).sort((a, b) => b[1] - a[1]);
+  const { keynoteSpeechCounts, mentorOrganizationCounts } = props;
+  const keynoteSpeechList = Object.entries(keynoteSpeechCounts).sort(
+    (a, b) => b[1] - a[1],
+  );
 
-  const mentorOrganizationList = Object.entries(
-    props.activityData.mentorOrganizationCounts,
-  ).sort((a, b) => b[1] - a[1]);
+  const mentorOrganizationList = Object.entries(mentorOrganizationCounts).sort(
+    (a, b) => b[1] - a[1],
+  );
 
   return (
-    <>
+    <div style={{ marginTop: '10px', minHeight: '70vh' }}>
       <SVGCharts>
         <Title>{t('distribution_of_activity_topics_by_heat')}</Title>
         <XAxis type="category" data={keynoteSpeechList.map(([key]) => key)} />
@@ -36,10 +37,9 @@ const ActivityCharts: FC<ActivityDataProps> = observer(props => {
         <BarSeries data={keynoteSpeechList.map(([{}, value]) => value)} />
         <Tooltip />
       </SVGCharts>
+
       <SVGCharts>
-        <Title>
-          {t('distribution_of_mentor_organizations_by_contribution')}
-        </Title>
+        <Title>{t('distribution_of_mentor_organizations_by_topics')}</Title>
         <XAxis
           type="category"
           data={mentorOrganizationList.map(([key]) => key)}
@@ -48,7 +48,7 @@ const ActivityCharts: FC<ActivityDataProps> = observer(props => {
         <BarSeries data={mentorOrganizationList.map(([{}, value]) => value)} />
         <Tooltip />
       </SVGCharts>
-    </>
+    </div>
   );
 });
 

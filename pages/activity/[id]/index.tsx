@@ -1,6 +1,5 @@
 import { TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
-import { observable } from 'mobx';
 import { InferGetServerSidePropsType } from 'next';
 import dynamic from 'next/dynamic';
 import { cache, compose, errorLogger, translator } from 'next-ssr-middleware';
@@ -33,11 +32,6 @@ import { blobURLOf } from '../../../models/Base';
 import { i18n } from '../../../models/Base/Translation';
 import { coordinateOf, TableFormViewItem } from '../../api/lark/core';
 import styles from './index.module.less';
-
-const ActivityCharts = dynamic(
-  () => import('../../../components/Activity/Charts'),
-  { ssr: false },
-);
 
 const ListMap = dynamic(() => import('../../../components/Map/ListMap'), {
     ssr: false,
@@ -76,9 +70,6 @@ export const getServerSideProps = compose<
 export default class ActivityDetailPage extends PureComponent<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > {
-  @observable
-  accessor chartKey: true | false = false;
-
   renderFormMenu(
     title: string,
     forms: TableFormViewItem[],
@@ -239,31 +230,11 @@ export default class ActivityDetailPage extends PureComponent<
   };
 
   render() {
-    const { activity, forums, agendaGroup } = this.props;
+    const { activity, forums } = this.props;
 
-    const keynoteSpeechCounts: { [key: string]: number } = {};
-
-    for (const [forum, elements] of Object.entries(agendaGroup)) {
-      keynoteSpeechCounts[forum] = elements.length;
-    }
-
-    const mentorOrganizationCounts = Object.values(agendaGroup)
-      .flatMap(forum =>
-        forum.flatMap(session => session.mentorOrganizations as string[]),
-      )
-      .reduce((counts: { [key: string]: number }, organization) => {
-        counts[organization] = (counts[organization] || 0) + 1;
-        return counts;
-      }, {});
-
-    const activityData = {
-      keynoteSpeechCounts,
-      mentorOrganizationCounts,
-    };
     return (
       <>
         <PageHead title={activity.name + ''} />
-
         <header
           className={`d-flex flex-column align-items-center justify-content-around ${styles.header}`}
         >
@@ -317,25 +288,19 @@ export default class ActivityDetailPage extends PureComponent<
           <Button
             className="text-nowrap"
             variant="success"
-            onClick={() => {
-              this.chartKey = !this.chartKey;
-            }}
+            href={`/activity/${activity.id}/charts`}
           >
-            {t('activitystatistics')}
+            {t('activity_statistics')}
           </Button>
         </Stack>
 
-        {this.chartKey ? (
-          <ActivityCharts activityData={activityData} />
-        ) : (
-          <Container>
-            {this.renderMap()}
+        <Container>
+          {this.renderMap()}
 
-            {forums.map(this.renderForum)}
+          {forums.map(this.renderForum)}
 
-            <DrawerNav />
-          </Container>
-        )}
+          <DrawerNav />
+        </Container>
       </>
     );
   }
