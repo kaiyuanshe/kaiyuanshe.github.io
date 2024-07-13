@@ -1,11 +1,11 @@
-import { FC } from 'react';
-import { cache, compose, errorLogger, translator } from 'next-ssr-middleware';
 import dynamic from 'next/dynamic';
+import { cache, compose, errorLogger, translator } from 'next-ssr-middleware';
+import { FC } from 'react';
 
-import { i18n } from '../../../../models/Base/Translation';
-import { ActivityModel } from '../../../../models/Activity';
 import PageHead from '../../../../components/Layout/PageHead';
+import { ActivityModel } from '../../../../models/Activity';
 import { AgendaModel } from '../../../../models/Activity/Agenda';
+import { i18n } from '../../../../models/Base/Translation';
 
 const { t } = i18n;
 

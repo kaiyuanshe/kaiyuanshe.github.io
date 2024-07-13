@@ -1,5 +1,3 @@
-import { FC } from 'react';
-import { observer } from 'mobx-react';
 import {
   BarSeries,
   SVGCharts,
@@ -8,9 +6,11 @@ import {
   XAxis,
   YAxis,
 } from 'echarts-jsx';
+import { observer } from 'mobx-react';
+import { FC } from 'react';
 
-import { i18n } from '../../models/Base/Translation';
 import { AgendaModel } from '../../models/Activity/Agenda';
+import { i18n } from '../../models/Base/Translation';
 
 const { t } = i18n;
 
