@@ -72,11 +72,11 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
   async getStatistics() {
     const statisticsData = await this.getGroup();
     const keynoteSpeechCounts = Object.fromEntries(
-      Object.entries(statisticsData).map(([forum, elements]) => [
+      Object.entries(statisticsData).map(([forum, { length }]) => [
         forum,
-        elements.length,
+        length,
       ]),
-    );
+    ) as Record<string, number>;
 
     const mentorOrganizationCounts = Object.values(statisticsData)
       .flatMap(forum =>
@@ -90,10 +90,7 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
         {} as Record<string, number>,
       );
 
-    return {
-      keynoteSpeechCounts,
-      mentorOrganizationCounts,
-    };
+    return { keynoteSpeechCounts, mentorOrganizationCounts };
   }
 
   get authorization(): Record<string, boolean> | undefined {
