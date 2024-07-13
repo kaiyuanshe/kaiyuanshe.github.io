@@ -231,10 +231,10 @@ export default class ActivityDetailPage extends PureComponent<
 
   render() {
     const { activity, forums } = this.props;
+
     return (
       <>
         <PageHead title={activity.name + ''} />
-
         <header
           className={`d-flex flex-column align-items-center justify-content-around ${styles.header}`}
         >
@@ -284,6 +284,13 @@ export default class ActivityDetailPage extends PureComponent<
             href="/search?keywords=收官"
           >
             {t('previous_activities')}
+          </Button>
+          <Button
+            className="text-nowrap"
+            variant="success"
+            href={`/activity/${activity.id}/charts`}
+          >
+            {t('activity_statistics')}
           </Button>
         </Stack>
 

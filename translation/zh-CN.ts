@@ -20,7 +20,7 @@ export default {
   our_projects: '我们的项目',
   activity_map: '活动地图',
   previous_activities: '往届活动',
-
+  activity_statistics: '活动数据统计',
   // Main Navigator
   organization_structure: '组织架构',
   organization_structure_chart: '组织架构全景图',
@@ -75,7 +75,8 @@ export default {
   distribution_of_communities_by_founding_year: '社区创始年表',
   distribution_of_communities_by_type: '社区类型分布',
   China_open_source_community_landscape: '中国开源社区全景图',
-
+  distribution_of_activity_topics_by_heat: '活动主题热度排行',
+  distribution_of_mentor_organizations_by_topics: '导师组织议题排行',
   // Search Page
   keyword: '关键词',
   tag: '标签',

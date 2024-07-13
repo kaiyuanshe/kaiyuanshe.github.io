@@ -69,6 +69,30 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
   @observable
   accessor currentAuthorized = false;
 
+  async getStatistics() {
+    const statisticsData = await this.getGroup();
+    const keynoteSpeechCounts = Object.fromEntries(
+      Object.entries(statisticsData).map(([forum, { length }]) => [
+        forum,
+        length,
+      ]),
+    ) as Record<string, number>;
+
+    const mentorOrganizationCounts = Object.values(statisticsData)
+      .flatMap(forum =>
+        forum.flatMap(session => session.mentorOrganizations as string[]),
+      )
+      .reduce(
+        (counts, organization) => {
+          counts[organization] = (counts[organization] || 0) + 1;
+          return counts;
+        },
+        {} as Record<string, number>,
+      );
+
+    return { keynoteSpeechCounts, mentorOrganizationCounts };
+  }
+
   get authorization(): Record<string, boolean> | undefined {
     const { activityAgendaAuthorization } = globalThis.localStorage || {};
 
