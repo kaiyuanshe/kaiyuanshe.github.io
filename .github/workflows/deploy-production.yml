@@ -54,13 +54,14 @@ jobs:
           mv ${{ env.ARTIFACT_PATH }} ./docker-compose.yml ./start.sh ./build
 
       - name: Transport Image
-        uses: garygrossgarten/github-action-scp@release
+        uses: appleboy/scp-action@v0.1.7
         with:
-          local: ./build
-          remote: /tmp/${{ env.BOX_NAME }}
+          source: ./build/*.*
+          target: /tmp/${{ env.BOX_NAME }}
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
           password: ${{ secrets.SSH_KEY }}
+          strip_components: 1
 
       - name: Run Image
         uses: garygrossgarten/github-action-ssh@release
@@ -69,8 +70,8 @@ jobs:
           username: ${{ secrets.USER }}
           password: ${{ secrets.SSH_KEY }}
           command: |
-            cd /tmp/${{ env.BOX_NAME }}
             mkdir -p ~/${{ env.BOX_NAME }}
+            cd /tmp/${{ env.BOX_NAME }}
             mv docker-compose.yml start.sh ~/${{ env.BOX_NAME }}
             cd ~/${{ env.BOX_NAME }}
             chmod +x start.sh
