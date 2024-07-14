@@ -37,11 +37,11 @@ jobs:
           ${{ secrets.ENV_FILE }}
           VERCEL_URL=kaiyuanshe.cn
           EOF
-      - uses: docker/setup-qemu-action@v2
-      - uses: docker/setup-buildx-action@v2
+      - uses: docker/setup-qemu-action@v3
+      - uses: docker/setup-buildx-action@v3
 
       - name: Build Image
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v6
         with:
           context: .
           platforms: linux/amd64
