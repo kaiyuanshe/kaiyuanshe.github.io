@@ -11,6 +11,8 @@ env:
   ARTIFACT_PATH: artifact.tar
   BOX_NAME: kys-ows
   BOX_URL: kaiyuanshe/kys-ows
+  DOCKER_BUILD_SUMMARY: false
+  DOCKER_BUILD_RECORD_UPLOAD: false
 
 jobs:
   deploy_docker_image:
