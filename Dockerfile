@@ -12,18 +12,13 @@ RUN corepack enable
 COPY . /app
 WORKDIR /app
 
-FROM base AS prod-deps
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store  pnpm i -P --frozen-lockfile --ignore-scripts
-
 FROM base AS build
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store  pnpm i --frozen-lockfile
 RUN pnpm build
 
-FROM base
-WORKDIR /app
-COPY --from=prod-deps /app/node_modules ./node_modules
+FROM  base
+COPY --from=build /app/.next/standalone ./
 COPY --from=build /app/public ./public
-COPY --from=build /app/.next ./.next
-RUN rm .npmrc
+COPY --from=build /app/.next/static ./.next/static
 EXPOSE 3000
-CMD ["npm", "start"]
+CMD ["server.js"]

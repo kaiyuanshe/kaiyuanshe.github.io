@@ -31,6 +31,7 @@ const nextConfig = withPWA(
   withLess(
     withMDX({
       pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
+      output: 'standalone',
 
       webpack: config => {
         config.plugins.push(
