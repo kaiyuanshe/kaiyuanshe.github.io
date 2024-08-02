@@ -20,5 +20,6 @@ FROM  base
 COPY --from=build /app/.next/standalone ./
 COPY --from=build /app/public ./public
 COPY --from=build /app/.next/static ./.next/static
+RUN rm .npmrc
 EXPOSE 3000
 CMD ["server.js"]
