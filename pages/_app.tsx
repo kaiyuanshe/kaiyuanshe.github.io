@@ -84,7 +84,7 @@ window.__aitable.baseUrl = "https://aitable.ai";`}
               </a>
             ))}
           </Col>
-          <Col xs={12} sm={1}>
+          <Col xs={12} sm={1} className="position-relative">
             <a
               className="stretched-link"
               target="_blank"
