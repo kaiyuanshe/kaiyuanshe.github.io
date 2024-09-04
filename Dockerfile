@@ -14,7 +14,7 @@ WORKDIR /app
 
 FROM base AS build
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store  pnpm i --frozen-lockfile
-RUN pnpm build
+RUN CI=true  pnpm build
 
 FROM  base
 COPY --from=build /app/public ./public

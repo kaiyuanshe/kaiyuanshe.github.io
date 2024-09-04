@@ -53,8 +53,8 @@ jobs:
                   - - tag: text
                       text: 提交作者：
                     - tag: a
-                      text: ${{ github.event.pusher.username }}
-                      href: ${{ github.server_url }}/${{ github.event.pusher.username }}
+                      text: ${{ github.actor }}
+                      href: ${{ github.server_url }}/${{ github.actor }}
                   - - tag: text
                       text: 预览链接：
                     - tag: a
