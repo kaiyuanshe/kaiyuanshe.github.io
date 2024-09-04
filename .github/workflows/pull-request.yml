@@ -50,6 +50,11 @@ jobs:
                       text: ${{ github.ref }}
                       href: ${{ github.server_url }}/${{ github.repository }}/tree/${{ github.ref_name }}
                   - - tag: text
+                      text: 提交作者：
+                    - tag: a
+                      text: ${{ github.actor }}
+                      href: ${{ github.server_url }}/${{ github.actor }}
+                  - - tag: text
                       text: 预览链接：
                     - tag: a
                       text: ${{ steps.vercel-deployment.outputs.preview-url }}

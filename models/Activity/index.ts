@@ -188,19 +188,19 @@ export class ActivityModel extends BiDataTable<Activity>() {
 
   @toggle('downloading')
   async getOneByAlias(alias: string) {
-    const { body } = await this.client.get<LarkPageData<TableRecord<Activity>>>(
-      `${this.baseURI}?${buildURLData({
-        filter: makeSimpleFilter({ alias }, '='),
-      })}`,
-    );
+    const path = `${this.baseURI}?${buildURLData({
+      filter: makeSimpleFilter({ alias }, '='),
+    })}`;
+    const { body } =
+      await this.client.get<LarkPageData<TableRecord<Activity>>>(path);
     const [item] = body!.data!.items || [];
 
     if (!item)
-      throw new HTTPError(`Activity "${alias}" is not found`, {
-        status: 404,
-        statusText: 'Not found',
-        headers: {},
-      });
+      throw new HTTPError(
+        `Activity "${alias}" is not found`,
+        { method: 'GET', path },
+        { status: 404, statusText: 'Not found', headers: {} },
+      );
     return (this.currentOne = this.normalize(item));
   }
 
