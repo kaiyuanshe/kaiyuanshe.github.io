@@ -64,28 +64,26 @@ export class ArticleModel extends BiDataTable<Article>() {
 
   @toggle('downloading')
   async getOne(alias: string) {
-    const { body } = await this.client.get<
-      LarkPageData<TableRecord<BaseArticle>>
-    >(
-      `${this.baseURI}?${buildURLData({
-        filter: makeSimpleFilter({ alias }, '='),
-      })}`,
-    );
+    const path = `${this.baseURI}?${buildURLData({
+      filter: makeSimpleFilter({ alias }, '='),
+    })}`;
+    const { body } =
+      await this.client.get<LarkPageData<TableRecord<BaseArticle>>>(path);
     const [rawItem] = body!.data!.items || [];
 
     if (!rawItem)
-      throw new HTTPError(`Article "${alias}" is not found`, {
-        status: 404,
-        statusText: 'Not found',
-        headers: {},
-      });
+      throw new HTTPError(
+        `Article "${alias}" is not found`,
+        { method: 'GET', path },
+        { status: 404, statusText: 'Not found', headers: {} },
+      );
     const item = this.normalize(rawItem);
 
-    const path = `article/${
+    const filePath = `article/${
       (item.link as string).split('/').slice(-1)[0]
     }.html`;
 
-    const { body: raw } = await blobClient.get<ArrayBuffer>(path);
+    const { body: raw } = await blobClient.get<ArrayBuffer>(filePath);
 
     const content = new TextDecoder().decode(raw);
 
