@@ -86,7 +86,7 @@ const SearchPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
             ))}
           </Row>
 
-          <h2>{t('organization_short')}</h2>
+          <h2>{t('organization')}</h2>
 
           <OrganizationListLayout defaultData={organizations} />
         </Container>

@@ -84,7 +84,7 @@ export default {
   article: '文章',
   member: '成员',
   department: '部门',
-  organization_short: '组织',
+  organization: '组织',
   activity: '活动',
 
   // Organization page
@@ -172,6 +172,7 @@ export default {
   last_project_group: '上届任职项目组',
   next_term_plan: '下届规划',
   expert_committee: '专家委员会',
+  producer_organization: '出品方',
   producer: '出品人',
   volunteer: '志愿者',
   gift_wall: '礼品墙',

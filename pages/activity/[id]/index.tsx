@@ -160,8 +160,11 @@ export default class ActivityDetailPage extends Component<ActivityDetailPageProp
     summary: TableCellValue,
   ) {
     return (
-      <Row className="align-items-center position-relative">
-        <Col xs={2}>出品方</Col>
+      <Row
+        className="align-items-center position-relative"
+        style={{ maxWidth: '50%' }}
+      >
+        <Col xs={2}>{t('producer_organization')}</Col>
         <Col xs={2} className="text-center">
           <LarkImage
             rounded
@@ -176,7 +179,8 @@ export default class ActivityDetailPage extends Component<ActivityDetailPageProp
             <a
               className="text-decoration-none stretched-link"
               target="_blank"
-              href={link as string} rel="noreferrer"
+              href={link as string}
+              rel="noreferrer"
             >
               {name as string}
             </a>
@@ -243,34 +247,27 @@ export default class ActivityDetailPage extends Component<ActivityDetailPageProp
             {summary as string}
           </Col>
         </Row>
-        <div className="d-flex justify-content-center">
-          <Row xs={1} md={2}>
-            {organization && (
-              <Col>
-                {this.renderForumOrganization(
-                  organization,
-                  organizationLogo,
-                  organizationLink,
-                  organizationSummary,
-                )}
-              </Col>
+        <div className="d-flex flex-wrap justify-content-around">
+          {organization &&
+            this.renderForumOrganization(
+              organization,
+              organizationLogo,
+              organizationLink,
+              organizationSummary,
             )}
-            <Col>
-              {this.renderForumPeople(
-                t('producer'),
-                producers,
-                producerAvatars,
-                producerPositions,
-                producerOrganizations,
-              )}
-              {(volunteers as string[])?.[0] &&
-                this.renderForumPeople(
-                  t('volunteer'),
-                  volunteers,
-                  volunteerAvatars,
-                )}
-            </Col>
-          </Row>
+          {this.renderForumPeople(
+            t('producer'),
+            producers,
+            producerAvatars,
+            producerPositions,
+            producerOrganizations,
+          )}
+          {(volunteers as string[])?.[0] &&
+            this.renderForumPeople(
+              t('volunteer'),
+              volunteers,
+              volunteerAvatars,
+            )}
         </div>
 
         <Row as="ol" className="list-unstyled g-4" xs={1} md={2}>

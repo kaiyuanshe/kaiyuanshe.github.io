@@ -90,7 +90,7 @@ export default {
   article: 'article',
   member: 'member',
   department: 'department',
-  organization_short: 'organization',
+  organization: 'organization',
   activity: 'activity',
 
   // Organization page
@@ -178,6 +178,7 @@ export default {
   last_project_group: 'Last Project Group',
   next_term_plan: 'Next Term Plan',
   expert_committee: 'Expert Committee',
+  producer_organization: 'Organization',
   producer: 'Producer',
   volunteer: 'Volunteer',
   gift_wall: 'Gift Wall',
