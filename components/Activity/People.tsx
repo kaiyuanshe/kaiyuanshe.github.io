@@ -28,6 +28,7 @@ export const ActivityPeople: FC<ActivityPeopleProps> = ({
           style={{ width: `${size}rem`, height: `${size}rem` }}
           loading="lazy"
           src={avatars?.[index]}
+          alt={name}
         />
         <ul className="list-unstyled">
           <li>{name}</li>

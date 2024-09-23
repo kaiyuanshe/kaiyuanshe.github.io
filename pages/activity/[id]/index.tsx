@@ -1,9 +1,8 @@
 import { TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
-import { InferGetServerSidePropsType } from 'next';
 import dynamic from 'next/dynamic';
 import { cache, compose, errorLogger, translator } from 'next-ssr-middleware';
-import { PureComponent } from 'react';
+import { Component } from 'react';
 import {
   Button,
   Col,
@@ -21,6 +20,7 @@ import {
   AgendaCard,
   DrawerNav,
 } from '../../../components/Activity';
+import { LarkImage } from '../../../components/Base/LarkImage';
 import { VerticalScrollableBox } from '../../../components/Base/VerticalScrollableBox';
 import PageHead from '../../../components/Layout/PageHead';
 import type { ImageMarker } from '../../../components/Map/ListMap';
@@ -38,15 +38,17 @@ const ListMap = dynamic(() => import('../../../components/Map/ListMap'), {
   }),
   { t } = i18n;
 
+interface ActivityDetailPageProps {
+  activity: Activity;
+  currentMeta: ActivityModel['currentMeta'];
+  forums: Forum[];
+  agendaGroup: AgendaModel['group'];
+  places: Place[];
+}
+
 export const getServerSideProps = compose<
   { id: string },
-  {
-    activity: Activity;
-    currentMeta: ActivityModel['currentMeta'];
-    forums: Forum[];
-    agendaGroup: AgendaModel['group'];
-    places: Place[];
-  }
+  ActivityDetailPageProps
 >(cache(), errorLogger, translator(i18n), async ({ params }) => {
   const activityStore = new ActivityModel();
 
@@ -67,9 +69,7 @@ export const getServerSideProps = compose<
 });
 
 @observer
-export default class ActivityDetailPage extends PureComponent<
-  InferGetServerSidePropsType<typeof getServerSideProps>
-> {
+export default class ActivityDetailPage extends Component<ActivityDetailPageProps> {
   renderFormMenu(
     title: string,
     forms: TableFormViewItem[],
@@ -153,6 +153,45 @@ export default class ActivityDetailPage extends PureComponent<
     );
   }
 
+  renderForumOrganization(
+    name: TableCellValue,
+    logo: TableCellValue,
+    link: TableCellValue,
+    summary: TableCellValue,
+  ) {
+    return (
+      <Row className="align-items-center position-relative">
+        <Col xs={2}>出品方</Col>
+        <Col xs={2} className="text-center">
+          <LarkImage
+            rounded
+            className="object-fit-contain"
+            loading="lazy"
+            src={logo}
+            alt={name as string}
+          />
+        </Col>
+        <Col xs={8}>
+          <h3 className="h6">
+            <a
+              className="text-decoration-none stretched-link"
+              target="_blank"
+              href={link as string} rel="noreferrer"
+            >
+              {name as string}
+            </a>
+          </h3>
+          <p
+            className="text-muted overflow-hidden"
+            style={{ maxHeight: '6rem' }}
+          >
+            {summary as string}
+          </p>
+        </Col>
+      </Row>
+    );
+  }
+
   renderForumPeople(
     title: string,
     names: TableCellValue,
@@ -179,6 +218,10 @@ export default class ActivityDetailPage extends PureComponent<
   renderForum = ({
     name,
     summary,
+    organization,
+    organizationLogo,
+    organizationLink,
+    organizationSummary,
     volunteers,
     volunteerAvatars,
     producers,
@@ -191,31 +234,43 @@ export default class ActivityDetailPage extends PureComponent<
 
     return (
       <section key={name as string}>
-        <h2 className="mt-5 mb-3 text-center" id={name as string}>
+        <h2 className="my-5 mb-3 text-center" id={name as string}>
           {name as string}
         </h2>
-        {location && <h4 className="mb-5 text-center">{location as string}</h4>}
-        <Row>
+        {location && <h4 className="text-center">{location as string}</h4>}
+        <Row className="my-5">
           <Col xl={{ offset: 2, span: 8 }} as="p" className="text-muted">
             {summary as string}
           </Col>
         </Row>
         <div className="d-flex justify-content-center">
-          <div className="d-flex flex-column flex-sm-row align-items-center">
-            {this.renderForumPeople(
-              t('producer'),
-              producers,
-              producerAvatars,
-              producerPositions,
-              producerOrganizations,
+          <Row xs={1} md={2}>
+            {organization && (
+              <Col>
+                {this.renderForumOrganization(
+                  organization,
+                  organizationLogo,
+                  organizationLink,
+                  organizationSummary,
+                )}
+              </Col>
             )}
-            {(volunteers as string[])?.[0] &&
-              this.renderForumPeople(
-                t('volunteer'),
-                volunteers,
-                volunteerAvatars,
+            <Col>
+              {this.renderForumPeople(
+                t('producer'),
+                producers,
+                producerAvatars,
+                producerPositions,
+                producerOrganizations,
               )}
-          </div>
+              {(volunteers as string[])?.[0] &&
+                this.renderForumPeople(
+                  t('volunteer'),
+                  volunteers,
+                  volunteerAvatars,
+                )}
+            </Col>
+          </Row>
         </div>
 
         <Row as="ol" className="list-unstyled g-4" xs={1} md={2}>
