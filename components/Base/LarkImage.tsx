@@ -11,6 +11,7 @@ export interface LarkImageProps extends Omit<ImageProps, 'src'> {
 
 export const LarkImage: FC<LarkImageProps> = ({
   src = DefaultImage,
+  alt,
   ...props
 }) => (
   <Image
@@ -18,10 +19,11 @@ export const LarkImage: FC<LarkImageProps> = ({
     loading="lazy"
     {...props}
     src={blobURLOf(src)}
+    alt={alt}
     onError={({ currentTarget: image }) => {
       const path = fileURLOf(src);
 
-      if (!path) return;
+      if (alt || !path) return;
 
       const errorURL = decodeURI(image.src);
 
