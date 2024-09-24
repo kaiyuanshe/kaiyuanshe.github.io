@@ -36,7 +36,9 @@ export type OrganizationStatistic = Record<
 >;
 
 export const ORGANIZATION_TABLE_ID =
-  process.env.NEXT_PUBLIC_ORGANIZATION_TABLE_ID!;
+    process.env.NEXT_PUBLIC_ORGANIZATION_TABLE_ID!,
+  NGO_BASE_ID = process.env.NEXT_PUBLIC_NGO_BASE_ID!,
+  NGO_TABLE_ID = process.env.NEXT_PUBLIC_NGO_TABLE_ID!;
 
 export const sortStatistic = (data: Record<string, number>, sortValue = true) =>
   Object.entries(data)
@@ -61,14 +63,13 @@ export class OrganizationModel extends BiDataTable<Organization>() {
 
   normalize({
     id,
-    fields: { link, codeLink, email, ...fields },
+    fields: { link, codeLink, ...fields },
   }: TableRecord<Organization>) {
     return {
       ...fields,
       id: id!,
       link: (link as TableCellLink)?.link,
       codeLink: (codeLink as TableCellLink)?.link,
-      email: (email as TableCellLink)?.link,
     };
   }
 

@@ -6,7 +6,11 @@ import { Container } from 'react-bootstrap';
 
 import PageHead from '../../components/Layout/PageHead';
 import { i18n } from '../../models/Base/Translation';
-import { OrganizationModel } from '../../models/Community/Organization';
+import {
+  NGO_BASE_ID,
+  NGO_TABLE_ID,
+  OrganizationModel,
+} from '../../models/Community/Organization';
 
 const OrganizationLandscape = dynamic(
   () => import('../../components/Organization/LandScape'),
@@ -24,7 +28,9 @@ const LandscapePage: FC = observer(() => (
     <h1 className="mt-5 text-center">
       {t('China_open_source_community_landscape')}
     </h1>
-    <OrganizationLandscape store={new OrganizationModel()} />
+    <OrganizationLandscape
+      store={new OrganizationModel(NGO_BASE_ID, NGO_TABLE_ID)}
+    />
   </Container>
 ));
 
