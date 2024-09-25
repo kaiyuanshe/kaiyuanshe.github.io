@@ -36,7 +36,6 @@ export default {
   our_annual_report: '年度报告',
   china_open_source_annual_report: '中国开源年度报告',
   kaiyuanshe_annual_report: '开源社年度报告',
-  china_open_source_landscape: '开源地图',
   open_source_projects: '开源项目',
   community_list: '开源社城市社区（KCC）',
   china_open_source_pioneer: '中国开源先锋',
@@ -51,13 +50,14 @@ export default {
   cultural_and_creative_shop: '文创商店',
   meeting_calendar: '会议日历',
 
+  // China Open Source Map
   no_more: '没有更多',
   load_more: '加载更多……',
   organization_member: '组织成员',
   board_of_directors: '理事会',
   become_volunteer: '成为志愿者',
-  china_open_source_map: '中国开源地图',
-  panorama: '全景图',
+  China_Open_Source_Map: '中国开源地图',
+  landscape: '全景图',
   join_the_open_source_map: '+ 加入开源地图',
   map: '地图',
   chart: '图表',
@@ -77,6 +77,12 @@ export default {
   China_open_source_community_landscape: '中国开源社区全景图',
   distribution_of_activity_topics_by_heat: '活动主题热度排行',
   distribution_of_mentor_organizations_by_topics: '导师组织议题排行',
+
+  // China NGO Map
+  China_NGO_Map: '中国公益地图',
+  join_NGO_map: '+ 加入公益地图',
+  China_NGO_Landscape: '中国公益组织全景图',
+
   // Search Page
   keyword: '关键词',
   tag: '标签',

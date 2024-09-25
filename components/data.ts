@@ -99,7 +99,7 @@ export const MainRoutes = (): Link[] => [
         title: t('china_open_source_pioneer'),
         path: '/community/award/China-Open-Source-pioneer',
       },
-      { title: t('china_open_source_landscape'), path: '/organization' },
+      { title: t('China_Open_Source_Map'), path: '/organization' },
     ],
   },
   {

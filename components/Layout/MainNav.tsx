@@ -78,7 +78,7 @@ class MainNav extends PureComponent<MainNavProps> {
             expandable ? 'flex-xxl-row' : ''
           } justify-content-around gap-3`}
         >
-          <SearchBar />
+          <SearchBar expanded={false} />
           <LanguageMenu />
           <UserMenu />
         </div>
