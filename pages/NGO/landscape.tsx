@@ -23,11 +23,9 @@ const { t } = i18n;
 
 const LandscapePage: FC = observer(() => (
   <Container className="mb-5">
-    <PageHead title={t('China_open_source_community_landscape')} />
+    <PageHead title={t('China_NGO_Landscape')} />
 
-    <h1 className="mt-5 text-center">
-      {t('China_open_source_community_landscape')}
-    </h1>
+    <h1 className="mt-5 text-center">{t('China_NGO_Landscape')}</h1>
     <OrganizationLandscape
       store={new OrganizationModel(NGO_BASE_ID, NGO_TABLE_ID)}
     />

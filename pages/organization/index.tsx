@@ -14,13 +14,13 @@ const { t } = i18n;
 
 const OrganizationPage: FC = observer(() => (
   <Container>
-    <PageHead title={t('china_open_source_landscape')} />
+    <PageHead title={t('China_Open_Source_Map')} />
 
     <header className="d-flex justify-content-between align-items-center">
-      <h1 className="my-4">{t('china_open_source_map')}</h1>
+      <h1 className="my-4">{t('China_Open_Source_Map')}</h1>
       <div>
         <Button className="me-2" size="sm" href="/organization/landscape">
-          {t('panorama')}
+          {t('landscape')}
         </Button>
         <Button
           variant="success"

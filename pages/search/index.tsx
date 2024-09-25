@@ -1,6 +1,12 @@
 import { observer } from 'mobx-react';
 import { InferGetServerSidePropsType } from 'next';
-import { compose, RouteProps, router, translator } from 'next-ssr-middleware';
+import {
+  cache,
+  compose,
+  RouteProps,
+  router,
+  translator,
+} from 'next-ssr-middleware';
 import { FC } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 
@@ -16,6 +22,7 @@ import { i18n } from '../../models/Base/Translation';
 import { SearchQuery, SearchResult } from '../api/search';
 
 export const getServerSideProps = compose<{}, SearchResult & RouteProps>(
+  cache(),
   router,
   translator(i18n),
   async ({ query }) => {

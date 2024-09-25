@@ -37,7 +37,6 @@ export default {
   our_annual_report: 'Our Annual Report',
   china_open_source_annual_report: 'China Open Source Annual Report',
   kaiyuanshe_annual_report: 'KAIYUANSHE Annual Report',
-  china_open_source_landscape: 'China Open Source Landscape',
   open_source_projects: 'Open Source Projects',
   community_list: 'KAIYUANSHE City Community',
   china_open_source_pioneer: 'China Open Source Pioneers',
@@ -52,13 +51,14 @@ export default {
   cultural_and_creative_shop: 'Cultural and Creative Shop',
   meeting_calendar: 'Meeting Calendar',
 
+  // China Open Source Map
   no_more: 'no more',
   load_more: 'load more...',
   organization_member: 'Organization member',
   board_of_directors: 'Board of Directors',
   become_volunteer: 'become a volunteer',
-  china_open_source_map: 'China Open Source Map',
-  panorama: 'Landscape',
+  China_Open_Source_Map: 'China Open Source Map',
+  landscape: 'Landscape',
   join_the_open_source_map: '+ join China open source map',
   map: 'map',
   chart: 'chart',
@@ -83,6 +83,12 @@ export default {
     'Distribution of activity topics by heat',
   distribution_of_mentor_organizations_by_topics:
     'Distribution of mentor organizations by topics',
+
+  // China NGO Map
+  China_NGO_Map: 'China NGO Map',
+  join_NGO_map: '+ join NGO map',
+  China_NGO_Landscape: 'China NGO Landscape',
+
   // Search Page
   keyword: 'Keyword',
   tag: 'Tag',
