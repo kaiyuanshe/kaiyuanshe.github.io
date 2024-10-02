@@ -10,8 +10,7 @@ import {
 import { safeAPI } from '../base';
 
 export const LARK_APP_ID = process.env.LARK_APP_ID!,
-  LARK_APP_SECRET = process.env.LARK_APP_SECRET!,
-  MAIN_BASE_ID = process.env.NEXT_PUBLIC_MAIN_BASE_ID!;
+  LARK_APP_SECRET = process.env.LARK_APP_SECRET!;
 
 export const lark = new LarkApp({
   id: LARK_APP_ID,

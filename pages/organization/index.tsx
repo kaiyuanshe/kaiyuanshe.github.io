@@ -26,7 +26,7 @@ const OrganizationPage: FC = observer(() => (
           variant="success"
           size="sm"
           target="_blank"
-          href="https://kaiyuanshe.feishu.cn/share/base/shrcnPgQoUZzkpWB2W4dp2QQvbd"
+          href="https://kaiyuanshe.feishu.cn/share/base/form/shrcntLXo6z1Zyv5uLjF1z8Lpic"
         >
           {t('join_the_open_source_map')}
         </Button>
