@@ -27,7 +27,7 @@ const DepartmentPage: FC = observer(() => (
     <Button
       size="lg"
       target="_blank"
-      href="https://kaiyuanshe.feishu.cn/share/base/shrcnfO89tYlYIjZpS5PXJBaK2f"
+      href="https://kaiyuanshe.feishu.cn/share/base/form/shrcnlDoJhBTHalhmiZJr8rax0g"
     >
       {t('become_volunteer')}
     </Button>

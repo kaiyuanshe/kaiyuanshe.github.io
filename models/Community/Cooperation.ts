@@ -12,8 +12,8 @@ import {
 } from 'mobx-lark';
 import { groupBy } from 'web-utility';
 
-import { MAIN_BASE_ID } from '../../pages/api/lark/core';
 import { larkClient } from '../Base';
+import { COMMUNITY_BASE_ID } from './index';
 
 export type Cooperation = Record<
   'id' | 'organization' | 'year' | 'level' | 'link' | 'logos',
@@ -26,7 +26,7 @@ export const COOPERATION_TABLE_ID =
 export class CooperationModel extends BiDataTable<Cooperation>() {
   client = larkClient;
 
-  constructor(appId = MAIN_BASE_ID, tableId = COOPERATION_TABLE_ID) {
+  constructor(appId = COMMUNITY_BASE_ID, tableId = COOPERATION_TABLE_ID) {
     super(appId, tableId);
   }
 

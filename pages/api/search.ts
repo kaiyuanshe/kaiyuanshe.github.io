@@ -47,7 +47,7 @@ export default safeAPI(
                 name: keywordList,
                 city: keywordList,
                 location: keywordList,
-                organizers: tag,
+                host: tag,
               }),
               new SearchDepartmentModel().getList({
                 tags: tag,
