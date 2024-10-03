@@ -1,11 +1,8 @@
 import { FC } from 'react';
 import { Col, Row } from 'react-bootstrap';
 
-import { i18n } from '../../models/Base/Translation';
 import { CommunityMember } from '../../models/Community/CommunityMember';
 import { CommunityMemberCard } from './MemberCard';
-
-const { t } = i18n;
 
 export const CommunityMemberList: FC<{ list: CommunityMember[] }> = ({
   list,
