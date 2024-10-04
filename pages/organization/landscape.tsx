@@ -4,8 +4,8 @@ import { compose, translator } from 'next-ssr-middleware';
 import { FC } from 'react';
 import { Container } from 'react-bootstrap';
 
-import PageHead from '../../components/Layout/PageHead';
-import { i18n } from '../../models/Base/Translation';
+import { PageHead } from '../../components/Layout/PageHead';
+import { i18n, t } from '../../models/Base/Translation';
 import { OrganizationModel } from '../../models/Community/Organization';
 
 const OrganizationLandscape = dynamic(
@@ -14,8 +14,6 @@ const OrganizationLandscape = dynamic(
 );
 
 export const getServerSideProps = compose(translator(i18n));
-
-const { t } = i18n;
 
 const LandscapePage: FC = observer(() => (
   <Container className="mb-5">

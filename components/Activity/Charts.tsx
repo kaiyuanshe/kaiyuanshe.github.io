@@ -10,9 +10,7 @@ import { observer } from 'mobx-react';
 import { FC } from 'react';
 
 import { AgendaModel } from '../../models/Activity/Agenda';
-import { i18n } from '../../models/Base/Translation';
-
-const { t } = i18n;
+import { t } from '../../models/Base/Translation';
 
 type ActivityDataProps = Awaited<ReturnType<AgendaModel['getStatistics']>>;
 
@@ -21,7 +19,6 @@ const ActivityCharts: FC<ActivityDataProps> = observer(
     const keynoteSpeechList = Object.entries(keynoteSpeechCounts).sort(
       (a, b) => b[1] - a[1],
     );
-
     const mentorOrganizationList = Object.entries(
       mentorOrganizationCounts,
     ).sort((a, b) => b[1] - a[1]);

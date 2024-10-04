@@ -10,9 +10,9 @@ import { FC } from 'react';
 import { Container } from 'react-bootstrap';
 
 import { SearchBar } from '../../components/Base/SearchBar';
-import PageHead from '../../components/Layout/PageHead';
+import { PageHead } from '../../components/Layout/PageHead';
 import { OrganizationListLayout } from '../../components/Organization/List';
-import { i18n } from '../../models/Base/Translation';
+import { i18n, t } from '../../models/Base/Translation';
 import {
   NGO_BASE_ID,
   NGO_TABLE_ID,
@@ -52,8 +52,7 @@ export const getServerSideProps = compose<{}, NGOSearchProps>(
 
 const NGOSearchPage: FC<NGOSearchProps> = observer(
   ({ route, organizations }) => {
-    const { t } = i18n,
-      { tag, keywords } = route.query as SearchQuery;
+    const { tag, keywords } = route.query as SearchQuery;
 
     const title = `${tag ? t('tag') : t('keyword')} ${tag || keywords} ${t(
       'search_results',
@@ -72,5 +71,4 @@ const NGOSearchPage: FC<NGOSearchProps> = observer(
     );
   },
 );
-
 export default NGOSearchPage;

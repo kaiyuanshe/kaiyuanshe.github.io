@@ -1,14 +1,13 @@
 import classNames from 'classnames';
 import { TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
-import { InferGetServerSidePropsType } from 'next';
 import { compose, translator } from 'next-ssr-middleware';
-import { PureComponent } from 'react';
+import { Component } from 'react';
 import { Col, Container, ListGroup, Row } from 'react-bootstrap';
 
 import { LarkImage } from '../../components/Base/LarkImage';
-import PageHead from '../../components/Layout/PageHead';
-import { i18n } from '../../models/Base/Translation';
+import { PageHead } from '../../components/Layout/PageHead';
+import { i18n, t } from '../../models/Base/Translation';
 import {
   Cooperation,
   CooperationModel,
@@ -42,26 +41,24 @@ const Levels = [
 
 const singleLineBenefitsLevels: TableCellValue[] = ['白金赞助'];
 
-export const getServerSideProps = compose<
-  {},
-  { yearGroup: CooperationModel['yearGroup'] }
->(translator(i18n), async () => {
-  const cooperationStore = new CooperationModel();
+type CooperationPageProps = { yearGroup: CooperationModel['yearGroup'] };
 
-  await cooperationStore.getGroup();
+export const getServerSideProps = compose<{}, CooperationPageProps>(
+  translator(i18n),
+  async () => {
+    const cooperationStore = new CooperationModel();
 
-  const yearGroup = JSON.parse(JSON.stringify(cooperationStore.yearGroup));
+    await cooperationStore.getGroup();
 
-  return { props: { yearGroup } };
-});
+    const yearGroup = JSON.parse(JSON.stringify(cooperationStore.yearGroup));
+
+    return { props: { yearGroup } };
+  },
+);
 
 @observer
-export default class CooperationPage extends PureComponent<
-  InferGetServerSidePropsType<typeof getServerSideProps>
-> {
+export default class CooperationPage extends Component<CooperationPageProps> {
   renderGroup(level: (typeof Levels)[number], list: Cooperation[]) {
-    const { t } = i18n;
-
     return (
       <section key={level}>
         <h3 className="my-5">{t(level)}</h3>
@@ -103,8 +100,7 @@ export default class CooperationPage extends PureComponent<
   }
 
   render() {
-    const { t } = i18n,
-      { yearGroup } = this.props;
+    const { yearGroup } = this.props;
 
     return (
       <Container className="my-4 text-center">

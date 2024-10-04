@@ -1,15 +1,16 @@
 import { observer } from 'mobx-react';
-import { InferGetServerSidePropsType } from 'next';
 import { cache, compose, errorLogger, translator } from 'next-ssr-middleware';
 import { FC } from 'react';
 import { Container } from 'react-bootstrap';
 
-import PageHead from '../../components/Layout/PageHead';
+import { PageHead } from '../../components/Layout/PageHead';
 import { MemberGroup } from '../../components/Member/Group';
-import { i18n } from '../../models/Base/Translation';
+import { i18n, t } from '../../models/Base/Translation';
 import { PersonnelModel } from '../../models/Personnel';
 
-export const getServerSideProps = compose<{}, Pick<PersonnelModel, 'group'>>(
+type MemberPageProps = Pick<PersonnelModel, 'group'>;
+
+export const getServerSideProps = compose<{}, MemberPageProps>(
   cache(),
   errorLogger,
   translator(i18n),
@@ -25,10 +26,8 @@ export const getServerSideProps = compose<{}, Pick<PersonnelModel, 'group'>>(
   },
 );
 
-const { t } = i18n;
-
-const MemberPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
-  observer(({ group: { '': unGrouped = [], ...group } }) => (
+const MemberPage: FC<MemberPageProps> = observer(
+  ({ group: { '': unGrouped = [], ...group } }) => (
     <Container className="py-5">
       <PageHead title={t('正式成员')} />
 
@@ -40,6 +39,7 @@ const MemberPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
         ),
       )}
     </Container>
-  ));
+  ),
+);
 
 export default MemberPage;

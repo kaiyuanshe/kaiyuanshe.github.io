@@ -3,14 +3,12 @@ import { compose, translator } from 'next-ssr-middleware';
 import { FC } from 'react';
 import { Button, Container } from 'react-bootstrap';
 
-import PageHead from '../../components/Layout/PageHead';
+import { PageHead } from '../../components/Layout/PageHead';
 import { OpenCollaborationMap } from '../../components/Organization';
-import { i18n } from '../../models/Base/Translation';
+import { i18n, t } from '../../models/Base/Translation';
 import { OrganizationModel } from '../../models/Community/Organization';
 
 export const getServerSideProps = compose(translator(i18n));
-
-const { t } = i18n;
 
 const OrganizationPage: FC = observer(() => (
   <Container>

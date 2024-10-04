@@ -1,17 +1,15 @@
 import { Loading, MonthCalendar } from 'idea-react';
 import { observer } from 'mobx-react';
-import { PureComponent } from 'react';
+import { Component } from 'react';
 import { Breadcrumb, Container } from 'react-bootstrap';
 
 import { ArticleListLayout } from '../../../components/Article/List';
-import PageHead from '../../../components/Layout/PageHead';
-import { i18n } from '../../../models/Base/Translation';
+import { PageHead } from '../../../components/Layout/PageHead';
+import { t } from '../../../models/Base/Translation';
 import { CalendarSearchArticleModel } from '../../../models/Product/Article';
 
-const { t } = i18n;
-
 @observer
-export default class CalendarPage extends PureComponent {
+export default class CalendarPage extends Component {
   store = new CalendarSearchArticleModel();
 
   componentDidMount() {

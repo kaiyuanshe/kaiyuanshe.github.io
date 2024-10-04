@@ -1,7 +1,6 @@
 import 'array-unique-proposal';
 
 import { observer } from 'mobx-react';
-import { InferGetServerSidePropsType } from 'next';
 import {
   compose,
   errorLogger,
@@ -12,13 +11,13 @@ import {
 import { FC } from 'react';
 import { Breadcrumb, Container } from 'react-bootstrap';
 
-import PageHead from '../../../components/Layout/PageHead';
+import { PageHead } from '../../../components/Layout/PageHead';
 import { MemberCard } from '../../../components/Member/Card';
 import { blobURLOf } from '../../../models/Base';
-import { i18n } from '../../../models/Base/Translation';
+import { i18n, t } from '../../../models/Base/Translation';
 import { PersonnelModel } from '../../../models/Personnel';
 
-type CommitteePageProps = RouteProps<{ name: string }> &
+type HonorPageProps = RouteProps<{ name: string }> &
   Pick<PersonnelModel, 'group'>;
 
 const nameMap = {
@@ -28,14 +27,14 @@ const nameMap = {
   'China-Open-Source-pioneer': '中国开源先锋33人',
 };
 
-export const getServerSideProps = compose<{ name: string }, CommitteePageProps>(
+export const getServerSideProps = compose<{ name: string }, HonorPageProps>(
   router,
   errorLogger,
   translator(i18n),
   async ({ params }) => {
     const award = nameMap[params!.name as keyof typeof nameMap];
 
-    if (!award) return { notFound: true, props: {} as CommitteePageProps };
+    if (!award) return { notFound: true, props: {} as HonorPageProps };
 
     const group = await new PersonnelModel().getYearGroup({ award }, [
       'createdAt',
@@ -49,8 +48,6 @@ export const getServerSideProps = compose<{ name: string }, CommitteePageProps>(
   },
 );
 
-const { t } = i18n;
-
 const titleMap = () => ({
   'community-cooperation-star': t('stars_of_community_partnership'),
   'Open-Source-star': t('stars_of_open_source'),
@@ -58,8 +55,8 @@ const titleMap = () => ({
   'China-Open-Source-pioneer': t('china_open_source_pioneer'),
 });
 
-const HonorPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
-  observer(({ route: { params }, group }) => {
+const HonorPage: FC<HonorPageProps> = observer(
+  ({ route: { params }, group }) => {
     const title = titleMap()[params!.name as keyof ReturnType<typeof titleMap>];
 
     return (
@@ -95,6 +92,6 @@ const HonorPage: FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
           ))}
       </Container>
     );
-  });
-
+  },
+);
 export default HonorPage;

@@ -3,12 +3,10 @@ import { compose, translator } from 'next-ssr-middleware';
 import { FC } from 'react';
 import { Breadcrumb, Container } from 'react-bootstrap';
 
-import PageHead from '../../components/Layout/PageHead';
-import { i18n } from '../../models/Base/Translation';
+import { PageHead } from '../../components/Layout/PageHead';
+import { i18n, t } from '../../models/Base/Translation';
 
 export const getServerSideProps = compose(translator(i18n));
-
-const { t } = i18n;
 
 const PublicMeetingPage: FC = observer(() => (
   <Container className="py-5 text-center">

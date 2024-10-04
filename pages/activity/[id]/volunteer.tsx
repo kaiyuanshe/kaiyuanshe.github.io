@@ -1,22 +1,20 @@
 import { observer } from 'mobx-react';
 import { cache, compose, errorLogger, translator } from 'next-ssr-middleware';
-import { PureComponent } from 'react';
+import { Component } from 'react';
 import { Breadcrumb, Container } from 'react-bootstrap';
 
-import PageHead from '../../../components/Layout/PageHead';
+import { PageHead } from '../../../components/Layout/PageHead';
 import { MemberCard } from '../../../components/Member/Card';
 import { MemberTitle } from '../../../components/Member/Title';
 import { Activity, ActivityModel } from '../../../models/Activity';
 import { Staff, StaffModel } from '../../../models/Activity/Staff';
 import { blobURLOf } from '../../../models/Base';
-import { i18n } from '../../../models/Base/Translation';
+import { i18n, t } from '../../../models/Base/Translation';
 
 interface VolunteerPageProps {
   activity: Activity;
   staffGroup: StaffModel['group'];
 }
-
-const { t } = i18n;
 
 export const getServerSideProps = compose<{ id: string }, VolunteerPageProps>(
   cache(),
@@ -38,7 +36,7 @@ export const getServerSideProps = compose<{ id: string }, VolunteerPageProps>(
 );
 
 @observer
-export default class VolunteerPage extends PureComponent<VolunteerPageProps> {
+export default class VolunteerPage extends Component<VolunteerPageProps> {
   renderVolunteers = ({ id, name, avatar }: Staff) => (
     <li
       key={id as string}
@@ -54,7 +52,7 @@ export default class VolunteerPage extends PureComponent<VolunteerPageProps> {
 
     return (
       <Container className="py-5">
-        <PageHead title={t('volunteer') + '-' + name} />{' '}
+        <PageHead title={t('volunteer') + '-' + name} />
         <Breadcrumb>
           <Breadcrumb.Item href="/">{t('KaiYuanShe')}</Breadcrumb.Item>
           <Breadcrumb.Item href="/activity">{t('activity')}</Breadcrumb.Item>

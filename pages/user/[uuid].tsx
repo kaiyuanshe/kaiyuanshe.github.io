@@ -1,20 +1,25 @@
 import { CheckEvent, User } from '@kaiyuanshe/kys-service';
 import { TimeDistance } from 'idea-react';
+import { textJoin } from 'mobx-i18n';
 import { observer } from 'mobx-react';
 import { ScrollList } from 'mobx-restful-table';
-import { InferGetServerSidePropsType } from 'next';
 import { cache, compose, errorLogger } from 'next-ssr-middleware';
-import { PureComponent } from 'react';
+import { Component } from 'react';
 import { Breadcrumb, Button, Col, Container, Row } from 'react-bootstrap';
 
-import PageHead from '../../components/Layout/PageHead';
+import { PageHead } from '../../components/Layout/PageHead';
 import { CheckEventModel } from '../../models/Activity/CheckEvent';
-import { i18n } from '../../models/Base/Translation';
+import { i18n, t } from '../../models/Base/Translation';
 import userStore, { UserModel } from '../../models/Base/User';
+
+interface UserProfilePageProps {
+  user: User;
+  checkEvents: CheckEvent[];
+}
 
 export const getServerSideProps = compose<
   { uuid: string },
-  { user: User; checkEvents: CheckEvent[] }
+  UserProfilePageProps
 >(cache(), errorLogger, async ({ params: { uuid } = {} }) => {
   const user = await new UserModel().getOne(uuid!);
 
@@ -23,12 +28,8 @@ export const getServerSideProps = compose<
   return { props: { user, checkEvents } };
 });
 
-const { t } = i18n;
-
 @observer
-export default class UserProfilePage extends PureComponent<
-  InferGetServerSidePropsType<typeof getServerSideProps>
-> {
+export default class UserProfilePage extends Component<UserProfilePageProps> {
   store = new CheckEventModel();
 
   renderActivityChecks(activityId: string, list: CheckEvent[]) {
@@ -68,7 +69,9 @@ export default class UserProfilePage extends PureComponent<
 
   render() {
     const { user, checkEvents } = this.props;
-    const title = `${user.mobilePhone || user.nickName}的开源护照`;
+    const title = t('user_Open_Source_Passport', {
+      user: user.mobilePhone || user.nickName,
+    });
 
     return (
       <Container className="mt-5">
@@ -89,13 +92,13 @@ export default class UserProfilePage extends PureComponent<
                 target="_blank"
                 href="https://ophapiv2-demo.authing.cn/u"
               >
-                编辑个人信息
+                {textJoin(t('edit'), t('profile'))}
               </Button>
             )}
           </Col>
 
           <Col>
-            <h2>活动足迹</h2>
+            <h2>{t('activity_footprint')}</h2>
 
             <ScrollList
               translator={i18n}

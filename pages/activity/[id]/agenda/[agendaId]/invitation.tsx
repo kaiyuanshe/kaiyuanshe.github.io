@@ -3,19 +3,17 @@ import { TableCellLocation, TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
 import { compose, errorLogger, router } from 'next-ssr-middleware';
 import { QRCodeSVG } from 'qrcode.react';
-import { PureComponent } from 'react';
+import { Component } from 'react';
 import { Badge, Container } from 'react-bootstrap';
 
 import { ActivityPeople } from '../../../../../components/Activity/People';
-import PageHead from '../../../../../components/Layout/PageHead';
+import { PageHead } from '../../../../../components/Layout/PageHead';
 import { Activity, ActivityModel } from '../../../../../models/Activity';
 import { Agenda } from '../../../../../models/Activity/Agenda';
 import { API_Host, blobURLOf } from '../../../../../models/Base';
-import { i18n } from '../../../../../models/Base/Translation';
+import { t } from '../../../../../models/Base/Translation';
 import { fileURLOf } from '../../../../api/lark/file/[id]';
 import styles from './invitation.module.less';
-
-const { t } = i18n;
 
 interface InvitationPageProps {
   activity: Activity;
@@ -38,7 +36,7 @@ export const getServerSideProps = compose<
 });
 
 @observer
-export default class InvitationPage extends PureComponent<InvitationPageProps> {
+export default class InvitationPage extends Component<InvitationPageProps> {
   sharedURL = `${API_Host}/activity/${this.props.activity.id}/agenda/${this.props.agenda.id}`;
 
   renderContent() {

@@ -11,7 +11,7 @@ import { observer } from 'mobx-react';
 import { FC } from 'react';
 import { Row } from 'react-bootstrap';
 
-import { i18n } from '../../models/Base/Translation';
+import { t } from '../../models/Base/Translation';
 import {
   OrganizationStatistic,
   sortStatistic,
@@ -19,8 +19,7 @@ import {
 
 const OrganizationCharts: FC<OrganizationStatistic> = observer(
   ({ type, tag, year, city }) => {
-    const { t } = i18n,
-      typeList = sortStatistic(type),
+    const typeList = sortStatistic(type),
       tagList = sortStatistic(tag),
       yearList = sortStatistic(year, false).reverse(),
       cityList = sortStatistic(city);

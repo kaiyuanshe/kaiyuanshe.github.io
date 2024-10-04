@@ -5,12 +5,10 @@ import { FC } from 'react';
 import { TimeData } from 'web-utility';
 
 import { blobURLOf } from '../../models/Base';
-import { i18n } from '../../models/Base/Translation';
+import { t } from '../../models/Base/Translation';
 import { Personnel } from '../../models/Personnel';
 import { MemberCard } from './Card';
 import { MemberTitle } from './Title';
-
-const { t } = i18n;
 
 export interface MemberGroupProps {
   name: string;

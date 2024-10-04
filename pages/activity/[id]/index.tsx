@@ -22,21 +22,20 @@ import {
 } from '../../../components/Activity';
 import { LarkImage } from '../../../components/Base/LarkImage';
 import { VerticalScrollableBox } from '../../../components/Base/VerticalScrollableBox';
-import PageHead from '../../../components/Layout/PageHead';
+import { PageHead } from '../../../components/Layout/PageHead';
 import type { ImageMarker } from '../../../components/Map/ListMap';
 import { Activity, ActivityModel } from '../../../models/Activity';
 import { AgendaModel } from '../../../models/Activity/Agenda';
 import { Forum } from '../../../models/Activity/Forum';
 import { Place } from '../../../models/Activity/Place';
 import { blobURLOf } from '../../../models/Base';
-import { i18n } from '../../../models/Base/Translation';
+import { i18n, t } from '../../../models/Base/Translation';
 import { coordinateOf, TableFormViewItem } from '../../api/lark/core';
 import styles from './index.module.less';
 
 const ListMap = dynamic(() => import('../../../components/Map/ListMap'), {
-    ssr: false,
-  }),
-  { t } = i18n;
+  ssr: false,
+});
 
 interface ActivityDetailPageProps {
   activity: Activity;
