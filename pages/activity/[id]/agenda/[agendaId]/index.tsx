@@ -11,7 +11,7 @@ import {
   router,
   translator,
 } from 'next-ssr-middleware';
-import { PureComponent } from 'react';
+import { Component } from 'react';
 import {
   Badge,
   Breadcrumb,
@@ -34,20 +34,19 @@ import { CommentBox } from '../../../../../components/Base/CommentBox';
 import { QRCodeButton } from '../../../../../components/Base/QRCodeButton';
 import { ScoreBar } from '../../../../../components/Base/ScoreBar';
 import { TimeRange } from '../../../../../components/Base/TimeRange';
-import PageHead from '../../../../../components/Layout/PageHead';
+import { PageHead } from '../../../../../components/Layout/PageHead';
 import { Activity, ActivityModel } from '../../../../../models/Activity';
 import { Agenda } from '../../../../../models/Activity/Agenda';
 import { CheckEventModel } from '../../../../../models/Activity/CheckEvent';
 import { API_Host, blobURLOf } from '../../../../../models/Base';
 import systemStore from '../../../../../models/Base/System';
-import { i18n } from '../../../../../models/Base/Translation';
+import { i18n, t } from '../../../../../models/Base/Translation';
 import userStore from '../../../../../models/Base/User';
 
 const SessionBox = dynamic(
-    () => import('../../../../../components/Layout/SessionBox'),
-    { ssr: false },
-  ),
-  { t } = i18n;
+  () => import('../../../../../components/Layout/SessionBox'),
+  { ssr: false },
+);
 
 type PageParameter = Record<'id' | 'agendaId', string>;
 
@@ -88,7 +87,7 @@ export const getServerSideProps = compose<PageParameter, AgendaDetailPageProps>(
 );
 
 @observer
-export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProps> {
+export default class AgendaDetailPage extends Component<AgendaDetailPageProps> {
   activityStore = new ActivityModel();
   checkEventStore = new CheckEventModel();
 
@@ -140,16 +139,20 @@ export default class AgendaDetailPage extends PureComponent<AgendaDetailPageProp
         >
           <SessionBox>
             <QRCodeButton
-              title="请该打卡点工作人员扫码"
+              title={t('punch_in_tips')}
               value={`${API_Host}/activity/${id}/agenda/${agendaId}#?user=${userStore.session?.id}`}
               disabled={!!checkEvent}
             >
-              打卡
+              {t('punch_in')}
             </QRCodeButton>
           </SessionBox>
 
           {evaluationForms && (
-            <DropdownButton variant="warning" size="sm" title="评价问卷">
+            <DropdownButton
+              variant="warning"
+              size="sm"
+              title={t('evaluation_form')}
+            >
               {evaluationForms.map(({ name, shared_url }) => (
                 <Dropdown.Item
                   key={name}

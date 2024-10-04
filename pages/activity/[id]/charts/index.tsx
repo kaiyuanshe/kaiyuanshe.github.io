@@ -1,13 +1,12 @@
+import { observer } from 'mobx-react';
 import dynamic from 'next/dynamic';
 import { cache, compose, errorLogger, translator } from 'next-ssr-middleware';
 import { FC } from 'react';
 
-import PageHead from '../../../../components/Layout/PageHead';
+import { PageHead } from '../../../../components/Layout/PageHead';
 import { ActivityModel } from '../../../../models/Activity';
 import { AgendaModel } from '../../../../models/Activity/Agenda';
-import { i18n } from '../../../../models/Base/Translation';
-
-const { t } = i18n;
+import { i18n, t } from '../../../../models/Base/Translation';
 
 const ActivityCharts = dynamic(
   () => import('../../../../components/Activity/Charts'),
@@ -30,12 +29,12 @@ export const getServerSideProps = compose(
   },
 );
 
-const Charts: FC<ActivityDataProps> = props => (
+const Charts: FC<ActivityDataProps> = observer(props => (
   <main className="mt-2">
     <PageHead title={t('activity_statistics')} />
     <h1 className="mt-5 text-center">{t('activity_statistics')}</h1>
     <ActivityCharts {...props} />;
   </main>
-);
+));
 
 export default Charts;

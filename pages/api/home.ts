@@ -1,6 +1,4 @@
-import { i18n } from '../../models/Base/Translation';
-
-const { t } = i18n;
+import { t } from '../../models/Base/Translation';
 
 export const slogan = () => [
   {

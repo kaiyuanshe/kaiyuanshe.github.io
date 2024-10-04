@@ -9,17 +9,17 @@ import {
   router,
   translator,
 } from 'next-ssr-middleware';
-import { PureComponent } from 'react';
+import { Component } from 'react';
 import { Breadcrumb, Container, Stack } from 'react-bootstrap';
 
 import { GiftCard } from '../../../components/Activity/GiftCard';
 import { QRCodeButton } from '../../../components/Base/QRCodeButton';
-import PageHead from '../../../components/Layout/PageHead';
+import { PageHead } from '../../../components/Layout/PageHead';
 import { MemberTitle } from '../../../components/Member/Title';
 import { Activity, ActivityModel } from '../../../models/Activity';
 import { CheckEventModel } from '../../../models/Activity/CheckEvent';
 import { GiftModel } from '../../../models/Activity/Gift';
-import { i18n } from '../../../models/Base/Translation';
+import { i18n, t } from '../../../models/Base/Translation';
 import userStore from '../../../models/Base/User';
 
 const SessionBox = dynamic(
@@ -47,10 +47,8 @@ export const getServerSideProps = compose<{ id: string }, GiftListPageProps>(
   },
 );
 
-const { t } = i18n;
-
 @observer
-export default class GiftListPage extends PureComponent<GiftListPageProps> {
+export default class GiftListPage extends Component<GiftListPageProps> {
   activityStore = new ActivityModel();
   checkEventStore = new CheckEventModel();
 
@@ -91,15 +89,16 @@ export default class GiftListPage extends PureComponent<GiftListPageProps> {
           gap={3}
         >
           <div>
-            可用积分：<strong className="text-danger">{sumScore}</strong>
+            {t('available_score')}{' '}
+            <strong className="text-danger">{sumScore}</strong>
           </div>
 
           <SessionBox>
             <QRCodeButton
-              title="请礼品墙工作人员扫码"
+              title={t('exchange_tips')}
               value={[mobilePhone, sumScore] + ''}
             >
-              兑换
+              {t('exchange')}
             </QRCodeButton>
           </SessionBox>
         </Stack>
@@ -114,17 +113,17 @@ export default class GiftListPage extends PureComponent<GiftListPageProps> {
 
     return (
       <Container>
-        <PageHead title={`礼品墙 - ${activity.name}`} />
+        <PageHead title={`${t('gift_wall')} - ${activity.name}`} />
         <Breadcrumb>
           <Breadcrumb.Item href="/">{t('KaiYuanShe')}</Breadcrumb.Item>
           <Breadcrumb.Item href="/activity">{t('activity')}</Breadcrumb.Item>
           <Breadcrumb.Item href={`/activity/${activity.id}`}>
             {activity.name as string}
           </Breadcrumb.Item>
-          <Breadcrumb.Item active>礼品墙</Breadcrumb.Item>
+          <Breadcrumb.Item active>{t('gift_wall')}</Breadcrumb.Item>
         </Breadcrumb>
         <h1 className="mt-5 mb-4 text-center">
-          {activity.name as string} 礼品墙
+          {activity.name as string} {t('gift_wall')}
         </h1>
 
         {loading && <Loading />}
@@ -135,7 +134,7 @@ export default class GiftListPage extends PureComponent<GiftListPageProps> {
           .sort(([a], [b]) => +b - +a)
           .map(([score, list]) => (
             <section key={score}>
-              <MemberTitle title="积分门槛" count={+score} />
+              <MemberTitle title={t('score_threshold')} count={+score} />
 
               <ol className="list-unstyled d-flex flex-wrap justify-content-around text-center">
                 {list.map(gift => (

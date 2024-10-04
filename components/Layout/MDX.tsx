@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Container, ContainerProps } from 'react-bootstrap';
 
 import { CommentBox } from '../Base/CommentBox';
-import PageHead from './PageHead';
+import { PageHead } from './PageHead';
 
 export const MDXLayout: FC<ContainerProps> = ({
   className = 'mt-5 pt-5 pb-3',

@@ -7,14 +7,13 @@ import { Component } from 'react';
 import { Badge, Button, Nav } from 'react-bootstrap';
 import { isEmpty } from 'web-utility';
 
-import { i18n } from '../../models/Base/Translation';
+import { i18n, t } from '../../models/Base/Translation';
 import { OrganizationModel } from '../../models/Community/Organization';
 import { CityStatisticMap } from '../Map/CityStatisticMap';
 import { OrganizationCardProps } from './Card';
 import { OrganizationListLayout } from './List';
 
-const OrganizationCharts = dynamic(() => import('./Charts'), { ssr: false }),
-  { t } = i18n;
+const OrganizationCharts = dynamic(() => import('./Charts'), { ssr: false });
 
 export interface OpenCollaborationMapProps {
   store: OrganizationModel;

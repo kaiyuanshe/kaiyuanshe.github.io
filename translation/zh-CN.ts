@@ -21,6 +21,7 @@ export default {
   activity_map: '活动地图',
   previous_activities: '往届活动',
   activity_statistics: '活动数据统计',
+
   // Main Navigator
   organization_structure: '组织架构',
   organization_structure_chart: '组织架构全景图',
@@ -50,6 +51,14 @@ export default {
   cultural_and_creative_shop: '文创商店',
   meeting_calendar: '会议日历',
 
+  // User pages
+  Open_Source_Passport: '开源护照',
+  user_Open_Source_Passport: ({ user }: { user: string }) =>
+    `${user}的开源护照`,
+  profile: '个人资料',
+  activity_footprint: '活动足迹',
+  exit: '退出',
+
   // China Open Source Map
   no_more: '没有更多',
   load_more: '加载更多……',
@@ -61,6 +70,11 @@ export default {
   join_the_open_source_map: '+ 加入开源地图',
   map: '地图',
   chart: '图表',
+  confirm_community_type_filter: ({ type }: { type: string }) =>
+    `确定筛选「${type}」类型的开源组织？`,
+  confirm_community_tag_filter: ({ tag }: { tag: string }) =>
+    `确定筛选「${tag}」领域的开源组织？`,
+
   related_articles: '相关文章',
   no_data: '暂无数据',
   functions: 'functions',
@@ -83,7 +97,7 @@ export default {
   join_NGO_map: '+ 加入公益地图',
   China_NGO_Landscape: '中国公益组织全景图',
 
-  // Search Page
+  // Search page
   keyword: '关键词',
   tag: '标签',
   search_results: '搜索结果',
@@ -106,6 +120,19 @@ export default {
   CFP_file_submission: '议题课件提交',
   reimbursement_application: '报销申请',
   participant_registration: '参会注册',
+  producer_organization: '出品方',
+  producer: '出品人',
+  volunteer: '志愿者',
+  punch_in: '打卡',
+  punch_in_tips: '请该打卡点工作人员扫码',
+  confirm: '确认',
+  punch_in_successfully: '打卡成功！',
+  evaluation_form: '评价问卷',
+  gift_wall: '礼品墙',
+  available_score: '可用积分',
+  score_threshold: '积分门槛',
+  exchange: '兑换',
+  exchange_tips: '请礼品墙工作人员扫码',
 
   member_x: '成员X',
   calendar: '日历',
@@ -114,10 +141,10 @@ export default {
   attendee_ratings: '观众评分',
   related_agenda: '相关议程',
 
-  //invitation pages
+  // Invitation pages
   press_to_share: '长按图片分享',
 
-  // Cooperation Page
+  // Cooperation page
   主办单位: '主办单位',
   承办单位: '承办单位',
   协办单位: '协办单位',
@@ -142,7 +169,7 @@ export default {
   媒体伙伴: '媒体伙伴',
   社区伙伴: '社区伙伴',
 
-  //finance Page
+  // Finance page
   bill_id: '单号',
   bill_createAt: '支付日期',
   bill_location: '支付地点',
@@ -156,7 +183,7 @@ export default {
   bill_agendas: '申报议程',
   financial_disclosure: '财务公开',
 
-  //RestTable
+  // RestTable
   create: '新增',
   submit: '提交',
   cancel: '取消',
@@ -178,12 +205,8 @@ export default {
   last_project_group: '上届任职项目组',
   next_term_plan: '下届规划',
   expert_committee: '专家委员会',
-  producer_organization: '出品方',
-  producer: '出品人',
-  volunteer: '志愿者',
-  gift_wall: '礼品墙',
 
-  // community list & community detail page
+  // Community list & detail pages
   community_member: '社区成员',
   add_member: '数据整理中，敬请期待',
   community: '社区',
@@ -191,6 +214,9 @@ export default {
   KCC_activity_registration: 'KCC 活动信息登记',
   KCC_community_establishment_registration: 'KCC 社区创建申请',
 
+  // Article pages
+  copyright: '版权声明',
+  original_link: '原文链接',
   activity_articles_calendar: '活动日历',
   hosted_activity: '主办活动',
 
@@ -199,8 +225,16 @@ export default {
   home_page: '项目主页',
   more_projects: '更多项目',
 
-  // Deparment Detail Page
+  // Deparment detail page
   members: '成员',
+  OKR: '目标与关键结果',
+  key_results: '关键结果',
+  quarterly: '季度',
+  plan: '计划',
+  monthly_report: '月度报告',
+  progress: '进度',
+  product: '产出',
+  problem: '疑难',
 
   // Election pages
   general_election: '换届选举',

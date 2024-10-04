@@ -1,16 +1,17 @@
 import { observer } from 'mobx-react';
 import { ScrollList } from 'mobx-restful-table';
-import { InferGetServerSidePropsType } from 'next';
 import { compose, translator } from 'next-ssr-middleware';
 import { FC } from 'react';
 import { Container } from 'react-bootstrap';
 
 import { ActivityListLayout } from '../../components/Activity/List';
-import PageHead from '../../components/Layout/PageHead';
+import { PageHead } from '../../components/Layout/PageHead';
 import activityStore, { Activity, ActivityModel } from '../../models/Activity';
-import { i18n } from '../../models/Base/Translation';
+import { i18n, t } from '../../models/Base/Translation';
 
-export const getServerSideProps = compose<{}, { list: Activity[] }>(
+type ActivityListPageProps = { list: Activity[] };
+
+export const getServerSideProps = compose<{}, ActivityListPageProps>(
   translator(i18n),
   async () => {
     const list = await new ActivityModel().getList();
@@ -19,11 +20,7 @@ export const getServerSideProps = compose<{}, { list: Activity[] }>(
   },
 );
 
-const { t } = i18n;
-
-const ActivityListPage: FC<
-  InferGetServerSidePropsType<typeof getServerSideProps>
-> = observer(({ list }) => (
+const ActivityListPage: FC<ActivityListPageProps> = observer(({ list }) => (
   <Container className="py-5">
     <PageHead title={t('highlight_events')} />
 

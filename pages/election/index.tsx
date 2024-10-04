@@ -3,10 +3,8 @@ import { FC } from 'react';
 import { Container } from 'react-bootstrap';
 
 import { ZodiacBar } from '../../components/Base/ZodiacBar';
-import PageHead from '../../components/Layout/PageHead';
-import { i18n } from '../../models/Base/Translation';
-
-const { t } = i18n;
+import { PageHead } from '../../components/Layout/PageHead';
+import { t } from '../../models/Base/Translation';
 
 const ElectionPage: FC = observer(() => (
   <Container className="my-5">

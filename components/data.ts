@@ -1,10 +1,8 @@
 import { TimeDistanceProps } from 'idea-react';
 import { textJoin } from 'mobx-i18n';
 
-import { i18n } from '../models/Base/Translation';
+import { t } from '../models/Base/Translation';
 import { Link } from './Layout/MainNav';
-
-const { t } = i18n;
 
 export const TimeOption: Pick<
   TimeDistanceProps,

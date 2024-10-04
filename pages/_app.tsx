@@ -15,7 +15,7 @@ import { MainRoutes } from '../components/data';
 import MainNav from '../components/Layout/MainNav';
 import { MDXLayout } from '../components/Layout/MDX';
 import { isServer } from '../models/Base';
-import { i18n } from '../models/Base/Translation';
+import { t } from '../models/Base/Translation';
 import { social } from './api/home';
 import { DefaultImage } from './api/lark/file/[id]';
 
@@ -31,8 +31,6 @@ globalThis.addEventListener?.('unhandledrejection', ({ reason }) => {
 
   if (message) alert(message);
 });
-
-const { t } = i18n;
 
 const AppShell: FC<AppProps> = observer(({ Component, pageProps, router }) => (
   <>
