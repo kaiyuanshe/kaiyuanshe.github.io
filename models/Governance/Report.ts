@@ -2,10 +2,12 @@ import {
   BiDataTable,
   normalizeText,
   TableCellRelation,
+  TableCellText,
   TableCellValue,
   TableRecord,
 } from 'mobx-lark';
 
+import { normalizeMarkdownArray } from '../../pages/api/lark/core';
 import { larkClient } from '../Base';
 import { GOVERNANCE_BASE_ID } from './OKR';
 
@@ -31,10 +33,17 @@ export class ReportModel extends BiDataTable<Report>() {
     super(appId, tableId);
   }
 
-  normalize({ fields: { meeting, ...fields }, ...meta }: TableRecord<Report>) {
+  normalize({
+    fields: { plan, progress, product, problem, meeting, ...fields },
+    ...meta
+  }: TableRecord<Report>) {
     return {
       ...meta,
       ...fields,
+      plan: plan && normalizeMarkdownArray(plan as TableCellText[]),
+      progress: progress && normalizeMarkdownArray(progress as TableCellText[]),
+      product: product && normalizeMarkdownArray(product as TableCellText[]),
+      problem: problem && normalizeMarkdownArray(problem as TableCellText[]),
       meeting: (meeting as TableCellRelation[])?.map(normalizeText),
     };
   }

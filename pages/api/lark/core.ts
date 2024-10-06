@@ -1,3 +1,4 @@
+import { marked } from 'marked';
 import {
   LarkApp,
   LarkData,
@@ -34,6 +35,9 @@ export const normalizeTextArray = (list: TableCellText[]) =>
     },
     [''],
   );
+
+export const normalizeMarkdownArray = (list: TableCellText[]) =>
+  normalizeTextArray(list).map(text => marked(text) as string);
 
 export function coordinateOf(location: TableCellValue): [number, number] {
   const [longitude, latitude] = (location as TableCellLocation)?.location.split(

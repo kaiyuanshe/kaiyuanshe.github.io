@@ -79,13 +79,13 @@ const DepartmentDetailPage: FC<DepartmentDetailPageProps> = observer(
           ))}
           <MemberTitle title={t('OKR')} count={okrList.length} />
 
-          <ol className="list-unstyled d-flex gap-3">
+          <Row as="ol" className="list-unstyled g-3" xs={1} md={2}>
             {okrList.map(item => (
-              <li key={item.id as string}>
+              <Col as="li" key={item.id as string}>
                 <OKRCard {...item} />
-              </li>
+              </Col>
             ))}
-          </ol>
+          </Row>
           <MemberTitle title={t('monthly_report')} count={reportList.length} />
 
           <Row as="ol" className="list-unstyled g-3" xs={1} md={2}>

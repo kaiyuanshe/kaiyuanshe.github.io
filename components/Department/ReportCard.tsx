@@ -11,13 +11,25 @@ export const ReportCard: FC<Report> = observer(
       <Card.Header as="h3">{meeting?.toString()}</Card.Header>
       <Card.Body as="dl" className="mb-0">
         <Card.Title as="dt">{t('plan')}</Card.Title>
-        <Card.Text as="dd">{plan?.toString()}</Card.Text>
+        <Card.Text
+          as="dd"
+          dangerouslySetInnerHTML={{ __html: plan?.toString() || '' }}
+        />
         <Card.Title as="dt">{t('progress')}</Card.Title>
-        <Card.Text as="dd">{progress?.toString()}</Card.Text>
+        <Card.Text
+          as="dd"
+          dangerouslySetInnerHTML={{ __html: progress?.toString() || '' }}
+        />
         <Card.Title as="dt">{t('product')}</Card.Title>
-        <Card.Text as="dd">{product?.toString()}</Card.Text>
+        <Card.Text
+          as="dd"
+          dangerouslySetInnerHTML={{ __html: product?.toString() || '' }}
+        />
         <Card.Title as="dt">{t('problem')}</Card.Title>
-        <Card.Text as="dd">{problem?.toString()}</Card.Text>
+        <Card.Text
+          as="dd"
+          dangerouslySetInnerHTML={{ __html: problem?.toString() || '' }}
+        />
       </Card.Body>
     </Card>
   ),
