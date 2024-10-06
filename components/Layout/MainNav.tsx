@@ -2,7 +2,7 @@ import { computed } from 'mobx';
 import { observer } from 'mobx-react';
 import dynamic from 'next/dynamic';
 import { NextRouter, withRouter } from 'next/router';
-import { PureComponent } from 'react';
+import { Component } from 'react';
 import { Container, Image, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 
 import { API_Host } from '../../models/Base';
@@ -29,7 +29,7 @@ export interface MainNavProps {
 }
 
 @observer
-class MainNav extends PureComponent<MainNavProps> {
+class MainNav extends Component<MainNavProps> {
   @computed
   get expandable() {
     const language = i18n.currentLanguage;
@@ -78,7 +78,7 @@ class MainNav extends PureComponent<MainNavProps> {
             expandable ? 'flex-xxl-row' : ''
           } justify-content-around gap-3`}
         >
-          <SearchBar />
+          <SearchBar expanded={false} />
           <LanguageMenu />
           <UserMenu />
         </div>

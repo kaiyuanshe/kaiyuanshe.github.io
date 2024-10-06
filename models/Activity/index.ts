@@ -17,12 +17,9 @@ import {
 import { Filter, NewData, toggle } from 'mobx-restful';
 import { buildURLData, cache, countBy, Hour, isEmpty } from 'web-utility';
 
-import {
-  LarkFormData,
-  MAIN_BASE_ID,
-  TableFormViewItem,
-} from '../../pages/api/lark/core';
+import { LarkFormData, TableFormViewItem } from '../../pages/api/lark/core';
 import { larkClient } from '../Base';
+import { COMMUNITY_BASE_ID } from '../Community';
 import { AgendaModel } from './Agenda';
 import { BillModel } from './Bill';
 import { EvaluationModel } from './Evaluation';
@@ -40,7 +37,7 @@ export type Activity = Record<
   | 'endTime'
   | 'city'
   | 'location'
-  | 'organizers'
+  | 'host'
   | 'link'
   | 'image'
   | 'cardImage'
@@ -105,7 +102,7 @@ export class ActivityTableModel extends BiTable() {
 export class ActivityModel extends BiDataTable<Activity>() {
   client = larkClient;
 
-  constructor(appId = MAIN_BASE_ID, tableId = ACTIVITY_TABLE_ID) {
+  constructor(appId = COMMUNITY_BASE_ID, tableId = ACTIVITY_TABLE_ID) {
     super(appId, tableId);
   }
 
@@ -166,12 +163,12 @@ export class ActivityModel extends BiDataTable<Activity>() {
 
   normalize({
     id,
-    fields: { organizers, link, database, ...fields },
+    fields: { host, link, database, ...fields },
   }: TableRecord<Activity>) {
     return {
       ...fields,
       id: id!,
-      organizers: (organizers as TableCellRelation[])?.map(normalizeText),
+      host: (host as TableCellRelation[])?.map(normalizeText),
       link: (link as TableCellLink)?.link,
       database: (database as TableCellLink)?.link,
     };
@@ -188,19 +185,19 @@ export class ActivityModel extends BiDataTable<Activity>() {
 
   @toggle('downloading')
   async getOneByAlias(alias: string) {
-    const { body } = await this.client.get<LarkPageData<TableRecord<Activity>>>(
-      `${this.baseURI}?${buildURLData({
-        filter: makeSimpleFilter({ alias }, '='),
-      })}`,
-    );
+    const path = `${this.baseURI}?${buildURLData({
+      filter: makeSimpleFilter({ alias }, '='),
+    })}`;
+    const { body } =
+      await this.client.get<LarkPageData<TableRecord<Activity>>>(path);
     const [item] = body!.data!.items || [];
 
     if (!item)
-      throw new HTTPError(`Activity "${alias}" is not found`, {
-        status: 404,
-        statusText: 'Not found',
-        headers: {},
-      });
+      throw new HTTPError(
+        `Activity "${alias}" is not found`,
+        { method: 'GET', path },
+        { status: 404, statusText: 'Not found', headers: {} },
+      );
     return (this.currentOne = this.normalize(item));
   }
 

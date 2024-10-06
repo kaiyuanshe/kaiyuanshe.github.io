@@ -11,16 +11,14 @@ import {
   translator,
 } from 'next-ssr-middleware';
 import { QRCodeSVG } from 'qrcode.react';
-import { PureComponent } from 'react';
+import { Component } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 
 import { LarkImage } from '../../../../../../components/Base/LarkImage';
-import PageHead from '../../../../../../components/Layout/PageHead';
+import { PageHead } from '../../../../../../components/Layout/PageHead';
 import { API_Host } from '../../../../../../models/Base';
-import { i18n } from '../../../../../../models/Base/Translation';
+import { i18n, t } from '../../../../../../models/Base/Translation';
 import { Personnel, PersonnelModel } from '../../../../../../models/Personnel';
-
-const { t } = i18n;
 
 type PageParams = Record<'year' | 'recipient' | 'position', string>;
 
@@ -53,7 +51,7 @@ export const VoteForm = {
 };
 
 @observer
-export default class CandidatePoster extends PureComponent<CandidatePosterProps> {
+export default class CandidatePoster extends Component<CandidatePosterProps> {
   rootURL = `${API_Host}/election/${this.props.route.params!.year}`;
   sharePath = `/candidate/${this.props.recipient}/poster/${this.props.position}`;
 

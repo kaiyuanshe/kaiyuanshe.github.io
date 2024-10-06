@@ -5,9 +5,7 @@ import { FilePreview } from 'mobx-restful-table';
 import { FC } from 'react';
 import { Badge } from 'react-bootstrap';
 
-import { i18n } from '../../../models/Base/Translation';
-
-const { t } = i18n;
+import { t } from '../../../models/Base/Translation';
 
 export const FileList: FC<{ data: TableCellAttachment[] }> = observer(
   ({ data }) => (

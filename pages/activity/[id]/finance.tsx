@@ -9,14 +9,14 @@ import {
   router,
   translator,
 } from 'next-ssr-middleware';
-import { PureComponent } from 'react';
+import { Component } from 'react';
 import { Badge, Breadcrumb, Container } from 'react-bootstrap';
 import { formatDate } from 'web-utility';
 
-import PageHead from '../../../components/Layout/PageHead';
+import { PageHead } from '../../../components/Layout/PageHead';
 import { ActivityModel } from '../../../models/Activity';
 import { Bill, BillModel } from '../../../models/Activity/Bill';
-import { i18n } from '../../../models/Base/Translation';
+import { i18n, t } from '../../../models/Base/Translation';
 
 type BillDetailPageProps = RouteProps<{ id: string }>;
 
@@ -26,10 +26,8 @@ export const getServerSideProps = compose<{ id: string }, BillDetailPageProps>(
   translator(i18n),
 );
 
-const { t } = i18n;
-
 @observer
-export default class BillDetailPage extends PureComponent<BillDetailPageProps> {
+export default class BillDetailPage extends Component<BillDetailPageProps> {
   @observable
   accessor activityStore: ActivityModel | undefined;
 

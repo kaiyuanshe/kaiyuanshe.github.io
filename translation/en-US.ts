@@ -21,6 +21,7 @@ export default {
   our_projects: 'Our Projects',
   activity_map: 'Activity Map',
   previous_activities: 'Previous Activities',
+  activity_statistics: 'Activity Statistics',
 
   // Main Navigator
   organization_structure: 'Organization Structure',
@@ -37,7 +38,6 @@ export default {
   our_annual_report: 'Our Annual Report',
   china_open_source_annual_report: 'China Open Source Annual Report',
   kaiyuanshe_annual_report: 'KAIYUANSHE Annual Report',
-  china_open_source_landscape: 'China Open Source Landscape',
   open_source_projects: 'Open Source Projects',
   community_list: 'KAIYUANSHE City Community',
   china_open_source_pioneer: 'China Open Source Pioneers',
@@ -52,16 +52,30 @@ export default {
   cultural_and_creative_shop: 'Cultural and Creative Shop',
   meeting_calendar: 'Meeting Calendar',
 
+  // User pages
+  Open_Source_Passport: 'Open Source Passport',
+  user_Open_Source_Passport: ({ user }: { user: string }) =>
+    `${user}'s Open Source Passport`,
+  profile: 'Profile',
+  activity_footprint: 'Activity Footprint',
+  exit: 'Exit',
+
+  // China Open Source Map
   no_more: 'no more',
   load_more: 'load more...',
   organization_member: 'Organization member',
   board_of_directors: 'Board of Directors',
   become_volunteer: 'become a volunteer',
-  china_open_source_map: 'China Open Source Map',
-  panorama: 'Landscape',
+  China_Open_Source_Map: 'China Open Source Map',
+  landscape: 'Landscape',
   join_the_open_source_map: '+ join China open source map',
   map: 'map',
   chart: 'chart',
+  confirm_community_type_filter: ({ type }: { type: string }) =>
+    `confirm to filter Open Source organizations of type "${type}"?`,
+  confirm_community_tag_filter: ({ tag }: { tag: string }) =>
+    `confirm to filter Open Source organizations of tag "${tag}"?`,
+
   related_articles: 'related articles',
   no_data: 'No data',
   functions: 'functions',
@@ -79,15 +93,24 @@ export default {
   distribution_of_communities_by_type: 'Distribution of Communities by Type',
   China_open_source_community_landscape:
     "China's open source community landscape",
+  distribution_of_activity_topics_by_heat:
+    'Distribution of activity topics by heat',
+  distribution_of_mentor_organizations_by_topics:
+    'Distribution of mentor organizations by topics',
 
-  // Search Page
+  // China NGO Map
+  China_NGO_Map: 'China NGO Map',
+  join_NGO_map: '+ join NGO map',
+  China_NGO_Landscape: 'China NGO Landscape',
+
+  // Search page
   keyword: 'Keyword',
   tag: 'Tag',
   search_results: 'search results',
   article: 'article',
   member: 'member',
   department: 'department',
-  organization_short: 'organization',
+  organization: 'organization',
   activity: 'activity',
 
   // Organization page
@@ -103,6 +126,19 @@ export default {
   CFP_file_submission: 'CFP File Submission',
   reimbursement_application: 'Reimbursement Application',
   participant_registration: 'Participant Registration',
+  producer_organization: 'Organization',
+  producer: 'Producer',
+  volunteer: 'Volunteer',
+  punch_in: 'Punch-in',
+  punch_in_tips: 'Please ask staffs at punch-in points to scan this QR Code',
+  confirm: 'Confirm',
+  punch_in_successfully: 'Punch-in successfully!',
+  evaluation_form: 'Evaluation Form',
+  gift_wall: 'Gift Wall',
+  available_score: 'Available Score',
+  score_threshold: 'Score Threshold',
+  exchange: 'Exchange',
+  exchange_tips: 'Please ask staffs at the gift wall to scan this QR Code',
 
   member_x: 'member X',
   calendar: 'Calendar',
@@ -111,10 +147,10 @@ export default {
   attendee_ratings: 'Attendee Ratings',
   related_agenda: 'Related Agenda',
 
-  //invitation pages
+  // Invitation pages
   press_to_share: 'press image to share',
 
-  // Cooperation Page
+  // Cooperation page
   主办单位: 'Hosted by',
   承办单位: 'Organized by',
   协办单位: 'Co-organized by',
@@ -139,7 +175,7 @@ export default {
   媒体伙伴: 'Media Partner',
   社区伙伴: 'Community Partner',
 
-  //finance Page
+  // Finance page
   bill_id: 'bill id',
   bill_createAt: 'created at',
   bill_location: 'location',
@@ -153,7 +189,7 @@ export default {
   bill_agendas: 'agenda',
   financial_disclosure: 'Financial Disclosure',
 
-  //RestTable
+  // RestTable
   create: 'create',
   submit: 'submit',
   cancel: 'cancel',
@@ -175,11 +211,8 @@ export default {
   last_project_group: 'Last Project Group',
   next_term_plan: 'Next Term Plan',
   expert_committee: 'Expert Committee',
-  producer: 'Producer',
-  volunteer: 'Volunteer',
-  gift_wall: 'Gift Wall',
 
-  // community list & community detail page
+  // Community list & detail pages
   community_member: 'Community Members',
   add_member: 'Community Member Data is being Compiled, Please Stay Tuned',
   community: ' Community',
@@ -188,6 +221,9 @@ export default {
   KCC_community_establishment_registration:
     'KCC City Community Establishment Application',
 
+  // Article pages
+  copyright: 'Copyright',
+  original_link: 'Original Link',
   activity_articles_calendar: 'Activity Calendar',
   hosted_activity: 'Hosted Activity',
 
@@ -196,8 +232,16 @@ export default {
   home_page: 'Home page',
   more_projects: 'More projects',
 
-  // Deparment Detail Page
+  // Deparment detail page
   members: 'Members',
+  OKR: 'Objectives & Key Results',
+  key_results: 'Key Results',
+  quarterly: 'Quarterly',
+  plan: 'Plan',
+  monthly_report: 'Monthly Report',
+  progress: 'Progress',
+  product: 'Product',
+  problem: 'Problem',
 
   // Election pages
   general_election: 'General Election',

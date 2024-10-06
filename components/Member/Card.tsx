@@ -1,11 +1,9 @@
 import { observer } from 'mobx-react';
 import { FC } from 'react';
 
-import { i18n } from '../../models/Base/Translation';
+import { t } from '../../models/Base/Translation';
 import { LarkImage } from '../Base/LarkImage';
 import styles from './Card.module.less';
-
-const { t } = i18n;
 
 export type MemberCard = Partial<
   Record<'name' | 'nickname' | 'avatar', string>

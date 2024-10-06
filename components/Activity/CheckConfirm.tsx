@@ -1,13 +1,15 @@
 import { CheckEventInput } from '@kaiyuanshe/kys-service';
 import { SpinnerButton } from 'idea-react';
 import { computed, IReactionDisposer, reaction } from 'mobx';
+import { textJoin } from 'mobx-i18n';
 import { observer } from 'mobx-react';
 import { NewData } from 'mobx-restful';
 import dynamic from 'next/dynamic';
-import { PureComponent } from 'react';
+import { Component } from 'react';
 
 import { ActivityModel } from '../../models/Activity';
 import { CheckEventModel } from '../../models/Activity/CheckEvent';
+import { t } from '../../models/Base/Translation';
 import userStore from '../../models/Base/User';
 
 const SessionBox = dynamic(() => import('../Layout/SessionBox'), {
@@ -20,7 +22,7 @@ export interface CheckConfirmProps extends NewData<CheckEventInput> {
 }
 
 @observer
-export class CheckConfirm extends PureComponent<CheckConfirmProps> {
+export class CheckConfirm extends Component<CheckConfirmProps> {
   activityStore = new ActivityModel();
   checkEventStore = this.props.store;
 
@@ -66,7 +68,7 @@ export class CheckConfirm extends PureComponent<CheckConfirmProps> {
 
     await this.checkEventStore.updateOne(meta);
 
-    alert('打卡成功！');
+    alert(t('punch_in_successfully'));
   };
 
   render() {
@@ -82,7 +84,7 @@ export class CheckConfirm extends PureComponent<CheckConfirmProps> {
           disabled={!currentAuthorized}
           onClick={this.handleCheck}
         >
-          确认打卡
+          {textJoin(t('confirm'), t('punch_in'))}
         </SpinnerButton>
       </SessionBox>
     );

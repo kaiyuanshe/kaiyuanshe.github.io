@@ -1,20 +1,20 @@
 import { SVGCharts, Tooltip, TreeMapSeries } from 'echarts-jsx';
 import { Loading } from 'idea-react';
 import { observer } from 'mobx-react';
-import { PureComponent } from 'react';
+import { Component } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 
-import organizationStore from '../../models/Community/Organization';
 import { OrganizationCard } from './Card';
+import { OpenCollaborationMapProps } from './index';
 
 @observer
-export default class OrganizationLandscape extends PureComponent {
+export default class OpenCollaborationLandscape extends Component<OpenCollaborationMapProps> {
   componentDidMount() {
-    organizationStore.groupAllByTags();
+    this.props.store.groupAllByTags();
   }
 
   renderCard(name: string) {
-    const organization = organizationStore.allItems.find(
+    const organization = this.props.store.allItems.find(
       ({ name: n }) => n === name,
     );
     if (!organization) return <></>;
@@ -25,7 +25,7 @@ export default class OrganizationLandscape extends PureComponent {
   }
 
   render() {
-    const { downloading, tagMap } = organizationStore;
+    const { downloading, tagMap } = this.props.store;
 
     return (
       <>

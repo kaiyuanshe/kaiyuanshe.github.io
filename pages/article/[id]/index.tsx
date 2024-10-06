@@ -1,18 +1,23 @@
-import { InferGetServerSidePropsType } from 'next';
+import { observer } from 'mobx-react';
 import { compose, errorLogger, translator } from 'next-ssr-middleware';
-import { PureComponent } from 'react';
+import { Component } from 'react';
 import { Breadcrumb, Col, Container, Row } from 'react-bootstrap';
 
 import { ArticleListLayout } from '../../../components/Article/List';
 import { CommentBox } from '../../../components/Base/CommentBox';
 import { TagNav } from '../../../components/Base/TagNav';
-import PageHead from '../../../components/Layout/PageHead';
-import { i18n } from '../../../models/Base/Translation';
+import { PageHead } from '../../../components/Layout/PageHead';
+import { i18n, t } from '../../../models/Base/Translation';
 import { Article, ArticleModel } from '../../../models/Product/Article';
+
+interface ArticleDetailPageProps {
+  article: Article;
+  recommends: Article[];
+}
 
 export const getServerSideProps = compose<
   { id: string },
-  { article: Article; recommends: Article[] }
+  ArticleDetailPageProps
 >(errorLogger, translator(i18n), async ({ params }) => {
   const articleStore = new ArticleModel();
 
@@ -26,25 +31,23 @@ export const getServerSideProps = compose<
   };
 });
 
-const { t } = i18n;
-
-export default class ArticleDetailPage extends PureComponent<
-  InferGetServerSidePropsType<typeof getServerSideProps>
-> {
+@observer
+export default class ArticleDetailPage extends Component<ArticleDetailPageProps> {
   renderMeta() {
     const { license = 'CC-4.0', link, tags } = this.props.article;
 
     return (
       <>
-        <ul className="list-unstyled small text-muted d-flex flex-column gap-3">
-          <li>版权声明：{license as string}</li>
-          <li>
-            原文链接：
+        <dl className="small text-muted">
+          <dt>{t('copyright')}</dt>
+          <dd>{license as string}</dd>
+          <dt>{t('original_link')}</dt>
+          <dd>
             <a target="_blank" href={link + ''} rel="noreferrer">
               {link as string}
             </a>
-          </li>
-        </ul>
+          </dd>
+        </dl>
 
         <TagNav list={tags as string[]} />
       </>

@@ -1,43 +1,44 @@
 import { text2color } from 'idea-react';
 import { marked } from 'marked';
 import { observer } from 'mobx-react';
-import { InferGetServerSidePropsType } from 'next';
 import { compose, errorLogger, translator } from 'next-ssr-middleware';
-import { PureComponent } from 'react';
+import { Component } from 'react';
 import { Badge, Breadcrumb, Col, Container, Image, Row } from 'react-bootstrap';
 import { formatDate } from 'web-utility';
 
 import { CommentBox } from '../../components/Base/CommentBox';
 import { LarkImage } from '../../components/Base/LarkImage';
-import PageHead from '../../components/Layout/PageHead';
-import { i18n } from '../../models/Base/Translation';
+import { PageHead } from '../../components/Layout/PageHead';
+import { i18n, t } from '../../models/Base/Translation';
 import { Personnel, PersonnelModel } from '../../models/Personnel';
 import { Person, PersonModel } from '../../models/Personnel/Person';
 
-export const getServerSideProps = compose<
-  { name: string },
-  { person: Person; personnels: Personnel[] }
->(errorLogger, translator(i18n), async ({ params: { name } = {} }) => {
-  const [person] = await new PersonModel().getList({ name });
+interface PersonDetailPageProps {
+  person: Person;
+  personnels: Personnel[];
+}
 
-  if (!person) return { notFound: true, props: {} };
+export const getServerSideProps = compose<{ name: string }, PersonDetailPage>(
+  errorLogger,
+  translator(i18n),
+  async ({ params: { name } = {} }) => {
+    const [person] = await new PersonModel().getList({ name });
 
-  const personnels = await new PersonnelModel().getList({
-    passed: true,
-    recipient: name,
-  });
+    if (!person) return { notFound: true, props: {} };
 
-  return {
-    props: JSON.parse(JSON.stringify({ person, personnels })),
-  };
-});
+    const personnels = await new PersonnelModel().getList({
+      passed: true,
+      recipient: name,
+    });
 
-const { t } = i18n;
+    return {
+      props: JSON.parse(JSON.stringify({ person, personnels })),
+    };
+  },
+);
 
 @observer
-export default class PersonDetailPage extends PureComponent<
-  InferGetServerSidePropsType<typeof getServerSideProps>
-> {
+export default class PersonDetailPage extends Component<PersonDetailPageProps> {
   renderProfile = ({
     name,
     gender,

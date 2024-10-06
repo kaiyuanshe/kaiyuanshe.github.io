@@ -1,6 +1,5 @@
 import { observer } from 'mobx-react';
 import { ScrollList } from 'mobx-restful-table';
-import { InferGetServerSidePropsType } from 'next';
 import {
   compose,
   errorLogger,
@@ -12,8 +11,8 @@ import { FC } from 'react';
 import { Container } from 'react-bootstrap';
 
 import { ArticleListLayout } from '../../components/Article/List';
-import PageHead from '../../components/Layout/PageHead';
-import { i18n } from '../../models/Base/Translation';
+import { PageHead } from '../../components/Layout/PageHead';
+import { i18n, t } from '../../models/Base/Translation';
 import articleStore, {
   Article,
   ArticleModel,
@@ -34,28 +33,25 @@ export const getServerSideProps = compose<{}, ArticleListPageProps>(
   },
 );
 
-const { t } = i18n;
+const ArticleListPage: FC<ArticleListPageProps> = observer(
+  ({ route: { query }, list }) => {
+    const title = [query.type, t('our_knowledge_base')].filter(Boolean);
 
-const ArticleListPage: FC<
-  InferGetServerSidePropsType<typeof getServerSideProps>
-> = observer(({ route: { query }, list }) => {
-  const title = [query.type, t('our_knowledge_base')].filter(Boolean);
+    return (
+      <Container className="py-5">
+        <PageHead title={title.join(' - ')} />
 
-  return (
-    <Container className="py-5">
-      <PageHead title={title.join(' - ')} />
+        <h1 className="mb-5 text-center">{[...title].reverse().join(' - ')}</h1>
 
-      <h1 className="mb-5 text-center">{[...title].reverse().join(' - ')}</h1>
-
-      <ScrollList
-        translator={i18n}
-        store={articleStore}
-        filter={query}
-        renderList={allItems => <ArticleListLayout defaultData={allItems} />}
-        defaultData={list}
-      />
-    </Container>
-  );
-});
-
+        <ScrollList
+          translator={i18n}
+          store={articleStore}
+          filter={query}
+          renderList={allItems => <ArticleListLayout defaultData={allItems} />}
+          defaultData={list}
+        />
+      </Container>
+    );
+  },
+);
 export default ArticleListPage;

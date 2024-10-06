@@ -1,7 +1,7 @@
 import { SVGCharts, Tooltip, TreeSeries } from 'echarts-jsx';
 import { Loading } from 'idea-react';
 import { observer } from 'mobx-react';
-import { PureComponent } from 'react';
+import { Component } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 
 import {
@@ -11,7 +11,7 @@ import {
 import { GroupCard } from './Card';
 
 @observer
-export default class DepartmentTree extends PureComponent {
+export default class DepartmentTree extends Component {
   store = new DepartmentModel();
 
   componentDidMount() {

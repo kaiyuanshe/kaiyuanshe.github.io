@@ -1,43 +1,48 @@
 import { Icon } from 'idea-react';
 import { TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
-import { InferGetServerSidePropsType } from 'next';
 import { cache, compose, errorLogger, translator } from 'next-ssr-middleware';
-import { Fragment, PureComponent } from 'react';
+import { Component, Fragment } from 'react';
 import { Carousel, Col, Container, Image, Row } from 'react-bootstrap';
 
 import { ActivityListLayout } from '../components/Activity/List';
 import { ArticleListLayout } from '../components/Article/List';
 import { LarkImage } from '../components/Base/LarkImage';
-import PageHead from '../components/Layout/PageHead';
+import { PageHead } from '../components/Layout/PageHead';
 import { CityStatisticMap } from '../components/Map/CityStatisticMap';
 import activityStore, { Activity, ActivityModel } from '../models/Activity';
-import { i18n } from '../models/Base/Translation';
+import { i18n, t } from '../models/Base/Translation';
 import { Department, DepartmentModel } from '../models/Personnel/Department';
 import { Article, ArticleModel } from '../models/Product/Article';
 import styles from '../styles/Home.module.less';
 import { slogan } from './api/home';
 import { DefaultImage } from './api/lark/file/[id]';
 
-export const getServerSideProps = compose<
-  {},
-  { articles: Article[]; activities: Activity[]; projects: Department[] }
->(cache(), errorLogger, translator(i18n), async () => {
-  const [articles, activities, projects] = await Promise.all([
-    new ArticleModel().getList({}, 1, 3),
-    new ActivityModel().getList({}, 1, 3),
-    new DepartmentModel().getAll({ superior: '项目委员会' }),
-  ]);
+interface HomePageProps {
+  articles: Article[];
+  activities: Activity[];
+  projects: Department[];
+}
 
-  return {
-    props: JSON.parse(JSON.stringify({ articles, activities, projects })),
-  };
-});
+export const getServerSideProps = compose<{}, HomePageProps>(
+  cache(),
+  errorLogger,
+  translator(i18n),
+  async () => {
+    const [articles, activities, projects] = await Promise.all([
+      new ArticleModel().getList({}, 1, 3),
+      new ActivityModel().getList({}, 1, 3),
+      new DepartmentModel().getAll({ superior: '项目委员会' }),
+    ]);
+
+    return {
+      props: JSON.parse(JSON.stringify({ articles, activities, projects })),
+    };
+  },
+);
 
 @observer
-export default class HomePage extends PureComponent<
-  InferGetServerSidePropsType<typeof getServerSideProps>
-> {
+export default class HomePage extends Component<HomePageProps> {
   renderProject = ({ id, name, logo = DefaultImage, link }: Department) => (
     <Col as="li" key={id + ''} className="position-relative">
       <LarkImage style={{ height: '8rem' }} alt={name as string} src={logo} />
@@ -75,8 +80,7 @@ export default class HomePage extends PureComponent<
   );
 
   render() {
-    const { articles, activities, projects } = this.props,
-      { t } = i18n;
+    const { articles, activities, projects } = this.props;
 
     return (
       <>

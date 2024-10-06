@@ -6,9 +6,7 @@ import { TimeData } from 'web-utility';
 
 import { Agenda } from '../../../models/Activity/Agenda';
 import { isServer } from '../../../models/Base';
-import { i18n } from '../../../models/Base/Translation';
-
-const { t } = i18n;
+import { t } from '../../../models/Base/Translation';
 
 export interface AgendaToolbarProps
   extends Omit<StackProps, 'id' | 'title'>,

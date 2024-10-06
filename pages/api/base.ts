@@ -17,7 +17,8 @@ export function safeAPI(handler: NextAPI): NextAPI {
         res.status(400);
         return res.send({ message: (error as Error).message });
       }
-      let { message, status, body } = error;
+      const { message, response } = error;
+      let { status, body } = response;
 
       res.status(status);
       res.statusMessage = message;

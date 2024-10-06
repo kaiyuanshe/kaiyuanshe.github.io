@@ -14,7 +14,7 @@ export interface ActivityCardProps extends Activity {
 export const ActivityCard: FC<ActivityCardProps> = ({
   className = '',
   id,
-  organizers,
+  host,
   name,
   startTime,
   city,
@@ -59,7 +59,7 @@ export const ActivityCard: FC<ActivityCardProps> = ({
       </Row>
       <Row as="footer" className="flex-fill small mt-1">
         <Col xs={8}>
-          {(organizers as string[])?.map(organizer => (
+          {(host as string[])?.map(organizer => (
             <Badge
               key={organizer}
               className="me-2 text-decoration-none"

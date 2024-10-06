@@ -15,7 +15,7 @@ import { MainRoutes } from '../components/data';
 import MainNav from '../components/Layout/MainNav';
 import { MDXLayout } from '../components/Layout/MDX';
 import { isServer } from '../models/Base';
-import { i18n } from '../models/Base/Translation';
+import { t } from '../models/Base/Translation';
 import { social } from './api/home';
 import { DefaultImage } from './api/lark/file/[id]';
 
@@ -24,14 +24,13 @@ configure({ enforceActions: 'never' });
 enableStaticRendering(isServer());
 
 globalThis.addEventListener?.('unhandledrejection', ({ reason }) => {
-  var { message, statusText, body } = reason as HTTPError;
+  var { message, response } = reason as HTTPError;
+  const { statusText, body } = response || {};
 
   message = body?.message || statusText || message;
 
   if (message) alert(message);
 });
-
-const { t } = i18n;
 
 const AppShell: FC<AppProps> = observer(({ Component, pageProps, router }) => (
   <>
@@ -64,15 +63,14 @@ window.__aitable.baseUrl = "https://aitable.ai";`}
 
     <footer className="border-top bg-light text-secondary py-5">
       <Container>
-        <Row className="align-items-center small text-center g-0">
-          <Col xs={0} md={0} lg={2}></Col>
-          <Col xs={12} md={8} lg={6}>
+        <Row className="align-items-center small text-center g-2">
+          <Col xs={12} sm={8}>
             <Row xs={1} md={2} className="align-items-center">
               <Col>沪 ICP 备 19006015 号</Col>
               <Col>公安备案 31011202006203 号</Col>
             </Row>
           </Col>
-          <Col xs={12} md={3} lg={3}>
+          <Col xs={12} sm={3}>
             {Object.entries(social).map(([name, value]) => (
               <a
                 key={name}
@@ -84,6 +82,16 @@ window.__aitable.baseUrl = "https://aitable.ai";`}
                 <Icon name={name} size={1.5} />
               </a>
             ))}
+          </Col>
+          <Col xs={12} sm={1} className="position-relative">
+            <a
+              className="stretched-link"
+              target="_blank"
+              href="https://monitor.kaiyuanshe.cn/status/service"
+              rel="noreferrer"
+            >
+              <Icon name="hdd-network" size={1.5} />
+            </a>
           </Col>
         </Row>
       </Container>

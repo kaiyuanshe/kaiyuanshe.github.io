@@ -3,25 +3,24 @@ import { observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { ScrollList } from 'mobx-restful-table';
 import dynamic from 'next/dynamic';
-import { PureComponent } from 'react';
+import { Component } from 'react';
 import { Badge, Button, Nav } from 'react-bootstrap';
 import { isEmpty } from 'web-utility';
 
-import { i18n } from '../../models/Base/Translation';
-import organizationStore, {
-  OrganizationModel,
-} from '../../models/Community/Organization';
+import { i18n, t } from '../../models/Base/Translation';
+import { OrganizationModel } from '../../models/Community/Organization';
 import { CityStatisticMap } from '../Map/CityStatisticMap';
 import { OrganizationCardProps } from './Card';
 import { OrganizationListLayout } from './List';
 
-const OrganizationCharts = dynamic(() => import('./Charts'), { ssr: false }),
-  { t } = i18n;
+const OrganizationCharts = dynamic(() => import('./Charts'), { ssr: false });
+
+export interface OpenCollaborationMapProps {
+  store: OrganizationModel;
+}
 
 @observer
-export class OpenSourceMap extends PureComponent {
-  listStore = new OrganizationModel();
-
+export class OpenCollaborationMap extends Component<OpenCollaborationMapProps> {
   @observable
   accessor tabKey: 'map' | 'chart' = 'map';
 
@@ -30,11 +29,11 @@ export class OpenSourceMap extends PureComponent {
     tags,
     city,
   }) => {
-    const { filter } = this.listStore;
+    const { filter } = this.props.store;
 
-    this.listStore.clear();
+    this.props.store.clear();
 
-    return this.listStore.getList(
+    return this.props.store.getList(
       type
         ? { ...filter, type }
         : tags
@@ -46,7 +45,7 @@ export class OpenSourceMap extends PureComponent {
   };
 
   renderFilter() {
-    const { filter, totalCount } = this.listStore;
+    const { filter, totalCount } = this.props.store;
 
     return (
       !isEmpty(filter) && (
@@ -80,8 +79,8 @@ export class OpenSourceMap extends PureComponent {
   }
 
   renderTab() {
-    const { tabKey } = this,
-      { statistic } = organizationStore;
+    const { props, tabKey } = this,
+      { statistic } = props.store;
 
     return (
       <div>
@@ -90,7 +89,7 @@ export class OpenSourceMap extends PureComponent {
           className="justify-content-center mb-3"
           activeKey={tabKey}
           onSelect={key =>
-            key && (this.tabKey = key as OpenSourceMap['tabKey'])
+            key && (this.tabKey = key as OpenCollaborationMap['tabKey'])
           }
         >
           <Nav.Item>
@@ -105,7 +104,7 @@ export class OpenSourceMap extends PureComponent {
           <OrganizationCharts {...statistic} />
         ) : (
           <CityStatisticMap
-            store={organizationStore}
+            store={props.store}
             onChange={city => this.switchFilter({ city })}
           />
         )}
@@ -122,7 +121,7 @@ export class OpenSourceMap extends PureComponent {
 
         <ScrollList
           translator={i18n}
-          store={this.listStore}
+          store={this.props.store}
           renderList={allItems => (
             <OrganizationListLayout
               defaultData={allItems}

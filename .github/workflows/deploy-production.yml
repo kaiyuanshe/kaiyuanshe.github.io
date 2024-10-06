@@ -11,6 +11,8 @@ env:
   ARTIFACT_PATH: artifact.tar
   BOX_NAME: kys-ows
   BOX_URL: kaiyuanshe/kys-ows
+  DOCKER_BUILD_SUMMARY: false
+  DOCKER_BUILD_RECORD_UPLOAD: false
 
 jobs:
   deploy_docker_image:
@@ -37,11 +39,11 @@ jobs:
           ${{ secrets.ENV_FILE }}
           VERCEL_URL=kaiyuanshe.cn
           EOF
-      - uses: docker/setup-qemu-action@v2
-      - uses: docker/setup-buildx-action@v2
+      - uses: docker/setup-qemu-action@v3
+      - uses: docker/setup-buildx-action@v3
 
       - name: Build Image
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v6
         with:
           context: .
           platforms: linux/amd64
@@ -54,13 +56,14 @@ jobs:
           mv ${{ env.ARTIFACT_PATH }} ./docker-compose.yml ./start.sh ./build
 
       - name: Transport Image
-        uses: garygrossgarten/github-action-scp@release
+        uses: appleboy/scp-action@v0.1.7
         with:
-          local: ./build
-          remote: /tmp/${{ env.BOX_NAME }}
+          source: ./build/*.*
+          target: /tmp/${{ env.BOX_NAME }}
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
           password: ${{ secrets.SSH_KEY }}
+          strip_components: 1
 
       - name: Run Image
         uses: garygrossgarten/github-action-ssh@release
@@ -69,8 +72,8 @@ jobs:
           username: ${{ secrets.USER }}
           password: ${{ secrets.SSH_KEY }}
           command: |
-            cd /tmp/${{ env.BOX_NAME }}
             mkdir -p ~/${{ env.BOX_NAME }}
+            cd /tmp/${{ env.BOX_NAME }}
             mv docker-compose.yml start.sh ~/${{ env.BOX_NAME }}
             cd ~/${{ env.BOX_NAME }}
             chmod +x start.sh

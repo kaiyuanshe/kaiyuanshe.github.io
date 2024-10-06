@@ -20,6 +20,7 @@ export default {
   our_projects: '我們的專案',
   activity_map: '活動地圖',
   previous_activities: '往屆活動',
+  activity_statistics: '活動數據統計',
 
   // Main Navigator
   organization_structure: '組織機構',
@@ -36,7 +37,6 @@ export default {
   our_annual_report: '年度報告',
   china_open_source_annual_report: '中國開源年度報告',
   kaiyuanshe_annual_report: '開源社年度報告',
-  china_open_source_landscape: '開源地圖',
   open_source_projects: '開源項目',
   our_partners: '合作夥伴',
   community_list: '開源社城市社區（KCC）',
@@ -51,16 +51,30 @@ export default {
   cultural_and_creative_shop: '文創商店',
   meeting_calendar: '會議日曆',
 
+  // User pages
+  Open_Source_Passport: '開源護照',
+  user_Open_Source_Passport: ({ user }: { user: string }) =>
+    `${user}的開源護照`,
+  profile: '個人資料',
+  activity_footprint: '活動足跡',
+  exit: '退出',
+
+  // China Open Source Map
   no_more: '沒有更多',
   load_more: '加載更多……',
   organization_member: '組織成員',
   board_of_directors: '理事會',
   become_volunteer: '成為志願者',
-  china_open_source_map: '中國開源地圖',
-  panorama: '全景圖',
+  China_Open_Source_Map: '中國開源地圖',
+  landscape: '全景圖',
   join_the_open_source_map: '+ 加入開源地圖',
   map: '地圖',
   chart: '圖表',
+  confirm_community_type_filter: ({ type }: { type: string }) =>
+    `確定篩選「${type}」類型的開源組織？`,
+  confirm_community_tag_filter: ({ tag }: { tag: string }) =>
+    `確定篩選「${tag}」領域的開源組織？`,
+
   related_articles: '相關文章',
   no_data: '暫無數據',
   functions: 'functions',
@@ -75,15 +89,22 @@ export default {
   distribution_of_communities_by_founding_year: '社區創始年表',
   distribution_of_communities_by_type: '社區類型分佈',
   China_open_source_community_landscape: '中國開源社區全景圖',
+  distribution_of_activity_topics_by_heat: '活動主題熱度排行',
+  distribution_of_mentor_organizations_by_topics: '導師組織議題排行',
 
-  // Search Page
+  // China NGO Map
+  China_NGO_Map: '中國公益地圖',
+  join_NGO_map: '+ 加入公益地圖',
+  China_NGO_Landscape: '中國公益組織全景圖',
+
+  // Search page
   keyword: '關鍵詞',
   tag: '標籤',
   search_results: '搜索結果',
   article: '文章',
   member: '成員',
   department: '部門',
-  organization_short: '組織',
+  organization: '組織',
   activity: '活動',
 
   // Organization page
@@ -99,6 +120,19 @@ export default {
   CFP_file_submission: '議題文檔提交',
   reimbursement_application: '報銷申請',
   participant_registration: '參會註冊',
+  producer_organization: '出品方',
+  producer: '出品人',
+  volunteer: '志願者',
+  punch_in: '打卡',
+  punch_in_tips: '請該打卡點工作人員掃碼',
+  confirm: '確認',
+  punch_in_successfully: '打卡成功！',
+  evaluation_form: '評價問卷',
+  gift_wall: '禮品墻',
+  available_score: '可用積分',
+  score_threshold: '積分門檻',
+  exchange: '兌換',
+  exchange_tips: '請禮品墻工作人員掃碼',
 
   member_x: '成員X',
   calendar: '日曆',
@@ -107,10 +141,10 @@ export default {
   attendee_ratings: '觀眾評分',
   related_agenda: '相關議程',
 
-  //invitation pages
+  // Invitation pages
   press_to_share: '長按圖片分享',
 
-  // Cooperation Page
+  // Cooperation page
   主办单位: '主辦單位',
   承办单位: '承辦單位',
   协办单位: '協辦單位',
@@ -135,7 +169,7 @@ export default {
   媒体伙伴: '媒體夥伴',
   社区伙伴: '社區夥伴',
 
-  //finance Page
+  // Finance page
   bill_id: '單號',
   bill_createAt: '支付日期',
   bill_location: '支付地點',
@@ -149,7 +183,7 @@ export default {
   bill_agendas: '申報議程',
   financial_disclosure: '財務公開',
 
-  //RestTable
+  // RestTable
   create: '新增',
   submit: '提交',
   cancel: '取消',
@@ -171,11 +205,8 @@ export default {
   last_project_group: '上屆任職專案組',
   next_term_plan: '下屆規劃',
   expert_committee: '專家委員會',
-  producer: '出品人',
-  volunteer: '志願者',
-  gift_wall: '禮品墻',
 
-  // community list & community detail page
+  // Community list & detail pages
   community_member: '社區成員',
   add_member: '數據整理中，敬請期待',
   community: '社區',
@@ -183,6 +214,9 @@ export default {
   KCC_activity_registration: 'KCC 活動信息登記',
   KCC_community_establishment_registration: 'KCC 社區創建申請',
 
+  // Article pages
+  copyright: '版權聲明',
+  original_link: '原文鏈接',
   activity_articles_calendar: '活動日曆',
   hosted_activity: '主辦活動',
 
@@ -191,8 +225,16 @@ export default {
   home_page: '專案首頁',
   more_projects: '更多專案',
 
-  // Deparment Detail Page
+  // Deparment detail page
   members: '成員',
+  OKR: '目標與關鍵結果',
+  key_results: '關鍵結果',
+  quarterly: '季度',
+  plan: '計劃',
+  monthly_report: '月度報告',
+  progress: '進度',
+  product: '產出',
+  problem: '疑難',
 
   // Election pages
   general_election: '換屆選舉',

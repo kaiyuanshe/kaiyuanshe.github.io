@@ -4,7 +4,7 @@ import { computed, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { ImagePreview } from 'mobx-restful-table';
 import { MarkerMeta, OpenReactMapProps } from 'open-react-map';
-import { PureComponent } from 'react';
+import { Component } from 'react';
 import { Button, ListGroup } from 'react-bootstrap';
 import { buildURLData } from 'web-utility';
 
@@ -22,7 +22,7 @@ export interface ListMapProps extends OpenReactMapProps {
 }
 
 @observer
-export default class ListMap extends PureComponent<ListMapProps> {
+export default class ListMap extends Component<ListMapProps> {
   @observable
   accessor drawerOpen = false;
 

@@ -8,13 +8,13 @@ import {
   router,
   translator,
 } from 'next-ssr-middleware';
-import { PureComponent } from 'react';
+import { Component } from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { Day, isEmpty } from 'web-utility';
 
 import { ElectorCard } from '../../../components/Election/ElectorCard';
-import PageHead from '../../../components/Layout/PageHead';
-import { i18n } from '../../../models/Base/Translation';
+import { PageHead } from '../../../components/Layout/PageHead';
+import { i18n, t } from '../../../models/Base/Translation';
 import userStore from '../../../models/Base/User';
 import {
   ElectionTarget,
@@ -47,19 +47,18 @@ export const getServerSideProps = compose<
   };
 });
 
-const { t } = i18n,
-  SectionOrder = [
-    '理事',
-    '正式成员',
-    '志愿者',
-    '开源之星',
-    'COSCon 之星',
-    '社区合作之星',
-    '中国开源先锋 33 人',
-  ];
+const SectionOrder = [
+  '理事',
+  '正式成员',
+  '志愿者',
+  '开源之星',
+  'COSCon 之星',
+  '社区合作之星',
+  '中国开源先锋 33 人',
+];
 
 @observer
-export default class ElectionYearPage extends PureComponent<ElectionYearPageProps> {
+export default class ElectionYearPage extends Component<ElectionYearPageProps> {
   get sections() {
     const { group } = this.props;
 

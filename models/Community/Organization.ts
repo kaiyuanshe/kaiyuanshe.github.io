@@ -10,8 +10,8 @@ import {
 import { NewData } from 'mobx-restful';
 import { cache, countBy, groupBy, Hour, isEmpty } from 'web-utility';
 
-import { MAIN_BASE_ID } from '../../pages/api/lark/core';
 import { larkClient } from '../Base';
+import { COMMUNITY_BASE_ID } from './index';
 
 export type Organization = Record<
   | 'id'
@@ -36,7 +36,9 @@ export type OrganizationStatistic = Record<
 >;
 
 export const ORGANIZATION_TABLE_ID =
-  process.env.NEXT_PUBLIC_ORGANIZATION_TABLE_ID!;
+    process.env.NEXT_PUBLIC_ORGANIZATION_TABLE_ID!,
+  NGO_BASE_ID = process.env.NEXT_PUBLIC_NGO_BASE_ID!,
+  NGO_TABLE_ID = process.env.NEXT_PUBLIC_NGO_TABLE_ID!;
 
 export const sortStatistic = (data: Record<string, number>, sortValue = true) =>
   Object.entries(data)
@@ -46,7 +48,7 @@ export const sortStatistic = (data: Record<string, number>, sortValue = true) =>
 export class OrganizationModel extends BiDataTable<Organization>() {
   client = larkClient;
 
-  constructor(appId = MAIN_BASE_ID, tableId = ORGANIZATION_TABLE_ID) {
+  constructor(appId = COMMUNITY_BASE_ID, tableId = ORGANIZATION_TABLE_ID) {
     super(appId, tableId);
   }
 
@@ -61,19 +63,23 @@ export class OrganizationModel extends BiDataTable<Organization>() {
 
   normalize({
     id,
-    fields: { link, codeLink, email, ...fields },
+    fields: { link, codeLink, ...fields },
   }: TableRecord<Organization>) {
     return {
       ...fields,
       id: id!,
       link: (link as TableCellLink)?.link,
       codeLink: (codeLink as TableCellLink)?.link,
-      email: (email as TableCellLink)?.link,
     };
   }
 
   makeFilter(filter: NewData<Organization>) {
-    return makeSimpleFilter({ ...filter, verified: '是' });
+    return [
+      'CurrentValue.[verified]=1',
+      !isEmpty(filter) && makeSimpleFilter(filter),
+    ]
+      .filter(Boolean)
+      .join('&&');
   }
 
   getStatistic = cache(async clean => {
@@ -104,7 +110,7 @@ export class OrganizationModel extends BiDataTable<Organization>() {
 export class SearchOrganizationModel extends OrganizationModel {
   makeFilter(filter: NewData<Organization>) {
     return [
-      'CurrentValue.[verified]="是"',
+      'CurrentValue.[verified]=1',
       !isEmpty(filter) && makeSimpleFilter(filter, 'contains', 'OR'),
     ]
       .filter(Boolean)

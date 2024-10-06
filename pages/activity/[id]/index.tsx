@@ -1,9 +1,8 @@
 import { TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
-import { InferGetServerSidePropsType } from 'next';
 import dynamic from 'next/dynamic';
 import { cache, compose, errorLogger, translator } from 'next-ssr-middleware';
-import { PureComponent } from 'react';
+import { Component } from 'react';
 import {
   Button,
   Col,
@@ -21,32 +20,34 @@ import {
   AgendaCard,
   DrawerNav,
 } from '../../../components/Activity';
+import { LarkImage } from '../../../components/Base/LarkImage';
 import { VerticalScrollableBox } from '../../../components/Base/VerticalScrollableBox';
-import PageHead from '../../../components/Layout/PageHead';
+import { PageHead } from '../../../components/Layout/PageHead';
 import type { ImageMarker } from '../../../components/Map/ListMap';
 import { Activity, ActivityModel } from '../../../models/Activity';
 import { AgendaModel } from '../../../models/Activity/Agenda';
 import { Forum } from '../../../models/Activity/Forum';
 import { Place } from '../../../models/Activity/Place';
 import { blobURLOf } from '../../../models/Base';
-import { i18n } from '../../../models/Base/Translation';
+import { i18n, t } from '../../../models/Base/Translation';
 import { coordinateOf, TableFormViewItem } from '../../api/lark/core';
 import styles from './index.module.less';
 
 const ListMap = dynamic(() => import('../../../components/Map/ListMap'), {
-    ssr: false,
-  }),
-  { t } = i18n;
+  ssr: false,
+});
+
+interface ActivityDetailPageProps {
+  activity: Activity;
+  currentMeta: ActivityModel['currentMeta'];
+  forums: Forum[];
+  agendaGroup: AgendaModel['group'];
+  places: Place[];
+}
 
 export const getServerSideProps = compose<
   { id: string },
-  {
-    activity: Activity;
-    currentMeta: ActivityModel['currentMeta'];
-    forums: Forum[];
-    agendaGroup: AgendaModel['group'];
-    places: Place[];
-  }
+  ActivityDetailPageProps
 >(cache(), errorLogger, translator(i18n), async ({ params }) => {
   const activityStore = new ActivityModel();
 
@@ -67,9 +68,7 @@ export const getServerSideProps = compose<
 });
 
 @observer
-export default class ActivityDetailPage extends PureComponent<
-  InferGetServerSidePropsType<typeof getServerSideProps>
-> {
+export default class ActivityDetailPage extends Component<ActivityDetailPageProps> {
   renderFormMenu(
     title: string,
     forms: TableFormViewItem[],
@@ -153,6 +152,49 @@ export default class ActivityDetailPage extends PureComponent<
     );
   }
 
+  renderForumOrganization(
+    name: TableCellValue,
+    logo: TableCellValue,
+    link: TableCellValue,
+    summary: TableCellValue,
+  ) {
+    return (
+      <Row
+        className="align-items-center position-relative"
+        style={{ maxWidth: '50%' }}
+      >
+        <Col xs={2}>{t('producer_organization')}</Col>
+        <Col xs={2} className="text-center">
+          <LarkImage
+            rounded
+            className="object-fit-contain"
+            loading="lazy"
+            src={logo}
+            alt={name as string}
+          />
+        </Col>
+        <Col xs={8}>
+          <h3 className="h6">
+            <a
+              className="text-decoration-none stretched-link"
+              target="_blank"
+              href={link as string}
+              rel="noreferrer"
+            >
+              {name as string}
+            </a>
+          </h3>
+          <p
+            className="text-muted overflow-hidden"
+            style={{ maxHeight: '6rem' }}
+          >
+            {summary as string}
+          </p>
+        </Col>
+      </Row>
+    );
+  }
+
   renderForumPeople(
     title: string,
     names: TableCellValue,
@@ -179,6 +221,10 @@ export default class ActivityDetailPage extends PureComponent<
   renderForum = ({
     name,
     summary,
+    organization,
+    organizationLogo,
+    organizationLink,
+    organizationSummary,
     volunteers,
     volunteerAvatars,
     producers,
@@ -191,31 +237,36 @@ export default class ActivityDetailPage extends PureComponent<
 
     return (
       <section key={name as string}>
-        <h2 className="mt-5 mb-3 text-center" id={name as string}>
+        <h2 className="my-5 mb-3 text-center" id={name as string}>
           {name as string}
         </h2>
-        {location && <h4 className="mb-5 text-center">{location as string}</h4>}
-        <Row>
+        {location && <h4 className="text-center">{location as string}</h4>}
+        <Row className="my-5">
           <Col xl={{ offset: 2, span: 8 }} as="p" className="text-muted">
             {summary as string}
           </Col>
         </Row>
-        <div className="d-flex justify-content-center">
-          <div className="d-flex flex-column flex-sm-row align-items-center">
-            {this.renderForumPeople(
-              t('producer'),
-              producers,
-              producerAvatars,
-              producerPositions,
-              producerOrganizations,
+        <div className="d-flex flex-wrap justify-content-around">
+          {organization &&
+            this.renderForumOrganization(
+              organization,
+              organizationLogo,
+              organizationLink,
+              organizationSummary,
             )}
-            {(volunteers as string[])?.[0] &&
-              this.renderForumPeople(
-                t('volunteer'),
-                volunteers,
-                volunteerAvatars,
-              )}
-          </div>
+          {this.renderForumPeople(
+            t('producer'),
+            producers,
+            producerAvatars,
+            producerPositions,
+            producerOrganizations,
+          )}
+          {(volunteers as string[])?.[0] &&
+            this.renderForumPeople(
+              t('volunteer'),
+              volunteers,
+              volunteerAvatars,
+            )}
         </div>
 
         <Row as="ol" className="list-unstyled g-4" xs={1} md={2}>
@@ -231,10 +282,10 @@ export default class ActivityDetailPage extends PureComponent<
 
   render() {
     const { activity, forums } = this.props;
+
     return (
       <>
         <PageHead title={activity.name + ''} />
-
         <header
           className={`d-flex flex-column align-items-center justify-content-around ${styles.header}`}
         >
@@ -284,6 +335,13 @@ export default class ActivityDetailPage extends PureComponent<
             href="/search?keywords=收官"
           >
             {t('previous_activities')}
+          </Button>
+          <Button
+            className="text-nowrap"
+            variant="success"
+            href={`/activity/${activity.id}/charts`}
+          >
+            {t('activity_statistics')}
           </Button>
         </Stack>
 

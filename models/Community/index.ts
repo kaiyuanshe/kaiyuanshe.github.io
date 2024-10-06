@@ -26,8 +26,9 @@ export type Community = Record<
   TableCellValue
 >;
 
-export const KCC_BASE_ID = process.env.NEXT_PUBLIC_KCC_BASE_ID!;
-export const COMMUNITY_TABLE_ID = process.env.NEXT_PUBLIC_COMMUNITY_TABLE_ID!;
+export const KCC_BASE_ID = process.env.NEXT_PUBLIC_KCC_BASE_ID!,
+  COMMUNITY_BASE_ID = process.env.NEXT_PUBLIC_COMMUNITY_BASE_ID!,
+  COMMUNITY_TABLE_ID = process.env.NEXT_PUBLIC_COMMUNITY_TABLE_ID!;
 
 export class CommunityModel extends BiDataTable<Community>() {
   client = larkClient;

@@ -1,5 +1,5 @@
 import { observable } from 'mobx';
-import { normalizeText, TableCellLink, TableCellText } from 'mobx-lark';
+import { normalizeText, TableCellLink, TableCellRelation } from 'mobx-lark';
 import { BaseModel, toggle } from 'mobx-restful';
 import { buildURLData, parseURLData, URLData } from 'web-utility';
 
@@ -51,13 +51,11 @@ export class SystemModel extends BaseModel {
     const { body } = await client.get<SearchResult>(
       `search?${buildURLData(query)}`,
     );
-    const activities = body!.activities?.map(
-      ({ link, organizers, ...activity }) => ({
-        ...activity,
-        link: (link as TableCellLink)?.link,
-        organizers: (organizers as TableCellText[])?.map(normalizeText),
-      }),
-    );
+    const activities = body!.activities?.map(({ link, host, ...activity }) => ({
+      ...activity,
+      link: (link as TableCellLink)?.link,
+      host: (host as TableCellRelation[])?.map(normalizeText),
+    }));
     return { ...body!, activities };
   }
 }

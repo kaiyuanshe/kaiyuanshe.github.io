@@ -3,13 +3,15 @@ import { withSentryConfig } from '@sentry/nextjs';
 import CopyPlugin from 'copy-webpack-plugin';
 import { readdirSync, statSync } from 'fs';
 import setPWA from 'next-pwa';
+// @ts-ignore
 import withLess from 'next-with-less';
 import RemarkFrontMatter from 'remark-frontmatter';
 import RemarkGfm from 'remark-gfm';
 import RemarkMdxFrontMatter from 'remark-mdx-frontmatter';
 import webpack from 'webpack';
 
-const { NODE_ENV, SENTRY_AUTH_TOKEN, SENTRY_ORG, SENTRY_PROJECT } = process.env;
+const { NODE_ENV, CI, SENTRY_AUTH_TOKEN, SENTRY_ORG, SENTRY_PROJECT } =
+  process.env;
 const isDev = NODE_ENV === 'development';
 
 const withMDX = NextMDX({
@@ -26,11 +28,12 @@ const withPWA = setPWA({
   disable: isDev,
 });
 
-/** @type {import('next').NextConfig} */
 const nextConfig = withPWA(
   withLess(
     withMDX({
+      output: CI ? 'standalone' : undefined,
       pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
+      transpilePackages: ['@sentry/browser'],
 
       webpack: config => {
         config.plugins.push(
@@ -57,7 +60,9 @@ const nextConfig = withPWA(
           );
         return config;
       },
-      rewrites: () => ({
+      rewrites: async () => ({
+        beforeFiles: [],
+        afterFiles: [],
         fallback: [
           {
             source: '/article/original/:path*',
@@ -82,18 +87,10 @@ const nextConfig = withPWA(
 
 export default isDev || !SENTRY_AUTH_TOKEN
   ? nextConfig
-  : withSentryConfig(
-      {
-        ...nextConfig,
-        sentry: {
-          transpileClientSDK: true,
-          autoInstrumentServerFunctions: false,
-        },
-      },
-      {
-        org: SENTRY_ORG,
-        project: SENTRY_PROJECT,
-        authToken: SENTRY_AUTH_TOKEN,
-        silent: true,
-      },
-    );
+  : withSentryConfig(nextConfig, {
+      autoInstrumentServerFunctions: false,
+      org: SENTRY_ORG,
+      project: SENTRY_PROJECT,
+      authToken: SENTRY_AUTH_TOKEN,
+      silent: true,
+    });

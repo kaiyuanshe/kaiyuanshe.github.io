@@ -10,11 +10,11 @@ import {
   TableCellValue,
   TableRecord,
 } from 'mobx-lark';
-import { Filter } from 'mobx-restful';
+import { Filter, persist, restore, toggle } from 'mobx-restful';
 import { groupBy, isEmpty } from 'web-utility';
 
 import { normalizeTextArray } from '../../pages/api/lark/core';
-import { larkClient } from '../Base';
+import { isServer, larkClient } from '../Base';
 
 export type Agenda = Record<
   | 'id'
@@ -31,6 +31,7 @@ export type Agenda = Record<
   | 'startTime'
   | 'endTime'
   | 'approver'
+  | 'status'
   | 'score'
   | 'location'
   | '负责人手机号',
@@ -44,6 +45,8 @@ interface AgendaFilter extends Filter<Agenda> {
 }
 
 export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
+  restored = !isServer() && restore(this, 'Agenda');
+
   constructor(
     public appId: string,
     public tableId: string,
@@ -57,7 +60,7 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
 
   currentRecommend?: AgendaModel;
 
-  requiredKeys = ['title', 'type', 'mentors', 'approver'] as const;
+  requiredKeys = ['title', 'type', 'mentors', 'approver', 'status'] as const;
 
   sort = { startTime: 'ASC' } as const;
 
@@ -69,19 +72,36 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
   @observable
   accessor currentAuthorized = false;
 
-  get authorization(): Record<string, boolean> | undefined {
-    const { activityAgendaAuthorization } = globalThis.localStorage || {};
+  async getStatistics() {
+    const statisticsData = await this.getGroup();
+    const keynoteSpeechCounts = Object.fromEntries(
+      Object.entries(statisticsData).map(([forum, { length }]) => [
+        forum,
+        length,
+      ]),
+    ) as Record<string, number>;
 
-    return (
-      activityAgendaAuthorization && JSON.parse(activityAgendaAuthorization)
-    );
+    const mentorOrganizationCounts = Object.values(statisticsData)
+      .flatMap(forum =>
+        forum.flatMap(session => session.mentorOrganizations as string[]),
+      )
+      .reduce(
+        (counts, organization) => {
+          counts[organization] = (counts[organization] || 0) + 1;
+          return counts;
+        },
+        {} as Record<string, number>,
+      );
+
+    return { keynoteSpeechCounts, mentorOrganizationCounts };
   }
 
-  set authorization(data: Record<string, boolean>) {
-    globalThis.localStorage?.setItem(
-      'activityAgendaAuthorization',
-      JSON.stringify(data),
-    );
+  @persist()
+  @observable
+  accessor authorization: Record<string, boolean> = {};
+
+  makeFilter(filter: AgendaFilter): string {
+    return makeSimpleFilter({ ...filter, status: 'approved' });
   }
 
   normalize({ id, fields }: TableRecord<Agenda>) {
@@ -131,7 +151,6 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
     this.recommendList = list.sort(({ forum: a }, { forum: b }) =>
       a === forum ? -1 : b === forum ? 1 : 0,
     );
-
     return this.currentOne;
   }
 
@@ -142,12 +161,15 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
     ));
   }
 
+  @toggle('downloading')
   async checkAuthorization(title: string, mobilePhone: string) {
+    await this.restored;
+
     mobilePhone = mobilePhone.replace(/^\+86-?/, '');
 
     const { authorization } = this;
 
-    if (authorization?.[title] != null)
+    if (authorization[title] != null)
       return (this.currentAuthorized = authorization[title]);
 
     const [matched] = await this.getList({ title, 负责人手机号: mobilePhone });

@@ -1,9 +1,10 @@
 import { Icon, text2color } from 'idea-react';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
-import { HTMLAttributes, PureComponent } from 'react';
+import { Component, HTMLAttributes } from 'react';
 import { Badge, Button, Card, CardProps, Image } from 'react-bootstrap';
 
+import { t } from '../../models/Base/Translation';
 import { Organization } from '../../models/Community/Organization';
 import { LarkImage } from '../Base/LarkImage';
 
@@ -17,7 +18,7 @@ export interface OrganizationCardProps
 }
 
 @observer
-export class OrganizationCard extends PureComponent<OrganizationCardProps> {
+export class OrganizationCard extends Component<OrganizationCardProps> {
   @observable
   accessor showQRC = false;
 
@@ -93,7 +94,7 @@ export class OrganizationCard extends PureComponent<OrganizationCardProps> {
               onClick={
                 onSwitch &&
                 (() =>
-                  confirm(`确定筛选「${type}」类型的开源组织？`) &&
+                  confirm(t('confirm_community_type_filter', { type })) &&
                   onSwitch({ type: type as string }))
               }
             >
@@ -110,7 +111,7 @@ export class OrganizationCard extends PureComponent<OrganizationCardProps> {
                 onClick={
                   onSwitch &&
                   (() =>
-                    confirm(`确定筛选「${tag}」领域的开源组织？`) &&
+                    confirm(t('confirm_community_tag_filter', { tag })) &&
                     onSwitch({ tags: [tag] }))
                 }
               >
