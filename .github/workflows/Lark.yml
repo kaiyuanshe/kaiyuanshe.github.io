@@ -1,0 +1,350 @@
+name: Lark notification
+
+# https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows
+on:
+  push:
+  issues:
+  pull_request:
+  discussion:
+  issue_comment:
+  discussion_comment:
+
+jobs:
+  send-Lark-message:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Issue body cleaning
+        id: issue_body
+        run: |
+          echo "${{ github.event.issue.body }}" | sed 's/"/\\"/g' > issue_body.txt
+          {
+            echo 'issue_body<<EOF'
+            cat issue_body.txt
+            echo 'EOF'
+          } >> $GITHUB_OUTPUT
+
+      - name: Issue opened
+        uses: foxundermoon/feishu-action@v2
+        if: github.event_name == 'issues' && (github.event.action == 'opened' || github.event.action == 'reopened')
+        with:
+          url: ${{ secrets.LARK_CHATBOT_HOOK_URL }}
+          msg_type: post
+          content: |
+            post:
+              zh_cn:
+                title: GitHub issue 打开：${{ github.event.issue.title }}
+                content:
+                  - - tag: text
+                      text: 链接：
+                    - tag: a
+                      text: ${{ github.event.issue.html_url }}
+                      href: ${{ github.event.issue.html_url }}
+                  - - tag: text
+                      text: 作者：
+                    - tag: a
+                      text: ${{ github.event.issue.user.login }}
+                      href: ${{ github.event.issue.user.html_url }}
+                  - - tag: text
+                      text: 指派：
+                    - tag: a
+                      text: ${{ github.event.issue.assignee.login }}
+                      href: ${{ github.event.issue.assignee.html_url }}
+                  - - tag: text
+                      text: "标签：${{ github.event.issue.labels }}"
+                  - - tag: text
+                      text: 里程碑：${{ github.event.issue.milestone.title }}
+                  - - tag: text
+                      text: 描述：
+                    - tag: text
+                      text: "${{ steps.issue_body.outputs.issue_body }}"
+
+      - name: Issue edited
+        uses: foxundermoon/feishu-action@v2
+        if: github.event_name == 'issues' && (github.event.action == 'edited' || github.event.action == 'transferred' || github.event.action == 'labeled' || github.event.action == 'unlabeled' || github.event.action == 'assigned' || github.event.action == 'unassigned')
+        with:
+          url: ${{ secrets.LARK_CHATBOT_HOOK_URL }}
+          msg_type: post
+          content: |
+            post:
+              zh_cn:
+                title: GitHub issue 编辑：${{ github.event.issue.title }}
+                content:
+                  - - tag: text
+                      text: 链接：
+                    - tag: a
+                      text: ${{ github.event.issue.html_url }}
+                      href: ${{ github.event.issue.html_url }}
+                  - - tag: text
+                      text: 作者：
+                    - tag: a
+                      text: ${{ github.event.issue.user.login }}
+                      href: ${{ github.event.issue.user.html_url }}
+                  - - tag: text
+                      text: 指派：
+                    - tag: a
+                      text: ${{ github.event.issue.assignee.login }}
+                      href: ${{ github.event.issue.assignee.html_url }}
+                  - - tag: text
+                      text: "标签：${{ github.event.issue.labels }}"
+                  - - tag: text
+                      text: 里程碑：${{ github.event.issue.milestone.title }}
+                  - - tag: text
+                      text: 描述：
+                    - tag: text
+                      text: "${{ steps.issue_body.outputs.issue_body }}"
+
+      - name: Issue closed
+        uses: foxundermoon/feishu-action@v2
+        if: github.event_name == 'issues' && github.event.action == 'closed'
+        with:
+          url: ${{ secrets.LARK_CHATBOT_HOOK_URL }}
+          msg_type: post
+          content: |
+            post:
+              zh_cn:
+                title: GitHub issue 关闭：${{ github.event.issue.title }}
+                content:
+                  - - tag: text
+                      text: 链接：
+                    - tag: a
+                      text: ${{ github.event.issue.html_url }}
+                      href: ${{ github.event.issue.html_url }}
+                  - - tag: text
+                      text: 作者：
+                    - tag: a
+                      text: ${{ github.event.issue.user.login }}
+                      href: ${{ github.event.issue.user.html_url }}
+                  - - tag: text
+                      text: 指派：
+                    - tag: a
+                      text: ${{ github.event.issue.assignee.login }}
+                      href: ${{ github.event.issue.assignee.html_url }}
+                  - - tag: text
+                      text: "标签：${{ github.event.issue.labels }}"
+                  - - tag: text
+                      text: 里程碑：${{ github.event.issue.milestone.title }}
+                  - - tag: text
+                      text: 描述：
+                    - tag: text
+                      text: "${{ steps.issue_body.outputs.issue_body }}"
+
+      - name: PR body cleaning
+        id: PR_body
+        run: |
+          echo "${{ github.event.pull_request.body }}" | sed 's/"/\\"/g' > PR_body.txt
+          {
+            echo 'PR_body<<EOF'
+            cat PR_body.txt
+            echo 'EOF'
+          } >> $GITHUB_OUTPUT
+
+      - name: PR opened
+        uses: foxundermoon/feishu-action@v2
+        if: github.event_name == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'reopened')
+        with:
+          url: ${{ secrets.LARK_CHATBOT_HOOK_URL }}
+          msg_type: post
+          content: |
+            post:
+              zh_cn:
+                title: GitHub PR 打开：${{ github.event.pull_request.title }}
+                content:
+                  - - tag: text
+                      text: 链接：
+                    - tag: a
+                      text: ${{ github.event.pull_request.html_url }}
+                      href: ${{ github.event.pull_request.html_url }}
+                  - - tag: text
+                      text: 作者：
+                    - tag: a
+                      text: ${{ github.event.pull_request.user.login }}
+                      href: ${{ github.event.pull_request.user.html_url }}
+                  - - tag: text
+                      text: 指派：
+                    - tag: a
+                      text: ${{ github.event.pull_request.assignee.login }}
+                      href: ${{ github.event.pull_request.assignee.html_url }}
+                  - - tag: text
+                      text: "标签：${{ github.event.pull_request.labels }}"
+                  - - tag: text
+                      text: 里程碑：${{ github.event.pull_request.milestone.title }}
+                  - - tag: text
+                      text: 描述：
+                    - tag: text
+                      text: "${{ steps.PR_body.outputs.PR_body }}"
+
+      - name: PR edited
+        uses: foxundermoon/feishu-action@v2
+        if: github.event_name == 'pull_request' && (github.event.action == 'edited' || github.event.action == 'labeled' || github.event.action == 'unlabeled' || github.event.action == 'assigned' || github.event.action == 'unassigned')
+        with:
+          url: ${{ secrets.LARK_CHATBOT_HOOK_URL }}
+          msg_type: post
+          content: |
+            post:
+              zh_cn:
+                title: GitHub PR 编辑：${{ github.event.pull_request.title }}
+                content:
+                  - - tag: text
+                      text: 链接：
+                    - tag: a
+                      text: ${{ github.event.pull_request.html_url }}
+                      href: ${{ github.event.pull_request.html_url }}
+                  - - tag: text
+                      text: 作者：
+                    - tag: a
+                      text: ${{ github.event.pull_request.user.login }}
+                      href: ${{ github.event.pull_request.user.html_url }}
+                  - - tag: text
+                      text: 指派：
+                    - tag: a
+                      text: ${{ github.event.pull_request.assignee.login }}
+                      href: ${{ github.event.pull_request.assignee.html_url }}
+                  - - tag: text
+                      text: "标签：${{ github.event.pull_request.labels }}"
+                  - - tag: text
+                      text: 里程碑：${{ github.event.pull_request.milestone.title }}
+                  - - tag: text
+                      text: 描述：
+                    - tag: text
+                      text: "${{ steps.PR_body.outputs.PR_body }}"
+
+      - name: PR closed
+        uses: foxundermoon/feishu-action@v2
+        if: github.event_name == 'pull_request' && github.event.action == 'closed'
+        with:
+          url: ${{ secrets.LARK_CHATBOT_HOOK_URL }}
+          msg_type: post
+          content: |
+            post:
+              zh_cn:
+                title: GitHub PR 关闭：${{ github.event.pull_request.title }}
+                content:
+                  - - tag: text
+                      text: 链接：
+                    - tag: a
+                      text: ${{ github.event.pull_request.html_url }}
+                      href: ${{ github.event.pull_request.html_url }}
+                  - - tag: text
+                      text: 作者：
+                    - tag: a
+                      text: ${{ github.event.pull_request.user.login }}
+                      href: ${{ github.event.pull_request.user.html_url }}
+                  - - tag: text
+                      text: 指派：
+                    - tag: a
+                      text: ${{ github.event.pull_request.assignee.login }}
+                      href: ${{ github.event.pull_request.assignee.html_url }}
+                  - - tag: text
+                      text: "标签：${{ github.event.pull_request.labels }}"
+                  - - tag: text
+                      text: 里程碑：${{ github.event.pull_request.milestone.title }}
+                  - - tag: text
+                      text: 描述：
+                    - tag: text
+                      text: "${{ steps.PR_body.outputs.PR_body }}"
+
+      - name: Discussion body cleaning
+        id: discussion_body
+        run: |
+          echo "${{ github.event.discussion.body }}" | sed 's/"/\\"/g' > discussion_body.txt
+          {
+            echo 'discussion_body<<EOF'
+            cat discussion_body.txt
+            echo 'EOF'
+          } >> $GITHUB_OUTPUT
+
+      - name: Discussion created
+        uses: foxundermoon/feishu-action@v2
+        if: github.event_name == 'discussion' && github.event.action == 'created'
+        with:
+          url: ${{ secrets.LARK_CHATBOT_HOOK_URL }}
+          msg_type: post
+          content: |
+            post:
+              zh_cn:
+                title: GitHub 帖子发布：${{ github.event.discussion.title }}
+                content:
+                  - - tag: text
+                      text: 链接：
+                    - tag: a
+                      text: ${{ github.event.discussion.html_url }}
+                      href: ${{ github.event.discussion.html_url }}
+                  - - tag: text
+                      text: 作者：
+                    - tag: a
+                      text: ${{ github.event.discussion.user.login }}
+                      href: ${{ github.event.discussion.user.html_url }}
+                  - - tag: text
+                      text: "分类：${{ github.event.discussion.category }}"
+                  - - tag: text
+                      text: "标签：${{ github.event.discussion.labels }}"
+                  - - tag: text
+                      text: 描述：
+                    - tag: text
+                      text: "${{ steps.discussion_body.outputs.discussion_body }}"
+
+      - name: Discussion edited
+        uses: foxundermoon/feishu-action@v2
+        if: github.event_name == 'discussion' && (github.event.action == 'edited' || github.event.action == 'transferred' || github.event.action == 'category_changed' || github.event.action == 'labeled' || github.event.action == 'unlabeled')
+        with:
+          url: ${{ secrets.LARK_CHATBOT_HOOK_URL }}
+          msg_type: post
+          content: |
+            post:
+              zh_cn:
+                title: GitHub 帖子修改：${{ github.event.discussion.title }}
+                content:
+                  - - tag: text
+                      text: 链接：
+                    - tag: a
+                      text: ${{ github.event.discussion.html_url }}
+                      href: ${{ github.event.discussion.html_url }}
+                  - - tag: text
+                      text: 作者：
+                    - tag: a
+                      text: ${{ github.event.discussion.user.login }}
+                      href: ${{ github.event.discussion.user.html_url }}
+                  - - tag: text
+                      text: "分类：${{ github.event.discussion.category }}"
+                  - - tag: text
+                      text: "标签：${{ github.event.discussion.labels }}"
+                  - - tag: text
+                      text: 描述：
+                    - tag: text
+                      text: "${{ steps.discussion_body.outputs.discussion_body }}"
+
+      - name: Comment body cleaning
+        id: comment_body
+        run: |
+          echo "${{ github.event.comment.body }}" | sed 's/"/\\"/g' > comment_body.txt
+          {
+            echo 'comment_body<<EOF'
+            cat comment_body.txt
+            echo 'EOF'
+          } >> $GITHUB_OUTPUT
+
+      - name: Issue/Discussion commented
+        uses: foxundermoon/feishu-action@v2
+        if: (github.event_name == 'issue_comment' || github.event_name == 'discussion_comment') && (github.event.action == 'created' || github.event.action == 'edited')
+        with:
+          url: ${{ secrets.LARK_CHATBOT_HOOK_URL }}
+          msg_type: post
+          content: |
+            post:
+              zh_cn:
+                title: GitHub 帖子评论：${{ github.event.issue.title }}
+                content:
+                  - - tag: text
+                      text: 链接：
+                    - tag: a
+                      text: ${{ github.event.comment.html_url }}
+                      href: ${{ github.event.comment.html_url }}
+                  - - tag: text
+                      text: 作者：
+                    - tag: a
+                      text: ${{ github.event.comment.user.login }}
+                      href: ${{ github.event.comment.user.html_url }}
+                  - - tag: text
+                      text: 描述：
+                    - tag: text
+                      text: "${{ steps.comment_body.outputs.comment_body }}"
