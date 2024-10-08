@@ -160,11 +160,13 @@ export default class ActivityDetailPage extends Component<ActivityDetailPageProp
   ) {
     return (
       <Row
-        className="align-items-center position-relative"
+        className="align-items-center g-3 position-relative"
         style={{ maxWidth: '50%' }}
       >
-        <Col xs={2}>{t('producer_organization')}</Col>
-        <Col xs={2} className="text-center">
+        <Col xs={12} md={2}>
+          {t('producer_organization')}
+        </Col>
+        <Col xs={12} md={2} className="text-center">
           <LarkImage
             rounded
             className="object-fit-contain"
@@ -173,7 +175,7 @@ export default class ActivityDetailPage extends Component<ActivityDetailPageProp
             alt={name as string}
           />
         </Col>
-        <Col xs={8}>
+        <Col xs={12} md={8}>
           <h3 className="h6">
             <a
               className="text-decoration-none stretched-link"
