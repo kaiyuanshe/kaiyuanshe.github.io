@@ -16,7 +16,7 @@
     "array-unique-proposal": "^0.3.4",
     "classnames": "^2.5.1",
     "copy-webpack-plugin": "^12.0.2",
-    "echarts-jsx": "^0.5.4",
+    "echarts-jsx": "^1.2.1",
     "file-type": "^19.5.0",
     "idea-react": "^2.0.0-rc.2",
     "koajax": "^3.0.2",
