@@ -1,30 +1,55 @@
+import { Loading, MonthCalendar } from 'idea-react';
 import { observer } from 'mobx-react';
 import { compose, translator } from 'next-ssr-middleware';
-import { FC } from 'react';
+import { Component } from 'react';
 import { Breadcrumb, Container } from 'react-bootstrap';
+import { formatDate } from 'web-utility';
 
 import { PageHead } from '../../components/Layout/PageHead';
 import { i18n, t } from '../../models/Base/Translation';
+import { MeetingModel } from '../../models/Governance/Meeting';
 
 export const getServerSideProps = compose(translator(i18n));
 
-const PublicMeetingPage: FC = observer(() => (
-  <Container className="py-5 text-center">
-    <PageHead title={t('meeting_calendar')} />
+@observer
+export default class PublicMeetingPage extends Component {
+  store = new MeetingModel();
 
-    <Breadcrumb>
-      <Breadcrumb.Item href="/">{t('KaiYuanShe')}</Breadcrumb.Item>
-      <Breadcrumb.Item active>{t('meeting_calendar')}</Breadcrumb.Item>
-    </Breadcrumb>
+  componentDidMount() {
+    this.loadData();
+  }
 
-    <h1 className="pb-4">{t('meeting_calendar')}</h1>
+  loadData = (date?: Date) => {
+    this.store.clear();
+    this.store.getAll({ title: formatDate(date, 'YYYY-MM') });
+  };
 
-    <iframe
-      className="w-100 vh-100"
-      src="https://kaiyuanshe.feishu.cn/share/base/view/shrcnKA7ds62H6ZwftMSqK026Id"
-      allow="fullscreen"
-    />
-  </Container>
-));
+  render() {
+    const { downloading, allItems } = this.store;
 
-export default PublicMeetingPage;
+    return (
+      <Container className="py-5">
+        <PageHead title={t('meeting_calendar')} />
+
+        <Breadcrumb>
+          <Breadcrumb.Item href="/">{t('KaiYuanShe')}</Breadcrumb.Item>
+          <Breadcrumb.Item active>{t('meeting_calendar')}</Breadcrumb.Item>
+        </Breadcrumb>
+
+        <h1 className="pb-4">{t('meeting_calendar')}</h1>
+
+        {downloading > 0 && <Loading />}
+
+        <MonthCalendar
+          className="text-center"
+          value={allItems.map(({ title, startedAt, minutesURL }) => ({
+            date: new Date(startedAt as number),
+            content: title + '',
+            link: minutesURL + '',
+          }))}
+          onChange={this.loadData}
+        />
+      </Container>
+    );
+  }
+}
