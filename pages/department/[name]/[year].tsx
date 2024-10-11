@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react';
 import { cache, compose, errorLogger, translator } from 'next-ssr-middleware';
 import { FC } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Button, Col, Container, Row } from 'react-bootstrap';
 
 import { CommentBox } from '../../../components/Base/CommentBox';
 import { ZodiacBar } from '../../../components/Base/ZodiacBar';
@@ -59,11 +59,29 @@ export const getServerSideProps = compose<
 
 const DepartmentDetailPage: FC<DepartmentDetailPageProps> = observer(
   ({ department, group, okrList, reportList }) => (
-    <Container className="py-5">
+    <Container
+      className="py-5"
+      style={{ filter: `grayscale(${department.active ? 0 : 1})` }}
+    >
       <PageHead title={department.name as string} />
       <Row>
-        <Col xs={12} sm={4}>
-          <GroupCard className="mb-4" {...department} />
+        <Col xs={12} sm={4} className="d-flex flex-column gap-4">
+          <GroupCard {...department} />
+
+          <Button
+            size="lg"
+            target="_blank"
+            href={`https://kaiyuanshe.feishu.cn/share/base/form/shrcnlDoJhBTHalhmiZJr8rax0g?${new URLSearchParams(
+              {
+                prefill_申请类型: '任命',
+                prefill_申请职位: '志愿者',
+                prefill_意向部门: department.name as string,
+              },
+            )}`}
+            disabled={!department.active}
+          >
+            {t('become_volunteer')}
+          </Button>
 
           <ZodiacBar
             startYear={2014}

@@ -232,7 +232,8 @@ export default {
   home_page: 'Home page',
   more_projects: 'More projects',
 
-  // Deparment detail page
+  // Deparment pages
+  show_active_departments: 'show active departments',
   members: 'Members',
   OKR: 'Objectives & Key Results',
   key_results: 'Key Results',

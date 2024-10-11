@@ -225,7 +225,8 @@ export default {
   home_page: '專案首頁',
   more_projects: '更多專案',
 
-  // Deparment detail page
+  // Deparment pages
+  show_active_departments: '顯示活躍部門',
   members: '成員',
   OKR: '目標與關鍵結果',
   key_results: '關鍵結果',

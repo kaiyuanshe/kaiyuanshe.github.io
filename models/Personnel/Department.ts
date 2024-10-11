@@ -1,4 +1,4 @@
-import { computed } from 'mobx';
+import { computed, observable } from 'mobx';
 import {
   BiDataQueryOptions,
   BiDataTable,
@@ -6,6 +6,7 @@ import {
   normalizeText,
   TableCellLink,
   TableCellRelation,
+  TableCellText,
   TableCellValue,
   TableRecord,
 } from 'mobx-lark';
@@ -28,7 +29,8 @@ export type Department = Record<
   | 'email'
   | 'link'
   | 'codeLink'
-  | 'logo',
+  | 'logo'
+  | 'active',
   TableCellValue
 >;
 
@@ -48,8 +50,12 @@ export class DepartmentModel extends BiDataTable<Department>() {
 
   queryOptions: BiDataQueryOptions = { text_field_as_array: false };
 
+  @observable
+  accessor activeShown = true;
+
   @computed
   get tree() {
+    const { activeShown } = this;
     var rootName = '';
 
     const tempList = this.allItems.map(({ name, ...meta }) => [
@@ -62,18 +68,18 @@ export class DepartmentModel extends BiDataTable<Department>() {
       DepartmentNode
     >;
 
-    for (const [name, node] of tempList) {
-      const superChildrenLength = tempMap[node.superior]?.children.push(node);
+    for (const [name, node] of tempList)
+      if (!name.endsWith('组') || (activeShown ? node.active : !node.active)) {
+        const superChildrenLength = tempMap[node.superior]?.children.push(node);
 
-      if (superChildrenLength === undefined) rootName = name;
-    }
-
+        if (superChildrenLength === undefined) rootName = name;
+      }
     return tempMap[rootName] || {};
   }
 
   normalize({
     id,
-    fields: { superior, link, codeLink, ...fields },
+    fields: { superior, link, codeLink, active, ...fields },
   }: TableRecord<Department>): Department {
     return {
       ...fields,
@@ -81,8 +87,11 @@ export class DepartmentModel extends BiDataTable<Department>() {
       superior: (superior as TableCellRelation[])?.map(normalizeText)[0],
       link: (link as TableCellLink)?.link,
       codeLink: (codeLink as TableCellLink)?.link,
+      active: JSON.parse((active as TableCellText[])!.map(normalizeText) + ''),
     };
   }
+
+  toggleActive = () => (this.activeShown = !this.activeShown);
 }
 
 export class SearchDepartmentModel extends DepartmentModel {

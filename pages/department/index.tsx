@@ -2,7 +2,7 @@ import { observer } from 'mobx-react';
 import dynamic from 'next/dynamic';
 import { compose, translator } from 'next-ssr-middleware';
 import { FC } from 'react';
-import { Button, Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 
 import { PageHead } from '../../components/Layout/PageHead';
 import { i18n, t } from '../../models/Base/Translation';
@@ -18,17 +18,9 @@ const DepartmentPage: FC = observer(() => (
   <Container className="py-5 text-center">
     <PageHead title={t('organization_structure')} />
 
-    <h1>{t('organization_structure_chart')}</h1>
+    <h1 className="my-4">{t('organization_structure_chart')}</h1>
 
     <DepartmentTree />
-
-    <Button
-      size="lg"
-      target="_blank"
-      href="https://kaiyuanshe.feishu.cn/share/base/form/shrcnlDoJhBTHalhmiZJr8rax0g"
-    >
-      {t('become_volunteer')}
-    </Button>
   </Container>
 ));
 

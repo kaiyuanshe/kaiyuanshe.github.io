@@ -11,8 +11,8 @@
     "@giscus/react": "^3.0.0",
     "@mdx-js/loader": "^3.0.1",
     "@mdx-js/react": "^3.0.1",
-    "@next/mdx": "^14.2.14",
-    "@sentry/nextjs": "^8.33.1",
+    "@next/mdx": "^14.2.15",
+    "@sentry/nextjs": "^8.34.0",
     "array-unique-proposal": "^0.3.4",
     "classnames": "^2.5.1",
     "copy-webpack-plugin": "^12.0.2",
@@ -33,7 +33,7 @@
     "mobx-react-helper": "^0.3.1",
     "mobx-restful": "^1.0.1",
     "mobx-restful-table": "^2.0.0",
-    "next": "^14.2.14",
+    "next": "^14.2.15",
     "next-pwa": "^5.6.0",
     "next-ssr-middleware": "^0.8.8",
     "next-with-less": "^3.0.1",
@@ -64,13 +64,13 @@
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.0",
     "eslint": "^8.57.1",
-    "eslint-config-next": "^14.2.14",
+    "eslint-config-next": "^14.2.15",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "get-git-folder": "^0.1.2",
     "husky": "^9.1.6",
     "lint-staged": "^15.2.10",
     "prettier": "^3.3.3",
-    "typescript": "~5.6.2"
+    "typescript": "~5.6.3"
   },
   "resolutions": {
     "native-file-system-adapter": "npm:@tech_query/native-file-system-adapter@^3.0.1"

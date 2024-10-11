@@ -225,7 +225,8 @@ export default {
   home_page: '项目主页',
   more_projects: '更多项目',
 
-  // Deparment detail page
+  // Deparment pages
+  show_active_departments: '显示活跃部门',
   members: '成员',
   OKR: '目标与关键结果',
   key_results: '关键结果',
