@@ -30,7 +30,7 @@ export const ZodiacBar: FC<ZodiacBarProps> = ({
   endYear = new Date().getFullYear(),
   itemOf,
 }) => (
-  <ol className="list-inline d-flex flex-wrap gap-3">
+  <ol className="list-inline d-flex flex-wrap justify-content-center gap-3">
     {Array.from({ length: endYear - startYear + 1 }, (_, index) => {
       const year = endYear - index;
       const zodiac = ZodiacSigns[year % 12];
