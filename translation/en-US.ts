@@ -50,7 +50,6 @@ export default {
   xiaoyuan_chatbot: 'XiaoYuan ChatBot',
   about_us: 'About Us',
   cultural_and_creative_shop: 'Cultural and Creative Shop',
-  meeting_calendar: 'Meeting Calendar',
 
   // User pages
   Open_Source_Passport: 'Open Source Passport',
@@ -243,6 +242,12 @@ export default {
   progress: 'Progress',
   product: 'Product',
   problem: 'Problem',
+
+  // Governance pages
+  open_governance: 'Open Governance',
+  meeting_calendar: 'Meeting Calendar',
+  video_call: 'Video Call',
+  meeting_minutes: 'Meeting Minutes',
 
   // Election pages
   general_election: 'General Election',

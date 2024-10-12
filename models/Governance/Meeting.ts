@@ -8,8 +8,11 @@ import {
   TableRecord,
 } from 'mobx-lark';
 
+import { normalizeTextArray } from '../../pages/api/lark/core';
 import { larkClient } from '../Base';
 import { GOVERNANCE_BASE_ID } from './OKR';
+
+export type TableCellContact = Record<'id' | 'name' | 'avatar_url', string>;
 
 export type Meeting = Record<
   | 'id'
@@ -25,6 +28,7 @@ export type Meeting = Record<
   | 'summary'
   | 'videoCallURL'
   | 'minutesURL'
+  | 'issues'
   | 'proposals'
   | 'reports',
   TableCellValue
@@ -43,8 +47,10 @@ export class MeetingModel extends BiDataTable<Meeting>() {
     fields: {
       title,
       departments,
+      summary,
       videoCallURL,
       minutesURL,
+      issues,
       proposals,
       reports,
       ...fields
@@ -56,8 +62,10 @@ export class MeetingModel extends BiDataTable<Meeting>() {
       ...fields,
       title: (title as TableCellText[]).map(normalizeText),
       departments: (departments as TableCellRelation[])?.map(normalizeText),
+      summary: summary && normalizeTextArray(summary as TableCellText[]),
       videoCallURL: (videoCallURL as TableCellLink)?.link,
       minutesURL: (minutesURL as TableCellLink)?.link,
+      issues: (issues as TableCellRelation[])?.map(normalizeText),
       proposals: (proposals as TableCellRelation[])?.map(normalizeText),
       reports: (reports as TableCellRelation[])?.map(normalizeText),
     };
