@@ -5,9 +5,9 @@ import { Component } from 'react';
 import { Breadcrumb, Container } from 'react-bootstrap';
 import { formatDate } from 'web-utility';
 
-import { PageHead } from '../../components/Layout/PageHead';
-import { i18n, t } from '../../models/Base/Translation';
-import { MeetingModel } from '../../models/Governance/Meeting';
+import { PageHead } from '../../../components/Layout/PageHead';
+import { i18n, t } from '../../../models/Base/Translation';
+import { MeetingModel } from '../../../models/Governance/Meeting';
 
 export const getServerSideProps = compose(translator(i18n));
 
@@ -33,6 +33,7 @@ export default class PublicMeetingPage extends Component {
 
         <Breadcrumb>
           <Breadcrumb.Item href="/">{t('KaiYuanShe')}</Breadcrumb.Item>
+          <Breadcrumb.Item>{t('open_governance')}</Breadcrumb.Item>
           <Breadcrumb.Item active>{t('meeting_calendar')}</Breadcrumb.Item>
         </Breadcrumb>
 
@@ -42,10 +43,10 @@ export default class PublicMeetingPage extends Component {
 
         <MonthCalendar
           className="text-center"
-          value={allItems.map(({ title, startedAt, minutesURL }) => ({
+          value={allItems.map(({ id, title, startedAt }) => ({
             date: new Date(startedAt as number),
             content: title + '',
-            link: minutesURL + '',
+            link: `/governance/meeting/${id}`,
           }))}
           onChange={this.loadData}
         />

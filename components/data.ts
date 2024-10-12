@@ -57,6 +57,10 @@ export const MainRoutes = (): Link[] => [
     ],
   },
   {
+    title: t('open_governance'),
+    subs: [{ title: t('meeting_calendar'), path: '/governance/meeting' }],
+  },
+  {
     title: t('our_knowledge_base'),
     subs: [
       { title: t('coscon'), path: '/search?tag=COSCon' },
@@ -137,10 +141,6 @@ export const MainRoutes = (): Link[] => [
       {
         title: t('kys_forum'),
         path: 'https://github.com/orgs/kaiyuanshe/discussions',
-      },
-      {
-        title: t('meeting_calendar'),
-        path: '/meeting-calendar',
       },
     ],
   },

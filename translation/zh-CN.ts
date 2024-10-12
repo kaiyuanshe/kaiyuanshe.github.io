@@ -49,7 +49,6 @@ export default {
   xiaoyuan_chatbot: '小源问答机器人',
   about_us: '关于我们',
   cultural_and_creative_shop: '文创商店',
-  meeting_calendar: '会议日历',
 
   // User pages
   Open_Source_Passport: '开源护照',
@@ -236,6 +235,12 @@ export default {
   progress: '进度',
   product: '产出',
   problem: '疑难',
+
+  // Governance pages
+  open_governance: '开放治理',
+  meeting_calendar: '会议日历',
+  video_call: '视频通话',
+  meeting_minutes: '会议纪要',
 
   // Election pages
   general_election: '换届选举',
