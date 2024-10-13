@@ -1,10 +1,16 @@
 import { observable } from 'mobx';
-import { normalizeText, TableCellLink, TableCellRelation } from 'mobx-lark';
+import {
+  normalizeText,
+  TableCellLink,
+  TableCellRelation,
+  TableCellValue,
+} from 'mobx-lark';
 import { BaseModel, toggle } from 'mobx-restful';
-import { buildURLData, parseURLData, URLData } from 'web-utility';
+import { buildURLData, Constructor, parseURLData, URLData } from 'web-utility';
 
 import { SearchQuery, SearchResult } from '../../pages/api/search';
-import { client } from './index';
+import { SearchMeetingModel } from '../Governance/Meeting';
+import { client, SearchableModel } from './index';
 
 export type CityCoordinateMap = Record<string, [number, number]>;
 
@@ -45,6 +51,13 @@ export class SystemModel extends BaseModel {
     );
     return (this.cityCoordinate = body!);
   }
+
+  searchMap: Record<
+    string,
+    Constructor<SearchableModel<Record<string, TableCellValue>>>
+  > = {
+    meeting: SearchMeetingModel,
+  };
 
   @toggle('downloading')
   async search(query: SearchQuery) {

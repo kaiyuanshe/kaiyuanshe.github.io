@@ -9,7 +9,12 @@ import {
 } from 'mobx-lark';
 
 import { normalizeTextArray } from '../../pages/api/lark/core';
-import { larkClient } from '../Base';
+import {
+  getSearchList,
+  larkClient,
+  makeFilter,
+  SearchableModel,
+} from '../Base';
 import { GOVERNANCE_BASE_ID } from './OKR';
 
 export type TableCellContact = Record<'id' | 'name' | 'avatar_url', string>;
@@ -43,6 +48,8 @@ export class MeetingModel extends BiDataTable<Meeting>() {
     super(appId, tableId);
   }
 
+  sort = { startedAt: 'DESC' } as const;
+
   normalize({
     fields: {
       title,
@@ -70,4 +77,26 @@ export class MeetingModel extends BiDataTable<Meeting>() {
       reports: (reports as TableCellRelation[])?.map(normalizeText),
     };
   }
+}
+
+export class SearchMeetingModel
+  extends MeetingModel
+  implements SearchableModel<Meeting>
+{
+  searchKeys = [
+    'name',
+    'title',
+    'departments',
+    'location',
+    'participants',
+    'groups',
+    'summary',
+    'issues',
+    'proposals',
+    'reports',
+  ] as const;
+
+  makeFilter = makeFilter;
+
+  getSearchList = getSearchList;
 }

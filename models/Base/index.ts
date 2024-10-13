@@ -1,5 +1,7 @@
 import { HTTPClient } from 'koajax';
-import { TableCellValue } from 'mobx-lark';
+import { makeSimpleFilter, TableCellValue } from 'mobx-lark';
+import { DataObject, Filter, ListModel } from 'mobx-restful';
+import { isEmpty } from 'web-utility';
 
 export const isServer = () => typeof window === 'undefined';
 
@@ -50,3 +52,33 @@ export const githubClient = new HTTPClient({
     };
   return next();
 });
+
+export type LarkBase = Record<string, TableCellValue>;
+
+export interface SearchableModel<
+  D extends DataObject,
+  F extends Filter<D> = Filter<D>,
+> extends ListModel<D, F> {
+  searchKeys: readonly (keyof D)[];
+
+  getSearchList(
+    keywords: string,
+    pageIndex?: number,
+    pageSize?: number,
+  ): Promise<D[]>;
+}
+
+export const makeFilter = (filter: Filter<any>) =>
+  isEmpty(filter) ? '' : makeSimpleFilter(filter, 'contains', 'OR');
+
+export async function getSearchList(
+  this: SearchableModel<any>,
+  keywords: string,
+  pageIndex = this.pageIndex + 1,
+  pageSize = this.pageSize,
+) {
+  const wordList = keywords.split(/[\s,]+/);
+  const filterList = this.searchKeys.map(key => [key, wordList]);
+
+  return this.getList(Object.fromEntries(filterList), pageIndex, pageSize);
+}
