@@ -7,10 +7,10 @@ import {
   TableCellValue,
   TableRecord,
 } from 'mobx-lark';
-import { NewData } from 'mobx-restful';
+import { Filter, NewData } from 'mobx-restful';
 import { cache, countBy, groupBy, Hour, isEmpty } from 'web-utility';
 
-import { larkClient } from '../Base';
+import { larkClient, Search } from '../Base';
 import { COMMUNITY_BASE_ID } from './index';
 
 export type Organization = Record<
@@ -107,12 +107,19 @@ export class OrganizationModel extends BiDataTable<Organization>() {
   }
 }
 
-export class SearchOrganizationModel extends OrganizationModel {
-  makeFilter(filter: NewData<Organization>) {
-    return [
-      'CurrentValue.[verified]=1',
-      !isEmpty(filter) && makeSimpleFilter(filter, 'contains', 'OR'),
-    ]
+export class SearchOrganizationModel extends Search(OrganizationModel) {
+  searchKeys = [
+    'name',
+    'summary',
+    'city',
+    'email',
+    'link',
+    'codeLink',
+    'wechatName',
+  ] as const;
+
+  makeFilter(filter: Filter<Organization>) {
+    return ['CurrentValue.[verified]=1', super.makeFilter(filter)]
       .filter(Boolean)
       .join('&&');
   }

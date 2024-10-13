@@ -12,14 +12,14 @@ import {
   SearchDepartmentModel,
 } from '../../models/Personnel/Department';
 import { Person, SearchPersonModel } from '../../models/Personnel/Person';
-import { BaseArticle, SearchArticleModel } from '../../models/Product/Article';
+import { Article, SearchArticleModel } from '../../models/Product/Article';
 import { safeAPI } from './base';
 
 export type SearchQuery = Partial<Record<'keywords' | 'tag', string>>;
 
 export interface SearchResult {
   activities?: Activity[];
-  articles?: BaseArticle[];
+  articles?: Article[];
   people?: Person[];
   departments?: Department[];
   organizations?: Organization[];

@@ -11,9 +11,9 @@ import {
 import { Filter, NewData, toggle } from 'mobx-restful';
 import { buildURLData, isEmpty } from 'web-utility';
 
-import { blobClient, larkClient } from '../Base';
+import { blobClient, larkClient, Search } from '../Base';
 
-export type BaseArticle = Record<
+export type Article = Record<
   | 'id'
   | 'title'
   | 'author'
@@ -24,13 +24,10 @@ export type BaseArticle = Record<
   | 'image'
   | 'publishedAt'
   | 'link'
-  | 'alias',
+  | 'alias'
+  | 'content',
   TableCellValue
 >;
-
-export interface Article extends BaseArticle {
-  content?: string;
-}
 
 export const ARTICLE_BASE_ID = process.env.NEXT_PUBLIC_ARTICLE_BASE_ID!;
 export const ARTICLE_TABLE_ID = process.env.NEXT_PUBLIC_ARTICLE_TABLE_ID!;
@@ -48,12 +45,9 @@ export class ArticleModel extends BiDataTable<Article>() {
 
   queryOptions: BiDataQueryOptions = { text_field_as_array: false };
 
-  currentRecommend?: ArticleModel;
+  currentRecommend?: SearchArticleModel;
 
-  normalize({
-    id,
-    fields: { tags, link, ...fields },
-  }: TableRecord<Omit<Article, 'content'>>): Article {
+  normalize({ id, fields: { tags, link, ...fields } }: TableRecord<Article>) {
     return {
       ...fields,
       id,
@@ -68,7 +62,7 @@ export class ArticleModel extends BiDataTable<Article>() {
       filter: makeSimpleFilter({ alias }, '='),
     })}`;
     const { body } =
-      await this.client.get<LarkPageData<TableRecord<BaseArticle>>>(path);
+      await this.client.get<LarkPageData<TableRecord<Article>>>(path);
     const [rawItem] = body!.data!.items || [];
 
     if (!rawItem)
@@ -95,10 +89,8 @@ export class ArticleModel extends BiDataTable<Article>() {
   }
 }
 
-export class SearchArticleModel extends ArticleModel {
-  makeFilter(filter: NewData<Article>) {
-    return isEmpty(filter) ? '' : makeSimpleFilter(filter, 'contains', 'OR');
-  }
+export class SearchArticleModel extends Search(ArticleModel) {
+  searchKeys = ['title', 'author', 'license', 'summary'] as const;
 }
 
 export default new ArticleModel();

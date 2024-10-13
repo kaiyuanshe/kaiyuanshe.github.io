@@ -2,17 +2,14 @@ import { observable } from 'mobx';
 import {
   BiDataQueryOptions,
   BiDataTable,
-  makeSimpleFilter,
   normalizeText,
   TableCellLink,
   TableCellRelation,
   TableCellValue,
   TableRecord,
 } from 'mobx-lark';
-import { NewData } from 'mobx-restful';
-import { isEmpty } from 'web-utility';
 
-import { larkClient } from '../Base';
+import { larkClient, Search } from '../Base';
 
 export type Community = Record<
   | 'id'
@@ -60,8 +57,6 @@ export class CommunityModel extends BiDataTable<Community>() {
   }
 }
 
-export class SearchCommunityModel extends CommunityModel {
-  makeFilter(filter: NewData<Community>) {
-    return isEmpty(filter) ? '' : makeSimpleFilter(filter, 'contains', 'OR');
-  }
+export class SearchCommunityModel extends Search(CommunityModel) {
+  searchKeys = ['name', 'director', 'summary'] as const;
 }

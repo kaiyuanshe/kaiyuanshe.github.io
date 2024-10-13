@@ -2,12 +2,12 @@ import { TimeDistance } from 'idea-react';
 import type { FC } from 'react';
 import { Card, Col, Row } from 'react-bootstrap';
 
-import type { BaseArticle } from '../../models/Product/Article';
+import type { Article } from '../../models/Product/Article';
 import { LarkImage } from '../Base/LarkImage';
 import { TagNav } from '../Base/TagNav';
 import { TimeOption } from '../data';
 
-export interface ArticleCardProps extends BaseArticle {
+export interface ArticleCardProps extends Article {
   className?: string;
 }
 
