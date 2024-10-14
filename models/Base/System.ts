@@ -1,12 +1,13 @@
 import { observable } from 'mobx';
-import { normalizeText, TableCellLink, TableCellRelation } from 'mobx-lark';
 import { BaseModel, toggle } from 'mobx-restful';
-import { buildURLData, parseURLData, URLData } from 'web-utility';
+import { parseURLData, URLData } from 'web-utility';
 
-import { SearchQuery, SearchResult } from '../../pages/api/search';
 import { SearchActivityModel } from '../Activity';
 import { SearchCommunityModel } from '../Community';
-import { SearchOrganizationModel } from '../Community/Organization';
+import {
+  SearchNGOModel,
+  SearchOrganizationModel,
+} from '../Community/Organization';
 import { SearchMeetingModel } from '../Governance/Meeting';
 import { SearchDepartmentModel } from '../Personnel/Department';
 import { SearchPersonModel } from '../Personnel/Person';
@@ -61,20 +62,8 @@ export class SystemModel extends BaseModel {
     activity: SearchActivityModel,
     community: SearchCommunityModel,
     organization: SearchOrganizationModel,
+    NGO: SearchNGOModel,
   };
-
-  @toggle('downloading')
-  async search(query: SearchQuery) {
-    const { body } = await client.get<SearchResult>(
-      `search?${buildURLData(query)}`,
-    );
-    const activities = body!.activities?.map(({ link, host, ...activity }) => ({
-      ...activity,
-      link: (link as TableCellLink)?.link,
-      host: (host as TableCellRelation[])?.map(normalizeText),
-    }));
-    return { ...body!, activities };
-  }
 }
 
 export default new SystemModel();

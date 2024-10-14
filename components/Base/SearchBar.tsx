@@ -24,7 +24,7 @@ export interface SearchBarProps
 
 export const SearchBar: FC<SearchBarProps> = observer(
   ({
-    action = '/search',
+    action = '/search/article',
     size,
     name = 'keywords',
     placeholder = i18n.t('keyword'),

@@ -49,7 +49,7 @@ export const ArticleCard: FC<ArticleCardProps> = ({
         </Col>
       </Row>
       <Row as="footer" className="flex-fill small mt-1">
-        <TagNav className="col-8" list={tags as string[]} />
+        <TagNav className="col-8" model="article" list={tags as string[]} />
 
         <Col className="text-end" xs={4}>
           <TimeDistance {...TimeOption} date={publishedAt as number} />

@@ -65,6 +65,7 @@ const SearchNameMap: () => Record<string, string> = () => ({
   activity: t('activity'),
   community: t('community'),
   organization: t('organization'),
+  NGO: t('China_NGO_Map'),
 });
 
 const SearchCardMap: Record<string, ComponentClass<any> | FC<any>> = {
@@ -75,6 +76,7 @@ const SearchCardMap: Record<string, ComponentClass<any> | FC<any>> = {
   activity: ActivityCard,
   community: CommunityCard,
   organization: OrganizationCard,
+  NGO: OrganizationCard,
 };
 
 const SearchModelPage: FC<SearchModelPageProps> = observer(

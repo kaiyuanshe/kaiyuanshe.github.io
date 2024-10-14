@@ -125,4 +125,10 @@ export class SearchOrganizationModel extends Search(OrganizationModel) {
   }
 }
 
+export class SearchNGOModel extends SearchOrganizationModel {
+  constructor(appId = NGO_BASE_ID, tableId = NGO_TABLE_ID) {
+    super(appId, tableId);
+  }
+}
+
 export default new OrganizationModel();

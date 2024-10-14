@@ -63,14 +63,14 @@ export const MainRoutes = (): Link[] => [
   {
     title: t('our_knowledge_base'),
     subs: [
-      { title: t('coscon'), path: '/search?tag=COSCon' },
+      { title: t('coscon'), path: '/search/article?keywords=COSCon' },
       {
         title: t('kcc'),
-        path: '/search?tag=KCC',
+        path: '/search/article?keywords=KCC',
       },
       {
         title: t('open_source_book_club'),
-        path: '/search?tag=读书会',
+        path: '/search/article?keywords=读书会',
       },
       {
         title: t('original_articles'),
