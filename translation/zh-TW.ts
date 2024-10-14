@@ -41,6 +41,7 @@ export default {
   our_partners: '合作夥伴',
   community_list: '開源社城市社區（KCC）',
   china_open_source_pioneer: '中國開源先鋒',
+  China_Open_Source_coder_rank: '中國開源碼力榜',
   stars_of_COSCon: 'COSCon 之星',
   stars_of_open_source: '開源之星',
   stars_of_community_partnership: '社區合作之星',
