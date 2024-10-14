@@ -1,5 +1,6 @@
 import {
   BiDataTable,
+  BiSearch,
   normalizeText,
   TableCellLink,
   TableCellRelation,
@@ -9,10 +10,8 @@ import {
 } from 'mobx-lark';
 
 import { normalizeTextArray } from '../../pages/api/lark/core';
-import { larkClient, Search } from '../Base';
+import { larkClient } from '../Base';
 import { GOVERNANCE_BASE_ID } from './OKR';
-
-export type TableCellContact = Record<'id' | 'name' | 'avatar_url', string>;
 
 export type Meeting = Record<
   | 'id'
@@ -74,7 +73,7 @@ export class MeetingModel extends BiDataTable<Meeting>() {
   }
 }
 
-export class SearchMeetingModel extends Search(MeetingModel) {
+export class SearchMeetingModel extends BiSearch(MeetingModel) {
   searchKeys = [
     'name',
     'title',

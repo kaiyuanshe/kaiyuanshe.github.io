@@ -2,6 +2,7 @@ import { computed, observable } from 'mobx';
 import {
   BiDataQueryOptions,
   BiDataTable,
+  BiSearch,
   normalizeText,
   TableCellLink,
   TableCellRelation,
@@ -10,7 +11,7 @@ import {
   TableRecord,
 } from 'mobx-lark';
 
-import { larkClient, Search } from '../Base';
+import { larkClient } from '../Base';
 import { HR_BASE_ID } from './Person';
 
 export const DEPARTMENT_TABLE_ID = process.env.NEXT_PUBLIC_DEPARTMENT_TABLE_ID!;
@@ -91,6 +92,6 @@ export class DepartmentModel extends BiDataTable<Department>() {
   toggleActive = () => (this.activeShown = !this.activeShown);
 }
 
-export class SearchDepartmentModel extends Search(DepartmentModel) {
+export class SearchDepartmentModel extends BiSearch(DepartmentModel) {
   searchKeys = ['name', 'summary', 'email', 'link', 'codeLink'] as const;
 }

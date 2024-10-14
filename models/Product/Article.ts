@@ -2,6 +2,7 @@ import { HTTPError } from 'koajax';
 import {
   BiDataQueryOptions,
   BiDataTable,
+  BiSearch,
   LarkPageData,
   makeSimpleFilter,
   TableCellLink,
@@ -11,7 +12,7 @@ import {
 import { Filter, NewData, toggle } from 'mobx-restful';
 import { buildURLData, isEmpty } from 'web-utility';
 
-import { blobClient, larkClient, Search } from '../Base';
+import { blobClient, larkClient } from '../Base';
 
 export type Article = Record<
   | 'id'
@@ -89,7 +90,7 @@ export class ArticleModel extends BiDataTable<Article>() {
   }
 }
 
-export class SearchArticleModel extends Search(ArticleModel) {
+export class SearchArticleModel extends BiSearch(ArticleModel) {
   searchKeys = ['title', 'author', 'license', 'summary'] as const;
 }
 

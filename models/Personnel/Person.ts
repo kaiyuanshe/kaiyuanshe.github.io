@@ -1,12 +1,13 @@
 import {
   BiDataQueryOptions,
   BiDataTable,
+  BiSearch,
   TableCellLink,
   TableCellValue,
   TableRecord,
 } from 'mobx-lark';
 
-import { larkClient, Search } from '../Base';
+import { larkClient } from '../Base';
 
 export type Person = Record<
   | 'id'
@@ -48,7 +49,7 @@ export class PersonModel extends BiDataTable<Person>() {
   }
 }
 
-export class SearchPersonModel extends Search(PersonModel) {
+export class SearchPersonModel extends BiSearch(PersonModel) {
   searchKeys = [
     'name',
     'summary',

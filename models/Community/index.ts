@@ -2,6 +2,7 @@ import { observable } from 'mobx';
 import {
   BiDataQueryOptions,
   BiDataTable,
+  BiSearch,
   normalizeText,
   TableCellLink,
   TableCellRelation,
@@ -9,7 +10,7 @@ import {
   TableRecord,
 } from 'mobx-lark';
 
-import { larkClient, Search } from '../Base';
+import { larkClient } from '../Base';
 
 export type Community = Record<
   | 'id'
@@ -57,6 +58,6 @@ export class CommunityModel extends BiDataTable<Community>() {
   }
 }
 
-export class SearchCommunityModel extends Search(CommunityModel) {
+export class SearchCommunityModel extends BiSearch(CommunityModel) {
   searchKeys = ['name', 'director', 'summary'] as const;
 }

@@ -3,6 +3,7 @@ import { action, computed, observable } from 'mobx';
 import {
   BiDataQueryOptions,
   BiDataTable,
+  BiSearch,
   BITable,
   BiTable,
   BiTableView,
@@ -18,7 +19,7 @@ import { Filter, toggle } from 'mobx-restful';
 import { buildURLData, cache, countBy, Hour } from 'web-utility';
 
 import { LarkFormData, TableFormViewItem } from '../../pages/api/lark/core';
-import { larkClient, Search } from '../Base';
+import { larkClient } from '../Base';
 import { COMMUNITY_BASE_ID } from '../Community';
 import { AgendaModel } from './Agenda';
 import { BillModel } from './Bill';
@@ -239,7 +240,7 @@ export class ActivityModel extends BiDataTable<Activity>() {
 
 export type StatisticTrait = Pick<ActivityModel, 'statistic' | 'getStatistic'>;
 
-export class SearchActivityModel extends Search(ActivityModel) {
+export class SearchActivityModel extends BiSearch(ActivityModel) {
   searchKeys = ['name', 'city', 'location', 'host', 'alias'] as const;
 }
 

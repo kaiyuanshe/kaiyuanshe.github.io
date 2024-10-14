@@ -2,6 +2,7 @@ import { observable } from 'mobx';
 import {
   BiDataQueryOptions,
   BiDataTable,
+  BiSearch,
   makeSimpleFilter,
   normalizeText,
   TableCellAttachment,
@@ -14,7 +15,7 @@ import { Filter, persist, restore, toggle } from 'mobx-restful';
 import { groupBy } from 'web-utility';
 
 import { normalizeTextArray } from '../../pages/api/lark/core';
-import { isServer, larkClient, Search } from '../Base';
+import { isServer, larkClient } from '../Base';
 
 export type Agenda = Record<
   | 'id'
@@ -180,7 +181,7 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
   }
 }
 
-export class SearchAgendaModel extends Search(AgendaModel) {
+export class SearchAgendaModel extends BiSearch(AgendaModel) {
   sort = { forum: 'ASC', startTime: 'ASC' } as const;
 
   searchKeys = [

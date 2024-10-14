@@ -42,8 +42,8 @@ importers:
         specifier: ^0.5.4
         version: 0.5.4(react@18.3.1)(typescript@5.6.3)
       file-type:
-        specifier: ^19.5.0
-        version: 19.5.0
+        specifier: ^19.6.0
+        version: 19.6.0
       idea-react:
         specifier: ^2.0.0-rc.2
         version: 2.0.0-rc.2(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3)
@@ -75,8 +75,8 @@ importers:
         specifier: ^0.6.0
         version: 0.6.0(mobx@6.13.3)(typescript@5.6.3)
       mobx-lark:
-        specifier: ^2.0.0-rc.2
-        version: 2.0.0-rc.2(mobx@6.13.3)(typescript@5.6.3)
+        specifier: ^2.0.0-rc.3
+        version: 2.0.0-rc.3(mobx@6.13.3)(typescript@5.6.3)
       mobx-react:
         specifier: ^9.1.1
         version: 9.1.1(mobx@6.13.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -2681,8 +2681,8 @@ packages:
     resolution: {integrity: sha512-/yFHK0aGjFEgDJjEKP0pWCplsPFPhwyfwevf/pVxiN0tmE4L9LmwWxWukdJSHdoCli4VgQLehjJtwQBnqmsKcw==}
     engines: {node: '>=10'}
 
-  file-type@19.5.0:
-    resolution: {integrity: sha512-dMuq6WWnP6BpQY0zYJNpTtQWgeCImSMG0BTIzUBXvxbwc1HWP/E7AE4UWU9XSCOPGJuOHda0HpDnwM2FW+d90A==}
+  file-type@19.6.0:
+    resolution: {integrity: sha512-VZR5I7k5wkD0HgFnMsq5hOsSc710MJMu5Nc5QYsbe38NN5iPV/XTObYLc/cpttRTf6lX538+5uO1ZQRhYibiZQ==}
     engines: {node: '>=18'}
 
   filelist@1.0.4:
@@ -3721,8 +3721,8 @@ packages:
     peerDependencies:
       mobx: '>=6.11'
 
-  mobx-lark@2.0.0-rc.2:
-    resolution: {integrity: sha512-pAuB/UwQDsqG+ggUjb+gZLQjM/xs4K7IVoRsElGSkWQyobvCsz4QgSMkchnXbKe03i49Dv1hYzMXOLLX6eEg+Q==}
+  mobx-lark@2.0.0-rc.3:
+    resolution: {integrity: sha512-LlyPxcpCUiN0gP9ScEi8x0IbT0DLido5me9LA7nGer9EoaRHam1fkCk7lEYvNGDLdEjMb3S6FEnNlbxEKb40/w==}
     peerDependencies:
       mobx: '>=6.11'
 
@@ -4026,8 +4026,8 @@ packages:
     resolution: {integrity: sha512-ZI3LnwUv5nOGbQzD9c2iDG6toheuXSZP5esSHBjopsXH4dg19soufvpUGA3uohi5anFtGb2lhAVdHzH6R/Evvg==}
     engines: {node: '>=8'}
 
-  peek-readable@5.2.0:
-    resolution: {integrity: sha512-U94a+eXHzct7vAd19GH3UQ2dH4Satbng0MyYTMaQatL0pvYYL5CTPR25HBhKtecl+4bfu1/i3vC6k0hydO5Vcw==}
+  peek-readable@5.3.1:
+    resolution: {integrity: sha512-GVlENSDW6KHaXcd9zkZltB7tCLosKB/4Hg0fqBJkAoBgYG2Tn1xtMgXtSUuMU9AK/gCm/tTdT8mgAeF4YNeeqw==}
     engines: {node: '>=14.16'}
 
   periscopic@3.1.0:
@@ -4599,8 +4599,8 @@ packages:
     resolution: {integrity: sha512-fZtbhtvI9I48xDSywd/somNqgUHl2L2cstmXCCif0itOf96jeW18MBSyrLuNicYQVkvpOxkZtkzujiTJ9LW5Jw==}
     engines: {node: '>=10'}
 
-  strtok3@8.1.0:
-    resolution: {integrity: sha512-ExzDvHYPj6F6QkSNe/JxSlBxTh3OrI6wrAIz53ulxo1c4hBJ1bT9C/JrAthEKHWG9riVH3Xzg7B03Oxty6S2Lw==}
+  strtok3@9.0.1:
+    resolution: {integrity: sha512-ERPW+XkvX9W2A+ov07iy+ZFJpVdik04GhDA4eVogiG9hpC97Kem2iucyzhFxbFRvQ5o2UckFtKZdp1hkGvnrEw==}
     engines: {node: '>=16'}
 
   style-to-object@0.4.4:
@@ -8248,10 +8248,10 @@ snapshots:
       strtok3: 6.3.0
       token-types: 4.2.1
 
-  file-type@19.5.0:
+  file-type@19.6.0:
     dependencies:
       get-stream: 9.0.1
-      strtok3: 8.1.0
+      strtok3: 9.0.1
       token-types: 6.0.0
       uint8array-extras: 1.4.0
 
@@ -9667,7 +9667,7 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  mobx-lark@2.0.0-rc.2(mobx@6.13.3)(typescript@5.6.3):
+  mobx-lark@2.0.0-rc.3(mobx@6.13.3)(typescript@5.6.3):
     dependencies:
       '@swc/helpers': 0.5.13
       koajax: 3.0.2(typescript@5.6.3)
@@ -10027,7 +10027,7 @@ snapshots:
 
   peek-readable@4.1.0: {}
 
-  peek-readable@5.2.0: {}
+  peek-readable@5.3.1: {}
 
   periscopic@3.1.0:
     dependencies:
@@ -10672,10 +10672,10 @@ snapshots:
       '@tokenizer/token': 0.3.0
       peek-readable: 4.1.0
 
-  strtok3@8.1.0:
+  strtok3@9.0.1:
     dependencies:
       '@tokenizer/token': 0.3.0
-      peek-readable: 5.2.0
+      peek-readable: 5.3.1
 
   style-to-object@0.4.4:
     dependencies:

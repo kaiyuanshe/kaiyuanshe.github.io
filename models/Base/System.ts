@@ -1,4 +1,5 @@
 import { observable } from 'mobx';
+import { BiSearchModelClass } from 'mobx-lark';
 import { BaseModel, toggle } from 'mobx-restful';
 import { parseURLData, URLData } from 'web-utility';
 
@@ -12,7 +13,7 @@ import { SearchMeetingModel } from '../Governance/Meeting';
 import { SearchDepartmentModel } from '../Personnel/Department';
 import { SearchPersonModel } from '../Personnel/Person';
 import { SearchArticleModel } from '../Product/Article';
-import { client, SearchModelClass } from './index';
+import { client } from './index';
 
 export type CityCoordinateMap = Record<string, [number, number]>;
 
@@ -54,7 +55,7 @@ export class SystemModel extends BaseModel {
     return (this.cityCoordinate = body!);
   }
 
-  searchMap: Record<string, SearchModelClass> = {
+  searchMap: Record<string, BiSearchModelClass> = {
     member: SearchPersonModel,
     department: SearchDepartmentModel,
     meeting: SearchMeetingModel,

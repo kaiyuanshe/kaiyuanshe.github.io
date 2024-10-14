@@ -2,6 +2,7 @@ import { observable } from 'mobx';
 import {
   BiDataQueryOptions,
   BiDataTable,
+  BiSearch,
   makeSimpleFilter,
   TableCellLink,
   TableCellValue,
@@ -10,7 +11,7 @@ import {
 import { Filter, NewData } from 'mobx-restful';
 import { cache, countBy, groupBy, Hour, isEmpty } from 'web-utility';
 
-import { larkClient, Search } from '../Base';
+import { larkClient } from '../Base';
 import { COMMUNITY_BASE_ID } from './index';
 
 export type Organization = Record<
@@ -107,7 +108,7 @@ export class OrganizationModel extends BiDataTable<Organization>() {
   }
 }
 
-export class SearchOrganizationModel extends Search(OrganizationModel) {
+export class SearchOrganizationModel extends BiSearch(OrganizationModel) {
   searchKeys = [
     'name',
     'summary',

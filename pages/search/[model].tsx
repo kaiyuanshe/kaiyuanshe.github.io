@@ -1,3 +1,4 @@
+import { BiSearchModelClass } from 'mobx-lark';
 import { observer } from 'mobx-react';
 import {
   cache,
@@ -20,13 +21,12 @@ import { MeetingCard } from '../../components/Governance/MeetingCard';
 import { PageHead } from '../../components/Layout/PageHead';
 import { MemberCard } from '../../components/Member/Card';
 import { OrganizationCard } from '../../components/Organization/Card';
-import { SearchModelClass } from '../../models/Base';
 import systemStore from '../../models/Base/System';
 import { i18n, t } from '../../models/Base/Translation';
 
 type SearchModelPageProps = RouteProps<{ model: string }> &
   Pick<
-    InstanceType<SearchModelClass>,
+    InstanceType<BiSearchModelClass>,
     'pageIndex' | 'currentPage' | 'pageCount'
   >;
 
