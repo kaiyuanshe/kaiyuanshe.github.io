@@ -1,13 +1,13 @@
 import { FC } from 'react';
 import { Col, Row, RowProps } from 'react-bootstrap';
 
-import { BaseArticle } from '../../models/Product/Article';
+import { Article } from '../../models/Product/Article';
 import { ArticleCard } from './Card';
 
 export interface ArticleListLayoutProps {
   className?: string;
   rowCols?: Pick<RowProps, 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl'>;
-  defaultData: BaseArticle[];
+  defaultData: Article[];
 }
 
 export const ArticleListLayout: FC<ArticleListLayoutProps> = ({

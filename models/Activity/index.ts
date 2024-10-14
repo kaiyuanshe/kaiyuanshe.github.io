@@ -3,6 +3,7 @@ import { action, computed, observable } from 'mobx';
 import {
   BiDataQueryOptions,
   BiDataTable,
+  BiSearch,
   BITable,
   BiTable,
   BiTableView,
@@ -14,8 +15,8 @@ import {
   TableCellValue,
   TableRecord,
 } from 'mobx-lark';
-import { Filter, NewData, toggle } from 'mobx-restful';
-import { buildURLData, cache, countBy, Hour, isEmpty } from 'web-utility';
+import { Filter, toggle } from 'mobx-restful';
+import { buildURLData, cache, countBy, Hour } from 'web-utility';
 
 import { LarkFormData, TableFormViewItem } from '../../pages/api/lark/core';
 import { larkClient } from '../Base';
@@ -239,10 +240,8 @@ export class ActivityModel extends BiDataTable<Activity>() {
 
 export type StatisticTrait = Pick<ActivityModel, 'statistic' | 'getStatistic'>;
 
-export class SearchActivityModel extends ActivityModel {
-  makeFilter(filter: NewData<Activity>) {
-    return isEmpty(filter) ? '' : makeSimpleFilter(filter, 'contains', 'OR');
-  }
+export class SearchActivityModel extends BiSearch(ActivityModel) {
+  searchKeys = ['name', 'city', 'location', 'host', 'alias'] as const;
 }
 
 export default new ActivityModel();

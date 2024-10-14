@@ -49,7 +49,7 @@ export default class ArticleDetailPage extends Component<ArticleDetailPageProps>
           </dd>
         </dl>
 
-        <TagNav list={tags as string[]} />
+        <TagNav model="article" list={tags as string[]} />
       </>
     );
   }

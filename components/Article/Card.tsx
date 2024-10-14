@@ -2,12 +2,12 @@ import { TimeDistance } from 'idea-react';
 import type { FC } from 'react';
 import { Card, Col, Row } from 'react-bootstrap';
 
-import type { BaseArticle } from '../../models/Product/Article';
+import type { Article } from '../../models/Product/Article';
 import { LarkImage } from '../Base/LarkImage';
 import { TagNav } from '../Base/TagNav';
 import { TimeOption } from '../data';
 
-export interface ArticleCardProps extends BaseArticle {
+export interface ArticleCardProps extends Article {
   className?: string;
 }
 
@@ -49,7 +49,7 @@ export const ArticleCard: FC<ArticleCardProps> = ({
         </Col>
       </Row>
       <Row as="footer" className="flex-fill small mt-1">
-        <TagNav className="col-8" list={tags as string[]} />
+        <TagNav className="col-8" model="article" list={tags as string[]} />
 
         <Col className="text-end" xs={4}>
           <TimeDistance {...TimeOption} date={publishedAt as number} />

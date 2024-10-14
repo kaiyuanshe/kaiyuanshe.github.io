@@ -1,13 +1,11 @@
 import {
   BiDataQueryOptions,
   BiDataTable,
-  makeSimpleFilter,
+  BiSearch,
   TableCellLink,
   TableCellValue,
   TableRecord,
 } from 'mobx-lark';
-import { NewData } from 'mobx-restful';
-import { isEmpty } from 'web-utility';
 
 import { larkClient } from '../Base';
 
@@ -51,8 +49,14 @@ export class PersonModel extends BiDataTable<Person>() {
   }
 }
 
-export class SearchPersonModel extends PersonModel {
-  makeFilter(filter: NewData<Person>) {
-    return isEmpty(filter) ? '' : makeSimpleFilter(filter, 'contains', 'OR');
-  }
+export class SearchPersonModel extends BiSearch(PersonModel) {
+  searchKeys = [
+    'name',
+    'summary',
+    'city',
+    'email',
+    'website',
+    'github',
+    'skills',
+  ] as const;
 }

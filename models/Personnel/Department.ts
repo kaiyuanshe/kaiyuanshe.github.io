@@ -2,7 +2,7 @@ import { computed, observable } from 'mobx';
 import {
   BiDataQueryOptions,
   BiDataTable,
-  makeSimpleFilter,
+  BiSearch,
   normalizeText,
   TableCellLink,
   TableCellRelation,
@@ -10,8 +10,6 @@ import {
   TableCellValue,
   TableRecord,
 } from 'mobx-lark';
-import { NewData } from 'mobx-restful';
-import { isEmpty } from 'web-utility';
 
 import { larkClient } from '../Base';
 import { HR_BASE_ID } from './Person';
@@ -94,8 +92,6 @@ export class DepartmentModel extends BiDataTable<Department>() {
   toggleActive = () => (this.activeShown = !this.activeShown);
 }
 
-export class SearchDepartmentModel extends DepartmentModel {
-  makeFilter(filter: NewData<Department>) {
-    return isEmpty(filter) ? '' : makeSimpleFilter(filter, 'contains', 'OR');
-  }
+export class SearchDepartmentModel extends BiSearch(DepartmentModel) {
+  searchKeys = ['name', 'summary', 'email', 'link', 'codeLink'] as const;
 }

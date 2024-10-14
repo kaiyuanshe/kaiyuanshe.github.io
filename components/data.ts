@@ -63,14 +63,14 @@ export const MainRoutes = (): Link[] => [
   {
     title: t('our_knowledge_base'),
     subs: [
-      { title: t('coscon'), path: '/search?tag=COSCon' },
+      { title: t('coscon'), path: '/search/article?keywords=COSCon' },
       {
         title: t('kcc'),
-        path: '/search?tag=KCC',
+        path: '/search/article?keywords=KCC',
       },
       {
         title: t('open_source_book_club'),
-        path: '/search?tag=读书会',
+        path: '/search/article?keywords=读书会',
       },
       {
         title: t('original_articles'),
@@ -100,6 +100,10 @@ export const MainRoutes = (): Link[] => [
       {
         title: t('china_open_source_pioneer'),
         path: '/community/award/China-Open-Source-pioneer',
+      },
+      {
+        title: t('China_Open_Source_coder_rank'),
+        path: 'https://opensource.win/',
       },
       { title: t('China_Open_Source_Map'), path: '/organization' },
       { title: t('China_NGO_Map'), path: '/NGO' },

@@ -2,12 +2,13 @@ import { observable } from 'mobx';
 import {
   BiDataQueryOptions,
   BiDataTable,
+  BiSearch,
   makeSimpleFilter,
   TableCellLink,
   TableCellValue,
   TableRecord,
 } from 'mobx-lark';
-import { NewData } from 'mobx-restful';
+import { Filter, NewData } from 'mobx-restful';
 import { cache, countBy, groupBy, Hour, isEmpty } from 'web-utility';
 
 import { larkClient } from '../Base';
@@ -107,14 +108,27 @@ export class OrganizationModel extends BiDataTable<Organization>() {
   }
 }
 
-export class SearchOrganizationModel extends OrganizationModel {
-  makeFilter(filter: NewData<Organization>) {
-    return [
-      'CurrentValue.[verified]=1',
-      !isEmpty(filter) && makeSimpleFilter(filter, 'contains', 'OR'),
-    ]
+export class SearchOrganizationModel extends BiSearch(OrganizationModel) {
+  searchKeys = [
+    'name',
+    'summary',
+    'city',
+    'email',
+    'link',
+    'codeLink',
+    'wechatName',
+  ] as const;
+
+  makeFilter(filter: Filter<Organization>) {
+    return ['CurrentValue.[verified]=1', super.makeFilter(filter)]
       .filter(Boolean)
       .join('&&');
+  }
+}
+
+export class SearchNGOModel extends SearchOrganizationModel {
+  constructor(appId = NGO_BASE_ID, tableId = NGO_TABLE_ID) {
+    super(appId, tableId);
   }
 }
 

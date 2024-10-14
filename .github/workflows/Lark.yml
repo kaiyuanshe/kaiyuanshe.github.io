@@ -47,10 +47,10 @@ jobs:
                   - - tag: text
                       text: 指派：
                     - tag: a
-                      text: ${{ github.event.issue.assignee.login }}
-                      href: ${{ github.event.issue.assignee.html_url }}
+                      text: "${{ github.event.issue.assignee.login }}"
+                      href: "${{ github.event.issue.assignee.html_url }}"
                   - - tag: text
-                      text: "标签：${{ github.event.issue.labels }}"
+                      text: 标签：${{ github.event.issue.labels }}
                   - - tag: text
                       text: 里程碑：${{ github.event.issue.milestone.title }}
                   - - tag: text
@@ -82,10 +82,10 @@ jobs:
                   - - tag: text
                       text: 指派：
                     - tag: a
-                      text: ${{ github.event.issue.assignee.login }}
-                      href: ${{ github.event.issue.assignee.html_url }}
+                      text: "${{ github.event.issue.assignee.login }}"
+                      href: "${{ github.event.issue.assignee.html_url }}"
                   - - tag: text
-                      text: "标签：${{ github.event.issue.labels }}"
+                      text: 标签：${{ github.event.issue.labels }}
                   - - tag: text
                       text: 里程碑：${{ github.event.issue.milestone.title }}
                   - - tag: text
@@ -117,10 +117,10 @@ jobs:
                   - - tag: text
                       text: 指派：
                     - tag: a
-                      text: ${{ github.event.issue.assignee.login }}
-                      href: ${{ github.event.issue.assignee.html_url }}
+                      text: "${{ github.event.issue.assignee.login }}"
+                      href: "${{ github.event.issue.assignee.html_url }}"
                   - - tag: text
-                      text: "标签：${{ github.event.issue.labels }}"
+                      text: 标签：${{ github.event.issue.labels }}
                   - - tag: text
                       text: 里程碑：${{ github.event.issue.milestone.title }}
                   - - tag: text
@@ -162,10 +162,10 @@ jobs:
                   - - tag: text
                       text: 指派：
                     - tag: a
-                      text: ${{ github.event.pull_request.assignee.login }}
-                      href: ${{ github.event.pull_request.assignee.html_url }}
+                      text: "${{ github.event.pull_request.assignee.login }}"
+                      href: "${{ github.event.pull_request.assignee.html_url }}"
                   - - tag: text
-                      text: "标签：${{ github.event.pull_request.labels }}"
+                      text: 标签：${{ github.event.pull_request.labels }}
                   - - tag: text
                       text: 里程碑：${{ github.event.pull_request.milestone.title }}
                   - - tag: text
@@ -197,10 +197,10 @@ jobs:
                   - - tag: text
                       text: 指派：
                     - tag: a
-                      text: ${{ github.event.pull_request.assignee.login }}
-                      href: ${{ github.event.pull_request.assignee.html_url }}
+                      text: "${{ github.event.pull_request.assignee.login }}"
+                      href: "${{ github.event.pull_request.assignee.html_url }}"
                   - - tag: text
-                      text: "标签：${{ github.event.pull_request.labels }}"
+                      text: 标签：${{ github.event.pull_request.labels }}
                   - - tag: text
                       text: 里程碑：${{ github.event.pull_request.milestone.title }}
                   - - tag: text
@@ -232,10 +232,10 @@ jobs:
                   - - tag: text
                       text: 指派：
                     - tag: a
-                      text: ${{ github.event.pull_request.assignee.login }}
-                      href: ${{ github.event.pull_request.assignee.html_url }}
+                      text: "${{ github.event.pull_request.assignee.login }}"
+                      href: "${{ github.event.pull_request.assignee.html_url }}"
                   - - tag: text
-                      text: "标签：${{ github.event.pull_request.labels }}"
+                      text: 标签：${{ github.event.pull_request.labels }}
                   - - tag: text
                       text: 里程碑：${{ github.event.pull_request.milestone.title }}
                   - - tag: text
@@ -275,9 +275,9 @@ jobs:
                       text: ${{ github.event.discussion.user.login }}
                       href: ${{ github.event.discussion.user.html_url }}
                   - - tag: text
-                      text: "分类：${{ github.event.discussion.category }}"
+                      text: 分类：${{ github.event.discussion.category }}
                   - - tag: text
-                      text: "标签：${{ github.event.discussion.labels }}"
+                      text: 标签：${{ github.event.discussion.labels }}
                   - - tag: text
                       text: 描述：
                     - tag: text
@@ -305,9 +305,9 @@ jobs:
                       text: ${{ github.event.discussion.user.login }}
                       href: ${{ github.event.discussion.user.html_url }}
                   - - tag: text
-                      text: "分类：${{ github.event.discussion.category }}"
+                      text: 分类：${{ github.event.discussion.category }}
                   - - tag: text
-                      text: "标签：${{ github.event.discussion.labels }}"
+                      text: 标签：${{ github.event.discussion.labels }}
                   - - tag: text
                       text: 描述：
                     - tag: text

@@ -35,7 +35,7 @@ const OrganizationPage: FC = observer(() => (
         </Button>
       </div>
 
-      <SearchBar action="/NGO/search" />
+      <SearchBar action="/search/NGO" />
     </header>
 
     <OpenCollaborationMap

@@ -1,5 +1,6 @@
 import {
   BiDataTable,
+  BiSearch,
   normalizeText,
   TableCellLink,
   TableCellRelation,
@@ -11,8 +12,6 @@ import {
 import { normalizeTextArray } from '../../pages/api/lark/core';
 import { larkClient } from '../Base';
 import { GOVERNANCE_BASE_ID } from './OKR';
-
-export type TableCellContact = Record<'id' | 'name' | 'avatar_url', string>;
 
 export type Meeting = Record<
   | 'id'
@@ -43,6 +42,8 @@ export class MeetingModel extends BiDataTable<Meeting>() {
     super(appId, tableId);
   }
 
+  sort = { startedAt: 'DESC' } as const;
+
   normalize({
     fields: {
       title,
@@ -70,4 +71,19 @@ export class MeetingModel extends BiDataTable<Meeting>() {
       reports: (reports as TableCellRelation[])?.map(normalizeText),
     };
   }
+}
+
+export class SearchMeetingModel extends BiSearch(MeetingModel) {
+  searchKeys = [
+    'name',
+    'title',
+    'departments',
+    'location',
+    'participants',
+    'groups',
+    'summary',
+    'issues',
+    'proposals',
+    'reports',
+  ] as const;
 }

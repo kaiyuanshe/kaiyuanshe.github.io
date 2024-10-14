@@ -1,12 +1,12 @@
 import { Nameplate } from 'idea-react';
-import { TableCellUser } from 'mobx-lark';
+import { TableCellGroup, TableCellUser } from 'mobx-lark';
 import { observer } from 'mobx-react';
 import { FC } from 'react';
 import { Button, Card } from 'react-bootstrap';
 import { formatDate } from 'web-utility';
 
 import { t } from '../../models/Base/Translation';
-import { Meeting, TableCellContact } from '../../models/Governance/Meeting';
+import { Meeting } from '../../models/Governance/Meeting';
 import { DefaultImage } from '../../pages/api/lark/file/[id]';
 
 export const MeetingCard: FC<Meeting> = observer(
@@ -49,18 +49,16 @@ export const MeetingCard: FC<Meeting> = observer(
                 </a>
               </li>
             ))}
-            {(groups as unknown as TableCellContact[])?.map(
-              ({ id, name, avatar_url }) => (
-                <li key={id}>
-                  <a
-                    className="text-decoration-none"
-                    href={`/department/${name}`}
-                  >
-                    <Nameplate name={name} avatar={avatar_url} />
-                  </a>
-                </li>
-              ),
-            )}
+            {(groups as TableCellGroup[])?.map(({ id, name, avatar_url }) => (
+              <li key={id}>
+                <a
+                  className="text-decoration-none"
+                  href={`/department/${name}`}
+                >
+                  <Nameplate name={name} avatar={avatar_url} />
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
         <div className="d-flex gap-3">

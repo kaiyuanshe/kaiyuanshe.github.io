@@ -41,6 +41,7 @@ export default {
   open_source_projects: 'Open Source Projects',
   community_list: 'KAIYUANSHE City Community',
   china_open_source_pioneer: 'China Open Source Pioneers',
+  China_Open_Source_coder_rank: 'China Open Source Coder Rank',
   stars_of_COSCon: 'Stars of COSCon',
   stars_of_open_source: 'Stars of Open Source',
   stars_of_community_partnership: 'Stars of Community Partnership',

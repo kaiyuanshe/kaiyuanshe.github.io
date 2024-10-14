@@ -17,20 +17,26 @@
 - [后端服务](https://kaiyuanshe.feishu.cn/base/bascnClkwE6JnHTYK1p3ln1Crjl)
 - [后端代码](models/Product/Article.ts)
 
-### 组织管理系统
+### 开放治理系统
 
 - [项目简介](https://kaiyuanshe.feishu.cn/wiki/VpY9wRitDiiObVkNsXycWP3Gnmf)
 - [前端主页](https://kaiyuanshe.cn/department)
 - [前端代码](pages/department/)
-- [后端服务](https://kaiyuanshe.feishu.cn/base/UaJ6b4MtcaywOwsaT7ecyiQuntc)
-- [后端代码](models/Personnel/)
+- 后端服务
+  - [人](https://kaiyuanshe.feishu.cn/base/UaJ6b4MtcaywOwsaT7ecyiQuntc)
+  - [事](https://kaiyuanshe.feishu.cn/wiki/CWsuwaIlsikquYkngAccoWCxndf)
+- 后端代码
+  - [人](models/Personnel/)
+  - [事](models/Governance/)
 
 ### 开放会务系统
 
 - [项目简介](https://kaiyuanshe.feishu.cn/wiki/wikcnuUsRHqJF0qhShySwECmWlx)
 - [前端主页](https://kaiyuanshe.cn/activity)
 - [前端代码](pages/activity/)
-- [后端服务](https://kaiyuanshe.feishu.cn/base/IiihbadUsaCjYSsv9N4cR3XVnWh)
+- 后端服务
+  - [模板](https://kaiyuanshe.feishu.cn/wiki/Vc19wqm4ei5HdWkiTw2cZSKHnyf)
+  - [生产](https://kaiyuanshe.feishu.cn/wiki/ZI4xwlcDHiz3r0kxKITcwTIwnmf)
 - [后端代码](models/Activity/)
 
 ### 中国开源地图
@@ -38,7 +44,15 @@
 - [项目简介](https://kaiyuanshe.feishu.cn/wiki/wikcnZPJ7YvMU2Qkkxu2GT7TGoh)
 - [前端主页](https://kaiyuanshe.cn/organization)
 - [前端代码](pages/organization/)
-- [后端服务](https://kaiyuanshe.feishu.cn/base/bascnUAyhKLADcw3HyNW5OefrMd?table=tblXlmfjCsoq0sHf&view=vewdl3c59K)
+- [后端服务](https://kaiyuanshe.feishu.cn/wiki/QJWtwYnvtiyAHkk7q0lcJ34Dn1e?table=tbl4vLvOFWWKj5Co&view=vewh2jQzCP)
+- [后端代码](models/Community/Organization.ts)
+
+### 中国公益地图
+
+- [项目简介](https://kaiyuanshe.feishu.cn/wiki/wikcnWOQQ7ta6X45QVFdHst4Rlc)
+- [前端主页](https://kaiyuanshe.cn/NGO)
+- [前端代码](pages/NGO/)
+- [后端服务](https://kaiyuanshe.feishu.cn/wiki/JVYdwWqqGi8Z7LkxxtrcwomYnZc)
 - [后端代码](models/Community/Organization.ts)
 
 ## 开源协作

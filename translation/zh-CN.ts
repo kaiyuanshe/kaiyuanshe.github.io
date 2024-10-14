@@ -40,6 +40,7 @@ export default {
   open_source_projects: '开源项目',
   community_list: '开源社城市社区（KCC）',
   china_open_source_pioneer: '中国开源先锋',
+  China_Open_Source_coder_rank: '中国开源码力榜',
   stars_of_COSCon: 'COSCon 之星',
   stars_of_open_source: '开源之星',
   stars_of_community_partnership: '社区合作之星',
