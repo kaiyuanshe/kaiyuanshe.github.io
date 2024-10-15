@@ -73,7 +73,7 @@ export default class HomePage extends Component<HomePageProps> {
         <LarkImage className="object-fit-contain" fluid src={image} />
       </a>
 
-      <Carousel.Caption as="h3" className="bg-primary">
+      <Carousel.Caption as="h3" className="bg-primary" style={{ opacity: 0.8 }}>
         {linkText as string}
       </Carousel.Caption>
     </Carousel.Item>
