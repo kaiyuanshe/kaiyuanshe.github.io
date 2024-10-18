@@ -1,14 +1,9 @@
-import { Guard } from '@authing/guard';
 import { observer } from 'mobx-react';
-import Head from 'next/head';
 import { Component, MouseEvent, PropsWithChildren } from 'react';
 
 import userStore from '../../models/Base/User';
-
-export const guard = new Guard({
-  mode: 'modal',
-  appId: process.env.NEXT_PUBLIC_AUTHING_APP_ID!,
-});
+import { captchaDialog } from '../Base/Captcha';
+import { signWithSMSCode } from '../Base/SMSCode';
 
 export type SessionBoxProps = PropsWithChildren<{
   className?: string;
@@ -23,27 +18,10 @@ export default class SessionBox extends Component<SessionBoxProps> {
     if (autoCover) this.openModal();
   }
 
-  closeModal = () => {
-    guard.hide();
-
-    document.scrollingElement?.classList.remove('overflow-hidden');
-  };
-
   async openModal() {
-    if (+new Date(localStorage.tokenExpiredAt) > Date.now()) return;
+    await captchaDialog.open();
 
-    document.scrollingElement?.classList.add('overflow-hidden');
-
-    guard.on('close', this.closeModal);
-    guard.on('login-error', this.closeModal);
-
-    const { token, tokenExpiredAt } = await guard.start();
-
-    localStorage.tokenExpiredAt = tokenExpiredAt;
-
-    await userStore.signInAuthing(token!);
-
-    this.closeModal();
+    await signWithSMSCode.open();
   }
 
   captureInput = (event: MouseEvent<HTMLDivElement>) => {
@@ -59,12 +37,8 @@ export default class SessionBox extends Component<SessionBoxProps> {
 
     return (
       <>
-        <Head>
-          <link
-            rel="stylesheet"
-            href="https://cdn.authing.co/packages/guard/5.3.0/guard.min.css"
-          />
-        </Head>
+        <captchaDialog.Component />
+        <signWithSMSCode.Component />
         <div
           className={className}
           onClickCapture={autoCover || session ? undefined : this.captureInput}

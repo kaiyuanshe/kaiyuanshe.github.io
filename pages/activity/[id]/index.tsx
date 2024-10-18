@@ -1,3 +1,4 @@
+import { VerticalMarquee } from 'idea-react';
 import { TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
 import dynamic from 'next/dynamic';
@@ -21,7 +22,6 @@ import {
   DrawerNav,
 } from '../../../components/Activity';
 import { LarkImage } from '../../../components/Base/LarkImage';
-import { VerticalScrollableBox } from '../../../components/Base/VerticalScrollableBox';
 import { PageHead } from '../../../components/Layout/PageHead';
 import type { ImageMarker } from '../../../components/Map/ListMap';
 import { Activity, ActivityModel } from '../../../models/Activity';
@@ -291,13 +291,13 @@ export default class ActivityDetailPage extends Component<ActivityDetailPageProp
         <header
           className={`d-flex flex-column align-items-center justify-content-around ${styles.header}`}
         >
-          <VerticalScrollableBox>
+          <VerticalMarquee>
             <Image
               className="mw-100"
               loading="lazy"
               src={blobURLOf(activity.image)}
             />
-          </VerticalScrollableBox>
+          </VerticalMarquee>
           <h1 className="visually-hidden" id="top">
             {activity.name as string}
           </h1>

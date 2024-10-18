@@ -8,8 +8,12 @@ export const DefaultImage = '/image/KaiYuanShe.png';
 
 export const fileURLOf = (field: TableCellValue) =>
   field instanceof Array
-    ? field[0]
-      ? `/api/lark/file/${(field[0] as TableCellMedia).file_token}`
+    ? typeof field[0] === 'object'
+      ? 'file_token' in field[0]
+        ? `/api/lark/file/${field[0].file_token}`
+        : 'attachmentToken' in field[0]
+          ? `/api/lark/file/${field[0].attachmentToken}`
+          : field + ''
       : field + ''
     : field + '';
 
@@ -20,15 +24,10 @@ export default safeAPI(async (req, res) => {
 
       const file = await lark.downloadFile(id as string);
 
-      const buffer = Buffer.alloc(file.byteLength),
-        view = new Uint8Array(file);
-
-      for (let i = 0; i < buffer.length; i++) buffer[i] = view[i];
-
-      const { mime } = (await fileTypeFromBuffer(buffer)) || {};
+      const { mime } = (await fileTypeFromBuffer(file)) || {};
 
       res.setHeader('Content-Type', mime || 'application/octet-stream');
-      res.send(buffer);
+      res.send(Buffer.from(file));
     }
   }
 });

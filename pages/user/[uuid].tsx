@@ -1,16 +1,15 @@
 import { CheckEvent, User } from '@kaiyuanshe/kys-service';
 import { TimeDistance } from 'idea-react';
-import { textJoin } from 'mobx-i18n';
 import { observer } from 'mobx-react';
 import { ScrollList } from 'mobx-restful-table';
 import { cache, compose, errorLogger } from 'next-ssr-middleware';
 import { Component } from 'react';
-import { Breadcrumb, Button, Col, Container, Row } from 'react-bootstrap';
+import { Breadcrumb, Col, Container, Row } from 'react-bootstrap';
 
 import { PageHead } from '../../components/Layout/PageHead';
 import { CheckEventModel } from '../../models/Activity/CheckEvent';
 import { i18n, t } from '../../models/Base/Translation';
-import userStore, { UserModel } from '../../models/Base/User';
+import { UserModel } from '../../models/Base/User';
 
 interface UserProfilePageProps {
   user: User;
@@ -85,16 +84,6 @@ export default class UserProfilePage extends Component<UserProfilePageProps> {
         <Row>
           <Col>
             <h1 className="my-4">{title}</h1>
-
-            {userStore.session && (
-              <Button
-                variant="warning"
-                target="_blank"
-                href="https://ophapiv2-demo.authing.cn/u"
-              >
-                {textJoin(t('edit'), t('profile'))}
-              </Button>
-            )}
           </Col>
 
           <Col>
