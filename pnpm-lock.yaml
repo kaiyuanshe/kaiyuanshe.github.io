@@ -18,14 +18,14 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@mdx-js/loader':
-        specifier: ^3.0.1
-        version: 3.0.1(webpack@5.95.0)
+        specifier: ^3.1.0
+        version: 3.1.0(webpack@5.95.0)
       '@mdx-js/react':
-        specifier: ^3.0.1
-        version: 3.0.1(@types/react@18.3.11)(react@18.3.1)
+        specifier: ^3.1.0
+        version: 3.1.0(@types/react@18.3.11)(react@18.3.1)
       '@next/mdx':
         specifier: ^14.2.15
-        version: 14.2.15(@mdx-js/loader@3.0.1(webpack@5.95.0))(@mdx-js/react@3.0.1(@types/react@18.3.11)(react@18.3.1))
+        version: 14.2.15(@mdx-js/loader@3.1.0(webpack@5.95.0))(@mdx-js/react@3.1.0(@types/react@18.3.11)(react@18.3.1))
       '@sentry/nextjs':
         specifier: ^8.34.0
         version: 8.34.0(@opentelemetry/api@1.9.0)(@opentelemetry/core@1.26.0(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.53.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.26.0(@opentelemetry/api@1.9.0))(next@14.2.15(@babel/core@7.25.7)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(webpack@5.95.0)
@@ -45,8 +45,8 @@ importers:
         specifier: ^19.6.0
         version: 19.6.0
       idea-react:
-        specifier: ^2.0.0-rc.2
-        version: 2.0.0-rc.2(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3)
+        specifier: ^2.0.0-rc.6
+        version: 2.0.0-rc.6(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3)
       koajax:
         specifier: ^3.0.2
         version: 3.0.2(typescript@5.6.3)
@@ -66,29 +66,29 @@ importers:
         specifier: ^4.17.21
         version: 4.17.21
       marked:
-        specifier: ^14.1.2
-        version: 14.1.2
+        specifier: ^14.1.3
+        version: 14.1.3
       mobx:
-        specifier: ^6.13.3
-        version: 6.13.3
+        specifier: ^6.13.5
+        version: 6.13.5
       mobx-i18n:
         specifier: ^0.6.0
-        version: 0.6.0(mobx@6.13.3)(typescript@5.6.3)
+        version: 0.6.0(mobx@6.13.5)(typescript@5.6.3)
       mobx-lark:
         specifier: ^2.0.0-rc.3
-        version: 2.0.0-rc.3(mobx@6.13.3)(typescript@5.6.3)
+        version: 2.0.0-rc.3(mobx@6.13.5)(typescript@5.6.3)
       mobx-react:
         specifier: ^9.1.1
-        version: 9.1.1(mobx@6.13.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 9.1.1(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       mobx-react-helper:
         specifier: ^0.3.1
-        version: 0.3.1(mobx@6.13.3)(react@18.3.1)
+        version: 0.3.1(mobx@6.13.5)(react@18.3.1)
       mobx-restful:
         specifier: ^1.0.1
-        version: 1.0.1(mobx@6.13.3)(typescript@5.6.3)
+        version: 1.0.1(mobx@6.13.5)(typescript@5.6.3)
       mobx-restful-table:
         specifier: ^2.0.0
-        version: 2.0.0(@types/react@18.3.11)(mobx-i18n@0.6.0(mobx@6.13.3)(typescript@5.6.3))(mobx-react@9.1.1(mobx@6.13.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(mobx-restful@1.0.1(mobx@6.13.3)(typescript@5.6.3))(mobx@6.13.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3)
+        version: 2.0.0(@types/react@18.3.11)(mobx-i18n@0.6.0(mobx@6.13.5)(typescript@5.6.3))(mobx-react@9.1.1(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(mobx-restful@1.0.1(mobx@6.13.5)(typescript@5.6.3))(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3)
       next:
         specifier: ^14.2.15
         version: 14.2.15(@babel/core@7.25.7)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -97,7 +97,7 @@ importers:
         version: 5.6.0(@babel/core@7.25.7)(next@14.2.15(@babel/core@7.25.7)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(webpack@5.95.0)
       next-ssr-middleware:
         specifier: ^0.8.8
-        version: 0.8.8(mobx-i18n@0.6.0(mobx@6.13.3)(typescript@5.6.3))(next@14.2.15(@babel/core@7.25.7)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(typescript@5.6.3)
+        version: 0.8.8(mobx-i18n@0.6.0(mobx@6.13.5)(typescript@5.6.3))(next@14.2.15(@babel/core@7.25.7)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(typescript@5.6.3)
       next-with-less:
         specifier: ^3.0.1
         version: 3.0.1(less-loader@12.2.0(less@4.2.0)(webpack@5.95.0))(less@4.2.0)(next@14.2.15(@babel/core@7.25.7)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
@@ -106,7 +106,7 @@ importers:
         version: 2.3.7(next@14.2.15(@babel/core@7.25.7)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       open-react-map:
         specifier: ^0.8.0
-        version: 0.8.0(mobx-react@9.1.1(mobx@6.13.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(mobx@6.13.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3)
+        version: 0.8.0(mobx-react@9.1.1(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3)
       qrcode.react:
         specifier: ^4.0.1
         version: 4.0.1(react@18.3.1)
@@ -152,13 +152,13 @@ importers:
         version: 7.25.7(@babel/core@7.25.7)
       '@kaiyuanshe/kys-service':
         specifier: ^0.7.0
-        version: 0.7.0(mobx@6.13.3)(typescript@5.6.3)
+        version: 0.7.0(mobx@6.13.5)(typescript@5.6.3)
       '@types/leaflet':
-        specifier: ^1.9.12
-        version: 1.9.12
+        specifier: ^1.9.13
+        version: 1.9.13
       '@types/lodash':
-        specifier: ^4.17.10
-        version: 4.17.10
+        specifier: ^4.17.11
+        version: 4.17.11
       '@types/mdx':
         specifier: ^2.0.13
         version: 2.0.13
@@ -166,8 +166,8 @@ importers:
         specifier: ^5.6.9
         version: 5.6.9(@babel/core@7.25.7)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@types/node':
-        specifier: ^20.16.11
-        version: 20.16.11
+        specifier: ^20.16.12
+        version: 20.16.12
       '@types/react':
         specifier: ^18.3.11
         version: 18.3.11
@@ -185,7 +185,7 @@ importers:
         version: 12.1.1(eslint@8.57.1)
       get-git-folder:
         specifier: ^0.1.2
-        version: 0.1.2(@babel/plugin-transform-modules-commonjs@7.25.7(@babel/core@7.25.7))(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/node@20.16.11)
+        version: 0.1.2(@babel/plugin-transform-modules-commonjs@7.25.7(@babel/core@7.25.7))(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/node@20.16.12)
       husky:
         specifier: ^9.1.6
         version: 9.1.6
@@ -952,16 +952,19 @@ packages:
   '@lit/reactive-element@2.0.4':
     resolution: {integrity: sha512-GFn91inaUa2oHLak8awSIigYz0cU0Payr1rcFsrkf5OJ5eSPxElyZfKh0f2p9FsTiZWXQdWGJeXZICEfXXYSXQ==}
 
-  '@mdx-js/loader@3.0.1':
-    resolution: {integrity: sha512-YbYUt7YyEOdFxhyuCWmLKf5vKhID/hJAojEUnheJk4D8iYVLFQw+BAoBWru/dHGch1omtmZOPstsmKPyBF68Tw==}
+  '@mdx-js/loader@3.1.0':
+    resolution: {integrity: sha512-xU/lwKdOyfXtQGqn3VnJjlDrmKXEvMi1mgYxVmukEUtVycIz1nh7oQ40bKTd4cA7rLStqu0740pnhGYxGoqsCg==}
     peerDependencies:
       webpack: '>=5'
+    peerDependenciesMeta:
+      webpack:
+        optional: true
 
   '@mdx-js/mdx@3.0.1':
     resolution: {integrity: sha512-eIQ4QTrOWyL3LWEe/bu6Taqzq2HQvHcyTMaOrI95P2/LmJE7AsfPfgJGuFLPVqBUE1BC1rik3VIhU+s9u72arA==}
 
-  '@mdx-js/react@3.0.1':
-    resolution: {integrity: sha512-9ZrPIU4MGf6et1m1ov3zKf+q9+deetI51zprKB1D/z3NOb+rUxxtEl3mCjW5wTGh6VhRdwPueh1oRzi6ezkA8A==}
+  '@mdx-js/react@3.1.0':
+    resolution: {integrity: sha512-QjHtSaoameoalGnKDT3FoIl4+9RwyTmo9ZJGBdLOks/YOiWHoRDI3PUwEzOE7kEmGcV3AFcp9K6dYu9rEuKLAQ==}
     peerDependencies:
       '@types/react': '>=16'
       react: '>=16'
@@ -1671,11 +1674,11 @@ packages:
   '@types/koa@2.15.0':
     resolution: {integrity: sha512-7QFsywoE5URbuVnG3loe03QXuGajrnotr3gQkXcEBShORai23MePfFYdhz90FEtBBpkyIYQbVD+evKtloCgX3g==}
 
-  '@types/leaflet@1.9.12':
-    resolution: {integrity: sha512-BK7XS+NyRI291HIo0HCfE18Lp8oA30H1gpi1tf0mF3TgiCEzanQjOqNZ4x126SXzzi2oNSZhZ5axJp1k0iM6jg==}
+  '@types/leaflet@1.9.13':
+    resolution: {integrity: sha512-wwLL4VKKwYlLmhMQRc/8HT5/8HgkzZyETG0hG3nbsSiHKSdxBWZnHqEkRIOOtpyUks3gbc81dk9WgQMC6bicDw==}
 
-  '@types/lodash@4.17.10':
-    resolution: {integrity: sha512-YpS0zzoduEhuOWjAotS6A5AVCva7X4lVlYLF0FYHAY9sdraBfnatttHItlWeZdGhuEkf+OzMNg2ZYAx8t+52uQ==}
+  '@types/lodash@4.17.11':
+    resolution: {integrity: sha512-jzqWo/uQP/iqeGGTjhgFp2yaCrCYTauASQcpdzESNCkHjSprBJVcZP9KG9aQ0q+xcsXiKd/iuw/4dLjS3Odc7Q==}
 
   '@types/mdast@4.0.4':
     resolution: {integrity: sha512-kGaNbPh1k7AFzgpud/gMdvIm5xuECykRR+JnWKQno9TAXVa6WIVCGTPvYGekIDL4uwCZQSYbUxNBSb1aUo79oA==}
@@ -1704,8 +1707,8 @@ packages:
   '@types/node@18.19.55':
     resolution: {integrity: sha512-zzw5Vw52205Zr/nmErSEkN5FLqXPuKX/k5d1D7RKHATGqU7y6YfX9QxZraUzUrFGqH6XzOzG196BC35ltJC4Cw==}
 
-  '@types/node@20.16.11':
-    resolution: {integrity: sha512-y+cTCACu92FyA5fgQSAI8A1H429g7aSK2HsO7K4XYUWc4dY5IUz55JSDIYT6/VsOLfGy8vmvQYC2hfb0iF16Uw==}
+  '@types/node@20.16.12':
+    resolution: {integrity: sha512-LfPFB0zOeCeCNQV3i+67rcoVvoN5n0NVuR2vLG0O5ySQMgchuZlC4lgz546ZOJyDtj5KIgOxy+lacOimfqZAIA==}
 
   '@types/pg-pool@2.0.6':
     resolution: {integrity: sha512-TaAUE5rq2VQYxab5Ts7WZhKNmuN78Q6PiFonTDdpbx8a1H0M1vhy3rhiMjl+e2iHmogyMw7jZF4FrE6eJUy5HQ==}
@@ -2943,8 +2946,8 @@ packages:
   idb@7.1.1:
     resolution: {integrity: sha512-gchesWBzyvGHRO9W8tzUWFDycow5gwjvFKfyV9FF32Y7F50yZMp7mP+T2mJIWFx49zicqyC4uefHM17o6xKIVQ==}
 
-  idea-react@2.0.0-rc.2:
-    resolution: {integrity: sha512-E+HZegixmsKRplvZol9AU6GAH8Hzn1dzwKqizos9hsd3vjMSr2dG0dtABelERdrqifhTIO7YYxnubTsExjK9xQ==}
+  idea-react@2.0.0-rc.6:
+    resolution: {integrity: sha512-TJ6lJsfyiR/75pnbbjGo2QLWw/Nx5+7S7AafLuWqW6QHPW66gEk5KDW/H6fQTipeyMLy+xLvHabIPLDHCf8q3g==}
     peerDependencies:
       react: '>=16'
       react-dom: '>=16'
@@ -3484,8 +3487,8 @@ packages:
   markdown-table@3.0.3:
     resolution: {integrity: sha512-Z1NL3Tb1M9wH4XESsCDEksWoKTdlUafKc4pt0GRwjUyXaCFZ+dc3g2erqB6zm3szA2IUSi7VnPI+o/9jnxh9hw==}
 
-  marked@14.1.2:
-    resolution: {integrity: sha512-f3r0yqpz31VXiDB/wj9GaOB0a2PRLQl6vJmXiFrniNwjkKdvakqJRULhjFKJpxOchlCRiG5fcacoUZY5Xa6PEQ==}
+  marked@14.1.3:
+    resolution: {integrity: sha512-ZibJqTULGlt9g5k4VMARAktMAjXoVnnr+Y3aCqW1oDftcV4BA3UmrBifzXoZyenHRk75csiPu9iwsTj4VNBT0g==}
     engines: {node: '>= 18'}
     hasBin: true
 
@@ -3778,8 +3781,8 @@ packages:
     peerDependencies:
       mobx: '>=6.11'
 
-  mobx@6.13.3:
-    resolution: {integrity: sha512-YtAS+ZMbdpbHYUU4ESht3na8KiX11KuMT1yOiKtbKlQ0GZkHDYPKyEw/Tdp7h7aHyLrTWj2TBaSNJ6bCr638iQ==}
+  mobx@6.13.5:
+    resolution: {integrity: sha512-/HTWzW2s8J1Gqt+WmUj5Y0mddZk+LInejADc79NJadrWla3rHzmRHki/mnEUH1AvOmbNTZ1BRbKxr8DSgfdjMA==}
 
   module-details-from-path@1.0.3:
     resolution: {integrity: sha512-ySViT69/76t8VhE1xXHK6Ch4NcDd26gx0MzKXLO+F7NOtnqH68d9zF94nT8ZWSxXh8ELOERsnJO/sWt1xZYw5A==}
@@ -6006,14 +6009,14 @@ snapshots:
     dependencies:
       '@jest/fake-timers': 27.5.1
       '@jest/types': 27.5.1
-      '@types/node': 20.16.11
+      '@types/node': 20.16.12
       jest-mock: 27.5.1
 
   '@jest/fake-timers@27.5.1':
     dependencies:
       '@jest/types': 27.5.1
       '@sinonjs/fake-timers': 8.1.0
-      '@types/node': 20.16.11
+      '@types/node': 20.16.12
       jest-message-util: 27.5.1
       jest-mock: 27.5.1
       jest-util: 27.5.1
@@ -6028,7 +6031,7 @@ snapshots:
     dependencies:
       '@types/istanbul-lib-coverage': 2.0.6
       '@types/istanbul-reports': 3.0.4
-      '@types/node': 20.16.11
+      '@types/node': 20.16.12
       '@types/yargs': 16.0.9
       chalk: 4.1.2
 
@@ -6054,11 +6057,11 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  '@kaiyuanshe/kys-service@0.7.0(mobx@6.13.3)(typescript@5.6.3)':
+  '@kaiyuanshe/kys-service@0.7.0(mobx@6.13.5)(typescript@5.6.3)':
     dependencies:
       '@types/jsonwebtoken': 9.0.7
       '@types/koa': 2.15.0
-      mobx-restful: 0.6.12(mobx@6.13.3)(typescript@5.6.3)
+      mobx-restful: 0.6.12(mobx@6.13.5)(typescript@5.6.3)
     transitivePeerDependencies:
       - jsdom
       - mobx
@@ -6070,10 +6073,11 @@ snapshots:
     dependencies:
       '@lit-labs/ssr-dom-shim': 1.2.1
 
-  '@mdx-js/loader@3.0.1(webpack@5.95.0)':
+  '@mdx-js/loader@3.1.0(webpack@5.95.0)':
     dependencies:
       '@mdx-js/mdx': 3.0.1
       source-map: 0.7.4
+    optionalDependencies:
       webpack: 5.95.0
     transitivePeerDependencies:
       - supports-color
@@ -6106,7 +6110,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@mdx-js/react@3.0.1(@types/react@18.3.11)(react@18.3.1)':
+  '@mdx-js/react@3.1.0(@types/react@18.3.11)(react@18.3.1)':
     dependencies:
       '@types/mdx': 2.0.13
       '@types/react': 18.3.11
@@ -6120,12 +6124,12 @@ snapshots:
     dependencies:
       glob: 10.3.10
 
-  '@next/mdx@14.2.15(@mdx-js/loader@3.0.1(webpack@5.95.0))(@mdx-js/react@3.0.1(@types/react@18.3.11)(react@18.3.1))':
+  '@next/mdx@14.2.15(@mdx-js/loader@3.1.0(webpack@5.95.0))(@mdx-js/react@3.1.0(@types/react@18.3.11)(react@18.3.1))':
     dependencies:
       source-map: 0.7.4
     optionalDependencies:
-      '@mdx-js/loader': 3.0.1(webpack@5.95.0)
-      '@mdx-js/react': 3.0.1(@types/react@18.3.11)(react@18.3.1)
+      '@mdx-js/loader': 3.1.0(webpack@5.95.0)
+      '@mdx-js/react': 3.1.0(@types/react@18.3.11)(react@18.3.1)
 
   '@next/swc-darwin-arm64@13.5.7':
     optional: true
@@ -6820,12 +6824,12 @@ snapshots:
     optionalDependencies:
       fetch-blob: 3.2.0
 
-  '@tech_query/node-toolkit@1.2.1(@babel/plugin-transform-modules-commonjs@7.25.7(@babel/core@7.25.7))(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/node@20.16.11)':
+  '@tech_query/node-toolkit@1.2.1(@babel/plugin-transform-modules-commonjs@7.25.7(@babel/core@7.25.7))(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/node@20.16.12)':
     dependencies:
       '@babel/core': 7.25.7
       '@babel/plugin-transform-modules-commonjs': 7.25.7(@babel/core@7.25.7)
       '@babel/preset-env': 7.25.7(@babel/core@7.25.7)
-      '@types/node': 20.16.11
+      '@types/node': 20.16.12
       cross-spawn: 7.0.3
       file-type: 16.5.4
       fs-extra: 11.2.0
@@ -6842,7 +6846,7 @@ snapshots:
 
   '@types/accepts@1.3.7':
     dependencies:
-      '@types/node': 20.16.11
+      '@types/node': 20.16.12
 
   '@types/acorn@4.0.6':
     dependencies:
@@ -6851,15 +6855,15 @@ snapshots:
   '@types/body-parser@1.19.5':
     dependencies:
       '@types/connect': 3.4.38
-      '@types/node': 20.16.11
+      '@types/node': 20.16.12
 
   '@types/connect@3.4.36':
     dependencies:
-      '@types/node': 20.16.11
+      '@types/node': 20.16.12
 
   '@types/connect@3.4.38':
     dependencies:
-      '@types/node': 20.16.11
+      '@types/node': 20.16.12
 
   '@types/content-disposition@0.5.8': {}
 
@@ -6868,7 +6872,7 @@ snapshots:
       '@types/connect': 3.4.38
       '@types/express': 5.0.0
       '@types/keygrip': 1.0.6
-      '@types/node': 20.16.11
+      '@types/node': 20.16.12
 
   '@types/debug@4.1.12':
     dependencies:
@@ -6884,7 +6888,7 @@ snapshots:
 
   '@types/express-serve-static-core@5.0.0':
     dependencies:
-      '@types/node': 20.16.11
+      '@types/node': 20.16.12
       '@types/qs': 6.9.16
       '@types/range-parser': 1.2.7
       '@types/send': 0.17.4
@@ -6899,14 +6903,14 @@ snapshots:
   '@types/fs-extra@11.0.4':
     dependencies:
       '@types/jsonfile': 6.1.4
-      '@types/node': 20.16.11
+      '@types/node': 20.16.12
 
   '@types/geojson@7946.0.14': {}
 
   '@types/glob@7.2.0':
     dependencies:
       '@types/minimatch': 5.1.2
-      '@types/node': 20.16.11
+      '@types/node': 20.16.12
 
   '@types/hast@3.0.4':
     dependencies:
@@ -6932,11 +6936,11 @@ snapshots:
 
   '@types/jsonfile@6.1.4':
     dependencies:
-      '@types/node': 20.16.11
+      '@types/node': 20.16.12
 
   '@types/jsonwebtoken@9.0.7':
     dependencies:
-      '@types/node': 20.16.11
+      '@types/node': 20.16.12
 
   '@types/keygrip@1.0.6': {}
 
@@ -6953,13 +6957,13 @@ snapshots:
       '@types/http-errors': 2.0.4
       '@types/keygrip': 1.0.6
       '@types/koa-compose': 3.2.8
-      '@types/node': 20.16.11
+      '@types/node': 20.16.12
 
-  '@types/leaflet@1.9.12':
+  '@types/leaflet@1.9.13':
     dependencies:
       '@types/geojson': 7946.0.14
 
-  '@types/lodash@4.17.10': {}
+  '@types/lodash@4.17.11': {}
 
   '@types/mdast@4.0.4':
     dependencies:
@@ -6977,11 +6981,11 @@ snapshots:
 
   '@types/mysql@2.15.26':
     dependencies:
-      '@types/node': 20.16.11
+      '@types/node': 20.16.12
 
   '@types/next-pwa@5.6.9(@babel/core@7.25.7)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@types/node': 20.16.11
+      '@types/node': 20.16.12
       '@types/react': 18.3.11
       '@types/react-dom': 18.3.1
       next: 13.5.7(@babel/core@7.25.7)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -7000,7 +7004,7 @@ snapshots:
     dependencies:
       undici-types: 5.26.5
 
-  '@types/node@20.16.11':
+  '@types/node@20.16.12':
     dependencies:
       undici-types: 6.19.8
 
@@ -7010,7 +7014,7 @@ snapshots:
 
   '@types/pg@8.6.1':
     dependencies:
-      '@types/node': 20.16.11
+      '@types/node': 20.16.12
       pg-protocol: 1.7.0
       pg-types: 2.2.0
 
@@ -7037,17 +7041,17 @@ snapshots:
 
   '@types/resolve@1.17.1':
     dependencies:
-      '@types/node': 20.16.11
+      '@types/node': 20.16.12
 
   '@types/send@0.17.4':
     dependencies:
       '@types/mime': 1.3.5
-      '@types/node': 20.16.11
+      '@types/node': 20.16.12
 
   '@types/serve-static@1.15.7':
     dependencies:
       '@types/http-errors': 2.0.4
-      '@types/node': 20.16.11
+      '@types/node': 20.16.12
       '@types/send': 0.17.4
 
   '@types/shimmer@1.2.0': {}
@@ -7592,9 +7596,9 @@ snapshots:
 
   comma-separated-tokens@2.0.3: {}
 
-  commander-jsx@0.6.9(@babel/plugin-transform-modules-commonjs@7.25.7(@babel/core@7.25.7))(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/node@20.16.11):
+  commander-jsx@0.6.9(@babel/plugin-transform-modules-commonjs@7.25.7(@babel/core@7.25.7))(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/node@20.16.12):
     dependencies:
-      '@tech_query/node-toolkit': 1.2.1(@babel/plugin-transform-modules-commonjs@7.25.7(@babel/core@7.25.7))(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/node@20.16.11)
+      '@tech_query/node-toolkit': 1.2.1(@babel/plugin-transform-modules-commonjs@7.25.7(@babel/core@7.25.7))(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/node@20.16.12)
       tslib: 2.7.0
     transitivePeerDependencies:
       - '@babel/plugin-transform-modules-commonjs'
@@ -8347,9 +8351,9 @@ snapshots:
 
   get-east-asian-width@1.2.0: {}
 
-  get-git-folder@0.1.2(@babel/plugin-transform-modules-commonjs@7.25.7(@babel/core@7.25.7))(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/node@20.16.11):
+  get-git-folder@0.1.2(@babel/plugin-transform-modules-commonjs@7.25.7(@babel/core@7.25.7))(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/node@20.16.12):
     dependencies:
-      commander-jsx: 0.6.9(@babel/plugin-transform-modules-commonjs@7.25.7(@babel/core@7.25.7))(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/node@20.16.11)
+      commander-jsx: 0.6.9(@babel/plugin-transform-modules-commonjs@7.25.7(@babel/core@7.25.7))(@babel/preset-env@7.25.7(@babel/core@7.25.7))(@types/node@20.16.12)
       zx: 7.2.3
     transitivePeerDependencies:
       - '@babel/plugin-transform-modules-commonjs'
@@ -8580,7 +8584,7 @@ snapshots:
 
   idb@7.1.1: {}
 
-  idea-react@2.0.0-rc.2(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3):
+  idea-react@2.0.0-rc.6(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3):
     dependencies:
       '@editorjs/editorjs': 2.30.6
       '@editorjs/paragraph': 2.11.6
@@ -8591,9 +8595,9 @@ snapshots:
       html2canvas: 1.4.1
       iterable-observer: 1.1.0
       lodash: 4.17.21
-      mobx: 6.13.3
-      mobx-react: 9.1.1(mobx@6.13.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      mobx-react-helper: 0.3.1(mobx@6.13.3)(react@18.3.1)
+      mobx: 6.13.5
+      mobx-react: 9.1.1(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      mobx-react-helper: 0.3.1(mobx@6.13.5)(react@18.3.1)
       prismjs: 1.29.0
       react: 18.3.1
       react-bootstrap: 2.10.5(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -8880,12 +8884,12 @@ snapshots:
   jest-mock@27.5.1:
     dependencies:
       '@jest/types': 27.5.1
-      '@types/node': 20.16.11
+      '@types/node': 20.16.12
 
   jest-util@27.5.1:
     dependencies:
       '@jest/types': 27.5.1
-      '@types/node': 20.16.11
+      '@types/node': 20.16.12
       chalk: 4.1.2
       ci-info: 3.9.0
       graceful-fs: 4.2.11
@@ -8893,13 +8897,13 @@ snapshots:
 
   jest-worker@26.6.2:
     dependencies:
-      '@types/node': 20.16.11
+      '@types/node': 20.16.12
       merge-stream: 2.0.0
       supports-color: 7.2.0
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 20.16.11
+      '@types/node': 20.16.12
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
@@ -9162,7 +9166,7 @@ snapshots:
 
   markdown-table@3.0.3: {}
 
-  marked@14.1.2: {}
+  marked@14.1.3: {}
 
   marked@4.3.0: {}
 
@@ -9658,60 +9662,60 @@ snapshots:
 
   minipass@7.1.2: {}
 
-  mobx-i18n@0.6.0(mobx@6.13.3)(typescript@5.6.3):
+  mobx-i18n@0.6.0(mobx@6.13.5)(typescript@5.6.3):
     dependencies:
       '@swc/helpers': 0.5.13
-      mobx: 6.13.3
+      mobx: 6.13.5
       regenerator-runtime: 0.14.1
       web-utility: 4.4.1(typescript@5.6.3)
     transitivePeerDependencies:
       - typescript
 
-  mobx-lark@2.0.0-rc.3(mobx@6.13.3)(typescript@5.6.3):
+  mobx-lark@2.0.0-rc.3(mobx@6.13.5)(typescript@5.6.3):
     dependencies:
       '@swc/helpers': 0.5.13
       koajax: 3.0.2(typescript@5.6.3)
-      mobx: 6.13.3
-      mobx-restful: 1.0.1(mobx@6.13.3)(typescript@5.6.3)
+      mobx: 6.13.5
+      mobx-restful: 1.0.1(mobx@6.13.5)(typescript@5.6.3)
       regenerator-runtime: 0.14.1
       web-utility: 4.4.1(typescript@5.6.3)
     transitivePeerDependencies:
       - jsdom
       - typescript
 
-  mobx-react-helper@0.3.1(mobx@6.13.3)(react@18.3.1):
+  mobx-react-helper@0.3.1(mobx@6.13.5)(react@18.3.1):
     dependencies:
       '@swc/helpers': 0.5.13
       lodash.isequalwith: 4.4.0
-      mobx: 6.13.3
+      mobx: 6.13.5
       react: 18.3.1
 
-  mobx-react-lite@4.0.7(mobx@6.13.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  mobx-react-lite@4.0.7(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
-      mobx: 6.13.3
+      mobx: 6.13.5
       react: 18.3.1
       use-sync-external-store: 1.2.2(react@18.3.1)
     optionalDependencies:
       react-dom: 18.3.1(react@18.3.1)
 
-  mobx-react@9.1.1(mobx@6.13.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  mobx-react@9.1.1(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
-      mobx: 6.13.3
-      mobx-react-lite: 4.0.7(mobx@6.13.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      mobx: 6.13.5
+      mobx-react-lite: 4.0.7(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
     optionalDependencies:
       react-dom: 18.3.1(react@18.3.1)
 
-  mobx-restful-table@2.0.0(@types/react@18.3.11)(mobx-i18n@0.6.0(mobx@6.13.3)(typescript@5.6.3))(mobx-react@9.1.1(mobx@6.13.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(mobx-restful@1.0.1(mobx@6.13.3)(typescript@5.6.3))(mobx@6.13.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3):
+  mobx-restful-table@2.0.0(@types/react@18.3.11)(mobx-i18n@0.6.0(mobx@6.13.5)(typescript@5.6.3))(mobx-react@9.1.1(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(mobx-restful@1.0.1(mobx@6.13.5)(typescript@5.6.3))(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3):
     dependencies:
       '@swc/helpers': 0.5.13
       classnames: 2.5.1
       lodash: 4.17.21
-      mobx: 6.13.3
-      mobx-i18n: 0.6.0(mobx@6.13.3)(typescript@5.6.3)
-      mobx-react: 9.1.1(mobx@6.13.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      mobx-react-helper: 0.3.1(mobx@6.13.3)(react@18.3.1)
-      mobx-restful: 1.0.1(mobx@6.13.3)(typescript@5.6.3)
+      mobx: 6.13.5
+      mobx-i18n: 0.6.0(mobx@6.13.5)(typescript@5.6.3)
+      mobx-react: 9.1.1(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      mobx-react-helper: 0.3.1(mobx@6.13.5)(react@18.3.1)
+      mobx-restful: 1.0.1(mobx@6.13.5)(typescript@5.6.3)
       react: 18.3.1
       react-bootstrap: 2.10.5(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       regenerator-runtime: 0.14.1
@@ -9721,12 +9725,12 @@ snapshots:
       - react-dom
       - typescript
 
-  mobx-restful@0.6.12(mobx@6.13.3)(typescript@5.6.3):
+  mobx-restful@0.6.12(mobx@6.13.5)(typescript@5.6.3):
     dependencies:
       '@swc/helpers': 0.5.13
       class-validator: 0.14.1
       koajax: 0.9.6(typescript@5.6.3)
-      mobx: 6.13.3
+      mobx: 6.13.5
       reflect-metadata: 0.1.14
       regenerator-runtime: 0.14.1
       web-utility: 4.4.1(typescript@5.6.3)
@@ -9734,12 +9738,12 @@ snapshots:
       - jsdom
       - typescript
 
-  mobx-restful@1.0.1(mobx@6.13.3)(typescript@5.6.3):
+  mobx-restful@1.0.1(mobx@6.13.5)(typescript@5.6.3):
     dependencies:
       '@swc/helpers': 0.5.13
       idb-keyval: 6.2.1
       koajax: 3.0.2(typescript@5.6.3)
-      mobx: 6.13.3
+      mobx: 6.13.5
       native-file-system-adapter: '@tech_query/native-file-system-adapter@3.0.1'
       regenerator-runtime: 0.14.1
       web-streams-polyfill: 4.0.0
@@ -9748,7 +9752,7 @@ snapshots:
       - jsdom
       - typescript
 
-  mobx@6.13.3: {}
+  mobx@6.13.5: {}
 
   module-details-from-path@1.0.3: {}
 
@@ -9784,10 +9788,10 @@ snapshots:
       - uglify-js
       - webpack
 
-  next-ssr-middleware@0.8.8(mobx-i18n@0.6.0(mobx@6.13.3)(typescript@5.6.3))(next@14.2.15(@babel/core@7.25.7)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(typescript@5.6.3):
+  next-ssr-middleware@0.8.8(mobx-i18n@0.6.0(mobx@6.13.5)(typescript@5.6.3))(next@14.2.15(@babel/core@7.25.7)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(typescript@5.6.3):
     dependencies:
       jsonwebtoken: 9.0.2
-      mobx-i18n: 0.6.0(mobx@6.13.3)(typescript@5.6.3)
+      mobx-i18n: 0.6.0(mobx@6.13.5)(typescript@5.6.3)
       next: 14.2.15(@babel/core@7.25.7)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       tslib: 2.7.0
       web-utility: 4.4.1(typescript@5.6.3)
@@ -9935,15 +9939,15 @@ snapshots:
     dependencies:
       mimic-function: 5.0.1
 
-  open-react-map@0.8.0(mobx-react@9.1.1(mobx@6.13.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(mobx@6.13.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3):
+  open-react-map@0.8.0(mobx-react@9.1.1(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3):
     dependencies:
       '@swc/helpers': 0.5.13
-      '@types/leaflet': 1.9.12
+      '@types/leaflet': 1.9.13
       koajax: 0.9.6(typescript@5.6.3)
       leaflet: 1.9.4
-      mobx: 6.13.3
-      mobx-react: 9.1.1(mobx@6.13.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      mobx-react-helper: 0.3.1(mobx@6.13.3)(react@18.3.1)
+      mobx: 6.13.5
+      mobx-react: 9.1.1(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      mobx-react-helper: 0.3.1(mobx@6.13.5)(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       react-leaflet: 4.2.1(leaflet@1.9.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
