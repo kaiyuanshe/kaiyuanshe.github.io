@@ -7,7 +7,6 @@
     "node": ">=20"
   },
   "dependencies": {
-    "@authing/guard": "^5.3.8",
     "@giscus/react": "^3.0.0",
     "@mdx-js/loader": "^3.1.0",
     "@mdx-js/react": "^3.1.0",
@@ -55,7 +54,7 @@
     "@babel/plugin-proposal-decorators": "^7.25.7",
     "@babel/plugin-transform-typescript": "^7.25.7",
     "@babel/preset-react": "^7.25.7",
-    "@kaiyuanshe/kys-service": "^0.7.0",
+    "@kaiyuanshe/kys-service": "^1.0.0-rc.0",
     "@types/leaflet": "^1.9.13",
     "@types/lodash": "^4.17.11",
     "@types/mdx": "^2.0.13",
@@ -73,7 +72,8 @@
     "typescript": "~5.6.3"
   },
   "resolutions": {
-    "native-file-system-adapter": "npm:@tech_query/native-file-system-adapter@^3.0.1"
+    "native-file-system-adapter": "npm:@tech_query/native-file-system-adapter@^3.0.1",
+    "next": "$next"
   },
   "prettier": {
     "singleQuote": true,
