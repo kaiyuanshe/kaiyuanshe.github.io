@@ -1,5 +1,5 @@
 import { SMSCodeInput } from '@kaiyuanshe/kys-service';
-import { Dialog, Loading } from 'idea-react';
+import { Dialog, DialogClose, Loading } from 'idea-react';
 import { observer } from 'mobx-react';
 import { Component, MouseEvent } from 'react';
 import { Button, Form, InputGroup, Modal } from 'react-bootstrap';
@@ -34,17 +34,18 @@ export class CaptchaButton extends Component {
 
 export type CaptchaTicket = Required<Omit<SMSCodeInput, 'mobilePhone'>>;
 
-export const captchaDialog = new Dialog(({ defer }) => (
-  <Modal show={!!defer}>
+export const captchaDialog = new Dialog<{}, CaptchaTicket>(({ defer }) => (
+  <Modal show={!!defer} onHide={() => defer?.reject(new DialogClose())}>
+    <Modal.Header closeButton>
+      <Modal.Title>🔒</Modal.Title>
+    </Modal.Header>
     <Modal.Body>
       <Form
+        id="captcha-form"
         onSubmit={event => {
           event.preventDefault();
 
-          const data = formToJSON<CaptchaTicket>(event.currentTarget);
-
-          userStore.saveSMSCodeInput(data);
-          defer?.resolve(data);
+          defer?.resolve(formToJSON<CaptchaTicket>(event.currentTarget));
         }}
       >
         <InputGroup>
@@ -53,9 +54,12 @@ export const captchaDialog = new Dialog(({ defer }) => (
           </InputGroup.Text>
           <Form.Control name="captchaCode" required />
         </InputGroup>
-
-        <Button type="submit">√</Button>
       </Form>
     </Modal.Body>
+    <Modal.Footer>
+      <Button type="submit" variant="primary" form="captcha-form">
+        √
+      </Button>
+    </Modal.Footer>
   </Modal>
 ));

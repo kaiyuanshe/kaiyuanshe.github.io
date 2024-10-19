@@ -21,9 +21,6 @@ export class UserModel extends BaseListModel<User> {
   @observable
   accessor captcha: Captcha | undefined;
 
-  @observable
-  accessor smsCodeInput: Partial<SMSCodeInput> = {};
-
   client = new HTTPClient({
     baseURI: KYS_SERVICE_HOST,
     responseType: 'json',
@@ -41,10 +38,6 @@ export class UserModel extends BaseListModel<User> {
     const { body } = await this.client.post<Captcha>('session/captcha');
 
     return (this.captcha = body!);
-  }
-
-  saveSMSCodeInput(data: Partial<SMSCodeInput>) {
-    return (this.smsCodeInput = { ...this.smsCodeInput, ...data });
   }
 
   @toggle('uploading')

@@ -1,14 +1,13 @@
 import { observer } from 'mobx-react';
-import { Component, MouseEvent, PropsWithChildren } from 'react';
+import { Component, HTMLAttributes, MouseEvent } from 'react';
 
 import userStore from '../../models/Base/User';
 import { captchaDialog } from '../Base/Captcha';
-import { signWithSMSCode } from '../Base/SMSCode';
+import { mobilePhoneDialog, signWithSMSCode } from '../Base/SMSCode';
 
-export type SessionBoxProps = PropsWithChildren<{
-  className?: string;
+export interface SessionBoxProps extends HTMLAttributes<HTMLDivElement> {
   autoCover?: boolean;
-}>;
+}
 
 @observer
 export default class SessionBox extends Component<SessionBoxProps> {
@@ -19,9 +18,15 @@ export default class SessionBox extends Component<SessionBoxProps> {
   }
 
   async openModal() {
-    await captchaDialog.open();
+    const captcha = await captchaDialog.open();
 
-    await signWithSMSCode.open();
+    const smsCodeInput = await mobilePhoneDialog.open(captcha);
+
+    await userStore.createSMSCode(smsCodeInput);
+
+    const signInData = await signWithSMSCode.open(smsCodeInput);
+
+    await userStore.signIn(signInData);
   }
 
   captureInput = (event: MouseEvent<HTMLDivElement>) => {
@@ -32,15 +37,16 @@ export default class SessionBox extends Component<SessionBoxProps> {
   };
 
   render() {
-    const { className, autoCover, children } = this.props,
+    const { autoCover, children, ...props } = this.props,
       { session } = userStore;
 
     return (
       <>
         <captchaDialog.Component />
+        <mobilePhoneDialog.Component />
         <signWithSMSCode.Component />
         <div
-          className={className}
+          {...props}
           onClickCapture={autoCover || session ? undefined : this.captureInput}
         >
           {(!autoCover || session) && children}

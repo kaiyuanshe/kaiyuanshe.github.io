@@ -43,8 +43,8 @@ importers:
         specifier: ^19.6.0
         version: 19.6.0
       idea-react:
-        specifier: ^2.0.0-rc.6
-        version: 2.0.0-rc.6(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3)
+        specifier: ^2.0.0-rc.7
+        version: 2.0.0-rc.7(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3)
       koajax:
         specifier: ^3.0.2
         version: 3.0.2(typescript@5.6.3)
@@ -155,8 +155,8 @@ importers:
         specifier: ^1.9.13
         version: 1.9.13
       '@types/lodash':
-        specifier: ^4.17.11
-        version: 4.17.11
+        specifier: ^4.17.12
+        version: 4.17.12
       '@types/mdx':
         specifier: ^2.0.13
         version: 2.0.13
@@ -164,8 +164,8 @@ importers:
         specifier: ^5.6.9
         version: 5.6.9(@babel/core@7.25.8)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@types/node':
-        specifier: ^20.16.12
-        version: 20.16.12
+        specifier: ^20.16.13
+        version: 20.16.13
       '@types/react':
         specifier: ^18.3.11
         version: 18.3.11
@@ -183,7 +183,7 @@ importers:
         version: 12.1.1(eslint@8.57.1)
       get-git-folder:
         specifier: ^0.1.2
-        version: 0.1.2(@babel/plugin-transform-modules-commonjs@7.25.7(@babel/core@7.25.8))(@babel/preset-env@7.25.8(@babel/core@7.25.8))(@types/node@20.16.12)
+        version: 0.1.2(@babel/plugin-transform-modules-commonjs@7.25.7(@babel/core@7.25.8))(@babel/preset-env@7.25.8(@babel/core@7.25.8))(@types/node@20.16.13)
       husky:
         specifier: ^9.1.6
         version: 9.1.6
@@ -1526,8 +1526,8 @@ packages:
   '@types/leaflet@1.9.13':
     resolution: {integrity: sha512-wwLL4VKKwYlLmhMQRc/8HT5/8HgkzZyETG0hG3nbsSiHKSdxBWZnHqEkRIOOtpyUks3gbc81dk9WgQMC6bicDw==}
 
-  '@types/lodash@4.17.11':
-    resolution: {integrity: sha512-jzqWo/uQP/iqeGGTjhgFp2yaCrCYTauASQcpdzESNCkHjSprBJVcZP9KG9aQ0q+xcsXiKd/iuw/4dLjS3Odc7Q==}
+  '@types/lodash@4.17.12':
+    resolution: {integrity: sha512-sviUmCE8AYdaF/KIHLDJBQgeYzPBI0vf/17NaYehBJfYD1j6/L95Slh07NlyK2iNyBNaEkb3En2jRt+a8y3xZQ==}
 
   '@types/mdast@4.0.4':
     resolution: {integrity: sha512-kGaNbPh1k7AFzgpud/gMdvIm5xuECykRR+JnWKQno9TAXVa6WIVCGTPvYGekIDL4uwCZQSYbUxNBSb1aUo79oA==}
@@ -1556,8 +1556,8 @@ packages:
   '@types/node@18.19.56':
     resolution: {integrity: sha512-4EMJlWwwGnVPflJAtM14p9eVSa6BOv5b92mCsh5zcM1UagNtEtrbbtaE6WE1tw2TabavatnwqXjlIpcAEuJJNg==}
 
-  '@types/node@20.16.12':
-    resolution: {integrity: sha512-LfPFB0zOeCeCNQV3i+67rcoVvoN5n0NVuR2vLG0O5ySQMgchuZlC4lgz546ZOJyDtj5KIgOxy+lacOimfqZAIA==}
+  '@types/node@20.16.13':
+    resolution: {integrity: sha512-GjQ7im10B0labo8ZGXDGROUl9k0BNyDgzfGpb4g/cl+4yYDWVKcozANF4FGr4/p0O/rAkQClM6Wiwkije++1Tg==}
 
   '@types/pg-pool@2.0.6':
     resolution: {integrity: sha512-TaAUE5rq2VQYxab5Ts7WZhKNmuN78Q6PiFonTDdpbx8a1H0M1vhy3rhiMjl+e2iHmogyMw7jZF4FrE6eJUy5HQ==}
@@ -2771,8 +2771,8 @@ packages:
   idb@7.1.1:
     resolution: {integrity: sha512-gchesWBzyvGHRO9W8tzUWFDycow5gwjvFKfyV9FF32Y7F50yZMp7mP+T2mJIWFx49zicqyC4uefHM17o6xKIVQ==}
 
-  idea-react@2.0.0-rc.6:
-    resolution: {integrity: sha512-TJ6lJsfyiR/75pnbbjGo2QLWw/Nx5+7S7AafLuWqW6QHPW66gEk5KDW/H6fQTipeyMLy+xLvHabIPLDHCf8q3g==}
+  idea-react@2.0.0-rc.7:
+    resolution: {integrity: sha512-H/sK1OwPvNGQsG5j/VVTDppm4YgEmI8/R9/IpjPql7IN2G23hpMKxklHTLf+QaFxbZHrZ+Tu14cE6xagdRDV4g==}
     peerDependencies:
       react: '>=16'
       react-dom: '>=16'
@@ -5680,14 +5680,14 @@ snapshots:
     dependencies:
       '@jest/fake-timers': 27.5.1
       '@jest/types': 27.5.1
-      '@types/node': 20.16.12
+      '@types/node': 20.16.13
       jest-mock: 27.5.1
 
   '@jest/fake-timers@27.5.1':
     dependencies:
       '@jest/types': 27.5.1
       '@sinonjs/fake-timers': 8.1.0
-      '@types/node': 20.16.12
+      '@types/node': 20.16.13
       jest-message-util: 27.5.1
       jest-mock: 27.5.1
       jest-util: 27.5.1
@@ -5702,7 +5702,7 @@ snapshots:
     dependencies:
       '@types/istanbul-lib-coverage': 2.0.6
       '@types/istanbul-reports': 3.0.4
-      '@types/node': 20.16.12
+      '@types/node': 20.16.13
       '@types/yargs': 16.0.9
       chalk: 4.1.2
 
@@ -6465,12 +6465,12 @@ snapshots:
     optionalDependencies:
       fetch-blob: 3.2.0
 
-  '@tech_query/node-toolkit@1.2.1(@babel/plugin-transform-modules-commonjs@7.25.7(@babel/core@7.25.8))(@babel/preset-env@7.25.8(@babel/core@7.25.8))(@types/node@20.16.12)':
+  '@tech_query/node-toolkit@1.2.1(@babel/plugin-transform-modules-commonjs@7.25.7(@babel/core@7.25.8))(@babel/preset-env@7.25.8(@babel/core@7.25.8))(@types/node@20.16.13)':
     dependencies:
       '@babel/core': 7.25.8
       '@babel/plugin-transform-modules-commonjs': 7.25.7(@babel/core@7.25.8)
       '@babel/preset-env': 7.25.8(@babel/core@7.25.8)
-      '@types/node': 20.16.12
+      '@types/node': 20.16.13
       cross-spawn: 7.0.3
       file-type: 16.5.4
       fs-extra: 11.2.0
@@ -6487,7 +6487,7 @@ snapshots:
 
   '@types/accepts@1.3.7':
     dependencies:
-      '@types/node': 20.16.12
+      '@types/node': 20.16.13
 
   '@types/acorn@4.0.6':
     dependencies:
@@ -6496,15 +6496,15 @@ snapshots:
   '@types/body-parser@1.19.5':
     dependencies:
       '@types/connect': 3.4.38
-      '@types/node': 20.16.12
+      '@types/node': 20.16.13
 
   '@types/connect@3.4.36':
     dependencies:
-      '@types/node': 20.16.12
+      '@types/node': 20.16.13
 
   '@types/connect@3.4.38':
     dependencies:
-      '@types/node': 20.16.12
+      '@types/node': 20.16.13
 
   '@types/content-disposition@0.5.8': {}
 
@@ -6513,7 +6513,7 @@ snapshots:
       '@types/connect': 3.4.38
       '@types/express': 5.0.0
       '@types/keygrip': 1.0.6
-      '@types/node': 20.16.12
+      '@types/node': 20.16.13
 
   '@types/debug@4.1.12':
     dependencies:
@@ -6529,7 +6529,7 @@ snapshots:
 
   '@types/express-serve-static-core@5.0.0':
     dependencies:
-      '@types/node': 20.16.12
+      '@types/node': 20.16.13
       '@types/qs': 6.9.16
       '@types/range-parser': 1.2.7
       '@types/send': 0.17.4
@@ -6544,14 +6544,14 @@ snapshots:
   '@types/fs-extra@11.0.4':
     dependencies:
       '@types/jsonfile': 6.1.4
-      '@types/node': 20.16.12
+      '@types/node': 20.16.13
 
   '@types/geojson@7946.0.14': {}
 
   '@types/glob@7.2.0':
     dependencies:
       '@types/minimatch': 5.1.2
-      '@types/node': 20.16.12
+      '@types/node': 20.16.13
 
   '@types/hast@3.0.4':
     dependencies:
@@ -6577,11 +6577,11 @@ snapshots:
 
   '@types/jsonfile@6.1.4':
     dependencies:
-      '@types/node': 20.16.12
+      '@types/node': 20.16.13
 
   '@types/jsonwebtoken@9.0.7':
     dependencies:
-      '@types/node': 20.16.12
+      '@types/node': 20.16.13
 
   '@types/keygrip@1.0.6': {}
 
@@ -6598,13 +6598,13 @@ snapshots:
       '@types/http-errors': 2.0.4
       '@types/keygrip': 1.0.6
       '@types/koa-compose': 3.2.8
-      '@types/node': 20.16.12
+      '@types/node': 20.16.13
 
   '@types/leaflet@1.9.13':
     dependencies:
       '@types/geojson': 7946.0.14
 
-  '@types/lodash@4.17.11': {}
+  '@types/lodash@4.17.12': {}
 
   '@types/mdast@4.0.4':
     dependencies:
@@ -6622,11 +6622,11 @@ snapshots:
 
   '@types/mysql@2.15.26':
     dependencies:
-      '@types/node': 20.16.12
+      '@types/node': 20.16.13
 
   '@types/next-pwa@5.6.9(@babel/core@7.25.8)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@types/node': 20.16.12
+      '@types/node': 20.16.13
       '@types/react': 18.3.11
       '@types/react-dom': 18.3.1
       next: 14.2.15(@babel/core@7.25.8)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -6646,7 +6646,7 @@ snapshots:
     dependencies:
       undici-types: 5.26.5
 
-  '@types/node@20.16.12':
+  '@types/node@20.16.13':
     dependencies:
       undici-types: 6.19.8
 
@@ -6656,7 +6656,7 @@ snapshots:
 
   '@types/pg@8.6.1':
     dependencies:
-      '@types/node': 20.16.12
+      '@types/node': 20.16.13
       pg-protocol: 1.7.0
       pg-types: 2.2.0
 
@@ -6683,17 +6683,17 @@ snapshots:
 
   '@types/resolve@1.17.1':
     dependencies:
-      '@types/node': 20.16.12
+      '@types/node': 20.16.13
 
   '@types/send@0.17.4':
     dependencies:
       '@types/mime': 1.3.5
-      '@types/node': 20.16.12
+      '@types/node': 20.16.13
 
   '@types/serve-static@1.15.7':
     dependencies:
       '@types/http-errors': 2.0.4
-      '@types/node': 20.16.12
+      '@types/node': 20.16.13
       '@types/send': 0.17.4
 
   '@types/shimmer@1.2.0': {}
@@ -7217,9 +7217,9 @@ snapshots:
 
   comma-separated-tokens@2.0.3: {}
 
-  commander-jsx@0.6.9(@babel/plugin-transform-modules-commonjs@7.25.7(@babel/core@7.25.8))(@babel/preset-env@7.25.8(@babel/core@7.25.8))(@types/node@20.16.12):
+  commander-jsx@0.6.9(@babel/plugin-transform-modules-commonjs@7.25.7(@babel/core@7.25.8))(@babel/preset-env@7.25.8(@babel/core@7.25.8))(@types/node@20.16.13):
     dependencies:
-      '@tech_query/node-toolkit': 1.2.1(@babel/plugin-transform-modules-commonjs@7.25.7(@babel/core@7.25.8))(@babel/preset-env@7.25.8(@babel/core@7.25.8))(@types/node@20.16.12)
+      '@tech_query/node-toolkit': 1.2.1(@babel/plugin-transform-modules-commonjs@7.25.7(@babel/core@7.25.8))(@babel/preset-env@7.25.8(@babel/core@7.25.8))(@types/node@20.16.13)
       tslib: 2.8.0
     transitivePeerDependencies:
       - '@babel/plugin-transform-modules-commonjs'
@@ -7981,9 +7981,9 @@ snapshots:
 
   get-east-asian-width@1.3.0: {}
 
-  get-git-folder@0.1.2(@babel/plugin-transform-modules-commonjs@7.25.7(@babel/core@7.25.8))(@babel/preset-env@7.25.8(@babel/core@7.25.8))(@types/node@20.16.12):
+  get-git-folder@0.1.2(@babel/plugin-transform-modules-commonjs@7.25.7(@babel/core@7.25.8))(@babel/preset-env@7.25.8(@babel/core@7.25.8))(@types/node@20.16.13):
     dependencies:
-      commander-jsx: 0.6.9(@babel/plugin-transform-modules-commonjs@7.25.7(@babel/core@7.25.8))(@babel/preset-env@7.25.8(@babel/core@7.25.8))(@types/node@20.16.12)
+      commander-jsx: 0.6.9(@babel/plugin-transform-modules-commonjs@7.25.7(@babel/core@7.25.8))(@babel/preset-env@7.25.8(@babel/core@7.25.8))(@types/node@20.16.13)
       zx: 7.2.3
     transitivePeerDependencies:
       - '@babel/plugin-transform-modules-commonjs'
@@ -8214,7 +8214,7 @@ snapshots:
 
   idb@7.1.1: {}
 
-  idea-react@2.0.0-rc.6(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3):
+  idea-react@2.0.0-rc.7(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3):
     dependencies:
       '@editorjs/editorjs': 2.30.6
       '@editorjs/paragraph': 2.11.6
@@ -8510,12 +8510,12 @@ snapshots:
   jest-mock@27.5.1:
     dependencies:
       '@jest/types': 27.5.1
-      '@types/node': 20.16.12
+      '@types/node': 20.16.13
 
   jest-util@27.5.1:
     dependencies:
       '@jest/types': 27.5.1
-      '@types/node': 20.16.12
+      '@types/node': 20.16.13
       chalk: 4.1.2
       ci-info: 3.9.0
       graceful-fs: 4.2.11
@@ -8523,13 +8523,13 @@ snapshots:
 
   jest-worker@26.6.2:
     dependencies:
-      '@types/node': 20.16.12
+      '@types/node': 20.16.13
       merge-stream: 2.0.0
       supports-color: 7.2.0
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 20.16.12
+      '@types/node': 20.16.13
       merge-stream: 2.0.0
       supports-color: 8.1.1
 

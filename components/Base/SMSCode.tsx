@@ -1,78 +1,66 @@
-import { SMSCodeInput } from '@kaiyuanshe/kys-service';
-import { Dialog, SpinnerButton } from 'idea-react';
-import { observer } from 'mobx-react';
-import { FC } from 'react';
-import { Form, InputGroup, Modal } from 'react-bootstrap';
+import { SignInData, SMSCodeInput } from '@kaiyuanshe/kys-service';
+import { Dialog, DialogClose } from 'idea-react';
+import { Button, Form, InputGroup, Modal } from 'react-bootstrap';
 import { formToJSON } from 'web-utility';
 
-import userStore from '../../models/Base/User';
+export const mobilePhoneDialog = new Dialog<
+  Partial<SMSCodeInput>,
+  SMSCodeInput
+>(({ defer, captchaToken, captchaCode, mobilePhone }) => (
+  <Modal show={!!defer} onHide={() => defer?.reject(new DialogClose())}>
+    <Modal.Header closeButton>
+      <Modal.Title>📱</Modal.Title>
+    </Modal.Header>
+    <Modal.Body>
+      <Form
+        onSubmit={event => {
+          event.preventDefault();
 
-export interface SMSCodeFormProps extends Partial<SMSCodeInput> {
-  onSend?: (data: SMSCodeInput) => any;
-}
-
-export const SMSCodeForm: FC<SMSCodeFormProps> = observer(
-  ({ captchaToken, captchaCode, mobilePhone, onSend }) => (
-    <Form
-      onSubmit={async event => {
-        event.preventDefault();
-
-        const data = formToJSON<SMSCodeInput>(event.currentTarget);
-
-        await userStore.createSMSCode(data);
-
-        onSend?.(data);
-      }}
-    >
-      <input type="hidden" name="captchaToken" value={captchaToken} />
-      <input type="hidden" name="captchaCode" value={captchaCode} />
-      {mobilePhone && (
-        <input type="hidden" name="mobilePhone" value={mobilePhone} />
-      )}
-      <InputGroup>
-        {!mobilePhone && (
-          <Form.Control type="tel" name="mobilePhone" required />
+          defer?.resolve(formToJSON<SMSCodeInput>(event.currentTarget));
+        }}
+      >
+        <input type="hidden" name="captchaToken" value={captchaToken} />
+        <input type="hidden" name="captchaCode" value={captchaCode} />
+        {mobilePhone && (
+          <input type="hidden" name="mobilePhone" value={mobilePhone} />
         )}
-        <SpinnerButton
-          type="submit"
-          loading={userStore.uploading > 0}
-          disabled={!userStore.captcha}
-        >
-          ✉️
-        </SpinnerButton>
-      </InputGroup>
-    </Form>
-  ),
-);
+        <InputGroup>
+          {!mobilePhone && (
+            <Form.Control type="tel" name="mobilePhone" required />
+          )}
+          <Button type="submit" variant="outline-primary">
+            ✉️
+          </Button>
+        </InputGroup>
+      </Form>
+    </Modal.Body>
+  </Modal>
+));
 
-export const signWithSMSCode = new Dialog(({ defer }) => {
-  const { captchaToken, captchaCode, mobilePhone } = userStore.smsCodeInput;
-
-  return (
-    <Modal show={!!defer}>
+export const signWithSMSCode = new Dialog<Partial<SMSCodeInput>, SignInData>(
+  ({ defer, mobilePhone }) => (
+    <Modal show={!!defer} onHide={() => defer?.reject(new DialogClose())}>
+      <Modal.Header closeButton>
+        <Modal.Title>🔑</Modal.Title>
+      </Modal.Header>
       <Modal.Body>
-        <SMSCodeForm
-          {...{ captchaToken, captchaCode }}
-          onSend={defer?.resolve}
-        />
-
         <Form
-          onSubmit={async event => {
+          id="SMS-code-form"
+          onSubmit={event => {
             event.preventDefault();
 
-            await userStore.signIn(formToJSON(event.currentTarget));
-
-            defer?.resolve();
+            defer?.resolve(formToJSON<SignInData>(event.currentTarget));
           }}
         >
           <input type="hidden" name="mobilePhone" value={mobilePhone} />
           <Form.Control name="code" required />
-
-          <SpinnerButton type="submit" loading={userStore.uploading > 0}>
-            √
-          </SpinnerButton>
         </Form>
       </Modal.Body>
+      <Modal.Footer>
+        <Button type="submit" variant="primary" form="SMS-code-form">
+          √
+        </Button>
+      </Modal.Footer>
     </Modal>
-  );
-});
+  ),
+);
