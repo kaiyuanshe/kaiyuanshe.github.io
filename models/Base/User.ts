@@ -1,24 +1,25 @@
-import { User } from '@kaiyuanshe/kys-service';
+import {
+  Captcha,
+  SignInData,
+  SMSCodeInput,
+  User,
+} from '@kaiyuanshe/kys-service';
 import { HTTPClient } from 'koajax';
 import { observable } from 'mobx';
-import { BaseListModel, toggle } from 'mobx-restful';
+import { BaseListModel, persist, restore, toggle } from 'mobx-restful';
 
-import { KYS_SERVICE_HOST } from './index';
-
-const { localStorage } = globalThis;
+import { isServer, KYS_SERVICE_HOST } from './index';
 
 export class UserModel extends BaseListModel<User> {
-  constructor() {
-    super();
-
-    if (!this.session) globalThis.localStorage?.clear();
-  }
-
   baseURI = 'user';
+  restored = !isServer() && restore(this, 'User');
+
+  @persist()
+  @observable
+  accessor session: User | undefined;
 
   @observable
-  accessor session: User | undefined =
-    localStorage?.session && JSON.parse(localStorage.session);
+  accessor captcha: Captcha | undefined;
 
   client = new HTTPClient({
     baseURI: KYS_SERVICE_HOST,
@@ -32,26 +33,31 @@ export class UserModel extends BaseListModel<User> {
     return next();
   });
 
-  saveSession(user: User) {
-    localStorage.session = JSON.stringify(user);
+  @toggle('uploading')
+  async createCaptcha() {
+    const { body } = await this.client.post<Captcha>('session/captcha');
 
-    return (this.session = user);
+    return (this.captcha = body!);
   }
 
   @toggle('uploading')
-  async signInAuthing(token: string) {
+  async createSMSCode(data: SMSCodeInput) {
+    await this.client.post('session/code', data);
+
+    this.captcha = undefined;
+  }
+
+  @toggle('uploading')
+  async signIn(data: SignInData) {
     const { body } = await this.client.post<User>(
-      `${this.baseURI}/session/authing`,
-      {},
-      { Authorization: `Bearer ${token}` },
+      `${this.baseURI}/session`,
+      data,
     );
-    return this.saveSession(body!);
+    return (this.session = body!);
   }
 
   signOut() {
     this.session = undefined;
-
-    localStorage.clear();
   }
 }
 

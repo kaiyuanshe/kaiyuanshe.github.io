@@ -1,5 +1,4 @@
 import { Head, Html, Main, NextScript } from 'next/document';
-import Script from 'next/script';
 
 import { DefaultImage } from './api/lark/file/[id]';
 
@@ -12,11 +11,15 @@ export default function Document() {
         <script src="https://polyfill.kaiyuanshe.cn/feature/PWAManifest.js" />
         <link
           rel="stylesheet"
-          href="https://npm.onmicrosoft.cn/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          href="https://npm.onmicrosoft.cn/bootstrap@5.3.3/dist/css/bootstrap.min.css"
         />
         <link
           rel="stylesheet"
-          href="https://npm.onmicrosoft.cn/bootstrap-icons@1.11.2/font/bootstrap-icons.css"
+          href="https://npm.onmicrosoft.cn/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+        />
+        <link
+          rel="stylesheet"
+          href="https://npm.onmicrosoft.cn/idea-react/dist/index.css"
         />
         <link
           rel="stylesheet"

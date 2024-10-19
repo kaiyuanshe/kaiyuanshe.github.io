@@ -4,23 +4,17 @@ import { Dropdown, DropdownButton } from 'react-bootstrap';
 
 import { t } from '../../models/Base/Translation';
 import userStore from '../../models/Base/User';
-import { guard } from '../Layout/SessionBox';
 
 const UserMenu: FC = observer(() => {
-  const { uuid, mobilePhone, nickName } = userStore.session || {};
+  const { id, mobilePhone, nickName } = userStore.session || {};
 
-  return uuid ? (
+  return id ? (
     <DropdownButton title={nickName || mobilePhone}>
-      <Dropdown.Item href={`/user/${uuid}`}>
+      <Dropdown.Item href={`/user/${id}`}>
         {t('Open_Source_Passport')}
       </Dropdown.Item>
       <Dropdown.Divider />
-      <Dropdown.Item
-        onClick={async () => {
-          await guard.logout();
-          userStore.signOut();
-        }}
-      >
+      <Dropdown.Item onClick={() => userStore.signOut()}>
         {t('exit')}
       </Dropdown.Item>
     </DropdownButton>
