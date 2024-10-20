@@ -1,5 +1,5 @@
 import { CheckEvent, User } from '@kaiyuanshe/kys-service';
-import { TimeDistance } from 'idea-react';
+import { Avatar, TimeDistance } from 'idea-react';
 import { observer } from 'mobx-react';
 import { ScrollList } from 'mobx-restful-table';
 import { cache, compose, errorLogger } from 'next-ssr-middleware';
@@ -24,7 +24,7 @@ export const getServerSideProps = compose<{ id: string }, UserProfilePageProps>(
 
     const checkEvents = await new CheckEventModel().getList({ user: user.id });
 
-    return { props: { user, checkEvents } };
+    return { props: JSON.parse(JSON.stringify({ user, checkEvents })) };
   },
 );
 
@@ -69,8 +69,10 @@ export default class UserProfilePage extends Component<UserProfilePageProps> {
 
   render() {
     const { user, checkEvents } = this.props;
+    const { id, nickName, avatar, mobilePhone } = user;
+
     const title = t('user_Open_Source_Passport', {
-      user: user.mobilePhone || user.nickName,
+      user: nickName || mobilePhone,
     });
 
     return (
@@ -84,10 +86,15 @@ export default class UserProfilePage extends Component<UserProfilePageProps> {
         </Breadcrumb>
 
         <Row>
-          <Col>
+          <Col className="d-flex flex-column gap-3 align-items-center">
             <h1 className="my-4">{title}</h1>
 
-            <Button variant="outline-primary" href={`/member/${user.nickName}`}>
+            {avatar && <Avatar size={10} src={avatar} />}
+            <Button
+              size="lg"
+              variant="outline-primary"
+              href={`/member/${nickName}`}
+            >
               {t('community_member')}
             </Button>
           </Col>
@@ -98,7 +105,7 @@ export default class UserProfilePage extends Component<UserProfilePageProps> {
             <ScrollList
               translator={i18n}
               store={this.store}
-              filter={{ user: user.id }}
+              filter={{ user: id }}
               renderList={() =>
                 Object.entries(this.store.group).map(([activityId, list]) =>
                   this.renderActivityChecks(activityId, list),

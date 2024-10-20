@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react';
 import { Component, HTMLAttributes, MouseEvent } from 'react';
 
+import { t } from '../../models/Base/Translation';
 import userStore from '../../models/Base/User';
 import { captchaDialog } from '../Base/Captcha';
 import { mobilePhoneDialog, signWithSMSCode } from '../Base/SMSCode';
@@ -27,6 +28,8 @@ export default class SessionBox extends Component<SessionBoxProps> {
     const signInData = await signWithSMSCode.open(smsCodeInput);
 
     await userStore.signIn(signInData);
+
+    alert(t('sign_in_successfully'));
   }
 
   captureInput = (event: MouseEvent<HTMLDivElement>) => {

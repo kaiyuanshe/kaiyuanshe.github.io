@@ -58,6 +58,11 @@ export default {
     `${user}'s Open Source Passport`,
   profile: 'Profile',
   activity_footprint: 'Activity Footprint',
+  captcha: 'Captcha',
+  mobile_phone_number: 'Mobile Phone number',
+  SMS_code: 'SMS code',
+  sign_in: 'Sign in',
+  sign_in_successfully: 'Sign in successfully!',
   exit: 'Exit',
 
   // China Open Source Map

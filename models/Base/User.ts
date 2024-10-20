@@ -35,14 +35,15 @@ export class UserModel extends BaseListModel<User> {
 
   @toggle('uploading')
   async createCaptcha() {
-    const { body } = await this.client.post<Captcha>('session/captcha');
-
+    const { body } = await this.client.post<Captcha>(
+      `${this.baseURI}/session/captcha`,
+    );
     return (this.captcha = body!);
   }
 
   @toggle('uploading')
   async createSMSCode(data: SMSCodeInput) {
-    await this.client.post('session/code', data);
+    await this.client.post(`${this.baseURI}/session/SMS-code`, data);
 
     this.captcha = undefined;
   }

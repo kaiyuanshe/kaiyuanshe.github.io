@@ -57,6 +57,11 @@ export default {
     `${user}的开源护照`,
   profile: '个人资料',
   activity_footprint: '活动足迹',
+  captcha: '图形验证码',
+  mobile_phone_number: '手机号',
+  SMS_code: '短信验证码',
+  sign_in: '登录',
+  sign_in_successfully: '登录成功！',
   exit: '退出',
 
   // China Open Source Map

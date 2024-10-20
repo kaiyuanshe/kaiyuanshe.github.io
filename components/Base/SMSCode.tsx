@@ -3,13 +3,15 @@ import { Dialog, DialogClose } from 'idea-react';
 import { Button, Form, InputGroup, Modal } from 'react-bootstrap';
 import { formToJSON } from 'web-utility';
 
+import { t } from '../../models/Base/Translation';
+
 export const mobilePhoneDialog = new Dialog<
   Partial<SMSCodeInput>,
   SMSCodeInput
 >(({ defer, captchaToken, captchaCode, mobilePhone }) => (
   <Modal show={!!defer} onHide={() => defer?.reject(new DialogClose())}>
     <Modal.Header closeButton>
-      <Modal.Title>📱</Modal.Title>
+      <Modal.Title>{t('mobile_phone_number')}</Modal.Title>
     </Modal.Header>
     <Modal.Body>
       <Form
@@ -26,10 +28,15 @@ export const mobilePhoneDialog = new Dialog<
         )}
         <InputGroup>
           {!mobilePhone && (
-            <Form.Control type="tel" name="mobilePhone" required />
+            <Form.Control
+              type="tel"
+              name="mobilePhone"
+              placeholder={t('mobile_phone_number')}
+              required
+            />
           )}
           <Button type="submit" variant="outline-primary">
-            ✉️
+            {t('SMS_code')}
           </Button>
         </InputGroup>
       </Form>
@@ -41,7 +48,7 @@ export const signWithSMSCode = new Dialog<Partial<SMSCodeInput>, SignInData>(
   ({ defer, mobilePhone }) => (
     <Modal show={!!defer} onHide={() => defer?.reject(new DialogClose())}>
       <Modal.Header closeButton>
-        <Modal.Title>🔑</Modal.Title>
+        <Modal.Title>{t('SMS_code')}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form
@@ -52,13 +59,13 @@ export const signWithSMSCode = new Dialog<Partial<SMSCodeInput>, SignInData>(
             defer?.resolve(formToJSON<SignInData>(event.currentTarget));
           }}
         >
-          <input type="hidden" name="mobilePhone" value={mobilePhone} />
-          <Form.Control name="code" required />
+          <input type="tel" hidden name="mobilePhone" value={mobilePhone} />
+          <Form.Control name="code" placeholder={t('SMS_code')} required />
         </Form>
       </Modal.Body>
       <Modal.Footer>
         <Button type="submit" variant="primary" form="SMS-code-form">
-          √
+          {t('sign_in')}
         </Button>
       </Modal.Footer>
     </Modal>
