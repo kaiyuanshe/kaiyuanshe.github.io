@@ -9,7 +9,7 @@ export const TimeRange: FC<Record<'startTime' | 'endTime', TableCellValue>> = ({
   startTime &&
   endTime && (
     <>
-      🕒 {formatDate(+startTime!, 'YYYY-MM-DD')} ~{' '}
-      {formatDate(+endTime!, 'YYYY-MM-DD')}
+      🕒 {formatDate(+startTime!, 'YYYY-MM-DD HH:mm')} ~{' '}
+      {formatDate(+endTime!, 'YYYY-MM-DD HH:mm')}
     </>
   );

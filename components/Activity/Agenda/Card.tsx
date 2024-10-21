@@ -55,6 +55,7 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
       type,
       title,
       mentorOrganizations,
+      mentorPositions,
       startTime,
       endTime,
       score,
@@ -99,8 +100,11 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
               <li>
                 <TimeRange {...{ startTime, endTime }} />
               </li>
-              <li>{(mentorOrganizations as string[])?.join(' ')}</li>
-
+              {(mentorOrganizations as string[])?.map((organization, index) => (
+                <li key={organization}>
+                  {organization} {(mentorPositions as string[])?.[index]}
+                </li>
+              ))}
               {score && (
                 <li>
                   <ScoreBar value={score + ''} />

@@ -35,13 +35,16 @@ export class CaptchaButton extends Component {
 export type CaptchaTicket = Required<Omit<SMSCodeInput, 'mobilePhone'>>;
 
 export const captchaDialog = new Dialog<{}, CaptchaTicket>(({ defer }) => (
-  <Modal show={!!defer} onHide={() => defer?.reject(new DialogClose())}>
+  <Modal
+    backdrop="static"
+    show={!!defer}
+    onHide={() => defer?.reject(new DialogClose())}
+  >
     <Modal.Header closeButton>
       <Modal.Title>{t('captcha')}</Modal.Title>
     </Modal.Header>
     <Modal.Body>
       <Form
-        id="captcha-form"
         onSubmit={event => {
           event.preventDefault();
 
@@ -57,13 +60,11 @@ export const captchaDialog = new Dialog<{}, CaptchaTicket>(({ defer }) => (
             placeholder={t('captcha')}
             required
           />
+          <Button type="submit" variant="primary">
+            {t('confirm')}
+          </Button>
         </InputGroup>
       </Form>
     </Modal.Body>
-    <Modal.Footer>
-      <Button type="submit" variant="primary" form="captcha-form">
-        {t('confirm')}
-      </Button>
-    </Modal.Footer>
   </Modal>
 ));

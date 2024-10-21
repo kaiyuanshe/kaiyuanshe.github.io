@@ -21,7 +21,7 @@ export const getServerSideProps = compose<
   MeetingDetailPageProps
 >(cache(), errorLogger, translator(i18n), async ({ params }) => {
   const meeting = await new MeetingModel().getOne(params!.id);
-  const reports = await new ReportModel().getAll({ meeting: meeting.name });
+  const reports = await new ReportModel().getAll({ meeting: meeting.title });
 
   return {
     props: JSON.parse(JSON.stringify({ meeting, reports })),

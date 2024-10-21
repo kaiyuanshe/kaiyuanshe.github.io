@@ -3,12 +3,15 @@ import { textJoin } from 'mobx-i18n';
 import { observer } from 'mobx-react';
 import { FC } from 'react';
 import { Badge, Card } from 'react-bootstrap';
+import { formatDate } from 'web-utility';
 
 import { t } from '../../models/Base/Translation';
 import { OKR } from '../../models/Governance/OKR';
 
 export const OKRCard: FC<OKR> = observer(
   ({
+    createdAt,
+    department,
     object,
     firstResult,
     secondResult,
@@ -20,7 +23,8 @@ export const OKRCard: FC<OKR> = observer(
   }) => (
     <Card>
       <Card.Header as="h3">{object?.toString()}</Card.Header>
-      <Card.Body>
+
+      <Card.Body className="overflow-auto" style={{ maxHeight: '25rem' }}>
         <Card.Title as="h4">{t('key_results')}</Card.Title>
         <Card.Text>
           <ol>
@@ -43,6 +47,14 @@ export const OKRCard: FC<OKR> = observer(
           </ol>
         </Card.Text>
       </Card.Body>
+      <Card.Footer className="d-flex justify-content-between align-items-center">
+        <time dateTime={new Date(createdAt as number).toJSON()}>
+          {formatDate(createdAt as number)}
+        </time>
+        <Badge bg={text2color(department + '', ['light'])}>
+          {department + ''}
+        </Badge>
+      </Card.Footer>
     </Card>
   ),
 );

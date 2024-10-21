@@ -1,6 +1,8 @@
 import {
   BiDataTable,
   makeSimpleFilter,
+  normalizeText,
+  TableCellRelation,
   TableCellText,
   TableCellValue,
   TableRecord,
@@ -44,6 +46,7 @@ export class OKRModel extends BiDataTable<OKR>() {
 
   normalize({
     fields: {
+      department,
       object,
       firstResult,
       secondResult,
@@ -59,6 +62,7 @@ export class OKRModel extends BiDataTable<OKR>() {
     return {
       ...meta,
       ...fields,
+      department: (department as TableCellRelation[])?.map(normalizeText),
       object: object && normalizeTextArray(object as TableCellText[]),
       firstResult:
         firstResult && normalizeTextArray(firstResult as TableCellText[]),

@@ -1,6 +1,6 @@
 import '../styles/globals.less';
 
-import { Icon } from 'idea-react';
+import { DialogClose, Icon } from 'idea-react';
 import { HTTPError } from 'koajax';
 import { configure } from 'mobx';
 import { enableStaticRendering, observer } from 'mobx-react';
@@ -24,6 +24,8 @@ configure({ enforceActions: 'never' });
 enableStaticRendering(isServer());
 
 globalThis.addEventListener?.('unhandledrejection', ({ reason }) => {
+  if (reason instanceof DialogClose) return;
+
   var { message, response } = reason as HTTPError;
   const { statusText, body } = response || {};
 
