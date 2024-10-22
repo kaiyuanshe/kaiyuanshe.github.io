@@ -194,4 +194,10 @@ export class SearchAgendaModel extends BiSearch(AgendaModel) {
     'mentorSummaries',
     'location',
   ] as const;
+
+  makeFilter(filter: Filter<Agenda>) {
+    return ['CurrentValue.[status]="approved"', super.makeFilter(filter)]
+      .filter(Boolean)
+      .join('&&');
+  }
 }

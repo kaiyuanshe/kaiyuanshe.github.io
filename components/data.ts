@@ -41,11 +41,15 @@ export const MainRoutes = (): Link[] => [
       },
       { title: t('community_list'), path: '/community' },
       { title: t('our_members'), path: '/member' },
-      { title: t('stars_of_COSCon'), path: '/community/award/COSCon-star' },
       {
         title: t('stars_of_open_source'),
         path: '/community/award/Open-Source-star',
       },
+      {
+        title: t('excellent_volunteer_of_the_year'),
+        path: '/community/award/excellent-volunteer',
+      },
+      { title: t('stars_of_COSCon'), path: '/community/award/COSCon-star' },
       {
         title: t('stars_of_community_partnership'),
         path: '/community/award/community-cooperation-star',
