@@ -231,8 +231,8 @@ export default class AgendaDetailPage extends Component<AgendaDetailPageProps> {
           </Col>
           <Col xs={12} lg={8}>
             <main
-              className="my-4"
               dangerouslySetInnerHTML={{ __html: marked(summary + '') }}
+              className="my-4"
             />
             {fileInfo && <FileList data={fileInfo} />}
 

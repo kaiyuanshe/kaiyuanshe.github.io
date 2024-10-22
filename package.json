@@ -37,7 +37,7 @@
     "next-ssr-middleware": "^0.8.8",
     "next-with-less": "^3.0.1",
     "nextjs-google-analytics": "^2.3.7",
-    "open-react-map": "^0.8.0",
+    "open-react-map": "^0.8.1",
     "qrcode.react": "^4.1.0",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.5",
@@ -55,9 +55,9 @@
     "@babel/plugin-transform-typescript": "^7.25.9",
     "@babel/preset-react": "^7.25.9",
     "@eslint/compat": "^1.2.1",
-    "@eslint/eslintrc": "^3.1.0",
     "@eslint/js": "^9.13.0",
     "@kaiyuanshe/kys-service": "^1.0.0-rc.0",
+    "@softonus/prettier-plugin-duplicate-remover": "^1.0.1",
     "@types/eslint-config-prettier": "^6.11.3",
     "@types/eslint__eslintrc": "^2.1.2",
     "@types/eslint__js": "^8.42.3",
@@ -78,6 +78,7 @@
     "husky": "^9.1.6",
     "lint-staged": "^15.2.10",
     "prettier": "^3.3.3",
+    "prettier-plugin-css-order": "^2.1.2",
     "typescript": "~5.6.3",
     "typescript-eslint": "^8.11.0"
   },
@@ -88,11 +89,15 @@
   "prettier": {
     "singleQuote": true,
     "trailingComma": "all",
-    "arrowParens": "avoid"
+    "arrowParens": "avoid",
+    "plugins": [
+      "prettier-plugin-css-order",
+      "@softonus/prettier-plugin-duplicate-remover"
+    ]
   },
   "lint-staged": {
     "*.{html,md,less,json,yml,js,mjs,ts,tsx}": "prettier --write",
-    "*.{js,mjs,jsx,ts,tsx}": "eslint --fix"
+    "*.{js,mjs,ts,tsx}": "eslint --fix"
   },
   "scripts": {
     "prepare": "husky",

@@ -4,28 +4,28 @@
   contain-intrinsic-height: 10rem;
 
   .avatar {
+    transition: all 0.3s;
     width: 6rem;
     height: 6rem;
     object-fit: contain;
-    transition: all 0.3s;
   }
   .btn_tamaya {
     width: 6rem;
-    line-height: 1rem;
     height: 1rem;
+    line-height: 1rem;
     &::before,
     &::after {
-      content: attr(data-text);
       position: absolute;
-      width: 6rem;
-      height: 0.5rem;
       left: 0;
-      color: #333;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
       transition: transform 0.5s;
       transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+      width: 6rem;
+      height: 0.5rem;
+      overflow: hidden;
+      content: attr(data-text);
+      color: #333;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     &::before {
       top: 0;
@@ -55,8 +55,8 @@
         transform: translate3d(0, 120%, 0);
       }
       & > i {
-        opacity: 1;
         transform: scale3d(1, 1, 1);
+        opacity: 1;
       }
     }
   }

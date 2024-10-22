@@ -1,6 +1,5 @@
 // @ts-check
-import { FlatCompat } from '@eslint/eslintrc';
-import { fixupConfigRules, fixupPluginRules } from '@eslint/compat';
+import { fixupPluginRules } from '@eslint/compat';
 import eslint from '@eslint/js';
 import eslintConfigPrettier from 'eslint-config-prettier';
 import reactPlugin from 'eslint-plugin-react';
@@ -9,8 +8,7 @@ import globals from 'globals';
 import tsEslint from 'typescript-eslint';
 import { fileURLToPath } from 'url';
 
-const tsconfigRootDir = fileURLToPath(new URL('.', import.meta.url)),
-  flatCompat = new FlatCompat();
+const tsconfigRootDir = fileURLToPath(new URL('.', import.meta.url));
 
 export default tsEslint.config(
   // register all of the plugins up-front
@@ -30,7 +28,6 @@ export default tsEslint.config(
   // extends ...
   eslint.configs.recommended,
   ...tsEslint.configs.recommended,
-  ...fixupConfigRules(flatCompat.extends('next/core-web-vitals')),
 
   // base config
   {
@@ -43,6 +40,7 @@ export default tsEslint.config(
       },
     },
     rules: {
+      'no-empty-pattern': 'warn',
       'simple-import-sort/exports': 'error',
       'simple-import-sort/imports': 'error',
       'react/jsx-no-target-blank': 'warn',
@@ -55,6 +53,8 @@ export default tsEslint.config(
           noSortAlphabetically: true,
         },
       ],
+      '@typescript-eslint/no-unused-vars': 'warn',
+      '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-empty-object-type': 'off',
       '@typescript-eslint/no-unsafe-declaration-merging': 'warn',
     },

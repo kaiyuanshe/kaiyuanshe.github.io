@@ -103,8 +103,8 @@ importers:
         specifier: ^2.3.7
         version: 2.3.7(next@15.0.0(@babel/core@7.25.9)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       open-react-map:
-        specifier: ^0.8.0
-        version: 0.8.0(mobx-react@9.1.1(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3)
+        specifier: ^0.8.1
+        version: 0.8.1(mobx-react@9.1.1(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3)
       qrcode.react:
         specifier: ^4.1.0
         version: 4.1.0(react@18.3.1)
@@ -151,15 +151,15 @@ importers:
       '@eslint/compat':
         specifier: ^1.2.1
         version: 1.2.1(eslint@9.13.0)
-      '@eslint/eslintrc':
-        specifier: ^3.1.0
-        version: 3.1.0
       '@eslint/js':
         specifier: ^9.13.0
         version: 9.13.0
       '@kaiyuanshe/kys-service':
         specifier: ^1.0.0-rc.0
         version: 1.0.0-rc.0(mobx@6.13.5)(typescript@5.6.3)
+      '@softonus/prettier-plugin-duplicate-remover':
+        specifier: ^1.0.1
+        version: 1.0.1
       '@types/eslint-config-prettier':
         specifier: ^6.11.3
         version: 6.11.3
@@ -220,6 +220,9 @@ importers:
       prettier:
         specifier: ^3.3.3
         version: 3.3.3
+      prettier-plugin-css-order:
+        specifier: ^2.1.2
+        version: 2.1.2(postcss@8.4.31)(prettier@3.3.3)
       typescript:
         specifier: ~5.6.3
         version: 5.6.3
@@ -1570,6 +1573,9 @@ packages:
   '@sinonjs/fake-timers@8.1.0':
     resolution: {integrity: sha512-OAPJUAtgeINhh/TAlUID4QTs53Njm7xzddaVlEs/SXwgtiD1tW22zAB/W1wdqfrpmikgaWQ9Fw6Ws+hsiRm5Vg==}
 
+  '@softonus/prettier-plugin-duplicate-remover@1.0.1':
+    resolution: {integrity: sha512-hoF5Y8puB73t8j4iW8lPKQA2MAPftsCTfAQm5mbYoabhjlgOxMaYmAz5W0DWkaS38oTy2SdApyxmBZZpcHz2+w==}
+
   '@surma/rollup-plugin-off-main-thread@2.2.3':
     resolution: {integrity: sha512-lR8q/9W7hZpMWweNiAKU7NQerBnzQQLvi8qnTDU/fxItPhtZVMbPV3lbCwjhIlNBe9Bbr5V+KHshvWmVSG9cxQ==}
 
@@ -2275,6 +2281,12 @@ packages:
   crypto-random-string@2.0.0:
     resolution: {integrity: sha512-v1plID3y9r/lPhviJ1wrXpLeyUIGAZ2SHNYTEapm7/8A9nLPoyvVp3RK/EPFqn5kEznyWgYZNsRtYYIWbuG8KA==}
     engines: {node: '>=8'}
+
+  css-declaration-sorter@7.2.0:
+    resolution: {integrity: sha512-h70rUM+3PNFuaBDTLe8wF/cdWu+dOZmb7pJt8Z2sedYbAcQVQV/tEchueg3GWxwqS0cxtbxmaHEdkNACqcvsow==}
+    engines: {node: ^14 || ^16 || >=18}
+    peerDependencies:
+      postcss: ^8.0.9
 
   css-line-break@2.1.0:
     resolution: {integrity: sha512-FHcKFCZcAha3LwfVBhCQbW2nCNbkZXn7KVUJcsT5/P8YmfsVja0FMPJr0B903j/E69HUphKiV9iQArX8SDYA4w==}
@@ -3315,12 +3327,6 @@ packages:
     resolution: {integrity: sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==}
     engines: {node: '>=0.10.0'}
 
-  koajax@0.9.6:
-    resolution: {integrity: sha512-Cv5HH7igfN7HEGLwRzu4TEzXLTm3QSpbR48Gif9dhPPBNKZ8ELS1bbh3Dik1s83vpKnnjC+DcFU8ql+LwNg3tQ==}
-    deprecated: Don't use versions with old API & bugs
-    peerDependencies:
-      jsdom: '>=21'
-
   koajax@3.0.2:
     resolution: {integrity: sha512-2l6V9BSnil+3vxJSSi6rceOp73q6Iw8KYzu8Yfn0jEyxsGmVXt0rFvfd5BvEmnVZzDPQp7EzqusuQoTIsOx4cQ==}
     peerDependencies:
@@ -3913,8 +3919,8 @@ packages:
     resolution: {integrity: sha512-VXJjc87FScF88uafS3JllDgvAm+c/Slfz06lorj2uAY34rlUu0Nt+v8wreiImcrgAjjIHp1rXpTDlLOGw29WwQ==}
     engines: {node: '>=18'}
 
-  open-react-map@0.8.0:
-    resolution: {integrity: sha512-PVHzWADgGEYUV6PZ56gvbDy+lpc2b7krf97BCMj42XyQvotnL5TuccssT+ZcexXST1bcpe4ZAWIVH1Q80azXhw==}
+  open-react-map@0.8.1:
+    resolution: {integrity: sha512-ewki4+K/J7vUe8eYdNdPXE31Dygro41qaf4psRRdqyngYRlAD40Gbnd71JzMLb4K4OjOmkko/2gi4Z4l7XRhfQ==}
     peerDependencies:
       mobx: '>=6.11'
       mobx-react: '>=9.1'
@@ -4055,6 +4061,18 @@ packages:
     resolution: {integrity: sha512-d7Uw+eZoloe0EHDIYoe+bQ5WXnGMOpmiZFTuMWCwpjzzkL2nTjcKiAk4hh8TjnGye2TwWOk3UXucZ+3rbmBa8Q==}
     engines: {node: '>= 0.4'}
 
+  postcss-less@6.0.0:
+    resolution: {integrity: sha512-FPX16mQLyEjLzEuuJtxA8X3ejDLNGGEG503d2YGZR5Ask1SpDN8KmZUMpzCvyalWRywAn1n1VOA5dcqfCLo5rg==}
+    engines: {node: '>=12'}
+    peerDependencies:
+      postcss: ^8.3.5
+
+  postcss-scss@4.0.9:
+    resolution: {integrity: sha512-AjKOeiwAitL/MXxQW2DliT28EKukvvbEWx3LBmJIRN8KfBGZbRTxNYW0kSqi1COiTZ57nZ9NW06S6ux//N1c9A==}
+    engines: {node: '>=12.0'}
+    peerDependencies:
+      postcss: ^8.4.29
+
   postcss@8.4.31:
     resolution: {integrity: sha512-PS08Iboia9mts/2ygV3eLpY5ghnUcfLV/EXTOW1E2qYxJKGGBUtNjN76FYHnMs36RmARn41bC0AZmn+rR0OVpQ==}
     engines: {node: ^10 || ^12 || >=14}
@@ -4078,6 +4096,12 @@ packages:
   prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
+
+  prettier-plugin-css-order@2.1.2:
+    resolution: {integrity: sha512-vomxPjHI6pOMYcBuouSJHxxQClJXaUpU9rsV9IAO2wrSTZILRRlrxAAR8t9UF6wtczLkLfNRFUwM+ZbGXOONUA==}
+    engines: {node: '>=16'}
+    peerDependencies:
+      prettier: 3.x
 
   prettier@2.8.8:
     resolution: {integrity: sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==}
@@ -6714,6 +6738,8 @@ snapshots:
     dependencies:
       '@sinonjs/commons': 1.8.6
 
+  '@softonus/prettier-plugin-duplicate-remover@1.0.1': {}
+
   '@surma/rollup-plugin-off-main-thread@2.2.3':
     dependencies:
       ejs: 3.1.10
@@ -7558,6 +7584,10 @@ snapshots:
       which: 2.0.2
 
   crypto-random-string@2.0.0: {}
+
+  css-declaration-sorter@7.2.0(postcss@8.4.31):
+    dependencies:
+      postcss: 8.4.31
 
   css-line-break@2.1.0:
     dependencies:
@@ -8854,15 +8884,6 @@ snapshots:
 
   kind-of@6.0.3: {}
 
-  koajax@0.9.6(typescript@5.6.3):
-    dependencies:
-      '@swc/helpers': 0.5.13
-      iterable-observer: 1.1.0
-      regenerator-runtime: 0.14.1
-      web-utility: 4.4.1(typescript@5.6.3)
-    transitivePeerDependencies:
-      - typescript
-
   koajax@3.0.2(typescript@5.6.3):
     dependencies:
       '@swc/helpers': 0.5.13
@@ -9769,11 +9790,11 @@ snapshots:
     dependencies:
       mimic-function: 5.0.1
 
-  open-react-map@0.8.0(mobx-react@9.1.1(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3):
+  open-react-map@0.8.1(mobx-react@9.1.1(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3):
     dependencies:
       '@swc/helpers': 0.5.13
       '@types/leaflet': 1.9.13
-      koajax: 0.9.6(typescript@5.6.3)
+      koajax: 3.0.2(typescript@5.6.3)
       leaflet: 1.9.4
       mobx: 6.13.5
       mobx-react: 9.1.1(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -9897,6 +9918,14 @@ snapshots:
 
   possible-typed-array-names@1.0.0: {}
 
+  postcss-less@6.0.0(postcss@8.4.31):
+    dependencies:
+      postcss: 8.4.31
+
+  postcss-scss@4.0.9(postcss@8.4.31):
+    dependencies:
+      postcss: 8.4.31
+
   postcss@8.4.31:
     dependencies:
       nanoid: 3.3.7
@@ -9914,6 +9943,15 @@ snapshots:
       xtend: 4.0.2
 
   prelude-ls@1.2.1: {}
+
+  prettier-plugin-css-order@2.1.2(postcss@8.4.31)(prettier@3.3.3):
+    dependencies:
+      css-declaration-sorter: 7.2.0(postcss@8.4.31)
+      postcss-less: 6.0.0(postcss@8.4.31)
+      postcss-scss: 4.0.9(postcss@8.4.31)
+      prettier: 3.3.3
+    transitivePeerDependencies:
+      - postcss
 
   prettier@2.8.8: {}
 

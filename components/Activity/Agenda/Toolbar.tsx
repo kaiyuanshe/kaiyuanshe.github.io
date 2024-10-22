@@ -37,7 +37,7 @@ const AgendaToolbar: FC<AgendaToolbarProps> = observer(
       </Button>
 
       {!isServer() && (
-        // @ts-ignore
+        // @ts-expect-error https://github.com/josephj/react-icalendar-link/issues/41#issuecomment-1584173370
         <ICalendarLink
           className="btn btn-primary btn-sm"
           filename={`${title}.ics`}

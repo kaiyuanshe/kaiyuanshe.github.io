@@ -20,7 +20,7 @@ export const PillTab: FC<PillTabProps> = ({ direction = 'row', list }) => (
         className={`flex-${direction === 'row' ? 'column' : 'row'}`}
       >
         {list.map(({ key, title }) => (
-          <Nav.Item className="text-nowrap" key={key}>
+          <Nav.Item key={key} className="text-nowrap">
             <Nav.Link eventKey={key}>{title}</Nav.Link>
           </Nav.Item>
         ))}

@@ -19,10 +19,10 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
   renderCardImage = (file: TableCellAttachment) => (
     <LarkImage
       key={file.attachmentToken}
-      roundedCircle
       className="m-auto object-fit-cover"
       style={{ width: '6rem', height: '6rem' }}
       src={[file]}
+      roundedCircle
     />
   );
 

@@ -66,7 +66,7 @@ export const signWithSMSCode = new Dialog<Partial<SMSCodeInput>, SignInData>(
             defer?.resolve(formToJSON<SignInData>(event.currentTarget));
           }}
         >
-          <input type="tel" hidden name="mobilePhone" value={mobilePhone} />
+          <input type="tel" name="mobilePhone" value={mobilePhone} hidden />
           <InputGroup>
             <Form.Control name="code" placeholder={t('SMS_code')} required />
 

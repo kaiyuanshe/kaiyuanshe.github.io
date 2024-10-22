@@ -68,7 +68,7 @@ export default class ListMap extends Component<ListMapProps> {
       className="d-flex gap-2 justify-content-between cursor-pointer"
       onClick={this.selectOne(marker)}
     >
-      <ImagePreview className="w-25" fluid loading="lazy" src={marker.image} />
+      <ImagePreview className="w-25" loading="lazy" src={marker.image} fluid />
       <div>
         <h3 className="fs-5">{marker.title}</h3>
         <p>{marker.summary}</p>

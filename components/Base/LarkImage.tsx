@@ -15,6 +15,7 @@ export const LarkImage: FC<LarkImageProps> = ({
   ...props
 }) => (
   <Image
+    // eslint-disable-next-line react/jsx-sort-props
     fluid
     loading="lazy"
     {...props}
