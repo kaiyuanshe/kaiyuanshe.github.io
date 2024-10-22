@@ -21,9 +21,10 @@ type HonorPageProps = RouteProps<{ name: string }> &
   Pick<PersonnelModel, 'group'>;
 
 const nameMap = {
+  'Open-Source-star': '开源之星',
+  'excellent-volunteer': '年度优秀志愿者',
   'COSCon-star': 'COSCon 之星',
   'community-cooperation-star': '社区合作之星',
-  'Open-Source-star': '开源之星',
   'China-Open-Source-pioneer': '中国开源先锋33人',
 };
 
@@ -36,9 +37,10 @@ export const getServerSideProps = compose<{ name: string }, HonorPageProps>(
 
     if (!award) return { notFound: true, props: {} as HonorPageProps };
 
-    const group = await new PersonnelModel().getYearGroup({ award }, [
-      'createdAt',
-    ]);
+    const group = await new PersonnelModel().getYearGroup(
+      { award, passed: true },
+      ['createdAt'],
+    );
     for (const year in group)
       group[year] = group[year]
         .filter(({ recipient }) => recipient)
@@ -49,9 +51,10 @@ export const getServerSideProps = compose<{ name: string }, HonorPageProps>(
 );
 
 const titleMap = () => ({
-  'community-cooperation-star': t('stars_of_community_partnership'),
   'Open-Source-star': t('stars_of_open_source'),
+  'excellent-volunteer': t('excellent_volunteer_of_the_year'),
   'COSCon-star': t('stars_of_COSCon'),
+  'community-cooperation-star': t('stars_of_community_partnership'),
   'China-Open-Source-pioneer': t('china_open_source_pioneer'),
 });
 

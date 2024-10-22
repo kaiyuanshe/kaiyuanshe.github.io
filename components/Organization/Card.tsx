@@ -133,10 +133,10 @@ export class OrganizationCard extends Component<OrganizationCardProps> {
 
           {this.showQRC && (
             <Image
-              fluid
               className="mt-2"
               src={`https://open.weixin.qq.com/qr/code?username=${wechatName}`}
               alt={wechatName as string}
+              fluid
             />
           )}
         </Card.Footer>

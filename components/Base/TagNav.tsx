@@ -11,8 +11,8 @@ export const TagNav: FC<TagNavProps> = ({ model, list, ...props }) => (
   <nav {...props}>
     {list.map(tag => (
       <Badge
-        as="a"
         key={tag}
+        as="a"
         className="text-decoration-none mx-1"
         bg={text2color(tag, ['light'])}
         href={`/search/${model}?keywords=${tag}`}

@@ -51,7 +51,7 @@ const MeetingDetailPage: FC<MeetingDetailPageProps> = observer(
 
           <Row as="ol" className="list-unstyled g-3" xs={1} md={2}>
             {reports.map(item => (
-              <Col as="li" key={item.id as string}>
+              <Col key={item.id as string} as="li">
                 <ReportCard {...item} />
               </Col>
             ))}

@@ -26,8 +26,8 @@ enableStaticRendering(isServer());
 globalThis.addEventListener?.('unhandledrejection', ({ reason }) => {
   if (reason instanceof DialogClose) return;
 
-  var { message, response } = reason as HTTPError;
-  const { statusText, body } = response || {};
+  let { message } = reason as HTTPError;
+  const { statusText, body } = reason.response || {};
 
   message = body?.message || statusText || message;
 
@@ -47,8 +47,8 @@ window.__aitable.baseUrl = "https://aitable.ai";`}
     </Script>
     <Script
       id="AITable-widget"
-      async
       src="https://aitable.ai/file/js/aitable_widget.js?v=0.0.1"
+      async
     ></Script>
 
     <MainNav title={t('KaiYuanShe')} logo={DefaultImage} links={MainRoutes()} />

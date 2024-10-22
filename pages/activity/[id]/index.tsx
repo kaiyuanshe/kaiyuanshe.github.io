@@ -91,7 +91,7 @@ export default class ActivityDetailPage extends Component<ActivityDetailPageProp
   renderButtonBar() {
     const { endTime, personForms, agendaForms, fileForms, billForms } =
         this.props.currentMeta,
-      { id, link } = this.props.activity;
+      { link } = this.props.activity;
     const passed = +new Date(+endTime!) <= Date.now();
 
     return (
@@ -168,11 +168,11 @@ export default class ActivityDetailPage extends Component<ActivityDetailPageProp
         </Col>
         <Col xs={12} md={2} className="text-center">
           <LarkImage
-            rounded
             className="object-fit-contain"
             loading="lazy"
             src={logo}
             alt={name as string}
+            rounded
           />
         </Col>
         <Col xs={12} md={8}>
@@ -273,7 +273,7 @@ export default class ActivityDetailPage extends Component<ActivityDetailPageProp
 
         <Row as="ol" className="list-unstyled g-4" xs={1} md={2}>
           {agendaGroup[name as string]?.map(agenda => (
-            <Col as="li" key={agenda.id + ''}>
+            <Col key={agenda.id + ''} as="li">
               <AgendaCard activityId={activity.id + ''} {...agenda} />
             </Col>
           ))}

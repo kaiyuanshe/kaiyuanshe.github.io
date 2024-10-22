@@ -73,12 +73,12 @@ export default class CooperationPage extends Component<CooperationPageProps> {
 
             return (
               <Col
+                key={organization + ''}
                 as="li"
                 className={isSingleLineBenefitsLevels ? 'w-50 mx-5 my-2' : ''}
                 xs={12}
                 sm={isSingleLineBenefitsLevels ? 12 : 6}
                 md={isSingleLineBenefitsLevels ? 12 : 3}
-                key={organization + ''}
               >
                 <a
                   target="_blank"
@@ -110,12 +110,12 @@ export default class CooperationPage extends Component<CooperationPageProps> {
 
         <ListGroup
           as="nav"
-          horizontal
           className="sticky-top justify-content-center overflow-auto"
           style={{ top: '5rem' }}
+          horizontal
         >
           {yearGroup.map(([year]) => (
-            <ListGroup.Item as="a" key={year} href={'#' + year}>
+            <ListGroup.Item key={year} as="a" href={'#' + year}>
               {year}
             </ListGroup.Item>
           ))}

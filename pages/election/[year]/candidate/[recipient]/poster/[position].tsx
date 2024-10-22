@@ -85,10 +85,10 @@ export default class CandidatePoster extends Component<CandidatePosterProps> {
           </h1>
 
           <LarkImage
-            roundedCircle
             className="object-fit-contain"
             style={{ width: '5rem', height: '5rem' }}
             src={recipientAvatar}
+            roundedCircle
           />
         </header>
         {[
@@ -115,8 +115,8 @@ export default class CandidatePoster extends Component<CandidatePosterProps> {
               <section key={title}>
                 <h2>{title}</h2>
                 <article
-                  className="text-break"
                   dangerouslySetInnerHTML={{ __html: marked(content) }}
+                  className="text-break"
                 />
               </section>
             ),

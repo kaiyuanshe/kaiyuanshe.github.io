@@ -23,12 +23,12 @@ export const ActivityPeople: FC<ActivityPeopleProps> = ({
     {names?.map((name, index) => (
       <li key={name} className="text-center">
         <LarkImage
-          roundedCircle
           className="object-fit-cover"
           style={{ width: `${size}rem`, height: `${size}rem` }}
           loading="lazy"
           src={avatars?.[index]}
           alt={name}
+          roundedCircle
         />
         <ul className="list-unstyled">
           <li>{name}</li>
