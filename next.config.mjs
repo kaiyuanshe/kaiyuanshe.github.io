@@ -3,7 +3,7 @@ import { withSentryConfig } from '@sentry/nextjs';
 import CopyPlugin from 'copy-webpack-plugin';
 import { readdirSync, statSync } from 'fs';
 import setPWA from 'next-pwa';
-// @ts-ignore
+// @ts-expect-error no official types
 import withLess from 'next-with-less';
 import RemarkFrontMatter from 'remark-frontmatter';
 import RemarkGfm from 'remark-gfm';
