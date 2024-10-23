@@ -32,9 +32,7 @@ export const getServerSideProps = compose<{ name: string }, PersonDetailPage>(
       recipient: name,
     });
 
-    return {
-      props: JSON.parse(JSON.stringify({ person, personnels })),
-    };
+    
     const searchResults = await Promise.all(
       Object.entries(systemStore.searchMap).map(async ([key, SearchModel]) => {
         const model = new SearchModel();
@@ -47,6 +45,7 @@ export const getServerSideProps = compose<{ name: string }, PersonDetailPage>(
       props: JSON.parse(
         JSON.stringify({
           person,
+          personnels,
           ...results,
         }),
       ),
