@@ -334,16 +334,12 @@ export default class ActivityDetailPage extends Component<ActivityDetailPageProp
           <Button
             className="text-nowrap"
             variant="success"
-            href="/search?keywords=收官"
-          >
-            {t('previous_activities')}
-          </Button>
-          <Button
-            className="text-nowrap"
-            variant="success"
             href={`/activity/${activity.id}/charts`}
           >
             {t('activity_statistics')}
+          </Button>
+          <Button className="text-nowrap" href="/search/article?keywords=收官">
+            {t('previous_activities')}
           </Button>
         </Stack>
 
