@@ -1,11 +1,12 @@
+import { ShareBox } from 'idea-react';
 import { TableCellLocation } from 'mobx-lark';
 import { observer } from 'mobx-react';
-import dynamic from 'next/dynamic';
 import { cache, compose, errorLogger, router } from 'next-ssr-middleware';
 import { QRCodeSVG } from 'qrcode.react';
 import { Component } from 'react';
 import { Container } from 'react-bootstrap';
 
+import ForumTimeline from '../../../../components/Activity/Forum/Timeline';
 import { PageHead } from '../../../../components/Layout/PageHead';
 import { Activity, ActivityModel } from '../../../../models/Activity';
 import { Agenda } from '../../../../models/Activity/Agenda';
@@ -13,11 +14,6 @@ import { Forum } from '../../../../models/Activity/Forum';
 import { API_Host } from '../../../../models/Base';
 import { t } from '../../../../models/Base/Translation';
 import { fileURLOf } from '../../../api/lark/file/[id]';
-
-const ForumTimeline = dynamic(
-  () => import('../../../../components/Activity/Forum/Timeline'),
-  { ssr: false },
-);
 
 interface ForumPageProps {
   activity: Activity;
@@ -70,7 +66,7 @@ export default class ForumPage extends Component<ForumPageProps> {
             <li>🚪{room as string}</li>
           </ul>
         </header>
-        <section className="d-flex flex-column align-items-center gap-4">
+        <section className="p-3">
           <ForumTimeline {...{ activityId, agendas }} />
         </section>
         <footer className="d-flex flex-column align-items-center gap-4">
@@ -83,15 +79,19 @@ export default class ForumPage extends Component<ForumPageProps> {
   }
 
   render() {
-    const { activity, forum } = this.props;
+    const { activity, forum } = this.props,
+      { sharedURL } = this;
     const { name } = activity,
-      { name: forumName } = forum;
+      { name: forumName, summary } = forum;
+    const pageTitle = `${forumName} - ${name}`;
 
     return (
       <>
-        <PageHead title={`${forumName} - ${name}`} />
+        <PageHead title={pageTitle} />
 
-        {this.renderContent()}
+        <ShareBox title={pageTitle} text={summary as string} url={sharedURL}>
+          {this.renderContent()}
+        </ShareBox>
       </>
     );
   }
