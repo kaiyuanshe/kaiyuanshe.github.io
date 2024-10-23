@@ -9,13 +9,14 @@ import { formatDate } from 'web-utility';
 import { CommentBox } from '../../components/Base/CommentBox';
 import { LarkImage } from '../../components/Base/LarkImage';
 import { PageHead } from '../../components/Layout/PageHead';
+import systemStore from '../../models/Base/System';
 import { i18n, t } from '../../models/Base/Translation';
 import { Personnel, PersonnelModel } from '../../models/Personnel';
 import { Person, PersonModel } from '../../models/Personnel/Person';
-
 interface PersonDetailPageProps {
   person: Person;
   personnels: Personnel[];
+  [key: string]: any;
 }
 
 export const getServerSideProps = compose<{ name: string }, PersonDetailPage>(
@@ -33,6 +34,22 @@ export const getServerSideProps = compose<{ name: string }, PersonDetailPage>(
 
     return {
       props: JSON.parse(JSON.stringify({ person, personnels })),
+    };
+    const searchResults = await Promise.all(
+      Object.entries(systemStore.searchMap).map(async ([key, SearchModel]) => {
+        const model = new SearchModel();
+        const data = await model.getSearchList(name + '');
+        return [key, data];
+      }),
+    );
+    const results = Object.fromEntries(searchResults);
+    return {
+      props: JSON.parse(
+        JSON.stringify({
+          person,
+          ...results,
+        }),
+      ),
     };
   },
 );
