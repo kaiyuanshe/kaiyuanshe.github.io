@@ -154,7 +154,7 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
   );
 
   render() {
-    const { person, personnels } = this.props;
+    const { person, personnels, ...results } = this.props;
 
     return (
       <Container className="py-5">
@@ -181,6 +181,7 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
             <hr className="my-5" />
 
             {personnels.map(this.renderPersonnel)}
+            <>{JSON.stringify(results)}</>
           </Col>
         </Row>
 
