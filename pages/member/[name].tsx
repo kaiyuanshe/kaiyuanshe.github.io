@@ -19,6 +19,17 @@ interface PersonDetailPageProps {
   [key: string]: any;
 }
 
+const SEARCH_TYPES = [
+  'member',
+  'department',
+  'meeting',
+  'article',
+  'activity',
+  'community',
+  'organization',
+  'NGO',
+] as const;
+
 export const getServerSideProps = compose<{ name: string }, PersonDetailPage>(
   errorLogger,
   translator(i18n),
@@ -32,14 +43,15 @@ export const getServerSideProps = compose<{ name: string }, PersonDetailPage>(
       recipient: name,
     });
 
-    
     const searchResults = await Promise.all(
-      Object.entries(systemStore.searchMap).map(async ([key, SearchModel]) => {
+      SEARCH_TYPES.map(async (key) => {
+        const SearchModel = systemStore.searchMap[key];
         const model = new SearchModel();
         const data = await model.getSearchList(name + '');
         return [key, data];
-      }),
+      })
     );
+
     const results = Object.fromEntries(searchResults);
     return {
       props: JSON.parse(
