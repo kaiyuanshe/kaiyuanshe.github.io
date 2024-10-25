@@ -9,10 +9,17 @@ import { formatDate } from 'web-utility';
 import { CommentBox } from '../../components/Base/CommentBox';
 import { LarkImage } from '../../components/Base/LarkImage';
 import { PageHead } from '../../components/Layout/PageHead';
+import { SearchActivityModel } from '../../models/Activity';
 import systemStore from '../../models/Base/System';
 import { i18n, t } from '../../models/Base/Translation';
+import { SearchCommunityModel } from '../../models/Community';
+import { SearchNGOModel } from '../../models/Community/Organization';
+import { SearchOrganizationModel } from '../../models/Community/Organization';
+import { SearchMeetingModel } from '../../models/Governance/Meeting';
 import { Personnel, PersonnelModel } from '../../models/Personnel';
+import { SearchDepartmentModel } from '../../models/Personnel/Department';
 import { Person, PersonModel } from '../../models/Personnel/Person';
+import { SearchArticleModel } from '../../models/Product/Article';
 interface PersonDetailPageProps {
   person: Person;
   personnels: Personnel[];
@@ -20,7 +27,6 @@ interface PersonDetailPageProps {
 }
 
 const SEARCH_TYPES = [
-  'member',
   'department',
   'meeting',
   'article',
@@ -44,41 +50,37 @@ export const getServerSideProps = compose<{ name: string }, PersonDetailPage>(
     });
 
     const [
-      member,
       department,
       meeting,
       article,
       activity,
       community,
       organization,
-      NGO
+      NGO,
     ] = await Promise.all([
-      new systemStore.searchMap.member().getSearchList(name + ''),
-      new systemStore.searchMap.department().getSearchList(name + ''),
-      new systemStore.searchMap.meeting().getSearchList(name + ''),
-      new systemStore.searchMap.article().getSearchList(name + ''),
-      new systemStore.searchMap.activity().getSearchList(name + ''),
-      new systemStore.searchMap.community().getSearchList(name + ''),
-      new systemStore.searchMap.organization().getSearchList(name + ''),
-      new systemStore.searchMap.NGO().getSearchList(name + '')
+      new SearchDepartmentModel().getSearchList(name + ''),
+      new SearchMeetingModel().getSearchList(name + ''),
+      new SearchArticleModel().getSearchList(name + ''),
+      new SearchActivityModel().getSearchList(name + ''),
+      new SearchCommunityModel().getSearchList(name + ''),
+      new SearchOrganizationModel().getSearchList(name + ''),
+      new SearchNGOModel().getSearchList(name + ''),
     ]);
 
-    
+    const searchResults = {
+      person,
+      personnels,
+      department,
+      meeting,
+      article,
+      activity,
+      community,
+      organization,
+      NGO,
+    };
+
     return {
-      props: JSON.parse(
-        JSON.stringify({
-          person,
-          personnels,
-          member,
-          department,
-          meeting,
-          article,
-          activity,
-          community,
-          organization,
-          NGO,
-        }),
-      ),
+      props: JSON.parse(JSON.stringify(searchResults)),
     };
   },
 );
@@ -183,14 +185,14 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
     </li>
   );
 
-  renderMember = ({ organization, }: typeof systemStore.searchMap['member']) => (
-    <>{JSON.stringify(member)}</>)
-    ;
+  renderMember = (member: (typeof systemStore.searchMap)['member']) => (
+    <>{JSON.stringify(member)}</>
+  );
 
   render() {
-    const { person,
+    const {
+      person,
       personnels,
-      member,
       department,
       meeting,
       article,
@@ -225,7 +227,6 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
             <hr className="my-5" />
 
             {personnels.map(this.renderPersonnel)}
-            <>{JSON.stringify(member)}</>
             <p>department</p>
             <>{JSON.stringify(department)}</>
             <p>meeting</p>
