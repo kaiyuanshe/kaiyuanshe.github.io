@@ -43,14 +43,25 @@ export const getServerSideProps = compose<{ name: string }, PersonDetailPage>(
       recipient: name,
     });
 
-    const searchResults = await Promise.all(
-      SEARCH_TYPES.map(async (key) => {
-        const SearchModel = systemStore.searchMap[key];
-        const model = new SearchModel();
-        const data = await model.getSearchList(name + '');
-        return [key, data];
-      })
-    );
+    const [
+      member,
+      department,
+      meeting,
+      article,
+      activity,
+      community,
+      organization,
+      NGO
+    ] = await Promise.all([
+      new systemStore.searchMap.member().getSearchList(name + ''),
+      new systemStore.searchMap.department().getSearchList(name + ''),
+      new systemStore.searchMap.meeting().getSearchList(name + ''),
+      new systemStore.searchMap.article().getSearchList(name + ''),
+      new systemStore.searchMap.activity().getSearchList(name + ''),
+      new systemStore.searchMap.community().getSearchList(name + ''),
+      new systemStore.searchMap.organization().getSearchList(name + ''),
+      new systemStore.searchMap.NGO().getSearchList(name + '')
+    ]);
 
     const results = Object.fromEntries(searchResults);
     return {
@@ -58,7 +69,14 @@ export const getServerSideProps = compose<{ name: string }, PersonDetailPage>(
         JSON.stringify({
           person,
           personnels,
-          ...results,
+          member,
+          department,
+          meeting,
+          article,
+          activity,
+          community,
+          organization,
+          NGO,
         }),
       ),
     };
@@ -165,9 +183,9 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
     </li>
   );
 
-  renderMember = ({organization,}: typeof systemStore.searchMap['member']) =>(
-     <>{JSON.stringify(member)}</>)
-  ;
+  renderMember = ({ organization, }: typeof systemStore.searchMap['member']) => (
+    <>{JSON.stringify(member)}</>)
+    ;
 
   render() {
     const { person,
