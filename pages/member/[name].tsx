@@ -165,8 +165,22 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
     </li>
   );
 
+  renderMember = ({organization,}: typeof systemStore.searchMap['member']) =>(
+     <>{JSON.stringify(member)}</>)
+  ;
+
   render() {
-    const { person, personnels, ...results } = this.props;
+    const { person,
+      personnels,
+      member,
+      department,
+      meeting,
+      article,
+      activity,
+      community,
+      organization,
+      NGO,
+    } = this.props;
 
     return (
       <Container className="py-5">
@@ -193,7 +207,21 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
             <hr className="my-5" />
 
             {personnels.map(this.renderPersonnel)}
-            <>{JSON.stringify(results)}</>
+            <>{JSON.stringify(member)}</>
+            <p>department</p>
+            <>{JSON.stringify(department)}</>
+            <p>meeting</p>
+            <>{JSON.stringify(meeting)}</>
+            <p>article</p>
+            <>{JSON.stringify(article)}</>
+            <p>activity</p>
+            <>{JSON.stringify(activity)}</>
+            <p>community</p>
+            <>{JSON.stringify(community)}</>
+            <p>organization</p>
+            <>{JSON.stringify(organization)}</>
+            <p>NGO</p>
+            <>{JSON.stringify(NGO)}</>
           </Col>
         </Row>
 
