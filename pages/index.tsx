@@ -44,7 +44,7 @@ export const getServerSideProps = compose<{}, HomePageProps>(
 @observer
 export default class HomePage extends Component<HomePageProps> {
   renderProject = ({ id, name, logo = DefaultImage, link }: Department) => (
-    <Col as="li" key={id + ''} className="position-relative">
+    <Col key={id + ''} as="li" className="position-relative">
       <LarkImage style={{ height: '8rem' }} alt={name as string} src={logo} />
       <a
         className="d-block text-decoration-none text-dark h5 stretched-link mt-3"
@@ -70,7 +70,7 @@ export default class HomePage extends Component<HomePageProps> {
         target={(link + '').startsWith('http') ? '_blank' : '_self'}
         rel="noreferrer"
       >
-        <LarkImage className="object-fit-contain" fluid src={image} />
+        <LarkImage className="object-fit-contain" src={image} fluid />
       </a>
 
       <Carousel.Caption as="h3" className="bg-primary opacity-50">
@@ -91,9 +91,9 @@ export default class HomePage extends Component<HomePageProps> {
             <Carousel.Item>
               <Image
                 className="object-fit-contain py-5"
-                fluid
                 src="/image/Heart_of_Community.png"
                 alt="Head Image"
+                fluid
               />
             </Carousel.Item>
 
@@ -131,17 +131,17 @@ export default class HomePage extends Component<HomePageProps> {
                   {items.map(({ icon, text }) =>
                     text === t('our_vision_content') ? (
                       <Col
+                        key={text}
                         as="li"
                         className="h3"
                         xs={8}
                         sm={6}
                         md={8}
-                        key={text}
                       >
                         {text}
                       </Col>
                     ) : (
-                      <Col as="li" key={text}>
+                      <Col key={text} as="li">
                         <Icon name={icon} size={6} />
                         <div className="h3">{text}</div>
                       </Col>

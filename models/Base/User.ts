@@ -24,7 +24,9 @@ export class UserModel extends BaseListModel<User> {
   client = new HTTPClient({
     baseURI: KYS_SERVICE_HOST,
     responseType: 'json',
-  }).use(({ request }, next) => {
+  }).use(async ({ request }, next) => {
+    await this.restored;
+
     if (this.session?.token)
       request.headers = {
         ...request.headers,

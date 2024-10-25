@@ -85,8 +85,12 @@ export default class UserProfilePage extends Component<UserProfilePageProps> {
           <Breadcrumb.Item active>{title}</Breadcrumb.Item>
         </Breadcrumb>
 
-        <Row>
-          <Col className="d-flex flex-column gap-3 align-items-center">
+        <Row className="g-3 my-3">
+          <Col
+            xs={12}
+            sm={4}
+            className="d-flex flex-column gap-3 align-items-center"
+          >
             <h1 className="my-4">{title}</h1>
 
             {avatar && <Avatar size={10} src={avatar} />}
@@ -99,7 +103,7 @@ export default class UserProfilePage extends Component<UserProfilePageProps> {
             </Button>
           </Col>
 
-          <Col>
+          <Col xs={12} sm={8}>
             <h2>{t('activity_footprint')}</h2>
 
             <ScrollList

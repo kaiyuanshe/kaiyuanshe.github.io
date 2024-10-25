@@ -21,6 +21,7 @@ export class DrawerNav extends Component {
         break;
       }
       scrollTop = document.scrollingElement?.scrollTop;
+      // eslint-disable-next-line no-constant-condition
     } while (true);
   };
 

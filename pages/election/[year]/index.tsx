@@ -94,7 +94,7 @@ export default class ElectionYearPage extends Component<ElectionYearPageProps> {
                 +new Date(a3 as string) - +new Date(b3 as string),
             )
             .map(({ id, approvers, rejecters, ...item }, index) => (
-              <Col as="li" key={id + ''} id={item.recipient as string}>
+              <Col key={id + ''} as="li" id={item.recipient as string}>
                 <ElectorCard
                   className="h-100"
                   {...item}

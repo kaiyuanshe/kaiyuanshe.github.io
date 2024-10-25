@@ -19,7 +19,7 @@ export const getStaticProps: GetStaticProps<{
   const pageListOf = (path: string, prefix = 'pages'): ArticleMeta[] =>
     readdirSync(prefix + path, { withFileTypes: true })
       .map(node => {
-        var { name, path } = node;
+        let { name, path } = node;
 
         if (name.startsWith('.')) return;
 

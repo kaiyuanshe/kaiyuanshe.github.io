@@ -81,7 +81,7 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
       {avatar ? (
         <LarkImage src={avatar} />
       ) : (
-        <Image fluid src={`${github}.png`} alt="GitHub profile image" />
+        <Image src={`${github}.png`} alt="GitHub profile image" fluid />
       )}
 
       <h1>{name as string}</h1>

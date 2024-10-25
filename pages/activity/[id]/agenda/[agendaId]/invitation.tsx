@@ -107,16 +107,13 @@ export default class InvitationPage extends Component<InvitationPageProps> {
       { sharedURL } = this;
     const { name } = activity,
       { title, summary } = agenda;
+    const pageTitle = `${title} - ${name}`;
 
     return (
       <>
-        <PageHead title={`${title} - ${name}`} />
+        <PageHead title={pageTitle} />
 
-        <ShareBox
-          title={title as string}
-          text={summary as string}
-          url={sharedURL}
-        >
+        <ShareBox title={pageTitle} text={summary as string} url={sharedURL}>
           {this.renderContent()}
         </ShareBox>
       </>

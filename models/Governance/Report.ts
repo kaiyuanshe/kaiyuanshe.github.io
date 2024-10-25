@@ -34,12 +34,21 @@ export class ReportModel extends BiDataTable<Report>() {
   }
 
   normalize({
-    fields: { plan, progress, product, problem, meeting, ...fields },
+    fields: {
+      department,
+      plan,
+      progress,
+      product,
+      problem,
+      meeting,
+      ...fields
+    },
     ...meta
   }: TableRecord<Report>) {
     return {
       ...meta,
       ...fields,
+      department: (department as TableCellRelation[])?.map(normalizeText),
       plan: plan && normalizeMarkdownArray(plan as TableCellText[]),
       progress: progress && normalizeMarkdownArray(progress as TableCellText[]),
       product: product && normalizeMarkdownArray(product as TableCellText[]),

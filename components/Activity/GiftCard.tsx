@@ -21,7 +21,7 @@ export const GiftCard: FC<GiftCardProps> = ({
         disabled ? style.disabled : ''
       }`}
     >
-      <LarkImage roundedCircle src={photo} />
+      <LarkImage src={photo} roundedCircle />
 
       <div className="position-absolute end-0 bottom-0 p-2">
         <Badge bg="danger" pill>

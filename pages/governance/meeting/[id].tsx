@@ -21,7 +21,7 @@ export const getServerSideProps = compose<
   MeetingDetailPageProps
 >(cache(), errorLogger, translator(i18n), async ({ params }) => {
   const meeting = await new MeetingModel().getOne(params!.id);
-  const reports = await new ReportModel().getAll({ meeting: meeting.name });
+  const reports = await new ReportModel().getAll({ meeting: meeting.title });
 
   return {
     props: JSON.parse(JSON.stringify({ meeting, reports })),
@@ -51,7 +51,7 @@ const MeetingDetailPage: FC<MeetingDetailPageProps> = observer(
 
           <Row as="ol" className="list-unstyled g-3" xs={1} md={2}>
             {reports.map(item => (
-              <Col as="li" key={item.id as string}>
+              <Col key={item.id as string} as="li">
                 <ReportCard {...item} />
               </Col>
             ))}

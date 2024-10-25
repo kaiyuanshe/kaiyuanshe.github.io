@@ -1,6 +1,6 @@
 import '../styles/globals.less';
 
-import { Icon } from 'idea-react';
+import { DialogClose, Icon } from 'idea-react';
 import { HTTPError } from 'koajax';
 import { configure } from 'mobx';
 import { enableStaticRendering, observer } from 'mobx-react';
@@ -24,8 +24,10 @@ configure({ enforceActions: 'never' });
 enableStaticRendering(isServer());
 
 globalThis.addEventListener?.('unhandledrejection', ({ reason }) => {
-  var { message, response } = reason as HTTPError;
-  const { statusText, body } = response || {};
+  if (reason instanceof DialogClose) return;
+
+  let { message } = reason as HTTPError;
+  const { statusText, body } = reason.response || {};
 
   message = body?.message || statusText || message;
 
@@ -45,8 +47,8 @@ window.__aitable.baseUrl = "https://aitable.ai";`}
     </Script>
     <Script
       id="AITable-widget"
-      async
       src="https://aitable.ai/file/js/aitable_widget.js?v=0.0.1"
+      async
     ></Script>
 
     <MainNav title={t('KaiYuanShe')} logo={DefaultImage} links={MainRoutes()} />

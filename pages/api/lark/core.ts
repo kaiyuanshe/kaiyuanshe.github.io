@@ -40,9 +40,9 @@ export const normalizeMarkdownArray = (list: TableCellText[]) =>
   normalizeTextArray(list).map(text => marked(text) as string);
 
 export function coordinateOf(location: TableCellValue): [number, number] {
-  const [longitude, latitude] = (location as TableCellLocation)?.location.split(
-    ',',
-  );
+  const [longitude, latitude] =
+    (location as TableCellLocation)?.location.split(',') || [];
+
   return [+latitude, +longitude];
 }
 
@@ -57,10 +57,10 @@ export const proxyLark = <T extends LarkData>(
     const path = url!.slice(`/api/Lark/`.length);
 
     const { status, body: data } = await lark.client.request<T>({
-      // @ts-ignore
+      // @ts-expect-error Type compatibility issue
       method,
       path,
-      // @ts-ignore
+      // @ts-expect-error Type compatibility issue
       headers,
       body: body || undefined,
     });

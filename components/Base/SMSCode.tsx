@@ -9,7 +9,11 @@ export const mobilePhoneDialog = new Dialog<
   Partial<SMSCodeInput>,
   SMSCodeInput
 >(({ defer, captchaToken, captchaCode, mobilePhone }) => (
-  <Modal show={!!defer} onHide={() => defer?.reject(new DialogClose())}>
+  <Modal
+    backdrop="static"
+    show={!!defer}
+    onHide={() => defer?.reject(new DialogClose())}
+  >
     <Modal.Header closeButton>
       <Modal.Title>{t('mobile_phone_number')}</Modal.Title>
     </Modal.Header>
@@ -35,7 +39,7 @@ export const mobilePhoneDialog = new Dialog<
               required
             />
           )}
-          <Button type="submit" variant="outline-primary">
+          <Button type="submit" variant="primary">
             {t('SMS_code')}
           </Button>
         </InputGroup>
@@ -46,28 +50,32 @@ export const mobilePhoneDialog = new Dialog<
 
 export const signWithSMSCode = new Dialog<Partial<SMSCodeInput>, SignInData>(
   ({ defer, mobilePhone }) => (
-    <Modal show={!!defer} onHide={() => defer?.reject(new DialogClose())}>
+    <Modal
+      backdrop="static"
+      show={!!defer}
+      onHide={() => defer?.reject(new DialogClose())}
+    >
       <Modal.Header closeButton>
         <Modal.Title>{t('SMS_code')}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form
-          id="SMS-code-form"
           onSubmit={event => {
             event.preventDefault();
 
             defer?.resolve(formToJSON<SignInData>(event.currentTarget));
           }}
         >
-          <input type="tel" hidden name="mobilePhone" value={mobilePhone} />
-          <Form.Control name="code" placeholder={t('SMS_code')} required />
+          <input type="tel" name="mobilePhone" value={mobilePhone} hidden />
+          <InputGroup>
+            <Form.Control name="code" placeholder={t('SMS_code')} required />
+
+            <Button type="submit" variant="primary">
+              {t('sign_in')}
+            </Button>
+          </InputGroup>
         </Form>
       </Modal.Body>
-      <Modal.Footer>
-        <Button type="submit" variant="primary" form="SMS-code-form">
-          {t('sign_in')}
-        </Button>
-      </Modal.Footer>
     </Modal>
   ),
 );
