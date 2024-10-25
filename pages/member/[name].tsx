@@ -9,14 +9,26 @@ import { formatDate } from 'web-utility';
 import { CommentBox } from '../../components/Base/CommentBox';
 import { LarkImage } from '../../components/Base/LarkImage';
 import { PageHead } from '../../components/Layout/PageHead';
+import systemStore from '../../models/Base/System';
 import { i18n, t } from '../../models/Base/Translation';
 import { Personnel, PersonnelModel } from '../../models/Personnel';
 import { Person, PersonModel } from '../../models/Personnel/Person';
-
 interface PersonDetailPageProps {
   person: Person;
   personnels: Personnel[];
+  [key: string]: any;
 }
+
+const SEARCH_TYPES = [
+  'member',
+  'department',
+  'meeting',
+  'article',
+  'activity',
+  'community',
+  'organization',
+  'NGO',
+] as const;
 
 export const getServerSideProps = compose<{ name: string }, PersonDetailPage>(
   errorLogger,
@@ -31,8 +43,24 @@ export const getServerSideProps = compose<{ name: string }, PersonDetailPage>(
       recipient: name,
     });
 
+    const searchResults = await Promise.all(
+      SEARCH_TYPES.map(async (key) => {
+        const SearchModel = systemStore.searchMap[key];
+        const model = new SearchModel();
+        const data = await model.getSearchList(name + '');
+        return [key, data];
+      })
+    );
+
+    const results = Object.fromEntries(searchResults);
     return {
-      props: JSON.parse(JSON.stringify({ person, personnels })),
+      props: JSON.parse(
+        JSON.stringify({
+          person,
+          personnels,
+          ...results,
+        }),
+      ),
     };
   },
 );
@@ -137,8 +165,22 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
     </li>
   );
 
+  renderMember = ({organization,}: typeof systemStore.searchMap['member']) =>(
+     <>{JSON.stringify(member)}</>)
+  ;
+
   render() {
-    const { person, personnels } = this.props;
+    const { person,
+      personnels,
+      member,
+      department,
+      meeting,
+      article,
+      activity,
+      community,
+      organization,
+      NGO,
+    } = this.props;
 
     return (
       <Container className="py-5">
@@ -165,6 +207,21 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
             <hr className="my-5" />
 
             {personnels.map(this.renderPersonnel)}
+            <>{JSON.stringify(member)}</>
+            <p>department</p>
+            <>{JSON.stringify(department)}</>
+            <p>meeting</p>
+            <>{JSON.stringify(meeting)}</>
+            <p>article</p>
+            <>{JSON.stringify(article)}</>
+            <p>activity</p>
+            <>{JSON.stringify(activity)}</>
+            <p>community</p>
+            <>{JSON.stringify(community)}</>
+            <p>organization</p>
+            <>{JSON.stringify(organization)}</>
+            <p>NGO</p>
+            <>{JSON.stringify(NGO)}</>
           </Col>
         </Row>
 
