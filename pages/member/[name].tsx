@@ -63,7 +63,7 @@ export const getServerSideProps = compose<{ name: string }, PersonDetailPage>(
       new systemStore.searchMap.NGO().getSearchList(name + '')
     ]);
 
-    const results = Object.fromEntries(searchResults);
+    
     return {
       props: JSON.parse(
         JSON.stringify({
