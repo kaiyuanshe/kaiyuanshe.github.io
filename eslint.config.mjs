@@ -1,5 +1,6 @@
 // @ts-check
-import { fixupPluginRules } from '@eslint/compat';
+import { fixupConfigRules, fixupPluginRules } from '@eslint/compat';
+import { FlatCompat } from '@eslint/eslintrc';
 import eslint from '@eslint/js';
 import eslintConfigPrettier from 'eslint-config-prettier';
 import reactPlugin from 'eslint-plugin-react';
@@ -8,7 +9,8 @@ import globals from 'globals';
 import tsEslint from 'typescript-eslint';
 import { fileURLToPath } from 'url';
 
-const tsconfigRootDir = fileURLToPath(new URL('.', import.meta.url));
+const tsconfigRootDir = fileURLToPath(new URL('.', import.meta.url)),
+  flatCompat = new FlatCompat();
 
 export default tsEslint.config(
   // register all of the plugins up-front
@@ -28,6 +30,7 @@ export default tsEslint.config(
   // extends ...
   eslint.configs.recommended,
   ...tsEslint.configs.recommended,
+  ...fixupConfigRules(flatCompat.extends('plugin:@next/next/core-web-vitals')),
 
   // base config
   {
@@ -43,6 +46,10 @@ export default tsEslint.config(
       'no-empty-pattern': 'warn',
       'simple-import-sort/exports': 'error',
       'simple-import-sort/imports': 'error',
+      '@typescript-eslint/no-unused-vars': 'warn',
+      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-empty-object-type': 'off',
+      '@typescript-eslint/no-unsafe-declaration-merging': 'warn',
       'react/jsx-no-target-blank': 'warn',
       'react/jsx-sort-props': [
         'error',
@@ -53,10 +60,7 @@ export default tsEslint.config(
           noSortAlphabetically: true,
         },
       ],
-      '@typescript-eslint/no-unused-vars': 'warn',
-      '@typescript-eslint/no-explicit-any': 'warn',
-      '@typescript-eslint/no-empty-object-type': 'off',
-      '@typescript-eslint/no-unsafe-declaration-merging': 'warn',
+      '@next/next/no-sync-scripts': 'warn',
     },
   },
   {
