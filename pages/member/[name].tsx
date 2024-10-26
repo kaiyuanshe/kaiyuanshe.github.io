@@ -9,21 +9,33 @@ import { formatDate } from 'web-utility';
 import { CommentBox } from '../../components/Base/CommentBox';
 import { LarkImage } from '../../components/Base/LarkImage';
 import { PageHead } from '../../components/Layout/PageHead';
-import { SearchActivityModel } from '../../models/Activity';
+import { Activity,SearchActivityModel } from '../../models/Activity';
 import systemStore from '../../models/Base/System';
 import { i18n, t } from '../../models/Base/Translation';
-import { SearchCommunityModel } from '../../models/Community';
+import { Community,SearchCommunityModel } from '../../models/Community';
 import { SearchNGOModel } from '../../models/Community/Organization';
-import { SearchOrganizationModel } from '../../models/Community/Organization';
-import { SearchMeetingModel } from '../../models/Governance/Meeting';
+import {
+  Organization,
+  SearchOrganizationModel,
+} from '../../models/Community/Organization';
+import { Meeting,SearchMeetingModel } from '../../models/Governance/Meeting';
 import { Personnel, PersonnelModel } from '../../models/Personnel';
-import { SearchDepartmentModel } from '../../models/Personnel/Department';
+import {
+  Department,
+  SearchDepartmentModel,
+} from '../../models/Personnel/Department';
 import { Person, PersonModel } from '../../models/Personnel/Person';
 import { Article, SearchArticleModel } from '../../models/Product/Article';
 interface PersonDetailPageProps {
   person: Person;
   personnels: Personnel[];
-  [key: string]: any;
+  articles: Article[];
+  departments: Department[];
+  meetings: Meeting[];
+  activitys: Activity[];
+  communitys: Community[];
+  organizations: Organization[];
+  NGOs: Organization[];
 }
 
 const SEARCH_TYPES = [
@@ -189,7 +201,6 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
     <li className="mb-3">
       <details>
         <summary>相关著作</summary>
-
         <ul>
           {articles.map(article => (
             <li key={article.id as string}>
@@ -206,12 +217,117 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
       </details>
     </li>
   );
+  renderDepartment = (departments: Department[]) => (
+    <li className="mb-3">
+      <details>
+        <summary>相关部门</summary>
+        <ul>
+          {departments.map(department => (
+            <li key={department.id as string}>{department.name as string}</li>
+          ))}
+        </ul>
+      </details>
+    </li>
+  );
+
+  renderMeeting = (meetings: Meeting[]) => (
+    <li className="mb-3">
+      <details>
+        <summary>相关会议</summary>
+        <ul>
+          {meetings.map(meeting => (
+            <li key={meeting.id as string}>{meeting.name as string}</li>
+          ))}
+        </ul>
+      </details>
+    </li>
+  );
+
+  renderActivity = (activitys: Activity[]) => (
+    <li className="mb-3">
+      <details>
+        <summary>相关活动</summary>
+        <ul>
+          {activitys.map(activity => (
+            <li key={activity.id as string}>
+              <a
+                href={activity.link as string}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {activity.name as string}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </details>
+    </li>
+  );
+
+  renderCommunity = (communitys: Community[]) => (
+    <li className="mb-3">
+      <details>
+        <summary>相关社区</summary>
+        <ul>
+          {communitys.map(community => (
+            <li key={community.id as string}>
+              <a
+                href={community.link as string}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {community.name as string}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </details>
+    </li>
+  );
+
+  renderOrganization = (organizations: Organization[]) => (
+    <li className="mb-3">
+      <details>
+        <summary>相关组织</summary>
+        <ul>
+          {organizations.map(organization => (
+            <li key={organization.id as string}>
+              <a
+                href={organization.link as string}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {organization.name as string}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </details>
+    </li>
+  );
+
+  renderNGO = (NGOs: Organization[]) => (
+    <li className="mb-3">
+      <details>
+        <summary>相关NGO</summary>
+        <ul>
+          {NGOs.map(NGO => (
+            <li key={NGO.id as string}>
+              <a href={NGO.link as string} target="_blank" rel="noreferrer">
+                {NGO.name as string}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </details>
+    </li>
+  );
 
   render() {
     const {
       person,
       personnels,
-      department,
+      departments,
       meetings,
       articles,
       activitys,
@@ -245,20 +361,13 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
             <hr className="my-5" />
 
             {personnels.map(this.renderPersonnel)}
-            {this.renderArticle(articles)}
-            <p>department</p>
-            <>{JSON.stringify(department)}</>
-            <p>meeting</p>
-            <>{JSON.stringify(meetings)}</>
-
-            <p>activity</p>
-            <>{JSON.stringify(activitys)}</>
-            <p>community</p>
-            <>{JSON.stringify(communitys)}</>
-            <p>organization</p>
-            <>{JSON.stringify(organizations)}</>
-            <p>NGO</p>
-            <>{JSON.stringify(NGOs)}</>
+            {articles.length > 0 && this.renderArticle(articles)}
+            {departments.length > 0 && this.renderDepartment(departments)}
+            {meetings.length > 0 && this.renderMeeting(meetings)}
+            {activitys.length > 0 && this.renderActivity(activitys)}
+            {communitys.length > 0 && this.renderCommunity(communitys)}
+            {organizations.length > 0 && this.renderOrganization(organizations)}
+            {NGOs.length > 0 && this.renderNGO(NGOs)}
           </Col>
         </Row>
 
