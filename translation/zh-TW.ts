@@ -263,4 +263,12 @@ export default {
   this_term_proposition: '本屆主張',
   recommendation: '推薦語',
   vote_for_me: '投我一票',
+
+  // Member page
+  related_meeting: '相關會議',
+  related_department: '相關部門',
+  related_community: '相關社區',
+  related_organization: '相關組織',
+  related_activity: '相關活動',
+  related_NGO: '相關NGO',
 } as const;

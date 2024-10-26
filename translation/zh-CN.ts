@@ -263,4 +263,12 @@ export default {
   this_term_proposition: '本届主张',
   recommendation: '推荐语',
   vote_for_me: '投我一票',
+
+  // Member pages
+  related_meeting: '相关会议',
+  related_department: '相关部门',
+  related_community: '相关社区',
+  related_organization: '相关组织',
+  related_activity: '相关活动',
+  related_NGO: '相关NGO',
 } as const;

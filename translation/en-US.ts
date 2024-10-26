@@ -270,4 +270,12 @@ export default {
   this_term_proposition: 'This term proposition',
   recommendation: 'recommendation',
   vote_for_me: 'Vote for Me',
+
+  // Member page
+  related_meeting: 'Related Meeting',
+  related_department: 'Related Department',
+  related_community: 'Related Community',
+  related_organization: 'Related Organization',
+  related_activity: 'Related Activity',
+  related_NGO: 'Related NGO',
 } as const;

@@ -189,7 +189,7 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
   renderArticle = (articles: Article[]) => (
     <section className="mb-3">
       <details>
-        <summary>相关文章</summary>
+        <summary>{t('related_articles')}</summary>
         <ul>
           {articles.map(article => (
             <li key={article.id as string}>
@@ -209,7 +209,7 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
   renderDepartment = (departments: Department[]) => (
     <section className="mb-3">
       <details>
-        <summary>相关部门</summary>
+        <summary>{t('related_department')}</summary>
         <ul>
           {departments.map(department => (
             <li key={department.id as string}>{department.name as string}</li>
@@ -222,7 +222,7 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
   renderMeeting = (meetings: Meeting[]) => (
     <section className="mb-3">
       <details>
-        <summary>相关会议</summary>
+        <summary>{t('related_meeting')}</summary>
         <ul>
           {meetings.map(meeting => (
             <li key={meeting.id as string}>{meeting.name as string}</li>
@@ -235,7 +235,7 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
   renderActivity = (activitys: Activity[]) => (
     <section className="mb-3">
       <details>
-        <summary>相关活动</summary>
+        <summary>{t('related_activity')}</summary>
         <ul>
           {activitys.map(activity => (
             <li key={activity.id as string}>
@@ -256,7 +256,7 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
   renderCommunity = (communitys: Community[]) => (
     <section className="mb-3">
       <details>
-        <summary>相关社区</summary>
+        <summary>{t('related_community')}</summary>
         <ul>
           {communitys.map(community => (
             <li key={community.id as string}>
@@ -277,7 +277,7 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
   renderOrganization = (organizations: Organization[]) => (
     <section className="mb-3">
       <details>
-        <summary>相关组织</summary>
+        <summary>{t('related_organization')}</summary>
         <ul>
           {organizations.map(organization => (
             <li key={organization.id as string}>
@@ -298,7 +298,7 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
   renderNGO = (NGOs: Organization[]) => (
     <section className="mb-3">
       <details>
-        <summary>相关NGO</summary>
+        <summary>{t('related_NGO')}</summary>
         <ul>
           {NGOs.map(NGO => (
             <li key={NGO.id as string}>
