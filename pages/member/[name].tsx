@@ -10,7 +10,6 @@ import { CommentBox } from '../../components/Base/CommentBox';
 import { LarkImage } from '../../components/Base/LarkImage';
 import { PageHead } from '../../components/Layout/PageHead';
 import { Activity, SearchActivityModel } from '../../models/Activity';
-import systemStore from '../../models/Base/System';
 import { i18n, t } from '../../models/Base/Translation';
 import { Community, SearchCommunityModel } from '../../models/Community';
 import { SearchNGOModel } from '../../models/Community/Organization';
@@ -37,16 +36,6 @@ interface PersonDetailPageProps {
   organizations: Organization[];
   NGOs: Organization[];
 }
-
-const SEARCH_TYPES = [
-  'department',
-  'meeting',
-  'article',
-  'activity',
-  'community',
-  'organization',
-  'NGO',
-] as const;
 
 export const getServerSideProps = compose<{ name: string }, PersonDetailPage>(
   errorLogger,
@@ -198,9 +187,9 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
   );
 
   renderArticle = (articles: Article[]) => (
-    <li className="mb-3">
+    <section className="mb-3">
       <details>
-        <summary>相关著作</summary>
+        <summary>相关文章</summary>
         <ul>
           {articles.map(article => (
             <li key={article.id as string}>
@@ -215,10 +204,10 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
           ))}
         </ul>
       </details>
-    </li>
+    </section>
   );
   renderDepartment = (departments: Department[]) => (
-    <li className="mb-3">
+    <section className="mb-3">
       <details>
         <summary>相关部门</summary>
         <ul>
@@ -227,11 +216,11 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
           ))}
         </ul>
       </details>
-    </li>
+    </section>
   );
 
   renderMeeting = (meetings: Meeting[]) => (
-    <li className="mb-3">
+    <section className="mb-3">
       <details>
         <summary>相关会议</summary>
         <ul>
@@ -240,11 +229,11 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
           ))}
         </ul>
       </details>
-    </li>
+    </section>
   );
 
   renderActivity = (activitys: Activity[]) => (
-    <li className="mb-3">
+    <section className="mb-3">
       <details>
         <summary>相关活动</summary>
         <ul>
@@ -261,11 +250,11 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
           ))}
         </ul>
       </details>
-    </li>
+    </section>
   );
 
   renderCommunity = (communitys: Community[]) => (
-    <li className="mb-3">
+    <section className="mb-3">
       <details>
         <summary>相关社区</summary>
         <ul>
@@ -282,11 +271,11 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
           ))}
         </ul>
       </details>
-    </li>
+    </section>
   );
 
   renderOrganization = (organizations: Organization[]) => (
-    <li className="mb-3">
+    <section className="mb-3">
       <details>
         <summary>相关组织</summary>
         <ul>
@@ -303,11 +292,11 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
           ))}
         </ul>
       </details>
-    </li>
+    </section>
   );
 
   renderNGO = (NGOs: Organization[]) => (
-    <li className="mb-3">
+    <section className="mb-3">
       <details>
         <summary>相关NGO</summary>
         <ul>
@@ -324,7 +313,7 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
           ))}
         </ul>
       </details>
-    </li>
+    </section>
   );
 
   render() {
