@@ -19,7 +19,7 @@ import { SearchMeetingModel } from '../../models/Governance/Meeting';
 import { Personnel, PersonnelModel } from '../../models/Personnel';
 import { SearchDepartmentModel } from '../../models/Personnel/Department';
 import { Person, PersonModel } from '../../models/Personnel/Person';
-import { SearchArticleModel } from '../../models/Product/Article';
+import { Article, SearchArticleModel } from '../../models/Product/Article';
 interface PersonDetailPageProps {
   person: Person;
   personnels: Personnel[];
@@ -50,13 +50,13 @@ export const getServerSideProps = compose<{ name: string }, PersonDetailPage>(
     });
 
     const [
-      department,
-      meeting,
-      article,
-      activity,
-      community,
-      organization,
-      NGO,
+      departments,
+      meetings,
+      articles,
+      activitys,
+      communitys,
+      organizations,
+      NGOs,
     ] = await Promise.all([
       new SearchDepartmentModel().getSearchList(name + ''),
       new SearchMeetingModel().getSearchList(name + ''),
@@ -70,13 +70,13 @@ export const getServerSideProps = compose<{ name: string }, PersonDetailPage>(
     const searchResults = {
       person,
       personnels,
-      department,
-      meeting,
-      article,
-      activity,
-      community,
-      organization,
-      NGO,
+      departments,
+      meetings,
+      articles,
+      activitys,
+      communitys,
+      organizations,
+      NGOs,
     };
 
     return {
@@ -185,8 +185,26 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
     </li>
   );
 
-  renderMember = (member: (typeof systemStore.searchMap)['member']) => (
-    <>{JSON.stringify(member)}</>
+  renderArticle = (articles: Article[]) => (
+    <li className="mb-3">
+      <details>
+        <summary>相关著作</summary>
+
+        <ul>
+          {articles.map(article => (
+            <li key={article.id as string}>
+              <a
+                href={article.link as string}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {article.title as string}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </details>
+    </li>
   );
 
   render() {
@@ -194,12 +212,12 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
       person,
       personnels,
       department,
-      meeting,
-      article,
-      activity,
-      community,
-      organization,
-      NGO,
+      meetings,
+      articles,
+      activitys,
+      communitys,
+      organizations,
+      NGOs,
     } = this.props;
 
     return (
@@ -227,20 +245,20 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
             <hr className="my-5" />
 
             {personnels.map(this.renderPersonnel)}
+            {this.renderArticle(articles)}
             <p>department</p>
             <>{JSON.stringify(department)}</>
             <p>meeting</p>
-            <>{JSON.stringify(meeting)}</>
-            <p>article</p>
-            <>{JSON.stringify(article)}</>
+            <>{JSON.stringify(meetings)}</>
+
             <p>activity</p>
-            <>{JSON.stringify(activity)}</>
+            <>{JSON.stringify(activitys)}</>
             <p>community</p>
-            <>{JSON.stringify(community)}</>
+            <>{JSON.stringify(communitys)}</>
             <p>organization</p>
-            <>{JSON.stringify(organization)}</>
+            <>{JSON.stringify(organizations)}</>
             <p>NGO</p>
-            <>{JSON.stringify(NGO)}</>
+            <>{JSON.stringify(NGOs)}</>
           </Col>
         </Row>
 
