@@ -1,17 +1,16 @@
-import { ShareBox } from 'idea-react';
-import { TableCellLocation } from 'mobx-lark';
+import { ShareBox, Timeline, TimelineEvent } from 'idea-react';
+import { TableCellLocation, TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
 import { cache, compose, errorLogger, router } from 'next-ssr-middleware';
 import { QRCodeSVG } from 'qrcode.react';
 import { Component } from 'react';
 import { Container } from 'react-bootstrap';
 
-import ForumTimeline from '../../../../components/Activity/Forum/Timeline';
 import { PageHead } from '../../../../components/Layout/PageHead';
 import { Activity, ActivityModel } from '../../../../models/Activity';
 import { Agenda } from '../../../../models/Activity/Agenda';
 import { Forum } from '../../../../models/Activity/Forum';
-import { API_Host } from '../../../../models/Base';
+import { API_Host, blobURLOf } from '../../../../models/Base';
 import { t } from '../../../../models/Base/Translation';
 import { fileURLOf } from '../../../api/lark/file/[id]';
 
@@ -47,6 +46,20 @@ export default class ForumPage extends Component<ForumPageProps> {
       { sharedURL } = this;
     const { id: activityId, name, city, location, image, cardImage } = activity,
       { name: forumName, location: room } = forum;
+    const events: TimelineEvent[] = agendas.map(
+      ({ id, title, startTime, endTime, summary, mentors, mentorAvatars }) => ({
+        title: title as string,
+        summary: summary as string,
+        time: [startTime as number, endTime as number],
+        link: `/activity/${activityId}/agenda/${id}`,
+        people: (mentors as string[]).map((name, index) => ({
+          name,
+          avatar: blobURLOf([
+            (mentorAvatars as TableCellValue[])![index]!,
+          ] as TableCellValue),
+        })),
+      }),
+    );
 
     return (
       <Container
@@ -67,7 +80,7 @@ export default class ForumPage extends Component<ForumPageProps> {
           </ul>
         </header>
         <section className="p-3">
-          <ForumTimeline {...{ activityId, agendas }} />
+          <Timeline events={events} timeFormat="YYYY-MM-DD HH:mm" />
         </section>
         <footer className="d-flex flex-column align-items-center gap-4">
           <QRCodeSVG value={sharedURL} />

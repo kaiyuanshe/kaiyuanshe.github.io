@@ -1,6 +1,6 @@
+import { Time } from 'idea-react';
 import { TableCellValue } from 'mobx-lark';
 import { FC } from 'react';
-import { formatDate } from 'web-utility';
 
 export const TimeRange: FC<Record<'startTime' | 'endTime', TableCellValue>> = ({
   startTime,
@@ -9,7 +9,7 @@ export const TimeRange: FC<Record<'startTime' | 'endTime', TableCellValue>> = ({
   startTime &&
   endTime && (
     <>
-      🕒 {formatDate(+startTime!, 'YYYY-MM-DD HH:mm')} ~{' '}
-      {formatDate(+endTime!, 'YYYY-MM-DD HH:mm')}
+      🕒 <Time dateTime={+startTime!} format="YYYY-MM-DD HH:mm" /> ~{' '}
+      <Time dateTime={+endTime!} format="YYYY-MM-DD HH:mm" />
     </>
   );

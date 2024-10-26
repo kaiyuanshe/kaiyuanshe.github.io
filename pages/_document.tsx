@@ -19,7 +19,7 @@ export default function Document() {
         />
         <link
           rel="stylesheet"
-          href="https://npm.onmicrosoft.cn/idea-react/dist/index.css"
+          href="https://npm.onmicrosoft.cn/idea-react@2.0.0-rc.8/dist/index.css"
         />
         <link
           rel="stylesheet"
