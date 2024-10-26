@@ -264,7 +264,7 @@ export default {
   recommendation: '推薦語',
   vote_for_me: '投我一票',
 
-  // Member page
+  // Member pages
   related_meeting: '相關會議',
   related_department: '相關部門',
   related_community: '相關社區',

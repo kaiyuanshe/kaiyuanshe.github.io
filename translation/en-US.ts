@@ -271,7 +271,7 @@ export default {
   recommendation: 'recommendation',
   vote_for_me: 'Vote for Me',
 
-  // Member page
+  // Member pages
   related_meeting: 'Related Meeting',
   related_department: 'Related Department',
   related_community: 'Related Community',
