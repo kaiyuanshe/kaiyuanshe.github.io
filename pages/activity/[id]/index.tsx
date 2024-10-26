@@ -88,7 +88,7 @@ export default class ActivityDetailPage extends Component<ActivityDetailPageProp
     );
   }
 
-  renderButtonBar() {
+  renderFormLinks() {
     const { endTime, personForms, agendaForms, fileForms, billForms } =
         this.props.currentMeta,
       { link } = this.props.activity;
@@ -116,6 +116,50 @@ export default class ActivityDetailPage extends Component<ActivityDetailPageProp
           </Button>
         )}
       </div>
+    );
+  }
+
+  renderPageLinks() {
+    const { id } = this.props.activity;
+
+    return (
+      <Stack
+        className="justify-content-center flex-wrap"
+        direction="horizontal"
+        gap={3}
+      >
+        <Button
+          className="text-nowrap"
+          variant="danger"
+          href={`/activity/${id}/gift`}
+        >
+          {t('gift_wall')}
+        </Button>
+        <Button
+          className="text-nowrap"
+          variant="info"
+          href={`/activity/${id}/volunteer`}
+        >
+          {t('volunteer')}
+        </Button>
+        <Button
+          className="text-nowrap"
+          variant="secondary"
+          href={`/activity/${id}/finance`}
+        >
+          {t('financial_disclosure')}
+        </Button>
+        <Button
+          className="text-nowrap"
+          variant="success"
+          href={`/activity/${id}/charts`}
+        >
+          {t('activity_statistics')}
+        </Button>
+        <Button className="text-nowrap" href="/search/article?keywords=收官">
+          {t('previous_activities')}
+        </Button>
+      </Stack>
     );
   }
 
@@ -221,6 +265,7 @@ export default class ActivityDetailPage extends Component<ActivityDetailPageProp
   }
 
   renderForum = ({
+    id,
     name,
     summary,
     organization,
@@ -239,15 +284,22 @@ export default class ActivityDetailPage extends Component<ActivityDetailPageProp
 
     return (
       <section key={name as string}>
-        <h2 className="my-5 mb-3 text-center" id={name as string}>
-          {name as string}
-        </h2>
-        {location && <h4 className="text-center">{location as string}</h4>}
-        <Row className="my-5">
-          <Col xl={{ offset: 2, span: 8 }} as="p" className="text-muted">
-            {summary as string}
-          </Col>
-        </Row>
+        <hgroup className="position-relative">
+          <h2 className="my-5 mb-3 text-center" id={name as string}>
+            <a
+              className="text-decoration-none stretched-link"
+              href={`/activity/${activity.id}/forum/${id}`}
+            >
+              {name as string}
+            </a>
+          </h2>
+          {location && <h4 className="text-center">{location as string}</h4>}
+          <Row className="my-5">
+            <Col xl={{ offset: 2, span: 8 }} as="p" className="text-muted">
+              {summary as string}
+            </Col>
+          </Row>
+        </hgroup>
         <div className="d-flex flex-wrap justify-content-around">
           {organization &&
             this.renderForumOrganization(
@@ -303,45 +355,8 @@ export default class ActivityDetailPage extends Component<ActivityDetailPageProp
           </h1>
         </header>
 
-        {this.renderButtonBar()}
-
-        <Stack
-          className="justify-content-center flex-wrap"
-          direction="horizontal"
-          gap={3}
-        >
-          <Button
-            className="text-nowrap"
-            variant="danger"
-            href={`/activity/${activity.id}/gift`}
-          >
-            {t('gift_wall')}
-          </Button>
-          <Button
-            className="text-nowrap"
-            variant="info"
-            href={`/activity/${activity.id}/volunteer`}
-          >
-            {t('volunteer')}
-          </Button>
-          <Button
-            className="text-nowrap"
-            variant="secondary"
-            href={`/activity/${activity.id}/finance`}
-          >
-            {t('financial_disclosure')}
-          </Button>
-          <Button
-            className="text-nowrap"
-            variant="success"
-            href={`/activity/${activity.id}/charts`}
-          >
-            {t('activity_statistics')}
-          </Button>
-          <Button className="text-nowrap" href="/search/article?keywords=收官">
-            {t('previous_activities')}
-          </Button>
-        </Stack>
+        {this.renderFormLinks()}
+        {this.renderPageLinks()}
 
         <Container>
           {this.renderMap()}
