@@ -9,16 +9,16 @@ import { formatDate } from 'web-utility';
 import { CommentBox } from '../../components/Base/CommentBox';
 import { LarkImage } from '../../components/Base/LarkImage';
 import { PageHead } from '../../components/Layout/PageHead';
-import { Activity,SearchActivityModel } from '../../models/Activity';
+import { Activity, SearchActivityModel } from '../../models/Activity';
 import systemStore from '../../models/Base/System';
 import { i18n, t } from '../../models/Base/Translation';
-import { Community,SearchCommunityModel } from '../../models/Community';
+import { Community, SearchCommunityModel } from '../../models/Community';
 import { SearchNGOModel } from '../../models/Community/Organization';
 import {
   Organization,
   SearchOrganizationModel,
 } from '../../models/Community/Organization';
-import { Meeting,SearchMeetingModel } from '../../models/Governance/Meeting';
+import { Meeting, SearchMeetingModel } from '../../models/Governance/Meeting';
 import { Personnel, PersonnelModel } from '../../models/Personnel';
 import {
   Department,
@@ -253,7 +253,7 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
               <a
                 href={activity.link as string}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
               >
                 {activity.name as string}
               </a>
@@ -274,7 +274,7 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
               <a
                 href={community.link as string}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
               >
                 {community.name as string}
               </a>
@@ -295,7 +295,7 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
               <a
                 href={organization.link as string}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
               >
                 {organization.name as string}
               </a>
@@ -313,7 +313,11 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
         <ul>
           {NGOs.map(NGO => (
             <li key={NGO.id as string}>
-              <a href={NGO.link as string} target="_blank" rel="noreferrer">
+              <a
+                href={NGO.link as string}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {NGO.name as string}
               </a>
             </li>
