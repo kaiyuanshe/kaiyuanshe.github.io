@@ -15,8 +15,10 @@ jobs:
     steps:
       - name: Issue body cleaning
         id: issue_body
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
         run: |
-          echo "${{ github.event.issue.body }}" | sed 's/"/\\"/g' > issue_body.txt
+          echo "$ISSUE_BODY" | sed 's/"/\\"/g' > issue_body.txt
           {
             echo 'issue_body<<EOF'
             cat issue_body.txt
@@ -130,8 +132,10 @@ jobs:
 
       - name: PR body cleaning
         id: PR_body
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
         run: |
-          echo "${{ github.event.pull_request.body }}" | sed 's/"/\\"/g' > PR_body.txt
+          echo "$PR_BODY" | sed 's/"/\\"/g' > PR_body.txt
           {
             echo 'PR_body<<EOF'
             cat PR_body.txt
@@ -245,8 +249,10 @@ jobs:
 
       - name: Discussion body cleaning
         id: discussion_body
+        env:
+          DISCUSSION_BODY: ${{ github.event.discussion.body }}
         run: |
-          echo "${{ github.event.discussion.body }}" | sed 's/"/\\"/g' > discussion_body.txt
+          echo "$DISCUSSION_BODY" | sed 's/"/\\"/g' > discussion_body.txt
           {
             echo 'discussion_body<<EOF'
             cat discussion_body.txt
@@ -315,8 +321,10 @@ jobs:
 
       - name: Comment body cleaning
         id: comment_body
+        env:
+          COMMENT_BODY: ${{ github.event.comment.body }}
         run: |
-          echo "${{ github.event.comment.body }}" | sed 's/"/\\"/g' > comment_body.txt
+          echo "$COMMENT_BODY" | sed 's/"/\\"/g' > comment_body.txt
           {
             echo 'comment_body<<EOF'
             cat comment_body.txt

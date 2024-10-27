@@ -55,7 +55,6 @@ export default tsEslint.config(
         'error',
         {
           reservedFirst: true,
-          shorthandLast: true,
           callbacksLast: true,
           noSortAlphabetically: true,
         },

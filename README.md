@@ -63,7 +63,7 @@
 ## 项目技术栈
 
 - 编程语言: [TypeScript v5][2]
-- 组件引擎: [Next.js v14][3]
+- 组件引擎: [Next.js v15][3]
 - 组件套件: [Bootstrap v5][4]
 - PWA 框架: [Workbox v6][5]
 - 状态管理: [MobX v6][9]
