@@ -1,7 +1,7 @@
 import { ShareBox, text2color } from 'idea-react';
 import { TableCellLocation, TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
-import { compose, errorLogger, router } from 'next-ssr-middleware';
+import { cache, compose, errorLogger, router } from 'next-ssr-middleware';
 import { QRCodeSVG } from 'qrcode.react';
 import { Component } from 'react';
 import { Badge, Container } from 'react-bootstrap';
@@ -23,7 +23,7 @@ interface InvitationPageProps {
 export const getServerSideProps = compose<
   Record<'id' | 'agendaId', string>,
   InvitationPageProps
->(router, errorLogger, async ({ params: { id, agendaId } = {} }) => {
+>(cache(), router, errorLogger, async ({ params: { id, agendaId } = {} }) => {
   const activityStore = new ActivityModel();
 
   const activity = await activityStore.getOne(id!);

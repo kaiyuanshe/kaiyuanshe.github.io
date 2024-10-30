@@ -27,6 +27,7 @@ export type Agenda = Record<
   | 'mentors'
   | 'mentorAvatars'
   | 'mentorOrganizations'
+  | 'organizationLogos'
   | 'mentorPositions'
   | 'mentorSummaries'
   | 'startTime'

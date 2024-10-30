@@ -18,7 +18,7 @@
     "echarts-jsx": "^0.5.4",
     "file-type": "^19.6.0",
     "idea-react": "^2.0.0-rc.8",
-    "koajax": "^3.0.2",
+    "koajax": "^3.0.3",
     "leaflet": "^1.9.4",
     "leaflet.chinatmsproviders": "^3.0.6",
     "less": "^4.2.0",
@@ -30,7 +30,7 @@
     "mobx-lark": "^2.0.0-rc.3",
     "mobx-react": "^9.1.1",
     "mobx-react-helper": "^0.3.1",
-    "mobx-restful": "^1.0.1",
+    "mobx-restful": "^2.0.0",
     "mobx-restful-table": "^2.0.0",
     "next": "^15.0.1",
     "next-pwa": "^5.6.0",
@@ -54,7 +54,7 @@
     "@babel/plugin-proposal-decorators": "^7.25.9",
     "@babel/plugin-transform-typescript": "^7.25.9",
     "@babel/preset-react": "^7.25.9",
-    "@eslint/compat": "^1.2.1",
+    "@eslint/compat": "^1.2.2",
     "@eslint/eslintrc": "^3.1.0",
     "@eslint/js": "^9.13.0",
     "@kaiyuanshe/kys-service": "^1.0.0-rc.0",
@@ -66,7 +66,7 @@
     "@types/lodash": "^4.17.12",
     "@types/mdx": "^2.0.13",
     "@types/next-pwa": "^5.6.9",
-    "@types/node": "^20.17.1",
+    "@types/node": "^20.17.2",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "eslint": "^9.13.0",
@@ -81,10 +81,10 @@
     "prettier": "^3.3.3",
     "prettier-plugin-css-order": "^2.1.2",
     "typescript": "~5.6.3",
-    "typescript-eslint": "^8.11.0"
+    "typescript-eslint": "^8.12.1"
   },
   "resolutions": {
-    "native-file-system-adapter": "npm:@tech_query/native-file-system-adapter@^3.0.1",
+    "mobx-restful": "$mobx-restful",
     "next": "$next"
   },
   "prettier": {
