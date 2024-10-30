@@ -20,18 +20,18 @@ export const ActivityPeople: FC<ActivityPeopleProps> = ({
   summaries,
 }) => (
   <ul className="list-unstyled d-flex align-items-center justify-content-around gap-3 flex-wrap">
-    {names?.map((name, index) => (
-      <li key={name} className="text-center">
+    {avatars?.map((avatar, index) => (
+      <li key={avatar} className="text-center">
         <LarkImage
           className="object-fit-cover"
           style={{ width: `${size}rem`, height: `${size}rem` }}
           loading="lazy"
           src={avatars?.[index]}
-          alt={name}
+          alt={names?.[index]}
           roundedCircle
         />
         <ul className="list-unstyled">
-          <li>{name}</li>
+          <li>{names?.[index]}</li>
           <li>{organizations?.[index]}</li>
           <li>{positions?.[index]}</li>
           <li>{summaries?.[index]}</li>

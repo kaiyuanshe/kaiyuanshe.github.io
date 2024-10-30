@@ -1,4 +1,4 @@
-import { VerticalMarquee } from 'idea-react';
+import { PageNav, VerticalMarquee } from 'idea-react';
 import { TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
 import dynamic from 'next/dynamic';
@@ -29,6 +29,7 @@ import { AgendaModel } from '../../../models/Activity/Agenda';
 import { Forum } from '../../../models/Activity/Forum';
 import { Place } from '../../../models/Activity/Place';
 import { blobURLOf } from '../../../models/Base';
+import systemStore from '../../../models/Base/System';
 import { i18n, t } from '../../../models/Base/Translation';
 import { coordinateOf, TableFormViewItem } from '../../api/lark/core';
 import styles from './index.module.less';
@@ -165,6 +166,17 @@ export default class ActivityDetailPage extends Component<ActivityDetailPageProp
 
   renderMap() {
     const { activity, places } = this.props;
+    const markers = places
+      .map(
+        ({ name, photos, location, forum }) =>
+          location && {
+            title: name,
+            summary: forum?.toString(),
+            image: photos && blobURLOf(photos),
+            position: coordinateOf(location),
+          },
+      )
+      .filter(Boolean) as ImageMarker[];
 
     return (
       places[0] && (
@@ -177,19 +189,7 @@ export default class ActivityDetailPage extends Component<ActivityDetailPageProp
             style={{ height: 'calc(100vh - 10rem)' }}
             zoom={18}
             center={coordinateOf(activity.location)}
-            markers={
-              places
-                .map(
-                  ({ name, photos, location, forum }) =>
-                    location && {
-                      title: name,
-                      summary: forum?.toString(),
-                      image: photos && blobURLOf(photos),
-                      position: coordinateOf(location),
-                    },
-                )
-                .filter(Boolean) as ImageMarker[]
-            }
+            markers={markers}
           />
         </>
       )
@@ -359,11 +359,23 @@ export default class ActivityDetailPage extends Component<ActivityDetailPageProp
         {this.renderPageLinks()}
 
         <Container>
-          {this.renderMap()}
-
-          {forums.map(this.renderForum)}
-
-          <DrawerNav />
+          <Row>
+            <Col xs={12}>{this.renderMap()}</Col>
+            <Col xs={12} lg={9}>
+              {forums.map(this.renderForum)}
+            </Col>
+            <Col xs={0} lg={3}>
+              {systemStore.screenNarrow ? (
+                <DrawerNav />
+              ) : (
+                <PageNav
+                  className="sticky-top overflow-y-auto flex-nowrap"
+                  style={{ top: '6rem', height: 'calc(100vh - 6rem)' }}
+                  depth={2}
+                />
+              )}
+            </Col>
+          </Row>
         </Container>
       </>
     );

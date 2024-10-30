@@ -38,6 +38,7 @@ import { PageHead } from '../../../../../components/Layout/PageHead';
 import { Activity, ActivityModel } from '../../../../../models/Activity';
 import { Agenda } from '../../../../../models/Activity/Agenda';
 import { CheckEventModel } from '../../../../../models/Activity/CheckEvent';
+import { Forum } from '../../../../../models/Activity/Forum';
 import { API_Host, blobURLOf } from '../../../../../models/Base';
 import systemStore from '../../../../../models/Base/System';
 import { i18n, t } from '../../../../../models/Base/Translation';
@@ -52,6 +53,7 @@ type PageParameter = Record<'id' | 'agendaId', string>;
 
 interface AgendaDetailPageProps extends RouteProps<PageParameter> {
   activity: Activity;
+  forum: Forum;
   agenda: Agenda;
   recommendList: Agenda[];
   score: number;
@@ -66,9 +68,11 @@ export const getServerSideProps = compose<PageParameter, AgendaDetailPageProps>(
     const activityStore = new ActivityModel();
 
     const activity = await activityStore.getOne(id!);
-    const { currentAgenda, currentEvaluation } = activityStore;
+    const { currentForum, currentAgenda, currentEvaluation } = activityStore;
 
     const agenda = await currentAgenda!.getOne(agendaId!);
+    const [forum] = await currentForum!.getList({ name: agenda.forum }, 1, 1);
+
     await currentEvaluation!.getAll({ agenda: agenda.title });
 
     const { recommendList } = activityStore.currentAgenda!;
@@ -77,6 +81,7 @@ export const getServerSideProps = compose<PageParameter, AgendaDetailPageProps>(
       props: JSON.parse(
         JSON.stringify({
           activity,
+          forum,
           agenda,
           recommendList,
           score: currentEvaluation!.currentScore,
@@ -104,15 +109,8 @@ export default class AgendaDetailPage extends Component<AgendaDetailPageProps> {
 
   renderHeader() {
     const { user } = systemStore.hashQuery,
-      { id, name } = this.props.activity,
-      {
-        id: agendaId,
-        type,
-        forum,
-        title,
-        startTime,
-        endTime,
-      } = this.props.agenda,
+      { activity, forum } = this.props,
+      { id, type, title, startTime, endTime } = this.props.agenda,
       { evaluationForms } = this.activityStore.currentMeta,
       [checkEvent] = this.checkEventStore.allItems,
       { mobilePhone } = userStore.session || {};
@@ -125,8 +123,12 @@ export default class AgendaDetailPage extends Component<AgendaDetailPageProps> {
 
         <div className="d-flex flex-wrap align-items-center gap-3 my-3">
           <Badge bg={text2color(type + '', ['light'])}>{type + ''}</Badge>
-
-          <div className="text-success">{forum as string}</div>
+          <a
+            className="text-decoration-none text-success"
+            href={`/activity/${activity.alias || activity.id}/forum/${forum.id}`}
+          >
+            {forum.name as string}
+          </a>
           <div>
             <TimeRange {...{ startTime, endTime }} />
           </div>
@@ -134,13 +136,13 @@ export default class AgendaDetailPage extends Component<AgendaDetailPageProps> {
 
         <AgendaToolbar
           className="my-3 text-nowrap"
-          activityId={id + ''}
+          activityId={activity.id + ''}
           {...this.props.agenda}
         >
           <SessionBox>
             <QRCodeButton
               title={t('punch_in_tips')}
-              value={`${API_Host}/activity/${id}/agenda/${agendaId}#?user=${userStore.session?.id}`}
+              value={`${API_Host}/activity/${activity.id}/agenda/${id}#?user=${userStore.session?.id}`}
               disabled={!!checkEvent}
             >
               {t('punch_in')}
@@ -172,9 +174,9 @@ export default class AgendaDetailPage extends Component<AgendaDetailPageProps> {
             <CheckConfirm
               store={this.checkEventStore}
               user={+user}
-              activityId={id as string}
-              activityName={name as string}
-              agendaId={agendaId as string}
+              activityId={activity.id as string}
+              activityName={activity.name as string}
+              agendaId={id as string}
               agendaTitle={title as string}
             />
           )}

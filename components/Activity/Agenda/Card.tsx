@@ -27,11 +27,12 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
   );
 
   renderAvatarImages() {
-    const { mentors, mentorAvatars } = this.props;
+    const { type, mentors, mentorAvatars, organizationLogos } = this.props;
+    const images = (type === 'Booth' && organizationLogos) || mentorAvatars;
 
     return (mentors as string[])?.[1] ? (
       <Carousel indicators={false}>
-        {(mentorAvatars as TableCellAttachment[])?.map(file => (
+        {(images as TableCellAttachment[])?.map(file => (
           <Carousel.Item key={file.attachmentToken}>
             {this.renderCardImage(file)}
           </Carousel.Item>
@@ -40,8 +41,7 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
     ) : (
       <ActivityPeople
         size={5}
-        names={mentors as string[]}
-        avatars={(mentorAvatars as TableCellValue[])?.map(file =>
+        avatars={(images as TableCellValue[])?.map(file =>
           blobURLOf([file] as TableCellValue),
         )}
       />
@@ -54,6 +54,7 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
       id,
       type,
       title,
+      mentors,
       mentorOrganizations,
       mentorPositions,
       startTime,
@@ -100,9 +101,10 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
               <li>
                 <TimeRange {...{ startTime, endTime }} />
               </li>
-              {(mentorOrganizations as string[])?.map((organization, index) => (
-                <li key={organization}>
-                  {organization} {(mentorPositions as string[])?.[index]}
+              {(mentors as string[])?.map((name, index) => (
+                <li key={name}>
+                  {name} {(mentorOrganizations as string[])?.[index]}{' '}
+                  {(mentorPositions as string[])?.[index]}
                 </li>
               ))}
               {score && (
