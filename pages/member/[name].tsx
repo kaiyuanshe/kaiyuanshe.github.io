@@ -195,11 +195,13 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
       <details>
         <summary>{t('related_articles')}</summary>
         <ul>
-          {articles.map(article => (
-            <Col key={article.id as string} as="li">
-              <ArticleCard {...article} />
-            </Col>
-          ))}
+          <Row as="ol" className="list-unstyled g-3" xs={1} md={2}>
+            {articles.map(article => (
+              <Col key={article.id as string} as="li">
+                <ArticleCard {...article} />
+              </Col>
+            ))}
+          </Row>
         </ul>
       </details>
     </section>
@@ -265,8 +267,8 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
       <details>
         <summary>{t('related_organization')}</summary>
         <ul>
-          {organizations.map(organization => (
-            <Col key={organization.id as string} as="li">
+          {organizations.map(({ id, ...organization }) => (
+            <Col key={id as string} as="li">
               <OrganizationCard {...organization} />
             </Col>
           ))}
@@ -280,8 +282,8 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
       <details>
         <summary>{t('related_NGO')}</summary>
         <ul>
-          {NGOs.map(NGO => (
-            <Col key={NGO.id as string} as="li">
+          {NGOs.map(({ id, ...NGO }) => (
+            <Col key={id as string} as="li">
               <OrganizationCard {...NGO} />
             </Col>
           ))}
