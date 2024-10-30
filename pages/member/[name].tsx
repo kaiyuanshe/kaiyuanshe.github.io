@@ -6,9 +6,13 @@ import { Component } from 'react';
 import { Badge, Breadcrumb, Col, Container, Image, Row } from 'react-bootstrap';
 import { formatDate } from 'web-utility';
 
+import { ActivityCard } from '../../components/Activity/Card';
+import { ArticleCard } from '../../components/Article/Card';
 import { CommentBox } from '../../components/Base/CommentBox';
 import { LarkImage } from '../../components/Base/LarkImage';
+import { CommunityCard } from '../../components/Community/CommunityCard';
 import { PageHead } from '../../components/Layout/PageHead';
+import { OrganizationCard } from '../../components/Organization/Card';
 import { Activity, SearchActivityModel } from '../../models/Activity';
 import { i18n, t } from '../../models/Base/Translation';
 import { Community, SearchCommunityModel } from '../../models/Community';
@@ -192,15 +196,9 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
         <summary>{t('related_articles')}</summary>
         <ul>
           {articles.map(article => (
-            <li key={article.id as string}>
-              <a
-                href={article.link as string}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {article.title as string}
-              </a>
-            </li>
+            <Col key={article.id as string} as="li">
+              <ArticleCard {...article} />
+            </Col>
           ))}
         </ul>
       </details>
@@ -238,15 +236,9 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
         <summary>{t('related_activity')}</summary>
         <ul>
           {activitys.map(activity => (
-            <li key={activity.id as string}>
-              <a
-                href={activity.link as string}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {activity.name as string}
-              </a>
-            </li>
+            <Col key={activity.id as string} as="li">
+              <ActivityCard {...activity} />
+            </Col>
           ))}
         </ul>
       </details>
@@ -259,15 +251,9 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
         <summary>{t('related_community')}</summary>
         <ul>
           {communitys.map(community => (
-            <li key={community.id as string}>
-              <a
-                href={community.link as string}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {community.name as string}
-              </a>
-            </li>
+            <Col key={community.id as string} as="li">
+              <CommunityCard {...community} />
+            </Col>
           ))}
         </ul>
       </details>
@@ -280,15 +266,9 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
         <summary>{t('related_organization')}</summary>
         <ul>
           {organizations.map(organization => (
-            <li key={organization.id as string}>
-              <a
-                href={organization.link as string}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {organization.name as string}
-              </a>
-            </li>
+            <Col key={organization.id as string} as="li">
+              <OrganizationCard {...organization} />
+            </Col>
           ))}
         </ul>
       </details>
@@ -301,15 +281,9 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
         <summary>{t('related_NGO')}</summary>
         <ul>
           {NGOs.map(NGO => (
-            <li key={NGO.id as string}>
-              <a
-                href={NGO.link as string}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {NGO.name as string}
-              </a>
-            </li>
+            <Col key={NGO.id as string} as="li">
+              <OrganizationCard {...NGO} />
+            </Col>
           ))}
         </ul>
       </details>
