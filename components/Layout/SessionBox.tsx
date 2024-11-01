@@ -1,3 +1,4 @@
+import { Loading } from 'idea-react';
 import { observer } from 'mobx-react';
 import { Component, HTMLAttributes, MouseEvent } from 'react';
 
@@ -41,7 +42,7 @@ export default class SessionBox extends Component<SessionBoxProps> {
 
   render() {
     const { autoCover, children, ...props } = this.props,
-      { session } = userStore;
+      { uploading, session } = userStore;
 
     return (
       <>
@@ -54,6 +55,8 @@ export default class SessionBox extends Component<SessionBoxProps> {
         >
           {(!autoCover || session) && children}
         </div>
+
+        {uploading > 0 && <Loading />}
       </>
     );
   }
