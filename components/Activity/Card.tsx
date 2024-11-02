@@ -65,7 +65,7 @@ export const ActivityCard: FC<ActivityCardProps> = ({
               className="me-2 text-decoration-none"
               bg={text2color(organizer, ['light'])}
               as="a"
-              href={`/search?keywords=${organizer}`}
+              href={`/search/activity?keywords=${organizer}`}
             >
               {organizer}
             </Badge>

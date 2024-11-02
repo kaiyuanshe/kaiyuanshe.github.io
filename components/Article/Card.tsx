@@ -43,7 +43,7 @@ export const ArticleCard: FC<ArticleCardProps> = ({
         <Col
           as="a"
           className="text-decoration-none text-end text-truncate align-self-end"
-          href={`/search?keywords=${author}`}
+          href={`/search/article?keywords=${author}`}
         >
           {author as string}
         </Col>
