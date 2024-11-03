@@ -1,6 +1,6 @@
 import { CheckEventInput } from '@kaiyuanshe/kys-service';
 import { SpinnerButton } from 'idea-react';
-import { computed, IReactionDisposer, reaction } from 'mobx';
+import { computed, reaction } from 'mobx';
 import { textJoin } from 'mobx-i18n';
 import { observer } from 'mobx-react';
 import { NewData } from 'mobx-restful';
@@ -35,18 +35,10 @@ export class CheckConfirm extends Component<CheckConfirmProps> {
     return downloading > 0 || aDownloading > 0 || uploading > 0;
   }
 
-  private disposer?: IReactionDisposer;
-
   async componentDidMount() {
-    this.disposer = reaction(() => userStore.session, this.checkAuthorization);
-
     if (!this.props.user) return;
 
     if (await this.checkAuthorization()) this.handleCheck();
-  }
-
-  componentWillUnmount() {
-    this.disposer?.();
   }
 
   checkAuthorization = async () => {
@@ -70,6 +62,11 @@ export class CheckConfirm extends Component<CheckConfirmProps> {
 
     alert(t('punch_in_successfully'));
   };
+
+  componentWillUnmount = reaction(
+    () => userStore.session,
+    this.checkAuthorization,
+  );
 
   render() {
     const { loading } = this;

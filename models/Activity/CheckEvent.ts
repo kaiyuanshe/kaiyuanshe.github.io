@@ -28,9 +28,11 @@ export class CheckEventModel extends ListModel<CheckEvent> {
   async getUserCount({ activityId, agendaId }: Filter<CheckEvent>) {
     await userStore.restored;
 
+    if (!userStore.session) return;
+
     try {
       const { length } = await this.getAll({
-        user: userStore.session?.id,
+        user: userStore.session.id,
         activityId,
         agendaId,
       });

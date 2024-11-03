@@ -1,6 +1,6 @@
 import { text2color } from 'idea-react';
 import { marked } from 'marked';
-import { when } from 'mobx';
+import { reaction } from 'mobx';
 import { TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
 import dynamic from 'next/dynamic';
@@ -101,8 +101,6 @@ export default class AgendaDetailPage extends Component<AgendaDetailPageProps> {
     const { id } = this.props.activity;
 
     this.activityStore.getOne(id as string, true);
-
-    when(() => !!userStore.session, this.checkEvent);
   }
 
   checkEvent = () => {
@@ -113,6 +111,8 @@ export default class AgendaDetailPage extends Component<AgendaDetailPageProps> {
       agendaId: agenda.id as string,
     });
   };
+
+  componentWillUnmount = reaction(() => userStore.session, this.checkEvent);
 
   renderHeader() {
     const { user } = systemStore.hashQuery,

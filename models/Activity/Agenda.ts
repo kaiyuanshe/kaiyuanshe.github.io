@@ -1,4 +1,4 @@
-import { observable } from 'mobx';
+import { observable, reaction } from 'mobx';
 import {
   BiDataQueryOptions,
   BiDataTable,
@@ -16,6 +16,7 @@ import { groupBy } from 'web-utility';
 
 import { normalizeTextArray } from '../../pages/api/lark/core';
 import { isServer, larkClient } from '../Base';
+import userStore from '../Base/User';
 
 export type Agenda = Record<
   | 'id'
@@ -54,6 +55,11 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
     public tableId: string,
   ) {
     super(appId, tableId);
+
+    reaction(
+      () => userStore.session,
+      () => userStore.session || (this.authorization = {}),
+    );
   }
 
   client = larkClient;

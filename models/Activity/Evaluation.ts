@@ -26,11 +26,17 @@ export class EvaluationModel extends BiDataTable<Evaluation>() {
   }
 
   async getUserCount() {
+    await userStore.restored;
+
+    if (!userStore.session) return;
+
     try {
       const { length } = await this.getAll({
-        phone: userStore.session?.mobilePhone,
+        phone: userStore.session.mobilePhone,
       });
       return length;
-    } catch {}
+    } catch {
+      //
+    }
   }
 }
