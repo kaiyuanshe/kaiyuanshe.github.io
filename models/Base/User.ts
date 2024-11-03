@@ -4,6 +4,7 @@ import {
   SMSCodeInput,
   User,
 } from '@kaiyuanshe/kys-service';
+import { clear } from 'idb-keyval';
 import { HTTPClient } from 'koajax';
 import { observable } from 'mobx';
 import { BaseListModel, persist, restore, toggle } from 'mobx-restful';
@@ -61,6 +62,8 @@ export class UserModel extends BaseListModel<User> {
 
   signOut() {
     this.session = undefined;
+
+    return clear();
   }
 }
 

@@ -17,6 +17,7 @@
     "copy-webpack-plugin": "^12.0.2",
     "echarts-jsx": "^0.5.4",
     "file-type": "^19.6.0",
+    "idb-keyval": "^6.2.1",
     "idea-react": "^2.0.0-rc.8",
     "koajax": "^3.0.3",
     "leaflet": "^1.9.4",
