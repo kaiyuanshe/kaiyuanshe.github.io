@@ -196,7 +196,6 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
   renderArticle = (articles: Article[]) => (
     <details>
       <summary>{textJoin(t('related'), t('article'))}</summary>
-
       <Row as="ol" className="list-unstyled g-3" xs={1} md={2}>
         {articles.map(article => (
           <Col key={article.id as string} as="li">
@@ -207,91 +206,81 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
     </details>
   );
   renderDepartment = (departments: Department[]) => (
-    <section className="mb-3">
-      <details>
-        <summary>{textJoin(t('related'), t('department'))}</summary>
-        <ul>
-          {departments.map(department => (
-            <GroupCard key={department.id as string} {...department} />
-          ))}
-        </ul>
-      </details>
-    </section>
+    <details>
+      <summary>{textJoin(t('related'), t('department'))}</summary>
+      <Row as="ol" className="list-unstyled g-3" xs={1} md={2}>
+        {departments.map(department => (
+          <Col key={department.id as string} as="li">
+            <GroupCard {...department} />
+          </Col>
+        ))}
+      </Row>
+    </details>
   );
 
   renderMeeting = (meetings: Meeting[]) => (
-    <section className="mb-3">
-      <details>
-        <summary>{textJoin(t('related'), t('meeting'))}</summary>
-        <ul>
-          {meetings.map(meeting => (
-            <Col key={meeting.id as string} as="li">
-              <MeetingCard {...meeting} />
-            </Col>
-          ))}
-        </ul>
-      </details>
-    </section>
+    <details>
+      <summary>{textJoin(t('related'), t('meeting'))}</summary>
+      <Row as="ol" className="list-unstyled g-3" xs={1} md={2}>
+        {meetings.map(meeting => (
+          <Col key={meeting.id as string} as="li">
+            <MeetingCard {...meeting} />
+          </Col>
+        ))}
+      </Row>
+    </details>
   );
 
   renderActivity = (activitys: Activity[]) => (
-    <section className="mb-3">
-      <details>
-        <summary>{textJoin(t('related'), t('activity'))}</summary>
-        <ul>
-          {activitys.map(activity => (
-            <Col key={activity.id as string} as="li">
-              <ActivityCard {...activity} />
-            </Col>
-          ))}
-        </ul>
-      </details>
-    </section>
+    <details>
+      <summary>{textJoin(t('related'), t('activity'))}</summary>
+      <Row as="ol" className="list-unstyled g-3" xs={1} md={2}>
+        {activitys.map(activity => (
+          <Col key={activity.id as string} as="li">
+            <ActivityCard {...activity} />
+          </Col>
+        ))}
+      </Row>
+    </details>
   );
 
   renderCommunity = (communitys: Community[]) => (
-    <section className="mb-3">
-      <details>
-        <summary>{textJoin(t('related'), t('community'))}</summary>
-        <ul>
-          {communitys.map(community => (
-            <Col key={community.id as string} as="li">
-              <CommunityCard {...community} />
-            </Col>
-          ))}
-        </ul>
-      </details>
-    </section>
+    <details>
+      <summary>{textJoin(t('related'), t('community'))}</summary>
+      <Row as="ol" className="list-unstyled g-3" xs={1} md={2}>
+        {communitys.map(community => (
+          <Col key={community.id as string} as="li">
+            <CommunityCard {...community} />
+          </Col>
+        ))}
+      </Row>
+    </details>
   );
 
   renderOrganization = (organizations: Organization[]) => (
-    <section className="mb-3">
-      <details>
-        <summary>{textJoin(t('related'), t('organization'))}</summary>
-        <ul>
-          {organizations.map(({ id, ...organization }) => (
-            <Col key={id as string} as="li">
-              <OrganizationCard {...organization} />
-            </Col>
-          ))}
-        </ul>
-      </details>
-    </section>
+    <details>
+      <summary>{textJoin(t('related'), t('organization'))}</summary>
+      <Row as="ol" className="list-unstyled g-3" xs={1} md={2}>
+        {organizations.map(({ id, ...organization }) => (
+          <Col key={id as string} as="li">
+            <OrganizationCard {...organization} />
+          </Col>
+        ))}
+      </Row>
+    </details>
   );
 
   renderNGO = (NGOs: Organization[]) => (
-    <section className="mb-3">
-      <details>
-        <summary>{textJoin(t('related'), t('NGO'))}</summary>
-        <ul>
-          {NGOs.map(({ id, ...NGO }) => (
-            <Col key={id as string} as="li">
-              <OrganizationCard {...NGO} />
-            </Col>
-          ))}
-        </ul>
-      </details>
-    </section>
+    <details>
+      <summary>{textJoin(t('related'), t('NGO'))}</summary>
+      <Row as="ol" className="list-unstyled g-3" xs={1} md={2}>
+        {NGOs.map(({ id, ...NGO }) => (
+          <Col key={id as string} as="li">
+            <OrganizationCard {...NGO} />
+          </Col>
+        ))}
+      </Row>
+    </details>
   );
 
   render() {
