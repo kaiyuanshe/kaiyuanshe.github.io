@@ -112,6 +112,8 @@ export default {
   department: '部门',
   organization: '组织',
   activity: '活动',
+  meeting: '会议',
+  NGO: 'NGO',
 
   // Organization page
   reset: '重置',
@@ -263,4 +265,7 @@ export default {
   this_term_proposition: '本届主张',
   recommendation: '推荐语',
   vote_for_me: '投我一票',
+
+  // Member pages
+  related: '相关',
 } as const;

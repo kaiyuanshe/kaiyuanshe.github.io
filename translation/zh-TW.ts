@@ -112,6 +112,8 @@ export default {
   department: '部門',
   organization: '組織',
   activity: '活動',
+  meeting: '會議',
+  NGO: 'NGO',
 
   // Organization page
   reset: '重置',
@@ -263,4 +265,7 @@ export default {
   this_term_proposition: '本屆主張',
   recommendation: '推薦語',
   vote_for_me: '投我一票',
+
+  // Member pages
+  related: '相關',
 } as const;

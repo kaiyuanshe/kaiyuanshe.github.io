@@ -118,6 +118,8 @@ export default {
   department: 'department',
   organization: 'organization',
   activity: 'activity',
+  meeting: 'meeting',
+  NGO: 'NGO',
 
   // Organization page
   reset: 'reset',
@@ -270,4 +272,7 @@ export default {
   this_term_proposition: 'This term proposition',
   recommendation: 'recommendation',
   vote_for_me: 'Vote for Me',
+
+  // Member pages
+  related: 'Related',
 } as const;
