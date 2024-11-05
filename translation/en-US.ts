@@ -118,6 +118,8 @@ export default {
   department: 'department',
   organization: 'organization',
   activity: 'activity',
+  meeting: 'meeting',
+  NGO: 'NGO',
 
   // Organization page
   reset: 'reset',
@@ -272,10 +274,5 @@ export default {
   vote_for_me: 'Vote for Me',
 
   // Member pages
-  related_meeting: 'Related Meeting',
-  related_department: 'Related Department',
-  related_community: 'Related Community',
-  related_organization: 'Related Organization',
-  related_activity: 'Related Activity',
-  related_NGO: 'Related NGO',
+  related: 'Related',
 } as const;

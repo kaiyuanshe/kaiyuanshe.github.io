@@ -1,5 +1,6 @@
 import { text2color } from 'idea-react';
 import { marked } from 'marked';
+import { textJoin } from 'mobx-i18n';
 import { observer } from 'mobx-react';
 import { compose, errorLogger, translator } from 'next-ssr-middleware';
 import { Component } from 'react';
@@ -11,6 +12,8 @@ import { ArticleCard } from '../../components/Article/Card';
 import { CommentBox } from '../../components/Base/CommentBox';
 import { LarkImage } from '../../components/Base/LarkImage';
 import { CommunityCard } from '../../components/Community/CommunityCard';
+import { GroupCard } from '../../components/Department/Card';
+import { MeetingCard } from '../../components/Governance/MeetingCard';
 import { PageHead } from '../../components/Layout/PageHead';
 import { OrganizationCard } from '../../components/Organization/Card';
 import { Activity, SearchActivityModel } from '../../models/Activity';
@@ -191,28 +194,25 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
   );
 
   renderArticle = (articles: Article[]) => (
-    <section className="mb-3">
-      <details>
-        <summary>{t('related_articles')}</summary>
-        <ul>
-          <Row as="ol" className="list-unstyled g-3" xs={1} md={2}>
-            {articles.map(article => (
-              <Col key={article.id as string} as="li">
-                <ArticleCard {...article} />
-              </Col>
-            ))}
-          </Row>
-        </ul>
-      </details>
-    </section>
+    <details>
+      <summary>{textJoin(t('related'), t('article'))}</summary>
+
+      <Row as="ol" className="list-unstyled g-3" xs={1} md={2}>
+        {articles.map(article => (
+          <Col key={article.id as string} as="li">
+            <ArticleCard {...article} />
+          </Col>
+        ))}
+      </Row>
+    </details>
   );
   renderDepartment = (departments: Department[]) => (
     <section className="mb-3">
       <details>
-        <summary>{t('related_department')}</summary>
+        <summary>{textJoin(t('related'), t('department'))}</summary>
         <ul>
           {departments.map(department => (
-            <li key={department.id as string}>{department.name as string}</li>
+            <GroupCard key={department.id as string} {...department} />
           ))}
         </ul>
       </details>
@@ -222,10 +222,12 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
   renderMeeting = (meetings: Meeting[]) => (
     <section className="mb-3">
       <details>
-        <summary>{t('related_meeting')}</summary>
+        <summary>{textJoin(t('related'), t('meeting'))}</summary>
         <ul>
           {meetings.map(meeting => (
-            <li key={meeting.id as string}>{meeting.name as string}</li>
+            <Col key={meeting.id as string} as="li">
+              <MeetingCard {...meeting} />
+            </Col>
           ))}
         </ul>
       </details>
@@ -235,7 +237,7 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
   renderActivity = (activitys: Activity[]) => (
     <section className="mb-3">
       <details>
-        <summary>{t('related_activity')}</summary>
+        <summary>{textJoin(t('related'), t('activity'))}</summary>
         <ul>
           {activitys.map(activity => (
             <Col key={activity.id as string} as="li">
@@ -250,7 +252,7 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
   renderCommunity = (communitys: Community[]) => (
     <section className="mb-3">
       <details>
-        <summary>{t('related_community')}</summary>
+        <summary>{textJoin(t('related'), t('community'))}</summary>
         <ul>
           {communitys.map(community => (
             <Col key={community.id as string} as="li">
@@ -265,7 +267,7 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
   renderOrganization = (organizations: Organization[]) => (
     <section className="mb-3">
       <details>
-        <summary>{t('related_organization')}</summary>
+        <summary>{textJoin(t('related'), t('organization'))}</summary>
         <ul>
           {organizations.map(({ id, ...organization }) => (
             <Col key={id as string} as="li">
@@ -280,7 +282,7 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
   renderNGO = (NGOs: Organization[]) => (
     <section className="mb-3">
       <details>
-        <summary>{t('related_NGO')}</summary>
+        <summary>{textJoin(t('related'), t('NGO'))}</summary>
         <ul>
           {NGOs.map(({ id, ...NGO }) => (
             <Col key={id as string} as="li">

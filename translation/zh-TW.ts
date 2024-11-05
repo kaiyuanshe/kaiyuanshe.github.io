@@ -112,6 +112,8 @@ export default {
   department: '部門',
   organization: '組織',
   activity: '活動',
+  meeting: '會議',
+  NGO: 'NGO',
 
   // Organization page
   reset: '重置',
@@ -265,10 +267,5 @@ export default {
   vote_for_me: '投我一票',
 
   // Member pages
-  related_meeting: '相關會議',
-  related_department: '相關部門',
-  related_community: '相關社區',
-  related_organization: '相關組織',
-  related_activity: '相關活動',
-  related_NGO: '相關NGO',
+  related: '相關',
 } as const;
