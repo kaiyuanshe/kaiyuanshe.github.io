@@ -1,7 +1,7 @@
 import { Icon } from 'idea-react';
 import { TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
-import { cache, compose, errorLogger, translator } from 'next-ssr-middleware';
+import { compose, errorLogger, translator } from 'next-ssr-middleware';
 import { Component, Fragment } from 'react';
 import { Carousel, Col, Container, Image, Row } from 'react-bootstrap';
 
@@ -15,6 +15,7 @@ import { i18n, t } from '../models/Base/Translation';
 import { Department, DepartmentModel } from '../models/Personnel/Department';
 import { Article, ArticleModel } from '../models/Product/Article';
 import styles from '../styles/Home.module.less';
+import { solidCache } from './api/base';
 import { slogan } from './api/home';
 import { DefaultImage } from './api/lark/file/[id]';
 
@@ -25,7 +26,7 @@ interface HomePageProps {
 }
 
 export const getServerSideProps = compose<{}, HomePageProps>(
-  cache(),
+  solidCache,
   errorLogger,
   translator(i18n),
   async () => {

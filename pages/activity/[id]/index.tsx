@@ -2,7 +2,7 @@ import { PageNav, VerticalMarquee } from 'idea-react';
 import { TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
 import dynamic from 'next/dynamic';
-import { cache, compose, errorLogger, translator } from 'next-ssr-middleware';
+import { compose, errorLogger, translator } from 'next-ssr-middleware';
 import { Component } from 'react';
 import {
   Button,
@@ -31,6 +31,7 @@ import { Place } from '../../../models/Activity/Place';
 import { blobURLOf } from '../../../models/Base';
 import systemStore from '../../../models/Base/System';
 import { i18n, t } from '../../../models/Base/Translation';
+import { solidCache } from '../../api/base';
 import { coordinateOf, TableFormViewItem } from '../../api/lark/core';
 import styles from './index.module.less';
 
@@ -49,7 +50,7 @@ interface ActivityDetailPageProps {
 export const getServerSideProps = compose<
   { id: string },
   ActivityDetailPageProps
->(cache(), errorLogger, translator(i18n), async ({ params }) => {
+>(solidCache, errorLogger, translator(i18n), async ({ params }) => {
   const activityStore = new ActivityModel();
 
   const activity = await activityStore.getOne(params!.id, true);

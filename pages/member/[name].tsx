@@ -32,6 +32,7 @@ import {
 } from '../../models/Personnel/Department';
 import { Person, PersonModel } from '../../models/Personnel/Person';
 import { Article, SearchArticleModel } from '../../models/Product/Article';
+
 interface PersonDetailPageProps {
   person: Person;
   personnels: Personnel[];
@@ -196,6 +197,7 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
   renderArticle = (articles: Article[]) => (
     <details>
       <summary>{textJoin(t('related'), t('article'))}</summary>
+
       <Row as="ol" className="list-unstyled g-3" xs={1} md={2}>
         {articles.map(article => (
           <Col key={article.id as string} as="li">
@@ -205,9 +207,11 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
       </Row>
     </details>
   );
+
   renderDepartment = (departments: Department[]) => (
     <details>
       <summary>{textJoin(t('related'), t('department'))}</summary>
+
       <Row as="ol" className="list-unstyled g-3" xs={1} md={2}>
         {departments.map(department => (
           <Col key={department.id as string} as="li">
@@ -221,6 +225,7 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
   renderMeeting = (meetings: Meeting[]) => (
     <details>
       <summary>{textJoin(t('related'), t('meeting'))}</summary>
+
       <Row as="ol" className="list-unstyled g-3" xs={1} md={2}>
         {meetings.map(meeting => (
           <Col key={meeting.id as string} as="li">
@@ -234,6 +239,7 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
   renderActivity = (activitys: Activity[]) => (
     <details>
       <summary>{textJoin(t('related'), t('activity'))}</summary>
+
       <Row as="ol" className="list-unstyled g-3" xs={1} md={2}>
         {activitys.map(activity => (
           <Col key={activity.id as string} as="li">
@@ -247,6 +253,7 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
   renderCommunity = (communitys: Community[]) => (
     <details>
       <summary>{textJoin(t('related'), t('community'))}</summary>
+
       <Row as="ol" className="list-unstyled g-3" xs={1} md={2}>
         {communitys.map(community => (
           <Col key={community.id as string} as="li">
@@ -260,6 +267,7 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
   renderOrganization = (organizations: Organization[]) => (
     <details>
       <summary>{textJoin(t('related'), t('organization'))}</summary>
+
       <Row as="ol" className="list-unstyled g-3" xs={1} md={2}>
         {organizations.map(({ id, ...organization }) => (
           <Col key={id as string} as="li">
@@ -273,6 +281,7 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
   renderNGO = (NGOs: Organization[]) => (
     <details>
       <summary>{textJoin(t('related'), t('NGO'))}</summary>
+
       <Row as="ol" className="list-unstyled g-3" xs={1} md={2}>
         {NGOs.map(({ id, ...NGO }) => (
           <Col key={id as string} as="li">
