@@ -2,13 +2,7 @@ import { Loading } from 'idea-react';
 import { computed } from 'mobx';
 import { observer } from 'mobx-react';
 import dynamic from 'next/dynamic';
-import {
-  cache,
-  compose,
-  RouteProps,
-  router,
-  translator,
-} from 'next-ssr-middleware';
+import { compose, RouteProps, router, translator } from 'next-ssr-middleware';
 import { Component } from 'react';
 import { Breadcrumb, Container, Stack } from 'react-bootstrap';
 
@@ -21,6 +15,7 @@ import { CheckEventModel } from '../../../models/Activity/CheckEvent';
 import { GiftModel } from '../../../models/Activity/Gift';
 import { i18n, t } from '../../../models/Base/Translation';
 import userStore from '../../../models/Base/User';
+import { solidCache } from '../../api/base';
 
 const SessionBox = dynamic(
   () => import('../../../components/Layout/SessionBox'),
@@ -33,7 +28,7 @@ interface GiftListPageProps extends RouteProps<{ id: string }> {
 }
 
 export const getServerSideProps = compose<{ id: string }, GiftListPageProps>(
-  cache(),
+  solidCache,
   router,
   translator(i18n),
   async ({ params: { id } = {} }) => {

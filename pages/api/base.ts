@@ -1,5 +1,7 @@
 import { HTTPError } from 'koajax';
 import { NextApiRequest, NextApiResponse } from 'next';
+import { cache } from 'next-ssr-middleware';
+import { Month } from 'web-utility';
 
 export type NextAPI = (
   req: NextApiRequest,
@@ -37,3 +39,5 @@ export function safeAPI(handler: NextAPI): NextAPI {
     }
   };
 }
+
+export const solidCache = cache<any, any>(Month, Month);

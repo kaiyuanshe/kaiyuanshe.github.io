@@ -61,7 +61,9 @@ const DepartmentDetailPage: FC<DepartmentDetailPageProps> = observer(
   ({ department, group, okrList, reportList }) => (
     <Container
       className="py-5"
-      style={{ filter: `grayscale(${department.active ? 0 : 1})` }}
+      style={{
+        filter: `grayscale(${okrList.length + reportList.length ? 0 : 1})`,
+      }}
     >
       <PageHead title={department.name as string} />
       <Row>
