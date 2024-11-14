@@ -69,13 +69,14 @@ export default class CooperationPage extends Component<CooperationPageProps> {
           as="ul"
           className="list-unstyled align-items-center justify-content-center"
         >
-          {list.map(({ organization, link, logos, level }) => {
-            const isSingleLineBenefitsLevels =
-              singleLineBenefitsLevels.includes(level);
+          {list.map(({ organization, person, link, logos, avatar, level }) => {
+            const name = (organization || person || '') + '',
+              isSingleLineBenefitsLevels =
+                singleLineBenefitsLevels.includes(level);
 
             return (
               <Col
-                key={organization + ''}
+                key={name}
                 as="li"
                 className={isSingleLineBenefitsLevels ? 'w-50 mx-5 my-2' : ''}
                 xs={12}
@@ -87,11 +88,7 @@ export default class CooperationPage extends Component<CooperationPageProps> {
                   href={link ? link + '' : ''}
                   rel="noreferrer"
                 >
-                  <LarkImage
-                    title={organization + ''}
-                    alt={organization + ''}
-                    src={logos}
-                  />
+                  <LarkImage title={name} alt={name} src={logos || avatar} />
                 </a>
               </Col>
             );

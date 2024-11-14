@@ -3,9 +3,7 @@ import {
   BiDataQueryOptions,
   BiDataTable,
   normalizeText,
-  TableCellAttachment,
   TableCellLink,
-  TableCellMedia,
   TableCellRelation,
   TableCellValue,
   TableRecord,
@@ -16,7 +14,14 @@ import { larkClient } from '../Base';
 import { COMMUNITY_BASE_ID } from './index';
 
 export type Cooperation = Record<
-  'id' | 'organization' | 'year' | 'level' | 'link' | 'logos',
+  | 'id'
+  | 'organization'
+  | 'person'
+  | 'year'
+  | 'level'
+  | 'link'
+  | 'logos'
+  | 'avatar',
   TableCellValue
 >;
 
@@ -51,19 +56,14 @@ export class CooperationModel extends BiDataTable<Cooperation>() {
 
   normalize({
     id,
-    fields: { organization, link, logos, ...fields },
+    fields: { organization, person, link, ...fields },
   }: TableRecord<Cooperation>): Cooperation {
     return {
       ...fields,
       id: id!,
-      organization: (organization as TableCellRelation[]).map(normalizeText),
+      organization: (organization as TableCellRelation[])?.map(normalizeText),
+      person: (person as TableCellRelation[])?.map(normalizeText),
       link: (link as TableCellLink[])?.map(({ link }) => link),
-      logos: (logos as TableCellAttachment[])?.map(
-        ({ attachmentToken, ...logo }) => ({
-          ...logo,
-          file_token: attachmentToken,
-        }),
-      ) as unknown as TableCellMedia[],
     };
   }
 
