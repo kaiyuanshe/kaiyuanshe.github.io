@@ -2,6 +2,7 @@ import {
   BiDataTable,
   makeSimpleFilter,
   normalizeText,
+  TableCellRelation,
   TableCellText,
   TableCellValue,
   TableRecord,
@@ -11,7 +12,6 @@ import { isEmpty } from 'web-utility';
 
 import { normalizeTextArray } from '../../pages/api/lark/core';
 import { larkClient } from '../Base';
-
 
 export const GOVERNANCE_BASE_ID = process.env.NEXT_PUBLIC_GOVERNANCE_BASE_ID!,
   ISSUE_TABLE_ID = process.env.NEXT_PUBLIC_ISSUE_TABLE_ID!;
@@ -35,38 +35,39 @@ export class IssueModel extends BiDataTable<Issue>() {
   constructor(appId = GOVERNANCE_BASE_ID, tableId = ISSUE_TABLE_ID) {
     super(appId, tableId);
   }
-}
 
-function makeFilter({ createdAt, ...filter }: Partial<NewData<Issue>>) {
-  return [
-    `createdAt>=${createdAt}`,
-    !isEmpty(filter) && makeSimpleFilter(filter),
-  ]
-    .filter(Boolean)
-    .join('&&');
-}
+  makeFilter({ createdAt, ...filter }: Partial<NewData<Issue>>) {
+    return [
+      `createdAt>=${createdAt}`,
+      !isEmpty(filter) && makeSimpleFilter(filter),
+    ]
+      .filter(Boolean)
+      .join('&&');
+  }
 
-
- function normalize({
-  fields: {
-    title,
-        detail,
-        type,
-        deadline,
-        proposals,
-        meeting,
-        ...fields 
+  normalize({
+    fields: {
+      title,
+      detail,
+      type,
+      deadline,
+      department,
+      proposals,
+      meeting,
+      ...fields
     },
     ...meta
-}: TableRecord<Issue>) {
+  }: TableRecord<Issue>) {
     return {
-        ...meta,
-    ...fields,
-    title: title && normalizeText(title as TableCellText),
-    detail: detail && normalizeText(detail as TableCellText),
-    type: type && normalizeTextArray(type as TableCellText),
-    deadline: deadline && normalizeText(deadline as TableCellText),
-    proposals: proposals && normalizeTextArray(proposals as TableCellText[]),
-    meeting: meeting && normalizeText(meeting as TableCellText),
-  };
+      ...meta,
+      ...fields,
+      title: title && normalizeTextArray(title as TableCellText[]),
+      detail: detail && normalizeTextArray(detail as TableCellText[]),
+      type: type && normalizeTextArray(type as TableCellText[]),
+      deadline: deadline && normalizeTextArray(deadline as TableCellText[]),
+      department: (department as TableCellRelation[])?.map(normalizeText),
+      proposals: (proposals as TableCellRelation[])?.map(normalizeText),
+      meeting: (meeting as TableCellRelation[])?.map(normalizeText),
+    };
+  }
 }
