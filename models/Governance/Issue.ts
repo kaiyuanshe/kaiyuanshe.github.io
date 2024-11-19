@@ -1,14 +1,11 @@
 import {
   BiDataTable,
-  makeSimpleFilter,
   normalizeText,
   TableCellRelation,
   TableCellText,
   TableCellValue,
   TableRecord,
 } from 'mobx-lark';
-import { NewData } from 'mobx-restful';
-import { isEmpty } from 'web-utility';
 
 import { normalizeTextArray } from '../../pages/api/lark/core';
 import { larkClient } from '../Base';
@@ -36,8 +33,6 @@ export class IssueModel extends BiDataTable<Issue>() {
     super(appId, tableId);
   }
 
-
-
   normalize({
     fields: {
       title,
@@ -54,7 +49,7 @@ export class IssueModel extends BiDataTable<Issue>() {
     return {
       ...meta,
       ...fields,
-      title: title && normalizeTextArray(title as TableCellText[]),
+      title: title as string,
       detail: detail && normalizeTextArray(detail as TableCellText[]),
       type: (type as string)?.trim().split(/\s+/),
       deadline: deadline && normalizeTextArray(deadline as TableCellText[]),
