@@ -36,9 +36,9 @@ export class IssueModel extends BiDataTable<Issue>() {
     super(appId, tableId);
   }
 
-  makeFilter({ createdAt, ...filter }: Partial<NewData<Issue>>) {
+  makeFilter({  ...filter }: Partial<NewData<Issue>>) {
     return [
-      `createdAt>=${createdAt}`,
+      
       !isEmpty(filter) && makeSimpleFilter(filter),
     ]
       .filter(Boolean)
@@ -63,7 +63,7 @@ export class IssueModel extends BiDataTable<Issue>() {
       ...fields,
       title: title && normalizeTextArray(title as TableCellText[]),
       detail: detail && normalizeTextArray(detail as TableCellText[]),
-      type: type && normalizeTextArray(type as TableCellText[]),
+      type: (type as string)?.trim().split(/\s+/),
       deadline: deadline && normalizeTextArray(deadline as TableCellText[]),
       department: (department as TableCellRelation[])?.map(normalizeText),
       proposals: (proposals as TableCellRelation[])?.map(normalizeText),
