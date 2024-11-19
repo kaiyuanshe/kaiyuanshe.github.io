@@ -47,3 +47,4 @@ const IssuePage: FC<IssuePageProps> = observer(({ route: { query }, list }) => (
     />
   </Container>
 ));
+export default IssuePage;
