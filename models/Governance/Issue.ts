@@ -71,3 +71,5 @@ export class IssueModel extends BiDataTable<Issue>() {
     };
   }
 }
+
+export default new IssueModel();
