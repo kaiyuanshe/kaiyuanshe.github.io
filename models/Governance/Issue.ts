@@ -36,14 +36,7 @@ export class IssueModel extends BiDataTable<Issue>() {
     super(appId, tableId);
   }
 
-  makeFilter({  ...filter }: Partial<NewData<Issue>>) {
-    return [
-      
-      !isEmpty(filter) && makeSimpleFilter(filter),
-    ]
-      .filter(Boolean)
-      .join('&&');
-  }
+
 
   normalize({
     fields: {
