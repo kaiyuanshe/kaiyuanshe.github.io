@@ -272,5 +272,5 @@ export default {
   related: '相關',
 
   // Issue pages
-  issue: '意見徵集',
+  issue_box: '意見箱',
 } as const;

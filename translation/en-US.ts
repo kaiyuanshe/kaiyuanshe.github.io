@@ -279,5 +279,5 @@ export default {
   related: 'Related',
 
   // Issue pages
-  issue: 'Issue',
+  issue_box: 'Issue Box',
 } as const;
