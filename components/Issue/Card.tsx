@@ -29,10 +29,7 @@ export const IssueCard: FC<IssueCardProps> = ({
       </Card.Title>
 
       <Row className="mt-2 flex-fill">
-        <Col
-          as="a"
-          className="text-decoration-none text-end text-truncate align-self-end"
-        >
+        <Col className="text-decoration-none text-end text-truncate align-self-end">
           {createdBy as string}
         </Col>
       </Row>
@@ -40,7 +37,11 @@ export const IssueCard: FC<IssueCardProps> = ({
         <TagNav className="col-8" model="issue" list={type as string[]} />
 
         <Col className="text-end" xs={4}>
-          <TimeDistance {...TimeOption} date={deadline as number} />
+          {typeof deadline === 'number' && deadline > 0 ? (
+            <TimeDistance {...TimeOption} date={deadline as number} />
+          ) : (
+            '无截止日期'
+          )}
         </Col>
       </Row>
     </Card.Body>

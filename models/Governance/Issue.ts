@@ -5,6 +5,7 @@ import {
   TableCellText,
   TableCellValue,
   TableRecord,
+  TableCellUser
 } from 'mobx-lark';
 
 import { normalizeTextArray } from '../../pages/api/lark/core';
@@ -38,7 +39,8 @@ export class IssueModel extends BiDataTable<Issue>() {
       title,
       detail,
       type,
-      deadline,
+      createdBy,
+
       department,
       proposals,
       meeting,
@@ -49,10 +51,10 @@ export class IssueModel extends BiDataTable<Issue>() {
     return {
       ...meta,
       ...fields,
-      title: title as string,
-      detail: detail && normalizeTextArray(detail as TableCellText[]),
+      title: normalizeTextArray(title as TableCellText[])?.[0] || '',
+      detail: JSON.stringify(detail),
       type: (type as string)?.trim().split(/\s+/),
-      deadline: deadline && normalizeTextArray(deadline as TableCellText[]),
+      createdBy: (createdBy as TableCellUser)?.en_name || '',
       department: (department as TableCellRelation[])?.map(normalizeText),
       proposals: (proposals as TableCellRelation[])?.map(normalizeText),
       meeting: (meeting as TableCellRelation[])?.map(normalizeText),

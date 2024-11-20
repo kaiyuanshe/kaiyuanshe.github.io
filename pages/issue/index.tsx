@@ -8,7 +8,7 @@ import {
   translator,
 } from 'next-ssr-middleware';
 import { FC } from 'react';
-import { Button,Container } from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
 
 import { IssueListLayout } from '../../components/Issue/List';
 import { PageHead } from '../../components/Layout/PageHead';
