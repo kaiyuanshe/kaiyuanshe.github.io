@@ -5,11 +5,12 @@ import {
   TableCellText,
   TableCellValue,
   TableRecord,
-  TableCellUser
+  TableCellUserMetion,
 } from 'mobx-lark';
 
 import { normalizeTextArray } from '../../pages/api/lark/core';
 import { larkClient } from '../Base';
+import { map } from 'lodash';
 
 export const GOVERNANCE_BASE_ID = process.env.NEXT_PUBLIC_GOVERNANCE_BASE_ID!,
   ISSUE_TABLE_ID = process.env.NEXT_PUBLIC_ISSUE_TABLE_ID!;
@@ -54,7 +55,7 @@ export class IssueModel extends BiDataTable<Issue>() {
       title: normalizeTextArray(title as TableCellText[])?.[0] || '',
       detail: JSON.stringify(detail),
       type: (type as string)?.trim().split(/\s+/),
-      createdBy: (createdBy as TableCellUser)?.en_name || '',
+      createdBy: (createdBy as TableCellUserMetion[])?.en_name || '',
       department: (department as TableCellRelation[])?.map(normalizeText),
       proposals: (proposals as TableCellRelation[])?.map(normalizeText),
       meeting: (meeting as TableCellRelation[])?.map(normalizeText),
