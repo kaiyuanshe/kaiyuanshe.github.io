@@ -33,15 +33,19 @@ export const getServerSideProps = compose<{}, IssuePageProps>(
 const IssuePage: FC<IssuePageProps> = observer(({ route: { query }, list }) => (
   <Container>
     <PageHead title={t('issue_box')} />
-
-    <Button
-      className="my-3"
-      size="lg"
-      target="_blank"
-      href="https://kaiyuanshe.feishu.cn/share/base/form/shrcn6Yd39PMtEbIaT4uiliAeJF"
-    >
-      {t('issue_box')}
-    </Button>
+    <header className="d-flex justify-content-between align-items-center">
+      <h1 className="my-4">{t('issue_box')}</h1>
+      <div>
+        <Button
+          variant="success"
+          size="sm"
+          target="_blank"
+          href="https://kaiyuanshe.feishu.cn/share/base/form/shrcn6Yd39PMtEbIaT4uiliAeJF"
+        >
+          {t('issue_box')}
+        </Button>
+      </div>
+    </header>
     <ScrollList
       translator={i18n}
       store={issueStore}
