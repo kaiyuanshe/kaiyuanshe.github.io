@@ -41,7 +41,6 @@ export class IssueModel extends BiDataTable<Issue>() {
       detail,
       type,
       createdBy,
-
       department,
       proposals,
       meeting,
@@ -55,7 +54,6 @@ export class IssueModel extends BiDataTable<Issue>() {
       title: normalizeTextArray(title as TableCellText[])?.[0] || '',
       detail: JSON.stringify(detail),
       type: (type as string)?.trim().split(/\s+/),
-      // @ts-expect-error 上游飞书类型错误
       createdBy: (createdBy as TableCellUser)?.name || '',
       department: (department as TableCellRelation[])?.map(normalizeText),
       proposals: (proposals as TableCellRelation[])?.map(normalizeText),
