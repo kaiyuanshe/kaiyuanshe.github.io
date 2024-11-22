@@ -277,4 +277,8 @@ export default {
 
   // Member pages
   related: 'Related',
+
+  // Proposal pages
+  proposal: 'Proposal',
+  submit_proposal: 'Submit New Proposal',
 } as const;

@@ -270,4 +270,8 @@ export default {
 
   // Member pages
   related: '相關',
+
+  // Proposal pages
+  proposal: '提案',
+  submit_proposal: '提交新提案',
 } as const;
