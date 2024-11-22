@@ -278,6 +278,9 @@ export default {
   // Member pages
   related: 'Related',
 
+  // Issue pages
+  issue_box: 'Issue Box',
+
   // Proposal pages
   proposal: 'Proposal',
   submit_proposal: 'Submit New Proposal',

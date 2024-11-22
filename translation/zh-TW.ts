@@ -271,6 +271,9 @@ export default {
   // Member pages
   related: '相關',
 
+  // Issue pages
+  issue_box: '意見箱',
+
   // Proposal pages
   proposal: '提案',
   submit_proposal: '提交新提案',
