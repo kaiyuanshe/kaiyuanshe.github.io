@@ -45,7 +45,7 @@ const IssuePage: FC<IssuePageProps> = observer(({ route: { query }, list }) => (
           target="_blank"
           href="https://kaiyuanshe.feishu.cn/share/base/form/shrcn6Yd39PMtEbIaT4uiliAeJF"
         >
-          {t('issue_box')}
+          {t('submit_issue')}
         </Button>
       </div>
     </header>
