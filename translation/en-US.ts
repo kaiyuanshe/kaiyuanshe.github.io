@@ -277,4 +277,7 @@ export default {
 
   // Member pages
   related: 'Related',
+
+  // Issue pages
+  issue_box: 'Issue Box',
 } as const;

@@ -62,7 +62,10 @@ export const MainRoutes = (): Link[] => [
   },
   {
     title: t('open_governance'),
-    subs: [{ title: t('meeting_calendar'), path: '/governance/meeting' }],
+    subs: [
+      { title: t('meeting_calendar'), path: '/governance/meeting' },
+      { title: t('issue_box'), path: '/governance/issue' },
+    ],
   },
   {
     title: t('our_knowledge_base'),

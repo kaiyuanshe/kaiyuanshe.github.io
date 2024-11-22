@@ -270,4 +270,7 @@ export default {
 
   // Member pages
   related: '相关',
+
+  // Issue pages
+  issue_box: '意见箱',
 } as const;
