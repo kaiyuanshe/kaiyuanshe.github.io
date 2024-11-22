@@ -253,6 +253,13 @@ export default {
   video_call: '视频通话',
   meeting_minutes: '会议纪要',
 
+  // Issue pages
+  issue_box: '意见箱',
+
+  // Proposal pages
+  proposal: '提案',
+  submit_proposal: '提交新提案',
+
   // Election pages
   general_election: '换届选举',
   director_nomination: '理事提名',
@@ -270,11 +277,4 @@ export default {
 
   // Member pages
   related: '相关',
-
-  // Issue pages
-  issue_box: '意见箱',
-
-  // Proposal pages
-  proposal: '提案',
-  submit_proposal: '提交新提案',
 } as const;

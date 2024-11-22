@@ -260,6 +260,13 @@ export default {
   video_call: 'Video Call',
   meeting_minutes: 'Meeting Minutes',
 
+  // Issue pages
+  issue_box: 'Issue Box',
+
+  // Proposal pages
+  proposal: 'Proposal',
+  submit_proposal: 'Submit New Proposal',
+
   // Election pages
   general_election: 'General Election',
   director_nomination: 'Director nomination',
@@ -277,11 +284,4 @@ export default {
 
   // Member pages
   related: 'Related',
-
-  // Issue pages
-  issue_box: 'Issue Box',
-
-  // Proposal pages
-  proposal: 'Proposal',
-  submit_proposal: 'Submit New Proposal',
 } as const;
