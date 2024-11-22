@@ -10,10 +10,13 @@ import {
 import { FC } from 'react';
 import { Button, Container } from 'react-bootstrap';
 
-import { IssueListLayout } from '../../components/Issue/List';
-import { PageHead } from '../../components/Layout/PageHead';
-import { i18n, t } from '../../models/Base/Translation';
-import issueStore, { Issue, IssueModel } from '../../models/Governance/Issue';
+import { IssueListLayout } from '../../../components/Issue/List';
+import { PageHead } from '../../../components/Layout/PageHead';
+import { i18n, t } from '../../../models/Base/Translation';
+import issueStore, {
+  Issue,
+  IssueModel,
+} from '../../../models/Governance/Issue';
 
 interface IssuePageProps extends RouteProps {
   list: Issue[];
