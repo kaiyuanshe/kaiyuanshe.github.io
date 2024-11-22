@@ -25,16 +25,10 @@ export const ProposalCard: FC<ProposalCardProps> = ({
           {title as string}
         </a>
       </Card.Title>
-      <Row className="mt-2 flex-fill">
-        <Col className="text-decoration-none text-end text-truncate align-self-end">
-          {createdBy as string}
-        </Col>
-      </Row>
-      <Row as="footer" className="flex-fill small mt-1">
-        <Col className="text-decoration-none text-end align-self-end" xs={4}>
-          {meetings as string}
-        </Col>
-      </Row>
     </Card.Body>
+    <Card.Footer className="d-flex flex-wrap justify-content-between align-items-center">
+      <div>{createdBy as string}</div>
+      <div>{meetings as string}</div>
+    </Card.Footer>
   </Card>
 );
