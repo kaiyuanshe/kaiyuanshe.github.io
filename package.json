@@ -28,7 +28,7 @@
     "marked": "^15.0.0",
     "mobx": "^6.13.5",
     "mobx-i18n": "^0.6.0",
-    "mobx-lark": "^2.0.0-rc.3",
+    "mobx-lark": "^2.0.0",
     "mobx-react": "^9.1.1",
     "mobx-react-helper": "^0.3.1",
     "mobx-restful": "^2.0.0",
