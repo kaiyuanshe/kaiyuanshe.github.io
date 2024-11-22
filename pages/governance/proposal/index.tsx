@@ -55,7 +55,10 @@ const ProposalPage: FC<ProposalListProps> = observer(
         store={proposalStore}
         filter={query}
         renderList={allItems => (
-          <ProposalListLayout defaultData={allItems as Proposal[]} />
+          <ProposalListLayout
+            rowCols={{ xs: 1, sm: 2, md: 3, lg: 4 }}
+            defaultData={allItems as Proposal[]}
+          />
         )}
         defaultData={list}
       />
