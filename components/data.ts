@@ -65,6 +65,7 @@ export const MainRoutes = (): Link[] => [
     subs: [
       { title: t('meeting_calendar'), path: '/governance/meeting' },
       { title: t('issue_box'), path: '/governance/issue' },
+      { title: t('proposal'), path: '/governance/proposal' },
     ],
   },
   {
