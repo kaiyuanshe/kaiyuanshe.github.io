@@ -13,8 +13,9 @@ export interface ProposalCardProps extends Proposal {
 export const ProposalCard: FC<ProposalCardProps> = ({
   className = '',
   title,
-  type,
+  types,
   issues,
+  contentURL,
   createdBy,
   meetings,
   voteURL,
@@ -26,7 +27,7 @@ export const ProposalCard: FC<ProposalCardProps> = ({
   >
     <Card.Body className="d-flex-column">
       <Card.Title as="h3" className="h5 flex-fill">
-        <a href={voteURL as string} target="_blank" rel="noreferrer">
+        <a href={contentURL as string} target="_blank" rel="noreferrer">
           {title as string}
         </a>
       </Card.Title>
@@ -36,7 +37,9 @@ export const ProposalCard: FC<ProposalCardProps> = ({
         </Col>
       </Row>
       <Row as="footer" className="flex-fill small mt-1">
-        <TagNav className="col-8" model="proposal" list={type as string[]} />
+        <Col className="text-decoration-none text-end  align-self-end" xs={4}>
+            {meetings as string}
+        </Col>
       </Row>
     </Card.Body>
   </Card>
