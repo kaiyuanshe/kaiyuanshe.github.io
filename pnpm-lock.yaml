@@ -76,8 +76,8 @@ importers:
         specifier: ^0.6.0
         version: 0.6.0(mobx@6.13.5)(typescript@5.6.3)
       mobx-lark:
-        specifier: ^2.0.0-rc.3
-        version: 2.0.0-rc.3(mobx@6.13.5)(typescript@5.6.3)
+        specifier: ^2.0.0
+        version: 2.0.0(mobx@6.13.5)(typescript@5.6.3)
       mobx-react:
         specifier: ^9.1.1
         version: 9.1.1(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -3740,8 +3740,8 @@ packages:
     peerDependencies:
       mobx: '>=6.11'
 
-  mobx-lark@2.0.0-rc.3:
-    resolution: {integrity: sha512-LlyPxcpCUiN0gP9ScEi8x0IbT0DLido5me9LA7nGer9EoaRHam1fkCk7lEYvNGDLdEjMb3S6FEnNlbxEKb40/w==}
+  mobx-lark@2.0.0:
+    resolution: {integrity: sha512-l7awlrfjuzqHj4tZeCQg1aj5bj2RLda5zzmFBQ1968B8bB/Uq7JgyUnjZg9H6oXSv2obJGWXIWIjBQeEWszSKg==}
     peerDependencies:
       mobx: '>=6.11'
 
@@ -7930,7 +7930,7 @@ snapshots:
       debug: 4.3.7
       enhanced-resolve: 5.17.1
       eslint: 9.14.0
-      eslint-module-utils: 2.12.0(@typescript-eslint/parser@8.14.0(eslint@9.14.0)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3)(eslint@9.14.0)
+      eslint-module-utils: 2.12.0(@typescript-eslint/parser@8.14.0(eslint@9.14.0)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@8.14.0(eslint@9.14.0)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.31.0)(eslint@9.14.0))(eslint@9.14.0)
       fast-glob: 3.3.2
       get-tsconfig: 4.8.1
       is-bun-module: 1.2.1
@@ -7943,7 +7943,7 @@ snapshots:
       - eslint-import-resolver-webpack
       - supports-color
 
-  eslint-module-utils@2.12.0(@typescript-eslint/parser@8.14.0(eslint@9.14.0)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3)(eslint@9.14.0):
+  eslint-module-utils@2.12.0(@typescript-eslint/parser@8.14.0(eslint@9.14.0)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@8.14.0(eslint@9.14.0)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.31.0)(eslint@9.14.0))(eslint@9.14.0):
     dependencies:
       debug: 3.2.7
     optionalDependencies:
@@ -7965,7 +7965,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 9.14.0
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.12.0(@typescript-eslint/parser@8.14.0(eslint@9.14.0)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3)(eslint@9.14.0)
+      eslint-module-utils: 2.12.0(@typescript-eslint/parser@8.14.0(eslint@9.14.0)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@8.14.0(eslint@9.14.0)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.31.0)(eslint@9.14.0))(eslint@9.14.0)
       hasown: 2.0.2
       is-core-module: 2.15.1
       is-glob: 4.0.3
@@ -9605,7 +9605,7 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  mobx-lark@2.0.0-rc.3(mobx@6.13.5)(typescript@5.6.3):
+  mobx-lark@2.0.0(mobx@6.13.5)(typescript@5.6.3):
     dependencies:
       '@swc/helpers': 0.5.15
       koajax: 3.0.3(typescript@5.6.3)
