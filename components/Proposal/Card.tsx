@@ -3,8 +3,6 @@ import type { FC } from 'react';
 import { Card, Col, Row } from 'react-bootstrap';
 
 import type { Proposal } from '../../models/Governance/Proposal';
-import { TagNav } from '../Base/TagNav';
-import { TimeOption } from '../data';
 
 export interface ProposalCardProps extends Proposal {
   className?: string;
@@ -13,13 +11,9 @@ export interface ProposalCardProps extends Proposal {
 export const ProposalCard: FC<ProposalCardProps> = ({
   className = '',
   title,
-  types,
-  issues,
   contentURL,
   createdBy,
   meetings,
-  voteURL,
-  passed,
 }) => (
   <Card
     className={`shadow-sm ${className}`}
@@ -37,8 +31,8 @@ export const ProposalCard: FC<ProposalCardProps> = ({
         </Col>
       </Row>
       <Row as="footer" className="flex-fill small mt-1">
-        <Col className="text-decoration-none text-end  align-self-end" xs={4}>
-            {meetings as string}
+        <Col className="text-decoration-none text-end align-self-end" xs={4}>
+          {meetings as string}
         </Col>
       </Row>
     </Card.Body>
