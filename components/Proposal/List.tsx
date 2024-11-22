@@ -10,7 +10,7 @@ export interface ProposalListProps {
   defaultData: Proposal[];
 }
 
-export const ProposalList: FC<ProposalListProps> = ({
+export const ProposalListLayout: FC<ProposalListProps> = ({
   className = '',
   rowCols,
   defaultData,
