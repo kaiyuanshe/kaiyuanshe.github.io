@@ -38,9 +38,9 @@ export const IssueCard: FC<IssueCardProps> = ({
 
         <Col className="text-end" xs={4}>
           {typeof deadline === 'number' && deadline > 0 ? (
-            <TimeDistance {...TimeOption} date={deadline as number} />
+            <TimeDistance {...TimeOption} date={deadline} />
           ) : (
-            '无截止日期'
+            '🕐'
           )}
         </Col>
       </Row>
