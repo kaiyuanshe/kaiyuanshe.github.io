@@ -28,6 +28,7 @@ export const getServerSideProps = compose<{}, ProposalListProps>(
   translator(i18n),
   async ({ query }) => {
     const list = await new ProposalModel().getList(query);
+
     return { props: JSON.parse(JSON.stringify(list)) as ProposalListProps };
   },
 );

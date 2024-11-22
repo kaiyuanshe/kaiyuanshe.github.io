@@ -18,11 +18,10 @@ export const PROPOSAL_TABLE_ID = process.env.NEXT_PUBLIC_PROPOSAL_TABLE_ID!;
 export type Proposal = Record<
   | 'id'
   | 'title'
-  | 'type'
+  | 'types'
   | 'issues'
   | 'contentURL'
-  | 'createdAt'
-  | 'createdBy'
+  | `created${'At' | 'By'}`
   | 'meetings'
   | 'voteURL'
   | 'passed',
@@ -39,10 +38,9 @@ export class ProposalModel extends BiDataTable<Proposal>() {
   normalize({
     fields: {
       title,
-      type,
+      types,
       issues,
       contentURL,
-      createdAt,
       createdBy,
       meetings,
       ...fields
@@ -53,10 +51,9 @@ export class ProposalModel extends BiDataTable<Proposal>() {
       ...meta,
       ...fields,
       title: normalizeTextArray(title as TableCellText[])?.[0] || '',
-      type: normalizeTextArray(type as TableCellText[])?.[0] || '',
+      types: types,
       issues: normalizeTextArray(issues as TableCellText[]),
       contentURL: (contentURL as TableCellLink)?.link,
-      createdAt: createdAt,
       createdBy: (createdBy as TableCellUser)?.name || '',
       meetings: (meetings as TableCellRelation[])?.map(normalizeText),
     };
