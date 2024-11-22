@@ -258,7 +258,7 @@ export default {
   submit_issue: '提交新意見',
 
   // Proposal pages
-  proposal: '提案',
+  proposal_library: '提案庫',
   submit_proposal: '提交新提案',
 
   // Election pages

@@ -30,6 +30,6 @@ export const GiftCard: FC<GiftCardProps> = ({
       </div>
     </div>
 
-    {name}
+    {name as string}
   </>
 );

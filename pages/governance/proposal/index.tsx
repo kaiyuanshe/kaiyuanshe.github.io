@@ -36,9 +36,10 @@ export const getServerSideProps = compose<{}, ProposalListProps>(
 const ProposalPage: FC<ProposalListProps> = observer(
   ({ route: { query }, list }) => (
     <Container>
-      <PageHead title={t('proposal')} />
+      <PageHead title={t('proposal_library')} />
+
       <header className="d-flex justify-content-between align-items-center">
-        <h1 className="my-4">{t('proposal')}</h1>
+        <h1 className="my-4">{t('proposal_library')}</h1>
         <div>
           <Button
             variant="success"
@@ -50,15 +51,13 @@ const ProposalPage: FC<ProposalListProps> = observer(
           </Button>
         </div>
       </header>
+
       <ScrollList
         translator={i18n}
         store={proposalStore}
         filter={query}
         renderList={allItems => (
-          <ProposalListLayout
-            rowCols={{ xs: 1, sm: 2, md: 3, lg: 4 }}
-            defaultData={allItems as Proposal[]}
-          />
+          <ProposalListLayout defaultData={allItems as Proposal[]} />
         )}
         defaultData={list}
       />

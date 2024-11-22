@@ -265,7 +265,7 @@ export default {
   submit_issue: 'Submit New Issue',
 
   // Proposal pages
-  proposal: 'Proposal',
+  proposal_library: 'Proposal library',
   submit_proposal: 'Submit New Proposal',
 
   // Election pages

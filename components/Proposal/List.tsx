@@ -11,8 +11,8 @@ export interface ProposalListProps {
 }
 
 export const ProposalListLayout: FC<ProposalListProps> = ({
-  className = '',
-  rowCols,
+  className = 'g-3 my-4',
+  rowCols = { xs: 1, sm: 2, xl: 3 },
   defaultData,
 }) => (
   <Row as="section" {...rowCols} className={className}>
