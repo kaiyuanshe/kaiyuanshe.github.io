@@ -255,6 +255,7 @@ export default {
 
   // Issue pages
   issue_box: '意见箱',
+  submit_issue: '提交新意见',
 
   // Proposal pages
   proposal: '提案',

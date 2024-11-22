@@ -262,6 +262,7 @@ export default {
 
   // Issue pages
   issue_box: 'Issue Box',
+  submit_issue: 'Submit New Issue',
 
   // Proposal pages
   proposal: 'Proposal',
