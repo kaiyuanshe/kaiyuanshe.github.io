@@ -1,8 +1,6 @@
 import {
   BiDataTable,
-  normalizeText,
   TableCellLink,
-  TableCellRelation,
   TableCellText,
   TableCellUser,
   TableCellValue,
