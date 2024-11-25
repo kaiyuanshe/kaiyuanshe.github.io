@@ -36,16 +36,7 @@ export class IssueModel extends BiDataTable<Issue>() {
   }
 
   normalize({
-    fields: {
-      title,
-      detail,
-      type,
-      createdBy,
-      department,
-      proposals,
-      meetings,
-      ...fields
-    },
+    fields: { title, detail, type, createdBy, department, ...fields },
     ...meta
   }: TableRecord<Issue>) {
     return {
@@ -56,8 +47,6 @@ export class IssueModel extends BiDataTable<Issue>() {
       type: (type as string)?.trim().split(/\s+/),
       createdBy: (createdBy as TableCellUser)?.name || '',
       department: (department as TableCellRelation[])?.map(normalizeText),
-      proposals: (proposals as TableCellRelation[])?.map(normalizeText),
-      meetings: (meetings as TableCellRelation[])?.map(normalizeText),
     };
   }
 }

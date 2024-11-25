@@ -1,4 +1,5 @@
 import { TimeDistance } from 'idea-react';
+import { TableCellRelation } from 'mobx-lark';
 import type { FC } from 'react';
 import { Card, Col, Row } from 'react-bootstrap';
 
@@ -57,19 +58,34 @@ export const IssueCard: FC<IssueCardProps> = ({
       </Row>
       <Row>
         <Col className="text-decoration-none align-self-end" xs={10}>
-          {`相关提案: ${proposals as string}`}
-        </Col>
-      </Row>
-      <Row>
-        <Col className="text-decoration-none align-self-end" xs={10}>
-          {`相关会议: ${meetings as string}`}
-        </Col>
-      </Row>
-      <Row>
-        <Col className="text-decoration-none align-self-end" xs={10}>
           {`相关部门: ${department as string}`}
         </Col>
       </Row>
+      <details>
+        <summary>{'相关会议'}</summary>
+        {Array.isArray(meetings) &&
+          (meetings[0] as TableCellRelation).text_arr.map((text, index) => (
+            <Row key={index} className="mt-2">
+              <a
+                href={`/governance/meeting/${(meetings[0] as TableCellRelation).record_ids[index]}`}
+                className="text-decoration-none"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Col>{text}</Col>
+              </a>
+            </Row>
+          ))}
+      </details>
+      <details>
+        <summary>{'相关提案'}</summary>
+        {Array.isArray(proposals) &&
+          (proposals[0] as TableCellRelation).text_arr.map((text, index) => (
+            <Row key={index} className="mt-2">
+              <Col>{text}</Col>
+            </Row>
+          ))}
+      </details>
     </Card.Body>
   </Card>
 );
