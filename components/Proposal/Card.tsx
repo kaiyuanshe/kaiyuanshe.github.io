@@ -1,4 +1,3 @@
-import { TimeDistance } from 'idea-react';
 import { TableCellRelation } from 'mobx-lark';
 import type { FC } from 'react';
 import { Card, Col, Row } from 'react-bootstrap';
