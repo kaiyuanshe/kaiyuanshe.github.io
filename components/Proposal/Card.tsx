@@ -1,8 +1,8 @@
 import { TimeDistance } from 'idea-react';
+import { TableCellRelation } from 'mobx-lark';
 import type { FC } from 'react';
 import { Card, Col, Row } from 'react-bootstrap';
 
-import Issue from '../../models/Governance/Issue';
 import type { Proposal } from '../../models/Governance/Proposal';
 
 export interface ProposalCardProps extends Proposal {
@@ -42,18 +42,39 @@ export const ProposalCard: FC<ProposalCardProps> = ({
           {createdBy as string}
         </a>
       </Row>
+      <details>
+        <summary>{'相关会议'}</summary>
+        {Array.isArray(meetings) &&
+          (meetings[0] as TableCellRelation).text_arr.map((text, index) => (
+            <Row key={index} className="mt-2">
+              <a
+                href={`/governance/meeting/${(meetings[0] as TableCellRelation).record_ids[index]}`}
+                className="text-decoration-none"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Col>{text}</Col>
+              </a>
+            </Row>
+          ))}
+      </details>
+      <details>
+        <summary>{'相关提议'}</summary>
+        {Array.isArray(issues) &&
+          (issues[0] as TableCellRelation).text_arr.map((text, index) => (
+            <Row key={index} className="mt-2">
+              <a
+                href={`/governance/issue/${(issues[0] as TableCellRelation).record_ids[index]}`}
+                className="text-decoration-none"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Col>{text}</Col>
+              </a>
+            </Row>
+          ))}
+      </details>
     </Card.Body>
-    <Card.Footer className="d-flex flex-wrap justify-content-between align-items-center">
-      <Row>
-        <Col className="text-decoration-none align-self-end" xs={10}>
-          {`相关会议: ${meetings as string}`}
-        </Col>
-      </Row>
-      <Row>
-        <Col className="text-decoration-none align-self-end" xs={10}>
-          {`相关提议: ${issues as string}`}
-        </Col>
-      </Row>
-    </Card.Footer>
+    <Card.Footer className="d-flex flex-wrap justify-content-between align-items-center"></Card.Footer>
   </Card>
 );
