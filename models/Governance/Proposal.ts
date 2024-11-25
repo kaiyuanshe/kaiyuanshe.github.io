@@ -43,10 +43,10 @@ export class ProposalModel extends BiDataTable<Proposal>() {
       ...meta,
       ...fields,
       title: normalizeTextArray(title as TableCellText[])?.[0] || '',
-      issues: normalizeTextArray(issues as TableCellText[]),
+      issues: (issues as TableCellRelation[])?.map(({record_ids, text_arr }) =>({record_ids,text_arr})) ,
       contentURL: (contentURL as TableCellLink)?.link || '',
       createdBy: (createdBy as TableCellUser)?.name || '',
-      meetings: (meetings as TableCellRelation[])?.map(normalizeText),
+      meetings: (meetings as TableCellRelation[])?.map(({record_ids, text_arr }) =>({record_ids,text_arr})) ,
     };
   }
 }
