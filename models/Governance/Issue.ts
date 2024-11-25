@@ -24,7 +24,7 @@ export type Issue = Record<
   | `created${'At' | 'By'}`
   | 'department'
   | 'proposals'
-  | 'meeting',
+  | 'meetings',
   TableCellValue
 >;
 
@@ -43,7 +43,7 @@ export class IssueModel extends BiDataTable<Issue>() {
       createdBy,
       department,
       proposals,
-      meeting,
+      meetings,
       ...fields
     },
     ...meta
@@ -57,7 +57,7 @@ export class IssueModel extends BiDataTable<Issue>() {
       createdBy: (createdBy as TableCellUser)?.name || '',
       department: (department as TableCellRelation[])?.map(normalizeText),
       proposals: (proposals as TableCellRelation[])?.map(normalizeText),
-      meeting: (meeting as TableCellRelation[])?.map(normalizeText),
+      meetings: (meetings as TableCellRelation[])?.map(normalizeText),
     };
   }
 }
