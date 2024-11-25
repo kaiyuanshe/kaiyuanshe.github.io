@@ -1,7 +1,9 @@
+import { textJoin } from 'mobx-i18n';
 import { TableCellRelation } from 'mobx-lark';
 import type { FC } from 'react';
 import { Card, Col, Row } from 'react-bootstrap';
 
+import { t } from '../../models/Base/Translation';
 import type { Proposal } from '../../models/Governance/Proposal';
 
 export interface ProposalCardProps extends Proposal {
@@ -42,7 +44,7 @@ export const ProposalCard: FC<ProposalCardProps> = ({
         </a>
       </Row>
       <details>
-        <summary>{'相关会议'}</summary>
+        <summary>{textJoin(t('related'), t('meeting'))}</summary>
         {Array.isArray(meetings) &&
           (meetings[0] as TableCellRelation).text_arr.map((text, index) => (
             <Row key={index} className="mt-2">
@@ -58,7 +60,7 @@ export const ProposalCard: FC<ProposalCardProps> = ({
           ))}
       </details>
       <details>
-        <summary>{'相关提议'}</summary>
+        <summary>{textJoin(t('related'), t('issue'))}</summary>
         {Array.isArray(issues) &&
           (issues[0] as TableCellRelation).text_arr.map((text, index) => (
             <Row key={index} className="mt-2">

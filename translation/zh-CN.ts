@@ -114,6 +114,8 @@ export default {
   activity: '活动',
   meeting: '会议',
   NGO: 'NGO',
+  issue: '意见',
+  proposal: '提案',
 
   // Organization page
   reset: '重置',

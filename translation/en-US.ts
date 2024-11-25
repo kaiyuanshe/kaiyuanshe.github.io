@@ -120,7 +120,8 @@ export default {
   activity: 'activity',
   meeting: 'meeting',
   NGO: 'NGO',
-
+  issue: 'Issues',
+  proposal: 'Proposals',
   // Organization page
   reset: 'reset',
   total_x_organizations: ({ totalCount }: { totalCount: number }) =>

@@ -1,8 +1,10 @@
 import { TimeDistance } from 'idea-react';
+import { textJoin } from 'mobx-i18n';
 import { TableCellRelation } from 'mobx-lark';
 import type { FC } from 'react';
 import { Card, Col, Row } from 'react-bootstrap';
 
+import { t } from '../../models/Base/Translation';
 import type { Issue } from '../../models/Governance/Issue';
 import { TagNav } from '../Base/TagNav';
 import { TimeOption } from '../data';
@@ -58,11 +60,11 @@ export const IssueCard: FC<IssueCardProps> = ({
       </Row>
       <Row>
         <Col className="text-decoration-none align-self-end" xs={10}>
-          {`相关部门: ${department as string}`}
+          {textJoin(t('related'), t('department'))}: {department as string}
         </Col>
       </Row>
       <details>
-        <summary>{'相关会议'}</summary>
+        <summary>{textJoin(t('related'), t('meeting'))}</summary>
         {Array.isArray(meetings) &&
           (meetings[0] as TableCellRelation).text_arr.map((text, index) => (
             <Row key={index} className="mt-2">
@@ -78,7 +80,7 @@ export const IssueCard: FC<IssueCardProps> = ({
           ))}
       </details>
       <details>
-        <summary>{'相关提案'}</summary>
+        <summary>{textJoin(t('related'), t('proposal'))}</summary>
         {Array.isArray(proposals) &&
           (proposals[0] as TableCellRelation).text_arr.map((text, index) => (
             <Row key={index} className="mt-2">
