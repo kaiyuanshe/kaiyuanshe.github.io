@@ -259,6 +259,7 @@ export default {
   issue_box: '意见箱',
   submit_issue: '提交新意见',
   detail: '详情',
+  
   // Proposal pages
   proposal_library: '提案库',
   submit_proposal: '提交新提案',

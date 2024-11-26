@@ -122,6 +122,7 @@ export default {
   NGO: 'NGO',
   issue: 'Issues',
   proposal: 'Proposals',
+
   // Organization page
   reset: 'reset',
   total_x_organizations: ({ totalCount }: { totalCount: number }) =>
@@ -265,6 +266,7 @@ export default {
   issue_box: 'Issue Box',
   submit_issue: 'Submit New Issue',
   detail: 'Detail',
+  
   // Proposal pages
   proposal_library: 'Proposal library',
   submit_proposal: 'Submit New Proposal',

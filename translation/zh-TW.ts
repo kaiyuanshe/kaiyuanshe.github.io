@@ -116,6 +116,7 @@ export default {
   NGO: 'NGO',
   issue: '意見',
   proposal: '提案',
+  
   // Organization page
   reset: '重置',
   total_x_organizations: ({ totalCount }: { totalCount: number }) =>
