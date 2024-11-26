@@ -35,14 +35,13 @@ export class IssueModel extends BiDataTable<Issue>() {
   }
 
   normalize({
-    fields: { title, detail, type, createdBy, department, ...fields },
+    fields: { title, type, createdBy, department, ...fields },
     ...meta
   }: TableRecord<Issue>) {
     return {
       ...meta,
       ...fields,
       title: normalizeTextArray(title as TableCellText[])?.[0] || '',
-      detail: JSON.stringify(detail),
       type: (type as string)?.trim().split(/\s+/),
       createdBy: (createdBy as TableCellUser)?.name || '',
       department: (department as TableCellRelation[])?.map(normalizeText),

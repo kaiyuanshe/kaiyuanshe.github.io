@@ -1,6 +1,7 @@
 import { TimeDistance } from 'idea-react';
+import { marked } from 'marked';
 import { textJoin } from 'mobx-i18n';
-import { TableCellRelation } from 'mobx-lark';
+import { TableCellRelation, TableCellText } from 'mobx-lark';
 import type { FC } from 'react';
 import { Card, Col, Row } from 'react-bootstrap';
 
@@ -87,6 +88,10 @@ export const IssueCard: FC<IssueCardProps> = ({
               <Col>{text}</Col>
             </Row>
           ))}
+      </details>
+      <details>
+        <summary>{t('detail')}</summary>
+        {detail && marked(detail as string)}
       </details>
     </Card.Body>
   </Card>
