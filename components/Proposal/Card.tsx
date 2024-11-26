@@ -2,7 +2,7 @@ import { TimeDistance } from 'idea-react';
 import { textJoin } from 'mobx-i18n';
 import { TableCellRelation } from 'mobx-lark';
 import type { FC } from 'react';
-import { Card, Col, Row } from 'react-bootstrap';
+import { Card, Row } from 'react-bootstrap';
 
 import { t } from '../../models/Base/Translation';
 import type { Proposal } from '../../models/Governance/Proposal';

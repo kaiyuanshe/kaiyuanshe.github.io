@@ -1,7 +1,7 @@
 import { TimeDistance } from 'idea-react';
 import { marked } from 'marked';
 import { textJoin } from 'mobx-i18n';
-import { TableCellRelation, TableCellText } from 'mobx-lark';
+import { TableCellRelation } from 'mobx-lark';
 import type { FC } from 'react';
 import { Card, Col, Row } from 'react-bootstrap';
 
