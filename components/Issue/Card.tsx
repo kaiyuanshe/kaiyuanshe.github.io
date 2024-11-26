@@ -66,32 +66,42 @@ export const IssueCard: FC<IssueCardProps> = ({
       </Row>
       <details>
         <summary>{textJoin(t('related'), t('meeting'))}</summary>
-        {Array.isArray(meetings) &&
-          (meetings[0] as TableCellRelation).text_arr.map((text, index) => (
-            <Row key={index} className="mt-2">
-              <a
-                href={`/governance/meeting/${(meetings[0] as TableCellRelation).record_ids[index]}`}
-                className="text-decoration-none"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <Col>{text}</Col>
-              </a>
-            </Row>
-          ))}
+        <ol>
+          {Array.isArray(meetings) &&
+            (meetings[0] as TableCellRelation).text_arr.map((text, index) => (
+              <li key={index} className="mt-2">
+                <a
+                  href={`/governance/meeting/${(meetings[0] as TableCellRelation).record_ids[index]}`}
+                  className="text-decoration-none"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {text}
+                </a>
+              </li>
+            ))}
+        </ol>
       </details>
       <details>
         <summary>{textJoin(t('related'), t('proposal'))}</summary>
-        {Array.isArray(proposals) &&
-          (proposals[0] as TableCellRelation).text_arr.map((text, index) => (
-            <Row key={index} className="mt-2">
-              <Col>{text}</Col>
-            </Row>
-          ))}
+        <ol>
+          {Array.isArray(proposals) &&
+            (proposals[0] as TableCellRelation).text_arr.map((text, index) => (
+              <li key={index} className="mt-2">
+                {text}
+              </li>
+            ))}
+        </ol>
       </details>
       <details>
         <summary>{t('detail')}</summary>
-        {detail && marked(detail as string)}
+        <ol>
+          {detail && (
+            <div
+              dangerouslySetInnerHTML={{ __html: marked(detail as string) }}
+            />
+          )}
+        </ol>
       </details>
     </Card.Body>
   </Card>
