@@ -257,6 +257,7 @@ export default {
   // Issue pages
   issue_box: '意見箱',
   submit_issue: '提交新意見',
+  detail: '詳情',
 
   // Proposal pages
   proposal_library: '提案庫',

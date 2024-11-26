@@ -264,7 +264,7 @@ export default {
   // Issue pages
   issue_box: 'Issue Box',
   submit_issue: 'Submit New Issue',
-
+  detail: 'Detail',
   // Proposal pages
   proposal_library: 'Proposal library',
   submit_proposal: 'Submit New Proposal',
