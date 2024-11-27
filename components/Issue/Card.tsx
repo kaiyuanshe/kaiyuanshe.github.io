@@ -21,6 +21,7 @@ export const IssueCard: FC<IssueCardProps> = ({
   type,
   deadline,
   createdBy,
+  createdAt,
   meetings,
   proposals,
   department,
@@ -46,17 +47,13 @@ export const IssueCard: FC<IssueCardProps> = ({
           )}
         </Col>
       </Row>
-      <Row>
-        <Col className="text-decoration-none align-self-end" xs={10}>
-          {textJoin(t('related'), t('department'))}: {department as string}
-        </Col>
-      </Row>
+      {textJoin(t('related'), t('department'))}: {department as string}
       <details>
         <summary>{textJoin(t('related'), t('meeting'))}</summary>
         <ol>
           {Array.isArray(meetings) &&
             (meetings[0] as TableCellRelation).text_arr.map((text, index) => (
-              <li key={index} className="mt-2">
+              <li key={text} className="mt-2">
                 <a
                   href={`/governance/meeting/${(meetings[0] as TableCellRelation).record_ids[index]}`}
                   className="text-decoration-none"
@@ -99,6 +96,7 @@ export const IssueCard: FC<IssueCardProps> = ({
       >
         {createdBy as string}
       </a>
+      <TimeDistance {...TimeOption} date={createdAt as number} />
     </Card.Footer>
   </Card>
 );
