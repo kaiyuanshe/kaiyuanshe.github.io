@@ -1,8 +1,6 @@
 import {
   BiDataTable,
-  normalizeText,
   TableCellLink,
-  TableCellRelation,
   TableCellText,
   TableCellUser,
   TableCellValue,
@@ -36,17 +34,15 @@ export class ProposalModel extends BiDataTable<Proposal>() {
   }
 
   normalize({
-    fields: { title, issues, contentURL, createdBy, meetings, ...fields },
+    fields: { title, contentURL, createdBy, ...fields },
     ...meta
   }: TableRecord<Proposal>) {
     return {
       ...meta,
       ...fields,
       title: normalizeTextArray(title as TableCellText[])?.[0] || '',
-      issues: normalizeTextArray(issues as TableCellText[]),
       contentURL: (contentURL as TableCellLink)?.link || '',
       createdBy: (createdBy as TableCellUser)?.name || '',
-      meetings: (meetings as TableCellRelation[])?.map(normalizeText),
     };
   }
 }

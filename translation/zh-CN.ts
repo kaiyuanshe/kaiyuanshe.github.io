@@ -114,6 +114,8 @@ export default {
   activity: '活动',
   meeting: '会议',
   NGO: 'NGO',
+  issue: '意见',
+  proposal: '提案',
 
   // Organization page
   reset: '重置',
@@ -256,7 +258,8 @@ export default {
   // Issue pages
   issue_box: '意见箱',
   submit_issue: '提交新意见',
-
+  detail: '详情',
+  
   // Proposal pages
   proposal_library: '提案库',
   submit_proposal: '提交新提案',

@@ -120,6 +120,8 @@ export default {
   activity: 'activity',
   meeting: 'meeting',
   NGO: 'NGO',
+  issue: 'Issues',
+  proposal: 'Proposals',
 
   // Organization page
   reset: 'reset',
@@ -263,7 +265,8 @@ export default {
   // Issue pages
   issue_box: 'Issue Box',
   submit_issue: 'Submit New Issue',
-
+  detail: 'Detail',
+  
   // Proposal pages
   proposal_library: 'Proposal library',
   submit_proposal: 'Submit New Proposal',

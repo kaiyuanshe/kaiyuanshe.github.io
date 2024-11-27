@@ -114,7 +114,9 @@ export default {
   activity: '活動',
   meeting: '會議',
   NGO: 'NGO',
-
+  issue: '意見',
+  proposal: '提案',
+  
   // Organization page
   reset: '重置',
   total_x_organizations: ({ totalCount }: { totalCount: number }) =>
@@ -256,6 +258,7 @@ export default {
   // Issue pages
   issue_box: '意見箱',
   submit_issue: '提交新意見',
+  detail: '詳情',
 
   // Proposal pages
   proposal_library: '提案庫',
