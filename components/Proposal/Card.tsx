@@ -2,7 +2,7 @@ import { TimeDistance } from 'idea-react';
 import { textJoin } from 'mobx-i18n';
 import { TableCellRelation } from 'mobx-lark';
 import type { FC } from 'react';
-import { Card, Row } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 
 import { t } from '../../models/Base/Translation';
 import type { Proposal } from '../../models/Governance/Proposal';
@@ -58,7 +58,7 @@ export const ProposalCard: FC<ProposalCardProps> = ({
         <summary>{textJoin(t('related'), t('issue'))}</summary>
         <ol>
           {Array.isArray(issues) &&
-            (issues[0] as TableCellRelation).text_arr.map((text, index) => (
+            (issues[0] as TableCellRelation).text_arr.map(text => (
               <li key={text} className="mt-2">
                 {text}
               </li>
