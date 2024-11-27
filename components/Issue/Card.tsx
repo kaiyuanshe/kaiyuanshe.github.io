@@ -47,7 +47,10 @@ export const IssueCard: FC<IssueCardProps> = ({
           )}
         </Col>
       </Row>
-      {textJoin(t('related'), t('department'))}: {department as string}
+      {textJoin(t('related'), t('department'))}:
+      <a className="text-decoration-none" href={`/department/${department}`}>
+        {department as string}
+      </a>
       <details>
         <summary>{textJoin(t('related'), t('meeting'))}</summary>
         <ol>
