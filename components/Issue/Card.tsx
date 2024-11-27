@@ -75,7 +75,7 @@ export const IssueCard: FC<IssueCardProps> = ({
           {Array.isArray(proposals) &&
             (proposals[0] as TableCellRelation).text_arr.map((text, index) => (
               <li
-                key={`proposal-${(proposals[0] as TableCellRelation).record_ids[index]}`}
+                key={(proposals[0] as TableCellRelation).record_ids[index]}
                 className="mt-2"
               >
                 {text}
