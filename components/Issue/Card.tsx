@@ -35,20 +35,7 @@ export const IssueCard: FC<IssueCardProps> = ({
           {title as string}
         </a>
       </Card.Title>
-
-      <Row className="mt-2 flex-fill">
-        <Col className="text-decoration-none text-end text-truncate align-self-end">
-          <a
-            href={`/member/${createdBy}`}
-            className="text-decoration-none"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {createdBy as string}
-          </a>
-        </Col>
-      </Row>
-      <Row as="footer" className="flex-fill small mt-1">
+      <Row className="flex-fill small mt-1">
         <TagNav className="col-8" model="issue" list={type as string[]} />
 
         <Col className="text-end" xs={4}>
@@ -95,14 +82,20 @@ export const IssueCard: FC<IssueCardProps> = ({
       </details>
       <details>
         <summary>{t('detail')}</summary>
-        <ol>
-          {detail && (
-            <div
-              dangerouslySetInnerHTML={{ __html: marked(detail as string) }}
-            />
-          )}
-        </ol>
+        {detail && (
+          <div dangerouslySetInnerHTML={{ __html: marked(detail as string) }} />
+        )}
       </details>
     </Card.Body>
+    <Card.Footer className="d-flex flex-wrap justify-content-between align-items-center">
+      <a
+        href={`/member/${createdBy}`}
+        className="text-decoration-none text-truncate"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {createdBy as string}
+      </a>
+    </Card.Footer>
   </Card>
 );
