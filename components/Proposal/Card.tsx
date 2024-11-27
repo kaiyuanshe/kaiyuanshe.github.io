@@ -36,16 +36,6 @@ export const ProposalCard: FC<ProposalCardProps> = ({
           {title as string}
         </a>
       </Card.Title>
-      <Row>
-        <a
-          href={`/member/${createdBy}`}
-          className="text-decoration-none text-muted"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {createdBy as string}
-        </a>
-      </Row>
       <details>
         <summary>{textJoin(t('related'), t('meeting'))}</summary>
         <ol>
@@ -77,6 +67,14 @@ export const ProposalCard: FC<ProposalCardProps> = ({
       </details>
     </Card.Body>
     <Card.Footer className="d-flex flex-wrap justify-content-between align-items-center">
+      <a
+        href={`/member/${createdBy}`}
+        className="text-decoration-none text-muted"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {createdBy as string}
+      </a>
       <TimeDistance {...TimeOption} date={createdAt as number} />
     </Card.Footer>
   </Card>
