@@ -70,11 +70,8 @@ export const IssueCard: FC<IssueCardProps> = ({
         <summary>{textJoin(t('related'), t('proposal'))}</summary>
         <ol>
           {Array.isArray(proposals) &&
-            (proposals[0] as TableCellRelation).text_arr.map((text, index) => (
-              <li
-                key={(proposals[0] as TableCellRelation).record_ids[index]}
-                className="mt-2"
-              >
+            (proposals[0] as TableCellRelation).text_arr.map(text => (
+              <li key={text} className="mt-2">
                 {text}
               </li>
             ))}

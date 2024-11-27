@@ -51,7 +51,7 @@ export const ProposalCard: FC<ProposalCardProps> = ({
         <ol>
           {Array.isArray(meetings) &&
             (meetings[0] as TableCellRelation).text_arr.map((text, index) => (
-              <li key={index} className="mt-2">
+              <li key={text} className="mt-2">
                 <a
                   href={`/governance/meeting/${(meetings[0] as TableCellRelation).record_ids[index]}`}
                   className="text-decoration-none"
@@ -69,15 +69,8 @@ export const ProposalCard: FC<ProposalCardProps> = ({
         <ol>
           {Array.isArray(issues) &&
             (issues[0] as TableCellRelation).text_arr.map((text, index) => (
-              <li key={index} className="mt-2">
-                <a
-                  href={`/governance/issue/${(issues[0] as TableCellRelation).record_ids[index]}`}
-                  className="text-decoration-none"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {text}
-                </a>
+              <li key={text} className="mt-2">
+                {text}
               </li>
             ))}
         </ol>
