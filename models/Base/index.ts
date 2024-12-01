@@ -1,6 +1,9 @@
 import { HTTPClient } from 'koajax';
 import { TableCellValue } from 'mobx-lark';
 
+// @ts-expect-error Node.js polyfill for KoAJAX 3.1+
+globalThis.ProgressEvent ||= Event;
+
 export const isServer = () => typeof window === 'undefined';
 
 const VercelHost = process.env.VERCEL_URL,
