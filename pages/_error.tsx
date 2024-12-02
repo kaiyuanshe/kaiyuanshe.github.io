@@ -18,7 +18,7 @@ const enableSentry =
   process.env.NODE_ENV === 'development' || !process.env.SENTRY_AUTH_TOKEN;
 
 CustomErrorComponent.getInitialProps = async contextData => {
-  const { 'accept-language': acceptLanguage, cookie } =
+  const { 'accept-language': acceptLanguage, cookie = '' } =
     contextData.req!.headers;
   const { language } = parseCookie(cookie),
     languages = parseLanguageHeader(acceptLanguage || '');

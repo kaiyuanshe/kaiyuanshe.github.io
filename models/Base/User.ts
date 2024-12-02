@@ -1,3 +1,5 @@
+import 'core-js/full/array/from-async';
+
 import {
   Captcha,
   SignInData,

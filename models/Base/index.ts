@@ -1,10 +1,11 @@
+import 'core-js/full/array/from-async';
+
 import { HTTPClient } from 'koajax';
 import { TableCellValue } from 'mobx-lark';
 
 export const isServer = () => typeof window === 'undefined';
 
-const VercelHost = process.env.VERCEL_URL,
-  GithubToken = process.env.GITHUB_TOKEN;
+const VercelHost = process.env.VERCEL_URL;
 
 export const API_Host = isServer()
   ? VercelHost
@@ -38,15 +39,3 @@ export const blobURLOf = (value: TableCellValue) =>
       ? `${fileBaseURI}/${value[0].name}`
       : ''
     : value + '';
-
-export const githubClient = new HTTPClient({
-  baseURI: isServer() ? 'https://api.github.com/' : `${API_Host}/api/github/`,
-  responseType: 'json',
-}).use(({ request }, next) => {
-  if (GithubToken)
-    request.headers = {
-      ...request.headers,
-      Authorization: `Bearer ${GithubToken}`,
-    };
-  return next();
-});
