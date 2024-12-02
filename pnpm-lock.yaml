@@ -5,7 +5,6 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-  koajax: ^3.1.0-rc.0
   mobx-restful: ^2.0.0
   next: ^15.0.3
 
@@ -37,6 +36,9 @@ importers:
       copy-webpack-plugin:
         specifier: ^12.0.2
         version: 12.0.2(webpack@5.96.1)
+      core-js:
+        specifier: ^3.39.0
+        version: 3.39.0
       echarts-jsx:
         specifier: ^0.5.4
         version: 0.5.4(react@18.3.1)(typescript@5.7.2)
@@ -50,8 +52,8 @@ importers:
         specifier: ^2.0.0-rc.8
         version: 2.0.0-rc.8(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2)
       koajax:
-        specifier: ^3.1.0-rc.0
-        version: 3.1.0-rc.0(typescript@5.7.2)
+        specifier: ^3.1.0
+        version: 3.1.0(core-js@3.39.0)(typescript@5.7.2)
       leaflet:
         specifier: ^1.9.4
         version: 1.9.4
@@ -78,7 +80,7 @@ importers:
         version: 0.6.0(mobx@6.13.5)(typescript@5.7.2)
       mobx-lark:
         specifier: ^2.0.0
-        version: 2.0.0(mobx@6.13.5)(typescript@5.7.2)
+        version: 2.0.0(core-js@3.39.0)(mobx@6.13.5)(typescript@5.7.2)
       mobx-react:
         specifier: ^9.1.1
         version: 9.1.1(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -87,10 +89,10 @@ importers:
         version: 0.3.1(mobx@6.13.5)(react@18.3.1)
       mobx-restful:
         specifier: ^2.0.0
-        version: 2.0.0(mobx@6.13.5)(typescript@5.7.2)
+        version: 2.0.0(core-js@3.39.0)(mobx@6.13.5)(typescript@5.7.2)
       mobx-restful-table:
-        specifier: ^2.0.0
-        version: 2.0.0(@types/react@18.3.12)(mobx-i18n@0.6.0(mobx@6.13.5)(typescript@5.7.2))(mobx-react@9.1.1(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(mobx-restful@2.0.0(mobx@6.13.5)(typescript@5.7.2))(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2)
+        specifier: ^2.0.1
+        version: 2.0.1(@types/react@18.3.12)(mobx-i18n@0.6.0(mobx@6.13.5)(typescript@5.7.2))(mobx-react@9.1.1(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(mobx-restful@2.0.0(core-js@3.39.0)(mobx@6.13.5)(typescript@5.7.2))(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2)
       next:
         specifier: ^15.0.3
         version: 15.0.3(@babel/core@7.26.0)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -108,7 +110,7 @@ importers:
         version: 2.3.7(next@15.0.3(@babel/core@7.26.0)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       open-react-map:
         specifier: ^0.8.1
-        version: 0.8.1(mobx-react@9.1.1(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2)
+        version: 0.8.1(core-js@3.39.0)(mobx-react@9.1.1(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2)
       qrcode.react:
         specifier: ^4.1.0
         version: 4.1.0(react@18.3.1)
@@ -163,7 +165,7 @@ importers:
         version: 9.16.0
       '@kaiyuanshe/kys-service':
         specifier: ^1.0.0-rc.0
-        version: 1.0.0-rc.0(mobx@6.13.5)(typescript@5.7.2)
+        version: 1.0.0-rc.0(core-js@3.39.0)(mobx@6.13.5)(typescript@5.7.2)
       '@softonus/prettier-plugin-duplicate-remover':
         specifier: ^1.1.2
         version: 1.1.2
@@ -216,8 +218,8 @@ importers:
         specifier: ^0.1.2
         version: 0.1.2(@babel/plugin-transform-modules-commonjs@7.25.9(@babel/core@7.26.0))(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/node@20.17.9)
       globals:
-        specifier: ^15.12.0
-        version: 15.12.0
+        specifier: ^15.13.0
+        version: 15.13.0
       husky:
         specifier: ^9.1.7
         version: 9.1.7
@@ -2935,8 +2937,8 @@ packages:
     resolution: {integrity: sha512-oahGvuMGQlPw/ivIYBjVSrWAfWLBeku5tpPE2fOPLi+WHffIWbuh2tCjhyQhTBPMf5E9jDEH4FOmTYgYwbKwtQ==}
     engines: {node: '>=18'}
 
-  globals@15.12.0:
-    resolution: {integrity: sha512-1+gLErljJFhbOVyaetcwJiJ4+eLe45S2E7P5UiZ9xGfeq3ATQf5DOv9G7MH3gGbKQLkzmNh2DxfZwLdw+j6oTQ==}
+  globals@15.13.0:
+    resolution: {integrity: sha512-49TewVEz0UxZjr1WYYsWpPrhyC/B/pA8Bq0fUmet2n+eR7yn0IvNzNaoBwnK6mdkzcN+se7Ez9zUgULTz2QH4g==}
     engines: {node: '>=18'}
 
   globalthis@1.0.4:
@@ -3383,9 +3385,10 @@ packages:
     resolution: {integrity: sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==}
     engines: {node: '>=0.10.0'}
 
-  koajax@3.1.0-rc.0:
-    resolution: {integrity: sha512-LkKFnhc5EPUEq1teiva5tKLKt+D0kVbrTrDoYwo5q1mdCBGfdvQYyBGfA+6MaiaAqikjQ6ZHYAXBNxdlwYdozQ==}
+  koajax@3.1.0:
+    resolution: {integrity: sha512-qPyV5W0GAHrY3zGdlhmMD1NqV7QbQu0FGppbF6RhxzQyEURIMhdNVyKLHPrJgBDQSUoCJUrvKiVK1o6t5AqzgA==}
     peerDependencies:
+      core-js: '>=3'
       jsdom: '>=21'
 
   language-subtag-registry@0.3.23:
@@ -3820,11 +3823,11 @@ packages:
       react-native:
         optional: true
 
-  mobx-restful-table@2.0.0:
-    resolution: {integrity: sha512-sujniYlCfyYR4BPhQ6lmUwWz/pDrtskjHd9aGdmdP/hdT3L+32e9RhKwGwbCENxYkrLytBarQWOxommWlB/WSw==}
+  mobx-restful-table@2.0.1:
+    resolution: {integrity: sha512-rVaITOht2eir683MBURiPeqdgoWFb0NR/Elx/wwlYwEqkZR83+2O/gbWbeKQy+M89OP8GrJvqkuW+OpCMDLipw==}
     peerDependencies:
       mobx: '>=6.11'
-      mobx-i18n: ^0.5
+      mobx-i18n: '>=0.5 <1'
       mobx-react: '>=9.1'
       mobx-restful: ^2.0.0
       react: '>=16.8'
@@ -6051,12 +6054,13 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  '@kaiyuanshe/kys-service@1.0.0-rc.0(mobx@6.13.5)(typescript@5.7.2)':
+  '@kaiyuanshe/kys-service@1.0.0-rc.0(core-js@3.39.0)(mobx@6.13.5)(typescript@5.7.2)':
     dependencies:
       '@types/jsonwebtoken': 9.0.7
       '@types/koa': 2.15.0
-      mobx-restful: 2.0.0(mobx@6.13.5)(typescript@5.7.2)
+      mobx-restful: 2.0.0(core-js@3.39.0)(mobx@6.13.5)(typescript@5.7.2)
     transitivePeerDependencies:
+      - core-js
       - jsdom
       - mobx
       - typescript
@@ -8463,7 +8467,7 @@ snapshots:
 
   globals@14.0.0: {}
 
-  globals@15.12.0: {}
+  globals@15.13.0: {}
 
   globalthis@1.0.4:
     dependencies:
@@ -8978,7 +8982,7 @@ snapshots:
 
   kind-of@6.0.3: {}
 
-  koajax@3.1.0-rc.0(typescript@5.7.2):
+  koajax@3.1.0(core-js@3.39.0)(typescript@5.7.2):
     dependencies:
       '@swc/helpers': 0.5.15
       core-js: 3.39.0
@@ -9661,15 +9665,16 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  mobx-lark@2.0.0(mobx@6.13.5)(typescript@5.7.2):
+  mobx-lark@2.0.0(core-js@3.39.0)(mobx@6.13.5)(typescript@5.7.2):
     dependencies:
       '@swc/helpers': 0.5.15
-      koajax: 3.1.0-rc.0(typescript@5.7.2)
+      koajax: 3.1.0(core-js@3.39.0)(typescript@5.7.2)
       mobx: 6.13.5
-      mobx-restful: 2.0.0(mobx@6.13.5)(typescript@5.7.2)
+      mobx-restful: 2.0.0(core-js@3.39.0)(mobx@6.13.5)(typescript@5.7.2)
       regenerator-runtime: 0.14.1
       web-utility: 4.4.2(typescript@5.7.2)
     transitivePeerDependencies:
+      - core-js
       - jsdom
       - typescript
 
@@ -9696,7 +9701,7 @@ snapshots:
     optionalDependencies:
       react-dom: 18.3.1(react@18.3.1)
 
-  mobx-restful-table@2.0.0(@types/react@18.3.12)(mobx-i18n@0.6.0(mobx@6.13.5)(typescript@5.7.2))(mobx-react@9.1.1(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(mobx-restful@2.0.0(mobx@6.13.5)(typescript@5.7.2))(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2):
+  mobx-restful-table@2.0.1(@types/react@18.3.12)(mobx-i18n@0.6.0(mobx@6.13.5)(typescript@5.7.2))(mobx-react@9.1.1(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(mobx-restful@2.0.0(core-js@3.39.0)(mobx@6.13.5)(typescript@5.7.2))(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2):
     dependencies:
       '@swc/helpers': 0.5.15
       classnames: 2.5.1
@@ -9705,7 +9710,7 @@ snapshots:
       mobx-i18n: 0.6.0(mobx@6.13.5)(typescript@5.7.2)
       mobx-react: 9.1.1(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       mobx-react-helper: 0.3.1(mobx@6.13.5)(react@18.3.1)
-      mobx-restful: 2.0.0(mobx@6.13.5)(typescript@5.7.2)
+      mobx-restful: 2.0.0(core-js@3.39.0)(mobx@6.13.5)(typescript@5.7.2)
       react: 18.3.1
       react-bootstrap: 2.10.6(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       regenerator-runtime: 0.14.1
@@ -9715,15 +9720,16 @@ snapshots:
       - react-dom
       - typescript
 
-  mobx-restful@2.0.0(mobx@6.13.5)(typescript@5.7.2):
+  mobx-restful@2.0.0(core-js@3.39.0)(mobx@6.13.5)(typescript@5.7.2):
     dependencies:
       '@swc/helpers': 0.5.15
       idb-keyval: 6.2.1
-      koajax: 3.1.0-rc.0(typescript@5.7.2)
+      koajax: 3.1.0(core-js@3.39.0)(typescript@5.7.2)
       mobx: 6.13.5
       regenerator-runtime: 0.14.1
       web-utility: 4.4.2(typescript@5.7.2)
     transitivePeerDependencies:
+      - core-js
       - jsdom
       - typescript
 
@@ -9883,11 +9889,11 @@ snapshots:
     dependencies:
       mimic-function: 5.0.1
 
-  open-react-map@0.8.1(mobx-react@9.1.1(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2):
+  open-react-map@0.8.1(core-js@3.39.0)(mobx-react@9.1.1(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.7.2):
     dependencies:
       '@swc/helpers': 0.5.15
       '@types/leaflet': 1.9.14
-      koajax: 3.1.0-rc.0(typescript@5.7.2)
+      koajax: 3.1.0(core-js@3.39.0)(typescript@5.7.2)
       leaflet: 1.9.4
       mobx: 6.13.5
       mobx-react: 9.1.1(mobx@6.13.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -9897,6 +9903,7 @@ snapshots:
       react-leaflet: 4.2.1(leaflet@1.9.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       web-utility: 4.4.2(typescript@5.7.2)
     transitivePeerDependencies:
+      - core-js
       - jsdom
       - typescript
 

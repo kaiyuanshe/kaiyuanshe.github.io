@@ -1,28 +1,35 @@
 import { observer } from 'mobx-react';
-import dynamic from 'next/dynamic';
 import { compose, translator } from 'next-ssr-middleware';
 import { FC } from 'react';
 import { Container } from 'react-bootstrap';
 
 import { PageHead } from '../../components/Layout/PageHead';
+import {
+  OpenCollaborationLandscape,
+  OpenCollaborationLandscapeProps,
+} from '../../components/Organization/LandScape';
 import { i18n, t } from '../../models/Base/Translation';
 import { OrganizationModel } from '../../models/Community/Organization';
+import { solidCache } from '../api/base';
 
-const OrganizationLandscape = dynamic(
-  () => import('../../components/Organization/LandScape'),
-  { ssr: false },
+export const getServerSideProps = compose<{}, OpenCollaborationLandscapeProps>(
+  solidCache,
+  translator(i18n),
+  async () => {
+    const tagMap = await new OrganizationModel().groupAllByTags();
+
+    return { props: JSON.parse(JSON.stringify({ tagMap })) };
+  },
 );
 
-export const getServerSideProps = compose(translator(i18n));
-
-const LandscapePage: FC = observer(() => (
+const LandscapePage: FC<OpenCollaborationLandscapeProps> = observer(props => (
   <Container className="mb-5">
     <PageHead title={t('China_open_source_community_landscape')} />
 
-    <h1 className="mt-5 text-center">
+    <h1 className="my-5 text-center">
       {t('China_open_source_community_landscape')}
     </h1>
-    <OrganizationLandscape store={new OrganizationModel()} />
+    <OpenCollaborationLandscape {...props} />
   </Container>
 ));
 

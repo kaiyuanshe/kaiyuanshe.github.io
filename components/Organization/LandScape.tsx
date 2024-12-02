@@ -1,23 +1,25 @@
-import { Dialog, Loading } from 'idea-react';
+import { Dialog } from 'idea-react';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { Component } from 'react';
 import { Modal } from 'react-bootstrap';
 import { splitArray } from 'web-utility';
 
-import { Organization } from '../../models/Community/Organization';
+import systemStore from '../../models/Base/System';
+import {
+  Organization,
+  OrganizationModel,
+} from '../../models/Community/Organization';
 import { LarkImage } from '../Base/LarkImage';
 import { OrganizationCard } from './Card';
-import { OpenCollaborationMapProps } from './index';
+import styles from './LandScape.module.less';
+
+export type OpenCollaborationLandscapeProps = Pick<OrganizationModel, 'tagMap'>;
 
 @observer
-export default class OpenCollaborationLandscape extends Component<OpenCollaborationMapProps> {
+export class OpenCollaborationLandscape extends Component<OpenCollaborationLandscapeProps> {
   @observable
   accessor itemSize = 5;
-
-  componentDidMount() {
-    this.props.store.groupAllByTags();
-  }
 
   modal = new Dialog<{ name?: string }>(({ defer, name }) => (
     <Modal show={!!defer} onHide={() => defer?.resolve()}>
@@ -29,9 +31,10 @@ export default class OpenCollaborationLandscape extends Component<OpenCollaborat
   ));
 
   renderCard(name: string) {
-    const organization = this.props.store.allItems.find(
-      ({ name: n }) => n === name,
-    );
+    const organization = Object.values(this.props.tagMap)
+      .flat()
+      .find(({ name: n }) => n === name);
+
     if (!organization) return <></>;
 
     const { id, ...data } = organization;
@@ -42,7 +45,7 @@ export default class OpenCollaborationLandscape extends Component<OpenCollaborat
   renderLogo = ({ name, logos }: Organization) => (
     <li
       key={name as string}
-      className="border"
+      className={`border ${styles.listItem}`}
       onClick={() => this.modal.open({ name: name as string })}
     >
       <LarkImage
@@ -54,21 +57,18 @@ export default class OpenCollaborationLandscape extends Component<OpenCollaborat
   );
 
   render() {
-    const { downloading, tagMap } = this.props.store;
-    const rows = splitArray(Object.entries(tagMap), 2);
+    const { screenNarrow } = systemStore;
+    const rows = splitArray(Object.entries(this.props.tagMap), 2);
 
     return (
       <>
-        {downloading > 0 && <Loading />}
-
         {rows.map(row => (
-          <ul className="list-unstyled d-flex gap-2">
+          <ul
+            className={`list-unstyled d-flex flex-${screenNarrow ? 'column' : 'row'} gap-2`}
+          >
             {row.map(([name, list]) => (
               <li key={name} className="flex-fill">
-                <h2
-                  className="h5 p-2 text-white"
-                  style={{ backgroundColor: 'rgb(52,112,159)' }}
-                >
+                <h2 className={`h5 p-2 text-white ${styles.groupTitle}`}>
                   {name}
                 </h2>
 
