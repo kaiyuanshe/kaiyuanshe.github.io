@@ -48,7 +48,7 @@ interface AgendaFilter extends Filter<Agenda> {
 }
 
 export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
-  restored = !isServer() && restore(this, 'Agenda');
+  restored = !isServer() && restore(this, `Agenda-${this.appId}`);
 
   constructor(
     public appId: string,
