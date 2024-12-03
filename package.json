@@ -99,8 +99,7 @@
     ]
   },
   "lint-staged": {
-    "*.{html,md,less,json,yml,js,mjs,ts,tsx}": "prettier --write",
-    "*.{js,mjs,ts,tsx}": "eslint --fix"
+    "*.{html,md,less,json,yml,js,mjs,ts,tsx}": "prettier --write"
   },
   "scripts": {
     "prepare": "husky",
@@ -108,7 +107,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "next lint --fix  &&  git add .",
     "test": "lint-staged  &&  npm run lint  &&  tsc --noEmit",
     "pack-image": "docker build -t kys-ows:latest .",
     "container": "docker rm -f kys-ows  &&  docker run --name kys-ows -p 3000:3000 -d kys-ows:latest"

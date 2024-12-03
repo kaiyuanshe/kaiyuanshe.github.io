@@ -15,11 +15,11 @@ import {
   TableCellValue,
   TableRecord,
 } from 'mobx-lark';
-import { Filter, toggle } from 'mobx-restful';
-import { buildURLData, cache, countBy, Hour } from 'web-utility';
+import { Filter, NewData, persist, restore, toggle } from 'mobx-restful';
+import { buildURLData, cache, countBy, Hour, isEmpty } from 'web-utility';
 
 import { LarkFormData, TableFormViewItem } from '../../pages/api/lark/core';
-import { larkClient } from '../Base';
+import { isServer, larkClient } from '../Base';
 import { COMMUNITY_BASE_ID } from '../Community';
 import { AgendaModel } from './Agenda';
 import { BillModel } from './Bill';
@@ -60,9 +60,36 @@ export class ActivityTableModel extends BiTable() {
   ) {
     super(id);
   }
+  restored = !isServer() && restore(this, `Activity-table-${this.id}`);
 
   client = larkClient;
 
+  @persist()
+  @observable
+  // @ts-expect-error https://github.com/microsoft/TypeScript/issues/60672
+  accessor pageIndex = 0;
+
+  @persist()
+  @observable
+  // @ts-expect-error https://github.com/microsoft/TypeScript/issues/60672
+  accessor pageSize = 10;
+
+  @persist()
+  @observable
+  // @ts-expect-error https://github.com/microsoft/TypeScript/issues/60672
+  accessor filter = {} as NewData<BITable>;
+
+  @persist()
+  @observable
+  // @ts-expect-error https://github.com/microsoft/TypeScript/issues/60672
+  accessor totalCount: number | undefined;
+
+  @persist()
+  @observable
+  // @ts-expect-error https://github.com/microsoft/TypeScript/issues/60672
+  accessor pageList: BITable[][] = [];
+
+  @persist()
   @observable
   accessor formMap = {} as Record<string, TableFormViewItem[]>;
 
@@ -86,16 +113,14 @@ export class ActivityTableModel extends BiTable() {
   @toggle('downloading')
   // @ts-ignore
   async getAll(filter?: Filter<BITable>, pageSize?: number) {
+    await this.restored;
     // @ts-ignore
     const tables = await super.getAll(filter, pageSize);
 
-    if (this.loadForm) {
-      const formList: (readonly [string, TableFormViewItem[]])[] = [];
-
-      for await (const item of this.loadFormStream()) formList.push(item);
-
-      this.formMap = Object.fromEntries(formList);
-    }
+    if (this.loadForm && isEmpty(this.formMap))
+      this.formMap = Object.fromEntries(
+        await Array.fromAsync(this.loadFormStream()),
+      );
     return tables;
   }
 }
