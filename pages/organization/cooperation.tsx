@@ -12,6 +12,7 @@ import {
   Cooperation,
   CooperationModel,
 } from '../../models/Community/Cooperation';
+import { solidCache } from '../api/base';
 
 const Levels = [
   '主办单位',
@@ -46,15 +47,16 @@ const singleLineBenefitsLevels: TableCellValue[] = ['白金赞助'];
 type CooperationPageProps = { yearGroup: CooperationModel['yearGroup'] };
 
 export const getServerSideProps = compose<{}, CooperationPageProps>(
+  solidCache,
   translator(i18n),
   async () => {
     const cooperationStore = new CooperationModel();
 
     await cooperationStore.getGroup();
 
-    const yearGroup = JSON.parse(JSON.stringify(cooperationStore.yearGroup));
+    const { yearGroup } = cooperationStore;
 
-    return { props: { yearGroup } };
+    return { props: JSON.parse(JSON.stringify({ yearGroup })) };
   },
 );
 
@@ -67,7 +69,7 @@ export default class CooperationPage extends Component<CooperationPageProps> {
 
         <Row
           as="ul"
-          className="list-unstyled align-items-center justify-content-center"
+          className="list-unstyled align-items-center justify-content-center gap-3"
         >
           {list.map(({ organization, person, link, logos, avatar, level }) => {
             const name = (organization || person || '') + '',
@@ -83,11 +85,7 @@ export default class CooperationPage extends Component<CooperationPageProps> {
                 sm={isSingleLineBenefitsLevels ? 12 : 6}
                 md={isSingleLineBenefitsLevels ? 12 : 3}
               >
-                <a
-                  target="_blank"
-                  href={link ? link + '' : ''}
-                  rel="noreferrer"
-                >
+                <a target="_blank" href={link?.toString()} rel="noreferrer">
                   <LarkImage title={name} alt={name} src={logos || avatar} />
                 </a>
               </Col>

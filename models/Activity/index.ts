@@ -15,8 +15,8 @@ import {
   TableCellValue,
   TableRecord,
 } from 'mobx-lark';
-import { Filter, toggle } from 'mobx-restful';
-import { buildURLData, cache, countBy, Hour } from 'web-utility';
+import { Filter, persist, persistList, toggle } from 'mobx-restful';
+import { buildURLData, cache, countBy, Day, Hour, isEmpty } from 'web-utility';
 
 import { LarkFormData, TableFormViewItem } from '../../pages/api/lark/core';
 import { larkClient } from '../Base';
@@ -53,6 +53,10 @@ export class ActivityViewModel extends BiTableView() {
   client = larkClient;
 }
 
+@persistList({
+  storeKey: ({ id }) => `Activity-table-${id}`,
+  expireIn: Day,
+})
 export class ActivityTableModel extends BiTable() {
   constructor(
     id = '',
@@ -62,7 +66,9 @@ export class ActivityTableModel extends BiTable() {
   }
 
   client = larkClient;
+  declare restored: Promise<any>;
 
+  @persist({ expireIn: Day })
   @observable
   accessor formMap = {} as Record<string, TableFormViewItem[]>;
 
@@ -86,16 +92,14 @@ export class ActivityTableModel extends BiTable() {
   @toggle('downloading')
   // @ts-ignore
   async getAll(filter?: Filter<BITable>, pageSize?: number) {
+    await this.restored;
     // @ts-ignore
     const tables = await super.getAll(filter, pageSize);
 
-    if (this.loadForm) {
-      const formList: (readonly [string, TableFormViewItem[]])[] = [];
-
-      for await (const item of this.loadFormStream()) formList.push(item);
-
-      this.formMap = Object.fromEntries(formList);
-    }
+    if (this.loadForm && isEmpty(this.formMap))
+      this.formMap = Object.fromEntries(
+        await Array.fromAsync(this.loadFormStream()),
+      );
     return tables;
   }
 }

@@ -11,11 +11,11 @@ import {
   TableCellValue,
   TableRecord,
 } from 'mobx-lark';
-import { Filter, persist, restore, toggle } from 'mobx-restful';
-import { groupBy } from 'web-utility';
+import { Filter, persist, persistList, toggle } from 'mobx-restful';
+import { Day, groupBy } from 'web-utility';
 
 import { normalizeTextArray } from '../../pages/api/lark/core';
-import { isServer, larkClient } from '../Base';
+import { larkClient } from '../Base';
 import userStore from '../Base/User';
 
 export type Agenda = Record<
@@ -47,8 +47,12 @@ interface AgendaFilter extends Filter<Agenda> {
   负责人手机号?: TableCellValue;
 }
 
+@persistList({
+  storeKey: ({ appId }) => `Agenda-${appId}`,
+  expireIn: Day,
+})
 export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
-  restored = !isServer() && restore(this, 'Agenda');
+  declare restored: Promise<any>;
 
   constructor(
     public appId: string,
@@ -104,7 +108,7 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
     return { keynoteSpeechCounts, mentorOrganizationCounts };
   }
 
-  @persist()
+  @persist({ expireIn: Day })
   @observable
   accessor authorization: Record<string, boolean> = {};
 
