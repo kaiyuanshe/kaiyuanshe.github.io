@@ -15,11 +15,11 @@ import {
   TableCellValue,
   TableRecord,
 } from 'mobx-lark';
-import { Filter, NewData, persist, restore, toggle } from 'mobx-restful';
-import { buildURLData, cache, countBy, Hour, isEmpty } from 'web-utility';
+import { Filter, persist, persistList, toggle } from 'mobx-restful';
+import { buildURLData, cache, countBy, Day, Hour, isEmpty } from 'web-utility';
 
 import { LarkFormData, TableFormViewItem } from '../../pages/api/lark/core';
-import { isServer, larkClient } from '../Base';
+import { larkClient } from '../Base';
 import { COMMUNITY_BASE_ID } from '../Community';
 import { AgendaModel } from './Agenda';
 import { BillModel } from './Bill';
@@ -53,6 +53,10 @@ export class ActivityViewModel extends BiTableView() {
   client = larkClient;
 }
 
+@persistList({
+  storeKey: ({ id }) => `Activity-table-${id}`,
+  expireIn: Day,
+})
 export class ActivityTableModel extends BiTable() {
   constructor(
     id = '',
@@ -60,36 +64,11 @@ export class ActivityTableModel extends BiTable() {
   ) {
     super(id);
   }
-  restored = !isServer() && restore(this, `Activity-table-${this.id}`);
 
   client = larkClient;
+  declare restored: Promise<any>;
 
-  @persist()
-  @observable
-  // @ts-expect-error https://github.com/microsoft/TypeScript/issues/60672
-  accessor pageIndex = 0;
-
-  @persist()
-  @observable
-  // @ts-expect-error https://github.com/microsoft/TypeScript/issues/60672
-  accessor pageSize = 10;
-
-  @persist()
-  @observable
-  // @ts-expect-error https://github.com/microsoft/TypeScript/issues/60672
-  accessor filter = {} as NewData<BITable>;
-
-  @persist()
-  @observable
-  // @ts-expect-error https://github.com/microsoft/TypeScript/issues/60672
-  accessor totalCount: number | undefined;
-
-  @persist()
-  @observable
-  // @ts-expect-error https://github.com/microsoft/TypeScript/issues/60672
-  accessor pageList: BITable[][] = [];
-
-  @persist()
+  @persist({ expireIn: Day })
   @observable
   accessor formMap = {} as Record<string, TableFormViewItem[]>;
 

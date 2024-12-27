@@ -35,7 +35,7 @@ export class CooperationModel extends BiDataTable<Cooperation>() {
     super(appId, tableId);
   }
 
-  requiredKeys = ['organization', 'year', 'level', 'logos'] as const;
+  requiredKeys = ['year', 'level'] as const;
 
   queryOptions: BiDataQueryOptions = { text_field_as_array: false };
 
