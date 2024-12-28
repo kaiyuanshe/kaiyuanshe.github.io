@@ -40,10 +40,11 @@ import { Activity, ActivityModel } from '../../../../../models/Activity';
 import { Agenda } from '../../../../../models/Activity/Agenda';
 import { CheckEventModel } from '../../../../../models/Activity/CheckEvent';
 import { Forum } from '../../../../../models/Activity/Forum';
-import { API_Host, blobURLOf } from '../../../../../models/Base';
+import { API_Host } from '../../../../../models/Base';
 import systemStore from '../../../../../models/Base/System';
 import { i18n, t } from '../../../../../models/Base/Translation';
 import userStore from '../../../../../models/Base/User';
+import { fileURLOf } from '../../../../api/lark/file/[id]';
 
 const SessionBox = dynamic(
   () => import('../../../../../components/Layout/SessionBox'),
@@ -227,7 +228,7 @@ export default class AgendaDetailPage extends Component<AgendaDetailPageProps> {
               size={5}
               names={mentors as string[]}
               avatars={(mentorAvatars as TableCellValue[]).map(file =>
-                blobURLOf([file] as TableCellValue),
+                fileURLOf([file] as TableCellValue, true),
               )}
               positions={mentorPositions as string[]}
               organizations={mentorOrganizations as string[]}

@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 import { Component } from 'react';
 import { Badge, Carousel, Col, Container, Row } from 'react-bootstrap';
 
-import { blobURLOf } from '../../../models/Base';
+import { fileURLOf } from '../../../pages/api/lark/file/[id]';
 import { LarkImage } from '../../Base/LarkImage';
 import { ScoreBar } from '../../Base/ScoreBar';
 import { TimeRange } from '../../Base/TimeRange';
@@ -42,7 +42,7 @@ export class AgendaCard extends Component<AgendaToolbarProps> {
       <ActivityPeople
         size={5}
         avatars={(images as TableCellValue[])?.map(file =>
-          blobURLOf([file] as TableCellValue),
+          fileURLOf([file] as TableCellValue, true),
         )}
       />
     );

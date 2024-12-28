@@ -10,7 +10,7 @@ import { ActivityPeople } from '../../../../../components/Activity/People';
 import { PageHead } from '../../../../../components/Layout/PageHead';
 import { Activity, ActivityModel } from '../../../../../models/Activity';
 import { Agenda } from '../../../../../models/Activity/Agenda';
-import { API_Host, blobURLOf } from '../../../../../models/Base';
+import { API_Host } from '../../../../../models/Base';
 import { t } from '../../../../../models/Base/Translation';
 import { fileURLOf } from '../../../../api/lark/file/[id]';
 import styles from './invitation.module.less';
@@ -81,7 +81,7 @@ export default class InvitationPage extends Component<InvitationPageProps> {
               <ActivityPeople
                 names={mentors as string[]}
                 avatars={(mentorAvatars as TableCellValue[]).map(file =>
-                  blobURLOf([file] as TableCellValue),
+                  fileURLOf([file] as TableCellValue, true),
                 )}
                 positions={mentorPositions as string[]}
                 organizations={mentorOrganizations as string[]}

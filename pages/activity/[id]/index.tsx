@@ -11,7 +11,6 @@ import {
   Dropdown,
   DropdownButton,
   DropdownButtonProps,
-  Image,
   Row,
   Stack,
 } from 'react-bootstrap';
@@ -28,11 +27,11 @@ import { Activity, ActivityModel } from '../../../models/Activity';
 import { AgendaModel } from '../../../models/Activity/Agenda';
 import { Forum } from '../../../models/Activity/Forum';
 import { Place } from '../../../models/Activity/Place';
-import { blobURLOf } from '../../../models/Base';
 import systemStore from '../../../models/Base/System';
 import { i18n, t } from '../../../models/Base/Translation';
 import { solidCache } from '../../api/base';
 import { coordinateOf, TableFormViewItem } from '../../api/lark/core';
+import { fileURLOf } from '../../api/lark/file/[id]';
 import styles from './index.module.less';
 
 const ListMap = dynamic(() => import('../../../components/Map/ListMap'), {
@@ -173,7 +172,7 @@ export default class ActivityDetailPage extends Component<ActivityDetailPageProp
           location && {
             title: name,
             summary: forum?.toString(),
-            image: photos && blobURLOf(photos),
+            image: photos && fileURLOf(photos, true),
             position: coordinateOf(location),
           },
       )
@@ -256,7 +255,7 @@ export default class ActivityDetailPage extends Component<ActivityDetailPageProp
         <ActivityPeople
           names={names as string[]}
           avatars={(avatars as TableCellValue[])?.map(file =>
-            blobURLOf([file] as TableCellValue),
+            fileURLOf([file] as TableCellValue, true),
           )}
           positions={positions as string[]}
           organizations={organizations as string[]}
@@ -345,11 +344,7 @@ export default class ActivityDetailPage extends Component<ActivityDetailPageProp
           className={`d-flex flex-column align-items-center justify-content-around ${styles.header}`}
         >
           <VerticalMarquee>
-            <Image
-              className="mw-100"
-              loading="lazy"
-              src={blobURLOf(activity.image)}
-            />
+            <LarkImage className="mw-100" src={activity.image} />
           </VerticalMarquee>
           <h1 className="visually-hidden" id="top">
             {activity.name as string}

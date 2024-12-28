@@ -1,33 +1,48 @@
 import { fileTypeFromBuffer } from 'file-type';
-import { TableCellValue } from 'mobx-lark';
+import MIME from 'mime';
+import { TableCellMedia, TableCellValue } from 'mobx-lark';
+import { parse } from 'path';
 
 import { safeAPI } from '../../base';
 import { lark } from '../core';
 
-export const DefaultImage = '/image/KaiYuanShe.png';
+export const DefaultImage = process.env.NEXT_PUBLIC_LOGO!;
 
-export const fileURLOf = (field: TableCellValue) =>
-  field instanceof Array
-    ? typeof field[0] === 'object'
-      ? 'file_token' in field[0]
-        ? `/api/lark/file/${field[0].file_token}`
-        : 'attachmentToken' in field[0]
-          ? `/api/lark/file/${field[0].attachmentToken}`
-          : field + ''
-      : field + ''
-    : field + '';
+export function fileURLOf(field: TableCellValue, cache = false) {
+  if (!(field instanceof Array) || !field[0]) return field + '';
 
-export default safeAPI(async (req, res) => {
-  switch (req.method) {
+  const { file_token, type } = field[0] as TableCellMedia;
+
+  let URI = `/api/Lark/file/${file_token}`;
+
+  if (cache) URI += '.' + MIME.getExtension(type);
+
+  return URI;
+}
+
+export const CACHE_HOST = process.env.NEXT_PUBLIC_CACHE_HOST!;
+
+export default safeAPI(async ({ method, url, query, headers }, res) => {
+  const { ext } = parse(url!);
+
+  if (ext)
+    return void res.redirect(
+      new URL(new URL(url!, `http://${headers.host}`).pathname, CACHE_HOST) +
+        '',
+    );
+  switch (method) {
+    case 'HEAD':
     case 'GET': {
-      const { id } = req.query;
+      const { id } = query;
 
       const file = await lark.downloadFile(id as string);
 
       const { mime } = (await fileTypeFromBuffer(file)) || {};
 
-      res.setHeader('Content-Type', mime || 'application/octet-stream');
-      res.send(Buffer.from(file));
+      res.setHeader('Content-Type', mime as string);
+
+      return void (method === 'GET' ? res.send(Buffer.from(file)) : res.end());
     }
   }
+  res.status(405).end();
 });
