@@ -1,5 +1,5 @@
 import { ShareBox, text2color } from 'idea-react';
-import { TableCellLocation, TableCellValue } from 'mobx-lark';
+import { TableCellLocation } from 'mobx-lark';
 import { observer } from 'mobx-react';
 import { cache, compose, errorLogger, router } from 'next-ssr-middleware';
 import { QRCodeSVG } from 'qrcode.react';
@@ -80,9 +80,7 @@ export default class InvitationPage extends Component<InvitationPageProps> {
             <li>
               <ActivityPeople
                 names={mentors as string[]}
-                avatars={(mentorAvatars as TableCellValue[]).map(file =>
-                  fileURLOf([file] as TableCellValue, true),
-                )}
+                avatars={mentorAvatars}
                 positions={mentorPositions as string[]}
                 organizations={mentorOrganizations as string[]}
               />

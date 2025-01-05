@@ -1,3 +1,4 @@
+import { TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
 import { FC } from 'react';
 
@@ -5,11 +6,12 @@ import { t } from '../../models/Base/Translation';
 import { LarkImage } from '../Base/LarkImage';
 import styles from './Card.module.less';
 
-export type MemberCard = Partial<
-  Record<'name' | 'nickname' | 'avatar', string>
->;
+export interface MemberCardProps
+  extends Partial<Record<'name' | 'nickname', string>> {
+  avatar?: TableCellValue;
+}
 
-export const MemberCard: FC<MemberCard> = observer(
+export const MemberCard: FC<MemberCardProps> = observer(
   ({ name, nickname, avatar }) => (
     <div
       className={`d-inline-block position-relative w-auto text-center ${styles.member}`}
@@ -17,7 +19,7 @@ export const MemberCard: FC<MemberCard> = observer(
     >
       <LarkImage
         className={`d-inlink-block overflow-hidden rounded-circle position-relative ${styles.avatar}`}
-        src={avatar!}
+        src={avatar}
       />
       <h3 className="h4 my-3">
         <a

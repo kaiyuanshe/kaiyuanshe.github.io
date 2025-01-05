@@ -6,7 +6,6 @@ import { TimeData } from 'web-utility';
 
 import { t } from '../../models/Base/Translation';
 import { Personnel } from '../../models/Personnel';
-import { fileURLOf } from '../../pages/api/lark/file/[id]';
 import { MemberCard } from './Card';
 import { MemberTitle } from './Title';
 
@@ -38,7 +37,7 @@ export const MemberGroup: FC<MemberGroupProps> = observer(({ name, list }) => {
                   ? `(${new Date(createdAt as TimeData).getFullYear()})`
                   : ''
               }`}
-              avatar={fileURLOf(recipientAvatar, true)}
+              avatar={recipientAvatar}
             />
           </li>
         ))}

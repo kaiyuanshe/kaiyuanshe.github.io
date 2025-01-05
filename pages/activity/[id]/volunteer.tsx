@@ -9,7 +9,6 @@ import { MemberTitle } from '../../../components/Member/Title';
 import { Activity, ActivityModel } from '../../../models/Activity';
 import { Staff, StaffModel } from '../../../models/Activity/Staff';
 import { i18n, t } from '../../../models/Base/Translation';
-import { fileURLOf } from '../../api/lark/file/[id]';
 
 interface VolunteerPageProps {
   activity: Activity;
@@ -42,11 +41,7 @@ export default class VolunteerPage extends Component<VolunteerPageProps> {
       key={id as string}
       className="d-flex flex-column align-items-center gap-2 position-relative"
     >
-      <MemberCard
-        name={name + ''}
-        nickname=""
-        avatar={fileURLOf(avatar, true)}
-      />
+      <MemberCard name={name + ''} nickname="" avatar={avatar} />
     </li>
   );
 

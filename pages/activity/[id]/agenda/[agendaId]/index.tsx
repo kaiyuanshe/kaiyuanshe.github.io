@@ -1,7 +1,6 @@
 import { text2color } from 'idea-react';
 import { marked } from 'marked';
 import { reaction } from 'mobx';
-import { TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
 import dynamic from 'next/dynamic';
 import {
@@ -44,7 +43,6 @@ import { API_Host } from '../../../../../models/Base';
 import systemStore from '../../../../../models/Base/System';
 import { i18n, t } from '../../../../../models/Base/Translation';
 import userStore from '../../../../../models/Base/User';
-import { fileURLOf } from '../../../../api/lark/file/[id]';
 
 const SessionBox = dynamic(
   () => import('../../../../../components/Layout/SessionBox'),
@@ -227,9 +225,7 @@ export default class AgendaDetailPage extends Component<AgendaDetailPageProps> {
             <ActivityPeople
               size={5}
               names={mentors as string[]}
-              avatars={(mentorAvatars as TableCellValue[]).map(file =>
-                fileURLOf([file] as TableCellValue, true),
-              )}
+              avatars={mentorAvatars}
               positions={mentorPositions as string[]}
               organizations={mentorOrganizations as string[]}
               summaries={mentorSummaries as string[]}

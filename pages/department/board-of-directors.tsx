@@ -7,7 +7,6 @@ import { PageHead } from '../../components/Layout/PageHead';
 import { MemberCard } from '../../components/Member/Card';
 import { i18n, t } from '../../models/Base/Translation';
 import { PersonnelModel } from '../../models/Personnel';
-import { fileURLOf } from '../api/lark/file/[id]';
 
 type CouncilPageProps = Pick<PersonnelModel, 'group'>;
 
@@ -52,7 +51,7 @@ const CouncilPage: FC<CouncilPageProps> = observer(({ group }) => (
                 <MemberCard
                   name={recipient + ''}
                   nickname={position + ''}
-                  avatar={fileURLOf(recipientAvatar, true)}
+                  avatar={recipientAvatar}
                 />
               </li>
             ))}

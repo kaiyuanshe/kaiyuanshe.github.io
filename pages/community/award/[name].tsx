@@ -15,7 +15,6 @@ import { PageHead } from '../../../components/Layout/PageHead';
 import { MemberCard } from '../../../components/Member/Card';
 import { i18n, t } from '../../../models/Base/Translation';
 import { PersonnelModel } from '../../../models/Personnel';
-import { fileURLOf } from '../../api/lark/file/[id]';
 
 type HonorPageProps = RouteProps<{ name: string }> &
   Pick<PersonnelModel, 'group'>;
@@ -86,7 +85,7 @@ const HonorPage: FC<HonorPageProps> = observer(
                     <MemberCard
                       name={recipient + ''}
                       nickname={position + ''}
-                      avatar={fileURLOf(recipientAvatar, true)}
+                      avatar={recipientAvatar}
                     />
                   </li>
                 ))}

@@ -254,9 +254,7 @@ export default class ActivityDetailPage extends Component<ActivityDetailPageProp
 
         <ActivityPeople
           names={names as string[]}
-          avatars={(avatars as TableCellValue[])?.map(file =>
-            fileURLOf([file] as TableCellValue, true),
-          )}
+          avatars={avatars}
           positions={positions as string[]}
           organizations={organizations as string[]}
         />

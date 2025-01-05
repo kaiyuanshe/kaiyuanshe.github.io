@@ -60,7 +60,7 @@
     "@eslint/compat": "^1.2.4",
     "@eslint/eslintrc": "^3.2.0",
     "@eslint/js": "^9.17.0",
-    "@kaiyuanshe/kys-service": "^2.0.0-rc.0",
+    "@kaiyuanshe/kys-service": "^1.0.0-rc.0",
     "@softonus/prettier-plugin-duplicate-remover": "^1.1.2",
     "@types/eslint-config-prettier": "^6.11.3",
     "@types/eslint__eslintrc": "^2.1.2",
