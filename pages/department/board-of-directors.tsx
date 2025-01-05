@@ -5,7 +5,6 @@ import { Breadcrumb, Container } from 'react-bootstrap';
 
 import { PageHead } from '../../components/Layout/PageHead';
 import { MemberCard } from '../../components/Member/Card';
-import { blobURLOf } from '../../models/Base';
 import { i18n, t } from '../../models/Base/Translation';
 import { PersonnelModel } from '../../models/Personnel';
 
@@ -52,7 +51,7 @@ const CouncilPage: FC<CouncilPageProps> = observer(({ group }) => (
                 <MemberCard
                   name={recipient + ''}
                   nickname={position + ''}
-                  avatar={blobURLOf(recipientAvatar)}
+                  avatar={recipientAvatar}
                 />
               </li>
             ))}

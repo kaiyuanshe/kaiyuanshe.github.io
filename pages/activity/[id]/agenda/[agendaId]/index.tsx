@@ -1,7 +1,6 @@
 import { text2color } from 'idea-react';
 import { marked } from 'marked';
 import { reaction } from 'mobx';
-import { TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
 import dynamic from 'next/dynamic';
 import {
@@ -40,7 +39,7 @@ import { Activity, ActivityModel } from '../../../../../models/Activity';
 import { Agenda } from '../../../../../models/Activity/Agenda';
 import { CheckEventModel } from '../../../../../models/Activity/CheckEvent';
 import { Forum } from '../../../../../models/Activity/Forum';
-import { API_Host, blobURLOf } from '../../../../../models/Base';
+import { API_Host } from '../../../../../models/Base';
 import systemStore from '../../../../../models/Base/System';
 import { i18n, t } from '../../../../../models/Base/Translation';
 import userStore from '../../../../../models/Base/User';
@@ -226,9 +225,7 @@ export default class AgendaDetailPage extends Component<AgendaDetailPageProps> {
             <ActivityPeople
               size={5}
               names={mentors as string[]}
-              avatars={(mentorAvatars as TableCellValue[]).map(file =>
-                blobURLOf([file] as TableCellValue),
-              )}
+              avatars={mentorAvatars}
               positions={mentorPositions as string[]}
               organizations={mentorOrganizations as string[]}
               summaries={mentorSummaries as string[]}

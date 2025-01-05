@@ -37,12 +37,11 @@ export class PersonModel extends BiDataTable<Person>() {
 
   normalize({
     id,
-    fields: { email, website, github, ...fields },
+    fields: { website, github, ...fields },
   }: TableRecord<Person>) {
     return {
       ...fields,
       id: id!,
-      email: (email as TableCellLink)?.link,
       website: (website as TableCellLink)?.link,
       github: (github as TableCellLink)?.link,
     };

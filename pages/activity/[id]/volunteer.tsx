@@ -8,7 +8,6 @@ import { MemberCard } from '../../../components/Member/Card';
 import { MemberTitle } from '../../../components/Member/Title';
 import { Activity, ActivityModel } from '../../../models/Activity';
 import { Staff, StaffModel } from '../../../models/Activity/Staff';
-import { blobURLOf } from '../../../models/Base';
 import { i18n, t } from '../../../models/Base/Translation';
 
 interface VolunteerPageProps {
@@ -42,7 +41,7 @@ export default class VolunteerPage extends Component<VolunteerPageProps> {
       key={id as string}
       className="d-flex flex-column align-items-center gap-2 position-relative"
     >
-      <MemberCard name={name + ''} nickname={''} avatar={blobURLOf(avatar)} />
+      <MemberCard name={name + ''} nickname="" avatar={avatar} />
     </li>
   );
 

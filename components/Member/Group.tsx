@@ -4,7 +4,6 @@ import { observer } from 'mobx-react';
 import { FC } from 'react';
 import { TimeData } from 'web-utility';
 
-import { blobURLOf } from '../../models/Base';
 import { t } from '../../models/Base/Translation';
 import { Personnel } from '../../models/Personnel';
 import { MemberCard } from './Card';
@@ -38,7 +37,7 @@ export const MemberGroup: FC<MemberGroupProps> = observer(({ name, list }) => {
                   ? `(${new Date(createdAt as TimeData).getFullYear()})`
                   : ''
               }`}
-              avatar={blobURLOf(recipientAvatar)}
+              avatar={recipientAvatar}
             />
           </li>
         ))}

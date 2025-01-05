@@ -1,5 +1,5 @@
 import { ShareBox, text2color } from 'idea-react';
-import { TableCellLocation, TableCellValue } from 'mobx-lark';
+import { TableCellLocation } from 'mobx-lark';
 import { observer } from 'mobx-react';
 import { cache, compose, errorLogger, router } from 'next-ssr-middleware';
 import { QRCodeSVG } from 'qrcode.react';
@@ -10,7 +10,7 @@ import { ActivityPeople } from '../../../../../components/Activity/People';
 import { PageHead } from '../../../../../components/Layout/PageHead';
 import { Activity, ActivityModel } from '../../../../../models/Activity';
 import { Agenda } from '../../../../../models/Activity/Agenda';
-import { API_Host, blobURLOf } from '../../../../../models/Base';
+import { API_Host } from '../../../../../models/Base';
 import { t } from '../../../../../models/Base/Translation';
 import { fileURLOf } from '../../../../api/lark/file/[id]';
 import styles from './invitation.module.less';
@@ -80,9 +80,7 @@ export default class InvitationPage extends Component<InvitationPageProps> {
             <li>
               <ActivityPeople
                 names={mentors as string[]}
-                avatars={(mentorAvatars as TableCellValue[]).map(file =>
-                  blobURLOf([file] as TableCellValue),
-                )}
+                avatars={mentorAvatars}
                 positions={mentorPositions as string[]}
                 organizations={mentorOrganizations as string[]}
               />

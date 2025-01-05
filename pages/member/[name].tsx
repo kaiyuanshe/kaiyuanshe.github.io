@@ -133,7 +133,7 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
         )}
         <li>🗺 {city as string}</li>
         <li>
-          📬 <a href={email as string}>{(email as string)?.split(':')[1]}</a>
+          📬 <a href={`mailto:${email}`}>{email as string}</a>
         </li>
         <li>
           🖥{' '}

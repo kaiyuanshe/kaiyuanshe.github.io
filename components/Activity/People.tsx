@@ -1,15 +1,18 @@
 import { AvatarProps } from 'idea-react';
+import { TableCellAttachment, TableCellMedia, TableCellValue } from 'mobx-lark';
 import { FC } from 'react';
 
 import { LarkImage } from '../Base/LarkImage';
 
-export type ActivityPeopleProps = Pick<AvatarProps, 'size'> &
-  Partial<
-    Record<
-      'names' | 'avatars' | 'positions' | 'summaries' | 'organizations',
-      string[]
-    >
-  >;
+type TableCellFile = TableCellMedia | TableCellAttachment;
+
+export interface ActivityPeopleProps
+  extends Pick<AvatarProps, 'size'>,
+    Partial<
+      Record<'names' | 'positions' | 'summaries' | 'organizations', string[]>
+    > {
+  avatars?: TableCellValue;
+}
 
 export const ActivityPeople: FC<ActivityPeopleProps> = ({
   size = 3,
@@ -20,13 +23,18 @@ export const ActivityPeople: FC<ActivityPeopleProps> = ({
   summaries,
 }) => (
   <ul className="list-unstyled d-flex align-items-center justify-content-around gap-3 flex-wrap">
-    {avatars?.map((avatar, index) => (
-      <li key={avatar} className="text-center">
+    {(avatars as TableCellFile[])?.map((avatar, index) => (
+      <li
+        key={
+          'file_token' in avatar ? avatar.file_token : avatar.attachmentToken
+        }
+        className="text-center"
+      >
         <LarkImage
           className="object-fit-cover"
           style={{ width: `${size}rem`, height: `${size}rem` }}
           loading="lazy"
-          src={avatars?.[index]}
+          src={avatar}
           alt={names?.[index]}
           roundedCircle
         />
