@@ -59,6 +59,7 @@ export default {
     `${user}'s Open Source Passport`,
   profile: 'Profile',
   activity_footprint: 'Activity Footprint',
+  member_announcement: 'Member Announcement',
   captcha: 'Captcha',
   mobile_phone_number: 'Mobile Phone number',
   SMS_code: 'SMS code',
@@ -266,7 +267,7 @@ export default {
   issue_box: 'Issue Box',
   submit_issue: 'Submit New Issue',
   detail: 'Detail',
-  
+
   // Proposal pages
   proposal_library: 'Proposal library',
   submit_proposal: 'Submit New Proposal',

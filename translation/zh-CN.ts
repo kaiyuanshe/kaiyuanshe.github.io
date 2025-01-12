@@ -58,6 +58,7 @@ export default {
     `${user}的开源护照`,
   profile: '个人资料',
   activity_footprint: '活动足迹',
+  member_announcement: '成员公告',
   captcha: '图形验证码',
   mobile_phone_number: '手机号',
   SMS_code: '短信验证码',
@@ -259,7 +260,7 @@ export default {
   issue_box: '意见箱',
   submit_issue: '提交新意见',
   detail: '详情',
-  
+
   // Proposal pages
   proposal_library: '提案库',
   submit_proposal: '提交新提案',

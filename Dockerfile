@@ -1,4 +1,4 @@
-FROM node:20-slim AS base
+FROM node:22-slim AS base
 RUN apt-get update && \
     apt-get install ca-certificates curl libjemalloc-dev -y --no-install-recommends  && \
     rm -rf /var/lib/apt/lists/*

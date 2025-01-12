@@ -6,10 +6,12 @@ import { cache, compose, errorLogger } from 'next-ssr-middleware';
 import { Component } from 'react';
 import { Breadcrumb, Button, Col, Container, Row } from 'react-bootstrap';
 
+import { AnnouncementCard } from '../../components/Governance/AnnouncementCard';
 import { PageHead } from '../../components/Layout/PageHead';
 import { CheckEventModel } from '../../models/Activity/CheckEvent';
 import { i18n, t } from '../../models/Base/Translation';
-import { UserModel } from '../../models/Base/User';
+import userStore, { UserModel } from '../../models/Base/User';
+import { AnnouncementModel } from '../../models/Personnel/Announcement';
 
 interface UserProfilePageProps {
   user: User;
@@ -30,7 +32,8 @@ export const getServerSideProps = compose<{ id: string }, UserProfilePageProps>(
 
 @observer
 export default class UserProfilePage extends Component<UserProfilePageProps> {
-  store = new CheckEventModel();
+  checkEventStore = new CheckEventModel();
+  announcementStore = new AnnouncementModel();
 
   renderActivityChecks(activityId: string, list: CheckEvent[]) {
     return (
@@ -67,8 +70,30 @@ export default class UserProfilePage extends Component<UserProfilePageProps> {
     );
   }
 
+  renderMemberAnnouncement = () => (
+    <>
+      <h2>{t('member_announcement')}</h2>
+
+      <ScrollList
+        translator={i18n}
+        store={this.announcementStore}
+        filter={{ emails: this.props.user.email }}
+        renderList={allItems =>
+          allItems.map(item => (
+            <AnnouncementCard
+              key={item.id + ''}
+              className="mx-auto"
+              {...item}
+            />
+          ))
+        }
+      />
+    </>
+  );
+
   render() {
-    const { user, checkEvents } = this.props;
+    const { user, checkEvents } = this.props,
+      { session } = userStore;
     const { id, nickName, avatar, mobilePhone } = user;
 
     const title = t('user_Open_Source_Passport', {
@@ -91,7 +116,7 @@ export default class UserProfilePage extends Component<UserProfilePageProps> {
             sm={4}
             className="d-flex flex-column gap-3 align-items-center"
           >
-            <h1 className="my-4">{title}</h1>
+            <h1>{title}</h1>
 
             {avatar && <Avatar size={10} src={avatar} />}
             <Button
@@ -101,6 +126,8 @@ export default class UserProfilePage extends Component<UserProfilePageProps> {
             >
               {t('community_member')}
             </Button>
+
+            {session?.id === id && this.renderMemberAnnouncement()}
           </Col>
 
           <Col xs={12} sm={8}>
@@ -108,11 +135,12 @@ export default class UserProfilePage extends Component<UserProfilePageProps> {
 
             <ScrollList
               translator={i18n}
-              store={this.store}
+              store={this.checkEventStore}
               filter={{ user: id }}
               renderList={() =>
-                Object.entries(this.store.group).map(([activityId, list]) =>
-                  this.renderActivityChecks(activityId, list),
+                Object.entries(this.checkEventStore.group).map(
+                  ([activityId, list]) =>
+                    this.renderActivityChecks(activityId, list),
                 )
               }
               defaultData={checkEvents}

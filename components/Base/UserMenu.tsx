@@ -1,9 +1,10 @@
 import { observer } from 'mobx-react';
 import { FC } from 'react';
-import { Dropdown, DropdownButton } from 'react-bootstrap';
+import { Button, Dropdown, DropdownButton } from 'react-bootstrap';
 
 import { t } from '../../models/Base/Translation';
 import userStore from '../../models/Base/User';
+import SessionBox from '../Layout/SessionBox';
 
 const UserMenu: FC = observer(() => {
   const { id, mobilePhone, nickName } = userStore.session || {};
@@ -19,7 +20,9 @@ const UserMenu: FC = observer(() => {
       </Dropdown.Item>
     </DropdownButton>
   ) : (
-    <></>
+    <SessionBox>
+      <Button>{t('sign_in')}</Button>
+    </SessionBox>
   );
 });
 export default UserMenu;
