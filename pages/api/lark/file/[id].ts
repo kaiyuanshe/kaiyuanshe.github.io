@@ -1,6 +1,6 @@
 import { fileTypeFromBuffer } from 'file-type';
 import MIME from 'mime';
-import { TableCellMedia, TableCellValue } from 'mobx-lark';
+import { TableCellAttachment, TableCellMedia, TableCellValue } from 'mobx-lark';
 import { parse } from 'path';
 
 import { safeAPI } from '../../base';
@@ -11,11 +11,12 @@ export const DefaultImage = process.env.NEXT_PUBLIC_LOGO!;
 export function fileURLOf(field: TableCellValue, cache = false) {
   if (!(field instanceof Array) || !field[0]) return field + '';
 
-  const { file_token, type } = field[0] as TableCellMedia;
+  const file = field[0] as TableCellMedia | TableCellAttachment;
 
-  let URI = `/api/Lark/file/${file_token}`;
+  let URI = `/api/lark/file/${'file_token' in file ? file.file_token : file.attachmentToken}`;
 
-  if (cache) URI += '.' + MIME.getExtension(type);
+  if (cache)
+    URI += '.' + MIME.getExtension('type' in file ? file.type : file.mimeType);
 
   return URI;
 }
