@@ -58,6 +58,7 @@ export default {
     `${user}的開源護照`,
   profile: '個人資料',
   activity_footprint: '活動足跡',
+  member_announcement: '成員公告',
   captcha: '圖形驗證碼',
   mobile_phone_number: '手機號',
   SMS_code: '短訊驗證碼',
@@ -116,7 +117,7 @@ export default {
   NGO: 'NGO',
   issue: '意見',
   proposal: '提案',
-  
+
   // Organization page
   reset: '重置',
   total_x_organizations: ({ totalCount }: { totalCount: number }) =>

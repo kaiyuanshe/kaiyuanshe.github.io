@@ -1,5 +1,3 @@
-import 'core-js/full/array/from-async';
-
 import { HTTPClient } from 'koajax';
 
 export const isServer = () => typeof window === 'undefined';
