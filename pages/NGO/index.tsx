@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react';
-import { compose, translator } from 'next-ssr-middleware';
+import { compose, errorLogger, translator } from 'next-ssr-middleware';
 import { FC } from 'react';
 import { Button, Container } from 'react-bootstrap';
 
@@ -9,13 +9,45 @@ import { OpenCollaborationMap } from '../../components/Organization';
 import { i18n, t } from '../../models/Base/Translation';
 import {
   NGO_BASE_ID,
+  NGO_CITY_STATISTIC_TABLE_ID,
   NGO_TABLE_ID,
+  NGO_TAG_STATISTIC_TABLE_ID,
+  NGO_TYPE_STATISTIC_TABLE_ID,
+  NGO_YEAR_STATISTIC_TABLE_ID,
   OrganizationModel,
+  OrganizationStatistic,
+  OrganizationStatisticModel,
 } from '../../models/Community/Organization';
+import { solidCache } from '../api/base';
 
-export const getServerSideProps = compose(translator(i18n));
+export const getServerSideProps = compose(
+  solidCache,
+  errorLogger,
+  translator(i18n),
+  async () => {
+    const [year, city, type, tag] = await Promise.all([
+      new OrganizationStatisticModel(
+        NGO_BASE_ID,
+        NGO_YEAR_STATISTIC_TABLE_ID,
+      ).countAll(),
+      new OrganizationStatisticModel(
+        NGO_BASE_ID,
+        NGO_CITY_STATISTIC_TABLE_ID,
+      ).countAll(),
+      new OrganizationStatisticModel(
+        NGO_BASE_ID,
+        NGO_TYPE_STATISTIC_TABLE_ID,
+      ).countAll(),
+      new OrganizationStatisticModel(
+        NGO_BASE_ID,
+        NGO_TAG_STATISTIC_TABLE_ID,
+      ).countAll(),
+    ]);
+    return { props: { year, city, type, tag } };
+  },
+);
 
-const OrganizationPage: FC = observer(() => (
+const OrganizationPage: FC<OrganizationStatistic> = observer(props => (
   <Container>
     <PageHead title={t('China_NGO_Map')} />
 
@@ -40,6 +72,7 @@ const OrganizationPage: FC = observer(() => (
 
     <OpenCollaborationMap
       store={new OrganizationModel(NGO_BASE_ID, NGO_TABLE_ID)}
+      {...props}
     />
   </Container>
 ));

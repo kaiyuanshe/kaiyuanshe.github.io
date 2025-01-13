@@ -8,14 +8,17 @@ import { Badge, Button, Nav } from 'react-bootstrap';
 import { isEmpty } from 'web-utility';
 
 import { i18n, t } from '../../models/Base/Translation';
-import { OrganizationModel } from '../../models/Community/Organization';
+import {
+  OrganizationModel,
+  OrganizationStatistic,
+} from '../../models/Community/Organization';
 import { CityStatisticMap } from '../Map/CityStatisticMap';
 import { OrganizationCardProps } from './Card';
 import { OrganizationListLayout } from './List';
 
 const OrganizationCharts = dynamic(() => import('./Charts'), { ssr: false });
 
-export interface OpenCollaborationMapProps {
+export interface OpenCollaborationMapProps extends OrganizationStatistic {
   store: OrganizationModel;
 }
 
@@ -79,8 +82,7 @@ export class OpenCollaborationMap extends Component<OpenCollaborationMapProps> {
   }
 
   renderTab() {
-    const { props, tabKey } = this,
-      { statistic } = props.store;
+    const { props, tabKey } = this;
 
     return (
       <div>
@@ -101,10 +103,10 @@ export class OpenCollaborationMap extends Component<OpenCollaborationMapProps> {
         </Nav>
 
         {tabKey !== 'map' ? (
-          <OrganizationCharts {...statistic} />
+          <OrganizationCharts {...props} />
         ) : (
           <CityStatisticMap
-            store={props.store}
+            data={props.city}
             onChange={city => this.switchFilter({ city })}
           />
         )}
