@@ -11,6 +11,7 @@ import { ActivityCard } from '../../components/Activity/Card';
 import { ArticleCard } from '../../components/Article/Card';
 import { CommentBox } from '../../components/Base/CommentBox';
 import { LarkImage } from '../../components/Base/LarkImage';
+import { TagNav } from '../../components/Base/TagNav';
 import { CommunityCard } from '../../components/Community/CommunityCard';
 import { GroupCard } from '../../components/Department/Card';
 import { MeetingCard } from '../../components/Governance/MeetingCard';
@@ -19,9 +20,9 @@ import { OrganizationCard } from '../../components/Organization/Card';
 import { Activity, SearchActivityModel } from '../../models/Activity';
 import { i18n, t } from '../../models/Base/Translation';
 import { Community, SearchCommunityModel } from '../../models/Community';
-import { SearchNGOModel } from '../../models/Community/Organization';
 import {
   Organization,
+  SearchNGOModel,
   SearchOrganizationModel,
 } from '../../models/Community/Organization';
 import { Meeting, SearchMeetingModel } from '../../models/Governance/Meeting';
@@ -118,19 +119,7 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
         <li>
           <Badge bg={text2color(gender + '', ['light'])}>{gender + ''}</Badge>
         </li>
-        {skills && (
-          <li>
-            {(skills as string[]).map(skill => (
-              <Badge
-                key={skill}
-                className="me-2"
-                bg={text2color(skill, ['light'])}
-              >
-                {skill}
-              </Badge>
-            ))}
-          </li>
-        )}
+        <li>{skills && <TagNav list={skills as string[]} />}</li>
         <li>🗺 {city as string}</li>
         <li>
           📬 <a href={`mailto:${email}`}>{email as string}</a>

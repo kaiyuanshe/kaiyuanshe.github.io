@@ -1,17 +1,17 @@
-import { text2color } from 'idea-react';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { ScrollList } from 'mobx-restful-table';
 import dynamic from 'next/dynamic';
 import { Component } from 'react';
-import { Badge, Button, Nav } from 'react-bootstrap';
-import { isEmpty } from 'web-utility';
+import { Accordion, Button, Nav } from 'react-bootstrap';
+import { sum } from 'web-utility';
 
 import { i18n, t } from '../../models/Base/Translation';
 import {
   OrganizationModel,
   OrganizationStatistic,
 } from '../../models/Community/Organization';
+import { TagNav } from '../Base/TagNav';
 import { CityStatisticMap } from '../Map/CityStatisticMap';
 import { OrganizationCardProps } from './Card';
 import { OrganizationListLayout } from './List';
@@ -48,36 +48,54 @@ export class OpenCollaborationMap extends Component<OpenCollaborationMapProps> {
   };
 
   renderFilter() {
-    const { filter, totalCount } = this.props.store;
+    const { type, tag } = this.props,
+      { filter, totalCount } = this.props.store;
+    const count =
+      totalCount != null && totalCount !== Infinity
+        ? totalCount
+        : (type[filter.type + ''] ??
+          tag[filter.tags + ''] ??
+          sum(...Object.values(type)));
 
     return (
-      !isEmpty(filter) && (
-        <header
-          className="d-flex justify-content-between align-items-center sticky-top bg-white py-3"
-          style={{ top: '5rem' }}
-        >
-          <div>
-            {t('filter')}
-            {Object.entries(filter).map(([key, value]) => (
-              <Badge
-                key={key}
-                className="mx-2"
-                bg={text2color(value + '', ['light'])}
-              >
-                {value + ''}
-              </Badge>
-            ))}
-          </div>
-          {t('total_x_organizations', { totalCount })}
-          <Button
-            variant="warning"
-            size="sm"
-            onClick={() => this.switchFilter({})}
-          >
-            {t('reset')}
-          </Button>
-        </header>
-      )
+      <Accordion
+        as="header"
+        className="sticky-top bg-white"
+        style={{ top: '5rem' }}
+      >
+        <Accordion.Item eventKey="0">
+          <Accordion.Header>
+            <div className="w-100 d-flex justify-content-between align-items-center">
+              {t('filter')}
+
+              <TagNav list={Object.values(filter) as string[]} />
+
+              {t('total_x_organizations', { totalCount: count })}
+            </div>
+          </Accordion.Header>
+          <Accordion.Body as="form" onReset={() => this.switchFilter({})}>
+            <fieldset className="mb-3">
+              <legend>{t('type')}</legend>
+
+              <TagNav
+                list={Object.keys(type)}
+                onCheck={type => this.switchFilter({ type })}
+              />
+            </fieldset>
+            <fieldset className="mb-3">
+              <legend>{t('tag')}</legend>
+
+              <TagNav
+                list={Object.keys(tag)}
+                onCheck={tags => this.switchFilter({ tags })}
+              />
+            </fieldset>
+            <Button type="reset" variant="warning" size="sm">
+              {t('reset')}
+            </Button>
+          </Accordion.Body>
+        </Accordion.Item>
+      </Accordion>
     );
   }
 

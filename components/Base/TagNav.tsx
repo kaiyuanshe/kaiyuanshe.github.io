@@ -3,21 +3,29 @@ import { FC, HTMLAttributes } from 'react';
 import { Badge } from 'react-bootstrap';
 
 export interface TagNavProps extends HTMLAttributes<HTMLElement> {
-  model: string;
+  linkOf?: (value: string) => string;
   list: string[];
+  onCheck?: (value: string) => any;
 }
 
-export const TagNav: FC<TagNavProps> = ({ model, list, ...props }) => (
-  <nav {...props}>
+export const TagNav: FC<TagNavProps> = ({
+  className = '',
+  list,
+  linkOf,
+  onCheck,
+  ...props
+}) => (
+  <nav className={`d-flex flex-wrap gap-2 ${className}`} {...props}>
     {list.map(tag => (
       <Badge
-        key={tag}
+        key={tag + ''}
         as="a"
-        className="text-decoration-none mx-1"
-        bg={text2color(tag, ['light'])}
-        href={`/search/${model}?keywords=${tag}`}
+        className={`text-decoration-none ${onCheck ? 'cursor-pointer' : ''}`}
+        bg={text2color(tag + '', ['light'])}
+        href={linkOf?.(tag)}
+        onClick={onCheck && (() => onCheck(tag))}
       >
-        {tag}
+        {tag + ''}
       </Badge>
     ))}
   </nav>

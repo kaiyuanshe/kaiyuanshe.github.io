@@ -77,6 +77,7 @@ export default {
   join_the_open_source_map: '+ 加入開源地圖',
   map: '地圖',
   chart: '圖表',
+  type: '類型',
   confirm_community_type_filter: ({ type }: { type: string }) =>
     `確定篩選「${type}」類型的開源組織？`,
   confirm_community_tag_filter: ({ tag }: { tag: string }) =>

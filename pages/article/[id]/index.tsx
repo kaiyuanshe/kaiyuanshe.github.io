@@ -49,7 +49,10 @@ export default class ArticleDetailPage extends Component<ArticleDetailPageProps>
           </dd>
         </dl>
 
-        <TagNav model="article" list={tags as string[]} />
+        <TagNav
+          linkOf={value => `/search/article?keywords=${value}`}
+          list={tags as string[]}
+        />
       </>
     );
   }

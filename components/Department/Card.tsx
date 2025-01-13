@@ -38,8 +38,12 @@ export const GroupCard: FC<GroupCardProps> = ({
         alt={name as string}
       />
     )}
-    {tags && <TagNav model="department" list={tags as string[]} />}
-
+    {tags && (
+      <TagNav
+        linkOf={value => `/search/department?keywords=${value}`}
+        list={tags as string[]}
+      />
+    )}
     {email && (
       <dl className="mt-1 d-flex align-items-start">
         <dt className="me-1">E-mail:</dt>
