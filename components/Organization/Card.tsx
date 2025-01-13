@@ -1,12 +1,13 @@
-import { Icon, text2color } from 'idea-react';
+import { Icon } from 'idea-react';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { Component, HTMLAttributes } from 'react';
-import { Badge, Button, Card, CardProps, Image } from 'react-bootstrap';
+import { Button, Card, CardProps, Image } from 'react-bootstrap';
 
 import { t } from '../../models/Base/Translation';
 import { Organization } from '../../models/Community/Organization';
 import { LarkImage } from '../Base/LarkImage';
+import { TagNav } from '../Base/TagNav';
 
 export interface OrganizationCardProps
   extends Pick<HTMLAttributes<HTMLDivElement>, 'className' | 'style'>,
@@ -88,38 +89,30 @@ export class OrganizationCard extends Component<OrganizationCardProps> {
         <Card.Body>
           <Card.Title>
             {name as string}
-            <Badge
-              className="ms-2 cursor-pointer"
-              bg={text2color(type + '', ['light'])}
-              onClick={
+            <TagNav
+              className="ms-2"
+              list={[type as string]}
+              onCheck={
                 onSwitch &&
                 (() =>
                   confirm(t('confirm_community_type_filter', { type })) &&
                   onSwitch({ type: type as string }))
               }
-            >
-              {type + ''}
-            </Badge>
+            />
           </Card.Title>
 
-          <Card.Text className="d-flex flex-wrap justify-content-end gap-2">
-            {(tags as string[])?.map(tag => (
-              <Badge
-                key={tag}
-                bg={text2color(tag, ['light'])}
-                className="cursor-pointer"
-                onClick={
-                  onSwitch &&
-                  (() =>
-                    confirm(t('confirm_community_tag_filter', { tag })) &&
-                    onSwitch({ tags: [tag] }))
-                }
-              >
-                {tag}
-              </Badge>
-            ))}
-          </Card.Text>
-
+          {tags && (
+            <TagNav
+              className="justify-content-end"
+              list={tags as string[]}
+              onCheck={
+                onSwitch &&
+                (tag =>
+                  confirm(t('confirm_community_tag_filter', { tag })) &&
+                  onSwitch({ tags: [tag] }))
+              }
+            />
+          )}
           <Card.Text
             className="d-none d-sm-block text-wrap overflow-auto"
             style={{ minHeight: '5rem', maxHeight: '10rem' }}

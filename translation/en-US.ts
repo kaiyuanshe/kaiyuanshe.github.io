@@ -78,6 +78,7 @@ export default {
   join_the_open_source_map: '+ join China open source map',
   map: 'map',
   chart: 'chart',
+  type: 'Type',
   confirm_community_type_filter: ({ type }: { type: string }) =>
     `confirm to filter Open Source organizations of type "${type}"?`,
   confirm_community_tag_filter: ({ tag }: { tag: string }) =>

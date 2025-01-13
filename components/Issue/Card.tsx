@@ -37,8 +37,11 @@ export const IssueCard: FC<IssueCardProps> = ({
         </a>
       </Card.Title>
       <Row className="flex-fill small mt-1">
-        <TagNav className="col-8" model="issue" list={type as string[]} />
-
+        <TagNav
+          className="col-8"
+          linkOf={value => `/search/issue?keywords=${value}`}
+          list={type as string[]}
+        />
         <Col className="text-end" xs={4}>
           {typeof deadline === 'number' && deadline > 0 ? (
             <TimeDistance {...TimeOption} date={deadline} />

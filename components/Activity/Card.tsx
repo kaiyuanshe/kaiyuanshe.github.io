@@ -1,10 +1,11 @@
-import { text2color, TimeDistance } from 'idea-react';
+import { TimeDistance } from 'idea-react';
 import { TableCellLocation } from 'mobx-lark';
 import type { FC } from 'react';
-import { Badge, Card, Col, Row } from 'react-bootstrap';
+import { Card, Col, Row } from 'react-bootstrap';
 
 import { type Activity, ActivityModel } from '../../models/Activity';
 import { LarkImage } from '../Base/LarkImage';
+import { TagNav } from '../Base/TagNav';
 import { TimeOption } from '../data';
 
 export interface ActivityCardProps extends Activity {
@@ -59,17 +60,10 @@ export const ActivityCard: FC<ActivityCardProps> = ({
       </Row>
       <Row as="footer" className="flex-fill small mt-1">
         <Col xs={8}>
-          {(host as string[])?.map(organizer => (
-            <Badge
-              key={organizer}
-              className="me-2 text-decoration-none"
-              bg={text2color(organizer, ['light'])}
-              as="a"
-              href={`/search/activity?keywords=${organizer}`}
-            >
-              {organizer}
-            </Badge>
-          ))}
+          <TagNav
+            list={host as string[]}
+            linkOf={organizer => `/search/activity?keywords=${organizer}`}
+          />
         </Col>
         <Col className="text-end" xs={4}>
           <TimeDistance {...TimeOption} date={startTime as number} />
