@@ -1,16 +1,51 @@
 import { observer } from 'mobx-react';
-import { compose, translator } from 'next-ssr-middleware';
+import { compose, errorLogger, translator } from 'next-ssr-middleware';
 import { FC } from 'react';
 import { Button, Container } from 'react-bootstrap';
 
 import { PageHead } from '../../components/Layout/PageHead';
 import { OpenCollaborationMap } from '../../components/Organization';
 import { i18n, t } from '../../models/Base/Translation';
-import { OrganizationModel } from '../../models/Community/Organization';
+import { COMMUNITY_BASE_ID } from '../../models/Community';
+import {
+  OrganizationModel,
+  OrganizationStatistic,
+  OrganizationStatisticModel,
+  OSC_CITY_STATISTIC_TABLE_ID,
+  OSC_TAG_STATISTIC_TABLE_ID,
+  OSC_TYPE_STATISTIC_TABLE_ID,
+  OSC_YEAR_STATISTIC_TABLE_ID,
+} from '../../models/Community/Organization';
+import { solidCache } from '../api/base';
 
-export const getServerSideProps = compose(translator(i18n));
+export const getServerSideProps = compose(
+  solidCache,
+  errorLogger,
+  translator(i18n),
+  async () => {
+    const [year, city, type, tag] = await Promise.all([
+      new OrganizationStatisticModel(
+        COMMUNITY_BASE_ID,
+        OSC_YEAR_STATISTIC_TABLE_ID,
+      ).countAll(),
+      new OrganizationStatisticModel(
+        COMMUNITY_BASE_ID,
+        OSC_CITY_STATISTIC_TABLE_ID,
+      ).countAll(),
+      new OrganizationStatisticModel(
+        COMMUNITY_BASE_ID,
+        OSC_TYPE_STATISTIC_TABLE_ID,
+      ).countAll(),
+      new OrganizationStatisticModel(
+        COMMUNITY_BASE_ID,
+        OSC_TAG_STATISTIC_TABLE_ID,
+      ).countAll(),
+    ]);
+    return { props: { year, city, type, tag } };
+  },
+);
 
-const OrganizationPage: FC = observer(() => (
+const OrganizationPage: FC<OrganizationStatistic> = observer(props => (
   <Container>
     <PageHead title={t('China_Open_Source_Map')} />
 
@@ -31,7 +66,7 @@ const OrganizationPage: FC = observer(() => (
       </div>
     </header>
 
-    <OpenCollaborationMap store={new OrganizationModel()} />
+    <OpenCollaborationMap store={new OrganizationModel()} {...props} />
   </Container>
 ));
 

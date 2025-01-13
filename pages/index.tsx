@@ -10,8 +10,14 @@ import { ArticleListLayout } from '../components/Article/List';
 import { LarkImage } from '../components/Base/LarkImage';
 import { PageHead } from '../components/Layout/PageHead';
 import { CityStatisticMap } from '../components/Map/CityStatisticMap';
-import activityStore, { Activity, ActivityModel } from '../models/Activity';
+import { Activity, ActivityModel } from '../models/Activity';
 import { i18n, t } from '../models/Base/Translation';
+import { COMMUNITY_BASE_ID } from '../models/Community';
+import {
+  OrganizationStatistic,
+  OrganizationStatisticModel,
+  OSC_CITY_STATISTIC_TABLE_ID,
+} from '../models/Community/Organization';
 import { Department, DepartmentModel } from '../models/Personnel/Department';
 import { Article, ArticleModel } from '../models/Product/Article';
 import styles from '../styles/Home.module.less';
@@ -22,6 +28,7 @@ import { DefaultImage } from './api/lark/file/[id]';
 interface HomePageProps {
   articles: Article[];
   activities: Activity[];
+  cityStatistic: OrganizationStatistic['city'];
   projects: Department[];
 }
 
@@ -30,14 +37,20 @@ export const getServerSideProps = compose<{}, HomePageProps>(
   errorLogger,
   translator(i18n),
   async () => {
-    const [articles, activities, projects] = await Promise.all([
+    const [articles, activities, cityStatistic, projects] = await Promise.all([
       new ArticleModel().getList({}, 1, 3),
       new ActivityModel().getList({}, 1, 3),
+      new OrganizationStatisticModel(
+        COMMUNITY_BASE_ID,
+        OSC_CITY_STATISTIC_TABLE_ID,
+      ).countAll(['activityCount']),
       new DepartmentModel().getAll({ superior: '项目委员会' }),
     ]);
 
     return {
-      props: JSON.parse(JSON.stringify({ articles, activities, projects })),
+      props: JSON.parse(
+        JSON.stringify({ articles, activities, cityStatistic, projects }),
+      ),
     };
   },
 );
@@ -81,7 +94,7 @@ export default class HomePage extends Component<HomePageProps> {
   );
 
   render() {
-    const { articles, activities, projects } = this.props;
+    const { articles, activities, cityStatistic, projects } = this.props;
 
     return (
       <>
@@ -186,7 +199,7 @@ export default class HomePage extends Component<HomePageProps> {
             <h2 className="my-5 text-center text-primary">
               {t('activity_map')}
             </h2>
-            <CityStatisticMap store={activityStore} />
+            <CityStatisticMap data={cityStatistic} />
           </section>
         </Container>
       </>

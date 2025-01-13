@@ -4,12 +4,14 @@ import {
   BiDataTable,
   BiSearch,
   makeSimpleFilter,
+  normalizeText,
   TableCellLink,
+  TableCellRelation,
   TableCellValue,
   TableRecord,
 } from 'mobx-lark';
 import { Filter, NewData } from 'mobx-restful';
-import { cache, countBy, groupBy, Hour, isEmpty } from 'web-utility';
+import { groupBy, isEmpty } from 'web-utility';
 
 import { larkClient } from '../Base';
 import { COMMUNITY_BASE_ID } from './index';
@@ -57,18 +59,21 @@ export class OrganizationModel extends BiDataTable<Organization>() {
 
   queryOptions: BiDataQueryOptions = { text_field_as_array: false };
 
-  declare statistic: OrganizationStatistic;
-
   @observable
   accessor tagMap: Record<string, Organization[]> = {};
 
   normalize({
-    id,
-    fields: { link, codeLink, ...fields },
+    fields: { type, tags, link, codeLink, ...fields },
+    ...meta
   }: TableRecord<Organization>) {
     return {
+      ...meta,
       ...fields,
-      id: id!,
+      type: (type as TableCellRelation[])?.map(normalizeText),
+      tags: (tags as TableCellRelation[])
+        ?.map(normalizeText)
+        .toString()
+        .split(','),
       link: (link as TableCellLink)?.link,
       codeLink: (codeLink as TableCellLink)?.link,
     };
@@ -83,21 +88,6 @@ export class OrganizationModel extends BiDataTable<Organization>() {
       .join('&&');
   }
 
-  getStatistic = cache(async clean => {
-    const list = await this.getAll();
-
-    setTimeout(clean, Hour / 2);
-
-    return (this.statistic = {
-      type: countBy(list, 'type'),
-      tag: countBy(list, 'tags'),
-      year: countBy(list, ({ startDate }) =>
-        new Date(startDate as number).getFullYear(),
-      ),
-      city: countBy(list, 'city'),
-    });
-  }, 'Organization Statistic');
-
   async groupAllByTags() {
     await this.getAll();
 
@@ -106,6 +96,47 @@ export class OrganizationModel extends BiDataTable<Organization>() {
       ({ tags }) => tags as string[],
     ));
   }
+}
+
+export type OrganizationStatisticItem = Record<
+  'name' | `${'organization' | 'activity'}Count`,
+  TableCellValue
+>;
+
+export const OSC_YEAR_STATISTIC_TABLE_ID =
+    process.env.NEXT_PUBLIC_OSC_YEAR_STATISTIC_TABLE_ID!,
+  OSC_CITY_STATISTIC_TABLE_ID =
+    process.env.NEXT_PUBLIC_OSC_CITY_STATISTIC_TABLE_ID!,
+  OSC_TYPE_STATISTIC_TABLE_ID =
+    process.env.NEXT_PUBLIC_OSC_TYPE_STATISTIC_TABLE_ID!,
+  OSC_TAG_STATISTIC_TABLE_ID =
+    process.env.NEXT_PUBLIC_OSC_TAG_STATISTIC_TABLE_ID!;
+export const NGO_YEAR_STATISTIC_TABLE_ID =
+    process.env.NEXT_PUBLIC_NGO_YEAR_STATISTIC_TABLE_ID!,
+  NGO_CITY_STATISTIC_TABLE_ID =
+    process.env.NEXT_PUBLIC_NGO_CITY_STATISTIC_TABLE_ID!,
+  NGO_TYPE_STATISTIC_TABLE_ID =
+    process.env.NEXT_PUBLIC_NGO_TYPE_STATISTIC_TABLE_ID!,
+  NGO_TAG_STATISTIC_TABLE_ID =
+    process.env.NEXT_PUBLIC_NGO_TAG_STATISTIC_TABLE_ID!;
+
+export class OrganizationStatisticModel extends BiDataTable<OrganizationStatisticItem>() {
+  client = larkClient;
+
+  requiredKeys = ['name'] as const;
+
+  queryOptions = { text_field_as_array: false };
+
+  countAll = async ([
+    key = 'organizationCount',
+  ]: (keyof OrganizationStatisticItem)[] = []) => {
+    const list = await this.getAll();
+    const group = list
+      .map(({ name, [key]: count }) => count && [name, count])
+      .filter(Boolean) as [string, number][];
+
+    return Object.fromEntries(group);
+  };
 }
 
 export class SearchOrganizationModel extends BiSearch(OrganizationModel) {

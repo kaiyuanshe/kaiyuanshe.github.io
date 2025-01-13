@@ -5,13 +5,13 @@ import dynamic from 'next/dynamic';
 import { MarkerMeta, OpenReactMapProps } from 'open-react-map';
 import { Component } from 'react';
 
-import { StatisticTrait } from '../../models/Activity';
 import metaStore from '../../models/Base/System';
+import { OrganizationStatistic } from '../../models/Community/Organization';
 
 const ChinaMap = dynamic(() => import('./ChinaMap'), { ssr: false });
 
 export interface CityStatisticMapProps {
-  store: StatisticTrait;
+  data: OrganizationStatistic['city'];
   onChange?: (city: string) => any;
 }
 
@@ -22,16 +22,14 @@ export class CityStatisticMap extends Component<CityStatisticMapProps> {
 
   componentDidMount() {
     metaStore.getCityCoordinate();
-
-    this.props.store.getStatistic();
   }
 
   @computed
   get markers() {
     const { cityCoordinate } = metaStore,
-      { city = {} } = this.observedProps.store.statistic;
+      { data } = this.observedProps;
 
-    return Object.entries(city)
+    return Object.entries(data)
       .map(([city, count]) => {
         const point = cityCoordinate[city];
 

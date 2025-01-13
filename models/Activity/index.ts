@@ -168,12 +168,13 @@ export class ActivityModel extends BiDataTable<Activity>() {
 
   normalize({
     id,
-    fields: { host, link, database, ...fields },
+    fields: { host, city, link, database, ...fields },
   }: TableRecord<Activity>) {
     return {
       ...fields,
       id: id!,
       host: (host as TableCellRelation[])?.map(normalizeText),
+      city: (city as TableCellRelation[])?.map(normalizeText),
       link: (link as TableCellLink)?.link,
       database: (database as TableCellLink)?.link,
     };
