@@ -8,6 +8,7 @@ import { clear } from 'idb-keyval';
 import { HTTPClient } from 'koajax';
 import { observable } from 'mobx';
 import { BaseListModel, persist, restore, toggle } from 'mobx-restful';
+import { sleep } from 'web-utility';
 
 import { isServer, KYS_SERVICE_HOST } from './index';
 
@@ -60,10 +61,12 @@ export class UserModel extends BaseListModel<User> {
     return (this.session = body!);
   }
 
-  signOut() {
+  async signOut() {
     this.session = undefined;
 
-    return clear();
+    await sleep(1);
+
+    await clear();
   }
 }
 

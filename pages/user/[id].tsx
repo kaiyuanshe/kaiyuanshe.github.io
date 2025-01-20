@@ -70,14 +70,14 @@ export default class UserProfilePage extends Component<UserProfilePageProps> {
     );
   }
 
-  renderMemberAnnouncement = () => (
+  renderMemberAnnouncement = (email: string) => (
     <>
       <h2>{t('member_announcement')}</h2>
 
       <ScrollList
         translator={i18n}
         store={this.announcementStore}
-        filter={{ emails: this.props.user.email }}
+        filter={{ emails: email }}
         renderList={allItems =>
           allItems.map(item => (
             <AnnouncementCard
@@ -94,7 +94,7 @@ export default class UserProfilePage extends Component<UserProfilePageProps> {
   render() {
     const { user, checkEvents } = this.props,
       { session } = userStore;
-    const { id, nickName, avatar, mobilePhone } = user;
+    const { id, nickName, avatar, mobilePhone, email } = user;
 
     const title = t('user_Open_Source_Passport', {
       user: nickName || mobilePhone,
@@ -127,7 +127,9 @@ export default class UserProfilePage extends Component<UserProfilePageProps> {
               {t('community_member')}
             </Button>
 
-            {session?.id === id && this.renderMemberAnnouncement()}
+            {session?.id === id &&
+              email &&
+              this.renderMemberAnnouncement(email)}
           </Col>
 
           <Col xs={12} sm={8}>

@@ -1,4 +1,5 @@
 import { Loading } from 'idea-react';
+import { reaction } from 'mobx';
 import { observer } from 'mobx-react';
 import { Component, HTMLAttributes, MouseEvent } from 'react';
 
@@ -13,11 +14,13 @@ export interface SessionBoxProps extends HTMLAttributes<HTMLDivElement> {
 
 @observer
 export default class SessionBox extends Component<SessionBoxProps> {
-  componentDidMount() {
-    const { autoCover } = this.props;
+  componentDidMount = () =>
+    this.props.autoCover && !userStore.session && this.openModal();
 
-    if (autoCover) this.openModal();
-  }
+  componentWillUnmount = reaction(
+    () => userStore.session,
+    this.componentDidMount,
+  );
 
   async openModal() {
     const captcha = await captchaDialog.open();
