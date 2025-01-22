@@ -288,10 +288,6 @@ export default {
   this_term_proposition: 'This term proposition',
   recommendation: 'recommendation',
   vote_for_me: 'Vote for Me',
-  vote_code_save_tips:
-    'Please copy the one-time "Vote Verification Code" of this election to avoid being unable to vote when this page is accidentally closed and reopened.',
-  vote_code_fill_tips:
-    'Please paste the "Vote Verification Code" copied when you first opened this voting page below.',
 
   // Member pages
   related: 'Related',
