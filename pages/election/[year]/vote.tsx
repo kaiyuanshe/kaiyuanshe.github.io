@@ -47,33 +47,32 @@ export default class ElectionVotePage extends Component<
     await this.electionStore.signVoteTicket(this.electionName);
   }
 
-  renderVoteForm = () => (
-    <SessionBox autoCover>
-      <Row xs={1} sm={2}>
-        <Col>
-          <h2 className="text-center">{t('director_election_voting')}</h2>
-          <iframe
-            className="w-100 vh-100 border-0"
-            src={`${VoteForm.理事}?${this.formData}`}
-          />
-        </Col>
-        <Col>
-          <h2 className="text-center">{t('member_application_voting')}</h2>
-          <iframe
-            className="w-100 vh-100 border-0"
-            src={`${VoteForm.正式成员}?${this.formData}`}
-          />
-        </Col>
-      </Row>
-    </SessionBox>
+  renderVoteForm = (formData: URLSearchParams) => (
+    <Row xs={1} sm={2}>
+      <Col>
+        <h2 className="text-center">{t('director_election_voting')}</h2>
+        <iframe
+          className="w-100 vh-100 border-0"
+          src={`${VoteForm.理事}?${formData}`}
+        />
+      </Col>
+      <Col>
+        <h2 className="text-center">{t('member_application_voting')}</h2>
+        <iframe
+          className="w-100 vh-100 border-0"
+          src={`${VoteForm.正式成员}?${formData}`}
+        />
+      </Col>
+    </Row>
   );
 
   render() {
-    const { year } = this.props.route.params!,
+    const { props, electionStore, formData } = this;
+    const { year } = props.route.params!,
       electionVoting = textJoin(t('election'), t('voting'));
 
     const title = `${year} ${electionVoting}`,
-      loading = this.electionStore.uploading > 0;
+      loading = electionStore.uploading > 0;
 
     return (
       <Container className="my-4">
@@ -88,7 +87,9 @@ export default class ElectionVotePage extends Component<
 
         {loading && <Loading />}
 
-        {this.renderVoteForm()}
+        <SessionBox autoCover>
+          {formData && this.renderVoteForm(formData)}
+        </SessionBox>
       </Container>
     );
   }

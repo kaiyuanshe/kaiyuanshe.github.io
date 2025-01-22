@@ -1,17 +1,18 @@
+import { VoteTicket } from '@kaiyuanshe/kys-service';
 import { observable } from 'mobx';
 import { BaseModel, persist, restore, toggle } from 'mobx-restful';
 
+import { isServer } from '../Base';
 import userStore from '../Base/User';
 
-export interface VoteTicket {
-  electionName: string;
-  publicKey: string;
-  signature: string;
-}
+export const buffer2hex = (buffer: ArrayBufferLike) =>
+  Array.from(new Uint8Array(buffer), x => x.toString(16).padStart(2, '0')).join(
+    '',
+  );
 
 export class ElectionModel extends BaseModel {
   client = userStore.client;
-  algorithm = { name: 'ECDSA', namedCurve: 'P-384' };
+  algorithm = { name: 'ECDSA', namedCurve: 'P-384', hash: { name: 'SHA-256' } };
 
   @persist()
   @observable
@@ -25,7 +26,7 @@ export class ElectionModel extends BaseModel {
   @observable
   accessor currentVoteTicket: VoteTicket | undefined;
 
-  restored = restore(this, 'Electron');
+  restored = !isServer() && restore(this, 'Electron');
 
   @toggle('uploading')
   async makePublicKey() {
@@ -47,17 +48,21 @@ export class ElectionModel extends BaseModel {
 
   @toggle('uploading')
   async savePublicKey(electionName: string, jsonWebKey = this.publicKey) {
+    await userStore.restored;
+
     const { body } = await this.client.post(
       `election/${electionName}/public-key`,
       { jsonWebKey },
     );
-    await userStore.getSession();
-
     return body!;
   }
 
   @toggle('uploading')
   async signVoteTicket(electionName: string) {
+    await this.restored;
+
+    if (this.currentVoteTicket) return this.currentVoteTicket;
+
     await this.makePublicKey();
     await this.savePublicKey(electionName);
 
@@ -69,7 +74,7 @@ export class ElectionModel extends BaseModel {
     return (this.currentVoteTicket = {
       electionName,
       publicKey: this.publicKey,
-      signature: new TextDecoder().decode(signature),
+      signature: buffer2hex(signature),
     });
   }
 }

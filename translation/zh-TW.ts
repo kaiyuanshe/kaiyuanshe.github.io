@@ -281,10 +281,6 @@ export default {
   this_term_proposition: '本屆主張',
   recommendation: '推薦語',
   vote_for_me: '投我一票',
-  vote_code_save_tips:
-    '請複製本次選舉的一次性“投票校驗碼”，以免本頁面意外關閉後再次打開時無法投票。',
-  vote_code_fill_tips:
-    '請將本次選舉首次打開本投票頁時複製的“投票校驗碼”粘貼於下方投票表單內。',
 
   // Member pages
   related: '相關',

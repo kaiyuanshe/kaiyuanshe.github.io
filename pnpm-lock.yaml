@@ -164,8 +164,8 @@ importers:
         specifier: ^9.18.0
         version: 9.18.0
       '@kaiyuanshe/kys-service':
-        specifier: ^1.0.0-rc.1
-        version: 1.0.0-rc.1(mobx@6.13.5)(typescript@5.7.3)
+        specifier: ^1.0.0-rc.2
+        version: 1.0.0-rc.2(mobx@6.13.5)(typescript@5.7.3)
       '@softonus/prettier-plugin-duplicate-remover':
         specifier: ^1.1.2
         version: 1.1.2
@@ -1022,8 +1022,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
 
-  '@kaiyuanshe/kys-service@1.0.0-rc.1':
-    resolution: {integrity: sha512-y3C+oqjvBE+d/3uqDNLN7q77ENwE7ArsgH0NEN8WHrdBaV6hzQItvZ0WEUhYNODfTGChQfd5tSZxNWPhvmv4sw==, tarball: https://npm.pkg.github.com/download/@kaiyuanshe/kys-service/1.0.0-rc.1/8a2db9ddf5b2ec657072db2906c9e8fb7dee31ce}
+  '@kaiyuanshe/kys-service@1.0.0-rc.2':
+    resolution: {integrity: sha512-ti31uWcsOWmw3zQHc85yKVqzODZhqdGoL6gHNWIqvCHKEUCa5LQV5fV8tIWyLER4Iia+duEzlcqIZNyIOMdddw==, tarball: https://npm.pkg.github.com/download/@kaiyuanshe/kys-service/1.0.0-rc.2/4786d2c2f9d77531bc167e642a45fab320c37d34}
     peerDependencies:
       web-fetch: ^1.4.2
 
@@ -6007,7 +6007,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  '@kaiyuanshe/kys-service@1.0.0-rc.1(mobx@6.13.5)(typescript@5.7.3)':
+  '@kaiyuanshe/kys-service@1.0.0-rc.2(mobx@6.13.5)(typescript@5.7.3)':
     dependencies:
       '@types/jsonwebtoken': 9.0.7
       '@types/koa': 2.15.0

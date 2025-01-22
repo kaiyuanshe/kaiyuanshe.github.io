@@ -281,10 +281,6 @@ export default {
   this_term_proposition: '本届主张',
   recommendation: '推荐语',
   vote_for_me: '投我一票',
-  vote_code_save_tips:
-    '请复制本次选举的一次性“投票校验码”，以免本页面意外关闭后再次打开时无法投票。',
-  vote_code_fill_tips:
-    '请将本次选举首次打开本投票页时复制的“投票校验码”粘贴于下方投票表单内。',
 
   // Member pages
   related: '相关',
