@@ -61,6 +61,13 @@ export class UserModel extends BaseListModel<User> {
     return (this.session = body!);
   }
 
+  @toggle('downloading')
+  async getSession() {
+    const { body } = await this.client.get<User>(`${this.baseURI}/session`);
+
+    return (this.session = body!);
+  }
+
   async signOut() {
     this.session = undefined;
 

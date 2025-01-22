@@ -1,5 +1,5 @@
 import { Loading } from 'idea-react';
-import { observable, when } from 'mobx';
+import { computed, when } from 'mobx';
 import { textJoin } from 'mobx-i18n';
 import { observer } from 'mobx-react';
 import dynamic from 'next/dynamic';
@@ -26,45 +26,42 @@ export default class ElectionVotePage extends Component<
 > {
   electionStore = new ElectionModel();
 
-  @observable
-  accessor code = '';
+  electionName = `KYS-administration-${this.props.route.params!.year}`;
+
+  @computed
+  get formData() {
+    const { currentVoteTicket } = this.electionStore;
+
+    if (!currentVoteTicket) return;
+
+    const data = Object.entries(currentVoteTicket).map(([name, value]) => [
+      `prefill_${name}`,
+      value!,
+    ]);
+    return new URLSearchParams(data);
+  }
 
   async componentDidMount() {
     await when(() => !!userStore.session);
 
-    const { code } = await this.electionStore.createVoteTicket(
-      `KYS-administration-${this.props.route.params!.year}`,
-    );
-    this.code = code;
+    await this.electionStore.signVoteTicket(this.electionName);
   }
 
-  renderVoteForm = (code: string) => (
+  renderVoteForm = () => (
     <SessionBox autoCover>
-      <header className="my-4 text-center text-danger">
-        {code ? (
-          <>
-            <p>{t('vote_code_save_tips')}</p>
-            <pre className="d-inline-block p-3 bg-dark text-white rounded">
-              <code>{code}</code>
-            </pre>
-          </>
-        ) : (
-          <p>{t('vote_code_fill_tips')}</p>
-        )}
-      </header>
       <Row xs={1} sm={2}>
         <Col>
           <h2 className="text-center">{t('director_election_voting')}</h2>
           <iframe
             className="w-100 vh-100 border-0"
-            src={`${VoteForm.理事}?prefill_code=${code}`}
+            src={`${VoteForm.理事}?${this.formData}`}
           />
         </Col>
         <Col>
           <h2 className="text-center">{t('member_application_voting')}</h2>
           <iframe
             className="w-100 vh-100 border-0"
-            src={`${VoteForm.正式成员}?prefill_code=${code}`}
+            src={`${VoteForm.正式成员}?${this.formData}`}
           />
         </Col>
       </Row>
@@ -72,12 +69,11 @@ export default class ElectionVotePage extends Component<
   );
 
   render() {
-    const { props, electionStore, code } = this;
-    const { year } = props.route.params!,
+    const { year } = this.props.route.params!,
       electionVoting = textJoin(t('election'), t('voting'));
 
     const title = `${year} ${electionVoting}`,
-      loading = electionStore.uploading > 0;
+      loading = this.electionStore.uploading > 0;
 
     return (
       <Container className="my-4">
@@ -92,7 +88,7 @@ export default class ElectionVotePage extends Component<
 
         {loading && <Loading />}
 
-        {this.renderVoteForm(code)}
+        {this.renderVoteForm()}
       </Container>
     );
   }
