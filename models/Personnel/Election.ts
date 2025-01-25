@@ -24,7 +24,7 @@ export class ElectionModel extends BaseModel {
 
   @persist()
   @observable
-  accessor currentVoteTicket: VoteTicket | undefined;
+  accessor ticketMap = {} as Record<string, VoteTicket>;
 
   restored = !isServer() && restore(this, 'Electron');
 
@@ -61,9 +61,12 @@ export class ElectionModel extends BaseModel {
   async signVoteTicket(electionName: string) {
     await this.restored;
 
-    if (this.currentVoteTicket) return this.currentVoteTicket;
+    let ticket = this.ticketMap[electionName];
 
-    await this.makePublicKey();
+    if (ticket) return ticket;
+
+    if (!this.publicKey) await this.makePublicKey();
+
     await this.savePublicKey(electionName);
 
     const signature = await crypto.subtle.sign(
@@ -71,10 +74,13 @@ export class ElectionModel extends BaseModel {
       this.privateKey!,
       new TextEncoder().encode(electionName),
     );
-    return (this.currentVoteTicket = {
+    ticket = {
       electionName,
       publicKey: this.publicKey,
       signature: buffer2hex(signature),
-    });
+    };
+    this.ticketMap = { ...this.ticketMap, [electionName]: ticket };
+
+    return ticket;
   }
 }

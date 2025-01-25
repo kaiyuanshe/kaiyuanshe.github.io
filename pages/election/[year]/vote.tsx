@@ -30,38 +30,49 @@ export default class ElectionVotePage extends Component<
 
   @computed
   get formData() {
-    const { currentVoteTicket } = this.electionStore;
+    const { ticketMap } = this.electionStore;
 
-    if (!currentVoteTicket) return;
-
-    const data = Object.entries(currentVoteTicket).map(([name, value]) => [
-      `prefill_${name}`,
-      value!,
+    const list = Object.entries(ticketMap).map(([name, ticket]) => [
+      name,
+      new URLSearchParams(
+        Object.entries(ticket).map(([key, value]) => [
+          `prefill_${key}`,
+          value!,
+        ]),
+      ),
     ]);
-    return new URLSearchParams(data);
+    return Object.fromEntries(list);
   }
 
   async componentDidMount() {
     await when(() => !!userStore.session);
 
-    await this.electionStore.signVoteTicket(this.electionName);
+    await this.electionStore.signVoteTicket(`${this.electionName}-director`);
+    await this.electionStore.signVoteTicket(`${this.electionName}-member`);
   }
 
-  renderVoteForm = (formData: URLSearchParams) => (
+  renderVoteForm = ({
+    [`${this.electionName}-director`]: director,
+    [`${this.electionName}-member`]: member,
+  }: ElectionVotePage['formData']) => (
     <Row xs={1} sm={2}>
       <Col>
         <h2 className="text-center">{t('director_election_voting')}</h2>
-        <iframe
-          className="w-100 vh-100 border-0"
-          src={`${VoteForm.理事}?${formData}`}
-        />
+        {director && (
+          <iframe
+            className="w-100 vh-100 border-0"
+            src={`${VoteForm.理事}?${director}`}
+          />
+        )}
       </Col>
       <Col>
         <h2 className="text-center">{t('member_application_voting')}</h2>
-        <iframe
-          className="w-100 vh-100 border-0"
-          src={`${VoteForm.正式成员}?${formData}`}
-        />
+        {member && (
+          <iframe
+            className="w-100 vh-100 border-0"
+            src={`${VoteForm.正式成员}?${member}`}
+          />
+        )}
       </Col>
     </Row>
   );
@@ -87,9 +98,7 @@ export default class ElectionVotePage extends Component<
 
         {loading && <Loading />}
 
-        <SessionBox autoCover>
-          {formData && this.renderVoteForm(formData)}
-        </SessionBox>
+        <SessionBox autoCover>{this.renderVoteForm(formData)}</SessionBox>
       </Container>
     );
   }
