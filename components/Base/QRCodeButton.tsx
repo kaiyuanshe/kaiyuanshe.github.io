@@ -40,7 +40,7 @@ export const QRCodeButton: FC<QRCodeButtonProps> = ({
   <>
     <Button
       {...{ size, variant, disabled }}
-      onClick={() => dialogQRC.open().catch(console.log)}
+      onClick={() => dialogQRC.open().catch(console.warn)}
     >
       {children}
     </Button>

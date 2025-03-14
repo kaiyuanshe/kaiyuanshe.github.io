@@ -44,7 +44,9 @@ const Levels = [
 
 const singleLineBenefitsLevels: TableCellValue[] = ['白金赞助'];
 
-type CooperationPageProps = { yearGroup: CooperationModel['yearGroup'] };
+interface CooperationPageProps {
+  yearGroup: CooperationModel['yearGroup'];
+}
 
 export const getServerSideProps = compose<{}, CooperationPageProps>(
   solidCache,
