@@ -8,7 +8,9 @@ import { PageHead } from '../../components/Layout/PageHead';
 import { i18n, t } from '../../models/Base/Translation';
 import { Community, CommunityModel } from '../../models/Community';
 
-type CommunityListPageProps = { list: Community[] };
+interface CommunityListPageProps {
+  list: Community[];
+}
 
 export const getServerSideProps = compose<{}, CommunityListPageProps>(
   cache(),

@@ -9,7 +9,9 @@ import { PageHead } from '../../components/Layout/PageHead';
 import activityStore, { Activity, ActivityModel } from '../../models/Activity';
 import { i18n, t } from '../../models/Base/Translation';
 
-type ActivityListPageProps = { list: Activity[] };
+interface ActivityListPageProps {
+  list: Activity[];
+}
 
 export const getServerSideProps = compose<{}, ActivityListPageProps>(
   translator(i18n),

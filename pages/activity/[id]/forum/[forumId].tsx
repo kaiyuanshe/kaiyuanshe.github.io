@@ -64,7 +64,7 @@ export default class ForumPage extends Component<ForumPageProps> {
 
     return (
       <Container
-        className={`d-flex flex-column justify-content-around align-items-center text-center py-5`}
+        className="d-flex flex-column justify-content-around align-items-center text-center py-5"
         style={{
           backgroundImage: `url(${fileURLOf(cardImage || image)})`,
           backgroundSize: 'cover',

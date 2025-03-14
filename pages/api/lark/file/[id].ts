@@ -40,7 +40,7 @@ export default safeAPI(async ({ method, url, query, headers }, res) => {
 
       const { mime } = (await fileTypeFromBuffer(file)) || {};
 
-      res.setHeader('Content-Type', mime as string);
+      if (mime) res.setHeader('Content-Type', mime as string);
 
       return void (method === 'GET' ? res.send(Buffer.from(file)) : res.end());
     }

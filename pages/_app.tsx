@@ -49,7 +49,7 @@ window.__aitable.baseUrl = "https://aitable.ai";`}
       id="AITable-widget"
       src="https://aitable.ai/file/js/aitable_widget.js?v=0.0.1"
       async
-    ></Script>
+    />
 
     <MainNav title={t('KaiYuanShe')} logo={DefaultImage} links={MainRoutes()} />
 

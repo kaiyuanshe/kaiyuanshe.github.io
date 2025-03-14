@@ -13,10 +13,7 @@ const Summary = process.env.NEXT_PUBLIC_SITE_SUMMARY;
 export const PageHead: FC<PageHeadProps> = observer(
   ({ title, description = Summary, children }) => (
     <Head>
-      <title>
-        {title && `${title} - `}
-        {t('KaiYuanShe')}
-      </title>
+      <title>{`${title ? `${title} - ` : ''}${t('KaiYuanShe')}`}</title>
 
       {description && <meta name="description" content={description} />}
 
