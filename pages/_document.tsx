@@ -11,19 +11,19 @@ export default function Document() {
         <script src="https://polyfill.kaiyuanshe.cn/feature/PWAManifest.js" />
         <link
           rel="stylesheet"
-          href="https://npm.onmicrosoft.cn/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css"
         />
         <link
           rel="stylesheet"
-          href="https://npm.onmicrosoft.cn/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+          href="https://unpkg.com/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
         />
         <link
           rel="stylesheet"
-          href="https://npm.onmicrosoft.cn/idea-react@2.0.0-rc.8/dist/index.css"
+          href="https://unpkg.com/idea-react@2.0.0-rc.8/dist/index.css"
         />
         <link
           rel="stylesheet"
-          href="https://npm.onmicrosoft.cn/leaflet@1.9.4/dist/leaflet.css"
+          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         />
       </Head>
 
