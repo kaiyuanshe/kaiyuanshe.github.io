@@ -13,12 +13,12 @@ import {
   TableCellLink,
   TableCellRelation,
   TableCellValue,
+  TableFormView,
   TableRecord,
 } from 'mobx-lark';
 import { Filter, persist, persistList, toggle } from 'mobx-restful';
 import { buildURLData, cache, countBy, Day, Hour, isEmpty } from 'web-utility';
 
-import { LarkFormData, TableFormViewItem } from '../../pages/api/lark/core';
 import { larkClient } from '../Base';
 import { COMMUNITY_BASE_ID } from '../Community';
 import { AgendaModel } from './Agenda';
@@ -49,7 +49,7 @@ export type Activity = Record<
 
 export type ActivityStatistic = Record<'city', Record<string, number>>;
 
-export class ActivityViewModel extends BiTableView() {
+export class ActivityFormModel extends BiTableView('form') {
   client = larkClient;
 }
 
@@ -70,20 +70,12 @@ export class ActivityTableModel extends BiTable() {
 
   @persist({ expireIn: Day })
   @observable
-  accessor formMap = {} as Record<string, TableFormViewItem[]>;
+  accessor formMap = {} as Record<string, TableFormView[]>;
 
   async *loadFormStream() {
     for (const { table_id, name } of this.allItems) {
-      const views = await new ActivityViewModel(this.id, table_id).getAll(),
-        forms: TableFormViewItem[] = [];
+      const forms = await new ActivityFormModel(this.id, table_id).getAll();
 
-      for (const { view_type, view_id } of views)
-        if (view_type === 'form') {
-          const { body } = await this.client.get<LarkFormData>(
-            `${this.baseURI}/${table_id}/forms/${view_id}`,
-          );
-          forms.push(body!.data!.form);
-        }
       yield [name, forms] as const;
     }
   }
@@ -245,7 +237,7 @@ export class ActivityModel extends BiDataTable<Activity>() {
 
 export type StatisticTrait = Pick<ActivityModel, 'statistic' | 'getStatistic'>;
 
-export class SearchActivityModel extends BiSearch(ActivityModel) {
+export class SearchActivityModel extends BiSearch<Activity>(ActivityModel) {
   searchKeys = ['name', 'city', 'location', 'host', 'alias'] as const;
 }
 

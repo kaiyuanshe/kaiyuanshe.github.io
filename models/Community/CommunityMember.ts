@@ -2,13 +2,13 @@ import { observable } from 'mobx';
 import {
   BiDataQueryOptions,
   BiDataTable,
+  normalizeTextArray,
   TableCellLink,
   TableCellText,
   TableCellValue,
   TableRecord,
 } from 'mobx-lark';
 
-import { normalizeTextArray } from '../../pages/api/lark/core';
 import { larkClient } from '../Base';
 
 export type CommunityMember = Record<

@@ -58,6 +58,6 @@ export class CommunityModel extends BiDataTable<Community>() {
   }
 }
 
-export class SearchCommunityModel extends BiSearch(CommunityModel) {
+export class SearchCommunityModel extends BiSearch<Community>(CommunityModel) {
   searchKeys = ['name', 'director', 'summary'] as const;
 }

@@ -1,5 +1,10 @@
 import { PageNav, VerticalMarquee } from 'idea-react';
-import { TableCellValue } from 'mobx-lark';
+import {
+  coordinateOf,
+  TableCellLocation,
+  TableCellValue,
+  TableFormView,
+} from 'mobx-lark';
 import { observer } from 'mobx-react';
 import dynamic from 'next/dynamic';
 import { compose, errorLogger, translator } from 'next-ssr-middleware';
@@ -30,7 +35,6 @@ import { Place } from '../../../models/Activity/Place';
 import systemStore from '../../../models/Base/System';
 import { i18n, t } from '../../../models/Base/Translation';
 import { solidCache } from '../../api/base';
-import { coordinateOf, TableFormViewItem } from '../../api/lark/core';
 import { fileURLOf } from '../../api/lark/file/[id]';
 import styles from './index.module.less';
 
@@ -72,7 +76,7 @@ export const getServerSideProps = compose<
 export default class ActivityDetailPage extends Component<ActivityDetailPageProps> {
   renderFormMenu(
     title: string,
-    forms: TableFormViewItem[],
+    forms: TableFormView[],
     variant: DropdownButtonProps['variant'] = 'primary',
     disabled = false,
   ) {
@@ -173,7 +177,7 @@ export default class ActivityDetailPage extends Component<ActivityDetailPageProp
             title: name,
             summary: forum?.toString(),
             image: photos && fileURLOf(photos, true),
-            position: coordinateOf(location),
+            position: coordinateOf(location as TableCellLocation),
           },
       )
       .filter(Boolean) as ImageMarker[];
@@ -188,7 +192,7 @@ export default class ActivityDetailPage extends Component<ActivityDetailPageProp
           <ListMap
             style={{ height: 'calc(100vh - 10rem)' }}
             zoom={18}
-            center={coordinateOf(activity.location)}
+            center={coordinateOf(activity.location as TableCellLocation)}
             markers={markers}
           />
         </>

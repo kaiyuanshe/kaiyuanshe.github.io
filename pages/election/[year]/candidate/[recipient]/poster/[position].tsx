@@ -38,6 +38,7 @@ export const getServerSideProps = compose<PageParams, CandidatePosterProps>(
       ['recipient'],
       +year,
     );
+
     return props ? JSON.parse(JSON.stringify({ props })) : { notFound: true };
   },
 );

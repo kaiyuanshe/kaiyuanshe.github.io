@@ -90,7 +90,7 @@ export class ArticleModel extends BiDataTable<Article>() {
   }
 }
 
-export class SearchArticleModel extends BiSearch(ArticleModel) {
+export class SearchArticleModel extends BiSearch<Article>(ArticleModel) {
   searchKeys = ['title', 'author', 'license', 'summary'] as const;
 }
 

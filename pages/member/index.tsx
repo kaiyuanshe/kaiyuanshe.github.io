@@ -22,6 +22,7 @@ export const getServerSideProps = compose<{}, MemberPageProps>(
       },
       ['department'],
     );
+
     return { props: JSON.parse(JSON.stringify({ group })) };
   },
 );

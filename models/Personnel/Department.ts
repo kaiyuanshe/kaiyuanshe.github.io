@@ -92,6 +92,8 @@ export class DepartmentModel extends BiDataTable<Department>() {
   toggleActive = () => (this.activeShown = !this.activeShown);
 }
 
-export class SearchDepartmentModel extends BiSearch(DepartmentModel) {
+export class SearchDepartmentModel extends BiSearch<Department>(
+  DepartmentModel,
+) {
   searchKeys = ['name', 'summary', 'email', 'link', 'codeLink'] as const;
 }

@@ -1,6 +1,7 @@
 import {
   BiDataTable,
   normalizeText,
+  normalizeTextArray,
   TableCellRelation,
   TableCellText,
   TableCellUser,
@@ -8,7 +9,6 @@ import {
   TableRecord,
 } from 'mobx-lark';
 
-import { normalizeTextArray } from '../../pages/api/lark/core';
 import { larkClient } from '../Base';
 
 export const GOVERNANCE_BASE_ID = process.env.NEXT_PUBLIC_GOVERNANCE_BASE_ID!,

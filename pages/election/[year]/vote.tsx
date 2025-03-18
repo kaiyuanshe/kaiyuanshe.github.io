@@ -41,6 +41,7 @@ export default class ElectionVotePage extends Component<
         ]),
       ),
     ]);
+
     return Object.fromEntries(list);
   }
 

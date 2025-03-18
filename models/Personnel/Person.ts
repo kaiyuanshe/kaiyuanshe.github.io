@@ -48,7 +48,7 @@ export class PersonModel extends BiDataTable<Person>() {
   }
 }
 
-export class SearchPersonModel extends BiSearch(PersonModel) {
+export class SearchPersonModel extends BiSearch<Person>(PersonModel) {
   searchKeys = [
     'name',
     'summary',

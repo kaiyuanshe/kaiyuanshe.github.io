@@ -2,6 +2,7 @@ import {
   BiDataQueryOptions,
   BiDataTable,
   makeSimpleFilter,
+  normalizeTextArray,
   TableCellRelation,
   TableCellText,
   TableCellValue,
@@ -9,7 +10,6 @@ import {
 } from 'mobx-lark';
 import { NewData } from 'mobx-restful';
 
-import { normalizeTextArray } from '../../pages/api/lark/core';
 import { larkClient } from '../Base';
 
 export type Forum = Record<

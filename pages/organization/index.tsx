@@ -41,6 +41,7 @@ export const getServerSideProps = compose(
         OSC_TAG_STATISTIC_TABLE_ID,
       ).countAll(),
     ]);
+
     return { props: { year, city, type, tag } };
   },
 );

@@ -5,6 +5,7 @@ import {
   BiSearch,
   makeSimpleFilter,
   normalizeText,
+  normalizeTextArray,
   TableCellAttachment,
   TableCellRelation,
   TableCellText,
@@ -14,7 +15,6 @@ import {
 import { Filter, persist, persistList, toggle } from 'mobx-restful';
 import { Day, groupBy } from 'web-utility';
 
-import { normalizeTextArray } from '../../pages/api/lark/core';
 import { larkClient } from '../Base';
 import userStore from '../Base/User';
 

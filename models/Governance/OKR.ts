@@ -2,6 +2,7 @@ import {
   BiDataTable,
   makeSimpleFilter,
   normalizeText,
+  normalizeTextArray,
   TableCellRelation,
   TableCellText,
   TableCellValue,
@@ -10,7 +11,6 @@ import {
 import { NewData } from 'mobx-restful';
 import { isEmpty } from 'web-utility';
 
-import { normalizeTextArray } from '../../pages/api/lark/core';
 import { larkClient } from '../Base';
 
 export const GOVERNANCE_BASE_ID = process.env.NEXT_PUBLIC_GOVERNANCE_BASE_ID!,

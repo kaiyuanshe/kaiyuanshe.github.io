@@ -1,8 +1,8 @@
-// @ts-check
 import cspellPlugin from '@cspell/eslint-plugin';
 import eslint from '@eslint/js';
 // @ts-expect-error eslint-plugin-next doesn't come with TypeScript definitions
 import nextPlugin from '@next/eslint-plugin-next';
+import stylistic from '@stylistic/eslint-plugin';
 import eslintConfigPrettier from 'eslint-config-prettier';
 import react from 'eslint-plugin-react';
 import simpleImportSortPlugin from 'eslint-plugin-simple-import-sort';
@@ -22,6 +22,7 @@ export default tsEslint.config(
   {
     plugins: {
       '@cspell': cspellPlugin,
+      '@stylistic': stylistic,
       'simple-import-sort': simpleImportSortPlugin,
       '@typescript-eslint': tsEslint.plugin,
       react,
@@ -30,7 +31,12 @@ export default tsEslint.config(
   },
   {
     // config with just ignores is the replacement for `.eslintignore`
-    ignores: ['**/node_modules/**', '**/public/**', '**/.next/**'],
+    ignores: [
+      '**/node_modules/**',
+      '**/public/**',
+      '**/.next/**',
+      '.github/scripts/**',
+    ],
   },
 
   // extends ...
@@ -64,6 +70,18 @@ export default tsEslint.config(
               'pnpm',
             ],
           },
+        },
+      ],
+      // stylistic
+      '@stylistic/padding-line-between-statements': [
+        'error',
+        { blankLine: 'always', prev: '*', next: 'return' },
+        { blankLine: 'always', prev: 'directive', next: '*' },
+        { blankLine: 'any', prev: 'directive', next: 'directive' },
+        {
+          blankLine: 'always',
+          prev: '*',
+          next: ['enum', 'interface', 'type'],
         },
       ],
       'arrow-body-style': ['error', 'as-needed'],

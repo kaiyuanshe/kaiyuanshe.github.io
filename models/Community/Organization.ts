@@ -139,7 +139,9 @@ export class OrganizationStatisticModel extends BiDataTable<OrganizationStatisti
   };
 }
 
-export class SearchOrganizationModel extends BiSearch(OrganizationModel) {
+export class SearchOrganizationModel extends BiSearch<Organization>(
+  OrganizationModel,
+) {
   searchKeys = [
     'name',
     'summary',
