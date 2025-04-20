@@ -34,6 +34,7 @@ export default {
   original_articles: '原創文章',
   translated_articles: '翻譯文章',
   all_articles: '全部文章',
+  archived_articles: '歸檔文章',
   our_annual_report: '年度報告',
   china_open_source_annual_report: '中國開源年度報告',
   kaiyuanshe_annual_report: '開源社年度報告',

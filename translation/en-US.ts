@@ -1,4 +1,5 @@
 import { IDType } from 'mobx-restful';
+import { arch } from 'os';
 
 export default {
   KaiYuanShe: 'KAIYUANSHE',
@@ -35,6 +36,7 @@ export default {
   original_articles: 'Original Articles',
   translated_articles: 'Translated Articles',
   all_articles: 'All Articles',
+  archived_articles: 'Archived Articles',
   our_annual_report: 'Our Annual Report',
   china_open_source_annual_report: 'China Open Source Annual Report',
   kaiyuanshe_annual_report: 'KAIYUANSHE Annual Report',

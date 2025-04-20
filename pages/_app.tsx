@@ -53,8 +53,8 @@ window.__aitable.baseUrl = "https://aitable.ai";`}
 
     <MainNav title={t('KaiYuanShe')} logo={DefaultImage} links={MainRoutes()} />
 
-    {router.route.startsWith('/article/original/') ? (
-      <MDXLayout title={router.route.split('/').at(-1)}>
+    {router.asPath.startsWith('/article/Wiki/') ? (
+      <MDXLayout title={router.asPath.split('/').at(-1)}>
         <Component {...pageProps} />
       </MDXLayout>
     ) : (

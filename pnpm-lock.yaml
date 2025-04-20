@@ -143,6 +143,9 @@ importers:
       webpack:
         specifier: ^5.99.6
         version: 5.99.6
+      yaml:
+        specifier: ^2.7.1
+        version: 2.7.1
     devDependencies:
       '@babel/plugin-proposal-decorators':
         specifier: ^7.25.9
