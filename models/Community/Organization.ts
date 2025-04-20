@@ -62,7 +62,7 @@ export class OrganizationModel extends BiDataTable<Organization>() {
   @observable
   accessor tagMap: Record<string, Organization[]> = {};
 
-  normalize({
+  extractFields({
     fields: { type, tags, link, codeLink, ...fields },
     ...meta
   }: TableRecord<Organization>) {

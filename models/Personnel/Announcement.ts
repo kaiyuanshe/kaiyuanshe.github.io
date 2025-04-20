@@ -35,7 +35,7 @@ export class AnnouncementModel extends BiDataTable<Announcement>() {
     super(appId, tableId);
   }
 
-  normalize({
+  extractFields({
     fields: { title, content, departments, ...fields },
     ...meta
   }: TableRecord<Announcement>) {

@@ -75,7 +75,7 @@ export class DepartmentModel extends BiDataTable<Department>() {
     return tempMap[rootName] || {};
   }
 
-  normalize({
+  extractFields({
     id,
     fields: { superior, link, codeLink, active, ...fields },
   }: TableRecord<Department>): Department {

@@ -116,7 +116,7 @@ export class AgendaModel extends BiDataTable<Agenda, AgendaFilter>() {
     return makeSimpleFilter({ ...filter, status: 'approved' });
   }
 
-  normalize({ id, fields }: TableRecord<Agenda>) {
+  extractFields({ id, fields }: TableRecord<Agenda>) {
     const {
       forum,
       mentors,

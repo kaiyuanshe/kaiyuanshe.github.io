@@ -34,7 +34,7 @@ export class IssueModel extends BiDataTable<Issue>() {
     super(appId, tableId);
   }
 
-  normalize({
+  extractFields({
     fields: { title, type, createdBy, department, ...fields },
     ...meta
   }: TableRecord<Issue>) {

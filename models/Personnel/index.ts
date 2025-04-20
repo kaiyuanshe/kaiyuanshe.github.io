@@ -76,7 +76,7 @@ export class PersonnelModel extends BiDataTable<Personnel>() {
       .join('&&');
   }
 
-  normalize({
+  extractFields({
     id,
     fields: {
       overview,

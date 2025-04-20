@@ -35,7 +35,7 @@ export class BillModel extends BiDataTable<Bill>() {
   @observable
   accessor group: Record<string, Bill[]> = {};
 
-  normalize({
+  extractFields({
     id,
     fields: { createdBy, agendas, ...data },
   }: TableRecord<Bill>) {

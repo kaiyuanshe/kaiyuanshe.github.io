@@ -232,7 +232,7 @@ export default class AgendaDetailPage extends Component<AgendaDetailPageProps> {
             />
             <section id="score">
               <h2>{t('attendee_ratings')}</h2>
-              <ScoreBar value={score} />
+              <ScoreBar value={score + ''} />
             </section>
           </Col>
           <Col xs={12} lg={8}>

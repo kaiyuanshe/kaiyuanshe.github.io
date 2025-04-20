@@ -40,7 +40,7 @@ export class ForumModel extends BiDataTable<Forum>() {
     return makeSimpleFilter({ ...filter, status: 'approved' });
   }
 
-  normalize({
+  extractFields({
     id,
     fields: {
       organization,
