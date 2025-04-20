@@ -54,7 +54,7 @@ export class CooperationModel extends BiDataTable<Cooperation>() {
     ][];
   }
 
-  normalize({
+  extractFields({
     id,
     fields: { organization, person, link, ...fields },
   }: TableRecord<Cooperation>): Cooperation {

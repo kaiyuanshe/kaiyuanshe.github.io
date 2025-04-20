@@ -44,7 +44,7 @@ export class OKRModel extends BiDataTable<OKR>() {
       .join('&&');
   }
 
-  normalize({
+  extractFields({
     fields: {
       department,
       object,

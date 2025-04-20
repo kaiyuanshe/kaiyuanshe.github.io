@@ -35,7 +35,7 @@ export class PersonModel extends BiDataTable<Person>() {
     super(appId, tableId);
   }
 
-  normalize({
+  extractFields({
     id,
     fields: { website, github, ...fields },
   }: TableRecord<Person>) {

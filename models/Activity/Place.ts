@@ -32,7 +32,10 @@ export class PlaceModel extends BiDataTable<Place>() {
 
   queryOptions: BiDataQueryOptions = { text_field_as_array: false };
 
-  normalize({ id, fields: { forum, bill, ...fields } }: TableRecord<Place>) {
+  extractFields({
+    id,
+    fields: { forum, bill, ...fields },
+  }: TableRecord<Place>) {
     return {
       ...fields,
       id,

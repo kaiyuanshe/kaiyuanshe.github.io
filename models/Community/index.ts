@@ -44,7 +44,7 @@ export class CommunityModel extends BiDataTable<Community>() {
   @observable
   accessor group: Record<string, Community[]> = {};
 
-  normalize({
+  extractFields({
     id,
     fields: { link, director, approver, ...fields },
   }: TableRecord<Community>) {

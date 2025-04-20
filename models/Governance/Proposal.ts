@@ -33,7 +33,7 @@ export class ProposalModel extends BiDataTable<Proposal>() {
     super(appId, tableId);
   }
 
-  normalize({
+  extractFields({
     fields: { title, contentURL, createdBy, ...fields },
     ...meta
   }: TableRecord<Proposal>) {

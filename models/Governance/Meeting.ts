@@ -44,7 +44,7 @@ export class MeetingModel extends BiDataTable<Meeting>() {
 
   sort = { startedAt: 'DESC' } as const;
 
-  normalize({
+  extractFields({
     fields: {
       title,
       departments,

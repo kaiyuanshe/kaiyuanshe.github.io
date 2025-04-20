@@ -1,7 +1,8 @@
-import { fileTypeFromBuffer } from 'file-type';
+import { fileTypeFromStream } from 'file-type';
 import MIME from 'mime';
 import { TableCellAttachment, TableCellMedia, TableCellValue } from 'mobx-lark';
 import { parse } from 'path';
+import { Readable } from 'stream';
 
 import { safeAPI } from '../../base';
 import { lark } from '../core';
@@ -34,15 +35,34 @@ export default safeAPI(async ({ method, url, query, headers }, res) => {
   switch (method) {
     case 'HEAD':
     case 'GET': {
-      const { id } = query;
+      const { id } = query,
+        token = await lark.getAccessToken();
 
-      const file = await lark.downloadFile(id as string);
+      const response = await fetch(
+        lark.client.baseURI + `drive/v1/medias/${id}/download`,
+        { headers: { Authorization: `Bearer ${token}` } },
+      );
+      const { ok, status, headers, body } = response;
 
-      const { mime } = (await fileTypeFromBuffer(file)) || {};
+      if (!ok) return void res.status(status).send(await response.json());
 
-      if (mime) res.setHeader('Content-Type', mime as string);
+      const mime = headers.get('Content-Type'),
+        [stream1, stream2] = body!.tee();
 
-      return void (method === 'GET' ? res.send(Buffer.from(file)) : res.end());
+      const contentType = mime?.startsWith('application/octet-stream')
+        ? (await fileTypeFromStream(stream1))?.mime
+        : mime;
+      res.setHeader('Content-Type', contentType || 'application/octet-stream');
+      res.setHeader(
+        'Content-Disposition',
+        headers.get('Content-Disposition') || '',
+      );
+      res.setHeader('Content-Length', headers.get('Content-Length') || '');
+
+      return void (method === 'GET'
+        ? // @ts-expect-error Web type compatibility
+          Readable.fromWeb(stream2).pipe(res)
+        : res.end());
     }
   }
   res.status(405).end();

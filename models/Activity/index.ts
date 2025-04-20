@@ -158,7 +158,7 @@ export class ActivityModel extends BiDataTable<Activity>() {
     };
   }
 
-  normalize({
+  extractFields({
     id,
     fields: { host, city, link, database, ...fields },
   }: TableRecord<Activity>) {
@@ -196,7 +196,7 @@ export class ActivityModel extends BiDataTable<Activity>() {
         { method: 'GET', path },
         { status: 404, statusText: 'Not found', headers: {} },
       );
-    return (this.currentOne = this.normalize(item));
+    return (this.currentOne = this.extractFields(item));
   }
 
   @toggle('downloading')

@@ -33,7 +33,7 @@ export class ReportModel extends BiDataTable<Report>() {
     super(appId, tableId);
   }
 
-  normalize({
+  extractFields({
     fields: {
       department,
       plan,

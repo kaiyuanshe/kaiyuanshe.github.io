@@ -48,7 +48,10 @@ export class ArticleModel extends BiDataTable<Article>() {
 
   currentRecommend?: SearchArticleModel;
 
-  normalize({ id, fields: { tags, link, ...fields } }: TableRecord<Article>) {
+  extractFields({
+    id,
+    fields: { tags, link, ...fields },
+  }: TableRecord<Article>) {
     return {
       ...fields,
       id,
@@ -72,7 +75,7 @@ export class ArticleModel extends BiDataTable<Article>() {
         { method: 'GET', path },
         { status: 404, statusText: 'Not found', headers: {} },
       );
-    const item = this.normalize(rawItem);
+    const item = this.extractFields(rawItem);
 
     const filePath = `article/${
       (item.link as string).split('/').slice(-1)[0]
