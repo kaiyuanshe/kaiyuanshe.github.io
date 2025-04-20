@@ -89,6 +89,7 @@ export const MainRoutes = (): Link[] => [
         path: '/article?type=翻译',
       },
       { title: t('all_articles'), path: '/article' },
+      { title: t('archived_articles'), path: '/article/original-index' },
     ],
   },
   {
