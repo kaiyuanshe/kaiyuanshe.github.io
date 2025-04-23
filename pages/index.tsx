@@ -11,6 +11,7 @@ import { LarkImage } from '../components/Base/LarkImage';
 import { PageHead } from '../components/Layout/PageHead';
 import { CityStatisticMap } from '../components/Map/CityStatisticMap';
 import { Activity, ActivityModel } from '../models/Activity';
+import { CheckEventModel } from '../models/Activity/CheckEvent';
 import { i18n, t } from '../models/Base/Translation';
 import { COMMUNITY_BASE_ID } from '../models/Community';
 import {
@@ -28,6 +29,7 @@ import { DefaultImage } from './api/lark/file/[id]';
 interface HomePageProps {
   articles: Article[];
   activities: Activity[];
+  hotActivities: Activity[];
   cityStatistic: OrganizationStatistic['city'];
   projects: Department[];
 }
@@ -37,19 +39,27 @@ export const getServerSideProps = compose<{}, HomePageProps>(
   errorLogger,
   translator(i18n),
   async () => {
-    const [articles, activities, cityStatistic, projects] = await Promise.all([
-      new ArticleModel().getList({}, 1, 3),
-      new ActivityModel().getList({}, 1, 3),
-      new OrganizationStatisticModel(
-        COMMUNITY_BASE_ID,
-        OSC_CITY_STATISTIC_TABLE_ID,
-      ).countAll(['activityCount']),
-      new DepartmentModel().getAll({ superior: '项目委员会' }),
-    ]);
+    const [articles, activities, hotActivities, cityStatistic, projects] =
+      await Promise.all([
+        new ArticleModel().getList({}, 1, 3),
+        new ActivityModel().getList({}, 1, 3),
+        new CheckEventModel().getHotActivity(),
+        new OrganizationStatisticModel(
+          COMMUNITY_BASE_ID,
+          OSC_CITY_STATISTIC_TABLE_ID,
+        ).countAll(['activityCount']),
+        new DepartmentModel().getAll({ superior: '项目委员会' }),
+      ]);
 
     return {
       props: JSON.parse(
-        JSON.stringify({ articles, activities, cityStatistic, projects }),
+        JSON.stringify({
+          articles,
+          activities,
+          hotActivities,
+          cityStatistic,
+          projects,
+        }),
       ),
     };
   },
@@ -94,7 +104,8 @@ export default class HomePage extends Component<HomePageProps> {
   );
 
   render() {
-    const { articles, activities, cityStatistic, projects } = this.props;
+    const { articles, activities, hotActivities, cityStatistic, projects } =
+      this.props;
 
     return (
       <>
@@ -185,6 +196,10 @@ export default class HomePage extends Component<HomePageProps> {
               {t('latest_activity')}
             </h2>
             <ActivityListLayout defaultData={activities} />
+          </section>
+          <section>
+            <h2 className="my-5 text-center text-primary">热门活动</h2>
+            <ActivityListLayout defaultData={hotActivities} />
           </section>
 
           <section>

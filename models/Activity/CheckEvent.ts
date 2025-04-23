@@ -41,4 +41,52 @@ export class CheckEventModel extends ListModel<CheckEvent> {
       //
     }
   }
+
+  async getHotActivity() {
+    await userStore.restored;
+
+    if (!userStore.session) return;
+
+    try {
+      const { body } = await this.client.get<ListChunk<CheckEvent>>(
+        `${this.baseURI}/activity`,
+      );
+
+      return body!.list;
+    } catch {
+      //
+    }
+  }
+
+  async getHotAgenda({ activityId }: Filter<CheckEvent>) {
+    await userStore.restored;
+
+    if (!userStore.session) return;
+
+    try {
+      const { body } = await this.client.get<ListChunk<CheckEvent>>(
+        `${this.baseURI}/activity/${activityId}`,
+      );
+
+      return body!.list;
+    } catch {
+      //
+    }
+  }
+
+  async getUserLikeActivity({ user }: Filter<CheckEvent>) {
+    await userStore.restored;
+
+    if (!userStore.session) return;
+
+    try {
+      const { body } = await this.client.get<ListChunk<CheckEvent>>(
+        `${this.baseURI}/user/${user}`,
+      );
+
+      return body!.list;
+    } catch {
+      //
+    }
+  }
 }
