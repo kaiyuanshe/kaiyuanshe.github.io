@@ -49,6 +49,9 @@ jobs:
           platforms: linux/amd64
           tags: ${{ env.BOX_URL }}:latest
           outputs: type=docker,dest=${{ env.ARTIFACT_PATH }}
+          # use cache from GitHub Actions
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
       - name: Pick Docker Compose
         run: |
