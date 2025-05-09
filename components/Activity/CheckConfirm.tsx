@@ -3,13 +3,13 @@ import { SpinnerButton } from 'idea-react';
 import { computed, reaction } from 'mobx';
 import { textJoin } from 'mobx-i18n';
 import { observer } from 'mobx-react';
+import { ObservedComponent } from 'mobx-react-helper';
 import { NewData } from 'mobx-restful';
 import dynamic from 'next/dynamic';
-import { Component } from 'react';
 
 import { ActivityModel } from '../../models/Activity';
 import { CheckEventModel } from '../../models/Activity/CheckEvent';
-import { t } from '../../models/Base/Translation';
+import { i18n, I18nContext } from '../../models/Base/Translation';
 import userStore from '../../models/Base/User';
 
 const SessionBox = dynamic(() => import('../Layout/SessionBox'), {
@@ -22,7 +22,9 @@ export interface CheckConfirmProps extends NewData<CheckEventInput> {
 }
 
 @observer
-export class CheckConfirm extends Component<CheckConfirmProps> {
+export class CheckConfirm extends ObservedComponent<CheckConfirmProps, typeof i18n> {
+  static contextType = I18nContext;
+
   activityStore = new ActivityModel();
   checkEventStore = this.props.store;
 
@@ -49,10 +51,7 @@ export class CheckConfirm extends Component<CheckConfirmProps> {
 
     await this.activityStore.getOne(activityId);
 
-    return this.activityStore.currentAgenda!.checkAuthorization(
-      agendaTitle,
-      session.mobilePhone,
-    );
+    return this.activityStore.currentAgenda!.checkAuthorization(agendaTitle, session.mobilePhone);
   };
 
   handleCheck = async () => {
@@ -60,16 +59,14 @@ export class CheckConfirm extends Component<CheckConfirmProps> {
 
     await this.checkEventStore.updateOne(meta);
 
-    alert(t('punch_in_successfully'));
+    alert(this.observedContext.t('punch_in_successfully'));
   };
 
-  componentWillUnmount = reaction(
-    () => userStore.session,
-    this.checkAuthorization,
-  );
+  componentWillUnmount = reaction(() => userStore.session, this.checkAuthorization);
 
   render() {
-    const { loading } = this;
+    const { t } = this.observedContext,
+      { loading } = this;
     const { currentAuthorized } = this.activityStore.currentAgenda || {};
 
     return (

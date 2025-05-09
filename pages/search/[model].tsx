@@ -1,14 +1,7 @@
 import { BiSearchModelClass } from 'mobx-lark';
 import { observer } from 'mobx-react';
-import {
-  cache,
-  compose,
-  errorLogger,
-  RouteProps,
-  router,
-  translator,
-} from 'next-ssr-middleware';
-import { ComponentClass, FC } from 'react';
+import { cache, compose, errorLogger, RouteProps, router } from 'next-ssr-middleware';
+import { ComponentClass, FC, useContext } from 'react';
 import { Col, Container, Nav, Pagination, Row } from 'react-bootstrap';
 import { buildURLData } from 'web-utility';
 
@@ -22,22 +15,15 @@ import { PageHead } from '../../components/Layout/PageHead';
 import { MemberCard } from '../../components/Member/Card';
 import { OrganizationCard } from '../../components/Organization/Card';
 import systemStore from '../../models/Base/System';
-import { i18n, t } from '../../models/Base/Translation';
+import { i18n, I18nContext } from '../../models/Base/Translation';
 
 type SearchModelPageProps = RouteProps<{ model: string }> &
-  Pick<
-    InstanceType<BiSearchModelClass>,
-    'pageIndex' | 'currentPage' | 'pageCount'
-  >;
+  Pick<InstanceType<BiSearchModelClass>, 'pageIndex' | 'currentPage' | 'pageCount'>;
 
-export const getServerSideProps = compose<
-  { model: string },
-  SearchModelPageProps
->(
+export const getServerSideProps = compose<{ model: string }, SearchModelPageProps>(
   cache(),
   router,
   errorLogger,
-  translator(i18n),
   async ({ params, query: { keywords, page = '1' } }) => {
     const Model = systemStore.searchMap[params!.model];
 
@@ -57,7 +43,7 @@ export const getServerSideProps = compose<
   },
 );
 
-const SearchNameMap: () => Record<string, string> = () => ({
+const SearchNameMap = ({ t }: typeof i18n) => ({
   member: t('member'),
   department: t('department'),
   meeting: t('meeting_calendar'),
@@ -81,12 +67,14 @@ const SearchCardMap: Record<string, ComponentClass<any> | FC<any>> = {
 
 const SearchModelPage: FC<SearchModelPageProps> = observer(
   ({ route: { params, query }, currentPage, pageIndex, pageCount }) => {
-    const nameMap = SearchNameMap(),
+    const i18n = useContext(I18nContext);
+
+    const nameMap = SearchNameMap(i18n),
       { model } = params!,
       { keywords } = query;
-    const name = nameMap[model],
+    const name = nameMap[model as keyof typeof nameMap],
       Card = SearchCardMap[model];
-    const title = `${keywords} - ${name} ${t('search_results')}`;
+    const title = `${keywords} - ${name} ${i18n.t('search_results')}`;
 
     return (
       <Container className="py-4">
@@ -95,18 +83,11 @@ const SearchModelPage: FC<SearchModelPageProps> = observer(
         <h1 className="my-5 text-center">{title}</h1>
 
         <header className="d-flex flex-wrap align-items-center gap-3">
-          <SearchBar
-            className="flex-fill"
-            action={`/search/${model}`}
-            defaultValue={keywords}
-          />
+          <SearchBar className="flex-fill" action={`/search/${model}`} defaultValue={keywords} />
           <Nav variant="pills" defaultActiveKey={model}>
             {Object.entries(nameMap).map(([key, value]) => (
               <Nav.Item key={key}>
-                <Nav.Link
-                  eventKey={key}
-                  href={`/search/${key}?keywords=${keywords}`}
-                >
+                <Nav.Link eventKey={key} href={`/search/${key}?keywords=${keywords}`}>
                   {value}
                 </Nav.Link>
               </Nav.Item>

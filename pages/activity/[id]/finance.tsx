@@ -1,33 +1,25 @@
 import { Loading, text2color } from 'idea-react';
 import { computed, observable } from 'mobx';
 import { observer } from 'mobx-react';
+import { ObservedComponent } from 'mobx-react-helper';
 import { Column, RestTable } from 'mobx-restful-table';
-import {
-  compose,
-  errorLogger,
-  RouteProps,
-  router,
-  translator,
-} from 'next-ssr-middleware';
-import { Component } from 'react';
+import { compose, errorLogger, RouteProps, router } from 'next-ssr-middleware';
 import { Badge, Breadcrumb, Container } from 'react-bootstrap';
 import { formatDate } from 'web-utility';
 
 import { PageHead } from '../../../components/Layout/PageHead';
 import { ActivityModel } from '../../../models/Activity';
 import { Bill, BillModel } from '../../../models/Activity/Bill';
-import { i18n, t } from '../../../models/Base/Translation';
+import { i18n, I18nContext } from '../../../models/Base/Translation';
 
 type BillDetailPageProps = RouteProps<{ id: string }>;
 
-export const getServerSideProps = compose<{ id: string }, BillDetailPageProps>(
-  router,
-  errorLogger,
-  translator(i18n),
-);
+export const getServerSideProps = compose<{ id: string }, BillDetailPageProps>(router, errorLogger);
 
 @observer
-export default class BillDetailPage extends Component<BillDetailPageProps> {
+export default class BillDetailPage extends ObservedComponent<BillDetailPageProps, typeof i18n> {
+  static contextType = I18nContext;
+
   @observable
   accessor activityStore: ActivityModel | undefined;
 
@@ -46,12 +38,13 @@ export default class BillDetailPage extends Component<BillDetailPageProps> {
 
   @computed
   get columns(): Column<Bill>[] {
+    const { t } = this.observedContext;
+
     return [
       {
         key: 'createdAt',
         renderHead: t('bill_createAt'),
-        renderBody: ({ createdAt }) =>
-          formatDate(createdAt as number, 'YYYY-MM-DD'),
+        renderBody: ({ createdAt }) => formatDate(createdAt as number, 'YYYY-MM-DD'),
       },
       {
         key: 'createdBy',
@@ -60,9 +53,7 @@ export default class BillDetailPage extends Component<BillDetailPageProps> {
       {
         key: 'type',
         renderHead: t('bill_type'),
-        renderBody: ({ type }) => (
-          <Badge bg={text2color(type + '', ['light'])}>{type + ''}</Badge>
-        ),
+        renderBody: ({ type }) => <Badge bg={text2color(type + '', ['light'])}>{type + ''}</Badge>,
       },
       {
         key: 'price',
@@ -77,8 +68,10 @@ export default class BillDetailPage extends Component<BillDetailPageProps> {
   }
 
   render() {
-    const { activityStore, billStore } = this;
-    const loading = activityStore?.downloading || billStore?.downloading || 0,
+    const i18n = this.observedContext,
+      { activityStore, billStore } = this;
+    const { t } = i18n,
+      loading = activityStore?.downloading || billStore?.downloading || 0,
       { id, name = '' } = activityStore?.currentOne || {};
 
     return (
@@ -87,9 +80,7 @@ export default class BillDetailPage extends Component<BillDetailPageProps> {
         <Breadcrumb>
           <Breadcrumb.Item href="/">{t('KaiYuanShe')}</Breadcrumb.Item>
           <Breadcrumb.Item href="/activity">{t('activity')}</Breadcrumb.Item>
-          <Breadcrumb.Item href={`/activity/${id}`}>
-            {name as string}
-          </Breadcrumb.Item>
+          <Breadcrumb.Item href={`/activity/${id}`}>{name as string}</Breadcrumb.Item>
           <Breadcrumb.Item active>{t('financial_disclosure')}</Breadcrumb.Item>
         </Breadcrumb>
         <h1 className="mt-5 mb-4">{name + ' ' + t('financial_disclosure')}</h1>

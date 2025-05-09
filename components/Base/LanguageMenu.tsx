@@ -1,16 +1,17 @@
 import { Option, Select } from 'idea-react';
 import { observer } from 'mobx-react';
-import { FC } from 'react';
+import { FC, useContext } from 'react';
 
-import { i18n, LanguageName } from '../../models/Base/Translation';
+import { I18nContext, LanguageName } from '../../models/Base/Translation';
 
 const LanguageMenu: FC = observer(() => {
+  const i18n = useContext(I18nContext);
   const { currentLanguage } = i18n;
 
   return (
     <Select
       value={currentLanguage}
-      onChange={code => i18n.changeLanguage(code as typeof currentLanguage)}
+      onChange={code => i18n.loadLanguages(code as typeof currentLanguage)}
     >
       {Object.entries(LanguageName).map(([code, name]) => (
         <Option key={code} value={code}>
@@ -20,5 +21,4 @@ const LanguageMenu: FC = observer(() => {
     </Select>
   );
 });
-
 export default LanguageMenu;

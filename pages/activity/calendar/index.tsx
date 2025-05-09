@@ -1,15 +1,17 @@
 import { Loading, MonthCalendar } from 'idea-react';
 import { observer } from 'mobx-react';
-import { Component } from 'react';
+import { ObservedComponent } from 'mobx-react-helper';
 import { Breadcrumb, Container } from 'react-bootstrap';
 
 import { ArticleListLayout } from '../../../components/Article/List';
 import { PageHead } from '../../../components/Layout/PageHead';
-import { t } from '../../../models/Base/Translation';
+import { i18n, I18nContext } from '../../../models/Base/Translation';
 import { CalendarSearchArticleModel } from '../../../models/Product/Article';
 
 @observer
-export default class CalendarPage extends Component {
+export default class CalendarPage extends ObservedComponent<{}, typeof i18n> {
+  static contextType = I18nContext;
+
   store = new CalendarSearchArticleModel();
 
   componentDidMount() {
@@ -19,7 +21,8 @@ export default class CalendarPage extends Component {
   loadData = (date?: Date) => this.store.getMonthList({ tags: '活动' }, date);
 
   render() {
-    const { downloading, allItems } = this.store;
+    const { t } = this.observedContext,
+      { downloading, allItems } = this.store;
 
     return (
       <Container className="py-5">
@@ -27,9 +30,7 @@ export default class CalendarPage extends Component {
         <Breadcrumb>
           <Breadcrumb.Item href="/">{t('KaiYuanShe')}</Breadcrumb.Item>
           <Breadcrumb.Item href="/activity">{t('activity')}</Breadcrumb.Item>
-          <Breadcrumb.Item active>
-            {t('activity_articles_calendar')}
-          </Breadcrumb.Item>
+          <Breadcrumb.Item active>{t('activity_articles_calendar')}</Breadcrumb.Item>
         </Breadcrumb>
         <h1 className="mb-5 text-center">{t('activity_articles_calendar')}</h1>
 

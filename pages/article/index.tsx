@@ -1,22 +1,13 @@
 import { observer } from 'mobx-react';
 import { ScrollList } from 'mobx-restful-table';
-import {
-  compose,
-  errorLogger,
-  RouteProps,
-  router,
-  translator,
-} from 'next-ssr-middleware';
-import { FC } from 'react';
+import { compose, errorLogger, RouteProps, router } from 'next-ssr-middleware';
+import { FC, useContext } from 'react';
 import { Container } from 'react-bootstrap';
 
 import { ArticleListLayout } from '../../components/Article/List';
 import { PageHead } from '../../components/Layout/PageHead';
-import { i18n, t } from '../../models/Base/Translation';
-import articleStore, {
-  Article,
-  ArticleModel,
-} from '../../models/Product/Article';
+import { i18n, I18nContext } from '../../models/Base/Translation';
+import articleStore, { Article, ArticleModel } from '../../models/Product/Article';
 
 interface ArticleListPageProps extends RouteProps {
   list: Article[];
@@ -25,7 +16,6 @@ interface ArticleListPageProps extends RouteProps {
 export const getServerSideProps = compose<{}, ArticleListPageProps>(
   router,
   errorLogger,
-  translator(i18n),
   async ({ query }) => {
     const list = await new ArticleModel().getList({ type: query.type }, 1);
 
@@ -33,25 +23,25 @@ export const getServerSideProps = compose<{}, ArticleListPageProps>(
   },
 );
 
-const ArticleListPage: FC<ArticleListPageProps> = observer(
-  ({ route: { query }, list }) => {
-    const title = [query.type, t('our_knowledge_base')].filter(Boolean);
+const ArticleListPage: FC<ArticleListPageProps> = observer(({ route: { query }, list }) => {
+  const { t } = useContext(I18nContext);
 
-    return (
-      <Container className="py-5">
-        <PageHead title={title.join(' - ')} />
+  const title = [query.type, t('our_knowledge_base')].filter(Boolean);
 
-        <h1 className="mb-5 text-center">{[...title].reverse().join(' - ')}</h1>
+  return (
+    <Container className="py-5">
+      <PageHead title={title.join(' - ')} />
 
-        <ScrollList
-          translator={i18n}
-          store={articleStore}
-          filter={query}
-          renderList={allItems => <ArticleListLayout defaultData={allItems} />}
-          defaultData={list}
-        />
-      </Container>
-    );
-  },
-);
+      <h1 className="mb-5 text-center">{[...title].reverse().join(' - ')}</h1>
+
+      <ScrollList
+        translator={i18n}
+        store={articleStore}
+        filter={query}
+        renderList={allItems => <ArticleListLayout defaultData={allItems} />}
+        defaultData={list}
+      />
+    </Container>
+  );
+});
 export default ArticleListPage;

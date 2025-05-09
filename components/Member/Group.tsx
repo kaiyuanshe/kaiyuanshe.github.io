@@ -1,10 +1,10 @@
 import 'array-unique-proposal';
 
 import { observer } from 'mobx-react';
-import { FC } from 'react';
+import { FC, useContext } from 'react';
 import { TimeData } from 'web-utility';
 
-import { t } from '../../models/Base/Translation';
+import { I18nContext } from '../../models/Base/Translation';
 import { Personnel } from '../../models/Personnel';
 import { MemberCard } from './Card';
 import { MemberTitle } from './Title';
@@ -15,15 +15,13 @@ export interface MemberGroupProps {
 }
 
 export const MemberGroup: FC<MemberGroupProps> = observer(({ name, list }) => {
+  const { t } = useContext(I18nContext);
+
   list = list.uniqueBy(({ recipient }) => recipient + '');
 
   return (
     <section id={name}>
-      <MemberTitle
-        className="my-5"
-        title={name || t('unclassified')}
-        count={list.length}
-      />
+      <MemberTitle className="my-5" title={name || t('unclassified')} count={list.length} />
       <ul className="list-unstyled d-flex flex-wrap gap-3">
         {list.map(({ id, createdAt, position, recipient, recipientAvatar }) => (
           <li

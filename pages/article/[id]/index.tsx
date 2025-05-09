@@ -1,13 +1,13 @@
 import { observer } from 'mobx-react';
-import { compose, errorLogger, translator } from 'next-ssr-middleware';
-import { Component } from 'react';
+import { ObservedComponent } from 'mobx-react-helper';
+import { compose, errorLogger } from 'next-ssr-middleware';
 import { Breadcrumb, Col, Container, Row } from 'react-bootstrap';
 
 import { ArticleListLayout } from '../../../components/Article/List';
 import { CommentBox } from '../../../components/Base/CommentBox';
 import { TagNav } from '../../../components/Base/TagNav';
 import { PageHead } from '../../../components/Layout/PageHead';
-import { i18n, t } from '../../../models/Base/Translation';
+import { i18n, I18nContext } from '../../../models/Base/Translation';
 import { Article, ArticleModel } from '../../../models/Product/Article';
 
 interface ArticleDetailPageProps {
@@ -15,26 +15,32 @@ interface ArticleDetailPageProps {
   recommends: Article[];
 }
 
-export const getServerSideProps = compose<
-  { id: string },
-  ArticleDetailPageProps
->(errorLogger, translator(i18n), async ({ params }) => {
-  const articleStore = new ArticleModel();
+export const getServerSideProps = compose<{ id: string }, ArticleDetailPageProps>(
+  errorLogger,
+  async ({ params }) => {
+    const articleStore = new ArticleModel();
 
-  const article = await articleStore.getOne(params!.id);
+    const article = await articleStore.getOne(params!.id);
 
-  return {
-    props: {
-      article,
-      recommends: articleStore.currentRecommend!.currentPage,
-    },
-  };
-});
+    return {
+      props: {
+        article,
+        recommends: articleStore.currentRecommend!.currentPage,
+      },
+    };
+  },
+);
 
 @observer
-export default class ArticleDetailPage extends Component<ArticleDetailPageProps> {
+export default class ArticleDetailPage extends ObservedComponent<
+  ArticleDetailPageProps,
+  typeof i18n
+> {
+  static contextType = I18nContext;
+
   renderMeta() {
-    const { license = 'CC-4.0', link, tags } = this.props.article;
+    const { t } = this.observedContext,
+      { license = 'CC-4.0', link, tags } = this.props.article;
 
     return (
       <>
@@ -49,16 +55,14 @@ export default class ArticleDetailPage extends Component<ArticleDetailPageProps>
           </dd>
         </dl>
 
-        <TagNav
-          linkOf={value => `/search/article?keywords=${value}`}
-          list={tags as string[]}
-        />
+        <TagNav linkOf={value => `/search/article?keywords=${value}`} list={tags as string[]} />
       </>
     );
   }
 
   render() {
-    const { title, content } = this.props.article,
+    const { t } = this.observedContext,
+      { title, content } = this.props.article,
       { recommends } = this.props;
 
     return (
@@ -72,12 +76,7 @@ export default class ArticleDetailPage extends Component<ArticleDetailPageProps>
         </Breadcrumb>
 
         <Row>
-          <Col
-            as="article"
-            xs={12}
-            sm={9}
-            dangerouslySetInnerHTML={{ __html: content! }}
-          />
+          <Col as="article" xs={12} sm={9} dangerouslySetInnerHTML={{ __html: content! }} />
           <Col xs={12} sm={3}>
             {this.renderMeta()}
 

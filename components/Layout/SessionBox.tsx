@@ -1,9 +1,10 @@
 import { Loading } from 'idea-react';
 import { reaction } from 'mobx';
 import { observer } from 'mobx-react';
-import { Component, HTMLAttributes, MouseEvent } from 'react';
+import { ObservedComponent } from 'mobx-react-helper';
+import { HTMLAttributes, MouseEvent } from 'react';
 
-import { t } from '../../models/Base/Translation';
+import { i18n, I18nContext } from '../../models/Base/Translation';
 import userStore from '../../models/Base/User';
 import { captchaDialog } from '../Base/Captcha';
 import { mobilePhoneDialog, signWithSMSCode } from '../Base/SMSCode';
@@ -13,14 +14,12 @@ export interface SessionBoxProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 @observer
-export default class SessionBox extends Component<SessionBoxProps> {
-  componentDidMount = () =>
-    this.props.autoCover && !userStore.session && this.openModal();
+export default class SessionBox extends ObservedComponent<SessionBoxProps, typeof i18n> {
+  static contextType = I18nContext;
 
-  componentWillUnmount = reaction(
-    () => userStore.session,
-    this.componentDidMount,
-  );
+  componentDidMount = () => this.props.autoCover && !userStore.session && this.openModal();
+
+  componentWillUnmount = reaction(() => userStore.session, this.componentDidMount);
 
   async openModal() {
     const captcha = await captchaDialog.open();
@@ -33,7 +32,7 @@ export default class SessionBox extends Component<SessionBoxProps> {
 
     await userStore.signIn(signInData);
 
-    alert(t('sign_in_successfully'));
+    alert(this.observedContext.t('sign_in_successfully'));
   }
 
   captureInput = (event: MouseEvent<HTMLDivElement>) => {
@@ -52,13 +51,10 @@ export default class SessionBox extends Component<SessionBoxProps> {
         <captchaDialog.Component />
         <mobilePhoneDialog.Component />
         <signWithSMSCode.Component />
-        <div
-          {...props}
-          onClickCapture={autoCover || session ? undefined : this.captureInput}
-        >
+
+        <div {...props} onClickCapture={autoCover || session ? undefined : this.captureInput}>
           {(!autoCover || session) && children}
         </div>
-
         {uploading > 0 && <Loading />}
       </>
     );

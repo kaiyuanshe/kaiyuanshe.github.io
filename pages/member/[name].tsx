@@ -2,8 +2,8 @@ import { text2color } from 'idea-react';
 import { marked } from 'marked';
 import { textJoin } from 'mobx-i18n';
 import { observer } from 'mobx-react';
-import { compose, errorLogger, translator } from 'next-ssr-middleware';
-import { Component } from 'react';
+import { ObservedComponent } from 'mobx-react-helper';
+import { compose, errorLogger } from 'next-ssr-middleware';
 import { Badge, Breadcrumb, Col, Container, Image, Row } from 'react-bootstrap';
 import { formatDate } from 'web-utility';
 
@@ -18,7 +18,7 @@ import { MeetingCard } from '../../components/Governance/MeetingCard';
 import { PageHead } from '../../components/Layout/PageHead';
 import { OrganizationCard } from '../../components/Organization/Card';
 import { Activity, SearchActivityModel } from '../../models/Activity';
-import { i18n, t } from '../../models/Base/Translation';
+import { i18n, I18nContext } from '../../models/Base/Translation';
 import { Community, SearchCommunityModel } from '../../models/Community';
 import {
   Organization,
@@ -27,10 +27,7 @@ import {
 } from '../../models/Community/Organization';
 import { Meeting, SearchMeetingModel } from '../../models/Governance/Meeting';
 import { Personnel, PersonnelModel } from '../../models/Personnel';
-import {
-  Department,
-  SearchDepartmentModel,
-} from '../../models/Personnel/Department';
+import { Department, SearchDepartmentModel } from '../../models/Personnel/Department';
 import { Person, PersonModel } from '../../models/Personnel/Person';
 import { Article, SearchArticleModel } from '../../models/Product/Article';
 
@@ -48,7 +45,6 @@ interface PersonDetailPageProps {
 
 export const getServerSideProps = compose<{ name: string }, PersonDetailPage>(
   errorLogger,
-  translator(i18n),
   async ({ params: { name } = {} }) => {
     const [person] = await new PersonModel().getList({ name });
 
@@ -59,23 +55,16 @@ export const getServerSideProps = compose<{ name: string }, PersonDetailPage>(
       recipient: name,
     });
 
-    const [
-      departments,
-      meetings,
-      articles,
-      activitys,
-      communitys,
-      organizations,
-      NGOs,
-    ] = await Promise.all([
-      new SearchDepartmentModel().getSearchList(name + ''),
-      new SearchMeetingModel().getSearchList(name + ''),
-      new SearchArticleModel().getSearchList(name + ''),
-      new SearchActivityModel().getSearchList(name + ''),
-      new SearchCommunityModel().getSearchList(name + ''),
-      new SearchOrganizationModel().getSearchList(name + ''),
-      new SearchNGOModel().getSearchList(name + ''),
-    ]);
+    const [departments, meetings, articles, activitys, communitys, organizations, NGOs] =
+      await Promise.all([
+        new SearchDepartmentModel().getSearchList(name + ''),
+        new SearchMeetingModel().getSearchList(name + ''),
+        new SearchArticleModel().getSearchList(name + ''),
+        new SearchActivityModel().getSearchList(name + ''),
+        new SearchCommunityModel().getSearchList(name + ''),
+        new SearchOrganizationModel().getSearchList(name + ''),
+        new SearchNGOModel().getSearchList(name + ''),
+      ]);
 
     const searchResults = {
       person,
@@ -89,14 +78,17 @@ export const getServerSideProps = compose<{ name: string }, PersonDetailPage>(
       NGOs,
     };
 
-    return {
-      props: JSON.parse(JSON.stringify(searchResults)),
-    };
+    return { props: JSON.parse(JSON.stringify(searchResults)) };
   },
 );
 
 @observer
-export default class PersonDetailPage extends Component<PersonDetailPageProps> {
+export default class PersonDetailPage extends ObservedComponent<
+  PersonDetailPageProps,
+  typeof i18n
+> {
+  static contextType = I18nContext;
+
   renderProfile = ({
     name,
     gender,
@@ -183,105 +175,134 @@ export default class PersonDetailPage extends Component<PersonDetailPageProps> {
     </li>
   );
 
-  renderArticle = (articles: Article[]) => (
-    <details>
-      <summary>{textJoin(t('related'), t('article'))}</summary>
+  renderArticle(articles: Article[]) {
+    const { t } = this.observedContext;
 
-      <Row as="ol" className="list-unstyled g-3" xs={1} md={2}>
-        {articles.map(article => (
-          <Col key={article.id as string} as="li">
-            <ArticleCard {...article} />
-          </Col>
-        ))}
-      </Row>
-    </details>
-  );
+    return (
+      <details>
+        <summary>{textJoin(t('related'), t('article'))}</summary>
 
-  renderDepartment = (departments: Department[]) => (
-    <details>
-      <summary>{textJoin(t('related'), t('department'))}</summary>
+        <Row as="ol" className="list-unstyled g-3" xs={1} md={2}>
+          {articles.map(article => (
+            <Col key={article.id as string} as="li">
+              <ArticleCard {...article} />
+            </Col>
+          ))}
+        </Row>
+      </details>
+    );
+  }
 
-      <Row as="ol" className="list-unstyled g-3" xs={1} md={2}>
-        {departments.map(department => (
-          <Col key={department.id as string} as="li">
-            <GroupCard {...department} />
-          </Col>
-        ))}
-      </Row>
-    </details>
-  );
+  renderDepartment(departments: Department[]) {
+    const { t } = this.observedContext;
 
-  renderMeeting = (meetings: Meeting[]) => (
-    <details>
-      <summary>{textJoin(t('related'), t('meeting'))}</summary>
+    return (
+      <details>
+        <summary>{textJoin(t('related'), t('department'))}</summary>
 
-      <Row as="ol" className="list-unstyled g-3" xs={1} md={2}>
-        {meetings.map(meeting => (
-          <Col key={meeting.id as string} as="li">
-            <MeetingCard {...meeting} />
-          </Col>
-        ))}
-      </Row>
-    </details>
-  );
+        <Row as="ol" className="list-unstyled g-3" xs={1} md={2}>
+          {departments.map(department => (
+            <Col key={department.id as string} as="li">
+              <GroupCard {...department} />
+            </Col>
+          ))}
+        </Row>
+      </details>
+    );
+  }
 
-  renderActivity = (activitys: Activity[]) => (
-    <details>
-      <summary>{textJoin(t('related'), t('activity'))}</summary>
+  renderMeeting(meetings: Meeting[]) {
+    const { t } = this.observedContext;
 
-      <Row as="ol" className="list-unstyled g-3" xs={1} md={2}>
-        {activitys.map(activity => (
-          <Col key={activity.id as string} as="li">
-            <ActivityCard {...activity} />
-          </Col>
-        ))}
-      </Row>
-    </details>
-  );
+    return (
+      <details>
+        <summary>{textJoin(t('related'), t('meeting'))}</summary>
 
-  renderCommunity = (communitys: Community[]) => (
-    <details>
-      <summary>{textJoin(t('related'), t('community'))}</summary>
+        <Row as="ol" className="list-unstyled g-3" xs={1} md={2}>
+          {meetings.map(meeting => (
+            <Col key={meeting.id as string} as="li">
+              <MeetingCard {...meeting} />
+            </Col>
+          ))}
+        </Row>
+      </details>
+    );
+  }
 
-      <Row as="ol" className="list-unstyled g-3" xs={1} md={2}>
-        {communitys.map(community => (
-          <Col key={community.id as string} as="li">
-            <CommunityCard {...community} />
-          </Col>
-        ))}
-      </Row>
-    </details>
-  );
+  renderActivity(activitys: Activity[]) {
+    const { t } = this.observedContext;
 
-  renderOrganization = (organizations: Organization[]) => (
-    <details>
-      <summary>{textJoin(t('related'), t('organization'))}</summary>
+    return (
+      <details>
+        <summary>{textJoin(t('related'), t('activity'))}</summary>
 
-      <Row as="ol" className="list-unstyled g-3" xs={1} md={2}>
-        {organizations.map(({ id, ...organization }) => (
-          <Col key={id as string} as="li">
-            <OrganizationCard {...organization} />
-          </Col>
-        ))}
-      </Row>
-    </details>
-  );
+        <Row as="ol" className="list-unstyled g-3" xs={1} md={2}>
+          {activitys.map(activity => (
+            <Col key={activity.id as string} as="li">
+              <ActivityCard {...activity} />
+            </Col>
+          ))}
+        </Row>
+      </details>
+    );
+  }
 
-  renderNGO = (NGOs: Organization[]) => (
-    <details>
-      <summary>{textJoin(t('related'), t('NGO'))}</summary>
+  renderCommunity(communitys: Community[]) {
+    const { t } = this.observedContext;
 
-      <Row as="ol" className="list-unstyled g-3" xs={1} md={2}>
-        {NGOs.map(({ id, ...NGO }) => (
-          <Col key={id as string} as="li">
-            <OrganizationCard {...NGO} />
-          </Col>
-        ))}
-      </Row>
-    </details>
-  );
+    return (
+      <details>
+        <summary>{textJoin(t('related'), t('community'))}</summary>
+
+        <Row as="ol" className="list-unstyled g-3" xs={1} md={2}>
+          {communitys.map(community => (
+            <Col key={community.id as string} as="li">
+              <CommunityCard {...community} />
+            </Col>
+          ))}
+        </Row>
+      </details>
+    );
+  }
+
+  renderOrganization = (organizations: Organization[]) => {
+    const { t } = this.observedContext;
+
+    return (
+      <details>
+        <summary>{textJoin(t('related'), t('organization'))}</summary>
+
+        <Row as="ol" className="list-unstyled g-3" xs={1} md={2}>
+          {organizations.map(({ id, ...organization }) => (
+            <Col key={id as string} as="li">
+              <OrganizationCard {...organization} />
+            </Col>
+          ))}
+        </Row>
+      </details>
+    );
+  };
+
+  renderNGO(NGOs: Organization[]) {
+    const { t } = this.observedContext;
+
+    return (
+      <details>
+        <summary>{textJoin(t('related'), t('NGO'))}</summary>
+
+        <Row as="ol" className="list-unstyled g-3" xs={1} md={2}>
+          {NGOs.map(({ id, ...NGO }) => (
+            <Col key={id as string} as="li">
+              <OrganizationCard {...NGO} />
+            </Col>
+          ))}
+        </Row>
+      </details>
+    );
+  }
 
   render() {
+    const { t } = this.observedContext;
     const {
       person,
       personnels,

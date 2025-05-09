@@ -1,18 +1,17 @@
 import { Loading, MonthCalendar } from 'idea-react';
 import { observer } from 'mobx-react';
-import { compose, translator } from 'next-ssr-middleware';
-import { Component } from 'react';
+import { ObservedComponent } from 'mobx-react-helper';
 import { Breadcrumb, Container } from 'react-bootstrap';
 import { formatDate } from 'web-utility';
 
 import { PageHead } from '../../../components/Layout/PageHead';
-import { i18n, t } from '../../../models/Base/Translation';
+import { i18n, I18nContext } from '../../../models/Base/Translation';
 import { MeetingModel } from '../../../models/Governance/Meeting';
 
-export const getServerSideProps = compose(translator(i18n));
-
 @observer
-export default class PublicMeetingPage extends Component {
+export default class PublicMeetingPage extends ObservedComponent<{}, typeof i18n> {
+  static contextType = I18nContext;
+
   store = new MeetingModel();
 
   componentDidMount() {
@@ -25,7 +24,8 @@ export default class PublicMeetingPage extends Component {
   };
 
   render() {
-    const { downloading, allItems } = this.store;
+    const { t } = this.observedContext,
+      { downloading, allItems } = this.store;
 
     return (
       <Container className="py-5">

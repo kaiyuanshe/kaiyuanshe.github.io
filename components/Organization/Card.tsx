@@ -1,10 +1,11 @@
 import { Icon } from 'idea-react';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
-import { Component, HTMLAttributes } from 'react';
+import { ObservedComponent } from 'mobx-react-helper';
+import { HTMLAttributes } from 'react';
 import { Button, Card, CardProps, Image } from 'react-bootstrap';
 
-import { t } from '../../models/Base/Translation';
+import { i18n, I18nContext } from '../../models/Base/Translation';
 import { Organization } from '../../models/Community/Organization';
 import { LarkImage } from '../Base/LarkImage';
 import { TagNav } from '../Base/TagNav';
@@ -13,13 +14,13 @@ export interface OrganizationCardProps
   extends Pick<HTMLAttributes<HTMLDivElement>, 'className' | 'style'>,
     Omit<Organization, 'id'>,
     CardProps {
-  onSwitch?: (
-    filter: Partial<Pick<Organization, 'type' | 'tags' | 'city'>>,
-  ) => any;
+  onSwitch?: (filter: Partial<Pick<Organization, 'type' | 'tags' | 'city'>>) => any;
 }
 
 @observer
-export class OrganizationCard extends Component<OrganizationCardProps> {
+export class OrganizationCard extends ObservedComponent<OrganizationCardProps, typeof i18n> {
+  static contextType = I18nContext;
+
   @observable
   accessor showQRC = false;
 
@@ -29,12 +30,7 @@ export class OrganizationCard extends Component<OrganizationCardProps> {
     return (
       <div className="d-flex justify-content-around">
         {email && (
-          <Button
-            title="E-mail"
-            size="sm"
-            variant="warning"
-            href={`mailto:${email}`}
-          >
+          <Button title="E-mail" size="sm" variant="warning" href={`mailto:${email}`}>
             <Icon name="mailbox2" />
           </Button>
         )}
@@ -44,13 +40,7 @@ export class OrganizationCard extends Component<OrganizationCardProps> {
           </Button>
         )}
         {codeLink && (
-          <Button
-            title="Git"
-            size="sm"
-            variant="dark"
-            target="_blank"
-            href={codeLink as string}
-          >
+          <Button title="Git" size="sm" variant="dark" target="_blank" href={codeLink as string}>
             <Icon name="github" />
           </Button>
         )}
@@ -69,8 +59,8 @@ export class OrganizationCard extends Component<OrganizationCardProps> {
   }
 
   render() {
-    const { name, logos, type, tags, summary, wechatName, onSwitch, ...props } =
-      this.props;
+    const { t } = this.observedContext,
+      { name, logos, type, tags, summary, wechatName, onSwitch, ...props } = this.props;
 
     return (
       <Card
@@ -108,8 +98,7 @@ export class OrganizationCard extends Component<OrganizationCardProps> {
               onCheck={
                 onSwitch &&
                 (tag =>
-                  confirm(t('confirm_community_tag_filter', { tag })) &&
-                  onSwitch({ tags: [tag] }))
+                  confirm(t('confirm_community_tag_filter', { tag })) && onSwitch({ tags: [tag] }))
               }
             />
           )}

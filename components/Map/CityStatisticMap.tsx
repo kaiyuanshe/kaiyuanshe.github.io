@@ -1,9 +1,8 @@
 import { computed } from 'mobx';
 import { observer } from 'mobx-react';
-import { observePropsState } from 'mobx-react-helper';
+import { ObservedComponent } from 'mobx-react-helper';
 import dynamic from 'next/dynamic';
 import { MarkerMeta, OpenReactMapProps } from 'open-react-map';
-import { Component } from 'react';
 
 import metaStore from '../../models/Base/System';
 import { OrganizationStatistic } from '../../models/Community/Organization';
@@ -16,10 +15,7 @@ export interface CityStatisticMapProps {
 }
 
 @observer
-@observePropsState
-export class CityStatisticMap extends Component<CityStatisticMapProps> {
-  declare observedProps: CityStatisticMapProps;
-
+export class CityStatisticMap extends ObservedComponent<CityStatisticMapProps> {
   componentDidMount() {
     metaStore.getCityCoordinate();
   }
@@ -42,14 +38,10 @@ export class CityStatisticMap extends Component<CityStatisticMapProps> {
       .filter(Boolean) as MarkerMeta[];
   }
 
-  handleChange: OpenReactMapProps['onMarkerClick'] = ({
-    latlng: { lat, lng },
-  }) => {
+  handleChange: OpenReactMapProps['onMarkerClick'] = ({ latlng: { lat, lng } }) => {
     const { markers } = this;
     const { tooltip } =
-      markers.find(
-        ({ position: p }) => p instanceof Array && lat === p[0] && lng === p[1],
-      ) || {};
+      markers.find(({ position: p }) => p instanceof Array && lat === p[0] && lng === p[1]) || {};
     const [city] = tooltip?.split(/\s+/) || [];
 
     this.props.onChange?.(city);
