@@ -5,8 +5,8 @@ import ICalendarLink from 'react-icalendar-link';
 import { TimeData } from 'web-utility';
 
 import { Agenda } from '../../../models/Activity/Agenda';
-import { isServer } from '../../../models/Base';
 import { I18nContext } from '../../../models/Base/Translation';
+import { isServer } from '../../../utility/configuration';
 
 export interface AgendaToolbarProps extends Omit<StackProps, 'id' | 'title'>, Agenda {
   activityId: string;

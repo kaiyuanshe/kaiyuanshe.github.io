@@ -9,24 +9,15 @@ import {
   TableRecord,
 } from 'mobx-lark';
 
+import { KCC_BASE_ID } from '../../utility/configuration';
 import { larkClient } from '../Base';
 
 export type CommunityMember = Record<
-  | 'id'
-  | 'name'
-  | 'nickname'
-  | 'gender'
-  | 'avatar'
-  | 'community'
-  | 'email'
-  | 'summary'
-  | 'approver',
+  'id' | 'name' | 'nickname' | 'gender' | 'avatar' | 'community' | 'email' | 'summary' | 'approver',
   TableCellValue
 >;
 
-export const KCC_BASE_ID = process.env.NEXT_PUBLIC_KCC_BASE_ID!;
-export const PERSON_TABLE_ID =
-  process.env.NEXT_PUBLIC_COMMUNITY_PERSON_TABLE_ID!;
+export const PERSON_TABLE_ID = process.env.NEXT_PUBLIC_COMMUNITY_PERSON_TABLE_ID!;
 
 export class CommunityMemberModel extends BiDataTable<CommunityMember>() {
   client = larkClient;

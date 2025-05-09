@@ -1,16 +1,11 @@
-import {
-  Captcha,
-  SignInData,
-  SMSCodeInput,
-  User,
-} from '@kaiyuanshe/kys-service';
+import { Captcha, SignInData, SMSCodeInput, User } from '@kaiyuanshe/kys-service';
 import { clear } from 'idb-keyval';
 import { HTTPClient } from 'koajax';
 import { observable } from 'mobx';
 import { BaseListModel, persist, restore, toggle } from 'mobx-restful';
 import { sleep } from 'web-utility';
 
-import { isServer, KYS_SERVICE_HOST } from './index';
+import { isServer, KYS_SERVICE_HOST } from '../../utility/configuration';
 
 export class UserModel extends BaseListModel<User> {
   baseURI = 'user';
@@ -39,9 +34,7 @@ export class UserModel extends BaseListModel<User> {
 
   @toggle('uploading')
   async createCaptcha() {
-    const { body } = await this.client.post<Captcha>(
-      `${this.baseURI}/session/captcha`,
-    );
+    const { body } = await this.client.post<Captcha>(`${this.baseURI}/session/captcha`);
     return (this.captcha = body!);
   }
 
@@ -54,10 +47,7 @@ export class UserModel extends BaseListModel<User> {
 
   @toggle('uploading')
   async signIn(data: SignInData) {
-    const { body } = await this.client.post<User>(
-      `${this.baseURI}/session`,
-      data,
-    );
+    const { body } = await this.client.post<User>(`${this.baseURI}/session`, data);
     return (this.session = body!);
   }
 

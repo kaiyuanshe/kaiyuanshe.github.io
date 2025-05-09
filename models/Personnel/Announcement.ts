@@ -7,7 +7,7 @@ import {
   TableRecord,
 } from 'mobx-lark';
 
-import { normalizeMarkdownArray } from '../../pages/api/lark/core';
+import { normalizeMarkdownArray } from '../../utility/Lark';
 import { larkClient } from '../Base';
 import { HR_BASE_ID } from './Person';
 
@@ -25,8 +25,7 @@ export type Announcement = Record<
   TableCellValue
 >;
 
-export const ANNOUNCEMENT_TABLE_ID =
-  process.env.NEXT_PUBLIC_ANNOUNCEMENT_TABLE_ID!;
+export const ANNOUNCEMENT_TABLE_ID = process.env.NEXT_PUBLIC_ANNOUNCEMENT_TABLE_ID!;
 
 export class AnnouncementModel extends BiDataTable<Announcement>() {
   client = larkClient;

@@ -13,15 +13,14 @@ import { Col, Container, Row } from 'react-bootstrap';
 import { MainRoutes } from '../components/data';
 import MainNav from '../components/Layout/MainNav';
 import { MDXLayout } from '../components/Layout/MDX';
-import { isServer } from '../models/Base';
 import {
   createI18nStore,
   I18nContext,
   I18nProps,
   loadSSRLanguage,
 } from '../models/Base/Translation';
+import { DefaultImage, isServer } from '../utility/configuration';
 import { social } from './api/home';
-import { DefaultImage } from './api/lark/file/[id]';
 
 configure({ enforceActions: 'never' });
 

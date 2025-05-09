@@ -11,21 +11,14 @@ import {
 } from 'mobx-lark';
 
 import { larkClient } from '../Base';
+import { KCC_BASE_ID } from '../../utility/configuration';
 
 export type Community = Record<
-  | 'id'
-  | 'name'
-  | 'logo'
-  | 'director'
-  | 'startDate'
-  | 'summary'
-  | 'link'
-  | 'approver',
+  'id' | 'name' | 'logo' | 'director' | 'startDate' | 'summary' | 'link' | 'approver',
   TableCellValue
 >;
 
-export const KCC_BASE_ID = process.env.NEXT_PUBLIC_KCC_BASE_ID!,
-  COMMUNITY_BASE_ID = process.env.NEXT_PUBLIC_COMMUNITY_BASE_ID!,
+export const COMMUNITY_BASE_ID = process.env.NEXT_PUBLIC_COMMUNITY_BASE_ID!,
   COMMUNITY_TABLE_ID = process.env.NEXT_PUBLIC_COMMUNITY_TABLE_ID!;
 
 export class CommunityModel extends BiDataTable<Community>() {
@@ -44,10 +37,7 @@ export class CommunityModel extends BiDataTable<Community>() {
   @observable
   accessor group: Record<string, Community[]> = {};
 
-  extractFields({
-    id,
-    fields: { link, director, approver, ...fields },
-  }: TableRecord<Community>) {
+  extractFields({ id, fields: { link, director, approver, ...fields } }: TableRecord<Community>) {
     return {
       ...fields,
       id: id!,

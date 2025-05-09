@@ -9,9 +9,9 @@ import { Col, Container, Row } from 'react-bootstrap';
 
 import { LarkImage } from '../../../../../../components/Base/LarkImage';
 import { PageHead } from '../../../../../../components/Layout/PageHead';
-import { API_Host } from '../../../../../../models/Base';
 import { i18n, I18nContext } from '../../../../../../models/Base/Translation';
 import { Personnel, PersonnelModel } from '../../../../../../models/Personnel';
+import { API_Host } from '../../../../../../utility/configuration';
 
 type PageParams = Record<'year' | 'recipient' | 'position', string>;
 

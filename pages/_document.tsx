@@ -1,7 +1,7 @@
 import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document';
 
 import { LanguageCode, parseSSRContext } from '../models/Base/Translation';
-import { DefaultImage } from './api/lark/file/[id]';
+import { DefaultImage } from '../utility/configuration';
 
 interface CustomDocumentProps {
   language: LanguageCode;

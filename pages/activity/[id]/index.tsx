@@ -25,8 +25,8 @@ import { Forum } from '../../../models/Activity/Forum';
 import { Place } from '../../../models/Activity/Place';
 import systemStore from '../../../models/Base/System';
 import { i18n, I18nContext } from '../../../models/Base/Translation';
+import { fileURLOf } from '../../../utility/Lark';
 import { solidCache } from '../../api/base';
-import { fileURLOf } from '../../api/lark/file/[id]';
 import styles from './index.module.less';
 
 const ListMap = dynamic(() => import('../../../components/Map/ListMap'), {

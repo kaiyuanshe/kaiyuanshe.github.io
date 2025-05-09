@@ -5,8 +5,8 @@ import { NextRouter, withRouter } from 'next/router';
 import { Component } from 'react';
 import { Container, Image, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 
-import { API_Host } from '../../models/Base';
 import { i18n } from '../../models/Base/Translation';
+import { API_Host } from '../../utility/configuration';
 import { SearchBar } from '../Base/SearchBar';
 import styles from './MainNav.module.less';
 
@@ -51,9 +51,7 @@ class MainNav extends Component<MainNavProps> {
                 key={title}
                 className="text-nowrap text-center"
                 href={path}
-                target={
-                  new URL(path, API_Host).origin !== API_Host ? '_blank' : ''
-                }
+                target={new URL(path, API_Host).origin !== API_Host ? '_blank' : ''}
                 active={pathname.startsWith(path)}
               >
                 {title}
@@ -61,11 +59,7 @@ class MainNav extends Component<MainNavProps> {
             ) : (
               <NavDropdown key={title} title={title} className="text-center">
                 {subs?.map(({ title, path }) => (
-                  <NavDropdown.Item
-                    key={title}
-                    href={path}
-                    className="text-center text-xxl-start"
-                  >
+                  <NavDropdown.Item key={title} href={path} className="text-center text-xxl-start">
                     {title}
                   </NavDropdown.Item>
                 ))}

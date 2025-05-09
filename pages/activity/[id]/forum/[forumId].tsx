@@ -10,9 +10,9 @@ import { PageHead } from '../../../../components/Layout/PageHead';
 import { Activity, ActivityModel } from '../../../../models/Activity';
 import { Agenda } from '../../../../models/Activity/Agenda';
 import { Forum } from '../../../../models/Activity/Forum';
-import { API_Host } from '../../../../models/Base';
 import { i18n, I18nContext } from '../../../../models/Base/Translation';
-import { fileURLOf } from '../../../api/lark/file/[id]';
+import { API_Host } from '../../../../utility/configuration';
+import { fileURLOf } from '../../../../utility/Lark';
 
 interface ForumPageProps {
   activity: Activity;

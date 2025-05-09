@@ -22,9 +22,9 @@ import {
 import { Department, DepartmentModel } from '../models/Personnel/Department';
 import { Article, ArticleModel } from '../models/Product/Article';
 import styles from '../styles/Home.module.less';
+import { DefaultImage } from '../utility/configuration';
 import { solidCache } from './api/base';
 import { slogan } from './api/home';
-import { DefaultImage } from './api/lark/file/[id]';
 
 interface HomePageProps {
   articles: Article[];
