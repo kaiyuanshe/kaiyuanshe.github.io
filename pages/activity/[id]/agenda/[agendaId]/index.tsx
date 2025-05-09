@@ -2,25 +2,10 @@ import { text2color } from 'idea-react';
 import { marked } from 'marked';
 import { reaction } from 'mobx';
 import { observer } from 'mobx-react';
+import { ObservedComponent } from 'mobx-react-helper';
 import dynamic from 'next/dynamic';
-import {
-  cache,
-  compose,
-  errorLogger,
-  RouteProps,
-  router,
-  translator,
-} from 'next-ssr-middleware';
-import { Component } from 'react';
-import {
-  Badge,
-  Breadcrumb,
-  Col,
-  Container,
-  Dropdown,
-  DropdownButton,
-  Row,
-} from 'react-bootstrap';
+import { cache, compose, errorLogger, RouteProps, router } from 'next-ssr-middleware';
+import { Badge, Breadcrumb, Col, Container, Dropdown, DropdownButton, Row } from 'react-bootstrap';
 import { buildURLData } from 'web-utility';
 
 import {
@@ -41,13 +26,12 @@ import { CheckEventModel } from '../../../../../models/Activity/CheckEvent';
 import { Forum } from '../../../../../models/Activity/Forum';
 import { API_Host } from '../../../../../models/Base';
 import systemStore from '../../../../../models/Base/System';
-import { i18n, t } from '../../../../../models/Base/Translation';
+import { i18n, I18nContext } from '../../../../../models/Base/Translation';
 import userStore from '../../../../../models/Base/User';
 
-const SessionBox = dynamic(
-  () => import('../../../../../components/Layout/SessionBox'),
-  { ssr: false },
-);
+const SessionBox = dynamic(() => import('../../../../../components/Layout/SessionBox'), {
+  ssr: false,
+});
 
 type PageParameter = Record<'id' | 'agendaId', string>;
 
@@ -63,7 +47,6 @@ export const getServerSideProps = compose<PageParameter, AgendaDetailPageProps>(
   cache(),
   router,
   errorLogger,
-  translator(i18n),
   async ({ params: { id, agendaId } = {} }) => {
     const activityStore = new ActivityModel();
 
@@ -92,7 +75,12 @@ export const getServerSideProps = compose<PageParameter, AgendaDetailPageProps>(
 );
 
 @observer
-export default class AgendaDetailPage extends Component<AgendaDetailPageProps> {
+export default class AgendaDetailPage extends ObservedComponent<
+  AgendaDetailPageProps,
+  typeof i18n
+> {
+  static contextType = I18nContext;
+
   activityStore = new ActivityModel();
   checkEventStore = new CheckEventModel();
 
@@ -114,7 +102,8 @@ export default class AgendaDetailPage extends Component<AgendaDetailPageProps> {
   componentWillUnmount = reaction(() => userStore.session, this.checkEvent);
 
   renderHeader() {
-    const { user } = systemStore.hashQuery,
+    const { t } = this.observedContext,
+      { user } = systemStore.hashQuery,
       { activity, forum } = this.props,
       { id, type, title, startTime, endTime } = this.props.agenda,
       { evaluationForms } = this.activityStore.currentMeta,
@@ -156,11 +145,7 @@ export default class AgendaDetailPage extends Component<AgendaDetailPageProps> {
           </SessionBox>
 
           {evaluationForms && (
-            <DropdownButton
-              variant="warning"
-              size="sm"
-              title={t('evaluation_form')}
-            >
+            <DropdownButton variant="warning" size="sm" title={t('evaluation_form')}>
               {evaluationForms.map(({ name, shared_url }) => (
                 <Dropdown.Item
                   key={name}
@@ -192,7 +177,8 @@ export default class AgendaDetailPage extends Component<AgendaDetailPageProps> {
   }
 
   render() {
-    const { id, alias, name } = this.props.activity,
+    const { t } = this.observedContext,
+      { id, alias, name } = this.props.activity,
       { score, recommendList } = this.props;
     const {
       title,
@@ -211,9 +197,7 @@ export default class AgendaDetailPage extends Component<AgendaDetailPageProps> {
         <Breadcrumb>
           <Breadcrumb.Item href="/">{t('KaiYuanShe')}</Breadcrumb.Item>
           <Breadcrumb.Item href="/activity">{t('activity')}</Breadcrumb.Item>
-          <Breadcrumb.Item href={`/activity/${alias || id}`}>
-            {name as string}
-          </Breadcrumb.Item>
+          <Breadcrumb.Item href={`/activity/${alias || id}`}>{name as string}</Breadcrumb.Item>
           <Breadcrumb.Item active>{title as string}</Breadcrumb.Item>
         </Breadcrumb>
 
@@ -236,17 +220,11 @@ export default class AgendaDetailPage extends Component<AgendaDetailPageProps> {
             </section>
           </Col>
           <Col xs={12} lg={8}>
-            <main
-              dangerouslySetInnerHTML={{ __html: marked(summary + '') }}
-              className="my-4"
-            />
+            <main dangerouslySetInnerHTML={{ __html: marked(summary + '') }} className="my-4" />
             {fileInfo && <FileList data={fileInfo} />}
 
             <div className="my-5">
-              <CommentBox
-                category="General"
-                categoryId="DIC_kwDOB88JLM4COLSV"
-              />
+              <CommentBox category="General" categoryId="DIC_kwDOB88JLM4COLSV" />
             </div>
           </Col>
           {recommendList[0] && (

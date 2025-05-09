@@ -1,6 +1,6 @@
-import { t } from '../../models/Base/Translation';
+import { i18n } from '../../models/Base/Translation';
 
-export const slogan = () => [
+export const slogan = ({ t }: typeof i18n) => [
   {
     title: t('our_vision'),
     items: [{ text: t('our_vision_content'), icon: '' }],

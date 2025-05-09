@@ -4,8 +4,7 @@ import { arch } from 'os';
 export default {
   KaiYuanShe: 'KAIYUANSHE',
   our_vision: 'Our Vision',
-  our_vision_content:
-    'Contribute to and promote open source as a new way of life to the world',
+  our_vision_content: 'Contribute to and promote open source as a new way of life to the world',
   our_principles: 'Our Principles',
   contribution: 'Contribution',
   consensus: 'Consensus',
@@ -57,8 +56,7 @@ export default {
 
   // User pages
   Open_Source_Passport: 'Open Source Passport',
-  user_Open_Source_Passport: ({ user }: { user: string }) =>
-    `${user}'s Open Source Passport`,
+  user_Open_Source_Passport: ({ user }: { user: string }) => `${user}'s Open Source Passport`,
   profile: 'Profile',
   activity_footprint: 'Activity Footprint',
   member_announcement: 'Member Announcement',
@@ -96,17 +94,12 @@ export default {
   unpublished: 'unpublished',
   unclassified: 'unclassified',
   distribution_of_communities_by_city: 'Distribution of Communities by City',
-  distribution_of_communities_by_technology:
-    'Distribution of Communities by Technology',
-  distribution_of_communities_by_founding_year:
-    'Distribution of Communities by Founding Year',
+  distribution_of_communities_by_technology: 'Distribution of Communities by Technology',
+  distribution_of_communities_by_founding_year: 'Distribution of Communities by Founding Year',
   distribution_of_communities_by_type: 'Distribution of Communities by Type',
-  China_open_source_community_landscape:
-    "China's open source community landscape",
-  distribution_of_activity_topics_by_heat:
-    'Distribution of activity topics by heat',
-  distribution_of_mentor_organizations_by_topics:
-    'Distribution of mentor organizations by topics',
+  China_open_source_community_landscape: "China's open source community landscape",
+  distribution_of_activity_topics_by_heat: 'Distribution of activity topics by heat',
+  distribution_of_mentor_organizations_by_topics: 'Distribution of mentor organizations by topics',
 
   // China NGO Map
   China_NGO_Map: 'China NGO Map',
@@ -207,14 +200,13 @@ export default {
 
   // RestTable
   create: 'create',
+  view: 'view',
   submit: 'submit',
   cancel: 'cancel',
   edit: 'edit',
   delete: 'delete',
-  total_x_rows: ({ totalCount }: { totalCount: number }) =>
-    `total ${totalCount} rows`,
-  sure_to_delete_x: ({ keys }: { keys: IDType[] }) =>
-    `Are you sure to delete ${keys.join(', ')} `,
+  total_x_rows: ({ totalCount }: { totalCount: number }) => `total ${totalCount} rows`,
+  sure_to_delete_x: ({ keys }: { keys: IDType[] }) => `Are you sure to delete ${keys.join(', ')} `,
 
   // Election
   election: 'Election',
@@ -234,8 +226,7 @@ export default {
   community: ' Community',
   KCC_member_registration: 'Apply to Become a KCC Member',
   KCC_activity_registration: 'KCC Activity Information Registration',
-  KCC_community_establishment_registration:
-    'KCC City Community Establishment Application',
+  KCC_community_establishment_registration: 'KCC City Community Establishment Application',
 
   // Article pages
   copyright: 'Copyright',

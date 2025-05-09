@@ -1,9 +1,9 @@
 import { Loading } from 'idea-react';
 import { computed } from 'mobx';
 import { observer } from 'mobx-react';
+import { ObservedComponent } from 'mobx-react-helper';
 import dynamic from 'next/dynamic';
-import { compose, RouteProps, router, translator } from 'next-ssr-middleware';
-import { Component } from 'react';
+import { compose, RouteProps, router } from 'next-ssr-middleware';
 import { Breadcrumb, Container, Stack } from 'react-bootstrap';
 
 import { GiftCard } from '../../../components/Activity/GiftCard';
@@ -13,14 +13,11 @@ import { MemberTitle } from '../../../components/Member/Title';
 import { Activity, ActivityModel } from '../../../models/Activity';
 import { CheckEventModel } from '../../../models/Activity/CheckEvent';
 import { GiftModel } from '../../../models/Activity/Gift';
-import { i18n, t } from '../../../models/Base/Translation';
+import { i18n, I18nContext } from '../../../models/Base/Translation';
 import userStore from '../../../models/Base/User';
 import { solidCache } from '../../api/base';
 
-const SessionBox = dynamic(
-  () => import('../../../components/Layout/SessionBox'),
-  { ssr: false },
-);
+const SessionBox = dynamic(() => import('../../../components/Layout/SessionBox'), { ssr: false });
 
 interface GiftListPageProps extends RouteProps<{ id: string }> {
   activity: Activity;
@@ -30,7 +27,6 @@ interface GiftListPageProps extends RouteProps<{ id: string }> {
 export const getServerSideProps = compose<{ id: string }, GiftListPageProps>(
   solidCache,
   router,
-  translator(i18n),
   async ({ params: { id } = {} }) => {
     const activityStore = new ActivityModel();
 
@@ -43,7 +39,9 @@ export const getServerSideProps = compose<{ id: string }, GiftListPageProps>(
 );
 
 @observer
-export default class GiftListPage extends Component<GiftListPageProps> {
+export default class GiftListPage extends ObservedComponent<GiftListPageProps, typeof i18n> {
+  static contextType = I18nContext;
+
   activityStore = new ActivityModel();
   checkEventStore = new CheckEventModel();
 
@@ -73,7 +71,8 @@ export default class GiftListPage extends Component<GiftListPageProps> {
   }
 
   renderSessionBar() {
-    const { mobilePhone } = userStore.session || {},
+    const { t } = this.observedContext,
+      { mobilePhone } = userStore.session || {},
       { sumScore } = this;
 
     return (
@@ -84,15 +83,11 @@ export default class GiftListPage extends Component<GiftListPageProps> {
           gap={3}
         >
           <div>
-            {t('available_score')}{' '}
-            <strong className="text-danger">{sumScore}</strong>
+            {t('available_score')} <strong className="text-danger">{sumScore}</strong>
           </div>
 
           <SessionBox>
-            <QRCodeButton
-              title={t('exchange_tips')}
-              value={[mobilePhone, sumScore] + ''}
-            >
+            <QRCodeButton title={t('exchange_tips')} value={[mobilePhone, sumScore] + ''}>
               {t('exchange')}
             </QRCodeButton>
           </SessionBox>
@@ -102,7 +97,8 @@ export default class GiftListPage extends Component<GiftListPageProps> {
   }
 
   render() {
-    const { activity, group } = this.props,
+    const { t } = this.observedContext,
+      { activity, group } = this.props,
       { session } = userStore,
       { loading, sumScore } = this;
 
@@ -134,10 +130,7 @@ export default class GiftListPage extends Component<GiftListPageProps> {
               <ol className="list-unstyled d-flex flex-wrap justify-content-around text-center">
                 {list.map(gift => (
                   <li key={gift.name as string}>
-                    <GiftCard
-                      {...gift}
-                      disabled={!gift.stock || (session && sumScore < +score)}
-                    />
+                    <GiftCard {...gift} disabled={!gift.stock || (session && sumScore < +score)} />
                   </li>
                 ))}
               </ol>

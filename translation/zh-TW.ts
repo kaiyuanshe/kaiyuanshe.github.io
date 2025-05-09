@@ -55,8 +55,7 @@ export default {
 
   // User pages
   Open_Source_Passport: '開源護照',
-  user_Open_Source_Passport: ({ user }: { user: string }) =>
-    `${user}的開源護照`,
+  user_Open_Source_Passport: ({ user }: { user: string }) => `${user}的開源護照`,
   profile: '個人資料',
   activity_footprint: '活動足跡',
   member_announcement: '成員公告',
@@ -81,8 +80,7 @@ export default {
   type: '類型',
   confirm_community_type_filter: ({ type }: { type: string }) =>
     `確定篩選「${type}」類型的開源組織？`,
-  confirm_community_tag_filter: ({ tag }: { tag: string }) =>
-    `確定篩選「${tag}」領域的開源組織？`,
+  confirm_community_tag_filter: ({ tag }: { tag: string }) => `確定篩選「${tag}」領域的開源組織？`,
 
   related_articles: '相關文章',
   no_data: '暫無數據',
@@ -122,8 +120,7 @@ export default {
 
   // Organization page
   reset: '重置',
-  total_x_organizations: ({ totalCount }: { totalCount: number }) =>
-    `共 ${totalCount} 家`,
+  total_x_organizations: ({ totalCount }: { totalCount: number }) => `共 ${totalCount} 家`,
   filter: '篩選',
 
   // Activity pages
@@ -200,14 +197,13 @@ export default {
 
   // RestTable
   create: '新增',
+  view: '查看',
   submit: '提交',
   cancel: '取消',
   edit: '編輯',
   delete: '刪除',
-  total_x_rows: ({ totalCount }: { totalCount: number }) =>
-    `共 ${totalCount} 行`,
-  sure_to_delete_x: ({ keys }: { keys: IDType[] }) =>
-    `您確定刪除 ${keys.join('、')} 嗎？`,
+  total_x_rows: ({ totalCount }: { totalCount: number }) => `共 ${totalCount} 行`,
+  sure_to_delete_x: ({ keys }: { keys: IDType[] }) => `您確定刪除 ${keys.join('、')} 嗎？`,
 
   // Election
   election: '選舉',

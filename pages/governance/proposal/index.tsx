@@ -1,22 +1,13 @@
 import { observer } from 'mobx-react';
 import { ScrollList } from 'mobx-restful-table';
-import {
-  compose,
-  errorLogger,
-  RouteProps,
-  router,
-  translator,
-} from 'next-ssr-middleware';
-import { FC } from 'react';
+import { compose, errorLogger, RouteProps, router } from 'next-ssr-middleware';
+import { FC, useContext } from 'react';
 import { Button, Container } from 'react-bootstrap';
 
 import { PageHead } from '../../../components/Layout/PageHead';
 import { ProposalListLayout } from '../../../components/Proposal/List';
-import { i18n, t } from '../../../models/Base/Translation';
-import proposalStore, {
-  Proposal,
-  ProposalModel,
-} from '../../../models/Governance/Proposal';
+import { i18n, I18nContext } from '../../../models/Base/Translation';
+import proposalStore, { Proposal, ProposalModel } from '../../../models/Governance/Proposal';
 
 interface ProposalListProps extends RouteProps {
   list: Proposal[];
@@ -25,7 +16,6 @@ interface ProposalListProps extends RouteProps {
 export const getServerSideProps = compose<{}, ProposalListProps>(
   router,
   errorLogger,
-  translator(i18n),
   async ({ query }) => {
     const list = await new ProposalModel().getList(query);
 
@@ -33,8 +23,10 @@ export const getServerSideProps = compose<{}, ProposalListProps>(
   },
 );
 
-const ProposalPage: FC<ProposalListProps> = observer(
-  ({ route: { query }, list }) => (
+const ProposalPage: FC<ProposalListProps> = observer(({ route: { query }, list }) => {
+  const { t } = useContext(I18nContext);
+
+  return (
     <Container>
       <PageHead title={t('proposal_library')} />
 
@@ -56,13 +48,10 @@ const ProposalPage: FC<ProposalListProps> = observer(
         translator={i18n}
         store={proposalStore}
         filter={query}
-        renderList={allItems => (
-          <ProposalListLayout defaultData={allItems as Proposal[]} />
-        )}
+        renderList={allItems => <ProposalListLayout defaultData={allItems as Proposal[]} />}
         defaultData={list}
       />
     </Container>
-  ),
-);
-
+  );
+});
 export default ProposalPage;

@@ -1,13 +1,10 @@
 import { TimeDistanceProps } from 'idea-react';
 import { textJoin } from 'mobx-i18n';
 
-import { t } from '../models/Base/Translation';
+import { i18n } from '../models/Base/Translation';
 import { Link } from './Layout/MainNav';
 
-export const TimeOption: Pick<
-  TimeDistanceProps,
-  'unitWords' | 'beforeWord' | 'afterWord'
-> = {
+export const TimeOption: Pick<TimeDistanceProps, 'unitWords' | 'beforeWord' | 'afterWord'> = {
   unitWords: {
     ms: '毫秒',
     s: '秒',
@@ -22,7 +19,7 @@ export const TimeOption: Pick<
   afterWord: '后',
 };
 
-export const MainRoutes = (): Link[] => [
+export const MainRoutes = ({ t }: typeof i18n): Link[] => [
   {
     title: t('organization_structure'),
     subs: [

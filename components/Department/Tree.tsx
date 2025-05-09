@@ -1,19 +1,18 @@
 import { SVGCharts, Tooltip, TreeSeries } from 'echarts-jsx';
 import { Loading } from 'idea-react';
 import { observer } from 'mobx-react';
-import { Component } from 'react';
+import { ObservedComponent } from 'mobx-react-helper';
 import { Form } from 'react-bootstrap';
 import { renderToStaticMarkup } from 'react-dom/server';
 
-import { t } from '../../models/Base/Translation';
-import {
-  DepartmentModel,
-  DepartmentNode,
-} from '../../models/Personnel/Department';
+import { i18n, I18nContext } from '../../models/Base/Translation';
+import { DepartmentModel, DepartmentNode } from '../../models/Personnel/Department';
 import { GroupCard } from './Card';
 
 @observer
-export default class DepartmentTree extends Component {
+export default class DepartmentTree extends ObservedComponent<{}, typeof i18n> {
+  static contextType = I18nContext;
+
   store = new DepartmentModel();
 
   componentDidMount() {
@@ -23,9 +22,7 @@ export default class DepartmentTree extends Component {
   renderGroup(name: string) {
     const group = this.store.allItems.find(({ name: n }) => n === name);
 
-    return renderToStaticMarkup(
-      group?.summary ? <GroupCard {...group} /> : <></>,
-    );
+    return renderToStaticMarkup(group?.summary ? <GroupCard {...group} /> : <></>);
   }
 
   jumpLink({ name }: DepartmentNode) {
@@ -41,7 +38,8 @@ export default class DepartmentTree extends Component {
   }
 
   render() {
-    const { downloading, activeShown, tree } = this.store;
+    const { t } = this.observedContext,
+      { downloading, activeShown, tree } = this.store;
 
     return (
       <>
@@ -49,10 +47,7 @@ export default class DepartmentTree extends Component {
 
         <label className="d-flex justify-content-center gap-3">
           {t('show_active_departments')}
-          <Form.Switch
-            checked={activeShown}
-            onChange={this.store.toggleActive}
-          />
+          <Form.Switch checked={activeShown} onChange={this.store.toggleActive} />
         </label>
 
         <SVGCharts style={{ height: '80vh' }}>

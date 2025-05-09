@@ -1,9 +1,9 @@
 import { ShareBox, text2color } from 'idea-react';
 import { TableCellLocation } from 'mobx-lark';
 import { observer } from 'mobx-react';
+import { ObservedComponent } from 'mobx-react-helper';
 import { cache, compose, errorLogger, router } from 'next-ssr-middleware';
 import { QRCodeSVG } from 'qrcode.react';
-import { Component } from 'react';
 import { Badge, Container } from 'react-bootstrap';
 
 import { ActivityPeople } from '../../../../../components/Activity/People';
@@ -11,7 +11,7 @@ import { PageHead } from '../../../../../components/Layout/PageHead';
 import { Activity, ActivityModel } from '../../../../../models/Activity';
 import { Agenda } from '../../../../../models/Activity/Agenda';
 import { API_Host } from '../../../../../models/Base';
-import { t } from '../../../../../models/Base/Translation';
+import { i18n, I18nContext } from '../../../../../models/Base/Translation';
 import { fileURLOf } from '../../../../api/lark/file/[id]';
 import styles from './invitation.module.less';
 
@@ -20,27 +20,32 @@ interface InvitationPageProps {
   agenda: Agenda;
 }
 
-export const getServerSideProps = compose<
-  Record<'id' | 'agendaId', string>,
-  InvitationPageProps
->(cache(), router, errorLogger, async ({ params: { id, agendaId } = {} }) => {
-  const activityStore = new ActivityModel();
+export const getServerSideProps = compose<Record<'id' | 'agendaId', string>, InvitationPageProps>(
+  cache(),
+  router,
+  errorLogger,
+  async ({ params: { id, agendaId } = {} }) => {
+    const activityStore = new ActivityModel();
 
-  const activity = await activityStore.getOne(id!);
+    const activity = await activityStore.getOne(id!);
 
-  const agenda = await activityStore.currentAgenda!.getOne(agendaId!);
+    const agenda = await activityStore.currentAgenda!.getOne(agendaId!);
 
-  return {
-    props: JSON.parse(JSON.stringify({ activity, agenda })),
-  };
-});
+    return {
+      props: JSON.parse(JSON.stringify({ activity, agenda })),
+    };
+  },
+);
 
 @observer
-export default class InvitationPage extends Component<InvitationPageProps> {
+export default class InvitationPage extends ObservedComponent<InvitationPageProps, typeof i18n> {
+  static contextType = I18nContext;
+
   sharedURL = `${API_Host}/activity/${this.props.activity.id}/agenda/${this.props.agenda.id}`;
 
   renderContent() {
-    const { activity, agenda } = this.props,
+    const { t } = this.observedContext,
+      { activity, agenda } = this.props,
       { sharedURL } = this;
     const { name, city, location, image, cardImage } = activity,
       {
@@ -86,8 +91,7 @@ export default class InvitationPage extends Component<InvitationPageProps> {
               />
             </li>
             <li>
-              🕒 {new Date(+startTime!).toLocaleString()} ~{' '}
-              {new Date(+endTime!).toLocaleString()}
+              🕒 {new Date(+startTime!).toLocaleString()} ~ {new Date(+endTime!).toLocaleString()}
             </li>
           </ul>
         </section>

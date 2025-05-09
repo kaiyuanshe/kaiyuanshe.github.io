@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react';
-import { compose, translator } from 'next-ssr-middleware';
-import { FC } from 'react';
+import { compose } from 'next-ssr-middleware';
+import { FC, useContext } from 'react';
 import { Container } from 'react-bootstrap';
 
 import { PageHead } from '../../components/Layout/PageHead';
@@ -8,13 +8,12 @@ import {
   OpenCollaborationLandscape,
   OpenCollaborationLandscapeProps,
 } from '../../components/Organization/LandScape';
-import { i18n, t } from '../../models/Base/Translation';
+import { I18nContext } from '../../models/Base/Translation';
 import { OrganizationModel } from '../../models/Community/Organization';
 import { solidCache } from '../api/base';
 
 export const getServerSideProps = compose<{}, OpenCollaborationLandscapeProps>(
   solidCache,
-  translator(i18n),
   async () => {
     const tagMap = await new OrganizationModel().groupAllByTags();
 
@@ -22,15 +21,17 @@ export const getServerSideProps = compose<{}, OpenCollaborationLandscapeProps>(
   },
 );
 
-const LandscapePage: FC<OpenCollaborationLandscapeProps> = observer(props => (
-  <Container className="mb-5">
-    <PageHead title={t('China_open_source_community_landscape')} />
+const LandscapePage: FC<OpenCollaborationLandscapeProps> = observer(props => {
+  const { t } = useContext(I18nContext);
 
-    <h1 className="my-5 text-center">
-      {t('China_open_source_community_landscape')}
-    </h1>
-    <OpenCollaborationLandscape {...props} />
-  </Container>
-));
+  return (
+    <Container className="mb-5">
+      <PageHead title={t('China_open_source_community_landscape')} />
 
+      <h1 className="my-5 text-center">{t('China_open_source_community_landscape')}</h1>
+
+      <OpenCollaborationLandscape {...props} />
+    </Container>
+  );
+});
 export default LandscapePage;

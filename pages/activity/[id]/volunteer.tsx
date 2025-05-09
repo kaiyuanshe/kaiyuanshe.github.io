@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react';
-import { cache, compose, errorLogger, translator } from 'next-ssr-middleware';
-import { Component } from 'react';
+import { ObservedComponent } from 'mobx-react-helper';
+import { cache, compose, errorLogger } from 'next-ssr-middleware';
 import { Breadcrumb, Container } from 'react-bootstrap';
 
 import { PageHead } from '../../../components/Layout/PageHead';
@@ -8,7 +8,7 @@ import { MemberCard } from '../../../components/Member/Card';
 import { MemberTitle } from '../../../components/Member/Title';
 import { Activity, ActivityModel } from '../../../models/Activity';
 import { Staff, StaffModel } from '../../../models/Activity/Staff';
-import { i18n, t } from '../../../models/Base/Translation';
+import { i18n, I18nContext } from '../../../models/Base/Translation';
 
 interface VolunteerPageProps {
   activity: Activity;
@@ -18,7 +18,6 @@ interface VolunteerPageProps {
 export const getServerSideProps = compose<{ id: string }, VolunteerPageProps>(
   cache(),
   errorLogger,
-  translator(i18n),
   async ({ params: { id } = {} }) => {
     const activityStore = new ActivityModel();
 
@@ -35,7 +34,9 @@ export const getServerSideProps = compose<{ id: string }, VolunteerPageProps>(
 );
 
 @observer
-export default class VolunteerPage extends Component<VolunteerPageProps> {
+export default class VolunteerPage extends ObservedComponent<VolunteerPageProps, typeof i18n> {
+  static contextType = I18nContext;
+
   renderVolunteers = ({ id, name, avatar }: Staff) => (
     <li
       key={id as string}
@@ -46,7 +47,8 @@ export default class VolunteerPage extends Component<VolunteerPageProps> {
   );
 
   render() {
-    const { activity, staffGroup } = this.props;
+    const { t } = this.observedContext,
+      { activity, staffGroup } = this.props;
     const { id, name = '' } = activity;
 
     return (
@@ -55,16 +57,12 @@ export default class VolunteerPage extends Component<VolunteerPageProps> {
         <Breadcrumb>
           <Breadcrumb.Item href="/">{t('KaiYuanShe')}</Breadcrumb.Item>
           <Breadcrumb.Item href="/activity">{t('activity')}</Breadcrumb.Item>
-          <Breadcrumb.Item href={`/activity/${id}`}>
-            {name as string}
-          </Breadcrumb.Item>
+          <Breadcrumb.Item href={`/activity/${id}`}>{name as string}</Breadcrumb.Item>
           <Breadcrumb.Item active>{t('volunteer')}</Breadcrumb.Item>
         </Breadcrumb>
         <h1 className="text-center">{name + ' ' + t('volunteer')}</h1>
         {Object.entries(staffGroup)
-          .sort(([a], [b]) =>
-            a === 'undefined' ? 1 : b === 'undefined' ? -1 : 0,
-          )
+          .sort(([a], [b]) => (a === 'undefined' ? 1 : b === 'undefined' ? -1 : 0))
           .map(([key, list]) => (
             <section key={key} id={key}>
               <MemberTitle

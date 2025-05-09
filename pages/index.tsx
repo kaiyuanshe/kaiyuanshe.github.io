@@ -1,8 +1,9 @@
 import { Icon } from 'idea-react';
 import { TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
-import { compose, errorLogger, translator } from 'next-ssr-middleware';
-import { Component, Fragment } from 'react';
+import { ObservedComponent } from 'mobx-react-helper';
+import { compose, errorLogger } from 'next-ssr-middleware';
+import { Fragment } from 'react';
 import { Carousel, Col, Container, Image, Row } from 'react-bootstrap';
 
 import { ActivityListLayout } from '../components/Activity/List';
@@ -11,7 +12,7 @@ import { LarkImage } from '../components/Base/LarkImage';
 import { PageHead } from '../components/Layout/PageHead';
 import { CityStatisticMap } from '../components/Map/CityStatisticMap';
 import { Activity, ActivityModel } from '../models/Activity';
-import { i18n, t } from '../models/Base/Translation';
+import { i18n, I18nContext } from '../models/Base/Translation';
 import { COMMUNITY_BASE_ID } from '../models/Community';
 import {
   OrganizationStatistic,
@@ -32,31 +33,23 @@ interface HomePageProps {
   projects: Department[];
 }
 
-export const getServerSideProps = compose<{}, HomePageProps>(
-  solidCache,
-  errorLogger,
-  translator(i18n),
-  async () => {
-    const [articles, activities, cityStatistic, projects] = await Promise.all([
-      new ArticleModel().getList({}, 1, 3),
-      new ActivityModel().getList({}, 1, 3),
-      new OrganizationStatisticModel(
-        COMMUNITY_BASE_ID,
-        OSC_CITY_STATISTIC_TABLE_ID,
-      ).countAll(['activityCount']),
-      new DepartmentModel().getAll({ superior: '项目委员会' }),
-    ]);
+export const getServerSideProps = compose<{}, HomePageProps>(solidCache, errorLogger, async () => {
+  const [articles, activities, cityStatistic, projects] = await Promise.all([
+    new ArticleModel().getList({}, 1, 3),
+    new ActivityModel().getList({}, 1, 3),
+    new OrganizationStatisticModel(COMMUNITY_BASE_ID, OSC_CITY_STATISTIC_TABLE_ID).countAll([
+      'activityCount',
+    ]),
+    new DepartmentModel().getAll({ superior: '项目委员会' }),
+  ]);
 
-    return {
-      props: JSON.parse(
-        JSON.stringify({ articles, activities, cityStatistic, projects }),
-      ),
-    };
-  },
-);
+  return { props: JSON.parse(JSON.stringify({ articles, activities, cityStatistic, projects })) };
+});
 
 @observer
-export default class HomePage extends Component<HomePageProps> {
+export default class HomePage extends ObservedComponent<HomePageProps, typeof i18n> {
+  static contextType = I18nContext;
+
   renderProject = ({ id, name, logo = DefaultImage, link }: Department) => (
     <Col key={id + ''} as="li" className="position-relative">
       <LarkImage style={{ height: '8rem' }} alt={name as string} src={logo} />
@@ -94,7 +87,9 @@ export default class HomePage extends Component<HomePageProps> {
   );
 
   render() {
-    const { articles, activities, cityStatistic, projects } = this.props;
+    const i18n = this.observedContext;
+    const { t } = i18n,
+      { articles, activities, cityStatistic, projects } = this.props;
 
     return (
       <>
@@ -131,7 +126,7 @@ export default class HomePage extends Component<HomePageProps> {
 
         <Container>
           <section className="text-center">
-            {slogan().flatMap(({ title, items }) => (
+            {slogan(i18n).flatMap(({ title, items }) => (
               <Fragment key={title}>
                 <h2 className="my-5 text-primary">{title}</h2>
 
@@ -144,14 +139,7 @@ export default class HomePage extends Component<HomePageProps> {
                 >
                   {items.map(({ icon, text }) =>
                     text === t('our_vision_content') ? (
-                      <Col
-                        key={text}
-                        as="li"
-                        className="h3"
-                        xs={8}
-                        sm={6}
-                        md={8}
-                      >
+                      <Col key={text} as="li" className="h3" xs={8} sm={6} md={8}>
                         {text}
                       </Col>
                     ) : (
@@ -181,24 +169,18 @@ export default class HomePage extends Component<HomePageProps> {
           </section>
 
           <section>
-            <h2 className="my-5 text-center text-primary">
-              {t('latest_activity')}
-            </h2>
+            <h2 className="my-5 text-center text-primary">{t('latest_activity')}</h2>
             <ActivityListLayout defaultData={activities} />
           </section>
 
           <section>
-            <h2 className="my-5 text-center text-primary">
-              {t('latest_news')}
-            </h2>
+            <h2 className="my-5 text-center text-primary">{t('latest_news')}</h2>
             <p className="text-center text-muted">{t('slogan')}</p>
             <ArticleListLayout defaultData={articles} />
           </section>
 
           <section>
-            <h2 className="my-5 text-center text-primary">
-              {t('activity_map')}
-            </h2>
+            <h2 className="my-5 text-center text-primary">{t('activity_map')}</h2>
             <CityStatisticMap data={cityStatistic} />
           </section>
         </Container>

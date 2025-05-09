@@ -2,22 +2,15 @@ import { ShareBox } from 'idea-react';
 import { marked } from 'marked';
 import { textJoin } from 'mobx-i18n';
 import { observer } from 'mobx-react';
-import {
-  cache,
-  compose,
-  errorLogger,
-  RouteProps,
-  router,
-  translator,
-} from 'next-ssr-middleware';
+import { ObservedComponent } from 'mobx-react-helper';
+import { cache, compose, errorLogger, RouteProps, router } from 'next-ssr-middleware';
 import { QRCodeSVG } from 'qrcode.react';
-import { Component } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 
 import { LarkImage } from '../../../../../../components/Base/LarkImage';
 import { PageHead } from '../../../../../../components/Layout/PageHead';
 import { API_Host } from '../../../../../../models/Base';
-import { i18n, t } from '../../../../../../models/Base/Translation';
+import { i18n, I18nContext } from '../../../../../../models/Base/Translation';
 import { Personnel, PersonnelModel } from '../../../../../../models/Personnel';
 
 type PageParams = Record<'year' | 'recipient' | 'position', string>;
@@ -28,35 +21,31 @@ export const getServerSideProps = compose<PageParams, CandidatePosterProps>(
   errorLogger,
   cache(),
   router,
-  translator(i18n),
   async ({ params }) => {
     const { year, recipient, position } = params!;
     const {
       [recipient]: [props],
-    } = await new PersonnelModel().getGroup(
-      { recipient, position },
-      ['recipient'],
-      +year,
-    );
+    } = await new PersonnelModel().getGroup({ recipient, position }, ['recipient'], +year);
 
     return props ? JSON.parse(JSON.stringify({ props })) : { notFound: true };
   },
 );
 
 export const VoteForm = {
-  common:
-    'https://kaiyuanshe.feishu.cn/share/base/form/shrcnVYqyX5w8wTNiCLeH7Ziy1g',
+  common: 'https://kaiyuanshe.feishu.cn/share/base/form/shrcnVYqyX5w8wTNiCLeH7Ziy1g',
   理事: 'https://kaiyuanshe.feishu.cn/share/base/form/shrcnFARtfFj3P3LrlbKqXYvoxb',
-  正式成员:
-    'https://kaiyuanshe.feishu.cn/share/base/form/shrcnXIXPn0lOt4YomFsvhjnzjf',
+  正式成员: 'https://kaiyuanshe.feishu.cn/share/base/form/shrcnXIXPn0lOt4YomFsvhjnzjf',
 };
 
 @observer
-export default class CandidatePoster extends Component<CandidatePosterProps> {
+export default class CandidatePoster extends ObservedComponent<CandidatePosterProps, typeof i18n> {
+  static contextType = I18nContext;
+
   rootURL = `${API_Host}/election/${this.props.route.params!.year}`;
   sharePath = `/candidate/${this.props.recipient}/poster/${this.props.position}`;
 
   renderContent(title: string, subTitle: string) {
+    const { t } = this.observedContext;
     const {
       overview,
       applicants,
@@ -125,9 +114,7 @@ export default class CandidatePoster extends Component<CandidatePosterProps> {
         <Row as="footer" className="text-center">
           <Col xs={6}>
             <QRCodeSVG value={`${this.rootURL}#${position}`} />
-            <div className="my-3">
-              {textJoin(position as string, t('candidate'))}
-            </div>
+            <div className="my-3">{textJoin(position as string, t('candidate'))}</div>
           </Col>
           <Col xs={6}>
             <QRCodeSVG
@@ -142,7 +129,8 @@ export default class CandidatePoster extends Component<CandidatePosterProps> {
   }
 
   render() {
-    const { route, recipient, position } = this.props;
+    const { t } = this.observedContext,
+      { route, recipient, position } = this.props;
     const { year } = route.params!;
     const title = `${t('KaiYuanShe')} ${year}`,
       subTitle = `${textJoin(position as string, t('candidate'))} ${recipient}`;
@@ -151,10 +139,7 @@ export default class CandidatePoster extends Component<CandidatePosterProps> {
       <>
         <PageHead title={subTitle} />
 
-        <ShareBox
-          title={`${title} ${subTitle}`}
-          url={this.rootURL + this.sharePath}
-        >
+        <ShareBox title={`${title} ${subTitle}`} url={this.rootURL + this.sharePath}>
           {this.renderContent(title, subTitle)}
         </ShareBox>
       </>

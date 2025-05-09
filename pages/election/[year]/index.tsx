@@ -1,43 +1,29 @@
 import { textJoin } from 'mobx-i18n';
 import { observer } from 'mobx-react';
-import {
-  compose,
-  errorLogger,
-  RouteProps,
-  router,
-  translator,
-} from 'next-ssr-middleware';
-import { Component } from 'react';
+import { ObservedComponent } from 'mobx-react-helper';
+import { compose, errorLogger, RouteProps, router } from 'next-ssr-middleware';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { Day, isEmpty } from 'web-utility';
 
 import { ElectorCard } from '../../../components/Election/ElectorCard';
 import { PageHead } from '../../../components/Layout/PageHead';
-import { i18n, t } from '../../../models/Base/Translation';
-import {
-  ElectionTarget,
-  Personnel,
-  PersonnelModel,
-} from '../../../models/Personnel';
+import { i18n, I18nContext } from '../../../models/Base/Translation';
+import { ElectionTarget, Personnel, PersonnelModel } from '../../../models/Personnel';
 
-type ElectionYearPageProps = RouteProps<{ year: string }> &
-  Pick<PersonnelModel, 'group'>;
+type ElectionYearPageProps = RouteProps<{ year: string }> & Pick<PersonnelModel, 'group'>;
 
-export const getServerSideProps = compose<
-  { year: string },
-  ElectionYearPageProps
->(router, errorLogger, translator(i18n), async ({ params }) => {
-  const group = await new PersonnelModel().getGroup(
-    {},
-    ['position', 'award'],
-    +params!.year,
-  );
+export const getServerSideProps = compose<{ year: string }, ElectionYearPageProps>(
+  router,
+  errorLogger,
+  async ({ params }) => {
+    const group = await new PersonnelModel().getGroup({}, ['position', 'award'], +params!.year);
 
-  return {
-    notFound: isEmpty(group),
-    props: JSON.parse(JSON.stringify({ group })),
-  };
-});
+    return {
+      notFound: isEmpty(group),
+      props: JSON.parse(JSON.stringify({ group })),
+    };
+  },
+);
 
 const SectionOrder = [
   '理事',
@@ -50,19 +36,23 @@ const SectionOrder = [
 ];
 
 @observer
-export default class ElectionYearPage extends Component<ElectionYearPageProps> {
+export default class ElectionYearPage extends ObservedComponent<
+  ElectionYearPageProps,
+  typeof i18n
+> {
+  static contextType = I18nContext;
+
   get sections() {
     const { group } = this.props;
 
-    return SectionOrder.map(title => [title, group[title]] as const).filter(
-      ([_, list]) => list,
-    );
+    return SectionOrder.map(title => [title, group[title]] as const).filter(([_, list]) => list);
   }
 
   renderGroup(target: string, list: Personnel[]) {
-    const [startedAt] = list
-      .map(({ createdAt }) => createdAt as number)
-      .sort((a, b) => +new Date(a) - +new Date(b));
+    const { t } = this.observedContext,
+      [startedAt] = list
+        .map(({ createdAt }) => createdAt as number)
+        .sort((a, b) => +new Date(a) - +new Date(b));
     const open = +new Date(startedAt) + 16.5 * Day < Date.now();
 
     return (
@@ -102,7 +92,8 @@ export default class ElectionYearPage extends Component<ElectionYearPageProps> {
   }
 
   render() {
-    const { year } = this.props.route.params!;
+    const { t } = this.observedContext,
+      { year } = this.props.route.params!;
 
     const title = `${year} ${t('election')}`,
       passed = +year < new Date().getFullYear();

@@ -1,17 +1,14 @@
 import classNames from 'classnames';
 import { TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
-import { compose, translator } from 'next-ssr-middleware';
-import { Component } from 'react';
+import { ObservedComponent } from 'mobx-react-helper';
+import { compose } from 'next-ssr-middleware';
 import { Col, Container, ListGroup, Row } from 'react-bootstrap';
 
 import { LarkImage } from '../../components/Base/LarkImage';
 import { PageHead } from '../../components/Layout/PageHead';
-import { i18n, t } from '../../models/Base/Translation';
-import {
-  Cooperation,
-  CooperationModel,
-} from '../../models/Community/Cooperation';
+import { i18n, I18nContext } from '../../models/Base/Translation';
+import { Cooperation, CooperationModel } from '../../models/Community/Cooperation';
 import { solidCache } from '../api/base';
 
 const Levels = [
@@ -48,35 +45,31 @@ interface CooperationPageProps {
   yearGroup: CooperationModel['yearGroup'];
 }
 
-export const getServerSideProps = compose<{}, CooperationPageProps>(
-  solidCache,
-  translator(i18n),
-  async () => {
-    const cooperationStore = new CooperationModel();
+export const getServerSideProps = compose<{}, CooperationPageProps>(solidCache, async () => {
+  const cooperationStore = new CooperationModel();
 
-    await cooperationStore.getGroup();
+  await cooperationStore.getGroup();
 
-    const { yearGroup } = cooperationStore;
+  const { yearGroup } = cooperationStore;
 
-    return { props: JSON.parse(JSON.stringify({ yearGroup })) };
-  },
-);
+  return { props: JSON.parse(JSON.stringify({ yearGroup })) };
+});
 
 @observer
-export default class CooperationPage extends Component<CooperationPageProps> {
+export default class CooperationPage extends ObservedComponent<CooperationPageProps, typeof i18n> {
+  static contextType = I18nContext;
+
   renderGroup(level: (typeof Levels)[number], list: Cooperation[]) {
+    const { t } = this.observedContext;
+
     return (
       <section key={level}>
         <h3 className="my-5">{t(level)}</h3>
 
-        <Row
-          as="ul"
-          className="list-unstyled align-items-center justify-content-center gap-3"
-        >
+        <Row as="ul" className="list-unstyled align-items-center justify-content-center gap-3">
           {list.map(({ organization, person, link, logos, avatar, level }) => {
             const name = (organization || person || '') + '',
-              isSingleLineBenefitsLevels =
-                singleLineBenefitsLevels.includes(level);
+              isSingleLineBenefitsLevels = singleLineBenefitsLevels.includes(level);
 
             return (
               <Col
@@ -99,7 +92,8 @@ export default class CooperationPage extends Component<CooperationPageProps> {
   }
 
   render() {
-    const { yearGroup } = this.props;
+    const { t } = this.observedContext,
+      { yearGroup } = this.props;
 
     return (
       <Container className="my-4 text-center">
@@ -124,18 +118,13 @@ export default class CooperationPage extends Component<CooperationPageProps> {
           {yearGroup.map(([year, group], index, { length }) => (
             <section
               key={year}
-              className={classNames(
-                index + 1 < length && 'border-bottom',
-                'pb-5 mb-5',
-              )}
+              className={classNames(index + 1 < length && 'border-bottom', 'pb-5 mb-5')}
             >
               <h2 className="my-4" id={year + ''}>
                 {year}
               </h2>
 
-              {Levels.map(
-                level => group[level] && this.renderGroup(level, group[level]),
-              )}
+              {Levels.map(level => group[level] && this.renderGroup(level, group[level]))}
             </section>
           ))}
         </article>

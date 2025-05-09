@@ -1,13 +1,13 @@
 import { observer } from 'mobx-react';
-import { cache, compose, errorLogger, translator } from 'next-ssr-middleware';
-import { FC } from 'react';
+import { cache, compose, errorLogger } from 'next-ssr-middleware';
+import { FC, useContext } from 'react';
 import { Breadcrumb, Col, Container, Row } from 'react-bootstrap';
 
 import { ReportCard } from '../../../components/Department/ReportCard';
 import { MeetingCard } from '../../../components/Governance/MeetingCard';
 import { PageHead } from '../../../components/Layout/PageHead';
 import { MemberTitle } from '../../../components/Member/Title';
-import { i18n, t } from '../../../models/Base/Translation';
+import { I18nContext } from '../../../models/Base/Translation';
 import { Meeting, MeetingModel } from '../../../models/Governance/Meeting';
 import { Report, ReportModel } from '../../../models/Governance/Report';
 
@@ -16,29 +16,30 @@ interface MeetingDetailPageProps {
   reports: Report[];
 }
 
-export const getServerSideProps = compose<
-  { id: string },
-  MeetingDetailPageProps
->(cache(), errorLogger, translator(i18n), async ({ params }) => {
-  const meeting = await new MeetingModel().getOne(params!.id);
-  const reports = await new ReportModel().getAll({ meeting: meeting.title });
+export const getServerSideProps = compose<{ id: string }, MeetingDetailPageProps>(
+  cache(),
+  errorLogger,
+  async ({ params }) => {
+    const meeting = await new MeetingModel().getOne(params!.id);
+    const reports = await new ReportModel().getAll({ meeting: meeting.title });
 
-  return {
-    props: JSON.parse(JSON.stringify({ meeting, reports })),
-  };
-});
+    return {
+      props: JSON.parse(JSON.stringify({ meeting, reports })),
+    };
+  },
+);
 
-const MeetingDetailPage: FC<MeetingDetailPageProps> = observer(
-  ({ meeting, reports }) => (
+const MeetingDetailPage: FC<MeetingDetailPageProps> = observer(({ meeting, reports }) => {
+  const { t } = useContext(I18nContext);
+
+  return (
     <Container className="py-5">
       <PageHead title={meeting.title + ''} />
 
       <Breadcrumb>
         <Breadcrumb.Item href="/">{t('KaiYuanShe')}</Breadcrumb.Item>
         <Breadcrumb.Item>{t('open_governance')}</Breadcrumb.Item>
-        <Breadcrumb.Item href="/governance/meeting">
-          {t('meeting_calendar')}
-        </Breadcrumb.Item>
+        <Breadcrumb.Item href="/governance/meeting">{t('meeting_calendar')}</Breadcrumb.Item>
         <Breadcrumb.Item active>{meeting.title + ''}</Breadcrumb.Item>
       </Breadcrumb>
 
@@ -59,7 +60,6 @@ const MeetingDetailPage: FC<MeetingDetailPageProps> = observer(
         </Col>
       </Row>
     </Container>
-  ),
-);
-
+  );
+});
 export default MeetingDetailPage;

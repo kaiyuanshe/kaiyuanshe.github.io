@@ -1,15 +1,15 @@
 import { CheckEvent, User } from '@kaiyuanshe/kys-service';
 import { Avatar, TimeDistance } from 'idea-react';
 import { observer } from 'mobx-react';
+import { ObservedComponent } from 'mobx-react-helper';
 import { ScrollList } from 'mobx-restful-table';
 import { cache, compose, errorLogger } from 'next-ssr-middleware';
-import { Component } from 'react';
 import { Breadcrumb, Button, Col, Container, Row } from 'react-bootstrap';
 
 import { AnnouncementCard } from '../../components/Governance/AnnouncementCard';
 import { PageHead } from '../../components/Layout/PageHead';
 import { CheckEventModel } from '../../models/Activity/CheckEvent';
-import { i18n, t } from '../../models/Base/Translation';
+import { i18n, I18nContext } from '../../models/Base/Translation';
 import userStore, { UserModel } from '../../models/Base/User';
 import { AnnouncementModel } from '../../models/Personnel/Announcement';
 
@@ -31,7 +31,9 @@ export const getServerSideProps = compose<{ id: string }, UserProfilePageProps>(
 );
 
 @observer
-export default class UserProfilePage extends Component<UserProfilePageProps> {
+export default class UserProfilePage extends ObservedComponent<UserProfilePageProps, typeof i18n> {
+  static contextType = I18nContext;
+
   checkEventStore = new CheckEventModel();
   announcementStore = new AnnouncementModel();
 
@@ -70,29 +72,30 @@ export default class UserProfilePage extends Component<UserProfilePageProps> {
     );
   }
 
-  renderMemberAnnouncement = (email: string) => (
-    <>
-      <h2>{t('member_announcement')}</h2>
+  renderMemberAnnouncement = (email: string) => {
+    const { t } = this.observedContext;
 
-      <ScrollList
-        translator={i18n}
-        store={this.announcementStore}
-        filter={{ emails: email }}
-        renderList={allItems =>
-          allItems.map(item => (
-            <AnnouncementCard
-              key={item.id + ''}
-              className="mx-auto"
-              {...item}
-            />
-          ))
-        }
-      />
-    </>
-  );
+    return (
+      <>
+        <h2>{t('member_announcement')}</h2>
+
+        <ScrollList
+          translator={i18n}
+          store={this.announcementStore}
+          filter={{ emails: email }}
+          renderList={allItems =>
+            allItems.map(item => (
+              <AnnouncementCard key={item.id + ''} className="mx-auto" {...item} />
+            ))
+          }
+        />
+      </>
+    );
+  };
 
   render() {
-    const { user, checkEvents } = this.props,
+    const { t } = this.observedContext,
+      { user, checkEvents } = this.props,
       { session } = userStore;
     const { id, nickName, avatar, mobilePhone, email } = user;
 
@@ -111,25 +114,15 @@ export default class UserProfilePage extends Component<UserProfilePageProps> {
         </Breadcrumb>
 
         <Row className="g-3 my-3">
-          <Col
-            xs={12}
-            sm={4}
-            className="d-flex flex-column gap-3 align-items-center"
-          >
+          <Col xs={12} sm={4} className="d-flex flex-column gap-3 align-items-center">
             <h1>{title}</h1>
 
             {avatar && <Avatar size={10} src={avatar} />}
-            <Button
-              size="lg"
-              variant="outline-primary"
-              href={`/member/${nickName}`}
-            >
+            <Button size="lg" variant="outline-primary" href={`/member/${nickName}`}>
               {t('community_member')}
             </Button>
 
-            {session?.id === id &&
-              email &&
-              this.renderMemberAnnouncement(email)}
+            {session?.id === id && email && this.renderMemberAnnouncement(email)}
           </Col>
 
           <Col xs={12} sm={8}>
@@ -140,9 +133,8 @@ export default class UserProfilePage extends Component<UserProfilePageProps> {
               store={this.checkEventStore}
               filter={{ user: id }}
               renderList={() =>
-                Object.entries(this.checkEventStore.group).map(
-                  ([activityId, list]) =>
-                    this.renderActivityChecks(activityId, list),
+                Object.entries(this.checkEventStore.group).map(([activityId, list]) =>
+                  this.renderActivityChecks(activityId, list),
                 )
               }
               defaultData={checkEvents}

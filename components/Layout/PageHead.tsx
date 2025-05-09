@@ -1,23 +1,26 @@
 import { observer } from 'mobx-react';
 import Head from 'next/head';
 import type { FC, PropsWithChildren } from 'react';
+import { useContext } from 'react';
 
-import { t } from '../../models/Base/Translation';
+import { I18nContext } from '../../models/Base/Translation';
 
-export type PageHeadProps = PropsWithChildren<
-  Partial<Record<'title' | 'description', string>>
->;
+export type PageHeadProps = PropsWithChildren<Partial<Record<'title' | 'description', string>>>;
 
 const Summary = process.env.NEXT_PUBLIC_SITE_SUMMARY;
 
 export const PageHead: FC<PageHeadProps> = observer(
-  ({ title, description = Summary, children }) => (
-    <Head>
-      <title>{`${title ? `${title} - ` : ''}${t('KaiYuanShe')}`}</title>
+  ({ title = '', description = Summary, children }) => {
+    const { t } = useContext(I18nContext);
 
-      {description && <meta name="description" content={description} />}
+    return (
+      <Head>
+        <title>{`${title ? `${title} - ` : ''}${t('KaiYuanShe')}`}</title>
 
-      {children}
-    </Head>
-  ),
+        {description && <meta name="description" content={description} />}
+
+        {children}
+      </Head>
+    );
+  },
 );

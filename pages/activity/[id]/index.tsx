@@ -1,14 +1,9 @@
 import { PageNav, VerticalMarquee } from 'idea-react';
-import {
-  coordinateOf,
-  TableCellLocation,
-  TableCellValue,
-  TableFormView,
-} from 'mobx-lark';
+import { coordinateOf, TableCellLocation, TableCellValue, TableFormView } from 'mobx-lark';
 import { observer } from 'mobx-react';
+import { ObservedComponent } from 'mobx-react-helper';
 import dynamic from 'next/dynamic';
-import { compose, errorLogger, translator } from 'next-ssr-middleware';
-import { Component } from 'react';
+import { compose, errorLogger } from 'next-ssr-middleware';
 import {
   Button,
   Col,
@@ -20,11 +15,7 @@ import {
   Stack,
 } from 'react-bootstrap';
 
-import {
-  ActivityPeople,
-  AgendaCard,
-  DrawerNav,
-} from '../../../components/Activity';
+import { ActivityPeople, AgendaCard, DrawerNav } from '../../../components/Activity';
 import { LarkImage } from '../../../components/Base/LarkImage';
 import { PageHead } from '../../../components/Layout/PageHead';
 import type { ImageMarker } from '../../../components/Map/ListMap';
@@ -33,7 +24,7 @@ import { AgendaModel } from '../../../models/Activity/Agenda';
 import { Forum } from '../../../models/Activity/Forum';
 import { Place } from '../../../models/Activity/Place';
 import systemStore from '../../../models/Base/System';
-import { i18n, t } from '../../../models/Base/Translation';
+import { i18n, I18nContext } from '../../../models/Base/Translation';
 import { solidCache } from '../../api/base';
 import { fileURLOf } from '../../api/lark/file/[id]';
 import styles from './index.module.less';
@@ -50,30 +41,34 @@ interface ActivityDetailPageProps {
   places: Place[];
 }
 
-export const getServerSideProps = compose<
-  { id: string },
-  ActivityDetailPageProps
->(solidCache, errorLogger, translator(i18n), async ({ params }) => {
-  const activityStore = new ActivityModel();
+export const getServerSideProps = compose<{ id: string }, ActivityDetailPageProps>(
+  solidCache,
+  errorLogger,
+  async ({ params }) => {
+    const activityStore = new ActivityModel();
 
-  const activity = await activityStore.getOne(params!.id, true);
+    const activity = await activityStore.getOne(params!.id, true);
 
-  const [agendaGroup, forums, places] = await Promise.all([
-    activityStore.currentAgenda!.getGroup(),
-    activityStore.currentForum!.getAll(),
-    activityStore.currentPlace!.getAll(),
-  ]);
-  const { currentMeta } = activityStore;
+    const [agendaGroup, forums, places] = await Promise.all([
+      activityStore.currentAgenda!.getGroup(),
+      activityStore.currentForum!.getAll(),
+      activityStore.currentPlace!.getAll(),
+    ]);
+    const { currentMeta } = activityStore;
 
-  return {
-    props: JSON.parse(
-      JSON.stringify({ activity, currentMeta, forums, agendaGroup, places }),
-    ),
-  };
-});
+    return {
+      props: JSON.parse(JSON.stringify({ activity, currentMeta, forums, agendaGroup, places })),
+    };
+  },
+);
 
 @observer
-export default class ActivityDetailPage extends Component<ActivityDetailPageProps> {
+export default class ActivityDetailPage extends ObservedComponent<
+  ActivityDetailPageProps,
+  typeof i18n
+> {
+  static contextType = I18nContext;
+
   renderFormMenu(
     title: string,
     forms: TableFormView[],
@@ -94,25 +89,15 @@ export default class ActivityDetailPage extends Component<ActivityDetailPageProp
   }
 
   renderFormLinks() {
-    const { endTime, personForms, agendaForms, fileForms, billForms } =
-        this.props.currentMeta,
+    const { t } = this.observedContext,
+      { endTime, personForms, agendaForms, fileForms, billForms } = this.props.currentMeta,
       { link } = this.props.activity;
     const passed = +new Date(+endTime!) <= Date.now();
 
     return (
       <div className="d-flex flex-wrap justify-content-center gap-3 my-3">
-        {this.renderFormMenu(
-          t('volunteer_speaker_registration'),
-          personForms,
-          'primary',
-          passed,
-        )}
-        {this.renderFormMenu(
-          t('CFP_submission'),
-          agendaForms,
-          'success',
-          passed,
-        )}
+        {this.renderFormMenu(t('volunteer_speaker_registration'), personForms, 'primary', passed)}
+        {this.renderFormMenu(t('CFP_submission'), agendaForms, 'success', passed)}
         {this.renderFormMenu(t('CFP_file_submission'), fileForms, 'warning')}
         {this.renderFormMenu(t('reimbursement_application'), billForms, 'info')}
         {link && (
@@ -125,40 +110,21 @@ export default class ActivityDetailPage extends Component<ActivityDetailPageProp
   }
 
   renderPageLinks() {
-    const { id } = this.props.activity;
+    const { t } = this.observedContext,
+      { id } = this.props.activity;
 
     return (
-      <Stack
-        className="justify-content-center flex-wrap"
-        direction="horizontal"
-        gap={3}
-      >
-        <Button
-          className="text-nowrap"
-          variant="danger"
-          href={`/activity/${id}/gift`}
-        >
+      <Stack className="justify-content-center flex-wrap" direction="horizontal" gap={3}>
+        <Button className="text-nowrap" variant="danger" href={`/activity/${id}/gift`}>
           {t('gift_wall')}
         </Button>
-        <Button
-          className="text-nowrap"
-          variant="info"
-          href={`/activity/${id}/volunteer`}
-        >
+        <Button className="text-nowrap" variant="info" href={`/activity/${id}/volunteer`}>
           {t('volunteer')}
         </Button>
-        <Button
-          className="text-nowrap"
-          variant="secondary"
-          href={`/activity/${id}/finance`}
-        >
+        <Button className="text-nowrap" variant="secondary" href={`/activity/${id}/finance`}>
           {t('financial_disclosure')}
         </Button>
-        <Button
-          className="text-nowrap"
-          variant="success"
-          href={`/activity/${id}/charts`}
-        >
+        <Button className="text-nowrap" variant="success" href={`/activity/${id}/charts`}>
           {t('activity_statistics')}
         </Button>
         <Button className="text-nowrap" href="/search/article?keywords=收官">
@@ -169,7 +135,8 @@ export default class ActivityDetailPage extends Component<ActivityDetailPageProp
   }
 
   renderMap() {
-    const { activity, places } = this.props;
+    const { t } = this.observedContext,
+      { activity, places } = this.props;
     const markers = places
       .map(
         ({ name, photos, location, forum }) =>
@@ -206,11 +173,10 @@ export default class ActivityDetailPage extends Component<ActivityDetailPageProp
     link: TableCellValue,
     summary: TableCellValue,
   ) {
+    const { t } = this.observedContext;
+
     return (
-      <Row
-        className="align-items-center g-3 position-relative"
-        style={{ maxWidth: '50%' }}
-      >
+      <Row className="align-items-center g-3 position-relative" style={{ maxWidth: '50%' }}>
         <Col xs={12} md={2}>
           {t('producer_organization')}
         </Col>
@@ -234,10 +200,7 @@ export default class ActivityDetailPage extends Component<ActivityDetailPageProp
               {name as string}
             </a>
           </h3>
-          <p
-            className="text-muted overflow-hidden"
-            style={{ maxHeight: '6rem' }}
-          >
+          <p className="text-muted overflow-hidden" style={{ maxHeight: '6rem' }}>
             {summary as string}
           </p>
         </Col>
@@ -282,7 +245,8 @@ export default class ActivityDetailPage extends Component<ActivityDetailPageProp
     producerOrganizations,
     location,
   }: Forum) => {
-    const { activity, agendaGroup } = this.props;
+    const { t } = this.observedContext,
+      { activity, agendaGroup } = this.props;
 
     return (
       <section key={name as string}>
@@ -318,11 +282,7 @@ export default class ActivityDetailPage extends Component<ActivityDetailPageProp
             producerOrganizations,
           )}
           {(volunteers as string[])?.[0] &&
-            this.renderForumPeople(
-              t('volunteer'),
-              volunteers,
-              volunteerAvatars,
-            )}
+            this.renderForumPeople(t('volunteer'), volunteers, volunteerAvatars)}
         </div>
 
         <Row as="ol" className="list-unstyled g-4" xs={1} md={2}>

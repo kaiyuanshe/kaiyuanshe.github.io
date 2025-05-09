@@ -1,33 +1,37 @@
 import * as Sentry from '@sentry/nextjs';
-import { parseCookie, parseLanguageHeader } from 'mobx-i18n';
-import type { NextPage } from 'next';
-import type { ErrorProps } from 'next/error';
+import type { NextPageContext } from 'next';
 import Error from 'next/error';
 
 import { NotFoundCard } from '../components/NotFoundCard';
-import { i18n } from '../models/Base/Translation';
+import {
+  createI18nStore,
+  I18nContext,
+  I18nProps,
+  loadSSRLanguage,
+} from '../models/Base/Translation';
 
-const CustomErrorComponent: NextPage<ErrorProps> = props => (
-  <>
-    <Error {...props} />
+const enableSentry = process.env.NODE_ENV === 'development' || !process.env.SENTRY_AUTH_TOKEN;
 
-    <NotFoundCard {...props} />
-  </>
-);
-const enableSentry =
-  process.env.NODE_ENV === 'development' || !process.env.SENTRY_AUTH_TOKEN;
+export default class CustomError extends Error<I18nProps> {
+  static async getInitialProps(context: NextPageContext) {
+    if (enableSentry) await Sentry.captureUnderscoreErrorException(context);
 
-CustomErrorComponent.getInitialProps = async contextData => {
-  const { 'accept-language': acceptLanguage, cookie = '' } =
-    contextData.req!.headers;
-  const { language } = parseCookie(cookie),
-    languages = parseLanguageHeader(acceptLanguage || '');
+    return {
+      ...(await Error.getInitialProps(context)),
+      ...(await loadSSRLanguage(context)),
+    };
+  }
 
-  await i18n.loadLanguages([language, ...languages].filter(Boolean));
+  i18nStore = createI18nStore(this.props.language, this.props.languageMap);
 
-  if (enableSentry) await Sentry.captureUnderscoreErrorException(contextData);
+  render() {
+    const { props, i18nStore } = this;
 
-  return Error.getInitialProps(contextData);
-};
-
-export default CustomErrorComponent;
+    return (
+      <I18nContext.Provider value={i18nStore}>
+        <Error {...props} />
+        <NotFoundCard {...props} />
+      </I18nContext.Provider>
+    );
+  }
+}

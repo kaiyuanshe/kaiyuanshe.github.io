@@ -1,9 +1,9 @@
 import { ShareBox, Timeline, TimelineEvent } from 'idea-react';
 import { TableCellLocation, TableCellValue } from 'mobx-lark';
 import { observer } from 'mobx-react';
+import { ObservedComponent } from 'mobx-react-helper';
 import { cache, compose, errorLogger, router } from 'next-ssr-middleware';
 import { QRCodeSVG } from 'qrcode.react';
-import { Component } from 'react';
 import { Container } from 'react-bootstrap';
 
 import { PageHead } from '../../../../components/Layout/PageHead';
@@ -11,7 +11,7 @@ import { Activity, ActivityModel } from '../../../../models/Activity';
 import { Agenda } from '../../../../models/Activity/Agenda';
 import { Forum } from '../../../../models/Activity/Forum';
 import { API_Host } from '../../../../models/Base';
-import { t } from '../../../../models/Base/Translation';
+import { i18n, I18nContext } from '../../../../models/Base/Translation';
 import { fileURLOf } from '../../../api/lark/file/[id]';
 
 interface ForumPageProps {
@@ -20,29 +20,34 @@ interface ForumPageProps {
   agendas: Agenda[];
 }
 
-export const getServerSideProps = compose<
-  Record<'id' | 'forumId', string>,
-  ForumPageProps
->(cache(), router, errorLogger, async ({ params: { id, forumId } = {} }) => {
-  const activityStore = new ActivityModel();
+export const getServerSideProps = compose<Record<'id' | 'forumId', string>, ForumPageProps>(
+  cache(),
+  router,
+  errorLogger,
+  async ({ params: { id, forumId } = {} }) => {
+    const activityStore = new ActivityModel();
 
-  const activity = await activityStore.getOne(id!);
-  const forum = await activityStore.currentForum!.getOne(forumId!);
-  const agendas = await activityStore.currentAgenda!.getAll({
-    forum: forum.name,
-  });
+    const activity = await activityStore.getOne(id!);
+    const forum = await activityStore.currentForum!.getOne(forumId!);
+    const agendas = await activityStore.currentAgenda!.getAll({
+      forum: forum.name,
+    });
 
-  return {
-    props: JSON.parse(JSON.stringify({ activity, forum, agendas })),
-  };
-});
+    return {
+      props: JSON.parse(JSON.stringify({ activity, forum, agendas })),
+    };
+  },
+);
 
 @observer
-export default class ForumPage extends Component<ForumPageProps> {
+export default class ForumPage extends ObservedComponent<ForumPageProps, typeof i18n> {
+  static contextType = I18nContext;
+
   sharedURL = `${API_Host}/activity/${this.props.activity.id}/forum/${this.props.forum.id}`;
 
   renderContent() {
-    const { activity, forum, agendas } = this.props,
+    const { t } = this.observedContext,
+      { activity, forum, agendas } = this.props,
       { sharedURL } = this;
     const { id: activityId, name, city, location, image, cardImage } = activity,
       { name: forumName, location: room } = forum;
@@ -54,10 +59,7 @@ export default class ForumPage extends Component<ForumPageProps> {
         link: `/activity/${activityId}/agenda/${id}`,
         people: (mentors as string[]).map((name, index) => ({
           name,
-          avatar: fileURLOf(
-            [(mentorAvatars as TableCellValue[])![index]!] as TableCellValue,
-            true,
-          ),
+          avatar: fileURLOf([(mentorAvatars as TableCellValue[])![index]!] as TableCellValue, true),
         })),
       }),
     );
