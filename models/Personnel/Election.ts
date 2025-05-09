@@ -2,13 +2,11 @@ import { VoteTicket } from '@kaiyuanshe/kys-service';
 import { observable } from 'mobx';
 import { BaseModel, persist, restore, toggle } from 'mobx-restful';
 
-import { isServer } from '../Base';
+import { isServer } from '../../utility/configuration';
 import userStore from '../Base/User';
 
 export const buffer2hex = (buffer: ArrayBufferLike) =>
-  Array.from(new Uint8Array(buffer), x => x.toString(16).padStart(2, '0')).join(
-    '',
-  );
+  Array.from(new Uint8Array(buffer), x => x.toString(16).padStart(2, '0')).join('');
 
 export class ElectionModel extends BaseModel {
   client = userStore.client;
@@ -34,11 +32,10 @@ export class ElectionModel extends BaseModel {
 
     if (this.publicKey) return this.publicKey;
 
-    const { publicKey, privateKey } = await crypto.subtle.generateKey(
-      this.algorithm,
-      true,
-      ['sign', 'verify'],
-    );
+    const { publicKey, privateKey } = await crypto.subtle.generateKey(this.algorithm, true, [
+      'sign',
+      'verify',
+    ]);
     this.privateKey = privateKey;
 
     const JWK = await crypto.subtle.exportKey('jwk', publicKey);
@@ -50,10 +47,7 @@ export class ElectionModel extends BaseModel {
   async savePublicKey(electionName: string, jsonWebKey = this.publicKey) {
     await userStore.restored;
 
-    const { body } = await this.client.post(
-      `election/${electionName}/public-key`,
-      { jsonWebKey },
-    );
+    const { body } = await this.client.post(`election/${electionName}/public-key`, { jsonWebKey });
     return body!;
   }
 

@@ -7,7 +7,7 @@ import { formatDate } from 'web-utility';
 
 import { I18nContext } from '../../models/Base/Translation';
 import { Meeting } from '../../models/Governance/Meeting';
-import { DefaultImage } from '../../pages/api/lark/file/[id]';
+import { DefaultImage } from '../../utility/configuration';
 
 export const MeetingCard: FC<Meeting> = observer(
   ({

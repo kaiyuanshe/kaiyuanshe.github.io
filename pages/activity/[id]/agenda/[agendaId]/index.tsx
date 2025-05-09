@@ -24,10 +24,10 @@ import { Activity, ActivityModel } from '../../../../../models/Activity';
 import { Agenda } from '../../../../../models/Activity/Agenda';
 import { CheckEventModel } from '../../../../../models/Activity/CheckEvent';
 import { Forum } from '../../../../../models/Activity/Forum';
-import { API_Host } from '../../../../../models/Base';
 import systemStore from '../../../../../models/Base/System';
 import { i18n, I18nContext } from '../../../../../models/Base/Translation';
 import userStore from '../../../../../models/Base/User';
+import { API_Host } from '../../../../../utility/configuration';
 
 const SessionBox = dynamic(() => import('../../../../../components/Layout/SessionBox'), {
   ssr: false,

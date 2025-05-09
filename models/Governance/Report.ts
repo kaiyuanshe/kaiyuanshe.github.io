@@ -7,7 +7,7 @@ import {
   TableRecord,
 } from 'mobx-lark';
 
-import { normalizeMarkdownArray } from '../../pages/api/lark/core';
+import { normalizeMarkdownArray } from '../../utility/Lark';
 import { larkClient } from '../Base';
 import { GOVERNANCE_BASE_ID } from './OKR';
 
@@ -34,15 +34,7 @@ export class ReportModel extends BiDataTable<Report>() {
   }
 
   extractFields({
-    fields: {
-      department,
-      plan,
-      progress,
-      product,
-      problem,
-      meeting,
-      ...fields
-    },
+    fields: { department, plan, progress, product, problem, meeting, ...fields },
     ...meta
   }: TableRecord<Report>) {
     return {

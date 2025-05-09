@@ -1,16 +1,6 @@
 import { HTTPClient } from 'koajax';
 
-export const isServer = () => typeof window === 'undefined';
-
-const VercelHost = process.env.VERCEL_URL;
-
-export const API_Host = isServer()
-  ? VercelHost
-    ? `https://${VercelHost}`
-    : 'http://localhost:3000'
-  : globalThis.location.origin;
-
-export const KYS_SERVICE_HOST = process.env.NEXT_PUBLIC_KYS_SERVICE_HOST;
+import { API_Host } from '../../utility/configuration';
 
 export const client = new HTTPClient({
   baseURI: `${API_Host}/api/`,

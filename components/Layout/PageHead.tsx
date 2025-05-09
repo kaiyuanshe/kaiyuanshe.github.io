@@ -4,10 +4,9 @@ import type { FC, PropsWithChildren } from 'react';
 import { useContext } from 'react';
 
 import { I18nContext } from '../../models/Base/Translation';
+import { Summary } from '../../utility/configuration';
 
 export type PageHeadProps = PropsWithChildren<Partial<Record<'title' | 'description', string>>>;
-
-const Summary = process.env.NEXT_PUBLIC_SITE_SUMMARY;
 
 export const PageHead: FC<PageHeadProps> = observer(
   ({ title = '', description = Summary, children }) => {
