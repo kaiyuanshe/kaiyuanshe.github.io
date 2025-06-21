@@ -54,6 +54,11 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
+      - name: Pick Docker Compose
+        run: |
+          mkdir ./build
+          mv ${{ env.ARTIFACT_PATH }} ./docker-compose.yml  ./build
+
       - name: Add server to known hosts
         run: ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
 
@@ -62,7 +67,7 @@ jobs:
         with:
           image: ${{ env.BOX_URL }}:latest
           destination: ${{ secrets.USER }}@${{ secrets.HOST }}
-          ssh_key: ${{ secrets.SSH_KEY }}
+          ssh_password: ${{ secrets.SSH_KEY }}
 
       - name: Deploy Docker Compose and start services
         uses: garygrossgarten/github-action-ssh@release
@@ -73,17 +78,7 @@ jobs:
           command: |
             mkdir -p ~/${{ env.BOX_NAME }}
             cd ~/${{ env.BOX_NAME }}
-            
-            # Check if docker-compose.yml exists
-            if [ ! -f docker-compose.yml ]; then
-              echo "Error: docker-compose.yml not found in ~/${{ env.BOX_NAME }}"
-              echo "Please create a docker-compose.yml file before deployment"
-              exit 1
-            fi
-
-            # Stop existing containers and start new ones
-            docker-compose down -v --remove-orphans
-            docker-compose up -d
-
-            # Clean up unused images
-            docker image prune -a -f
+            mv docker-compose.yml start.sh ~/${{ env.BOX_NAME }}
+            cd ~/${{ env.BOX_NAME }}
+            chmod +x start.sh
+            ./start.sh /tmp/${{ env.BOX_NAME }}/${{ env.ARTIFACT_PATH }}
