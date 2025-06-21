@@ -81,4 +81,4 @@ jobs:
             mv docker-compose.yml start.sh ~/${{ env.BOX_NAME }}
             cd ~/${{ env.BOX_NAME }}
             chmod +x start.sh
-            sudo ./start.sh 
+            echo '${{ secrets.SSH_KEY }}' | sudo -S ./start.sh 
