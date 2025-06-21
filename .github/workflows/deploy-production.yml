@@ -57,7 +57,7 @@ jobs:
       - name: Pick Docker Compose
         run: |
           mkdir ./build
-          mv ${{ env.ARTIFACT_PATH }} ./docker-compose.yml  ./build
+          mv ${{ env.ARTIFACT_PATH }} ./docker-compose.yml ./start.sh ./build
 
       - name: Add server to known hosts
         run: ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
@@ -77,8 +77,8 @@ jobs:
           password: ${{ secrets.SSH_KEY }}
           command: |
             mkdir -p ~/${{ env.BOX_NAME }}
-            cd ~/${{ env.BOX_NAME }}
+            cd /tmp/${{ env.BOX_NAME }}
             mv docker-compose.yml start.sh ~/${{ env.BOX_NAME }}
             cd ~/${{ env.BOX_NAME }}
             chmod +x start.sh
-            sudo ./start.sh /tmp/${{ env.BOX_NAME }}/${{ env.ARTIFACT_PATH }}
+            sudo ./start.sh 
