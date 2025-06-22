@@ -62,6 +62,15 @@ jobs:
       - name: Add server to known hosts
         run: ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
 
+      - name: Transport Docker Compose and start script files
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          source: ./build/*.*
+          target: /tmp/${{ env.BOX_NAME }}
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          password: ${{ secrets.SSH_KEY }}
+
       - name: Deploy Docker image to server
         uses: SonOfBytes/unregistry-action@v0.1.0
         with:
@@ -70,7 +79,7 @@ jobs:
           ssh_password: ${{ secrets.SSH_KEY }}
 
       - name: Deploy Docker Compose and start services
-        uses: garygrossgarten/github-action-ssh@release
+        uses: appleboy/ssh-action@v1
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
