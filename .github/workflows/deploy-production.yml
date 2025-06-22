@@ -78,7 +78,7 @@ jobs:
           destination: ${{ secrets.USER }}@${{ secrets.HOST }}
           ssh_password: ${{ secrets.SSH_KEY }}
 
-      - name: Deploy Docker Compose and start services
+      - name: Run Image
         uses: appleboy/ssh-action@v1
         with:
           host: ${{ secrets.HOST }}
