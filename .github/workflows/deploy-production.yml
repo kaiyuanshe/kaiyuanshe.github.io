@@ -57,7 +57,7 @@ jobs:
       - name: Pick Docker Compose
         run: |
           mkdir ./build
-          mv ${{ env.ARTIFACT_PATH }} ./docker-compose.yml ./start.sh ./build
+          mv ./docker-compose.yml ./start.sh ./build
 
       - name: Add server to known hosts
         run: ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
