@@ -84,7 +84,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
           password: ${{ secrets.SSH_KEY }}
-          command: |
+          script: |
             mkdir -p ~/${{ env.BOX_NAME }}
             cd /tmp/${{ env.BOX_NAME }}
             mv docker-compose.yml start.sh ~/${{ env.BOX_NAME }}
