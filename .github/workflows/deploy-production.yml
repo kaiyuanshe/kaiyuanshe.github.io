@@ -1,6 +1,7 @@
 # reference:
 #   1. https://github.com/docker/build-push-action/blob/master/docs/advanced/push-multi-registries.md
 #   2. https://github.com/docker/build-push-action/blob/master/docs/advanced/share-image-jobs.md
+#   3. https://github.com/marketplace/actions/unregistry-docker-push-action
 
 name: Deploy to Production environment
 on:
@@ -8,7 +9,6 @@ on:
     tags:
       - v*
 env:
-  ARTIFACT_PATH: artifact.tar
   BOX_NAME: kys-ows
   BOX_URL: kaiyuanshe/kys-ows
   DOCKER_BUILD_SUMMARY: false
@@ -39,6 +39,7 @@ jobs:
           ${{ secrets.ENV_FILE }}
           VERCEL_URL=kaiyuanshe.cn
           EOF
+
       - uses: docker/setup-qemu-action@v3
       - uses: docker/setup-buildx-action@v3
 
@@ -48,7 +49,7 @@ jobs:
           context: .
           platforms: linux/amd64
           tags: ${{ env.BOX_URL }}:latest
-          outputs: type=docker,dest=${{ env.ARTIFACT_PATH }}
+          load: true # Load image to local Docker daemon for unregistry
           # use cache from GitHub Actions
           cache-from: type=gha
           cache-to: type=gha,mode=max
@@ -56,9 +57,12 @@ jobs:
       - name: Pick Docker Compose
         run: |
           mkdir ./build
-          mv ${{ env.ARTIFACT_PATH }} ./docker-compose.yml ./start.sh ./build
+          mv ./docker-compose.yml ./start.sh ./build
 
-      - name: Transport Image
+      - name: Add server to known hosts
+        run: ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
+
+      - name: Transport Docker Compose and start script files
         uses: appleboy/scp-action@v0.1.7
         with:
           source: ./build/*.*
@@ -66,18 +70,24 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
           password: ${{ secrets.SSH_KEY }}
-          strip_components: 1
+
+      - name: Deploy Docker image to server
+        uses: SonOfBytes/unregistry-action@v0.1.0
+        with:
+          image: ${{ env.BOX_URL }}:latest
+          destination: ${{ secrets.USER }}@${{ secrets.HOST }}
+          ssh_password: ${{ secrets.SSH_KEY }}
 
       - name: Run Image
-        uses: garygrossgarten/github-action-ssh@release
+        uses: appleboy/ssh-action@v1
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
           password: ${{ secrets.SSH_KEY }}
-          command: |
+          script: |
             mkdir -p ~/${{ env.BOX_NAME }}
             cd /tmp/${{ env.BOX_NAME }}
             mv docker-compose.yml start.sh ~/${{ env.BOX_NAME }}
             cd ~/${{ env.BOX_NAME }}
             chmod +x start.sh
-            echo '${{ secrets.SSH_KEY }}' | sudo -S ./start.sh /tmp/${{ env.BOX_NAME }}/${{ env.ARTIFACT_PATH }}
+            echo '${{ secrets.SSH_KEY }}' | sudo -S ./start.sh 
